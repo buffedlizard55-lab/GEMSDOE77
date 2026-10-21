@@ -1,0 +1,12 @@
+{
+  "registered_utc": "2026-10-21",
+  "lane": "H84 geophysics-gated second-strand collar",
+  "hypothesis": "Uncatalogued sub-parallel splays lie at kernel scale (peak 300 m, cutoff 1.2 km) from visible mapped faults AND offset basement, so coincident magnetic (band 3 TMI horizontal gradient) + gravity (band 13 gradient) rank maxima gate the collar.",
+  "mimic": "Lithologic contacts parallel to range fronts; airborne survey seams",
+  "inputs": ["data/bridge grid (footprint/catalogue)", "data/raw/training_features.tif bands 3 and 13 (SHA-256 4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5, owner mirror, not organizer-authenticated)"],
+  "signature": "score = collar(dist_to_visible) * sqrt(rank01(tmi_hg) * rank01(|grad iso_grav_anom|)); collar zero on trace, sin^2 rise 1->3 px, cos^2 fall 3->12 px",
+  "validation": "gems57 buffered_component_draw seed=30 hide_frac=0.20 buffer_px=3; catalogue features from visible faults only; visible faults masked pixel-exactly; pooled DTI alpha=0.2 beta=0.8 300 m triangular kernel (gems57-pooled-hide-v2); arms H84_gated vs H83_collar vs A0_random at matched 37,654-dot budget, min_sep 2.8 px",
+  "canaries": ["collar_visible_only", "mag_hg", "grav_hg", "gate", "gated_score"],
+  "promotion": "Beat incumbent 0.152718 HOLDOUT-DTI with paired CI excluding 0, canaries <=0.90, local uniqueness pass, validator PASS; else negative, inspection-only, 0 slots",
+  "budget": {"maximum_experiments": 3, "maximum_hours": 2, "planned_experiments": 1}
+}

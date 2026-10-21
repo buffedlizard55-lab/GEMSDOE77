@@ -1,0 +1,146 @@
+{
+  "experiment": "H77H-E3-UNIQUENESS",
+  "candidate": "gems77-h77h-piedmont-relay-37654dots-20261021-56b7c98c-zeros",
+  "tif_sha256": "e4c718f450130e2e07e14ef506f051ea974c53382740974e758858519e866fe4",
+  "registry_scope": "70 distinct SHA-256 rasters checked (2 SHA-pinned witnesses dense_witness ab0a0a62 + H33 c55bafc4, 22 local GEMSDOE77 lane TIFFs, and restored sibling rasters in .cache/data/registry/rasters/); full 812-raster REST crawl omitted to preserve shared GitHub API quota",
+  "phase1_surface": {
+    "registry_rasters_checked": 70,
+    "space_filling_rasters_count": 5,
+    "space_filling_sha256s": [
+      "033df94ceef16350030a69d5cfdec0afe7bc605bb155d8f3b98b203aabf80abd",
+      "9489af2b7e1b06a249203d3c9d6dfe4ed469647f59ebe3a5ffe9c50c67e46b42",
+      "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+      "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+      "c9d1398e464603350e464fff7213a8a5e380f1ccf505e263a685607970ae28ef"
+    ],
+    "literal_worst_spearman_full_footprint": 0.7250830311893467,
+    "literal_worst_rho_submission": "dense_witness.tif",
+    "literal_worst_dot_overlap": 1.0,
+    "literal_worst_overlap_submission": "dense_witness.tif",
+    "literal_unique": false,
+    "literal_duplicate_count": 5,
+    "informative_non_space_filling": {
+      "n_informative_rasters": 65,
+      "worst_abs_spearman": 0.1988384572526487,
+      "worst_rho_submission": "calib_hedgev2_01563_sample.tif",
+      "worst_forward_overlap_3px": 0.31933969530353146,
+      "worst_overlap_submission": "h60_union_d2_75308.tif",
+      "informative_gate_pass": true,
+      "top5_by_overlap": [
+        {
+          "submission": "h60_union_d2_75308.tif",
+          "sha256": "772cf4502bfc",
+          "forward_overlap_3px": 0.31933969530353146,
+          "abs_spearman": 0.04379995779995467
+        },
+        {
+          "submission": "calib_hedgev2_01563_sample.tif",
+          "sha256": "052688eafbc7",
+          "forward_overlap_3px": 0.2835644501692543,
+          "abs_spearman": 0.1988384572526487
+        },
+        {
+          "submission": "calib_h28ridge_01839.tif",
+          "sha256": "7637b72d4c6c",
+          "forward_overlap_3px": 0.27203537891214336,
+          "abs_spearman": 0.10874497828111199
+        },
+        {
+          "submission": "calib_h25ctx_01280.tif",
+          "sha256": "1381e784fb8b",
+          "forward_overlap_3px": 0.2631105327814603,
+          "abs_spearman": 0.19636281253275426
+        },
+        {
+          "submission": "h52_coincidence8_80k.tif",
+          "sha256": "a2ed87fac9fd",
+          "forward_overlap_3px": 0.23857078607849405,
+          "abs_spearman": 0.01976163348541817
+        }
+      ]
+    },
+    "vs_h33_champion": {
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "spearman_full_footprint": 0.05843256145537156,
+      "forward_overlap_3px": 0.15085347058427379
+    },
+    "vs_dense_witness_ab0a0a62": {
+      "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+      "spearman_full_footprint": 0.7250830311893467,
+      "forward_overlap_3px": 1.0
+    },
+    "byte_unique_among_checked": true,
+    "pixel_unique_among_checked": true
+  },
+  "phase2_final_dots": {
+    "registry_rasters_checked": 70,
+    "space_filling_rasters_count": 5,
+    "space_filling_sha256s": [
+      "033df94ceef16350030a69d5cfdec0afe7bc605bb155d8f3b98b203aabf80abd",
+      "9489af2b7e1b06a249203d3c9d6dfe4ed469647f59ebe3a5ffe9c50c67e46b42",
+      "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+      "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+      "c9d1398e464603350e464fff7213a8a5e380f1ccf505e263a685607970ae28ef"
+    ],
+    "literal_worst_spearman_full_footprint": 0.10065844264218604,
+    "literal_worst_rho_submission": "dense_witness.tif",
+    "literal_worst_dot_overlap": 1.0,
+    "literal_worst_overlap_submission": "dense_witness.tif",
+    "literal_unique": false,
+    "literal_duplicate_count": 5,
+    "informative_non_space_filling": {
+      "n_informative_rasters": 65,
+      "worst_abs_spearman": 0.07767922776263304,
+      "worst_rho_submission": "gems77-h77e-ucpeuler-ctx-37654dots-20261021-22873551-zeros.tif",
+      "worst_forward_overlap_3px": 0.6499973442396558,
+      "worst_overlap_submission": "calib_h25ctx_01280.tif",
+      "informative_gate_pass": true,
+      "top5_by_overlap": [
+        {
+          "submission": "calib_h25ctx_01280.tif",
+          "sha256": "1381e784fb8b",
+          "forward_overlap_3px": 0.6499973442396558,
+          "abs_spearman": 0.04165415346939389
+        },
+        {
+          "submission": "calib_h28ridge_01839.tif",
+          "sha256": "7637b72d4c6c",
+          "forward_overlap_3px": 0.6499973442396558,
+          "abs_spearman": 0.022892816620869585
+        },
+        {
+          "submission": "gems77-h77e-pure-submod-36500dots-20261021-e106c72c-zeros.tif",
+          "sha256": "abb0cb1349c9",
+          "forward_overlap_3px": 0.630238487278908,
+          "abs_spearman": 0.0349402642987126
+        },
+        {
+          "submission": "calib_hedgev2_01563_sample.tif",
+          "sha256": "052688eafbc7",
+          "forward_overlap_3px": 0.6165613215063472,
+          "abs_spearman": 0.026043227476195106
+        },
+        {
+          "submission": "gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif",
+          "sha256": "20be05cc671c",
+          "forward_overlap_3px": 0.5910660222021564,
+          "abs_spearman": 0.05934076005269999
+        }
+      ]
+    },
+    "vs_h33_champion": {
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "spearman_full_footprint": 0.027411194028034276,
+      "forward_overlap_3px": 0.45779996813087587
+    },
+    "vs_dense_witness_ab0a0a62": {
+      "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+      "spearman_full_footprint": 0.10065844264218604,
+      "forward_overlap_3px": 1.0
+    },
+    "byte_unique_among_checked": true,
+    "pixel_unique_among_checked": true
+  },
+  "protocol_unique": false,
+  "informative_unique": true
+}

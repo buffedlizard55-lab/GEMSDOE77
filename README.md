@@ -32,6 +32,8 @@
 - Negative results are deliverables; no competition slot was spent.
 
 <!-- H84 STATUS BANNER (2026-10-21 session arena/c37917cc-gemsdoe77) -->
+> **Parallel lane H84-ORGATE-COLLAR (origin/main 2026-10-21):** unique GeoTIFF [`docs/downloads/gems77-h84-orgate-collar-37654dots-20261021-2d0a731a-zeros.tif`](docs/downloads/gems77-h84-orgate-collar-37654dots-20261021-2d0a731a-zeros.tif) (142,608 B, SHA-256 `9a5f5433cbfed4a1a8ac2587678aaa930c8ed93e948b9e94874c8febc549fd57`; ZIP `91a72265e5d87f4a4e1dc2730fac484162ac0d33604e892f44184d9a93ce448f` — full receipt [`docs/h84-orgate.html`](docs/h84-orgate.html)) — also **NOT OK TO SUBMIT** (HOLDOUT-DTI 0.1215 [0.1071,0.1355] vs incumbent 0.1527, 78.6% overlap vs H83 >0.70). This merge preserves both H84 negative lanes; 0 slots used.
+
 > ## 🚦 H84-TIPLOBE: ✅ OK TO DOWNLOAD FOR INSPECTION · ⛔ NOT OK TO SUBMIT (negative, lane closed, 0 slots)
 >
 > - **Unique byte-novel GeoTIFF:** [`docs/downloads/gems77-h84-tiplobe-37654dots-20261021-b57c52b3-zeros.tif`](docs/downloads/gems77-h84-tiplobe-37654dots-20261021-b57c52b3-zeros.tif) (133,412 B, SHA-256 `2bff4b55cabe5a4eb7ab1aeff6b21e407a87a576d1d0c3c5f20ed3ddb1c279ba`; one-TIFF [`.zip`](docs/downloads/gems77-h84-tiplobe-37654dots-20261021-b57c52b3-zeros.zip) 97,294 B, SHA-256 `5fc768b4384e69858fbec4abd302a83c68bb56e2db5e50783420d50dca798b11`). Validator ALL PASS: EPSG:32611, 3730×3292, float32 {0.0,1.0} in [0,1], **0 NaN anywhere**, 37,654 dots, 0 on catalogue, zeros outside footprint.
