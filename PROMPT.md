@@ -8,17 +8,17 @@ summarised with provenance at the end rather than re-transcribed hash-by-hash
 `docs/score-ledger.csv`; later entries below are OWNER-REPORT as supplied in
 the 2026-10-21 brief — no organizer receipts).*
 
-## 2026-10-21 H82 execution addendum (current session; supersedes the H79 addendum below)
+## 2026-10-21 H82S execution addendum (current session; supersedes the H79 addendum below)
 
-This session's registered lane is **H82**: a windowed spectral (Spector & Grant
+This session's registered lane is **H82S**: a windowed spectral (Spector & Grant
 1970-style) magnetic source-depth gradient, the first frequency-domain depth method
 tried in this repository. The operative preregistration is
-`registry/preregistration_h82.json`; the measured artifact and stop decision are in
-`evidence/h82_run_card.json`. A prior session's hypothesis document
+`registry/preregistration_h82spec.json`; the measured artifact and stop decision are in
+`evidence/h82spec_run_card.json`. A prior session's hypothesis document
 (`research/hypotheses-xsen-2026-10-21.md`) had mistakenly marked this idea `BLOCKED` on
 the premise that it needed a new external heat-flow compilation; that was corrected
-this session in `research/h82_hypotheses.md` — the single-slope depth estimate needs
-only the already-cached, already-restored RTP band, no new external data. H82's result
+this session in `research/h82spec_hypotheses.md` — the single-slope depth estimate needs
+only the already-cached, already-restored RTP band, no new external data. H82S's result
 is **negative**: leakage canaries pass (symmetric AUC 0.5116 / 0.5232, both well under
 the 0.90 ceiling), but the HOLDOUT-DTI (0.025822, 95% CI [0.018615, 0.033600],
 `gems57-pooled-hide-v2`, Seed 20, 11,321 withheld positive pixels) is below its own
@@ -26,9 +26,9 @@ matched random control (0.046625) with a paired-delta CI entirely negative, and 
 below the 0.152718 repository incumbent. Safe to download for inspection, not approved
 to submit, no weekly slot was selected. Two of the session's three allotted experiments
 were used (surface/canary, holdout); the artifact build was a non-counted inspection
-step. H82-2 (two-depth Curie-point depth fused with the cached INGENIOUS probe halo)
-and H82-3 (beheaded-drainage network asymmetry) remain deferred to a future session.
-H82-4 (AMT/resistivity) and H82-5 (InSAR) remain confirmed `BLOCKED` (official free
+step. H82S-2 (two-depth Curie-point depth fused with the cached INGENIOUS probe halo)
+and H82S-3 (beheaded-drainage network asymmetry) remain deferred to a future session.
+H82S-4 (AMT/resistivity) and H82S-5 (InSAR) remain confirmed `BLOCKED` (official free
 sources GDR / Copernicus Dataspace / ASF DAAC are outside this sandbox's egress
 allow-list). The 0.152718 incumbent's originating run card is still unidentified and
 remains an open item for a future session. The full request below remains preserved as

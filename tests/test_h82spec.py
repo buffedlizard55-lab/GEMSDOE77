@@ -1,9 +1,9 @@
-"""H82 spectral magnetic source-depth lane: synthetic unit checks + run-card audit.
+"""H82S spectral magnetic source-depth lane: synthetic unit checks + run-card audit.
 
 Unit checks run on synthetic arrays only (no competition data needed): they
 verify the radial-bin geometry and that the Spector & Grant style slope fit
 recovers a known depth from a synthetic exponentially-decaying-spectrum
-source. The run-card audit only runs once ``evidence/h82_run_card.json``
+source. The run-card audit only runs once ``evidence/h82spec_run_card.json``
 exists (committed negative result from this session).
 """
 import importlib.util
@@ -17,7 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def _load_h82_module():
-    spec = importlib.util.spec_from_file_location("h82_pipeline", ROOT / "scripts" / "h82_pipeline.py")
+    spec = importlib.util.spec_from_file_location("h82spec_pipeline", ROOT / "scripts" / "h82spec_pipeline.py")
     mod = importlib.util.module_from_spec(spec)
     sys.path[:0] = [str(ROOT / "src"), str(ROOT / "vendor" / "template66")]
     spec.loader.exec_module(mod)
@@ -64,19 +64,19 @@ def test_spector_grant_depth_recovers_synthetic_source_depth():
 
 
 def test_h82_run_card_is_negative_and_internally_consistent():
-    card_p = ROOT / "evidence" / "h82_run_card.json"
+    card_p = ROOT / "evidence" / "h82spec_run_card.json"
     if not card_p.exists():
         import pytest
-        pytest.skip("H82 Exp 1/2 not run yet")
+        pytest.skip("H82S Exp 1/2 not run yet")
     card = json.loads(card_p.read_text())
     assert card["verdict"] == "negative"
     hd = card["holdout_dti"]
     assert hd["evaluator_version"] == "gems57-pooled-hide-v2"
     assert hd["beats_incumbent"] is False
-    g = hd["H82_gradient"]["dti"]
+    g = hd["H82S_gradient"]["dti"]
     r = hd["random_control"]["dti"]
     assert g < r  # measured: candidate underperforms its own matched random control
-    delta = hd["paired_delta_H82_gradient_minus_random"]
+    delta = hd["paired_delta_H82S_gradient_minus_random"]
     assert delta["ci95"][1] < 0  # CI entirely negative -> significantly worse, not just non-significant
     assert len(card["submission_note"]) <= 140
     assert "h82-spectral-depth-gradient" in card["submission_name"]
@@ -88,14 +88,14 @@ def test_h82_run_card_is_negative_and_internally_consistent():
 
 
 def test_h82_artifact_audit():
-    card_p = ROOT / "evidence/h82_run_card.json"
+    card_p = ROOT / "evidence/h82spec_run_card.json"
     if not card_p.exists():
         import pytest
-        pytest.skip("H82 run card not written yet")
+        pytest.skip("H82S run card not written yet")
     card = json.loads(card_p.read_text())
     if "raster_file" not in card or card.get("raster_sha256", "").startswith("not"):
         import pytest
-        pytest.skip("H82 artifact mode not run yet")
+        pytest.skip("H82S artifact mode not run yet")
     import hashlib
     tif = ROOT / "submissions" / card["raster_file"]
     assert tif.is_file()
@@ -109,12 +109,12 @@ def test_h82_artifact_audit():
     docs_tif = ROOT / "docs" / "downloads" / card["raster_file"]
     assert docs_tif.is_file()
     assert hashlib.sha256(docs_tif.read_bytes()).hexdigest() == card["raster_sha256"]
-    page = (ROOT / "docs/h82.html").read_text()
+    page = (ROOT / "docs/h82spec.html").read_text()
     assert "OK to download" in page
     assert "NOT OK TO SUBMIT" in page or "NOT OK to submit" in page
     assert card["raster_sha256"] in page
     lanes = json.loads((ROOT / "docs/data/lanes.json").read_text())
-    h82_lane = next((x for x in lanes["lanes"] if x["lane"].startswith("H82:")), None)
+    h82_lane = next((x for x in lanes["lanes"] if x["lane"].startswith("H82S:")), None)
     assert h82_lane is not None
     assert h82_lane["sha256"] == card["raster_sha256"]
     assert h82_lane["verdict"] == "negative"

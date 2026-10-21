@@ -1,8 +1,8 @@
 {
-  "experiment": "H82-E2",
+  "experiment": "H82S-E2",
   "evidence_class": "HOLDOUT-DTI",
   "evaluator_version": "gems57-pooled-hide-v2",
-  "preregistration": "registry/preregistration_h82.json",
+  "preregistration": "registry/preregistration_h82spec.json",
   "emitted_dot_budgets_per_fold": [
     {
       "fold": "NW",
@@ -87,7 +87,7 @@
     "triangular_radius_m": 300.0,
     "pooled": true,
     "scores": {
-      "H82_gradient": {
+      "H82S_gradient": {
         "evidence_class": "HOLDOUT-DTI",
         "evaluator_version": "gems57-pooled-hide-v2",
         "dti": 0.025822451132462867,
@@ -100,7 +100,7 @@
         "fpw": 36801.29698891196,
         "fnw": 10894.870544554151
       },
-      "H82_raw_depth": {
+      "H82S_raw_depth": {
         "evidence_class": "HOLDOUT-DTI",
         "evaluator_version": "gems57-pooled-hide-v2",
         "dti": 0.02348682898943619,
@@ -129,7 +129,7 @@
     },
     "best_comparable_control": "random",
     "paired_differences": {
-      "H82_raw_depth": {
+      "H82S_raw_depth": {
         "evidence_class": "HOLDOUT-DTI",
         "evaluator_version": "gems57-pooled-hide-v2",
         "delta": 0.0023356221430266763,

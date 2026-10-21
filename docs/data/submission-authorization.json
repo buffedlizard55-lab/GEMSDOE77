@@ -1,6 +1,6 @@
 {
   "schema": "gems-submission-authorization-v1",
-  "generated_utc": "2026-10-21T17:04:34+00:00",
+  "generated_utc": "2026-10-21T17:09:26+00:00",
   "policy": "Authorization requires artifact existence, matching SHA-256, a readable run card with a promote verdict, local format PASS, literal protocol uniqueness (including <=0.70 real-model forward 3-px overlap and complete registry), improvement over the accepted holdout best, a promote verdict, and explicit selector approval. Missing fields or historical run-card uniqueness/completeness failures fail closed.",
   "repository_authorized_file_count": 0,
   "repository_decision": "NOT OK TO SUBMIT",
@@ -159,8 +159,8 @@
       "reconciliation_note": "Historical run card and operative release gate both fail closed."
     },
     {
-      "lane": "H82: windowed spectral magnetic source-depth gradient (Spector & Grant 1970 style; HOLDOUT-DTI 0.0258 vs random 0.0466; negative result)",
-      "run_card": "evidence/h82_run_card.json",
+      "lane": "H82S: windowed spectral magnetic source-depth gradient (Spector & Grant 1970 style; HOLDOUT-DTI 0.0258 vs random 0.0466; negative result)",
+      "run_card": "evidence/h82spec_run_card.json",
       "recorded_verdict": "negative",
       "recorded_safe_to_submit": false,
       "historical_promotion_conflict": false,
@@ -959,7 +959,7 @@
       ]
     },
     {
-      "lane": "H82: windowed spectral magnetic source-depth gradient (Spector & Grant 1970 style; HOLDOUT-DTI 0.0258 vs random 0.0466; negative result)",
+      "lane": "H82S: windowed spectral magnetic source-depth gradient (Spector & Grant 1970 style; HOLDOUT-DTI 0.0258 vs random 0.0466; negative result)",
       "file": "downloads/gems77-h82-spectral-depth-gradient-37654dots-20261021-zeros.tif",
       "sha256": "26c9eec0d8b3c78f2285e642c0248c378ca7ab67334f084f0e708252f3f8bd16",
       "checks": {
@@ -973,7 +973,7 @@
         "sha256_matches": true
       },
       "run_card_audit": {
-        "run_card": "evidence/h82_run_card.json",
+        "run_card": "evidence/h82spec_run_card.json",
         "present": true,
         "recorded_verdict": "negative",
         "recorded_safe_to_submit": false,

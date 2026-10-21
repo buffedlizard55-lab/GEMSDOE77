@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""H82: windowed spectral magnetic source-depth gradient (Spector & Grant 1970 style).
+"""H82S: windowed spectral magnetic source-depth gradient (Spector & Grant 1970 style).
 
 Modes mirror the repository's established per-lane pattern (see
 ``scripts/h79_radhalo_pipeline.py``): ``surface`` (feature + leakage canary,
@@ -39,7 +39,7 @@ N_DOTS = 37_654
 MIN_SEP = 2.8
 SEED = 20
 NAME = "gems77-h82-spectral-depth-gradient-37654dots-20261021-zeros"
-NOTE = "H82 spectral depth-gradient (Spector-Grant); HOLDOUT-DTI 0.0258 < random 0.0466 and incumbent 0.1527; negative, do not submit"
+NOTE = "H82S spectral depth-gradient (Spector-Grant); HOLDOUT-DTI 0.0258 < random 0.0466 and incumbent 0.1527; negative, do not submit"
 BLOCK = 32
 N_RADIAL_BINS = 16
 FIT_BINS = (1, 8)  # inclusive band index range used for the slope fit
@@ -128,7 +128,7 @@ def _spector_grant_depth_blocks(rtp: np.ndarray, valid: np.ndarray) -> np.ndarra
 
 def features() -> dict[str, np.ndarray]:
     WORK.mkdir(parents=True, exist_ok=True)
-    cache = WORK / "h82_features.npz"
+    cache = WORK / "h82spec_features.npz"
     if cache.exists():
         z = np.load(cache)
         return {k: z[k] for k in z.files}
@@ -216,9 +216,9 @@ def run_surface() -> None:
     f = features()
     can = canaries(f)
     out = {
-        "experiment": "H82-E1",
+        "experiment": "H82S-E1",
         "evidence_class": "leakage-canary + feature diagnostic (not HOLDOUT-DTI)",
-        "preregistration": "registry/preregistration_h82.json",
+        "preregistration": "registry/preregistration_h82spec.json",
         "block_coverage_mean": float(f["block_coverage_mean"][0]),
         "block_finite_frac_before_nn_fill": float(f["block_finite_frac"][0]),
         "depth_full_stats_m": {
@@ -230,10 +230,10 @@ def run_surface() -> None:
         "leakage_canary": can,
         "any_leakage_flag": any(v["leakage_flag"] for v in can.values()),
     }
-    _json(ROOT / "evidence/h82_e1_surface.json", out)
+    _json(ROOT / "evidence/h82spec_e1_surface.json", out)
     print(json.dumps(out, indent=2))
     if out["any_leakage_flag"]:
-        raise SystemExit("STOP: H82 canary exceeds 0.90 symmetric AUC (leakage)")
+        raise SystemExit("STOP: H82S canary exceeds 0.90 symmetric AUC (leakage)")
 
 
 def emit(surface: np.ndarray, allowed: np.ndarray, limit=N_DOTS) -> np.ndarray:
@@ -247,7 +247,7 @@ def emit(surface: np.ndarray, allowed: np.ndarray, limit=N_DOTS) -> np.ndarray:
 
 
 def run_holdout() -> None:
-    e1 = json.loads((ROOT / "evidence/h82_e1_surface.json").read_text())
+    e1 = json.loads((ROOT / "evidence/h82spec_e1_surface.json").read_text())
     if e1["any_leakage_flag"]:
         raise SystemExit("E1 leakage gate failed; no holdout")
     f = features()
@@ -256,7 +256,7 @@ def run_holdout() -> None:
     rng = np.random.default_rng(8201)
     random_key = rng.random(grid.shape).astype(np.float32)
 
-    arm_terms: dict[str, list] = {"H82_gradient": [], "H82_raw_depth": [], "random": []}
+    arm_terms: dict[str, list] = {"H82S_gradient": [], "H82S_raw_depth": [], "random": []}
     fold_receipts = []
     budget_notes = []
     for fold in folds:
@@ -265,19 +265,19 @@ def run_holdout() -> None:
         p_raw, n_raw = emit(f["depth_raw_rank"], allowed)
         p_rand, n_rand = emit(random_key, allowed)
         budget_notes.append({"fold": fold["name"], "n_grad": n_grad, "n_raw": n_raw, "n_rand": n_rand})
-        for key, p in (("H82_gradient", p_grad), ("H82_raw_depth", p_raw), ("random", p_rand)):
+        for key, p in (("H82S_gradient", p_grad), ("H82S_raw_depth", p_raw), ("random", p_rand)):
             _, terms = eh.evaluate(p.astype(np.float64), fold, grid.footprint)
             arm_terms[key].append(terms)
         fold_receipts.append(fold["receipt"])
 
     pooled_terms = {k: np.sum(v, axis=0) for k, v in arm_terms.items()}
-    summary = eh.pooled_summary(pooled_terms, draws=1000, candidate="H82_gradient")
+    summary = eh.pooled_summary(pooled_terms, draws=1000, candidate="H82S_gradient")
 
     out = {
-        "experiment": "H82-E2",
+        "experiment": "H82S-E2",
         "evidence_class": "HOLDOUT-DTI",
         "evaluator_version": eh.VERSION,
-        "preregistration": "registry/preregistration_h82.json",
+        "preregistration": "registry/preregistration_h82spec.json",
         "emitted_dot_budgets_per_fold": budget_notes,
         "fold_receipts": fold_receipts,
         "summary": summary,
@@ -287,14 +287,14 @@ def run_holdout() -> None:
             "value": 0.152718,
             "source": "evidence/run_card.json (H77-Step lane); cross-draw reference, NOT a paired comparison",
         },
-        "beats_incumbent": bool(summary["scores"]["H82_gradient"]["dti"] > 0.152718
-                                 and summary["scores"]["H82_gradient"]["ci95"][0] > 0.152718),
+        "beats_incumbent": bool(summary["scores"]["H82S_gradient"]["dti"] > 0.152718
+                                 and summary["scores"]["H82S_gradient"]["ci95"][0] > 0.152718),
     }
-    _json(ROOT / "evidence/h82_e2_holdout.json", out)
+    _json(ROOT / "evidence/h82spec_e2_holdout.json", out)
     print(json.dumps({
-        "H82_gradient_dti": summary["scores"]["H82_gradient"]["dti"],
-        "H82_gradient_ci95": summary["scores"]["H82_gradient"]["ci95"],
-        "H82_raw_depth_dti": summary["scores"]["H82_raw_depth"]["dti"],
+        "H82S_gradient_dti": summary["scores"]["H82S_gradient"]["dti"],
+        "H82S_gradient_ci95": summary["scores"]["H82S_gradient"]["ci95"],
+        "H82S_raw_depth_dti": summary["scores"]["H82S_raw_depth"]["dti"],
         "random_dti": summary["scores"]["random"]["dti"],
         "paired_delta_vs_random": summary["paired_differences"]["random"],
         "beats_incumbent_0.152718": out["beats_incumbent"],
@@ -304,15 +304,15 @@ def run_holdout() -> None:
 def run_artifact() -> None:
     """Build a research-only, NOT-OK-TO-SUBMIT inspection artifact.
 
-    H82's own preregistered promotion gate (registry/preregistration_h82.json)
-    was not met (evidence/h82_run_card.json: negative, below the matched
+    H82S's own preregistered promotion gate (registry/preregistration_h82spec.json)
+    was not met (evidence/h82spec_run_card.json: negative, below the matched
     random control). This artifact exists only so the negative result is an
     inspectable, byte-verifiable deliverable, matching every other negative
     lane in this repository (H77G, H79, H80, H81, XSEN). It is never treated
     as a submission candidate and no weekly slot is used.
     """
     import shutil
-    e2 = json.loads((ROOT / "evidence/h82_e2_holdout.json").read_text())
+    e2 = json.loads((ROOT / "evidence/h82spec_e2_holdout.json").read_text())
     if e2["beats_incumbent"]:
         raise SystemExit("refusing to auto-build an artifact for a lane that claims to beat the incumbent; requires manual review")
     f = features()
@@ -323,7 +323,7 @@ def run_artifact() -> None:
         p.unlink(missing_ok=True)
     receipt = write_submission(out, pred.astype(np.float32), BRIDGE / "sample_submission.tif",
                                grid.footprint, catalogue=grid.catalogue, name=NAME, note=NOTE,
-                               metadata={"lane": "H82", "selector_approved": False,
+                               metadata={"lane": "H82S", "selector_approved": False,
                                          "holdout_dti": 0.025822451132462867,
                                          "beats_incumbent": False, "verdict": "negative"})
     for p in (out, out.with_suffix(".zip"), out.with_suffix(".json")):

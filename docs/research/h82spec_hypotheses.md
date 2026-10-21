@@ -1,6 +1,6 @@
-# H82 — candidate geological hypotheses (ranked before Exp 1)
+# H82S — candidate geological hypotheses (ranked before Exp 1)
 
-*Written 2026-10-21, before any H82 experiment ran. Evidence classes:
+*Written 2026-10-21, before any H82S experiment ran. Evidence classes:
 **[OFFICIAL]** organizer/USGS source · **[MEASURED]** computed this session
 from SHA-pinned bytes · **[OWNER-REPORT]** family ledger without an organizer
 receipt · **[BLOCKED]** not obtainable from this sandbox, with the exact check
@@ -43,7 +43,7 @@ found in GEMSDOE32's own site (`research/why-h33-scored-02778.md`).
 
 ## Ranked hypotheses
 
-### H82-1 (rank 1 — implemented this session) — Windowed spectral magnetic source-depth gradient ("Spector & Grant" single-slope depth index)
+### H82S-1 (rank 1 — implemented this session) — Windowed spectral magnetic source-depth gradient ("Spector & Grant" single-slope depth index)
 
 - **Layer:** `rtp` (band 2 of the cached `training_features.tif`, already
   restored and SHA-256 verified this session, see `evidence/h82_data_receipt.json`).
@@ -78,7 +78,7 @@ found in GEMSDOE32's own site (`research/why-h33-scored-02778.md`).
   spatial-domain Euler deconvolution (homogeneity equation, requires a
   structural index) and upward-continuation phase persistence; contact-physics
   tested spatial-domain tilt zero-crossings, analytic-signal ridges and
-  monogenic phase congruency. H82-1 is the first **frequency-domain radial
+  monogenic phase congruency. H82S-1 is the first **frequency-domain radial
   power-spectrum** depth estimate in this repository or any inspected sibling
   script search.
 - **Cost / obtainability:** **Low.** Needs only the already-cached,
@@ -86,10 +86,10 @@ found in GEMSDOE32's own site (`research/why-h33-scored-02778.md`).
   runs in well under a minute on CPU. **[MEASURED] obtainable now** — this
   corrects the prior session's mistaken BLOCKED verdict
   (`research/hypotheses-xsen-2026-10-21.md` row 5), which conflated this
-  single-slope estimate with the two-depth centroid Curie-point method (H82-2
+  single-slope estimate with the two-depth centroid Curie-point method (H82S-2
   below), which *does* need more care.
 
-### H82-2 (rank 2 — not implemented this session) — Two-depth centroid Curie-point-depth (Bouligand/Okubo) fused with the cached INGENIOUS probe halo
+### H82S-2 (rank 2 — not implemented this session) — Two-depth centroid Curie-point-depth (Bouligand/Okubo) fused with the cached INGENIOUS probe halo
 
 - **Layers:** `rtp` (band 2) for the centroid/top-depth fit; the already
   -cached INGENIOUS 2 m temperature-probe DAB halo and GDR 1391
@@ -97,26 +97,26 @@ found in GEMSDOE32's own site (`research/why-h33-scored-02778.md`).
   (`hydro_upflow_near_400m`, `hydro_upflow_far_1400m`).
 - **Signature:** fit both the top depth `Zt` and centroid depth `Zo` of the
   magnetic source ensemble per window (iterative two-parameter spectral fit,
-  not H82-1's single slope); Curie depth `Zc = 2*Zo - Zt`
+  not H82S-1's single slope); Curie depth `Zc = 2*Zo - Zt`
   (Bouligand, Glen & Blakely, 2009, *JGR*); then require a Curie-depth edge
   to be spatially coincident with the independent, already-cached
   hydrothermal-probe halo before crediting a pixel.
 - **Why uncatalogued:** couples two independent physical observables
   (basement/Curie-isotherm depth from magnetics; measured shallow heat from
   probes) that neither existing lane combines; a coincidence requirement
-  should suppress the volcanic-dome mimic that threatens H82-1 alone (calderas
+  should suppress the volcanic-dome mimic that threatens H82S-1 alone (calderas
   have shallow Curie depth AND often a probe signal, but a *fault-bounding
   step* in Curie depth next to the probe halo is the more specific claim).
 - **Mimic:** calderas/intrusive centers with both a shallow Curie-depth dome
   and a conductive probe halo but no bounding linear structural offset.
 - **Cost:** **Medium-high.** The two-parameter de-fractal spectral fit is
-  iterative and numerically more fragile than H82-1's closed-form slope
+  iterative and numerically more fragile than H82S-1's closed-form slope
   (window size and fractal-exponent choices materially change `Zo`/`Zt` in
   the published method); needs a dedicated synthetic-source unit test before
   any holdout run. Data is already fully cached; no new external source
   needed. Deferred to a future session's budget, not attempted here.
 
-### H82-3 (rank 3 — not implemented this session) — Beheaded-drainage / wind-gap network asymmetry from the cached chi-network bands
+### H82S-3 (rank 3 — not implemented this session) — Beheaded-drainage / wind-gap network asymmetry from the cached chi-network bands
 
 - **Layers:** `chi_step_max`, `chi_log10_area`, `chi_zmean_m` (already
   computed by `src/gems77_step/features.py` from the cached 10 m 3DEP-derived
@@ -138,7 +138,7 @@ found in GEMSDOE32's own site (`research/why-h33-scored-02778.md`).
   before a graph can be rebuilt. Not attempted this session; flagged for a
   future lane with an explicit synthetic-network unit test.
 
-### H82-4 (rank 4 — **[BLOCKED]**) — Self-potential / audio-magnetotelluric resistivity edges
+### H82S-4 (rank 4 — **[BLOCKED]**) — Self-potential / audio-magnetotelluric resistivity edges
 
 - **Layers needed:** a self-potential or AMT/MT resistivity grid over the AOI.
 - **Specific free official source:** GDR submission 1391
@@ -151,9 +151,9 @@ found in GEMSDOE32's own site (`research/why-h33-scored-02778.md`).
   session; not proposed as viable** until either the host is reachable or an
   owner GitHub mirror of a digitized SP/AMT grid is found (`gh search code` for
   "AMT" / "resistivity" / "self-potential" across `buffedlizard55-lab` returned
-  no raster hit at the time of writing — see `evidence/h82_source_check.json`).
+  no raster hit at the time of writing — see `evidence/h82spec_source_check.json`).
 
-### H82-5 (rank 5 — **[BLOCKED]**) — Sentinel-1 InSAR coherence/velocity gradient
+### H82S-5 (rank 5 — **[BLOCKED]**) — Sentinel-1 InSAR coherence/velocity gradient
 
 - **Layers needed:** Sentinel-1 SLC/InSAR coherence or line-of-sight velocity
   over the AOI (present-day aseismic creep across a blind fault).
@@ -164,7 +164,7 @@ found in GEMSDOE32's own site (`research/why-h33-scored-02778.md`).
   product exists in `registry/data_manifest.json`. **Not obtainable from this
   sandbox; not proposed as viable** until that specific access gap is closed.
 
-## Decision rule (frozen before Exp 1; see `registry/preregistration_h82.json`)
+## Decision rule (frozen before Exp 1; see `registry/preregistration_h82spec.json`)
 
 Exp 1 = surface + two feature-alone leakage canaries (`depth_raw` rank,
 `depth_gradient` rank) on the shared buffered-whole-component holdout
@@ -177,5 +177,5 @@ at the same emitted-dot budget, with paired 95% CI from
 evidence disclosed, uniqueness scan, and the shared writer's validation —
 **no weekly slot is spent unless Exp 2 clears that bar.** If Exp 1 or Exp 2 is
 negative, the run card verdict is **negative**, the finding is the
-deliverable, and H82-2/H82-3 remain open proposals for a future session's
+deliverable, and H82S-2/H82S-3 remain open proposals for a future session's
 budget (not retried here).

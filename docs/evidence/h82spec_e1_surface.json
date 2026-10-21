@@ -1,7 +1,7 @@
 {
-  "experiment": "H82-E1",
+  "experiment": "H82S-E1",
   "evidence_class": "leakage-canary + feature diagnostic (not HOLDOUT-DTI)",
-  "preregistration": "registry/preregistration_h82.json",
+  "preregistration": "registry/preregistration_h82spec.json",
   "block_coverage_mean": 0.41849419474601746,
   "block_finite_frac_before_nn_fill": 0.41764169931411743,
   "depth_full_stats_m": {

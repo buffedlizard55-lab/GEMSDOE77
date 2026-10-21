@@ -1,11 +1,11 @@
 {
   "registered_utc": "2026-10-21",
-  "lane": "H82 windowed spectral magnetic source-depth gradient (Spector & Grant 1970 single-slope depth index)",
+  "lane": "H82S windowed spectral magnetic source-depth gradient (Spector & Grant 1970 single-slope depth index)",
   "hypothesis": "A lateral step in the radial-power-spectrum depth-to-source-ensemble estimate computed from the cached RTP band marks a blind basement-offsetting normal fault, independent of the field's raw amplitude/tilt/Euler behaviour already tested and found negative in this repository.",
   "mimic": "Volcanic edifices/calderas with a locally shallow source population but no bounding structural offset; GeoDAWN flight-line tie-spacing aliasing at the block's Nyquist scale.",
   "inputs": ["data/raw/training_features.tif band 2 (rtp) only", "data/bridge/existing_faults.tif and sample_submission.tif for grid/footprint/catalogue only"],
   "signature": "32x32 px (3.2 km) non-overlapping Hann-tapered blocks; 2D FFT; azimuthally averaged radial power spectrum; linear fit of ln(amplitude) vs wavenumber over a fixed mid-band (bins 1..8 of 16, DC and top bins excluded); depth = -slope, clipped to [100, 4000] m; bilinear resample to full grid; spatial gradient magnitude is the candidate surface.",
-  "physical_units_caveat": "A single-slope Spector & Grant style index assumes a random ensemble of sources at a common statistical depth per block; it is not the two-depth Bouligand/Okubo centroid Curie-point-depth method (that is H82-2, deferred). No claim of calibrated Curie-isotherm depth in degrees C is made.",
+  "physical_units_caveat": "A single-slope Spector & Grant style index assumes a random ensemble of sources at a common statistical depth per block; it is not the two-depth Bouligand/Okubo centroid Curie-point-depth method (that is H82S-2, deferred). No claim of calibrated Curie-isotherm depth in degrees C is made.",
   "candidate_parameters": {"block_px": 32, "fit_bin_range": [1, 8], "n_radial_bins": 16, "depth_clip_m": [100, 4000]},
   "controls": ["matched random control at the same emitted-dot budget", "raw (non-gradient) depth-rank canary"],
   "canaries": ["depth_raw_rank", "depth_gradient_rank"],
@@ -14,6 +14,6 @@
   "registry_policy": "Unchanged template literal support > 0 / binary-dot mutual-overlap reading (both reported); stop on a confirmed duplicate witness; partial scan proves rejection only, never uniqueness.",
   "retention": "If Exp 1 (canary) or Exp 2 (holdout) is negative, retain exactly the measured surface/holdout numbers as a locally validated research artifact; no additional experiments and no slot are spent beyond the frozen 3-experiment budget for this lane.",
   "budget": {"maximum_experiments": 3, "maximum_hours": 2, "planned_experiments": 2},
-  "expected_improvement": "Unknown; hypotheses are ordinal research priorities (see research/h82_hypotheses.md), never projected scores.",
-  "disclosed_source_check": "evidence/h82_source_check.json documents the obtainability check for H82-4/H82-5, which remain BLOCKED and are not implemented in this lane."
+  "expected_improvement": "Unknown; hypotheses are ordinal research priorities (see research/h82spec_hypotheses.md), never projected scores.",
+  "disclosed_source_check": "evidence/h82spec_source_check.json documents the obtainability check for H82S-4/H82S-5, which remain BLOCKED and are not implemented in this lane."
 }

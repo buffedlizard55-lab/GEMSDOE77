@@ -1,9 +1,9 @@
 {
-  "run_card": "GEMSDOE77-H82-2026-10-21",
+  "run_card": "GEMSDOE77-H82S-2026-10-21",
   "hypothesis": "A lateral step in a windowed radial-power-spectrum depth-to-source-ensemble estimate (Spector & Grant 1970 single-slope method) computed only from the cached RTP magnetic band marks a blind basement-offsetting normal fault missing from the USGS/INGENIOUS catalogue, independent of the amplitude/tilt/Euler-style spatial-domain methods already tested and found negative in this repository.",
   "mechanism": "32x32 px (3.2 km) non-overlapping Hann-tapered blocks of RTP; 2D FFT; 16-bin azimuthally averaged radial power spectrum; linear fit of ln(amplitude) vs wavenumber over bins 1-8; depth = -slope (clipped to [100, 4000] m); nearest-neighbour fill of under-covered blocks; bilinear resample to the full 100 m grid; Gaussian smooth (sigma=4 px); spatial gradient magnitude is the candidate surface. Dots: top-ranked pixels, greedy Poisson-disk placement (min separation 2.8 px), budget 37,654 dots to match the family convention, emitted on the whole footprint minus visible/withheld catalogue pixels per fold.",
   "named_non_fault_process_that_could_mimic_it": "Volcanic edifices/calderas with a locally shallow source population but no bounding structural offset; GeoDAWN flight-line tie-spacing aliasing at the 3.2 km block's Nyquist scale.",
-  "measured_caveat": "The fitted depths cluster narrowly (103-394 m, mean 242 m, median 260 m; evidence/h82_e1_surface.json) rather than spanning the full clipped range up to 4000 m. A 3.2 km window with the chosen fit band (bins 1-8 of 16) is evidently resolving near-surface magnetic-source texture rather than a genuinely deep, regional Curie-isotherm-scale signal; this instrument is therefore honestly a shallow relative source-depth-texture proxy, not a calibrated regional Curie-point-depth map (that stricter two-depth centroid method is H82-2, not attempted this session).",
+  "measured_caveat": "The fitted depths cluster narrowly (103-394 m, mean 242 m, median 260 m; evidence/h82spec_e1_surface.json) rather than spanning the full clipped range up to 4000 m. A 3.2 km window with the chosen fit band (bins 1-8 of 16) is evidently resolving near-surface magnetic-source texture rather than a genuinely deep, regional Curie-isotherm-scale signal; this instrument is therefore honestly a shallow relative source-depth-texture proxy, not a calibrated regional Curie-point-depth map (that stricter two-depth centroid method is H82S-2, not attempted this session).",
   "leakage_canary": {
     "evidence_class": "diagnostic, not HOLDOUT-DTI",
     "depth_raw_rank": {
@@ -23,14 +23,14 @@
     "evaluator_version": "gems57-pooled-hide-v2",
     "seed": 20,
     "withheld_positive_pixels": 11321,
-    "H82_gradient": {
+    "H82S_gradient": {
       "dti": 0.025822451132462867,
       "ci95": [
         0.018615398521679438,
         0.03360038259679202
       ]
     },
-    "H82_raw_depth": {
+    "H82S_raw_depth": {
       "dti": 0.02348682898943619,
       "ci95": [
         0.011284971252816649,
@@ -44,14 +44,14 @@
         0.051482479452298
       ]
     },
-    "paired_delta_H82_gradient_minus_random": {
+    "paired_delta_H82S_gradient_minus_random": {
       "delta": -0.020802851929227987,
       "ci95": [
         -0.029114132582775055,
         -0.012173513349664102
       ],
       "withheld_positive_pixels": 11321,
-      "gate": "FAIL: paired 95% CI is entirely negative -- H82-gradient is measurably WORSE than a matched random control, not merely non-significant"
+      "gate": "FAIL: paired 95% CI is entirely negative -- H82S-gradient is measurably WORSE than a matched random control, not merely non-significant"
     },
     "retained_repo_incumbent_cross_draw_reference": {
       "label": "HOLDOUT-DTI H77-Step, gems57-pooled-hide-v2, seed 20, 11321 withheld px",
@@ -62,12 +62,12 @@
     "beats_incumbent": false
   },
   "correlation_overlap_vs_registry": {
-    "evidence_class": "local-repo-only diagnostic (not a full 812-raster registry scan); not required because H82 is not being promoted",
+    "evidence_class": "local-repo-only diagnostic (not a full 812-raster registry scan); not required because H82S is not being promoted",
     "checked_local_rasters": 51,
     "max_mutual_3px_dot_overlap": 1.0,
     "max_overlap_source": "docs/downloads/gems77-h77-urank-curvature-0d868dc271bb-research.tif (whole-footprint dense continuous surface; same universal literal-overlap artifact already logged repo-wide as IR-77-09)",
     "max_abs_spearman_excluding_dense_witness": 0.0669,
-    "note": "Excluding the one dense whole-footprint witness (a pre-existing, already-documented repo issue, not new to H82), every other locally checked sparse-dot raster has 3px overlap <= 0.194 and |Spearman| <= 0.067, i.e. H82 is not a literal duplicate of any sparse-dot lane. Irrelevant to the promotion decision because H82 already failed its own holdout gate (verdict negative) and is not a submission candidate."
+    "note": "Excluding the one dense whole-footprint witness (a pre-existing, already-documented repo issue, not new to H82S), every other locally checked sparse-dot raster has 3px overlap <= 0.194 and |Spearman| <= 0.067, i.e. H82S is not a literal duplicate of any sparse-dot lane. Irrelevant to the promotion decision because H82S already failed its own holdout gate (verdict negative) and is not a submission candidate."
   },
   "raster_sha256": "26c9eec0d8b3c78f2285e642c0248c378ca7ab67334f084f0e708252f3f8bd16",
   "validator_output": {
@@ -82,14 +82,14 @@
     "submission_authorization": "NOT OK TO SUBMIT; 0 weekly slots used"
   },
   "submission_name": "gems77-h82-spectral-depth-gradient-37654dots-20261021-zeros (existing negative research TIFF; OK to download for inspection, NOT OK to submit)",
-  "submission_note": "H82 spectral depth-gradient (Spector-Grant); HOLDOUT-DTI 0.0258 < random 0.0466 and incumbent 0.1527; negative, do not submit",
+  "submission_note": "H82S spectral depth-gradient (Spector-Grant); HOLDOUT-DTI 0.0258 < random 0.0466 and incumbent 0.1527; negative, do not submit",
   "verdict": "negative",
   "evidence_files": [
-    "evidence/h82_source_check.json",
-    "evidence/h82_e1_surface.json",
-    "evidence/h82_e2_holdout.json",
-    "research/h82_hypotheses.md",
-    "registry/preregistration_h82.json"
+    "evidence/h82spec_source_check.json",
+    "evidence/h82spec_e1_surface.json",
+    "evidence/h82spec_e2_holdout.json",
+    "research/h82spec_hypotheses.md",
+    "registry/preregistration_h82spec.json"
   ],
   "raster_file": "gems77-h82-spectral-depth-gradient-37654dots-20261021-zeros.tif",
   "ok_to_download": true,

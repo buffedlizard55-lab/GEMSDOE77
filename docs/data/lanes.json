@@ -1,5 +1,5 @@
 {
-  "note": "All 23 listed TIFF lanes are inspection downloads only; every file is NOT OK TO SUBMIT. H80 (Riedel) is featured because it has complete evidence from the pinned gems57 evaluator; the later AGO variants have only a different quick 4-quadrant proxy and are not comparable. H80-OTA (orphan thermal alignment, negative) was merged in parallel and is listed second. The literal uniqueness/selector gates remain fail-closed; see docs/data/submission-authorization.json. H81 (slip-cone, negative, research-only) and H77G (hydrothermal demagnetization trough, negative, research-only) are listed for inspection only. H82 (windowed spectral magnetic source-depth gradient, negative, research-only) is listed for inspection only.",
+  "note": "All 23 listed TIFF lanes are inspection downloads only; every file is NOT OK TO SUBMIT. H80 (Riedel) is featured because it has complete evidence from the pinned gems57 evaluator; the later AGO variants have only a different quick 4-quadrant proxy and are not comparable. H80-OTA (orphan thermal alignment, negative) was merged in parallel and is listed second. The literal uniqueness/selector gates remain fail-closed; see docs/data/submission-authorization.json. H81 (slip-cone, negative, research-only) and H77G (hydrothermal demagnetization trough, negative, research-only) are listed for inspection only. H82S (windowed spectral magnetic source-depth gradient, negative, research-only) is listed for inspection only.",
   "lanes": [
     {
       "lane": "H77G: hydrothermal magnetite-destruction trough \u00d7 gravity-basement step \u00d7 MT clay-cap margin (HOLDOUT-DTI 0.0619 s20 / 0.0618 s30, pure 0.0392/0.0471; negative result)",
@@ -496,10 +496,10 @@
       "why_primary": "H81 strand-tip slip-cone lane; clearance per release gate (not approved)."
     },
     {
-      "lane": "H82: windowed spectral magnetic source-depth gradient (Spector & Grant 1970 style; HOLDOUT-DTI 0.0258 vs random 0.0466; negative result)",
-      "page": "h82.html",
+      "lane": "H82S: windowed spectral magnetic source-depth gradient (Spector & Grant 1970 style; HOLDOUT-DTI 0.0258 vs random 0.0466; negative result)",
+      "page": "h82spec.html",
       "file": "downloads/gems77-h82-spectral-depth-gradient-37654dots-20261021-zeros.tif",
-      "run_card": "evidence/h82_run_card.json",
+      "run_card": "evidence/h82spec_run_card.json",
       "format_valid": true,
       "protocol_unique": false,
       "informative_unique": true,
@@ -507,7 +507,7 @@
       "verdict": "negative",
       "primary": false,
       "name": "gems77-h82-spectral-depth-gradient-37654dots-20261021-zeros",
-      "note": "H82 spectral depth-gradient (Spector-Grant); HOLDOUT-DTI 0.0258 < random 0.0466 and incumbent 0.1527; negative, do not submit",
+      "note": "H82S spectral depth-gradient (Spector-Grant); HOLDOUT-DTI 0.0258 < random 0.0466 and incumbent 0.1527; negative, do not submit",
       "sha256": "26c9eec0d8b3c78f2285e642c0248c378ca7ab67334f084f0e708252f3f8bd16",
       "holdout_dti_hide_v2": 0.025822451132462867,
       "holdout_evaluator_version": "gems57-pooled-hide-v2",
@@ -517,7 +517,7 @@
         0.03360038259679202
       ],
       "upload": "Not OK to submit. OK to download for inspection only. Format-valid (shared writer validator PASS, 0 NaN, values in [0,1], 37,654 dots) and informative-unique against the 51 locally checked sparse/dot rasters (worst 3-px forward overlap 0.1935 <= 0.70; worst |Spearman rho| 0.0669 <= 0.90, excluding the one pre-existing whole-footprint dense witness already logged repo-wide as IR-77-09). HOLDOUT-DTI 0.025822 (candidate) is below its own matched random control (0.046625, paired CI entirely negative) and far below the 0.152718 H77-Step repository incumbent: selector not approved.",
-      "why_primary": "New H82 frequency-domain spectral magnetic source-depth lane: first radial-power-spectrum depth estimate in this repository; negative overall verdict.",
+      "why_primary": "New H82S frequency-domain spectral magnetic source-depth lane: first radial-power-spectrum depth estimate in this repository; negative overall verdict.",
       "beat_02778_summary": "Not expected and not observed: HOLDOUT-DTI 0.025822 is below both a matched random control and the 0.152718 H77-Step repository incumbent, with no organizer score."
     }
   ]
