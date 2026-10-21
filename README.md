@@ -16,6 +16,10 @@
 | OK to submit to the competition? | **NO.** HOLDOUT-DTI 0.1227 [0.1080, 0.1372] (seed 30; 11,342 withheld positives) vs random 0.0435 — significant (+0.079, CI excludes 0) but **below** the 0.152718 repository incumbent, so it cannot be expected to beat 0.2778. OK TO SUBMIT: NO — no lane in this session is clearance-approved; registry scan incomplete (0/812 indexed rasters accessible locally); 0 weekly slots used. |
 | Submission mechanics (only after clearance) | `docs/executive-summary.html` — form fields, the earlier "[0, 1]" portal error, ≤140-character Note, step-by-step |
 
+## 🚦 Session `arena/8d3ee5f5` (2026-10-21): no TIFF; blocked
+
+Registry gate blocks all candidates: the dense witness (`ab0a0a62…`) is continuous, so `_dots()` counts every pixel as a dot. **Owner decision needed** on support semantics. [Review](docs/review-2026-10-21-arena-8d3ee5f5.md) · [receipt](evidence/support_semantics_sensitivity.json) · [run card](evidence/arena_8d3ee5f5_run_card.json). Official leaderboard today: #1 **0.4413** (organizer); 0.3195 is not on it.
+
 ## Hypotheses tested this session (ranked by expected DTI gain ÷ implementation cost; full text: research/h83_hypotheses.md)
 
 1. **H83-1 (implemented, Exp 1):** hanging-wall fault-damage collar at kernel scale — HOLDOUT-DTI 0.1227 [0.1080, 0.1372], significant vs random (+0.079, CI excludes 0), below incumbent → **negative**, not for upload.
