@@ -307,7 +307,22 @@ def test_h80t_lane_artifact_and_run_card_fail_closed():
     assert uniq['phase2_final_dots']['worst_dot_overlap_literal'] > 0.70
 
 
+def test_h82rank_builder_is_idempotent_for_existing_lane_manifest():
+    """A site rebuild must not churn or reorder the checked-in download manifest."""
+    manifest = DOC / "data/lanes.json"
+    before = manifest.read_bytes()
+    from build_h82rank_site import main
+    main()
+    assert manifest.read_bytes() == before
+
+
 def test_current_review_and_metric_correction_are_linked():
+    readme = (ROOT / 'README.md').read_text()
+    current_status = readme.split('<!-- H77E-KNICK PRIMARY STATUS BANNER -->', 1)[0]
+    assert '`arena/990a6ce3-gemsdoe77`' in current_status
+    assert 'No new TIFF generated' in current_status and 'OK TO SUBMIT: NO' in current_status
+    assert 'Prior H83 TIFF (not new in this review)' in current_status
+    assert 'Unique TIF generated this session' not in current_status
     for name in ('index.html', 'executive-summary.html'):
         text = (DOC / name).read_text()
         assert 'review-latest.html' in text and 'metric-review.html' in text

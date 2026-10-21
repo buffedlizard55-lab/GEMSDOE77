@@ -863,7 +863,7 @@ Format-valid (15/15 checks, 0 NaN, values in [0,1], 37,654 binary dots) and info
 
 def write_review_pages():
     for source, output, title in (
-        ("docs/review-2026-10-21-60aafd45.md", "review-latest.html", "Latest repository review"),
+        ("docs/review-2026-10-21-arena-990a6ce3.md", "review-latest.html", "Latest repository review"),
         ("research/why-h33-scored-02778.md", "metric-review.html", "Corrected H33 analysis"),
     ):
         body = markdown.markdown((ROOT / source).read_text(), extensions=["tables", "fenced_code"])

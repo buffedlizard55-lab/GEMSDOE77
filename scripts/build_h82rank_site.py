@@ -24,8 +24,12 @@ def main():
 <h2>Sources and replication</h2><p><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Organizer problem, metric and format</a> · <a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN data release</a>. Derived data are SHA-pinned owner mirrors, not organizer-authenticated downloads. <a href="https://github.com/buffedlizard55-lab/GEMSDOE77/blob/main/research/h82rank_hypotheses.md">Ranked pre-experiment hypotheses</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE77/blob/main/registry/preregistration_h82rank.json">Preregistration</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE77/blob/main/evidence/h82rank_run_card.json">Run card</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE77/blob/main/scripts/h82rank_research.py">Reproduce experiment</a>.</p><p><a href="executive-summary.html">How to submit a future cleared file (not this one) →</a></p></div></main></body></html>'''
     (D/'h82rank.html').write_text(page)
     lanespath=D/'data'/'lanes.json'; lanes=json.loads(lanespath.read_text())
+    # Keep a pre-existing H82R row in place so repeated site builds do not reorder
+    # the public download inventory. New rows use the original H82 insertion rule.
+    existing_index=next((i for i,r in enumerate(lanes['lanes']) if r['lane'].startswith('H82R:')),None)
     lanes['lanes']=[r for r in lanes['lanes'] if not r['lane'].startswith('H82R:')]
-    lanes['lanes'].insert(1 if any(r['lane'].startswith('H82:') for r in lanes['lanes']) else 0,{
+    insert_at=existing_index if existing_index is not None else (1 if any(r['lane'].startswith('H82:') for r in lanes['lanes']) else 0)
+    lanes['lanes'].insert(insert_at,{
         'lane':'H82R: local ternary radiometric rank-mixture entropy (STOPPED; research only)',
         'page':'h82rank.html','summary':'executive-summary.html','file':f'downloads/{path.name}',
         'run_card':'evidence/h82rank_run_card.json','format_valid':True,'protocol_unique':False,
@@ -39,6 +43,6 @@ def main():
         note += (' ' if note else '') + 'H82R: radiometric negative research file; NOT OK TO SUBMIT.'
     import re
     lanes['note'] = re.sub(r'All \d+ listed TIFF lanes', f'All {len(lanes["lanes"])} listed TIFF lanes', note)
-    lanespath.write_text(json.dumps(lanes,indent=1,ensure_ascii=False)+'\n')
+    lanespath.write_text(json.dumps(lanes,indent=2,ensure_ascii=True)+'\n')
 
 if __name__=='__main__':main()

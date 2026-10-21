@@ -1,24 +1,24 @@
-> **Latest review — branch `arena/60aafd45-gemsdoe77` (2026-10-21):** **OK TO DOWNLOAD FOR INSPECTION; NOT OK TO SUBMIT. No new TIFF was generated.** The dense registry witness was restored and independently verified to cover the entire allowed footprint, so the literal duplicate-stop rule blocks every nonempty candidate. No stopped lane was restarted and no weekly slot was used. [Review and ranked conditional hypotheses](docs/review-2026-10-21-60aafd45.md) · [Corrected H33 reasoning](research/why-h33-scored-02778.md) · [existing research TIFF](docs/downloads/gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY.tif) · [how submission works only after approval](docs/executive-summary.html).
+> **Current review — branch `arena/990a6ce3-gemsdoe77` (2026-10-21):** **No new TIFF generated; no lane assigned; no experiment, holdout, score, selector decision, or slot. Existing files may be downloaded for inspection only; OK TO SUBMIT: NO (0 authorized files).** The pinned registry preflight returned `STOP_UNIVERSAL_DUPLICATE`: 5,106,385/5,106,385 allowed pixels are within the witness support/dilation, so every nonempty candidate has literal forward overlap 1.0 > 0.70. [Current review and conditional hypotheses](docs/review-2026-10-21-arena-990a6ce3.md) · [readiness run card](evidence/readiness_review_run_card.json) · [download/status page](docs/index.html) · [submission instructions after future approval](docs/executive-summary.html). The H83 artifact is from a prior lane, not this review. Prior H82-TEXTURE SHA-256 `c571af22cb08db9cb8cfd6edf0108364d95b0c3bec8316d09d3dfd116531790e` is also inspection-only.
 # GEMSDOE77 — DOE GEMS Prize: audited fault-detection research portfolio
 
 > Read at the start of every session. Standing brief: `PROMPT.md` (operative prompt; also appended below in full);
 > lane evidence: `evidence/`, `registry/`. Multi-pass rule: pass 1 implement + verify, pass 2 review and fix,
 > pass 3 re-check against the request, then PR and merge to `main` from the session branch only.
 
-## 🚦 Status at a glance — this session (lane H83, 2026-10-21)
+## 🚦 Prior H83 lane (closed) — separate from the current repository review
 
 | Question | Answer |
 |---|---|
 | Competition | DOE GEMS Prize (DrivenData #306): one single-band float32 GeoTIFF, or a ZIP containing exactly one; EPSG:32611; 3730×3292; 100 m pixels; transform (100, 0, 243350, 0, −100, 4508550); prediction values in [0, 1] |
-| Leaderboard (2026-10-21) | 0.4413 ORGANIZER-CONFIRMED (first place); owner-reported GEMSDOE32 file 0.2778 (no organizer receipt — attribution not authenticated) |
-| Unique TIF generated this session | `docs/downloads/gems77-h83-faultcollar-37553dots-20261021-a55f4c9c-zeros.tif` + one-TIFF `.zip`; 37,553 binary dots; SHA-256 `7f71739a2804bf2fa7199d30d512e0a267e4cfa2fdd0d32304b962db65b98662`. OK TO SUBMIT: NO — negative lane, inspection download only. Co-listed negative TIFF checksums on this screen: H82-TEXTURE `c571af22cb08db9cb8cfd6edf0108364d95b0c3bec8316d09d3dfd116531790e`; H82R `56debe682505bf2649f30d914c7b552dcf669bce4b902ce91eb3e5363031f115`; H82 cool-outlet `84b50d05eaba578c398c4c7ab720dbf5a46de29d63f4254eb02a8ba02a4a43df` — all **NOT OK TO SUBMIT**, OK to download for inspection |
-| OK to download? | **YES — for inspection** (direct link on `docs/index.html`, first screen; checksums shown on the page) |
-| OK to submit to the competition? | **NO.** HOLDOUT-DTI 0.1227 [0.1080, 0.1372] (seed 30; 11,342 withheld positives) vs random 0.0435 — significant (+0.079, CI excludes 0) but **below** the 0.152718 repository incumbent, so it cannot be expected to beat 0.2778. OK TO SUBMIT: NO — no lane in this session is clearance-approved; registry scan incomplete (0/812 indexed rasters accessible locally); 0 weekly slots used. |
+| Competition/leaderboard status | No DrivenData portal or current leaderboard access was verified in this review. Older supplied values are not current authenticated evidence; the owner-reported 0.2778 has no artifact-to-score organizer receipt. |
+| Prior H83 TIFF (not new in this review) | `docs/downloads/gems77-h83-faultcollar-37553dots-20261021-a55f4c9c-zeros.tif` + one-TIFF `.zip`; 37,553 binary dots; SHA-256 `7f71739a2804bf2fa7199d30d512e0a267e4cfa2fdd0d32304b962db65b98662`. Historical checks establish format/spacing only; `protocol_unique:false`, prior registry scan incomplete, and `ok_to_submit:false`. **OK TO DOWNLOAD FOR INSPECTION; NOT OK TO SUBMIT.** Other listed files remain inspection-only too. |
+| OK to download? | **YES — existing files for inspection only** (direct links and per-file status on `docs/index.html`) |
+| OK to submit to the competition? | **NO.** Current release authorization is **0 files**. This review produced no holdout or score. Historical H83 result: **HOLDOUT-DTI 0.1226552189** (`gems57-pooled-hide-v2`, 11,342 withheld positives, 95% CI `[0.1079967, 0.1372131]`); it is not this review's result or an organizer score. |
 | Submission mechanics (only after clearance) | `docs/executive-summary.html` — form fields, the earlier "[0, 1]" portal error, ≤140-character Note, step-by-step |
 
-## Hypotheses tested this session (ranked by expected DTI gain ÷ implementation cost; full text: research/h83_hypotheses.md)
+## Prior H83 hypotheses and outcomes (historical closed lane; full record: research/h83_hypotheses.md)
 
-1. **H83-1 (implemented, Exp 1):** hanging-wall fault-damage collar at kernel scale — HOLDOUT-DTI 0.1227 [0.1080, 0.1372], significant vs random (+0.079, CI excludes 0), below incumbent → **negative**, not for upload.
+1. **H83-1 (implemented in the earlier closed lane):** hanging-wall fault-damage collar at kernel scale — historical **HOLDOUT-DTI 0.1226552189** (`gems57-pooled-hide-v2`, 11,342 withheld positives, 95% CI `[0.1079967, 0.1372131]`); below the recorded repository incumbent → **negative**, not for upload. Not measured in this review.
 2. **H83-2** catalogue fault-intersection / relay-node intensity — not implemented (next experiment if any off-catalogue credit appears).
 3. **H83-3** signed across-strike K/Th radiometric asymmetry — deferred (needs USGS GeoDAWN bands, DOI 10.5066/P93LGLVQ; source not reachable from this sandbox).
 4. **H83-4** multi-scale residual curvature after regional trend removal — deferred (needs restored 418 MB feature stack).
@@ -26,13 +26,13 @@
 
 ## How this repository answers the prompt
 
-- A **unique TIF exists and is directly downloadable** from the site's first screen (`docs/index.html`), with per-file chips stating OK to download / NOT OK TO SUBMIT — it is obvious whether download and/or submit is permitted.
+- Existing TIFFs are directly downloadable for inspection from `docs/index.html`, with per-file submit status. The prior H83 TIFF is **not** claimed globally unique; this review generated no TIFF and the release gate authorizes zero submissions.
 - Every number is labelled HOLDOUT-DTI (evaluator version, withheld positives, 95% CI) or flagged as not organizer-confirmed; no projection is ever written as a score.
 - Negative results are deliverables; no competition slot was spent.
 
 <!-- H77E-KNICK PRIMARY STATUS BANNER -->
 >
-> The standing request is preserved in full below; re-read it with `PROMPT.md` and `AGENTS.md` every session. This review tightens actual-byte format validation and run-card/hash binding, corrects the false fixed-denominator H33 explanation, and expands the timestamped GitHub inventory to the full 82 requested repositories. No new HOLDOUT-DTI or ORGANIZER-CONFIRMED score is claimed. Older causal, optimality, portal-guarantee and leaderboard observations must not be read as current authenticated evidence. Core values remain **Maximize P(Win)** and **Own the Outcome**: preserve useful negative evidence rather than fabricate a unique submission.
+> The standing request is preserved in full below; re-read it with `PROMPT.md` and `AGENTS.md` every session. Historical H77E-KNICK review summary (not the current branch review): that earlier work tightened actual-byte format validation and run-card/hash binding, corrected the false fixed-denominator H33 explanation, and expanded a timestamped GitHub inventory. No new HOLDOUT-DTI or ORGANIZER-CONFIRMED score was claimed there. Older causal, optimality, portal-guarantee and leaderboard observations must not be read as current authenticated evidence. Core values remain **Maximize P(Win)** and **Own the Outcome**: preserve useful negative evidence rather than fabricate a unique submission.
 
 
 # H82R radiometric entropy — inspection download YES; submit NO

@@ -8,7 +8,11 @@ summarised with provenance at the end rather than re-transcribed hash-by-hash
 `docs/score-ledger.csv`; later entries below are OWNER-REPORT as supplied in
 the 2026-10-21 brief — no organizer receipts).*
 
-## 2026-10-21 review addendum — arena/60aafd45-gemsdoe77
+## Current review continuation — arena/990a6ce3-gemsdoe77 (2026-10-21)
+
+No method paragraph was supplied and `AGENTS.md` assigns no lane. The pinned registry witnesses were restored and the candidate-independent preflight rerun: `STOP_UNIVERSAL_DUPLICATE`, with all 5,106,385 allowed cells covered by the pinned witness/dilation. No new TIFF, geological experiment, holdout, score, selector decision, or weekly slot is authorized by this review. Existing artifacts are inspection-only; the release receipt authorizes zero files. See `docs/review-2026-10-21-arena-990a6ce3.md` and `evidence/readiness_review_run_card.json`. The pre-existing H83 artifact is historical, not generated in this review.
+
+## Historical 2026-10-21 review addendum — arena/60aafd45-gemsdoe77
 
 No new method paragraph is assigned in this invocation. The freshly rechecked dense registry witness blocks every nonempty candidate under the binding literal rule. No new TIFF, model experiment or slot is authorized by this review. See `docs/review-2026-10-21-60aafd45.md` and the corrected H33 analysis. Superseded earlier leaderboard observations below are historical, not current submission-page receipts.
 

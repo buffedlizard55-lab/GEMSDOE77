@@ -1,3 +1,21 @@
+# Submission readiness review — current branch follow-up (2026-10-21)
+
+**Branch `arena/990a6ce3-gemsdoe77`: NOT OK TO SUBMIT. No new TIFF generated.** No method paragraph/lane was assigned, no geological experiment or holdout was run, no selector decision was made, and zero competition slots were used. Existing files remain available only for inspection.
+
+## Current evidence update
+
+Both hash-pinned registry witnesses were restored with `scripts/restore_registry.py`, then the pinned candidate-independent check was rerun. `evidence/registry_preflight.json` returns the expected exit code **2**, `STOP_UNIVERSAL_DUPLICATE`: the witness covers **5,106,385 of 5,106,385 allowed pixels**, leaving none uncovered. Under the unchanged literal rule, every nonempty candidate has a three-pixel forward-overlap lower bound of **1.0**, greater than the strict **0.70** stop threshold. This is a **REGISTRY MEASUREMENT**, not a score, not a complete registry scan, and not uniqueness clearance. Do not privately exempt the witness or generate a candidate before shared protocol semantics are resolved.
+
+The current independent readback covers **30/30 listed primary TIFFs** and passes local format/integrity checks; it does not establish portal acceptance or authorization. The fail-closed release receipt says **0 authorized files / NOT OK TO SUBMIT**. No new artifact, candidate-specific correlation result, canary, holdout DTI, or organizer receipt exists in this review. The machine-readable details are in `evidence/readiness_review_run_card.json`.
+
+The 3DEP, Landsat, ComCat, Copernicus/ASF, and USGS groundwater routes named in the conditional hypothesis slate are official-source links for manual review only. Their current service behavior, AOI coverage, licensing details, and data availability were not freshly checked from this sandbox. Several external hosts are outside the sandbox's egress allowlist; those proposals are **not viable here until access and source data are verified**. They are not an assigned lane.
+
+## Historical readiness review (prior pass; figures below are retained as historical)
+
+The text below records an earlier readiness review. Its then-current counts and receipts are historical and are superseded where they differ from the current receipts above.
+
+---
+
 # Submission readiness review — 2026-10-21
 
 **OK TO DOWNLOAD FOR INSPECTION. NOT OK TO SUBMIT. No new TIFF generated in this review.**
@@ -35,12 +53,11 @@ rejection, never a pass. The two restored witnesses have pinned owner-mirror pro
 ## Pass 2 — independent checks and corrections
 
 Added `scripts/audit_downloads.py`, which independently opens every primary TIFF listed in `lanes.json`,
-not merely trusting the manifest format flag. **23 of 23** pass SHA-256, single-band, all-finite [0,1],
-no-NaN-in-footprint, no-nodata, and exact reference CRS/shape/transform (**FORMAT/INTEGRITY MEASUREMENTS**).
-This scope excludes unlisted archives and NaN twins. It does not test portal acceptance, hidden performance,
-full-registry uniqueness or selector approval. The existing H77L independent audit also passes its checks.
+not merely trusting the manifest format flag. The original review read 23/23 then-listed TIFFs; the current
+30-file readback above supersedes that historical count. This audit checks actual hashes and grid/range/finite
+properties; it does not test portal acceptance, hidden performance, full-registry uniqueness or selector approval.
 
-Corrected [the H33 scientific analysis](https://github.com/buffedlizard55-lab/GEMSDOE77/blob/main/research/why-h33-scored-02778.md).
+Corrected [the H33 scientific analysis](metric-review.html).
 The exact marginal gain is `dT > alpha*DTI*(dT + 1 - k)`; the simpler `k > alpha*DTI` requires `dT == k`.
 One dot can cover multiple truth cells, and mapped/unmapped faults can be close to each other. Removed unsupported
 claims of fixed denominator cost, guaranteed false positives near the catalogue, exhausted emission optimization,
@@ -48,87 +65,53 @@ and a numerically required leaderboard gain. Shared runtime code is unchanged. T
 prose also contains an overrestrictive `dT <= k` statement; the runtime evaluator does not rely on it.
 This upstream documentation irregularity is reported, not repaired in a private template fork.
 
-[Retained H33 forensics](evidence/prior_forensics.json) show **37,654** positive dots, obtained by removing
-**6,436** near-catalogue dots from the **44,090**-dot predecessor, with none added (**RASTER MEASUREMENTS**).
-Sparse placement and pruning plausibly reduce redundant mass. They do not prove why an organizer score changed.
-**0.2778 remains OWNER-REPORT for the named TIFF**; no authenticated file-to-score receipt was obtained.
-The freshly retrieved [GEMSDOE32 page at its pinned commit](https://github.com/buffedlizard55-lab/GEMSDOE32/blob/f62038b54dcb7767d4d997f80b033cdc3d42bef9/docs/index.html) explicitly says “NO ORGANISER SCORE EXISTS for this or any artifact in this repository.” Its projections are not adopted as scores. The brief supplies conflicting leader targets. This review makes no current leaderboard or improvement claim.
-Fault recovery is the contest proxy, not direct detection of geothermal vents or proof of economic permeability.
+Retained H33 forensics show **37,654** positive dots, obtained by removing **6,436** near-catalogue dots from the
+**44,090**-dot predecessor, with none added (**RASTER MEASUREMENTS**). Sparse placement and pruning plausibly
+reduce redundant mass. They do not prove why an organizer score changed. **0.2778 remains OWNER-REPORT** for the
+named TIFF; no authenticated file-to-score receipt was obtained. The owner mirror explicitly says there is no
+organizer score for those artifacts. The supplied leaderboard targets conflict and were not reauthenticated.
+This review makes no current leaderboard or improvement claim. Fault recovery is the contest proxy, not direct
+detection of geothermal vents or proof of economic permeability.
 
 ## Conditional hypothesis backlog — not authorization to implement
 
-No experiments or feature canaries were run because the universal rejection proof precedes any new field.
-Expected HOLDOUT-DTI improvement is **unknown for all four**. The rank is a qualitative priority/cost judgment,
-not a projected score. Local novelty means only that the specific operator was not found by the review;
-no global/cross-repository novelty is certified. These proposals are conditional and not selected lanes.
+The following earlier backlog is historical, not an assigned lane. Expected HOLDOUT-DTI improvement was unknown
+for all proposals; ranking was qualitative, not a projected score. No hypothesis below is a new result or a
+submission recommendation.
 
 | Priority | Layers and specific physical signature | Why it might find an uncatalogued fault; difference from implemented work | Named non-fault mimic | Cost / source / readiness |
 |---|---|---|---|---|
-| 1 | GeoDAWN magnetic anomaly and isostatic gravity: cross-wavelet phase-jump continuity after local detrending, with independent radiometric-boundary control | Could trace buried offsets despite weak surface scarps; phase discontinuity rather than existing H80T tilt persistence or H77G trough strength | Intrusive contacts, sedimentary density contacts, survey seams | Medium; existing numerical-layer mirror routes are in the data manifest, but feature stack not restored here. No external-data download needed in principle. Blocked by protocol and assignment. |
-| 2 | DEM elevation and drainage graph: signed valley-floor asymmetry reversals paired across adjacent catchments | Could reveal distributed warping away from mapped range fronts; paired graph-wide reversals, not H77E's knickpoint/branch-density or pixel scarp features | Stream capture, asymmetric lithologic erosion, fan avulsion | High; requires conditioned full DEM/drainage graph. Official USGS 3DEP route below was not accessible here. **Not viable until AOI obtainability is checked.** |
-| 3 | Magnetic anomaly and gravity: local bicoherence of along-contact profiles, testing phase coupling across wavelengths | Could distinguish coherent multi-scale source offsets under fill from unrelated single-scale edges; third-order phase statistic rather than contact amplitude/Hessian curvature | Repeated layered contacts, gridding/flight-line artifacts | High; same existing numerical-layer mirror route; physical interpretation especially uncertain. Conditional research proposal, no performance evidence. |
-| 4 | K/Th/U rank-intensity images: local empirical-copula change points along a persistent narrow boundary | Could detect changes in joint radiometric texture without assuming calibrated concentration ratios; distributional dependence rather than the stopped selective-U curvature subtraction | Grain sorting, moisture and soil-cover boundaries | Medium; pinned `ext_geodawn_rad_u8` mirror route. Uses quantized intensities, **not** geochemical concentrations. Conditional; may duplicate existing radiometric lanes in support. |
+| 1 | GeoDAWN magnetic anomaly and isostatic gravity: cross-wavelet phase-jump continuity after local detrending, with independent radiometric-boundary control | Could trace buried offsets despite weak surface scarps; phase discontinuity rather than H80T tilt-angle persistence or H77G trough strength | Intrusive contacts, sedimentary density contacts, survey seams | Medium; feature stack was not restored in that prior pass. No new external data needed in principle. Conditional only. |
+| 2 | DEM elevation and drainage graph: signed valley-floor asymmetry reversals paired across adjacent catchments | Could reveal distributed warping away from mapped range fronts; paired graph-wide reversals, not a single knickpoint or pixel scarp | Stream capture, asymmetric lithologic erosion, fan avulsion | High; conditioned full DEM/drainage graph and access check required. Official [USGS 3DEP](https://www.usgs.gov/3d-elevation-program) route, not freshly verified there. |
+| 3 | Magnetic anomaly and gravity: local bicoherence of along-contact profiles, testing phase coupling across wavelengths | Could distinguish coherent multi-scale source offsets under fill from unrelated single-scale edges; third-order phase statistic rather than contact amplitude/Hessian curvature | Repeated layered contacts, gridding/flight-line artifacts | High; existing numerical-layer mirror route; physical interpretation uncertain. Conditional proposal only. |
+| 4 | K/Th/U rank-intensity images: local empirical-copula change points along a persistent narrow boundary | Could detect changes in joint radiometric texture without assuming calibrated concentration ratios; distributional dependence rather than separate gradients | Grain sorting, moisture and soil-cover boundaries | Medium; quantized intensities are not chemical concentrations. Potential overlap with radiometric lanes; no selection. |
 
 The existing terrain, radiometric, potential-field, tip, Riedel and tilt-persistence families are already extensively
-represented in this repository. Changing a name does not create scientific novelty. Specific external official
-routes: [USGS 3DEP](https://www.usgs.gov/3d-elevation-program),
-[USGS GeoDAWN](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and),
-[DOE GDR INGENIOUS 1391](https://gdr.openei.org/submissions/1391).
-These are manual-review links, not newly verified availability or scientific validation of the proposals.
+represented. Changing a name does not create scientific novelty. Specific external official routes include
+[USGS GeoDAWN](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and)
+and [DOE GDR INGENIOUS 1391](https://gdr.openei.org/submissions/1391); those links are not fresh access confirmations.
 
 ## Pass 3 — end-to-end requirements and source boundaries
 
-- Software regression tests cover finite-positive support, Euclidean-radius boundaries, empty/invalid grids,
-  input pin failure, format/range/hash failure, and the exact metric algebra. Full suite and CI-equivalent build
-  were rerun; see the PR checks for the final software-test result, not a performance score.
-- Entry page retains one-click TIFF/ZIP downloads and explicit NOT OK TO SUBMIT status. Evidence links and
-  submission instructions remain visible. Current release authorization grants no uploads.
-- Restored only pinned witnesses; no new TIFF, copied submission, trained model, geological experiment,
-  HOLDOUT-DTI estimate, bootstrap CI or organizer score is represented as a result of this review.
-- Existing scheduled source feed was refreshed: **78/78** configured owner-repository inventories retrieved
-  (**SOURCE-HEALTH MEASUREMENT**). It records commits, page-content hashes and TIFF paths, not verified scores.
-  [Freshness feed](source-health.json). This is not an exhaustive registry beyond the configured repositories.
-- Official organizer [reference README](https://github.com/drivendataorg/gems-prize-reference-solution/blob/aebe92f7c8a990f0e3443451b7a825d9afd6336b/README.md)
-  was freshly retrieved via GitHub; it supports CPU-only and GPU setups. GPU is helpful, not an absolute
-  requirement of that reference solution. [Research source receipt](evidence/preflight_sources.json).
-- Sandbox outbound hosts are limited to GitHub/package registries. DrivenData, USGS, GDR and the PDF cannot be
-  freshly verified here. No DrivenData login or submission-page receipt is available. Official data provenance,
-  current weekly allowance and portal acceptance are not established by owner-mirror hashes.
+- The prior CI-equivalent build, independent byte audit, verifier, and software tests are historical checks. The current full build/test result is recorded in `docs/review-2026-10-21-arena-990a6ce3.md` and the current run card.
+- The entry page retains direct TIFF/ZIP downloads and explicit per-file NOT OK TO SUBMIT status. Current release authorization grants no uploads.
+- No new TIFF, copied submission, trained model, geological experiment, HOLDOUT-DTI estimate, bootstrap CI, or organizer score was produced in this readiness review.
+- Official organizer, USGS, GDR, and Copernicus links are manual-review references unless a pinned retrieval receipt explicitly says otherwise. No DrivenData login or submission-page receipt is available here.
 
-## Reproduce without spending a slot
+## Reproduce the current stop without spending a slot
 
 ```bash
 python -m venv .venv
 .venv/bin/pip install -r requirements.txt
 .venv/bin/python scripts/restore_registry.py
 .venv/bin/python scripts/preflight_registry.py
-# Expected exit 2: STOP_UNIVERSAL_DUPLICATE. This is not a command failure to hide.
+# Expected exit 2: STOP_UNIVERSAL_DUPLICATE. Do not hide or override it.
 .venv/bin/python scripts/audit_downloads.py
 .venv/bin/python -m pytest -q
 ```
 
-Next steps: resolve support semantics in the **shared** protocol/registry, assign one genuinely distinct lane,
-restore its pinned inputs, preregister at most three experiments, run individual canaries and matched buffered
-whole-segment hide-and-recover with the pinned evaluator, require a supported paired improvement over the matched
-incumbent, generate through the shared writer, check both surface and dots against a complete current registry,
-and only then seek separate selector approval. No automatic upload or private exemption is introduced here.
-
-## Parallel-merge reconciliation
-
-While preparing this review PR, main received PRs #47 and #48. Preserved their H28 artifacts and H81 status correction.
-The H28 merge had replaced `docs/data/submission.json` with a different schema, causing `lia_build_site.py` to raise
-`KeyError: zip` in the CI-equivalent build. Retained H28 metadata under `docs/data/h28-submission.json`, restored the
-original LIA metadata, and added LIA/run-card identity protection plus a regression test binding both metadata records
-to their unchanged TIFF hashes. This is metadata repair, not a new candidate or an ownership claim over parallel work.
-The primary download inventory is still 22 entries; the new unlisted H28 archive is outside this review's listed-file
-audit. Repeated the full build, verifier and software tests after reconciliation.
-
-A subsequent main merge (PR #49) independently fixed the same metadata collision and marginal-DTI prose.
-Reconciled onto its canonical `h28-submission.json` path (identical metadata bytes), preserved its review and
-release-gate NaN/type hardening, and retained both regression suites. All combined tests and build checks were
-repeated; no shared-template source or raster bytes were changed.
-
-PR #52 then merged the independent H82 chemistry lane while this PR was under reconciliation. Its TIFFs, negative
-status, source code and tests are preserved without rerunning its experiment or claiming authorship. Re-read all
-**23** currently listed primary TIFFs: format/integrity PASS for every file, zero authorized uploads. The previous
-22-file receipt was replaced with this current 23-file manifest-bound readback.
+Next steps: resolve dense-surface versus dot-field overlap semantics in the **shared** protocol/registry, assign one
+genuinely distinct lane, restore and pin its inputs, preregister at most three experiments, run feature-alone canaries,
+then matched buffered whole-segment hide-and-recover with visible-only catalogue features and pixel-exact masking.
+Only after a supported paired improvement should the shared writer and both registry checks be used; a separate
+selector decision and organizer receipt are still required. No automatic upload or private exemption is introduced.
