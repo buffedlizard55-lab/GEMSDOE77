@@ -1,0 +1,78 @@
+{
+  "schema": "gems-repository-review-v1",
+  "branch": "arena/60aafd45-gemsdoe77",
+  "review_date": "2026-10-21",
+  "hypothesis": "No geological hypothesis tested; protocol rejection verified before a new experiment.",
+  "mechanism": "Pinned full-footprint positive registry support forces literal overlap rejection of every nonempty allowed candidate.",
+  "named_non_fault_process_that_could_mimic_it": "Not applicable to this software review; dense model support is not a geological process.",
+  "holdout_dti": {
+    "status": "NOT RUN",
+    "evaluator_version": null,
+    "withheld_positive_count": null,
+    "value": null,
+    "ci95": null
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "rank_correlation": null,
+    "forward_overlap_dense_witness": 1.0,
+    "limit": 0.7,
+    "dense_witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "positive_footprint_pixels": 5167373,
+    "surface_preflight": "Universal rejection certificate rechecked; no new surface constructed.",
+    "final_dots": "NOT PLACED: mandatory stop before experiment.",
+    "full_registry_certified": false
+  },
+  "raster_sha256": null,
+  "validator": {
+    "new_candidate": "NOT GENERATED",
+    "inspected_existing_artifact": {
+      "path": "downloads/gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY.tif",
+      "sha256": "9d199f9fad93e234397a7a19a05eabf12fd77285be3007e6afe22d12a36dcbd1",
+      "all_checks_passed": true,
+      "checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "transform_matches_sample_submission": true,
+        "no_nan_anywhere": true,
+        "no_inf_anywhere": true,
+        "no_sentinel_values": true,
+        "range_0_1_guaranteed": true,
+        "min_ge_0": true,
+        "max_le_1": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_zero": true,
+        "zero_dots_on_mapped_catalogue": true
+      }
+    }
+  },
+  "submission_name": null,
+  "submission_note": "Review only: no new candidate. Existing TIFF is for inspection, not upload; literal duplicate gate blocks generation.",
+  "new_tiff_generated": false,
+  "experiments_run": 0,
+  "weekly_slots_used": 0,
+  "selector_approved": false,
+  "ok_to_download_existing_inspection_file": true,
+  "ok_to_submit": false,
+  "verdict": "negative",
+  "upstream_documentation_report": {
+    "status": "ISSUE CREATE DENIED: Resource not accessible by integration",
+    "issue_url": null,
+    "saved_report": "docs/research/shared-metric-documentation-issue.md"
+  },
+  "fresh_sources": [
+    {
+      "url": "https://github.com/drivendataorg/gems-prize-reference-solution/blob/aebe92f7c8a990f0e3443451b7a825d9afd6336b/README.md",
+      "sha256": "cfa4d55559c9128313beb9417eae7e0a94c31677132afb1120f9e86222804239",
+      "scope": "Official reference implementation documentation; no score receipt"
+    },
+    {
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/f62038b54dcb7767d4d997f80b033cdc3d42bef9/docs/index.html",
+      "sha256": "d83dd1ace9e2338c312ba9d6775413ab0b5ed8e9ae22e73b4d8291fca30aa0ec",
+      "scope": "Owner site; explicitly says no organizer score exists for its artifacts"
+    }
+  ]
+}

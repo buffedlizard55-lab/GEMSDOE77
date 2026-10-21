@@ -93,7 +93,7 @@ single geomorphic feature, an off-catalogue proxy observation) are the usable yi
 <tr><th>Submit OK? (science / selector)</th><td><span class="no">NO — verdict negative, see banner</span></td></tr>
 </table>
 <p><small>Step-by-step DrivenData submission instructions (for any future promoted file) are on the
-<a href="contactphys-executive-summary.html">executive summary</a> page, including the root cause of the portal error
+<a href="contactphys-executive-summary.html">executive summary</a> page, including conservative local checks for the reported portal error
 “Predicted values must be in range [0, 1]”.</small></p></div>
 
 <div class="card"><h2>Why did h33-2-b2 score 0.2778 (OWNER-REPORT), and can it be beaten?</h2>
@@ -102,17 +102,14 @@ solid H19-5 surface (121,131 px → 0.1922) → dotted thinning d1.5 (60,069 px 
 solo prune (40,199 px → 0.2708) → <b>h33-2-b2 deletes every dot within 2 px (200 m) of the mapped catalogue</b>
 (37,654 px → 0.2778). Under the official metric
 DTI = TP<sub>w</sub> / (TP<sub>w</sub> + 0.2·FP<sub>w</sub> + 0.8·FN<sub>w</sub>) with a 300 m triangular kernel,
-each emitted unit always adds 0.2 to the denominator but earns at most its kernel credit k; a dot helps iff
-<b>k &gt; 0.2·DTI</b> (≈0.054 at DTI 0.27). Dots hugging known faults cover structures that are already mapped
-(and therefore not in the hidden truth) — they pay the false-positive tax for almost no credit. Deleting them,
-and spacing the rest so one dot covers each 300 m kernel footprint, raises credit per dot without finding a single
-new fault. That is why thinning bought +0.086 (0.1922→0.2778).</p>
-<p><b>Beating it — let alone the public leader at 0.4413 (ORGANIZER-CONFIRMED, leaderboard read 2026-10-21) —
-cannot come from more thinning.</b> At equal emitted mass the leader's pixels earn roughly 60% more mean kernel
-credit than the H19-5 family's; only a better-ranked <i>field</i> (pixels closer to real unmapped faults) can supply
-that. This repository tested one new field family honestly; it did not clear the bar (below). No score in this
-repository is organizer-confirmed for any local file; 0.2778 itself is an owner report without a receipt in any
-inspected sibling repo, and no local proxy reproduces it — flagged as irregularity IR-77-04.</p></div>
+a new dot changes the denominator by 0.2·(ΔT+1−k), where ΔT is its marginal total truth coverage
+and k its nearest-truth kernel weight. The simple bar k &gt; 0.2·DTI applies only when ΔT=k.
+Thinning and near-catalogue pruning may reduce redundant false-positive mass, but can also discard useful coverage.
+This is a plausible explanation of owner-reported ordering, not proof of causation or optimality.
+<a href="metric-review.html">Corrected algebra and evidence limits</a>.</p>
+<p><b>Beating the owner-reported H33 result remains unproven.</b> Neither a fixed credit increase
+nor an exhausted thinning optimum follows from the available evidence. A matched leakage-safe holdout,
+protocol clearance and separate selector approval must precede a new competition slot.</p></div>
 
 <div class="card"><h2>What was tested (preregistered, 3 experiments)</h2>
 <p>Ranked hypotheses were frozen in <code>registry/preregistration_contactphys.json</code> before Exp 1. Top lane:
@@ -231,8 +228,8 @@ would be <code>{NOTE}</code> — recorded here only so the artifact is unambiguo
 <li>Submit, then record the organizer's returned score + submission ID + date in the repo ledger as ORGANIZER-CONFIRMED (only portal receipts earn that label; screenshots/summaries do not).</li>
 <li>Remember the two-round structure (problem page 967): before the deadline the team must select a <b>single</b> submission scored in both rounds — slot choice is a team/selector decision, never automated here.</li></ol></div>
 
-<div class="card"><h2>The portal error “Predicted values must be in range [0, 1]” — root causes &amp; the permanent fix</h2>
-<p>Two distinct defects produce this message, both measured in this data family:</p><ul>
+<div class="card"><h2>The range error: possible contributors and conservative local checks</h2>
+<p>Two local risks were measured in this data family; neither is confirmed as the cause of the original portal response:</p><ul>
 <li><b>Float sentinel written through:</b> <code>training_features.tif</code> uses nodata <code>-3.4028234663852886e+38</code>; thousands of such cells lie inside the footprint. Any pipeline that copies them into a prediction emits values far outside [0, 1].</li>
 <li><b>Nodata-tag / NaN-outside fragility:</b> files carrying a nodata tag outside [0, 1] (or relying on NaN handling) can be rejected by range scanning even when in-footprint values are legal.</li></ul>
 <p><b>Fix used here (shared <code>gems57.submission_writer</code>, fail-closed, no silent repair):</b> the prediction is
@@ -240,8 +237,7 @@ validated in memory as finite in [0, 1] everywhere, written all-finite with <cod
 footprint and on the mapped catalogue), re-read from disk, and re-validated (single-band float32, EPSG:32611,
 3730×3292, transform identical to the sample submission) before the ZIP is packed. This session's file additionally
 passed an independent plain-rasterio re-read: 12,279,160/12,279,160 cells finite, min 0.0, max 1.0, zero NaN —
-<a href="downloads/verification_pass2.json">receipt</a>. Local validity is not organizer acceptance; it eliminates the
-known mechanical causes of the range error.</p></div>
+<a href="downloads/verification_pass2.json">receipt</a>. Local validity is not organizer acceptance; it reduces these measured local risks. The original portal error cause remains unverified.</p></div>
 
 <div class="card"><h2>What “good” looks like at selection time (checklist)</h2><ul>
 <li>Run card: hypothesis, mechanism, named mimic, HOLDOUT-DTI + CI + withheld-positive count + evaluator version.</li>

@@ -1,0 +1,17 @@
+[16:05:58] holdout seed30: withheld=11342
+[16:05:58] A_std channels=33 A_ota channels=37
+[16:05:58] fold NW: pos=36623 neg=73246
+[16:05:58] fold NE: pos=34792 neg=69584
+[16:05:58] fold SW: pos=29391 neg=58782
+[16:05:59] fold SE: pos=31440 neg=62880
+[16:06:22] A_std/NW predicted (28s)
+[16:06:34] A_std/NE predicted (39s)
+[16:06:54] A_std/SW predicted (60s)
+[16:07:08] A_std/SE predicted (73s)
+[16:07:20] A_std: HOLDOUT-DTI=0.0971
+[16:07:31] A_ota/NW predicted (97s)
+[16:07:44] A_ota/NE predicted (110s)
+[16:08:07] A_ota/SW predicted (132s)
+[16:08:22] A_ota/SE predicted (148s)
+[16:08:35] A_ota: HOLDOUT-DTI=0.1039
+[16:08:35] wrote evidence/h80_exp2.json

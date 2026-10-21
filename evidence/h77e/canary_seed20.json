@@ -1,0 +1,113 @@
+{
+  "n_features_checked": 127,
+  "n_static_checked": 120,
+  "n_mech_checked": 7,
+  "ceiling": 0.9,
+  "passed": true,
+  "violator_count": 0,
+  "violators": [],
+  "max_overall": {
+    "feature": "sloco_stepover_relay",
+    "group": "sloco_mechanics",
+    "auc": 0.814111,
+    "symmetric_auc": 0.814111
+  },
+  "max_static_physics": {
+    "feature": "lidar_strike_vec_coh_250m",
+    "group": "static_physics",
+    "auc": 0.617666,
+    "symmetric_auc": 0.617666
+  },
+  "top_15_features": [
+    {
+      "feature": "sloco_stepover_relay",
+      "group": "sloco_mechanics",
+      "auc": 0.814111,
+      "symmetric_auc": 0.814111
+    },
+    {
+      "feature": "sloco_log_dist_other",
+      "group": "sloco_mechanics",
+      "auc": 0.193068,
+      "symmetric_auc": 0.806932
+    },
+    {
+      "feature": "sloco_dist_other_px",
+      "group": "sloco_mechanics",
+      "auc": 0.193092,
+      "symmetric_auc": 0.806908
+    },
+    {
+      "feature": "sloco_splay_band_2_8px",
+      "group": "sloco_mechanics",
+      "auc": 0.805903,
+      "symmetric_auc": 0.805903
+    },
+    {
+      "feature": "sloco_pollard_tip_3p8km",
+      "group": "sloco_mechanics",
+      "auc": 0.727721,
+      "symmetric_auc": 0.727721
+    },
+    {
+      "feature": "sloco_pollard_tip_1p5km",
+      "group": "sloco_mechanics",
+      "auc": 0.704753,
+      "symmetric_auc": 0.704753
+    },
+    {
+      "feature": "sloco_strain_deficit",
+      "group": "sloco_mechanics",
+      "auc": 0.374093,
+      "symmetric_auc": 0.625907
+    },
+    {
+      "feature": "lidar_strike_vec_coh_250m",
+      "group": "static_physics",
+      "auc": 0.617666,
+      "symmetric_auc": 0.617666
+    },
+    {
+      "feature": "lidar_upface_max",
+      "group": "static_physics",
+      "auc": 0.611802,
+      "symmetric_auc": 0.611802
+    },
+    {
+      "feature": "lidar_downface_max",
+      "group": "static_physics",
+      "auc": 0.605048,
+      "symmetric_auc": 0.605048
+    },
+    {
+      "feature": "lidar_cross_max",
+      "group": "static_physics",
+      "auc": 0.603945,
+      "symmetric_auc": 0.603945
+    },
+    {
+      "feature": "lidar_lappos_max",
+      "group": "static_physics",
+      "auc": 0.602442,
+      "symmetric_auc": 0.602442
+    },
+    {
+      "feature": "lidar_crest_toe_dipole",
+      "group": "static_physics",
+      "auc": 0.601378,
+      "symmetric_auc": 0.601378
+    },
+    {
+      "feature": "lidar_lapneg_max",
+      "group": "static_physics",
+      "auc": 0.59739,
+      "symmetric_auc": 0.59739
+    },
+    {
+      "feature": "lidar_dipole_m_deconf",
+      "group": "static_physics",
+      "auc": 0.596017,
+      "symmetric_auc": 0.596017
+    }
+  ]
+}

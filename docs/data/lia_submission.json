@@ -1,0 +1,41 @@
+{
+  "name": "gems77-h77-lia-38323dots-20261021-aa5c9331-zeros",
+  "note": "GEMSDOE77 H77 live-inversion allocation: 66% H19-5 support + 34% straight-edge dots, 38323 binary, 0 on catalogue",
+  "note_chars": 113,
+  "primary": {
+    "file": "gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif",
+    "sha256": "a8bfb844ab44b5d4157f75ec914a51655c27ae54727f7b4a088eca9d6f396898",
+    "bytes": 151009,
+    "dots": 38323,
+    "n_pass": 15,
+    "n_checks": 15,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "mode": "zeros"
+  },
+  "twin_nan": {
+    "file": "gems77-h77-lia-38323dots-20261021-aa5c9331-nan.tif",
+    "mode": "diagnostic only"
+  },
+  "zip": {
+    "zip": "gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.zip",
+    "sha256": "284aa143a2e023240ecce65adf78d5bee510df5f1b54a17a3097fc5145c98bc8"
+  },
+  "ok_to_submit": false,
+  "provenance": "Fresh shared-validator readback bound to frozen LIA card; not a new raster or experiment"
+}

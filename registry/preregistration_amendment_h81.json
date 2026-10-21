@@ -1,0 +1,11 @@
+{
+  "amends": "registry/preregistration_h81.json",
+  "amendment_id": "IR-81-03",
+  "written_utc": "2026-10-21T16:15:00Z",
+  "written_before_experiment": true,
+  "reason": "The preregistered promotion rule required beating the 0.152718 holdout incumbent 'with paired 95% CI excluding 0', but the incumbent is a historical point estimate from another lane (evidence/h77/run_card.json), not a re-runnable arm in H81-E2, so no paired cross-lane interval can exist. Rather than fabricate one, 'beats' is conservatively redefined as H81 pooled lower 95% CI strictly above 0.152718, with paired bootstrap intervals reported only against same-run controls (tip_uniform, normal_only, scarp_gated, random). No data, feature, or gate was changed; the amendment tightens (never loosens) the rule.",
+  "also_logged": {
+    "IR-81-01": "Brief contained no single assigned method paragraph; lane H81 declared in preregistration_h81.json before Exp 1.",
+    "IR-81-02": "Sample submission contains 60,988 pixels == 1 exactly on the catalogue, contradicting the official page's 'total fault absence' wording (measured this session; pre-existing manifest note agrees). Zeros-primary + NaN-twin artifacts retained; portal behavior unverified."
+  }
+}
