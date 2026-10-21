@@ -190,6 +190,26 @@ def test_negative_lanes_are_not_recommended_or_promoted_on_entry_page():
         assert 'recommended for drivendata upload' not in txt, subpage
 
 
+def test_ago_variants_are_listed_as_exploratory_and_fail_closed():
+    lanes=json.loads((DOC/'data/lanes.json').read_text())['lanes']
+    ago=[x for x in lanes if x['lane'].startswith('AGO-')]
+    assert len(ago)==3
+    auth=json.loads((DOC/'data/submission-authorization.json').read_text())
+    home=(DOC/'index.html').read_text()
+    page=(DOC/'ago.html').read_text()
+    assert 'OK TO SUBMIT: NO' in page and 'Do not submit this file.' in page
+    assert 'How to submit this file' not in page
+    for lane in ago:
+        assert lane['verdict']=='negative'
+        assert lane['protocol_unique'] is False
+        assert (DOC/lane['file']).is_file()
+        assert lane['holdout_evaluator']=='quick-4quadrant-spatial (30px buffer)'
+        assert 'withheld-positive count and 95% CI not recorded' in home
+        assert lane['file'].split('/')[-1] in home
+        assert any(x['lane']==lane['lane'] and not x['authorized_to_submit'] for x in auth['artifacts'])
+    assert auth['repository_authorized_file_count']==0
+
+
 def test_h80_latest_candidate_is_in_inventory_and_fails_closed():
     import hashlib
     card=json.loads((ROOT/'evidence/h80_run_card.json').read_text())
@@ -206,7 +226,7 @@ def test_h80_latest_candidate_is_in_inventory_and_fails_closed():
     assert lane['holdout_evaluator_version']=='gems57-pooled-hide-v2'
     assert lane['holdout_positive_pixels']==11319 and lane['holdout_dti_hide_v2']==card['holdout_dti']['value']
     assert len(lane['note'])<=140 and lane['note']==card['note']
-    assert tif.name in home and 'H80: latest negative research candidate' in home
+    assert tif.name in home and 'H80: parallel negative geology lane' in home
     assert 'OK TO SUBMIT: NO' in home and 'Do not submit.' in home
     assert auth['repository_authorized_file_count']==0
     assert any(x['lane'].startswith('H80:') and not x['authorized_to_submit'] for x in auth['artifacts'])

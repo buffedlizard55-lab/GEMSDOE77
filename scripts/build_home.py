@@ -22,7 +22,7 @@ LB = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboa
 PD = "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
 NAV = [("index.html", "Start here"), ("release-review.html", "Release safety review"), ("executive-summary.html", "How to submit"),
-       ("h80.html", "H80 · research-only"),
+       ("ago.html", "AGO · negative variants"), ("h80.html", "H80 · research-only"),
        ("h79-orient.html", "H79-ORIENT · negative"), ("h79-orient-executive-summary.html", "H79-ORIENT guide"),
        ("h79.html", "H79-BB · research-only"),
        ("h79-radhalo.html", "H79-RH · negative"),
@@ -137,6 +137,10 @@ def main():
                     f'(95% CI {h["ci95"][0]:.4f}–{h["ci95"][1]:.4f}; '
                     f'{e(h["evaluator_version"])}; {h["withheld_positive_pixels"]:,} withheld); '
                     'not comparable to H77L</span>')
+        if x.get("holdout_quick") is not None:
+            return (f'<span class="chip warn">exploratory {x["holdout_quick"]:.4f} '
+                    f'({e(x.get("holdout_evaluator", "unverified evaluator"))}); '
+                    'withheld-positive count and 95% CI not recorded; not a qualified HOLDOUT-DTI receipt</span>')
         if x.get("beats_holdout_best") is not None:
             return yn(x["beats_holdout_best"], "YES", "NO")
         if x.get("holdout_dti_hide_v2") is not None:
@@ -217,7 +221,7 @@ gates and currently says <b>NOT OK TO SUBMIT — 0 authorized files</b>.</p>"""
 <p class="small">SHA-256 <code>{e(orient['sha256'])}</code> · <a href="h79-orient.html">technical report</a> · <a href="h79-orient-executive-summary.html">H79-ORIENT guide</a> · <a href="evidence/h79_orient_run_card.json">run card</a></p></section>"""
     h80_holdout = h80_card["holdout_dti"]
     h80_zip = Path(h80["file"]).with_suffix(".zip").as_posix()
-    h80_box = f"""<section class="card" style="border:2px solid #b45309;background:#fffbeb;"><h2>⬇ H80: latest negative research candidate</h2>
+    h80_box = f"""<section class="card" style="border:2px solid #b45309;background:#fffbeb;"><h2>⬇ H80: parallel negative geology lane</h2>
 <p><b>OK TO DOWNLOAD: YES.</b> <b>OK TO SUBMIT: NO.</b> Riedel wing-crack tip rays are format-valid, but <b>HOLDOUT-DTI {h80_holdout['value']:.5f}</b> ({e(h80_holdout['evaluator_version'])}; {h80_holdout['n_withheld_positives']:,} withheld positives; 95% CI {h80_holdout['ci95'][0]:.5f}–{h80_holdout['ci95'][1]:.5f}) is below the retained 0.152718 HOLDOUT-DTI incumbent. Its local 3-px overlap is {h80_card['correlation_overlap_vs_registry']['max_3px_overlap']:.4f} with the selective-U raster; this exceeds the 0.70 stop. <b>Do not submit.</b></p>
 <a class="btn" href="{e(h80['file'])}" download>Download H80 .tif</a> <a class="btn alt" href="{e(h80_zip)}" download>One-TIFF ZIP</a>
 <div class="chips"><span class="chip ok">Format: PASS (local)</span><span class="chip bad">Holdout: NEGATIVE</span><span class="chip bad">Uniqueness: FAIL</span><span class="chip warn">Slots used: 0</span></div>

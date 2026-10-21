@@ -2,34 +2,37 @@
 
 ## Decision summary
 
-**Repository state: research-only; no file is authorized for competition upload.** The current release gate reports `NOT OK TO SUBMIT`, with zero authorized files. No new candidate was built in this audit, no competition slot was used, and no leaderboard outcome is claimed. Following parallel merges during review, H80 is the latest checked-in research lane; its TIFF is available for inspection only, not upload: [`gems77-h80-riedel-wingcrack-tips-20261021-zeros.tif`](downloads/gems77-h80-riedel-wingcrack-tips-20261021-zeros.tif).
+**Repository state: research-only; no file is authorized for competition upload.** The current release gate reports `NOT OK TO SUBMIT`, with zero authorized files. No new candidate was built in this audit, no competition slot was used, and no leaderboard outcome is claimed. During this review, `origin/main` advanced again and added three AGO ML×geophysics research variants; H80 remains the latest parallel geology-only lane. The AGO files are available for research inspection only, not submission, and their quick-evaluator measurements do not have the withheld-positive counts/95% CIs needed for a qualified HOLDOUT-DTI receipt.
 
 The apparent conflict between “generate a unique TIFF” and the run protocol is resolved conservatively: H80 is a distinct file, but its final dots have 0.9816 3-pixel overlap with a checked local selective-U raster, above the 0.70 stop. “Unique bytes” or low rank correlation does not clear that rule. H80 also failed to beat the current local holdout best. Therefore a new submission build or weekly-slot recommendation would violate the stated gates. The protocol owner/selector must resolve the full-support-witness contradiction; do not create a private exemption.
+
+The later-merged AGO-Hybrid35, AGO-Hybrid50, and AGO-Select artifacts are upstream experiments, not experiments performed or revalidated in this audit. Their stored values (0.103445, 0.089401, 0.144364) use `quick-4quadrant-spatial (30px buffer)`, lack recorded withheld-positive counts and 95% CIs, and cannot be compared with `gems57-pooled-hide-v2` results or the reported leaderboard. The two displaced variants pass only a backbone-specific overlap check; the universal full-support witness still triggers the literal protocol gate. All three remain negative with no selector approval.
 
 ## Three-pass review
 
 ### Pass 1 — inventory and declared evidence
 
 - Read `README.md`, `PROMPT.md`, `AGENTS.md`, the irregularity ledger, template pin, preregistrations, run cards, release-gate receipt, site manifest, and the relevant artifact/build/test scripts.
-- The merged repository now retains 14 lane entries in `docs/data/lanes.json`; all are recorded negative and none is selector-approved. The new H80 entry was added during this audit after review found that the latest H80 TIFF existed in `docs/index.html` but was absent from the generated lane manifest, so subsequent `build_home.py` runs would have dropped its row. The entries include H80, H77L, H79-BB, H79-RH, H79-ORIENT, D77, H77D/H77-Step, H78, LIA, contact-physics, selective-U, H77E, and XSEN. Historical “promote” fields in old run cards are superseded by the fail-closed authorization receipt and must not be used as current approval.
+- The merged repository now retains 17 lane entries in `docs/data/lanes.json`; all are recorded negative and none is selector-approved. The H80 entry was restored during this audit after the first upstream H80 merge omitted it from the generated lane manifest; the next upstream merge added three AGO variants but again omitted H80. The manifest now includes H80, H77L, H79-BB, H79-RH, H79-ORIENT, D77, H77D/H77-Step, H78, LIA, contact-physics, selective-U, H77E, XSEN, and AGO-Hybrid35/50/Select. The H80 entry is checked against its frozen run card, and a test ensures its hash remains represented in the generated fail-closed site. Historical “promote” fields in old run cards are superseded by the authorization receipt and must not be used as current approval.
 - The local input bundle is a small `data/bridge/` set, not the full 19-band training stack. `registry/data_manifest.json` documents SHA-pinned owner mirrors and explicitly says they are not organizer-authenticated. No attempt was made to access the login-walled competition data page.
 - `docs/SESSION_REVIEW.md` is older than this repository snapshot: its branch identifier and “13 TIFF” audit scope are historical, and its earlier backlog is superseded by this report. It remains unchanged as an audit record.
 
 ### Pass 2 — executable and artifact checks
 
 - Installed the pinned `requirements.txt` in the ignored local `.venv` because the system Python had no project packages. No project or system dependency files were changed.
-- `.venv/bin/python -m pytest -q` after the H80 manifest/site fix: **100 passed**.
+- `.venv/bin/python -m pytest -q` after reconciling H80 and the upstream AGO manifest/site: **101 passed**.
 - `.venv/bin/python scripts/release_gate.py --verify-fail-closed`: **PASS; NOT OK TO SUBMIT; 0 authorized files**.
 - `.venv/bin/python scripts/verify_all.py`: completed successfully; its emitted artifact receipt reported all checks passed for the historical contact-physics TIFF. This does not establish authorization for that file or other candidates.
 - Independently read the merged H80 TIFF with Rasterio and compared it with `data/bridge/sample_submission.tif`: one `float32` band, `3730×3292`, EPSG:32611, matching shape/CRS/transform, no nodata tag, finite across the complete raster, minimum 0, maximum 1, and 12,000 positive cells. SHA-256: `bab170ed60ab7e1a8afbfad69386a8266191fa4864ac3abac5b6290b7d25bc57`. The ZIP contains exactly one TIFF. These checks establish local format only; bridge-file provenance is not organizer-authenticated and format validity is not upload permission.
+- Independently read all three AGO zero-variant TIFFs against the same sample grid: each is one-band `float32`, `3730×3292`, matching CRS/transform, finite in `[0,1]`, with 37,654 positive pixels; each SHA-256 matches `docs/data/lanes.json`, and each ZIP contains exactly the byte-identical one TIFF. These are local format checks only, not competition authorization or scientific validation.
 - The H80 run card records **0.095796681 HOLDOUT-DTI** (`gems57-pooled-hide-v2`, 11,319 withheld positive pixels, 95% CI `[0.088183461, 0.103247974]`) against a random control of **0.014885619 HOLDOUT-DTI** (same evaluator and positives; no CI recorded for the control). Its retained comparator is **0.152718 HOLDOUT-DTI** (`gems57-pooled-hide-v2`, 11,321 withheld positives, 95% CI `[0.131548, 0.175185]`) from H77-Step. These are local measurements on different folds, not organizer leaderboard scores or a matched causal comparison. The feature-only canary reports AUC 0.686824 on 11,319 withheld positives, below the 0.90 leakage ceiling.
 - H80's run card reports a local maximum 3-pixel dot overlap of 0.981583 with the dense selective-U TIFF, above the 0.70 stop threshold, across 19 locally compared files. The current report card does not record a pre-placement surface Spearman value; that surface gate therefore cannot be independently cleared from H80's receipts. The full registry remains unchecked. H79-ORIENT and H79-RH also have separate literal overlap stops; no lane is cleared by a low correlation diagnostic.
-- Static-site builders, release-gate generation, and verifier commands can rewrite generated HTML/receipts or create evidence output. The incoming H80 page was initially hand-patched into generated `docs/index.html` but omitted from `docs/data/lanes.json` and `scripts/build_home.py`; regenerating the site would therefore remove H80 from the per-file table and omit it from the release authorization receipt. Fixed by registering H80 in the shared lane manifest, adding generator navigation and an explicit research-only card, and testing that its TIFF/hash/run card remain fail-closed after generation. Generated artifacts from initial audit commands were reverted; incoming H80/H79-ORIENT evidence was preserved. Treat these commands as mutating, and review generated diffs before staging.
+- Static-site builders, release-gate generation, and verifier commands can rewrite generated HTML/receipts or create evidence output. The upstream AGO merge added three negative variants and a 16-lane authorization receipt but omitted H80 from `docs/data/lanes.json`; its generated start page still referenced H80. Restored H80 to the 17-entry manifest, kept all three AGO variants, added generator navigation and explicit caveats for their incomplete quick-evaluator metrics, and regenerated the start/submission pages and zero-authorization receipt. Added tests for both H80 hash/clearance and the AGO per-file fail-closed status; repaired the AGO report's broken run-card links. Treat these commands as mutating, and review generated diffs before staging.
 
 ### Pass 3 — requirements and remaining blockers
 
 - The submission landing page has a prominent “download for inspection / NOT OK TO SUBMIT” message and a separate how-to-submit page. That is the correct safety state while authorization is zero; do not change it to “OK” based on a validator PASS.
-- The H80 submission note is 94 characters in its run card (under the stated 140-character limit); its file name and path are recorded there.
+- The H80 submission note is 94 characters and the AGO-Hybrid35 note is 99 characters in their run cards (both under the 140-character limit). AGO's run card records the two displacement variants' file names, hashes, and local validator receipts; none has selector approval.
 - `README.md` retains the full project prompt as requested. Its curated primary link is H77L by `docs/data/lanes.json`; the individual lane writeups are historical evidence, and this report is the current repository review. No official non-GitHub page was freshly fetched in this audit, and no private submission receipt or authenticated competition data was available. Official-source links below are supplied for manual verification, not cited as newly checked facts.
 - User-provided score figures for individual family files are not organizer-confirmed receipts. The H80 value above is local HOLDOUT-DTI, not a leaderboard score. The repo's reported top public leaderboard value must be checked on the official page before asserting it is current.
 
@@ -47,7 +50,7 @@ The list below is a screening queue, not a claim of novelty or expected score ga
 
 ### Recommended next-session sequence
 
-1. Resolve the missing lane assignment and the literal-uniqueness/full-support-witness policy with the shared protocol owner. Do not locally weaken the duplicate threshold.
+1. Resolve the lane-assignment question and literal-uniqueness/full-support-witness policy with the shared protocol owner. Reconcile the newly merged AGO diagnostic artifacts with their quick-evaluator limitations and the experiment assignment before any further run. Do not locally weaken the duplicate threshold.
 2. Verify whether the official competition data bundle, current submission rules, registry, and weekly cap can be accessed. The official data page is `https://www.drivendata.org/competitions/306/competition-doe-gems/data/`; no credentials are available in this audit.
 3. Before selecting a research lane, review the complete score/evidence ledger and rule out overlap with prior H77/H78/H79 constructions. If pursuing the drainage proposal, first verify and obtain the exact study-area DEM from the official USGS 3DEP service, then preregister; do not treat its availability as established.
 4. Use only the pinned shared feature/evaluator/writer stack, with feature-alone canaries first, whole-segment buffered hide-and-recover folds, and same-support paired controls. Stay within the 3-experiment / 2-hour cap.
@@ -82,6 +85,21 @@ The list below is a screening queue, not a claim of novelty or expected score ga
       "note": "separate H77-Step receipt; not a leaderboard score or matched fold comparison"
     }
   },
+  "upstream_ago_diagnostics": [
+    {
+      "evidence_label": "UNQUALIFIED EXPLORATORY HOLDOUT (upstream calls this HOLDOUT-DTI; incomplete receipt)",
+      "evaluator_version": "quick-4quadrant-spatial (30px buffer)",
+      "withheld_positive_count": "not recorded",
+      "ci95": "not recorded",
+      "organizer_confirmed": false,
+      "variants": {
+        "AGO-Hybrid35": 0.103445292,
+        "AGO-Hybrid50": 0.089400992,
+        "AGO-Select": 0.144363654
+      },
+      "note": "Do not compare with gems57-pooled-hide-v2 or leaderboard scores; no selector approval."
+    }
+  ],
   "correlation_overlap_vs_registry": {
     "label": "LOCAL-REGISTRY-MEASUREMENT (19 TIFFs checked; not full-family registry)",
     "surface_spearman": "not recorded in H80 run card",
