@@ -1,0 +1,48 @@
+{
+  "id": "GEMSDOE77-PREREG-H79-ORIENT",
+  "date_utc": "2026-10-21",
+  "session_branch": "arena/77173f8d-gemsdoe77",
+  "lane": "H79-ORIENT",
+  "lane_single_method_paragraph": "Label-blind, catalogue-free cross-sensor scale-space orientation persistence: derive Gaussian derivative edge states at 150, 300 and 600 m from cached RTP magnetics, isostatic gravity anomaly, and detrended elevation; require geometric persistence and doubled-angle orientation confluence across the three fields, with depth-to-conductive-base amplitude used only as a named raw control. Train the shared HGB holdout model on this block plus those four source amplitudes; emit a fixed 37,654-dot, 2.8-pixel-separated, >3-pixel-catalogue-excluded field.",
+  "hypothesis": {
+    "layers": ["rtp band 2", "iso_grav_anom band 13", "det_elev band 12", "depth_to_base_surf band 15 control"],
+    "signature": "geometric mean edge strength across sigma={1.5,3.0,6.0} pixels plus doubled-angle orientation concentration and cross-sensor vector confluence",
+    "off_catalogue_mechanism": "a concealed basin-boundary or normal-fault contact can preserve a stable structural axis in independent magnetic, density and relief fields without a mapped surface trace",
+    "non_fault_mimic": "intrusive or lithologic contacts, survey flight-line seams, pluvial shoreline/terrace edges, and drainage margins",
+    "difference_from_repo": "no prior checked method uses steerable/doubled-angle cross-scale persistence; this lane excludes catalogue-derived mechanics, SGMC targets, GDR point proximity and prior prediction rasters"
+  },
+  "candidate_rank": [
+    {"rank": 1, "id": "H79-ORIENT", "expected_gain": "uncertain; highest expected gain/cost", "cost": "medium", "external_data": false},
+    {"rank": 2, "id": "H79-RAD", "expected_gain": "uncertain", "cost": "medium", "external_data": false},
+    {"rank": 3, "id": "H79-DEPTH", "expected_gain": "uncertain", "cost": "low-medium", "external_data": false},
+    {"rank": 4, "id": "H79-HYDRO", "expected_gain": "uncertain", "cost": "medium", "external_data": true, "source": "https://gdr.openei.org/submissions/1391"},
+    {"rank": 5, "id": "H79-SEIS", "expected_gain": "not estimated", "cost": "high", "external_data": true, "viable_this_session": false, "source": "https://earthquake.usgs.gov/fdsnws/event/1/query"}
+  ],
+  "data": {
+    "feature_stack": "data/processed/stack.npy",
+    "feature_stack_receipt": "registry/feature_receipt.json",
+    "competition_inputs": "registry/data_manifest.json",
+    "provenance": "SHA-pinned owner mirrors; not organizer-authenticated"
+  },
+  "holdout": {
+    "evaluator": "gems57-pooled-hide-v2",
+    "implementation": "vendor/gems57/evaluate_holdout.py",
+    "split": "buffered whole-component quadrant draw, seed 20 primary and seed 30 confirmation, hide_frac=0.20, feature buffer=3 px, boundary erosion=12 px",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "kernel_radius_m": 300.0,
+    "incumbent_dti": 0.152718,
+    "incumbent_label": "HOLDOUT-DTI, H77-Step receipt, seed 20, 11,321 withheld positives, 95% CI [0.131548, 0.175185]",
+    "canary_threshold_symmetric_auc": 0.90,
+    "fixed_emission_budget": 37654,
+    "fixed_min_separation_px": 2.8,
+    "fixed_catalogue_exclusion_px": 3.0
+  },
+  "gates": {
+    "surface_before_placement": "No checked registry raster may have |Spearman| > 0.90 or forward 3-pixel overlap > 0.70; incomplete registry is reported as not certified.",
+    "final_dots": "Repeat the same comparison after dot placement; a dense space-filling witness remains a literal blocker under Policy I17.",
+    "promotion": "Only a seed-20 primary improvement over incumbent plus a confirmation and all gates could be a candidate for separate selector sign-off; no weekly slot is selected here.",
+    "writer": "vendor/gems57/submission_writer.py; fail closed, all-finite float32 zeros TIFF, no silent repair"
+  },
+  "budget": {"max_experiments": 3, "max_hours": 2, "planned": ["E1 feature-alone canaries", "E2 seed-20 arm comparison", "E3 seed-30 confirmation and packaging"]}
+}

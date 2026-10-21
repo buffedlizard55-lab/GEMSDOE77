@@ -1,5 +1,5 @@
 {
- "note": "Eleven reviewed downloadable lanes are retained, including H77L (the featured research-only file), two concurrently merged H79 negative TIFFs, and the new D77 blind-distance band. Every listed artifact is for inspection only, Not OK to submit: the literal dense-witness gate blocks every nonempty candidate under Policy I17. See data/submission-authorization.json.",
+ "note": "Eleven reviewed downloadable lanes are retained, including H77L (the featured research-only file), two concurrently merged H79 negative TIFFs, and the new D77 blind-distance band. Every listed artifact is for inspection only, Not OK to submit: the literal dense-witness gate blocks every nonempty candidate under Policy I17. See data/submission-authorization.json. H79-ORIENT is also retained as a negative, safe-to-download research artifact (0.0891/0.0945 HOLDOUT-DTI; no slot), with its own namespaced run card and incomplete-registry fail-closed gate.",
  "lanes": [
   {
    "lane": "D77: blind-distance band 250m-1km off catalogue + greedy dots under the exact DTI bar (HOLDOUT-DTI 0.0000 [0.0000, 0.0000]; negative result)",
@@ -50,10 +50,10 @@
    ],
    "upload": "Not OK to submit. OK to download for inspection only. Literal registry overlap = 1.0 against a full-support witness; no final dots or weekly slot. Format-valid research TIFF, NOT competition-approved.",
    "why_primary": "Featured H77L experiment of this research session: original LiDAR/ThK lagged-flank response, negative result, no reused submission pixels. Other parallel lanes are preserved below.",
-   "beat_02778_summary": "Unknown. H77L has 0.0312 HOLDOUT-DTI (gems57-pooled-hide-v2, 41,732 withheld positives, 95% CI 0.0260–0.0369) on an unmatched catalogue holdout, not a public leaderboard result. No organizer score, approved dot placement, or verified H33 file-to-score receipt exists."
+   "beat_02778_summary": "Unknown. H77L has 0.0312 HOLDOUT-DTI (gems57-pooled-hide-v2, 41,732 withheld positives, 95% CI 0.0260\u20130.0369) on an unmatched catalogue holdout, not a public leaderboard result. No organizer score, approved dot placement, or verified H33 file-to-score receipt exists."
   },
   {
-   "lane": "H79-BB: basement potential-field step × topographic curvature ridge (research TIFF; literal FAIL)",
+   "lane": "H79-BB: basement potential-field step \u00d7 topographic curvature ridge (research TIFF; literal FAIL)",
    "page": "h79.html",
    "summary": "executive-summary.html",
    "file": "downloads/gems77-h79-crossgrad-ridge-37654dots-20261021-dd0dbf9c-zeros.tif",
@@ -72,7 +72,7 @@
     0.028377191340547874,
     0.03645024878150852
    ],
-   "upload": "Not OK to submit. OK to download for inspection only. Literal dense-witness uniqueness fails; H79 0.032328 HOLDOUT-DTI (gems57-pooled-hide-v2, 22,633 withheld positives, 95% CI 0.028377–0.036450) is below its same-support random control; selector not approved.",
+   "upload": "Not OK to submit. OK to download for inspection only. Literal dense-witness uniqueness fails; H79 0.032328 HOLDOUT-DTI (gems57-pooled-hide-v2, 22,633 withheld positives, 95% CI 0.028377\u20130.036450) is below its same-support random control; selector not approved.",
    "primary": false,
    "why_primary": "Historical H79 parallel lane, with a new format-valid TIFF; the binding literal uniqueness gate failed, and its holdout result is negative."
   },
@@ -88,16 +88,46 @@
    "beats_holdout_best": false,
    "verdict": "negative",
    "name": "gems77-h79-radhalo-lag3-37654-20261021-zeros",
-   "note": "H79 lag-3px U-residual halo paired to K-Th edge; 37654 spaced dots; HOLDOUT negative—research only, do not submit",
+   "note": "H79 lag-3px U-residual halo paired to K-Th edge; 37654 spaced dots; HOLDOUT negative\u2014research only, do not submit",
    "sha256": "c272025ee653187d09489d941613a86bfe4b88110fb455847a2256cf5699014b",
    "holdout_dti": 0.04773265734715734,
    "holdout_ci95": [
     0.03958335878724709,
     0.05557557296791166
    ],
-   "upload": "Not OK to submit. OK to download for inspection only. Literal registry overlap = 1.0 > 0.70 and HOLDOUT-DTI 0.047733 (gems57-pooled-hide-v2, 11,321 withheld positives, 95% CI 0.039583–0.055576) fails scientific promotion. Selector not approved; zero weekly slots.",
+   "upload": "Not OK to submit. OK to download for inspection only. Literal registry overlap = 1.0 > 0.70 and HOLDOUT-DTI 0.047733 (gems57-pooled-hide-v2, 11,321 withheld positives, 95% CI 0.039583\u20130.055576) fails scientific promotion. Selector not approved; zero weekly slots.",
    "primary": false,
    "why_primary": "Concurrent negative H79-RH radiometric halo, retained for audit and inspection only."
+  },
+  {
+   "lane": "H79-ORIENT: label-blind cross-sensor orientation persistence (negative holdout)",
+   "page": "h79-orient.html",
+   "summary": "h79-orient-executive-summary.html",
+   "run_card": "evidence/h79_orient_run_card.json",
+   "file": "downloads/gems79-orient-persistence-37654dots-20261021-4abff47886.tif",
+   "zip": "downloads/gems79-orient-persistence-37654dots-20261021-4abff47886.zip",
+   "format_valid": true,
+   "protocol_unique": false,
+   "informative_unique": false,
+   "beats_holdout_best": false,
+   "holdout_dti_hide_v2": 0.09450695640486674,
+   "holdout_ci95": [
+    0.07655819744668374,
+    0.11284365420654904
+   ],
+   "holdout_positive_pixels": 11342,
+   "holdout_evaluator_version": "gems57-pooled-hide-v2",
+   "verdict": "negative",
+   "name": "gems79-orient-persistence-37654dots-20261021-4abff47886",
+   "note": "H79 orientation persistence; HOLDOUT-DTI 0.0945 s30 / 0.0891 s20; registry gate failed; research only",
+   "sha256": "745dbaa427bc1edaf477b3d0b4847b8be8d30d396106a61b1318a8726599be8e",
+   "informative_checked_rasters": 13,
+   "informative_max_surface_abs_spearman": 0.07976707194570443,
+   "informative_max_dot_overlap": 1.0,
+   "upload": "Not OK to submit. OK to download for inspection only. Local format checks pass; primary HOLDOUT-DTI is 0.0945 on seed 30 (95% CI 0.0766\u20130.1128; 11,342 withheld positives) / 0.0891 on seed 20 (95% CI 0.0724\u20130.1054; 11,321 withheld positives), below the 0.1527 incumbent. The dense witness fires the binding registry gate; registry coverage is incomplete. No weekly slot used.",
+   "primary": false,
+   "why_primary": "Latest H79-ORIENT research artifact. It tests a label-blind orientation/persistence mechanism distinct from prior H79-BB/H79-RH, lineament, lidar and catalogue-mechanics lanes; it is packaged for inspection only.",
+   "beat_02778_summary": "No. The validated primary is HOLDOUT-DTI 0.0945 on seed 30 and 0.0891 on seed 20, both below the retained 0.152718 HOLDOUT-DTI incumbent; it does not support a 0.2778 projection."
   },
   {
    "lane": "H77D: Coupled Zero-SGMC Tectono-Hydrothermal Conduits + 12-Bit LOCO + 300 m Submodular Cover (0.15011 / 0.14030 HOLDOUT-DTI)",
