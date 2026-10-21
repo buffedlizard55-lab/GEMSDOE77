@@ -28,7 +28,7 @@ holdout and selector evidence; it is not an independent scientific-certification
 
 Restored the two pinned registry witnesses over GitHub and checked SHA-256. Re-ran `scripts/verify_h77l.py`:
 all 23 checks pass, including exact grid, finite/range readback, one-TIFF ZIP equality, pinned shared-template hashes,
-and pixel distinction from 18 other local TIFFs. See [the updated audit](evidence/h77l_independent_audit.json).
+and pixel distinction from 19 other local TIFFs. See [the updated audit](evidence/h77l_independent_audit.json).
 Those are format/integrity measurements, **not** holdout re-evaluation or complete-registry clearance.
 
 The dense witness has positive values at every allowed footprint pixel. The nonempty H77L surface has measured
@@ -91,3 +91,7 @@ retain their evaluator version, withheld-positive count and confidence intervals
    require improvement over the comparable incumbent before any slot selection.
 4. Generate through the shared writer; validate exact grid/finite [0,1], scan surface and final dots, then seek separate selector approval.
 5. Keep an authenticated organizer receipt tied to the exact artifact hash if a slot is eventually used.
+
+## Parallel-session reconciliation
+
+PR #29 merged H79-ORIENT while this review PR was open. Merged main into this session branch, preserved its files and regenerated the site from combined sources. Repeated the CI build, verification, all 99 tests, and independent artifact audit; no new experiment was run. The local comparison inventory now contains 19 other TIFFs.

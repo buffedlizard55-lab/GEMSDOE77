@@ -20,7 +20,7 @@ holdout and selector evidence; it is not an independent scientific-certification
 <h3>Pass 2 — independent artifact and blocker verification</h3>
 <p>Restored the two pinned registry witnesses over GitHub and checked SHA-256. Re-ran <code>scripts/verify_h77l.py</code>:
 all 23 checks pass, including exact grid, finite/range readback, one-TIFF ZIP equality, pinned shared-template hashes,
-and pixel distinction from 18 other local TIFFs. See <a href="evidence/h77l_independent_audit.json">the updated audit</a>.
+and pixel distinction from 19 other local TIFFs. See <a href="evidence/h77l_independent_audit.json">the updated audit</a>.
 Those are format/integrity measurements, <strong>not</strong> holdout re-evaluation or complete-registry clearance.</p>
 <p>The dense witness has positive values at every allowed footprint pixel. The nonempty H77L surface has measured
 forward overlap 1.0, exceeding the protocol's 0.70 limit. This is an independent rejection witness;
@@ -107,4 +107,6 @@ retain their evaluator version, withheld-positive count and confidence intervals
    require improvement over the comparable incumbent before any slot selection.</li>
 <li>Generate through the shared writer; validate exact grid/finite [0,1], scan surface and final dots, then seek separate selector approval.</li>
 <li>Keep an authenticated organizer receipt tied to the exact artifact hash if a slot is eventually used.</li>
-</ol><p>Selector: not approved. All downloads remain research-only.</p></div></main></body></html>
+</ol>
+<h2>Parallel-session reconciliation</h2>
+<p>PR #29 merged H79-ORIENT while this review PR was open. Merged main into this session branch, preserved its files and regenerated the site from combined sources. Repeated the CI build, verification, all 99 tests, and independent artifact audit; no new experiment was run. The local comparison inventory now contains 19 other TIFFs.</p><p>Selector: not approved. All downloads remain research-only.</p></div></main></body></html>
