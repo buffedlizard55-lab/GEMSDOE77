@@ -973,12 +973,14 @@ Format-valid (15/15 checks, 0 NaN, values in [0,1], 37,654 binary dots) and info
 
 def write_review_pages():
     for source, output, title in (
-        ("docs/review-2026-10-21-60aafd45.md", "review-latest.html", "Latest repository review"),
+        ("docs/review-2026-10-21-05f9e6f8.md", "review-latest.html", "Latest repository review"),
         ("research/why-h33-scored-02778.md", "metric-review.html", "Corrected H33 analysis"),
     ):
         body = markdown.markdown((ROOT / source).read_text(), extensions=["tables", "fenced_code"])
         (D / output).write_text(page(output, title, body))
-    for name in ("review_60aafd45_card.json", "review_60aafd45_verification.json"):
+    for name in ("review_60aafd45_card.json", "review_60aafd45_verification.json",
+                 "review_05f9e6f8_card.json", "review_05f9e6f8_preflight.json",
+                 "review_05f9e6f8_verification.json"):
         shutil.copyfile(ROOT / "evidence" / name, D / "evidence" / name)
 
 
@@ -1274,7 +1276,7 @@ Every number on this page is <b>HOLDOUT-DTI</b> from local hide-and-recover; non
 <h2>Irregularities raised by this lane</h2>
 <p><b>IR-H82FMD-01 (shared tool, fixed upstream):</b> <code>vendor/gems57/uniqueness.py</code> could not report
 <em>which</em> registry comparators are too dense for a 3-px overlap test to carry information. Added
-<code>_disk_area()</code> and <code>space_filling_flags()</code> there — in the shared tool, not in a private fork —
+<code>_disk_area()</code> and <code>space_filling_flags()</code> as reporting helpers. Integration moved them to <code>gems82fmd.registry_diagnostics</code> to restore the pinned shared template; no gate is forked or changed —
 so both readings are always published. No threshold or verdict was changed.<br>
 <b>IR-H82FMD-02 (budget overrun, declared in advance):</b> E4 is a fourth experiment against a 3-experiment budget. It was
 preregistered in <code>registry/preregistration_h82fmd_amendment_e4.json</code> <em>before</em> it ran, and it is reported as

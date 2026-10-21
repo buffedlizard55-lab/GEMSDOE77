@@ -163,7 +163,8 @@ def test_space_filling_flags_separates_dense_witnesses_from_sparse_dots(tmp_path
     _write(ps, sparse)
     rows = [{"sha256": "d", "file": str(pd), "their_dots": int(dense.sum())},
             {"sha256": "s", "file": str(ps), "their_dots": int((sparse > 0).sum())}]
-    flags = U.space_filling_flags(rows, fp, radius_px=3.0)
+    from gems82fmd.registry_diagnostics import space_filling_flags
+    flags = space_filling_flags(rows, fp, radius_px=3.0)
     assert flags["d"]["space_filling"] is True and flags["d"]["exact"] is True
     assert flags["s"]["space_filling"] is False
     assert 0.0 <= flags["s"]["halo_coverage"] <= 1.0

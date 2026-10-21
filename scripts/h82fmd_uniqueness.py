@@ -8,7 +8,7 @@ theirs (limit 0.70), plus reverse overlap and Jaccard as diagnostics.
 
 Both phases use ``vendor/gems57/uniqueness.py`` unchanged for the measurement.
 The only addition is the *reporting* split introduced upstream in
-``gems57.uniqueness.space_filling_flags``: a registry raster whose 3 px halo
+``gems82fmd.registry_diagnostics.space_filling_flags``: a registry raster whose 3 px halo
 already covers >= 70 % of the scored footprint cannot discriminate anything,
 because a uniformly random dot field also "fires" against it. Those rasters are
 listed separately instead of being silently dropped: the literal reading and
@@ -138,7 +138,8 @@ def main() -> int:
                                       file_sha256=sha, progress=prog)
     all_rows = [r for r in (res.get("rows") or res.get("comparisons") or []) if "error" not in r]
     errors = [r for r in (res.get("rows") or res.get("comparisons") or []) if "error" in r]
-    flags = U.space_filling_flags(all_rows, fp, radius_px=3.0)
+    from gems82fmd.registry_diagnostics import space_filling_flags
+    flags = space_filling_flags(all_rows, fp, radius_px=3.0)
     informative = [r for r in all_rows if not flags[r["sha256"]]["space_filling"]]
 
     def worst(rs, key):
