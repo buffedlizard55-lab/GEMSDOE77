@@ -22,7 +22,7 @@ REPO = "https://github.com/buffedlizard55-lab/GEMSDOE77"
 LB = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
 PD = "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
-NAV = [("index.html", "Start here"), ("release-review.html", "Release safety review"), ("executive-summary.html", "How to submit"),
+NAV = [("index.html", "Start here"), ("h77e-knick.html", "H77E-Knick · 0/816 firings"), ("release-review.html", "Release safety review"), ("executive-summary.html", "How to submit"),
        ("h81.html", "H81 · slip-cone"),
        ("h80t.html", "H80T · tilt-persist"), ("h80t-executive-summary.html", "H80T guide"),
        ("h80.html", "H80 · negative"), ("ago.html", "AGO · negative proxies"),
@@ -558,5 +558,102 @@ is a diagnostic only. {e(card["uniqueness_policy"])}</p>
 <h2>Official sources used</h2><ul>{src}</ul>"""
 
 
+
+def h77e_knick_body(rc77e):
+    s20 = rc77e["holdout_dti_seed20_11321px"]
+    s30 = rc77e["holdout_dti_seed30_11342px"]
+    sub = rc77e["submission_artifact"]
+    val = sub["validator_receipt"]
+    uq = rc77e["uniqueness_audit"]
+    can = rc77e["leakage_canary_audit"]
+
+    arms_rows = ""
+    for arm_name, a20 in s20["scores"].items():
+        a30 = s30["scores"].get(arm_name)
+        s30_txt = f'{a30["dti"]:.6f} ({a30["ci95"][0]:.6f}–{a30["ci95"][1]:.6f})' if a30 else "—"
+        arms_rows += (
+            f'<tr><td><b>{e(arm_name)}</b></td>'
+            f'<td><code>{a20["dti"]:.6f}</code> ({a20["ci95"][0]:.6f}–{a20["ci95"][1]:.6f})</td>'
+            f'<td><code>{s30_txt}</code></td></tr>'
+        )
+
+    diff_rows = ""
+    for k, d in s20["paired_differences_unique_candidate"].items():
+        diff_rows += (
+            f'<tr><td><code>unique vs {e(k)}</code></td>'
+            f'<td><code>{d["delta"]:+.6f}</code></td>'
+            f'<td><code>[{d["ci95"][0]:+.6f}, {d["ci95"][1]:+.6f}]</code></td></tr>'
+        )
+    for k, d in s20["paired_differences_pure_candidate"].items():
+        diff_rows += (
+            f'<tr><td><code>pure vs {e(k)}</code></td>'
+            f'<td><code>{d["delta"]:+.6f}</code></td>'
+            f'<td><code>[{d["ci95"][0]:+.6f}, {d["ci95"][1]:+.6f}]</code></td></tr>'
+        )
+
+    can_rows = "".join(
+        f'<tr><td><code>{e(st["feature"])}</code></td><td><code>{st["symmetric_auc"]:.6f}</code></td><td><code>{e(st["group"])}</code></td></tr>'
+        for st in can["top_15_features"][:12]
+    )
+    top_ov_rows = "".join(
+        f'<tr><td><code>{e(item["tag"] + ":" + item["name"][:48])}</code></td><td><code>{item["halo3_bg_frac"]:.4f}</code></td>'
+        f'<td><code>{item["forward_3px_overlap"]:.5f}</code></td><td><code>{item["memmap_vs_vendor_abs_diff"]:.1e}</code></td></tr>'
+        for item in uq["top_15_vendor_verified_matches"]
+    )
+    return f"""<h1>H77E-Knick lane: Statewide 10 m 3DEP Knickpoint + TIGER-Deconfounded Step + Up-Dip Seismicity + 4-Scale SLOCO + 816-Raster Capped 300 m Submodular Cover</h1>
+<p class="verdict"><b>Status at a glance.</b> <b>OK to download locally: YES</b> (15/15 <code>vendor/gems57</code> checks + 17/17 portal grid checks PASS, exact <code>0.0 / 1.0</code> float32 values strictly in <code>[0, 1]</code>, <code>0</code> NaN anywhere in all <code>12,279,160</code> cells).<br>
+<b>OK to submit automatically without human selector Policy I17 sign-off: NO</b> (Not OK to submit automatically under literal Policy I17 because 45 space-filling archive heatmaps have 3-px halos covering &ge; 70% of Nevada, up to 100.0%).<br>
+<b>Informative uniqueness across ALL 816 &lt;70%-halo rasters in the 861-raster portfolio AND all 18 sparse GEMSDOE77 sibling files: PASS with ZERO firings</b> (exact worst forward 3-px overlap = <code>0.66800 &le; 0.70</code> across portfolio; <code>0.42104 &le; 0.70</code> across all 18 sparse GEMSDOE77 siblings).</p>
+<section class="card dl"><h2>⬇ Download verified H77E-Knick competition GeoTIFFs</h2>
+<a class="btn" href="downloads/{e(Path(sub["primary_geotiff"]).name)}" download>Download Primary Zero-Firing .tif ({sub["file_bytes"]//1024} KB)</a>
+<a class="btn alt" href="downloads/{e(Path(sub["primary_zip"]).name)}" download>Same file as single-TIFF .zip ({sub["zip_bytes"]//1024} KB)</a>
+<a class="btn alt" href="downloads/{e(Path(sub["companion_pure_geotiff"]).name)}" download>Pure Unconstrained Companion .tif (0.1556 HOLDOUT-DTI)</a>
+{copy("Submission name", sub["submission_name"])}
+{copy("Submission note (<= 140 chars)", sub["submission_note"])}
+<p class="small">Primary <code>.tif</code> SHA-256: <code>{e(sub["primary_geotiff_sha256"])}</code> · ZIP SHA-256: <code>{e(sub["primary_zip_sha256"])}</code> · Pure companion SHA-256: <code>{e(sub["companion_pure_sha256"])}</code></p>
+</section>
+<h2>Visual overview of dual-seed holdout benchmark, blind Central Nevada fault recovery &amp; 861-raster audit</h2>
+<p><img src="assets/h77e/fig1_h77e_holdout_and_uniqueness.png" alt="Dual-seed HOLDOUT-DTI benchmark and 816-raster uniqueness audit" style="max-width:100%;height:auto;border:1px solid #ddd;border-radius:6px"></p>
+<p><img src="assets/h77e/fig2_h77e_nevada_surface_and_zoom.png" alt="Cross-fitted Nevada propensity surface and 45x45 km Central Nevada Basin-and-Range zoom showing blind fault recovery" style="max-width:100%;height:auto;border:1px solid #ddd;border-radius:6px"></p>
+<p><img src="assets/h77e/fig3_h77e_top15_informative_overlaps.png" alt="Top 15 closest informative rasters across the 861-raster portfolio" style="max-width:100%;height:auto;border:1px solid #ddd;border-radius:6px"></p>
+<h2>Dual-seed official hide-and-recover benchmark (<code>gems57-pooled-hide-v2</code>, zero test retuning)</h2>
+<table><tr><th>Arm</th><th>Seed 20 HOLDOUT-DTI (95% CI)</th><th>Seed 30 HOLDOUT-DTI (95% CI)</th></tr>{arms_rows}</table>
+<h3>Paired block-bootstrap differences on Seed 20 (<code>2,000</code> replicates)</h3>
+<table><tr><th>Comparison</th><th>Paired &Delta; HOLDOUT-DTI</th><th>95% CI</th></tr>{diff_rows}</table>
+<h2>Leakage canary audit (<code>{can["n_features_checked"]}/{can["n_features_checked"]}</code> passed &le; 0.90)</h2>
+<table><tr><th>Top 12 Single-Feature Canaries</th><th>Holdout AUC</th><th>Feature Group</th></tr>{can_rows}</table>
+<h2>Exact 861-raster portfolio uniqueness audit (<code>0 / 816</code> informative firings)</h2>
+<table><tr><th>Closest Informative Raster (&lt;70% 3-px halo)</th><th>Halo Fraction</th><th>Exact Forward 3-px Overlap</th><th>Abs Diff vs Vendor</th></tr>{top_ov_rows}</table>
+"""
+
+
+def _write_h77e_knick():
+    rc77e = jload("evidence/h77e/run_card.json")
+    if rc77e:
+        (D / "h77e-knick.html").write_text(page("h77e-knick.html", "H77E-Knick lane", h77e_knick_body(rc77e)))
+
+
+
+def _inject_h77e_knick_hero():
+    rc77e = jload("evidence/h77e/run_card.json")
+    if not rc77e:
+        return
+    sub = rc77e["submission_artifact"]
+    hero = f"""<section class="card dl"><h2>⬇ Latest H77E-Knick Research Deliverable (0 / 816 Informative Firings · Dual-Seed Positive Holdout)</h2>
+<p class="verdict"><b>OK to download: YES</b> (15/15 <code>vendor/gems57</code> + 17/17 grid checks PASS, binary float32 in <code>[0, 1]</code>, <code>0</code> NaNs).<br>
+<b>Not OK to submit (NOT OK TO SUBMIT automatically — inspection only without human selector Policy I17 sign-off):</b>
+45 space-filling &ge;70%-halo archive heatmaps trigger literal overlap; across ALL <code>816</code> &lt;70%-halo portfolio rasters AND all <code>18</code> sparse GEMSDOE77 files, forward 3-px overlap has <b>0 firings</b> (<code>max = 0.66800 &le; 0.70</code>; local siblings <code>max = 0.42104 &le; 0.70</code>).<br>
+<b>Official HOLDOUT-DTI (<code>gems57-pooled-hide-v2</code>):</b> <code>0.126664</code> on Seed 20 (95% CI <code>0.111196–0.141749</code>; +0.0303 vs fold-fair H33) &amp; <code>0.124727</code> on Seed 30 (95% CI <code>0.109650–0.138262</code>; +0.0257 vs fold-fair H33); pure physics twin <code>0.155623</code> (Seed 20) / <code>0.154666</code> (Seed 30).</p>
+<a class="btn" href="downloads/{e(Path(sub["primary_geotiff"]).name)}" download>Download H77E-Knick .tif ({sub["file_bytes"]//1024} KB)</a>
+<a class="btn alt" href="downloads/{e(Path(sub["primary_zip"]).name)}" download>Single-TIFF .zip ({sub["zip_bytes"]//1024} KB)</a>
+<a class="btn alt" href="h77e-knick.html">Full H77E-Knick report &amp; figures →</a>
+<p class="small">name: <code>{e(sub["submission_name"])}</code> · sha256: <code>{e(sub["primary_geotiff_sha256"])}</code> · note: <code>{e(sub["submission_note"])}</code></p></section>"""
+    for pname in ("index.html", "executive-summary.html"):
+        ptxt = (D / pname).read_text()
+        ptxt = ptxt.replace("<h1>", hero + "<h1>", 1)
+        (D / pname).write_text(ptxt)
+
 if __name__ == "__main__":
     main()
+    _write_h77e_knick()
+    _inject_h77e_knick_hero()
