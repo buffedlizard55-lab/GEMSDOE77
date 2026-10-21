@@ -2,9 +2,9 @@
   "schema": "gems-listed-download-readback-v1",
   "evidence_class": "FORMAT-INTEGRITY-MEASUREMENT; NOT SCORE OR PORTAL ACCEPTANCE",
   "scope": "Every primary TIFF in docs/data/lanes.json; no archive or NaN twins, no uniqueness certification",
-  "manifest_sha256": "dc761dbcb1f094fdbdccaed2202d41afb6ffbb125b4904d872e656e05ba0ce28",
+  "manifest_sha256": "e7a81a67129e543ea005f39e961d85fe2aa6d9575138bf6d395e0e0bd0ef6d4e",
   "reference_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
-  "listed_count": 40,
+  "listed_count": 41,
   "all_format_pass": true,
   "authorized_to_submit": false,
   "artifacts": [
@@ -30,6 +30,24 @@
       "lane": "H82R: local ternary radiometric rank-mixture entropy (STOPPED; research only)",
       "file": "downloads/gems77-h82-ternaryentropy-20261021-RESEARCH-ONLY.tif",
       "sha256": "56debe682505bf2649f30d914c7b552dcf669bce4b902ce91eb3e5363031f115",
+      "checks": {
+        "single_band": true,
+        "crs_matches": true,
+        "shape_matches": true,
+        "transform_matches": true,
+        "finite_entire_raster": true,
+        "no_nan_inside_footprint": true,
+        "values_in_0_1": true,
+        "nodata_none": true,
+        "sha256_matches_manifest": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
+    {
+      "lane": "H77H-MeshSafe: Mesh-Deconfounded (sigma>=35px) Hydrothermal Demagnetization Trough x Gravity-Basement Step x 3DEP Scarp/Knickpoint x Coupled SLOCO + 119-Raster Capped 300 m Submodular Cover",
+      "file": "downloads/gems77-h77h-meshsafe-hydrostruct-submod-36800dots-20261021-5ef236e2-zeros.tif",
+      "sha256": "34f8dea50ff0b2eeac843e1f3f76e8d9a7bb63368aab2de339ba046009162744",
       "checks": {
         "single_band": true,
         "crs_matches": true,
