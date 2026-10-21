@@ -8,8 +8,8 @@ Emission: emit77.emit_dots, budget 37654, min_sep 2.8 px, allowed = footprint
 Uniqueness: vendor gems57.uniqueness.compare_array_to_registry, unmodified,
 phase 1 on the continuous surface BEFORE placement, phase 2 on final dots.
 Writer: vendor gems57.submission_writer (finite [0,1], nodata=None, re-validated
-on disk) - the portal 'Predicted values must be in range [0, 1]' cannot recur
-because out-of-range/non-finite arrays raise before any file is committed.
+on disk). This reduces the locally measured non-finite/out-of-range risk; it
+cannot establish portal acceptance or explain a prior portal diagnostic.
 """
 from __future__ import annotations
 import json, sys, time

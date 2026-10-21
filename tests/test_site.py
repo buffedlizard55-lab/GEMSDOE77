@@ -32,6 +32,20 @@ def test_unambiguous_download_status_and_accessibility_basics():
         assert 'Do not' in s and 'research TIFF' in s
 
 
+def test_local_preflight_never_claims_portal_acceptance():
+    """Exact range/metadata checks are evidence, never an organizer receipt."""
+    for path in DOC.glob('*.html'):
+        text = path.read_text().lower()
+        assert 'portal-acceptable' not in text, path
+        assert 'portal-ready' not in text, path
+        assert 'will be accepted by the drivendata portal' not in text, path
+        assert 'would the portal accept the format?</b> probably' not in text, path
+    for name in ('h79.html', 'xsen.html', 'h77d-executive-summary.html'):
+        text = (DOC / name).read_text().lower()
+        assert 'not ok to submit' in text, name
+        assert 'unknown' in text, name
+
+
 def test_historical_build_utility_cannot_delete_or_overwrite_other_lane_artifacts():
     script=(ROOT/'scripts/build_submission.py').read_text()
     assert 'for old in out.glob' not in script
@@ -55,10 +69,18 @@ def test_submission_status_obeys_literal_uniqueness_gate():
     assert 'not ok to submit' in contact['upload'].lower()
 
 
-def test_feed_is_not_score_verification():
+def test_feed_is_not_score_verification_and_discovers_later_family_repos():
     feed=json.loads((DOC/'source-health.json').read_text())
-    assert len(feed['repos'])==78
+    discovery=feed['repository_discovery']
     assert feed['checked_utc']
+    assert discovery['public_only'] is True
+    assert discovery['matched_repository_count']==len(feed['repos'])
+    assert discovery['matched_repositories']==[r['repo'] for r in feed['repos']]
+    # The older hard-coded list stopped at GEMSDOE78 even though the project
+    # brief named subsequent sibling repositories. The current inventory must
+    # prove that 79–82 were discovered, without treating any owner page as a
+    # competition score receipt.
+    assert {'GEMSDOE79','GEMSDOE80','GEMSDOE81','GEMSDOE82'} <= set(discovery['matched_repositories'])
     assert all(not r.get('authenticated_score_receipt',False) for r in feed['repos'])
     assert not any(r['score_verified'] for r in feed['official_sources'])
 

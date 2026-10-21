@@ -17,9 +17,9 @@ Selector: not approved. No submission slot was used. This file must not be uploa
 <p class="verdict"><b>Can I submit it?</b> <b>No.</b> Not OK to submit: HOLDOUT-DTI 0.0994 (below the 0.1527 repo best),
 the coincidence gain over the standard stack is not significant, and 93.4% of its dots lie within 3 px of
 GEMSDOE37's sparse dotted raster (limit 70%) — a duplicate under protocol rule 1. Selector: not approved.<br>
-<b>Would the portal accept the format?</b> Probably. Every cell is finite and exactly 0 or 1, no nodata tag,
-EPSG:32611, 3730×3292, the pinned transform — the “Predicted values must be in range [0, 1]” error cannot
-recur with this encoding. Local checks are not an organizer receipt.</p>
+<b>Would the portal accept the format?</b> Unknown. Every cell is finite and exactly 0 or 1, with no nodata tag,
+EPSG:32611, 3730×3292, and the pinned transform. This local readback proves the requested finite [0,1]
+encoding only; it is not an organizer receipt or portal acceptance guarantee.</p>
 <p class="small muted">Submission name (for reference only) (49 characters)</p><div class="copy"><code>gems77-xsen-coincide-hgb-37654dots-20261021-zeros</code><button data-copy="gems77-xsen-coincide-hgb-37654dots-20261021-zeros">Copy</button></div>
 <p class="small muted">Note (for reference only) (127 characters)</p><div class="copy"><code>XSEN mag analytic-signal x ThK/UK boundary HGB, 37654 dots; HOLDOUT-DTI 0.0994, below 0.1527 repo best: NEGATIVE, do not submit</code><button data-copy="XSEN mag analytic-signal x ThK/UK boundary HGB, 37654 dots; HOLDOUT-DTI 0.0994, below 0.1527 repo best: NEGATIVE, do not submit">Copy</button></div>
 <p class="small">sha256 of the .tif: <code>e7c81754420b9a6b4126ad1d7239870ae680eaa61e97a6d3f16f644a620d1c6a</code></p></section>
@@ -47,7 +47,8 @@ H19-5 lineament set, none within 200 m of the mapped catalogue: sparse dots coll
 credit at a fraction of the false-positive cost (<code>evidence/why_02778.json</code>). XSEN's coincidence
 surface carries no measurable signal beyond random on withheld faults, and its trained dots converge onto the
 same high-propensity cells as an earlier dotted raster — so it is neither stronger nor unique. No number here
-is a leaderboard score; the public leaderboard leader was 0.4413 (ORGANIZER-CONFIRMED, 2026-10-21).</p>
+is a leaderboard score. Historical public-leaderboard observations neither identify these TIFF bytes nor provide
+submission authorization or an organizer receipt for this lane.</p>
 <h2>Run card</h2>
 <p>Full JSON: <code>evidence/run_card_xsen.json</code> · Validator: <code>evidence/xsen_validator.json</code>
 (all checks pass; <code>ok_to_submit: false</code>) · Experiments: <code>evidence/xsen_exp1.json</code>,

@@ -1,9 +1,112 @@
 {
-  "checked_utc": "2026-10-21T02:37:15.618681+00:00",
-  "purpose": "Repository/page freshness and artifact inventory, NOT scores, scientific validation, or full raster uniqueness",
+  "checked_utc": "2026-10-21T15:41:39.431901+00:00",
+  "purpose": "GitHub owner-mirror/page freshness and artifact inventory, NOT scores, scientific validation, or full raster uniqueness",
+  "repository_discovery": {
+    "endpoint": "https://api.github.com/users/buffedlizard55-lab/repos?per_page=100&type=owner",
+    "owner": "buffedlizard55-lab",
+    "public_only": true,
+    "name_pattern": "^(?:GEMSDOE\\d*|\\d+GEMSDOE)$",
+    "matched_repository_count": 92,
+    "matched_repositories": [
+      "GEMSDOE",
+      "GEMSDOE2",
+      "GEMSDOE3",
+      "GEMSDOE4",
+      "5GEMSDOE",
+      "6GEMSDOE",
+      "7GEMSDOE",
+      "8GEMSDOE",
+      "GEMSDOE9",
+      "GEMSDOE10",
+      "11GEMSDOE",
+      "12GEMSDOE",
+      "13GEMSDOE",
+      "14GEMSDOE",
+      "15GEMSDOE",
+      "16GEMSDOE",
+      "17GEMSDOE",
+      "18GEMSDOE",
+      "19GEMSDOE",
+      "20GEMSDOE",
+      "GEMSDOE21",
+      "GEMSDOE22",
+      "GEMSDOE23",
+      "GEMSDOE24",
+      "GEMSDOE25",
+      "GEMSDOE26",
+      "GEMSDOE27",
+      "GEMSDOE28",
+      "GEMSDOE29",
+      "GEMSDOE30",
+      "GEMSDOE31",
+      "GEMSDOE32",
+      "GEMSDOE33",
+      "GEMSDOE34",
+      "GEMSDOE35",
+      "GEMSDOE36",
+      "GEMSDOE37",
+      "GEMSDOE38",
+      "GEMSDOE39",
+      "GEMSDOE40",
+      "GEMSDOE41",
+      "GEMSDOE42",
+      "GEMSDOE43",
+      "GEMSDOE44",
+      "GEMSDOE45",
+      "GEMSDOE46",
+      "GEMSDOE47",
+      "GEMSDOE48",
+      "GEMSDOE49",
+      "GEMSDOE50",
+      "GEMSDOE51",
+      "GEMSDOE52",
+      "GEMSDOE53",
+      "GEMSDOE54",
+      "55GEMSDOE",
+      "56GEMSDOE",
+      "57GEMSDOE",
+      "58GEMSDOE",
+      "59GEMSDOE",
+      "60GEMSDOE",
+      "61GEMSDOE",
+      "62GEMSDOE",
+      "GEMSDOE63",
+      "GEMSDOE64",
+      "GEMSDOE65",
+      "GEMSDOE66",
+      "GEMSDOE67",
+      "GEMSDOE68",
+      "GEMSDOE69",
+      "GEMSDOE70",
+      "GEMSDOE71",
+      "GEMSDOE72",
+      "GEMSDOE73",
+      "GEMSDOE74",
+      "GEMSDOE75",
+      "GEMSDOE76",
+      "GEMSDOE77",
+      "GEMSDOE78",
+      "GEMSDOE79",
+      "GEMSDOE80",
+      "GEMSDOE81",
+      "GEMSDOE82",
+      "GEMSDOE83",
+      "GEMSDOE84",
+      "GEMSDOE85",
+      "GEMSDOE86",
+      "GEMSDOE87",
+      "GEMSDOE88",
+      "GEMSDOE89",
+      "GEMSDOE90",
+      "GEMSDOE91",
+      "GEMSDOE92"
+    ],
+    "failure_policy": "Fail the refresh instead of publishing a partial list when family discovery fails."
+  },
   "repos": [
     {
       "repo": "GEMSDOE",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -26,6 +129,7 @@
     },
     {
       "repo": "GEMSDOE2",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE2",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -48,6 +152,7 @@
     },
     {
       "repo": "GEMSDOE3",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE3",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -81,6 +186,7 @@
     },
     {
       "repo": "GEMSDOE4",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE4",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -103,6 +209,7 @@
     },
     {
       "repo": "5GEMSDOE",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/5GEMSDOE",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -134,6 +241,7 @@
     },
     {
       "repo": "6GEMSDOE",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/6GEMSDOE",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -158,6 +266,7 @@
     },
     {
       "repo": "7GEMSDOE",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/7GEMSDOE",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -185,6 +294,7 @@
     },
     {
       "repo": "8GEMSDOE",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/8GEMSDOE",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -213,6 +323,7 @@
     },
     {
       "repo": "GEMSDOE9",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE9",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -237,6 +348,7 @@
     },
     {
       "repo": "GEMSDOE10",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE10",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -264,6 +376,7 @@
     },
     {
       "repo": "11GEMSDOE",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/11GEMSDOE",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -288,13 +401,14 @@
     },
     {
       "repo": "12GEMSDOE",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/12GEMSDOE",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
-      "commit": "072839c459d481dd2fa58e26ec0d65c9f15c29d4",
-      "tree_sha": "072839c459d481dd2fa58e26ec0d65c9f15c29d4",
+      "commit": "f2386b32ddbc3e7302aa51c95ef354a44881f296",
+      "tree_sha": "f2386b32ddbc3e7302aa51c95ef354a44881f296",
       "truncated": false,
-      "review_page": "https://github.com/buffedlizard55-lab/12GEMSDOE/blob/072839c459d481dd2fa58e26ec0d65c9f15c29d4/docs/index.html",
+      "review_page": "https://github.com/buffedlizard55-lab/12GEMSDOE/blob/f2386b32ddbc3e7302aa51c95ef354a44881f296/docs/index.html",
       "review_page_blob_sha": "94a280ece41bce578eda7bb73fa9de3bcb063d3b",
       "tif_paths": [
         "docs/downloads/12GEMSDOE_multiphysics_submission_06ca61e5.tif",
@@ -318,6 +432,7 @@
     },
     {
       "repo": "13GEMSDOE",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/13GEMSDOE",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -367,6 +482,7 @@
     },
     {
       "repo": "14GEMSDOE",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/14GEMSDOE",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -391,6 +507,7 @@
     },
     {
       "repo": "15GEMSDOE",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/15GEMSDOE",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -418,6 +535,7 @@
     },
     {
       "repo": "16GEMSDOE",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/16GEMSDOE",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -447,6 +565,7 @@
     },
     {
       "repo": "17GEMSDOE",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/17GEMSDOE",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -475,6 +594,7 @@
     },
     {
       "repo": "18GEMSDOE",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/18GEMSDOE",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -499,6 +619,7 @@
     },
     {
       "repo": "19GEMSDOE",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/19GEMSDOE",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -526,6 +647,7 @@
     },
     {
       "repo": "20GEMSDOE",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/20GEMSDOE",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -553,6 +675,7 @@
     },
     {
       "repo": "GEMSDOE21",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE21",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -578,6 +701,7 @@
     },
     {
       "repo": "GEMSDOE22",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE22",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -615,6 +739,7 @@
     },
     {
       "repo": "GEMSDOE23",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE23",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -645,6 +770,7 @@
     },
     {
       "repo": "GEMSDOE24",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE24",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -676,13 +802,14 @@
     },
     {
       "repo": "GEMSDOE25",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE25",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
-      "commit": "b39ad7a4d777962762c1d8513d9ce4dfdfb758f6",
-      "tree_sha": "b39ad7a4d777962762c1d8513d9ce4dfdfb758f6",
+      "commit": "398451cd0ce2adcc10812390e85e8e138cda9d81",
+      "tree_sha": "398451cd0ce2adcc10812390e85e8e138cda9d81",
       "truncated": false,
-      "review_page": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/b39ad7a4d777962762c1d8513d9ce4dfdfb758f6/docs/index.html",
+      "review_page": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/398451cd0ce2adcc10812390e85e8e138cda9d81/docs/index.html",
       "review_page_blob_sha": "f936a6d9ceb03250200a2ad0a0c78be8f3a96e08",
       "tif_paths": [
         "docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
@@ -701,6 +828,7 @@
     },
     {
       "repo": "GEMSDOE26",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE26",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -729,13 +857,14 @@
     },
     {
       "repo": "GEMSDOE27",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE27",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
-      "commit": "accd8cb77aa0ad080fe60921fd5d13b39e3f2df7",
-      "tree_sha": "accd8cb77aa0ad080fe60921fd5d13b39e3f2df7",
+      "commit": "58247780cc00064f9444209678f8e061af12e554",
+      "tree_sha": "58247780cc00064f9444209678f8e061af12e554",
       "truncated": false,
-      "review_page": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/accd8cb77aa0ad080fe60921fd5d13b39e3f2df7/docs/index.html",
+      "review_page": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/58247780cc00064f9444209678f8e061af12e554/docs/index.html",
       "review_page_blob_sha": "2ca9e3083ff955f3279b8d50b7927a6e991bd65f",
       "tif_paths": [
         "docs/downloads/gems27-all-increments-d2-8-h27-4-r1-t-v2-20261002-23ad46a4d7ba-allfinite.tif",
@@ -764,13 +893,14 @@
     },
     {
       "repo": "GEMSDOE28",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE28",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
-      "commit": "1d95dfc8ba921b287b6064598a72a4cc9b9faa61",
-      "tree_sha": "1d95dfc8ba921b287b6064598a72a4cc9b9faa61",
+      "commit": "84d99d7479bbd8e02deba4e8217c7b73d111eaeb",
+      "tree_sha": "84d99d7479bbd8e02deba4e8217c7b73d111eaeb",
       "truncated": false,
-      "review_page": "https://github.com/buffedlizard55-lab/GEMSDOE28/blob/1d95dfc8ba921b287b6064598a72a4cc9b9faa61/docs/index.html",
+      "review_page": "https://github.com/buffedlizard55-lab/GEMSDOE28/blob/84d99d7479bbd8e02deba4e8217c7b73d111eaeb/docs/index.html",
       "review_page_blob_sha": "de1f9129472d608b958fdff0104f0d371ab5a1d1",
       "tif_paths": [
         "docs/downloads/gems27-all-increments-d2-8-h27-4-r1-t-v2-20261002-23ad46a4d7ba-allfinite.tif",
@@ -809,6 +939,7 @@
     },
     {
       "repo": "GEMSDOE29",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE29",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -849,6 +980,7 @@
     },
     {
       "repo": "GEMSDOE30",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE30",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -883,6 +1015,7 @@
     },
     {
       "repo": "GEMSDOE31",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE31",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -913,14 +1046,15 @@
     },
     {
       "repo": "GEMSDOE32",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE32",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
-      "commit": "98901f3130e8704f4254f173784589e63f000673",
-      "tree_sha": "98901f3130e8704f4254f173784589e63f000673",
+      "commit": "f62038b54dcb7767d4d997f80b033cdc3d42bef9",
+      "tree_sha": "f62038b54dcb7767d4d997f80b033cdc3d42bef9",
       "truncated": false,
-      "review_page": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/98901f3130e8704f4254f173784589e63f000673/docs/index.html",
-      "review_page_blob_sha": "e2b7740be4c5f1ddabd2cee06e0aaf7abb944be6",
+      "review_page": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/f62038b54dcb7767d4d997f80b033cdc3d42bef9/docs/index.html",
+      "review_page_blob_sha": "0a889c1dacdf275612651d7acda67d2c58c779e0",
       "tif_paths": [
         "docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
         "docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif",
@@ -948,7 +1082,7 @@
         "docs/downloads/gemsdoe32-h33-h33-2b2-plus-h33-1-20261004T220000Z-31588dc7-zeros.tif"
       ],
       "download_tif_count": 24,
-      "page_content_sha256": "62014b7241b5978f53708f9aedfafbd1349ed7af596fc61b5eb8d8cfab4ea210",
+      "page_content_sha256": "d83dd1ace9e2338c312ba9d6775413ab0b5ed8e9ae22e73b4d8291fca30aa0ec",
       "page_mentions": {
         "0.2778": false,
         "0.3195": true,
@@ -960,6 +1094,7 @@
     },
     {
       "repo": "GEMSDOE33",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE33",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -991,6 +1126,7 @@
     },
     {
       "repo": "GEMSDOE34",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE34",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -1021,6 +1157,7 @@
     },
     {
       "repo": "GEMSDOE35",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE35",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -1048,6 +1185,7 @@
     },
     {
       "repo": "GEMSDOE36",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE36",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -1075,6 +1213,7 @@
     },
     {
       "repo": "GEMSDOE37",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE37",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -1103,6 +1242,7 @@
     },
     {
       "repo": "GEMSDOE38",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE38",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -1132,6 +1272,7 @@
     },
     {
       "repo": "GEMSDOE39",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE39",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -1162,6 +1303,7 @@
     },
     {
       "repo": "GEMSDOE40",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE40",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -1215,6 +1357,7 @@
     },
     {
       "repo": "GEMSDOE41",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE41",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -1253,6 +1396,7 @@
     },
     {
       "repo": "GEMSDOE42",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE42",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -1278,6 +1422,7 @@
     },
     {
       "repo": "GEMSDOE43",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE43",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -1305,6 +1450,7 @@
     },
     {
       "repo": "GEMSDOE44",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE44",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -1339,6 +1485,7 @@
     },
     {
       "repo": "GEMSDOE45",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE45",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -1375,6 +1522,7 @@
     },
     {
       "repo": "GEMSDOE46",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE46",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -1418,6 +1566,7 @@
     },
     {
       "repo": "GEMSDOE47",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE47",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -1469,6 +1618,7 @@
     },
     {
       "repo": "GEMSDOE48",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE48",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -1595,6 +1745,7 @@
     },
     {
       "repo": "GEMSDOE49",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE49",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -1622,6 +1773,7 @@
     },
     {
       "repo": "GEMSDOE50",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE50",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -1691,6 +1843,7 @@
     },
     {
       "repo": "GEMSDOE51",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE51",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -1724,13 +1877,14 @@
     },
     {
       "repo": "GEMSDOE52",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE52",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
-      "commit": "38c64b786099925d388d27cdc927099c675543ef",
-      "tree_sha": "38c64b786099925d388d27cdc927099c675543ef",
+      "commit": "202c2ebae8d54764f4b69ad39b547622d70a0530",
+      "tree_sha": "202c2ebae8d54764f4b69ad39b547622d70a0530",
       "truncated": false,
-      "review_page": "https://github.com/buffedlizard55-lab/GEMSDOE52/blob/38c64b786099925d388d27cdc927099c675543ef/docs/index.html",
+      "review_page": "https://github.com/buffedlizard55-lab/GEMSDOE52/blob/202c2ebae8d54764f4b69ad39b547622d70a0530/docs/index.html",
       "review_page_blob_sha": "e37485533056ae43b1968b09b68e068e475c2ff7",
       "tif_paths": [
         "docs/downloads/ctd5-research.tif",
@@ -1888,6 +2042,7 @@
     },
     {
       "repo": "GEMSDOE53",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE53",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -1914,6 +2069,7 @@
     },
     {
       "repo": "GEMSDOE54",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE54",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -1945,6 +2101,7 @@
     },
     {
       "repo": "55GEMSDOE",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/55GEMSDOE",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -1970,6 +2127,7 @@
     },
     {
       "repo": "56GEMSDOE",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/56GEMSDOE",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -2006,6 +2164,7 @@
     },
     {
       "repo": "57GEMSDOE",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/57GEMSDOE",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -2058,6 +2217,7 @@
     },
     {
       "repo": "58GEMSDOE",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/58GEMSDOE",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -2098,6 +2258,7 @@
     },
     {
       "repo": "59GEMSDOE",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/59GEMSDOE",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -2134,13 +2295,14 @@
     },
     {
       "repo": "60GEMSDOE",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/60GEMSDOE",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
-      "commit": "b99591eede63c6d45c8a896255b8cd34824fa00b",
-      "tree_sha": "b99591eede63c6d45c8a896255b8cd34824fa00b",
+      "commit": "d5e96cbeb61cc932dcefb684305d745be1cb81c8",
+      "tree_sha": "d5e96cbeb61cc932dcefb684305d745be1cb81c8",
       "truncated": false,
-      "review_page": "https://github.com/buffedlizard55-lab/60GEMSDOE/blob/b99591eede63c6d45c8a896255b8cd34824fa00b/docs/index.html",
+      "review_page": "https://github.com/buffedlizard55-lab/60GEMSDOE/blob/d5e96cbeb61cc932dcefb684305d745be1cb81c8/docs/index.html",
       "review_page_blob_sha": "9a398b43a707ddb3ceee9dea32a9a6d3eb2f6144",
       "tif_paths": [
         "docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
@@ -2214,6 +2376,7 @@
     },
     {
       "repo": "61GEMSDOE",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/61GEMSDOE",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -2251,6 +2414,7 @@
     },
     {
       "repo": "62GEMSDOE",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/62GEMSDOE",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -2299,6 +2463,7 @@
     },
     {
       "repo": "GEMSDOE63",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE63",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -2328,6 +2493,7 @@
     },
     {
       "repo": "GEMSDOE64",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE64",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -2354,6 +2520,7 @@
     },
     {
       "repo": "GEMSDOE65",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE65",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -2390,6 +2557,7 @@
     },
     {
       "repo": "GEMSDOE66",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE66",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -2430,6 +2598,7 @@
     },
     {
       "repo": "GEMSDOE67",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE67",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -2464,6 +2633,7 @@
     },
     {
       "repo": "GEMSDOE68",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE68",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -2513,6 +2683,7 @@
     },
     {
       "repo": "GEMSDOE69",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE69",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -2535,6 +2706,7 @@
     },
     {
       "repo": "GEMSDOE70",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE70",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -2579,6 +2751,7 @@
     },
     {
       "repo": "GEMSDOE71",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE71",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -2604,6 +2777,7 @@
     },
     {
       "repo": "GEMSDOE72",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE72",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -2635,46 +2809,94 @@
     },
     {
       "repo": "GEMSDOE73",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE73",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
-      "commit": "195015eeab87507fddbfb738526a8e7ad8ede83a",
-      "tree_sha": "195015eeab87507fddbfb738526a8e7ad8ede83a",
+      "commit": "eadf59cebba634cc68271408685bcd1346e422df",
+      "tree_sha": "eadf59cebba634cc68271408685bcd1346e422df",
       "truncated": false,
-      "review_page": "https://github.com/buffedlizard55-lab/GEMSDOE73/blob/195015eeab87507fddbfb738526a8e7ad8ede83a/docs/index.html",
-      "review_page_blob_sha": "7da56e8996ccdb8a77d9d848a23a574403f41794",
+      "review_page": "https://github.com/buffedlizard55-lab/GEMSDOE73/blob/eadf59cebba634cc68271408685bcd1346e422df/docs/index.html",
+      "review_page_blob_sha": "75138fddfe5ae17ad972ef6131883a511756c35b",
       "tif_paths": [
+        "docs/downloads/gems73-crossdrain-unet-submod-37654-20261021-nan.tif",
+        "docs/downloads/gems73-crossdrain-unet-submod-37654-20261021.tif",
+        "docs/downloads/gems73-h73-1-piedmont-scarpchain-e1-37654dots-20261021.tif",
+        "docs/downloads/gems73-h73-2-mecs-autoctx-submod-37654dots-20261021-nan.tif",
+        "docs/downloads/gems73-h73-2-mecs-autoctx-submod-37654dots-20261021-zeros.tif",
+        "docs/downloads/gems73-h73-6-traceloc-x1-37654dots-20261021.tif",
+        "docs/downloads/gems73-h73-7-hardfault-pu-e1-37654dots-20261021.tif",
+        "docs/downloads/gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-nan.tif",
+        "docs/downloads/gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-zeros.tif",
+        "docs/downloads/gems73-h73-mvh-ventbridge-submod-37654-20261021T044500Z-faebf9e1-zeros.tif",
+        "docs/downloads/gems73-h73-piedmont-corrob-submod300-37654-20261021-zeros.tif",
+        "docs/downloads/gems73-h73-piedmont-corrob-submod300-37654-20261021.tif",
         "docs/downloads/gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f-nan.tif",
         "docs/downloads/gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f-zeros.tif",
-        "docs/downloads/gems73-hydro-permeability-corridor-37654-20261021T000000Z-2bbb79d4-zeros.tif"
+        "docs/downloads/gems73-h73f-curvature-lineament-37654-20261021T040043Z-4acc39d2-nan.tif",
+        "docs/downloads/gems73-h73f-curvature-lineament-37654-20261021T040043Z-4acc39d2-zeros.tif",
+        "docs/downloads/gems73-h73m-regime-cokrig-submod-37654dots-20261021-nan.tif",
+        "docs/downloads/gems73-h73m-regime-cokrig-submod-37654dots-20261021-zeros.tif"
       ],
-      "download_tif_count": 3,
-      "page_content_sha256": "29f9accb53be9fd51a4b0af252b7b649232a75759dae5cb32ee950b03684d717",
+      "download_tif_count": 18,
+      "page_content_sha256": "64bbdcbbdd0a1ac19c4b0e4c4bcd8e990d84e9166617c873d28f526c17653bbc",
       "page_mentions": {
         "0.2778": true,
         "0.3195": false,
-        "0.4413": true,
-        "ORGANIZER-CONFIRMED": true,
+        "0.4413": false,
+        "ORGANIZER-CONFIRMED": false,
         "HOLDOUT-DTI": true
       },
       "authenticated_score_receipt": false
     },
     {
       "repo": "GEMSDOE74",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE74",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
-      "commit": "5fb42135bf5c376f35fa644eb7ea87cc0ef2ac55",
-      "tree_sha": "5fb42135bf5c376f35fa644eb7ea87cc0ef2ac55",
+      "commit": "7dc05407134e32c719323e600d933679afe29c54",
+      "tree_sha": "7dc05407134e32c719323e600d933679afe29c54",
       "truncated": false,
-      "review_page": "https://github.com/buffedlizard55-lab/GEMSDOE74/blob/5fb42135bf5c376f35fa644eb7ea87cc0ef2ac55/docs/index.html",
-      "review_page_blob_sha": "a8369fc9622ce0fcc3d39837715f35c07154b73a",
+      "review_page": "https://github.com/buffedlizard55-lab/GEMSDOE74/blob/7dc05407134e32c719323e600d933679afe29c54/docs/index.html",
+      "review_page_blob_sha": "67b7736ab67a803b3eeb1515d311e3283e51a3ec",
       "tif_paths": [
-        "docs/downloads/gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-nan.tif",
-        "docs/downloads/gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif"
+        "docs/downloads/gemsdoe74-h74-r1-transtensional-submod-37654-20261021T000000Z-nan.tif",
+        "docs/downloads/gemsdoe74-h74-r1-transtensional-submod-37654-20261021T000000Z-zeros.tif",
+        "docs/downloads/gemsdoe74-triregime-radon-piedmont-37654-20261021T051000Z-nan.tif",
+        "docs/downloads/gemsdoe74-triregime-radon-piedmont-37654-20261021T051000Z-zeros.tif"
       ],
-      "download_tif_count": 2,
-      "page_content_sha256": "063c0100cc3aa58c75229b779341d41d6b596c37d5a9f9270e11469f1c44ce1a",
+      "download_tif_count": 4,
+      "page_content_sha256": "8d1be9847283597368065dc6c02172f0c07ce7910b7c82ddf7d97cd617cd314e",
+      "page_mentions": {
+        "0.2778": true,
+        "0.3195": false,
+        "0.4413": false,
+        "ORGANIZER-CONFIRMED": false,
+        "HOLDOUT-DTI": true
+      },
+      "authenticated_score_receipt": false
+    },
+    {
+      "repo": "GEMSDOE75",
+      "default_branch": "main",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE75",
+      "claim_class": "OWNER-MIRROR; not organizer score verification",
+      "status": "retrieved",
+      "commit": "c1b2d329e1926aac016d6286256878f5497f53fc",
+      "tree_sha": "c1b2d329e1926aac016d6286256878f5497f53fc",
+      "truncated": false,
+      "review_page": "https://github.com/buffedlizard55-lab/GEMSDOE75/blob/c1b2d329e1926aac016d6286256878f5497f53fc/docs/index.html",
+      "review_page_blob_sha": "2d8cbe482c86e1a97ccb5afe1e415afe93e3693d",
+      "tif_paths": [
+        "docs/downloads/gems75-blind-upflow-radial-20261021T040220Z-43cdadda2c43.tif",
+        "docs/downloads/gems75-fault-tip-halo-20261021-SCHEMA-DEMO-DO-NOT-SUBMIT.tif",
+        "docs/downloads/gems75-trlt-radon-loco-ridge-20261021-zeros.tif",
+        "docs/downloads/gemsdoe75-h75-1-cover-multiphysics-comcat3d-v1.tif",
+        "docs/downloads/gemsdoe75-zeros-SCHEMA-DEMO-DO-NOT-SUBMIT.tif"
+      ],
+      "download_tif_count": 5,
+      "page_content_sha256": "d2ce6e27e0248bf5760fd0a82ae7ebcc74c94a1c87911719e35d4bcb3971ebe0",
       "page_mentions": {
         "0.2778": true,
         "0.3195": false,
@@ -2685,47 +2907,31 @@
       "authenticated_score_receipt": false
     },
     {
-      "repo": "GEMSDOE75",
-      "url": "https://github.com/buffedlizard55-lab/GEMSDOE75",
-      "claim_class": "OWNER-MIRROR; not organizer score verification",
-      "status": "retrieved",
-      "commit": "1cc195d3f3d77c4540fc76a4012b69338f399ca5",
-      "tree_sha": "1cc195d3f3d77c4540fc76a4012b69338f399ca5",
-      "truncated": false,
-      "review_page": "https://github.com/buffedlizard55-lab/GEMSDOE75/blob/1cc195d3f3d77c4540fc76a4012b69338f399ca5/docs/index.html",
-      "review_page_blob_sha": "56e8e0389688800a6257c3ffd892d17fff4f64e4",
-      "tif_paths": [],
-      "download_tif_count": 0,
-      "page_content_sha256": "c95dcf367a45f14462099d37afd97171eca8f175060aeb0c0577d1b6d5f66bbc",
-      "page_mentions": {
-        "0.2778": false,
-        "0.3195": false,
-        "0.4413": false,
-        "ORGANIZER-CONFIRMED": false,
-        "HOLDOUT-DTI": false
-      },
-      "authenticated_score_receipt": false
-    },
-    {
       "repo": "GEMSDOE76",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE76",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
-      "commit": "ac5594779cc7b1c10794549fbda4105874acf83a",
-      "tree_sha": "ac5594779cc7b1c10794549fbda4105874acf83a",
+      "commit": "97f3dd5a818d909bb2d2e362bdd2282bfbf2cae1",
+      "tree_sha": "97f3dd5a818d909bb2d2e362bdd2282bfbf2cae1",
       "truncated": false,
-      "review_page": "https://github.com/buffedlizard55-lab/GEMSDOE76/blob/ac5594779cc7b1c10794549fbda4105874acf83a/docs/index.html",
-      "review_page_blob_sha": "4b28211ffb4773bb2304f124456cfe6d106ab8cb",
+      "review_page": "https://github.com/buffedlizard55-lab/GEMSDOE76/blob/97f3dd5a818d909bb2d2e362bdd2282bfbf2cae1/docs/index.html",
+      "review_page_blob_sha": "a03620c9c12df8fd0f48add59a456f69b0da973c",
       "tif_paths": [
-        "docs/downloads/gemsdoe76-h76a-radiometric-halo-mtbreach-38412-20261021T000000Z-nan.tif",
-        "docs/downloads/gemsdoe76-h76a-radiometric-halo-mtbreach-38412-20261021T000000Z-zeros.tif",
-        "docs/downloads/gemsdoe76-h76b-transtensional-swarm-44200-20261021T000000Z-nan.tif",
-        "docs/downloads/gemsdoe76-h76b-transtensional-swarm-44200-20261021T000000Z-zeros.tif",
-        "docs/downloads/gemsdoe76-h76c-drainage-chain-29800-20261021T000000Z-nan.tif",
-        "docs/downloads/gemsdoe76-h76c-drainage-chain-29800-20261021T000000Z-zeros.tif"
+        "docs/downloads/gems76-geophys-cataloguefree-rank-gate1-20261021.tif",
+        "docs/downloads/gems76-ptcf-tiltworm-submod39k-20261021T034000Z-6316481d-zeros.tif",
+        "docs/downloads/gems76_h76_3_geotherm_tilt_axial_submod_20261021_nan.tif",
+        "docs/downloads/gems76_h76_3_geotherm_tilt_axial_submod_20261021_zeros.tif",
+        "docs/downloads/gems76b-patchctx-exp1-28607dots-DO-NOT-SUBMIT.tif",
+        "quarantine/inherited-main-ac55947/docs/downloads/gemsdoe76-h76a-radiometric-halo-mtbreach-38412-20261021T000000Z-nan.tif",
+        "quarantine/inherited-main-ac55947/docs/downloads/gemsdoe76-h76a-radiometric-halo-mtbreach-38412-20261021T000000Z-zeros.tif",
+        "quarantine/inherited-main-ac55947/docs/downloads/gemsdoe76-h76b-transtensional-swarm-44200-20261021T000000Z-nan.tif",
+        "quarantine/inherited-main-ac55947/docs/downloads/gemsdoe76-h76b-transtensional-swarm-44200-20261021T000000Z-zeros.tif",
+        "quarantine/inherited-main-ac55947/docs/downloads/gemsdoe76-h76c-drainage-chain-29800-20261021T000000Z-nan.tif",
+        "quarantine/inherited-main-ac55947/docs/downloads/gemsdoe76-h76c-drainage-chain-29800-20261021T000000Z-zeros.tif"
       ],
-      "download_tif_count": 6,
-      "page_content_sha256": "12e1e4e1b98cf7a08d0fd9a99066264a9232dfd0128bb73966e77510f5c06442",
+      "download_tif_count": 11,
+      "page_content_sha256": "5242d4b8e90e6d10e4f3aad43fe606b0e349be98459a48c133a4efe701079324",
       "page_mentions": {
         "0.2778": true,
         "0.3195": true,
@@ -2737,20 +2943,43 @@
     },
     {
       "repo": "GEMSDOE77",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE77",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
-      "commit": "2dd236c54ea962aaeeb2a98d71175e17395e3598",
-      "tree_sha": "2dd236c54ea962aaeeb2a98d71175e17395e3598",
+      "commit": "6f34ac407798731c0885e682a039a7cde2a6ce4e",
+      "tree_sha": "6f34ac407798731c0885e682a039a7cde2a6ce4e",
       "truncated": false,
-      "review_page": "https://github.com/buffedlizard55-lab/GEMSDOE77/blob/2dd236c54ea962aaeeb2a98d71175e17395e3598/README.md",
-      "review_page_blob_sha": "e0dd5b422d60e5ef6e02b2ad5e4156efdf11c6ee",
-      "tif_paths": [],
-      "download_tif_count": 0,
-      "page_content_sha256": "9f46dec176e9469ac083f085b55293682debd0d8cce2c86327440b5a99d63585",
+      "review_page": "https://github.com/buffedlizard55-lab/GEMSDOE77/blob/6f34ac407798731c0885e682a039a7cde2a6ce4e/docs/index.html",
+      "review_page_blob_sha": "acc714b87073d0e9f47af43de1c4c724c05284cf",
+      "tif_paths": [
+        "docs/downloads/gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif",
+        "docs/downloads/gems77-d77-blind-band-35106dots-20261021-926076f7-zeros.tif",
+        "docs/downloads/gems77-h77-lia-38323dots-20261021-aa5c9331-nan.tif",
+        "docs/downloads/gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif",
+        "docs/downloads/gems77-h77-urank-curvature-0d868dc271bb-research.tif",
+        "docs/downloads/gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-nan.tif",
+        "docs/downloads/gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.tif",
+        "docs/downloads/gems77-h77e-ucpeuler-ctx-37654dots-20261021-22873551-nan.tif",
+        "docs/downloads/gems77-h77e-ucpeuler-ctx-37654dots-20261021-22873551-zeros.tif",
+        "docs/downloads/gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY.tif",
+        "docs/downloads/gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-nan.tif",
+        "docs/downloads/gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros.tif",
+        "docs/downloads/gems77-h79-crossgrad-ridge-37654dots-20261021-dd0dbf9c-nan.tif",
+        "docs/downloads/gems77-h79-crossgrad-ridge-37654dots-20261021-dd0dbf9c-zeros.tif",
+        "docs/downloads/gems77-h79-radhalo-lag3-37654-20261021-zeros.tif",
+        "docs/downloads/gems77-h80-riedel-wingcrack-tips-20261021-zeros.tif",
+        "docs/downloads/gems77-step-propensity-submod300.tif",
+        "docs/downloads/gems77-xsen-coincide-hgb-37654dots-20261021-zeros.tif",
+        "docs/downloads/gems79-orient-persistence-37654dots-20261021-4abff47886.tif",
+        "docs/downloads/gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-nan.tif",
+        "docs/downloads/gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-zeros.tif"
+      ],
+      "download_tif_count": 21,
+      "page_content_sha256": "661307b93dd0777e17d8c315e2a70c65df9275c8606ef4b2bb9823eb56db51fa",
       "page_mentions": {
         "0.2778": true,
-        "0.3195": true,
+        "0.3195": false,
         "0.4413": true,
         "ORGANIZER-CONFIRMED": true,
         "HOLDOUT-DTI": true
@@ -2759,6 +2988,7 @@
     },
     {
       "repo": "GEMSDOE78",
+      "default_branch": "main",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE78",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
@@ -2770,6 +3000,328 @@
       "tif_paths": [],
       "download_tif_count": 0,
       "page_content_sha256": "89c4f6718b6b36ac05f11fc9fbf44bf75de2d69a0ee19af31ca9f02d8c0d25ac",
+      "page_mentions": {
+        "0.2778": false,
+        "0.3195": false,
+        "0.4413": false,
+        "ORGANIZER-CONFIRMED": false,
+        "HOLDOUT-DTI": false
+      },
+      "authenticated_score_receipt": false
+    },
+    {
+      "repo": "GEMSDOE79",
+      "default_branch": "main",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE79",
+      "claim_class": "OWNER-MIRROR; not organizer score verification",
+      "status": "retrieved",
+      "commit": "137740d9013709813ea30aae59cf757ea7ef74be",
+      "tree_sha": "137740d9013709813ea30aae59cf757ea7ef74be",
+      "truncated": false,
+      "review_page": "https://github.com/buffedlizard55-lab/GEMSDOE79/blob/137740d9013709813ea30aae59cf757ea7ef74be/README.md",
+      "review_page_blob_sha": "10714122fb22c7704123c3a4b0dcd2667bdd4bd1",
+      "tif_paths": [],
+      "download_tif_count": 0,
+      "page_content_sha256": "1486eaac4a0b04f03ed18529c722dcc79512741c86de4fce4b494bfa4279841f",
+      "page_mentions": {
+        "0.2778": false,
+        "0.3195": false,
+        "0.4413": false,
+        "ORGANIZER-CONFIRMED": false,
+        "HOLDOUT-DTI": false
+      },
+      "authenticated_score_receipt": false
+    },
+    {
+      "repo": "GEMSDOE80",
+      "default_branch": "main",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE80",
+      "claim_class": "OWNER-MIRROR; not organizer score verification",
+      "status": "retrieved",
+      "commit": "060ccf1209e580d60b555c845d619a35ee667247",
+      "tree_sha": "060ccf1209e580d60b555c845d619a35ee667247",
+      "truncated": false,
+      "review_page": "https://github.com/buffedlizard55-lab/GEMSDOE80/blob/060ccf1209e580d60b555c845d619a35ee667247/README.md",
+      "review_page_blob_sha": "7ff9e8fed281264f6231fba8761f20dde97b2007",
+      "tif_paths": [],
+      "download_tif_count": 0,
+      "page_content_sha256": "0f92f5dae561ffeddac2855dcd99164f6efa0bec3145368a13af827849971ba7",
+      "page_mentions": {
+        "0.2778": false,
+        "0.3195": false,
+        "0.4413": false,
+        "ORGANIZER-CONFIRMED": false,
+        "HOLDOUT-DTI": false
+      },
+      "authenticated_score_receipt": false
+    },
+    {
+      "repo": "GEMSDOE81",
+      "default_branch": "main",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE81",
+      "claim_class": "OWNER-MIRROR; not organizer score verification",
+      "status": "retrieved",
+      "commit": "e8b69dde87ad29bac860abf359f9d394af970423",
+      "tree_sha": "e8b69dde87ad29bac860abf359f9d394af970423",
+      "truncated": false,
+      "review_page": "https://github.com/buffedlizard55-lab/GEMSDOE81/blob/e8b69dde87ad29bac860abf359f9d394af970423/README.md",
+      "review_page_blob_sha": "35efbc8a6dff3a1105107a80a27ba1a1cd7b4f69",
+      "tif_paths": [],
+      "download_tif_count": 0,
+      "page_content_sha256": "b73ab915a6d2d948653319c69d15d31f1488909be1a185c35126407f27197047",
+      "page_mentions": {
+        "0.2778": false,
+        "0.3195": false,
+        "0.4413": false,
+        "ORGANIZER-CONFIRMED": false,
+        "HOLDOUT-DTI": false
+      },
+      "authenticated_score_receipt": false
+    },
+    {
+      "repo": "GEMSDOE82",
+      "default_branch": "main",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE82",
+      "claim_class": "OWNER-MIRROR; not organizer score verification",
+      "status": "retrieved",
+      "commit": "fe1371993775db6ec13e592d37fa634f3e39622a",
+      "tree_sha": "fe1371993775db6ec13e592d37fa634f3e39622a",
+      "truncated": false,
+      "review_page": "https://github.com/buffedlizard55-lab/GEMSDOE82/blob/fe1371993775db6ec13e592d37fa634f3e39622a/README.md",
+      "review_page_blob_sha": "06a44b150ec313f80fa9664424d2a157e19e4e4d",
+      "tif_paths": [],
+      "download_tif_count": 0,
+      "page_content_sha256": "18d2102f8178227797d9427716cfbd81576e9d59a32aeb5310d09e1c64f06852",
+      "page_mentions": {
+        "0.2778": false,
+        "0.3195": false,
+        "0.4413": false,
+        "ORGANIZER-CONFIRMED": false,
+        "HOLDOUT-DTI": false
+      },
+      "authenticated_score_receipt": false
+    },
+    {
+      "repo": "GEMSDOE83",
+      "default_branch": "main",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE83",
+      "claim_class": "OWNER-MIRROR; not organizer score verification",
+      "status": "retrieved",
+      "commit": "805ee1cc0225d3447dcf10f5adf2c39f0f792a81",
+      "tree_sha": "805ee1cc0225d3447dcf10f5adf2c39f0f792a81",
+      "truncated": false,
+      "review_page": "https://github.com/buffedlizard55-lab/GEMSDOE83/blob/805ee1cc0225d3447dcf10f5adf2c39f0f792a81/README.md",
+      "review_page_blob_sha": "815f03603467fe20739c5fad4c766926e1401ef9",
+      "tif_paths": [],
+      "download_tif_count": 0,
+      "page_content_sha256": "3a60d26a799beb0d7e9eb80aa851478b5f9cd4abfb105e0f15b791e15dd6c44a",
+      "page_mentions": {
+        "0.2778": false,
+        "0.3195": false,
+        "0.4413": false,
+        "ORGANIZER-CONFIRMED": false,
+        "HOLDOUT-DTI": false
+      },
+      "authenticated_score_receipt": false
+    },
+    {
+      "repo": "GEMSDOE84",
+      "default_branch": "main",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE84",
+      "claim_class": "OWNER-MIRROR; not organizer score verification",
+      "status": "retrieved",
+      "commit": "4a7ccfac0b0499a2855efee44e957e0ad04abb3f",
+      "tree_sha": "4a7ccfac0b0499a2855efee44e957e0ad04abb3f",
+      "truncated": false,
+      "review_page": "https://github.com/buffedlizard55-lab/GEMSDOE84/blob/4a7ccfac0b0499a2855efee44e957e0ad04abb3f/README.md",
+      "review_page_blob_sha": "93bfbca548e7d8de78fd0200141b039f81b8d95d",
+      "tif_paths": [],
+      "download_tif_count": 0,
+      "page_content_sha256": "66142f28cb8c93d58ac94c134961594b2a5fb9c2c4d6d44615e32e70ab6dcecf",
+      "page_mentions": {
+        "0.2778": false,
+        "0.3195": false,
+        "0.4413": false,
+        "ORGANIZER-CONFIRMED": false,
+        "HOLDOUT-DTI": false
+      },
+      "authenticated_score_receipt": false
+    },
+    {
+      "repo": "GEMSDOE85",
+      "default_branch": "main",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE85",
+      "claim_class": "OWNER-MIRROR; not organizer score verification",
+      "status": "retrieved",
+      "commit": "1c38781cb20dbab2e1a193f65badba2f5246ea92",
+      "tree_sha": "1c38781cb20dbab2e1a193f65badba2f5246ea92",
+      "truncated": false,
+      "review_page": "https://github.com/buffedlizard55-lab/GEMSDOE85/blob/1c38781cb20dbab2e1a193f65badba2f5246ea92/README.md",
+      "review_page_blob_sha": "1f938d59e28de805faa8438faa2e92878f850a82",
+      "tif_paths": [],
+      "download_tif_count": 0,
+      "page_content_sha256": "5e6cf6cfd07a0ca8165e8e42ebe11bf4ae23cd9b88ff852a1d100e180d6d0fe1",
+      "page_mentions": {
+        "0.2778": false,
+        "0.3195": false,
+        "0.4413": false,
+        "ORGANIZER-CONFIRMED": false,
+        "HOLDOUT-DTI": false
+      },
+      "authenticated_score_receipt": false
+    },
+    {
+      "repo": "GEMSDOE86",
+      "default_branch": "main",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE86",
+      "claim_class": "OWNER-MIRROR; not organizer score verification",
+      "status": "retrieved",
+      "commit": "8576890b7cb5087dcbefadfd4713e2d6b64a1592",
+      "tree_sha": "8576890b7cb5087dcbefadfd4713e2d6b64a1592",
+      "truncated": false,
+      "review_page": "https://github.com/buffedlizard55-lab/GEMSDOE86/blob/8576890b7cb5087dcbefadfd4713e2d6b64a1592/README.md",
+      "review_page_blob_sha": "095b5f67fb7261e4456a5d2c82cac3936abe2c80",
+      "tif_paths": [],
+      "download_tif_count": 0,
+      "page_content_sha256": "dcfd378176b9ffec02a884eebca294a4b455d4eef9b896451fd1e59f5fbe6a90",
+      "page_mentions": {
+        "0.2778": false,
+        "0.3195": false,
+        "0.4413": false,
+        "ORGANIZER-CONFIRMED": false,
+        "HOLDOUT-DTI": false
+      },
+      "authenticated_score_receipt": false
+    },
+    {
+      "repo": "GEMSDOE87",
+      "default_branch": "main",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE87",
+      "claim_class": "OWNER-MIRROR; not organizer score verification",
+      "status": "retrieved",
+      "commit": "38bb2e1e44c1ed992859426efc0fae35db564d1a",
+      "tree_sha": "38bb2e1e44c1ed992859426efc0fae35db564d1a",
+      "truncated": false,
+      "review_page": "https://github.com/buffedlizard55-lab/GEMSDOE87/blob/38bb2e1e44c1ed992859426efc0fae35db564d1a/README.md",
+      "review_page_blob_sha": "d097d7f1c56297c533694dc5e103d8304793101a",
+      "tif_paths": [],
+      "download_tif_count": 0,
+      "page_content_sha256": "da3b9753766a1397cb8b56decd1bfa447fff9cb9d835c119f3bae5f6c3a6e5c2",
+      "page_mentions": {
+        "0.2778": false,
+        "0.3195": false,
+        "0.4413": false,
+        "ORGANIZER-CONFIRMED": false,
+        "HOLDOUT-DTI": false
+      },
+      "authenticated_score_receipt": false
+    },
+    {
+      "repo": "GEMSDOE88",
+      "default_branch": "main",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE88",
+      "claim_class": "OWNER-MIRROR; not organizer score verification",
+      "status": "retrieved",
+      "commit": "a95d15fb90b4acee78ba2b7f665d2c5ecfcc3c62",
+      "tree_sha": "a95d15fb90b4acee78ba2b7f665d2c5ecfcc3c62",
+      "truncated": false,
+      "review_page": "https://github.com/buffedlizard55-lab/GEMSDOE88/blob/a95d15fb90b4acee78ba2b7f665d2c5ecfcc3c62/README.md",
+      "review_page_blob_sha": "e2c84d3b80dcc8e25a7bd7a2314f5498d3a3c0f0",
+      "tif_paths": [],
+      "download_tif_count": 0,
+      "page_content_sha256": "d3f29118bd0073f76c12d27d4550fc08f105e7738ac3acf6152472f4b06f8bd3",
+      "page_mentions": {
+        "0.2778": false,
+        "0.3195": false,
+        "0.4413": false,
+        "ORGANIZER-CONFIRMED": false,
+        "HOLDOUT-DTI": false
+      },
+      "authenticated_score_receipt": false
+    },
+    {
+      "repo": "GEMSDOE89",
+      "default_branch": "main",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE89",
+      "claim_class": "OWNER-MIRROR; not organizer score verification",
+      "status": "retrieved",
+      "commit": "9bf120b9cc25bdab5078dfdd66c36c605ef6bf84",
+      "tree_sha": "9bf120b9cc25bdab5078dfdd66c36c605ef6bf84",
+      "truncated": false,
+      "review_page": "https://github.com/buffedlizard55-lab/GEMSDOE89/blob/9bf120b9cc25bdab5078dfdd66c36c605ef6bf84/README.md",
+      "review_page_blob_sha": "3e744c0ddf5639e5c6926e15941ce4c5bd3a0ba5",
+      "tif_paths": [],
+      "download_tif_count": 0,
+      "page_content_sha256": "ddf4e2a1a5ed6d669c00aeced73dfabfba98e6e53f78e77a9a34d31a5faebb42",
+      "page_mentions": {
+        "0.2778": false,
+        "0.3195": false,
+        "0.4413": false,
+        "ORGANIZER-CONFIRMED": false,
+        "HOLDOUT-DTI": false
+      },
+      "authenticated_score_receipt": false
+    },
+    {
+      "repo": "GEMSDOE90",
+      "default_branch": "main",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE90",
+      "claim_class": "OWNER-MIRROR; not organizer score verification",
+      "status": "retrieved",
+      "commit": "7e61faa83e157a08ff32ced31e74de2c28e0bc37",
+      "tree_sha": "7e61faa83e157a08ff32ced31e74de2c28e0bc37",
+      "truncated": false,
+      "review_page": "https://github.com/buffedlizard55-lab/GEMSDOE90/blob/7e61faa83e157a08ff32ced31e74de2c28e0bc37/README.md",
+      "review_page_blob_sha": "925cf2edfd1236bf108989363cd8c0748cf0413f",
+      "tif_paths": [],
+      "download_tif_count": 0,
+      "page_content_sha256": "948a5e2fac9742d05f51e823c8f76b50ab27e7f2a1147cebf7a456fe9269710d",
+      "page_mentions": {
+        "0.2778": false,
+        "0.3195": false,
+        "0.4413": false,
+        "ORGANIZER-CONFIRMED": false,
+        "HOLDOUT-DTI": false
+      },
+      "authenticated_score_receipt": false
+    },
+    {
+      "repo": "GEMSDOE91",
+      "default_branch": "main",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE91",
+      "claim_class": "OWNER-MIRROR; not organizer score verification",
+      "status": "retrieved",
+      "commit": "f049d029022ec7076ae1e827ec2bfbebba2e5056",
+      "tree_sha": "f049d029022ec7076ae1e827ec2bfbebba2e5056",
+      "truncated": false,
+      "review_page": "https://github.com/buffedlizard55-lab/GEMSDOE91/blob/f049d029022ec7076ae1e827ec2bfbebba2e5056/README.md",
+      "review_page_blob_sha": "6273398a972b216fb8e7da44ef7a1c7ac2bde71f",
+      "tif_paths": [],
+      "download_tif_count": 0,
+      "page_content_sha256": "7509ef4545ce49c0db35d7b9f8f3ba4622ec13e7dbd7b1f15774ff6e9923e73e",
+      "page_mentions": {
+        "0.2778": false,
+        "0.3195": false,
+        "0.4413": false,
+        "ORGANIZER-CONFIRMED": false,
+        "HOLDOUT-DTI": false
+      },
+      "authenticated_score_receipt": false
+    },
+    {
+      "repo": "GEMSDOE92",
+      "default_branch": "main",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE92",
+      "claim_class": "OWNER-MIRROR; not organizer score verification",
+      "status": "retrieved",
+      "commit": "b99296cae6f52dd1885497e9b9c05efaf85c02fc",
+      "tree_sha": "b99296cae6f52dd1885497e9b9c05efaf85c02fc",
+      "truncated": false,
+      "review_page": "https://github.com/buffedlizard55-lab/GEMSDOE92/blob/b99296cae6f52dd1885497e9b9c05efaf85c02fc/README.md",
+      "review_page_blob_sha": "e511f8d7f4f724aa52ab14ff0c01814af9cee125",
+      "tif_paths": [],
+      "download_tif_count": 0,
+      "page_content_sha256": "db43cbb9f1158ae77d87224bcb32ddc3e6f41b1f4d4a3c9c22ecd342ecd556ad",
       "page_mentions": {
         "0.2778": false,
         "0.3195": false,
@@ -2793,60 +3345,60 @@
       "name": "Competition problem",
       "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
       "score_verified": false,
-      "status": "not accessed \u2014 sandbox outbound host restriction",
-      "verification": "Manual-review official link, not independently verified in this environment"
+      "status": "not fetched by scheduled CI runner (restricted outbound hosts)",
+      "verification": "Automated feed has no official-page check. Dated manual web-fetch review: docs/review-2026-10-21-h77l.md. Do not infer current scores from that snapshot."
     },
     {
       "name": "Leaderboard",
       "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
       "score_verified": false,
-      "status": "not accessed \u2014 sandbox outbound host restriction",
-      "verification": "Manual-review official link, not independently verified in this environment"
+      "status": "not fetched by scheduled CI runner (restricted outbound hosts)",
+      "verification": "Automated feed has no official-page check. Dated manual web-fetch review: docs/review-2026-10-21-h77l.md. Do not infer current scores from that snapshot."
     },
     {
       "name": "Submission/data portal",
       "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/data/",
       "score_verified": false,
-      "status": "not accessed \u2014 sandbox outbound host restriction",
-      "verification": "Manual-review official link, not independently verified in this environment"
+      "status": "not fetched by scheduled CI runner (restricted outbound hosts)",
+      "verification": "Automated feed has no official-page check. Dated manual web-fetch review: docs/review-2026-10-21-h77l.md. Do not infer current scores from that snapshot."
     },
     {
       "name": "GeoDAWN official release",
       "url": "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
       "score_verified": false,
-      "status": "not accessed \u2014 sandbox outbound host restriction",
-      "verification": "Manual-review official link, not independently verified in this environment"
+      "status": "not fetched by scheduled CI runner (restricted outbound hosts)",
+      "verification": "Automated feed has no official-page check. Dated manual web-fetch review: docs/review-2026-10-21-h77l.md. Do not infer current scores from that snapshot."
     },
     {
       "name": "INGENIOUS GDR",
       "url": "https://gdr.openei.org/submissions/1391",
       "score_verified": false,
-      "status": "not accessed \u2014 sandbox outbound host restriction",
-      "verification": "Manual-review official link, not independently verified in this environment"
+      "status": "not fetched by scheduled CI runner (restricted outbound hosts)",
+      "verification": "Automated feed has no official-page check. Dated manual web-fetch review: docs/review-2026-10-21-h77l.md. Do not infer current scores from that snapshot."
     },
     {
       "name": "Competition report",
       "url": "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
       "score_verified": false,
-      "status": "not accessed \u2014 sandbox outbound host restriction",
-      "verification": "Manual-review official link, not independently verified in this environment"
+      "status": "not fetched by scheduled CI runner (restricted outbound hosts)",
+      "verification": "Automated feed has no official-page check. Dated manual web-fetch review: docs/review-2026-10-21-h77l.md. Do not infer current scores from that snapshot."
     },
     {
       "name": "INGENIOUS project",
       "url": "https://gbcge.org/current-projects/ingenious/",
       "score_verified": false,
-      "status": "not accessed \u2014 sandbox outbound host restriction",
-      "verification": "Manual-review official link, not independently verified in this environment"
+      "status": "not fetched by scheduled CI runner (restricted outbound hosts)",
+      "verification": "Automated feed has no official-page check. Dated manual web-fetch review: docs/review-2026-10-21-h77l.md. Do not infer current scores from that snapshot."
     },
     {
       "name": "CRS reference",
       "url": "https://epsg.io/32611",
       "score_verified": false,
-      "status": "not accessed \u2014 sandbox outbound host restriction",
-      "verification": "Manual-review official link, not independently verified in this environment"
+      "status": "not fetched by scheduled CI runner (restricted outbound hosts)",
+      "verification": "Automated feed has no official-page check. Dated manual web-fetch review: docs/review-2026-10-21-h77l.md. Do not infer current scores from that snapshot."
     }
   ],
-  "score_policy": "No organizer-confirmed receipt is available. Never treat webpage mentions as verified scores.",
+  "score_policy": "No organizer-confirmed receipt is available in this inventory. Never treat owner webpage mentions as verified scores.",
   "weekly_cap": null,
-  "weekly_cap_status": "Not observed; no slots consumed"
+  "weekly_cap_status": "CI does not re-check official rules PDF. Dated manual review 2026-10-21 observed three feedback submissions/week; see docs/review-2026-10-21-h77l.md. Zero slots consumed by this pipeline."
 }

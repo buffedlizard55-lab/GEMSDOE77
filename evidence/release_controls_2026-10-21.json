@@ -1,0 +1,45 @@
+{
+  "schema": "gems-release-control-run-card-v1",
+  "generated_utc": "2026-10-21T15:41:39.431901+00:00",
+  "scope": "Release-control and owner-mirror inventory audit only. No model experiment, placement, TIFF serialization, portal upload, or competition slot was run in this audit.",
+  "hypothesis": "A candidate must remain NOT OK TO SUBMIT unless exact TIFF bytes, frozen metadata/run card, full literal uniqueness, promotion-valid holdout, and selector approval all agree.",
+  "mechanism": "release_gate.py v2 re-reads every manifest TIFF with vendor/gems57 validate against data/bridge, hash-checks it, requires matching nonempty name/note metadata (note <=140), explicit surface-rank and final-dot-overlap Rule-1 measurements, an explicit full-registry certificate, auditable promotion-valid HOLDOUT-DTI evidence, and a frozen selector approval.",
+  "named_non_fault_process_that_could_mimic_it": "Not applicable: this is an operational audit, not a geological signal test.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "NOT RUN in this release-control audit",
+    "withheld_positive_count": "NOT RUN",
+    "value": "NOT RUN",
+    "95_percent_ci": "NOT RUN"
+  },
+  "correlation_overlap_vs_registry": {
+    "new_measurement": "NOT RUN; no candidate surface or final dots were generated.",
+    "release_gate_result": "12/12 manifest lanes retain literal_protocol_unique=false; no full-registry certificate is present; no artifact is authorized.",
+    "policy": "No dense-raster exception or private interpretation was applied."
+  },
+  "raster_sha256": {
+    "new_raster": "NONE",
+    "existing_manifest_artifacts_rechecked": 12,
+    "all_manifest_hashes_match": true
+  },
+  "validator_output": {
+    "artifacts_rechecked": 12,
+    "all_shared_validator_checks_passed": true,
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "crs_shape_transform_match": true,
+    "portal_acceptance": "NOT CONFIRMED; local preflight is not an organizer receipt."
+  },
+  "submission_name": "NONE \u2014 no new TIFF or authorized slot",
+  "submission_note": "No new candidate: twelve artifacts remain inspection-only; no competition slot was spent.",
+  "note_length": 89,
+  "source_inventory": {
+    "evidence_class": "OWNER-MIRROR inventory; not organizer score verification",
+    "checked_utc": "2026-10-21T15:41:39.431901+00:00",
+    "public_family_repositories_discovered": 92,
+    "repository_pages_retrieved": 92,
+    "organizer_score_receipts_observed": 0
+  },
+  "weekly_slots_spent_by_this_audit": 0,
+  "verdict": "negative"
+}

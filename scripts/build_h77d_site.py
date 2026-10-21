@@ -160,24 +160,24 @@ def build_h77d_pages() -> str:
     )
 
     h77d_body = f"""<div class="eyebrow">DOE GEMS Research · Lane H77D · PhD Technical Report · 21 October 2026</div>
-<h1>Breaking the H19-5 Ceiling Without SGMC Leakage.<br>Coupled Tectono-Hydrothermal Conduits &amp; 300 m Submodular Cover.</h1>
-<p class="intro">Every number below carries its explicit provenance class (<strong>HOLDOUT-DTI</strong> with evaluator version, withheld positive pixel count, and 20 km cluster bootstrap 95% CI; <strong>OWNER-REPORTED</strong>; <strong>ORGANIZER-CONFIRMED</strong>; or <strong>INSTRUMENT</strong>). Zero numbers are unverified projections presented as leaderboard scores.</p>
+<h1>Archived H77D local research record.<br>Not cleared for competition upload.</h1>
+<p class="intro"><strong>Current release status supersedes this historical technical record:</strong> H77D is OK to download for inspection and <strong>NOT OK TO SUBMIT</strong>. The repository release gate has no complete-registry certificate or selector approval for it. Every number below must retain its stated evidence class: <strong>HOLDOUT-DTI</strong> is local (evaluator/version/withheld-positive count/CI); <strong>OWNER-REPORTED</strong> is not a file-level organizer receipt; and <strong>INSTRUMENT</strong> is not a score. A dated public leaderboard row cannot identify these TIFF bytes.</p>
 
 {status_banner_html(rc, compact=False)}
 
 <div class="metrics">
   <div class="metric"><span>Seed 30 HOLDOUT-DTI (B=37,654)</span><strong>{s30['scores']['H77D_full']['dti']:.5f}</strong><small>95% CI {s30['scores']['H77D_full']['ci95'][0]:.4f}–{s30['scores']['H77D_full']['ci95'][1]:.4f} · 11,342 withheld px · +38.8% vs prior best A5</small></div>
   <div class="metric"><span>Seed 20 HOLDOUT-DTI (B=37,654)</span><strong>{s20['scores']['H77D_full']['dti']:.5f}</strong><small>95% CI {s20['scores']['H77D_full']['ci95'][0]:.4f}–{s20['scores']['H77D_full']['ci95'][1]:.4f} · 11,321 withheld px · +46.5% vs fold-fair H33</small></div>
-  <div class="metric"><span>865-Raster Uniqueness Clearance</span><strong>{u3['phase2_informative_max_forward_overlap_3px']:.4f} ≤ 0.70</strong><small>Max surface |ρ|={u3['phase1_surface_max_spearman_abs']:.4f} · Max dot |ρ|={u3['phase2_dot_max_spearman_abs']:.4f} · Mutual={u3['phase2_informative_max_mutual_overlap_3px']:.4f}</small></div>
+  <div class="metric"><span>Historical informative-subset comparison (not clearance)</span><strong>{u3['phase2_informative_max_forward_overlap_3px']:.4f} ≤ 0.70</strong><small>Max surface |ρ|={u3['phase1_surface_max_spearman_abs']:.4f} · Max dot |ρ|={u3['phase2_dot_max_spearman_abs']:.4f} · Mutual={u3['phase2_informative_max_mutual_overlap_3px']:.4f}; literal full-registry gate: FAIL</small></div>
 </div>
 
 <section class="prose">
-<h2>1. Why GEMSDOE32 <code>h33-h33-2-b2</code> Scored 0.2778 — and Why Can It Be Beaten?</h2>
-<p>Forensic byte inspection and exact metric algebra across all <strong>95 live-scored family submissions</strong> (<code>OWNER-REPORTED</code>; <code>0.2778</code> corroborated by leaderboard rank #47 and public #1 <code>0.4413</code> by <code>xiaofanhu</code>, <code>ORGANIZER-CONFIRMED</code>) resolve both questions cleanly:</p>
+<h2>1. H33 forensic mechanism versus its owner-reported 0.2778</h2>
+<p>Byte inspection can describe the archived H33 raster, but cannot authenticate a hidden-score attribution. The claimed mapping between H33 bytes and <code>0.2778</code> is <code>OWNER-REPORT</code>. A dated public leaderboard row may be organizer-published for its listed account, but does not connect that row to H33's file name or hash. The following metric algebra is therefore mechanism analysis, not a verified score explanation or a claim that H77D can beat it:</p>
 <ol>
   <li><strong>Exact DTI Algebra:</strong> Under the official Distance-Tolerant IoU (<code>α = 0.2</code> false-positive weight, <code>β = 0.8</code> false-negative weight, <code>300 m = 3 px</code> triangular kernel, <code>K ≈ 10,366</code> hidden fault cells), <code>DTI = T / (0.2·(T + S − M) + 0.8·K)</code>. Adding a binary dot increases score iff its marginal kernel credit exceeds the break-even bar <code>α·DTI ≈ 0.0556</code> (for <code>0.2778</code>) or <code>0.0883</code> (for <code>0.4413</code>).</li>
-  <li><strong>Why <code>H33</code> reached <code>0.2778</code>:</strong> <code>H33</code> contains <code>37,654</code> binary dots placed 100% on the <code>H19-5</code> geomorphometric ridge skeleton with <code>≤ 2 px</code> (200 m) of mapped faults pruned. That pruning eliminated ~6,436 zero-credit near-catalogue dots while earning ~<code>0.125</code> credit/dot on <code>H19-5</code> (~44% recall of <code>K</code>).</li>
-  <li><strong>Why <code>H33</code> stops at <code>0.2778</code> vs <code>0.4413</code> (#1) — and why prior unique lanes failed:</strong>
+  <li><strong>Plausible H33 mechanism, not score attribution:</strong> <code>H33</code> contains <code>37,654</code> binary dots placed on the <code>H19-5</code> geomorphometric ridge skeleton with <code>≤ 2 px</code> (200 m) of mapped faults pruned. That pruning removed ~6,436 near-catalogue dots. Any inferred credit/dot or recall is an <code>INSTRUMENT</code> estimate, not hidden-label evidence.</li>
+  <li><strong>Historical hypotheses about older lane behavior:</strong>
     <ul>
       <li><strong>SGMC Bedrock Contamination:</strong> Pure SGMC lithologic/fault contact submissions (<code>GEMSDOE49 lith_boundary</code>, <code>60GEMSDOE sgmc_contact_dist</code>) scored <strong>0.0360–0.0512 live</strong> (<code>OWNER-REPORTED</code>) because Paleozoic/Mesozoic thrust and intrusive contacts are inactive non-targets. Mixing 50% SGMC contacts dragged <code>GEMSDOE70</code> down to <code>0.2478</code> despite discovering real off-support Basin-and-Range faults (+0.13 residual).</li>
       <li><strong>Irregularity I17 (PR #5 Missing-LiDAR Sentinel Bug):</strong> <code>raw_lidar_derivs.tif</code> encodes missing 1 m LiDAR survey coverage across <strong>24.6% of Nevada</strong> (<code>1,272,913 / 5,167,373</code> cells) as <code>uint8 == 0</code>, which PR #5 scaled as <code>0.000</code> flat slope instead of <code>NaN</code>.</li>
@@ -188,8 +188,8 @@ def build_h77d_pages() -> str:
   </li>
 </ol>
 
-<h2>2. Experiment 1: Unweighted DTI-Space Live Inversion Across 95 Scored Submissions (INSTRUMENT)</h2>
-<p>Re-fitting non-negative least squares directly in unweighted <code>DTI</code> space with 1,000-draw paired bootstrap across all 95 scored rasters (<code>evidence/h77d_exp1_live_inversion.json</code>; strictly an <strong>INSTRUMENT</strong>, never reported as a score) demonstrates above-bar off-support truth density across all three zero-SGMC physical domains:</p>
+<h2>2. Experiment 1: Historical owner-report inversion (INSTRUMENT)</h2>
+<p>This historical non-negative least-squares exercise consumes owner-reported family values. It is strictly an <strong>INSTRUMENT</strong>, never a score or organizer receipt, and cannot authorize a raster. The current release gate supersedes any apparent inversion result:</p>
 <div class="table-wrap"><table>
 <thead><tr><th>Model (INSTRUMENT)</th><th>LOO RMSE</th><th>LOO Spearman</th><th>Max Off-Support h/cell (Bar = 0.0049)</th><th>Paired ΔMSE vs M0 [95% CI]</th></tr></thead>
 <tbody>{inv_rows}</tbody>
@@ -209,9 +209,9 @@ def build_h77d_pages() -> str:
 <tbody>{abl_rows}</tbody>
 </table></div>
 
-<h2>4. Experiment 3: Full-Map OOF Allocation, 865-Raster Uniqueness Audit &amp; 17-Check Validation</h2>
+<h2>4. Experiment 3: Historical local-subset comparison and format validation (not uniqueness clearance)</h2>
 <p><img class="preview" src="figures/h77d_spatial_and_uniqueness.png" alt="Full-map out-of-fold H77D probability surface, 37,654 submodular binary dots, and 865-raster uniqueness scatter plot"></p>
-<p>Audited across all <strong>865 prior family rasters</strong> (812 archive registry rasters + 53 post-snapshot sibling rasters from live <code>GEMSDOE73</code>–<code>GEMSDOE77</code>; 2 corrupted archive TIFF headers caught and logged explicitly). Both stages clear every threshold cleanly:</p>
+<p>This historical local comparison reported <strong>865 prior family rasters</strong> (812 archive entries + 53 post-snapshot siblings; 2 corrupted headers logged). It is not a complete-registry certificate and does not override the literal dense-witness stop. The values below are retained as informative diagnostics only:</p>
 <ul>
   <li><strong>Phase 1 Continuous Surface Uniqueness:</strong> max <code>|Spearman ρ| = {u3['phase1_surface_max_spearman_abs']:.4f} ≤ 0.90</code> across all 863 readable rasters.</li>
   <li><strong>Phase 2 Final Binary Dot Uniqueness:</strong> max <code>|Spearman ρ| = {u3['phase2_dot_max_spearman_abs']:.4f} ≤ 0.90</code>; global symmetric mutual 3-px overlap across all 863 rasters = <code>{u3['phase2_informative_max_mutual_overlap_3px']:.4f} ≤ 0.70</code>; max forward 3-px overlap across all 707 sparse (<code>≤ 100,000</code> dot) submissions = <code>{u3['phase2_informative_max_forward_overlap_3px']:.4f} ≤ 0.70</code>. (156 dense flood-fill / soft diagnostic surfaces with <code>&gt; 100,000</code> positive pixels, already documented under Irregularity <code>I04</code>/<code>I10</code> in <code>evidence/registry_saturation.json</code>, have reverse overlap ≤ <code>0.2603</code>.)</li>
@@ -221,7 +221,7 @@ def build_h77d_pages() -> str:
 <tbody>{u_rows}</tbody>
 </table></div>
 
-<h2>5. 17-Point GeoTIFF &amp; Portal Format Verification</h2>
+<h2>5. 17-Point local GeoTIFF format readback</h2>
 <div class="table-wrap"><table><thead><tr><th>Validator Check</th><th>Status</th></tr></thead><tbody>{chk_rows}</tbody></table></div>
 
 <h2>6. Honest Limitations &amp; Next-Session Priorities</h2>
@@ -244,7 +244,7 @@ def build_h77d_pages() -> str:
 <tbody>
   <tr><td><strong>Is this a newly generated, genuine prediction file?</strong></td><td><strong>YES.</strong> Computed from scratch via 4-quadrant out-of-fold cross-fitting over 88 zero-SGMC static physical channels (30 curated base + 58 engineered) + 4 exact 12-bit LOCO mechanics channels (92 total channels) + exact 300 m submodular allocation. <strong>0 pixels copied</strong> from H33, H19-5, or any prior raster.</td></tr>
   <tr><td><strong>Is it OK to download right now?</strong></td><td><strong>YES — FOR INSPECTION ONLY.</strong> Both the uncompressed deflate GeoTIFF (<code>140.8 KB</code>) and single-TIFF DrivenData ZIP (<code>105.7 KB</code>) pass <strong>17/17</strong> local format, geotransform, CRS, finite-value, and range checks.</td></tr>
-  <tr><td><strong>Would DrivenData's portal validator accept its format &amp; values?</strong></td><td><strong>PROBABLY, BUT DO NOT UPLOAD IT.</strong> Single-band <code>float32</code>, <code>EPSG:32611</code>, <code>3730 × 3292</code>, transform <code>(100, 0, 243350, 0, -100, 4508550)</code>, <strong>0 NaN anywhere</strong>, values strictly in <code>{{0.0, 1.0}} ⊂ [0.0, 1.0]</code>. Local format checks are not organizer acceptance.</td></tr>
+  <tr><td><strong>Would DrivenData's portal validator accept its format &amp; values?</strong></td><td><strong>UNKNOWN — DO NOT UPLOAD IT.</strong> Local readback finds a single-band <code>float32</code>, <code>EPSG:32611</code>, <code>3730 × 3292</code>, transform <code>(100, 0, 243350, 0, -100, 4508550)</code>, <strong>0 NaN anywhere</strong>, and values strictly in <code>{{0.0, 1.0}} ⊂ [0.0, 1.0]</code>. That is local format evidence only, not an organizer acceptance receipt.</td></tr>
   <tr><td><strong>Did it beat the prior holdout best &amp; pass literal uniqueness?</strong></td><td><strong>Holdout YES; Literal Uniqueness NO (Overall Verdict: <code>NEGATIVE</code>).</strong> <strong>HOLDOUT-DTI = {s30['scores']['H77D_full']['dti']:.5f}</strong> (Seed 30) and <strong>{s20['scores']['H77D_full']['dti']:.5f}</strong> (Seed 20) vs prior repo best <code>0.10930</code> and fold-fair H33 <code>0.09715</code>; informative sparse overlap is <code>0.6883 ≤ 0.70</code>, but the binding literal registry gate fails on the 100%-coverage dense witness (<code>template_literal_reading_duplicate: true</code>).</td></tr>
   <tr><td><strong>Is it approved to spend a live competition slot?</strong></td><td><strong>NO — NOT OK TO SUBMIT (Selector status: Not approved).</strong> Under Policy I17 and <a href="data/submission-authorization.json">submission-authorization.json</a>, no file in this repository is cleared for competition upload until the protocol owner resolves the shared dense-witness registry rule and a selector approves a slot.</td></tr>
 </tbody>
