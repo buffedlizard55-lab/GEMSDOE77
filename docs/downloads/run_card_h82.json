@@ -10,7 +10,7 @@
   "approved_for_weekly_slot": false,
   "weekly_slots_used": 0,
   "organizer_confirmed_score": null,
-  "experiment_budget_used": "3 of 3 pre-registered experiments (registry/preregistration_h82.json)",
+  "experiment_budget_used": "3 of 3 pre-registered experiments (registry/preregistration_h82tcstep.json; renamed at merge, see namespacing_note)",
   "hypothesis": "A concealed (catalogue-missing) normal fault under basin fill laterally offsets radiometrically distinct lithologies, producing a sharp, strike-persistent step in airborne gamma total count (training_features band 6, measured in-repo as radiometric TC, Spearman 0.99995 vs external GeoDAWN TC) where the surface shows no scarp (low det_elev_slope).",
   "mechanism": "4 label-free channels (tc_step2, tc_step5 = tie-averaged ranks of |grad log TC| at sigma 2/5; tc_coh = structure-tensor coherence sigma 3; tc_blind = sqrt(rank(step2*(0.25+0.75*coh)) * rank(-slope))) added to the 19 core bands in a HistGradientBoosting LOQO model; paired control = identical HGB on the 19 core bands alone. Emission fixed for all arms: greedy Poisson-disk, min-sep 2.8 px, 37,654 binary dots, >2.0 px from catalogue.",
   "named_non_fault_process_that_could_mimic_it": "Alluvial-fan and pluvial Lake Lahontan playa-shoreline lithologic boundaries (also sharp TC steps on low slopes); Tertiary volcanic unit contacts; airborne survey line-levelling seams. The holdout result (physics arm below random on both seeds) indicates these mimics dominate the blind TC-step population at 100 m scale.",

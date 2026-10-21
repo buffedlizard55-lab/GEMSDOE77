@@ -1,32 +1,16 @@
 {
-  "lane": "H82",
-  "title": "H82-TCSTEP: radiometric total-count lithologic-offset step lineaments (core band 6), blind low-slope gated, as HGB channels over the shared 19-band core stack",
-  "written_utc": "2026-10-21T17:00:00Z",
-  "written_before_experiment": true,
-  "lane_assignment_note": "The session brief again contains no identifiable single assigned method paragraph (same irregularity as IR-77-06/IR-81-01), so this session declares one new narrow lane here BEFORE Experiment 1. It does not re-tune any stopped lane (H77/H77L/H77D/H77E/H77G/H78/H79/H79-ORIENT/H79-RH/H80/H80T/H81/AGO/LIA/contact-physics/XSEN/D77/selective-U/step). All stopped lanes stay stopped.",
-  "hypotheses_doc": "research/hypotheses-h82-2026-10-21.md",
-  "hypothesis": "A concealed (catalogue-missing) normal fault under basin fill laterally offsets radiometrically distinct lithologies, producing a sharp, strike-persistent step in airborne gamma total count (training_features band 6, measured in-repo to be radiometric total count: Spearman 0.99995 vs the external GeoDAWN TC grid, evidence/band_diagnostics.json) where the surface shows NO scarp (low det_elev_slope). The catalogue is scarp-led, so such blind TC steps are exactly the faults it misses.",
-  "mechanism": "Label-free channels from band 6 only (+ band 19 slope gate): tc_step2 = rank01(|grad log TC| at sigma=2), tc_step5 = rank01(|grad log TC| at sigma=5), tc_coh = structure-tensor coherence of log TC at sigma=3, tc_blind = sqrt(rank01(tc_step2 * (0.25+0.75*tc_coh)) * rank01(-det_elev_slope)). Ranks are tie-averaged over footprint pixels only. Candidate arm = HistGradientBoosting over the 19 core bands + these 4 channels; paired control = identical HGB over the 19 core bands alone; deterministic arm = tc_blind surface alone. Emission (fixed): greedy Poisson-disk min-separation 2.8 px, budget 37,654 dots, allowed = footprint AND distance-to-catalogue > 2.0 px (holdout: distance to masked_known > 2.0 px), binary {0,1}.",
-  "named_non_fault_mimics": [
-    "Alluvial-fan and playa-shoreline lithologic boundaries (pluvial Lake Lahontan benches) - also sharp TC steps on low slopes",
-    "Tertiary volcanic unit contacts and caliche/cemented-fan surfaces with contrasting gamma response",
-    "Airborne survey line-levelling seams in the GeoDAWN radiometric grids"
-  ],
-  "inputs": {
-    "training_features": {
-      "file": "data/raw/training_features.tif",
-      "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
-      "bytes": 418912844,
-      "provenance": "owner-supplied GitHub mirror pinned in registry/data_manifest.json, restored 2026-10-21 in this session via scripts/restore_data.py --ids training_features (hash verified; NOT organizer-authenticated; DrivenData original is login-walled)"
-    },
-    "bridge": "data/bridge/sample_submission.tif + existing_faults.tif (committed, SHA-pinned in vendor/gems57/grid.py)",
-    "external_data": "NONE. No new external source is required or used."
-  },
-  "experiments": {
-    "exp1": "Leakage canaries: single-feature symmetric ROC-AUC of each of the 4 TCSTEP channels and each of the 19 core bands on withheld positives vs sampled negatives, seeds 20 and 30 (vendor buffered_component_draw, hide_frac=0.20, buffer_px=3). STOP if any > 0.90. Plus pre-placement surface Spearman vs every locally present registry/sibling raster (docs/downloads + submissions); STOP if |rho| > 0.90 vs any. The on-file dense-witness saturation certificate (docs/evidence/registry_saturation.json) already proves the literal 0.70 forward-overlap gate cannot pass for ANY non-empty candidate; that is reported, not relitigated.",
-    "exp2": "Paired hide-and-recover HOLDOUT-DTI with the unmodified vendor evaluator (gems57-pooled-hide-v2, alpha=0.2, beta=0.8, 300 m triangular kernel), seeds 20 and 30, LOQO HGB training on visible catalogue only (positives = visible; negatives > 3 px from visible, half within 15 px). Arms: A_std_plus_tcstep (candidate), A_std (paired control), S_tcstep_physics, A0_random. Same emission for every arm.",
-    "exp3": "Full-catalogue LOQO candidate surface, one 37,654-dot research GeoTIFF via unmodified vendor submission_writer (zeros mode), final-dot overlap vs locally present rasters, validator, run card. Verdict promote ONLY if candidate HOLDOUT-DTI 95% CI lower bound exceeds the accepted repo best 0.152718 (evidence/h81_e2_holdout.json current_holdout_best) on both seeds AND paired delta vs A_std CI excludes 0. Otherwise negative. Slot selection is a separate human step regardless."
-  },
-  "budget": {"experiments_max": 3, "hours_max": 2, "weekly_slots_used": 0},
-  "fixed_constants": {"budget_dots": 37654, "min_sep_px": 2.8, "catalogue_exclusion_px": 2.0, "hgb": {"max_iter": 160, "learning_rate": 0.075, "max_leaf_nodes": 45, "min_samples_leaf": 50, "l2_regularization": 2.5, "early_stopping": false, "random_state": 82082}, "train_pos_cap_per_fold": 40000, "neg_per_pos": 2}
+  "lane": "H82 concealed-reservoir concordance at cool outlets",
+  "written_before_outcome": true,
+  "date_utc": "2026-10-21",
+  "method": "Only measured T, quartz/chalcedony/cation geotherm estimates and point coordinates from SHA-pinned GDR owner mirror; filter all three finite 0<T<400, outlet 0<T<200, estimate minimum>100, outlet<=60. For each point weight min(1,max(0,min(estimates)-100)/100)*exp(-(max(estimates)-min(estimates))/80)*(1-max(0,T-35)/50) clipped >=0; pixelwise max for duplicate locations; Gaussian sigma 20 px=2 km; normalize by global maximum. Uniform control gives each accepted site equal weight; random control uses same dot budget. Dots greedily spaced >=3 px; capped at 37654. Zero mapped faults and outside footprint. No dist_known_fault_px column use.",
+  "input_sha256": "122718e65bdf55aab0ee12ad20d80062f0deb1de957225a61ad880dd5dc196ea",
+  "folds": "vendor/gems57/holdout.py buffered_component_draw seed=20 hide_frac=.20 buffer_px=3 boundary_px=12; visible masked pixel-exactly. No catalogue feature in this candidate; same global predictor for each fold is appropriate.",
+  "evaluator": "vendor/gems57/evaluate_holdout.py gems57-pooled-hide-v2; alpha=.2 beta=.8 radius=300m; 200px physical block bootstrap 1000 draws seed=82021",
+  "canary": "Each of: concordant point impulse halo, accepted-site presence halo, and outlet-cool-weighted halo alone. If symmetric AUC > .90 STOP.",
+  "surface_uniqueness": "Shared compare_array_to_registry against SHA-pinned H33, full-footprint dense witness and local current research rasters; if abs(rho)>.90 STOP. Incomplete registry => cannot certify global uniqueness.",
+  "final_uniqueness": "Shared compare_array_to_registry against pinned H33 and dense witness; overlap >.70 or abs(rho)>.90 => DUPLICATE and STOP; no tuning or selector.",
+  "promotion_rule": "Only with HOLDOUT-DTI 95% lower bound above historical .152718, complete literal registry clearance and separate selector approval. Format PASS never means approved.",
+  "budget": "Three experiments maximum; two hours maximum; no slot spending.",
+  "research": "research/h82_hypotheses.md",
+  "scientific_caveat": "Quartz/chalcedony and cation geothermometers are not independent thermometers and agreement alone cannot establish a buried reservoir; this tests a new proxy rather than a proven mechanism. Official GDR source not directly retrievable within this sandbox."
 }

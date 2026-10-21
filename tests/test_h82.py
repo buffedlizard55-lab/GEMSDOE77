@@ -1,61 +1,48 @@
-"""H82-TCSTEP field unit tests (synthetic, no data restore required)."""
-import numpy as np
-import pytest
+"""Freeze format, identity and negative decision for the research-only H82 lane."""
+import hashlib
+import json
+import zipfile
+from pathlib import Path
 
-from gems77h82.fields import H82_NAMES, build_h82_fields, rank01_tieavg
+import rasterio
 
-
-def _synthetic():
-    rng = np.random.default_rng(82)
-    tc = np.full((120, 140), 10.0, np.float32)
-    tc[:, 70:] = 40.0  # sharp vertical lithologic step at col 70
-    tc += rng.normal(0, 0.5, tc.shape).astype(np.float32)
-    slope = np.full((120, 140), 0.01, np.float32)
-    slope[:40, :] = 5.0  # steep (scarp-like) top strip
-    foot = np.ones((120, 140), bool)
-    foot[:3, :] = False
-    return tc, slope, foot
+ROOT = Path(__file__).resolve().parents[1]
 
 
-def test_fields_contract():
-    tc, slope, foot = _synthetic()
-    f = build_h82_fields(tc, slope, foot)
-    assert set(f) == set(H82_NAMES)
-    for v in f.values():
-        assert np.isfinite(v).all() and v.min() >= 0.0 and v.max() <= 1.0
-        assert (v[~foot] == 0).all()
+def test_h82_artifact_status_and_grid():
+    card = json.loads((ROOT/'evidence/h82_run_card.json').read_text())
+    name = card['submission_name']
+    p = ROOT/'docs/downloads'/f'{name}.tif'
+    assert p.is_file()
+    assert hashlib.sha256(p.read_bytes()).hexdigest() == card['raster_sha256']
+    with zipfile.ZipFile(p.with_suffix('.zip')) as z:
+        assert z.namelist() == [p.name]
+        assert z.read(p.name) == p.read_bytes()
+    with rasterio.open(p) as ds:
+        assert ds.count == 1 and ds.dtypes == ('float32',) and ds.crs.to_epsg() == 32611
+        with rasterio.open(ROOT/'data/bridge/sample_submission.tif') as ref:
+            assert (ds.shape, ds.transform, ds.crs) == (ref.shape, ref.transform, ref.crs)
+        for _, window in ds.block_windows(1):
+            a = ds.read(1, window=window)
+            assert (a >= 0).all() and (a <= 1).all()  # NaN fails comparisons
+    assert card['verdict'] == 'negative' and card['ok_to_submit'] is False
+    assert card['correlation_overlap_vs_registry']['duplicate'] is True
+    assert card['correlation_overlap_vs_registry']['final_max_forward_3px_overlap'] == 1.0
+    assert card['holdout_dti']['ci95'][1] < 0.152718
+    assert len(card['note']) <= 140
 
 
-def test_step_fires_on_step_not_on_flat():
-    tc, slope, foot = _synthetic()
-    f = build_h82_fields(tc, slope, foot)
-    step_zone = f["tc_step2"][60:110, 66:75].mean()
-    flat_zone = f["tc_step2"][60:110, 10:40].mean()
-    assert step_zone > 0.9 and flat_zone < step_zone - 0.25
-
-
-def test_blind_gate_suppresses_steep_strip():
-    tc, slope, foot = _synthetic()
-    f = build_h82_fields(tc, slope, foot)
-    steep = f["tc_blind"][5:35, 66:75].mean()
-    gentle = f["tc_blind"][60:110, 66:75].mean()
-    assert gentle > steep + 0.2
-
-
-def test_rank_ties_are_averaged_not_scan_ordered():
-    a = np.zeros((10, 10), np.float32)
-    a[0, 0] = 1.0
-    mask = np.ones((10, 10), bool)
-    r = rank01_tieavg(a, mask)
-    zeros = r[a == 0]
-    assert np.allclose(zeros, zeros[0])  # plateau -> one shared rank
-    assert r[0, 0] == pytest.approx(1.0)
-
-
-def test_sentinel_and_nan_inputs_do_not_propagate():
-    tc, slope, foot = _synthetic()
-    tc[50:60, 50:60] = np.float32(-3.4028234663852886e38)
-    slope[20, 20] = np.nan
-    f = build_h82_fields(tc, slope, foot)
-    for v in f.values():
-        assert np.isfinite(v).all()
+def test_h82_links_not_authorized():
+    card = json.loads((ROOT/'evidence/h82_run_card.json').read_text())
+    receipt = json.loads((ROOT/'docs/data/submission-authorization.json').read_text())
+    lanes = json.loads((ROOT/'docs/data/lanes.json').read_text())['lanes']
+    row = next(x for x in lanes if x['name'] == card['submission_name'])
+    assert row['protocol_unique'] is False and row['sha256'] == card['raster_sha256']
+    assert receipt['repository_decision'] == 'NOT OK TO SUBMIT'
+    release = next(x for x in receipt['artifacts'] if x['file'] == row['file'])
+    assert release['authorized_to_submit'] is False
+    assert release['run_card_audit']['literal_duplicate_recorded'] is True
+    assert release['run_card_audit']['registry_incomplete'] is True
+    for page in ('index.html','executive-summary.html','h82-executive-summary.html'):
+        s = (ROOT/'docs'/page).read_text()
+        assert row['file'] in s and 'NOT OK TO SUBMIT' in s
