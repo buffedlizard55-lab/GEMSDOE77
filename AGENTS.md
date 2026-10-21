@@ -1,6 +1,6 @@
 # Start here each session
 
-1. Read README.md, including the original project request, then docs/irregularities.md and registry/preregistration.json.
+1. Read README.md, including the original project request, then docs/irregularities.md and registry/preregistration.json. For this checkout's latest local audit, also read docs/review-2026-10-21-arena-audit.md; docs/SESSION_REVIEW.md is an older snapshot, not current branch status.
 2. Read evidence/run_card.json, evidence/h77l_run_card.json and docs/review-2026-10-21-h77l.md. H77 and H77L are stopped and negative. Never tune/re-run a failed lane or spend a competition slot without a separately authorized lane/selector decision. Also negative and closed (do not re-tune): LIA (docs/data/run-card.json), contact-physics, H78 (evidence/h78_run_card.json), H77E (evidence/run_card_h77e.json — UCP/Euler block below random on holdout; final-dot duplicate logged vs GEMSDOE67 ml-cover).
 3. Use vendor/gems57 unchanged; verify registry/template_pin.json. Shared fixes belong upstream, not in a private evaluator or gate.
 4. Distinguish HOLDOUT-DTI, ORGANIZER-CONFIRMED receipts, canary diagnostics, format/input measurements and unverified claims. Never promise a leaderboard gain.
