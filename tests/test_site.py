@@ -107,6 +107,11 @@ def test_pages_staging_preserves_legacy_docs_urls_and_excludes_secrets(tmp_path)
     assert (out/'docs/index.html').exists() and (out/'docs/assets/site.css').exists()
     assert not (out/'.git').exists() and not (out/'data').exists()
     assert set(p.name for p in out.iterdir())=={'.generated-public-pages','.nojekyll','index.html','docs'}
+    h80=(out/'docs/h80.html').read_text()
+    assert (out/'docs/evidence/h80_run_card.json').is_file()
+    assert (out/'docs/research/h80_hypotheses.md').is_file()
+    assert 'href="evidence/h80_run_card.json"' in h80
+    assert 'href="research/h80_hypotheses.md"' in h80
     # Re-running replaces only a marked generated directory.
     assert stage(out)==out
 
