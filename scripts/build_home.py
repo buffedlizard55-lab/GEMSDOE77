@@ -292,8 +292,8 @@ authorize an upload; the separate weekly-slot selector has approved none. The in
 <a href="data/submission-authorization.json">machine-readable authorization receipt</a> combines all required release
 gates and currently says <b>NOT OK TO SUBMIT — 0 authorized files</b>.</p>
 <p><b>Current review: no new TIFF generated.</b> A fresh hash-checked, candidate-independent proof confirms the universal
-blocker before any new experiment. <a href="preflight-review.html">Three-pass review, conditional hypotheses and next steps</a> ·
-<a href="evidence/registry_preflight.json">Reproducible blocker receipt</a> ·
+blocker before any new experiment. <a href="review-latest.html">Current branch review and ranked hypotheses</a> ·
+<a href="preflight-review.html">Prior readiness review</a> · <a href="evidence/registry_preflight.json">Reproducible blocker receipt</a> ·
 <a href="evidence/listed_download_audit.json">Independent format readback of every listed primary TIFF</a>.
 These are registry/format measurements, not scores or portal acceptance.</p>"""
     beat_txt = primary.get(
@@ -863,12 +863,12 @@ Format-valid (15/15 checks, 0 NaN, values in [0,1], 37,654 binary dots) and info
 
 def write_review_pages():
     for source, output, title in (
-        ("docs/review-2026-10-21-60aafd45.md", "review-latest.html", "Latest repository review"),
+        ("docs/review-2026-10-21-arena-6a5eca5f.md", "review-latest.html", "Latest repository review"),
         ("research/why-h33-scored-02778.md", "metric-review.html", "Corrected H33 analysis"),
     ):
         body = markdown.markdown((ROOT / source).read_text(), extensions=["tables", "fenced_code"])
         (D / output).write_text(page(output, title, body))
-    for name in ("review_60aafd45_card.json", "review_60aafd45_verification.json"):
+    for name in ("review_6a5eca5f_card.json", "review_60aafd45_card.json", "review_60aafd45_verification.json"):
         shutil.copyfile(ROOT / "evidence" / name, D / "evidence" / name)
 
 

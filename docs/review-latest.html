@@ -3,80 +3,134 @@
 <meta name="description" content="GEMSDOE77 (DOE GEMS Prize): download the submission GeoTIFFs and see, per file, whether it is OK to upload.">
 <link rel="stylesheet" href="assets/lia.css"></head><body>
 <header><div class="wrap"><span class="brand">GEMSDOE77 · DOE GEMS Prize</span><a href="review-latest.html" class=here>Latest review</a> <a href="metric-review.html">Corrected H33 analysis</a> <a href="index.html">Start here</a> <a href="tsd.html">H77-TSD · inspection</a> <a href="h77v.html">H77V (Vent-Advect)</a> <a href="h82-texture.html">H82-TEXTURE · negative</a> <a href="h82rank.html">H82R · radiometric negative</a> <a href="preflight-review.html">Current readiness review</a> <a href="h82-executive-summary.html">H82 · cool-outlet negative</a> <a href="h77g.html">H77G · negative</a> <a href="h77g-executive-summary.html">H77G guide</a> <a href="h77e-knick.html">H77E-Knick · 0/816 firings</a> <a href="release-review.html">Release safety review</a> <a href="executive-summary.html">How to submit</a> <a href="h81.html">H81 · slip-cone</a> <a href="h82.html">H82 · fault collar</a> <a href="h83.html">H83 · fault collar</a> <a href="h80t.html">H80T · tilt-persist</a> <a href="h80t-executive-summary.html">H80T guide</a> <a href="h80.html">H80 · negative</a> <a href="ago.html">AGO · negative proxies</a> <a href="h79-orient.html">H79-ORIENT · negative</a> <a href="h79-orient-executive-summary.html">H79-ORIENT guide</a> <a href="h79.html">H79-BB · research-only</a> <a href="h79-radhalo.html">H79-RH · negative</a> <a href="h77l.html">H77L · research-only</a> <a href="h77d.html">H77D (Zero-SGMC)</a> <a href="h77d-executive-summary.html">H77D guide</a> <a href="h77-step.html">H77-Step</a> <a href="h77e.html">H77E · negative</a> <a href="h78.html">H78 lane</a> <a href="lia.html">LIA lane</a> <a href="contactphys.html">Contact-physics lane</a> <a href="urank.html">Selective-U lane</a> <a href="lia-analysis.html">Why 0.2778</a> <a href="lia-sources.html">Sources</a>
-<a href="https://github.com/buffedlizard55-lab/GEMSDOE77">GitHub</a></div></header><main><div class="wrap"><h1>Repository review: safety checks and corrected H33 reasoning</h1>
-<p><strong>OK TO DOWNLOAD FOR INSPECTION — NOT OK TO SUBMIT. No new TIFF was generated in this review.</strong></p>
-<p><a href="downloads/gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY.tif">Download existing H77L research TIFF</a> · <a href="downloads/gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY.zip">one-TIFF ZIP</a> · <a href="executive-summary.html">submission instructions</a> · <a href="data/submission-authorization.json">authorization receipt</a> · <a href="evidence/review_60aafd45_card.json">review card</a>.</p>
-<p>This is a repository review, <strong>not a newly assigned geological lane</strong>. The prompt again supplies no identifiable single method paragraph. Existing lanes are stopped. No submission was chosen, no final dots were placed and no weekly slot was used. Negative results and a blocked review are deliverables; an old TIFF is not renamed or copied as a new submission.</p>
-<h2>Pass 1 — inspect, reproduce, implement</h2>
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE77">GitHub</a></div></header><main><div class="wrap"><h1>GEMSDOE77 review — branch <code>arena/6a5eca5f-gemsdoe77</code> (2026-10-21)</h1>
+<h2>Decision at a glance</h2>
+<p><strong>NO NEW TIFF GENERATED · NO NEW HOLDOUT RUN · NO SLOT USED · NOT OK TO SUBMIT ANY FILE.</strong> The user's demand for a new unique TIFF conflicts with the repository's explicit duplicate-stop protocol: a hash-pinned registry witness covers every allowed pixel after the required 3-pixel dilation. Any non-empty candidate has forward overlap <code>1.0</code>, above the strict <code>0.70</code> limit. The result was freshly reproduced by <code>scripts/preflight_registry.py</code>; its expected exit code is 2 (<code>STOP_UNIVERSAL_DUPLICATE</code>). Do not bypass this by renaming an old TIFF, creating an empty/zero file, relaxing the gate locally, or treating format validation as submission authorization.</p>
+<p>The existing negative research TIFFs remain available only as individually marked on the website; they are <strong>NOT OK TO SUBMIT</strong>. The authorization receipt reports zero approved files. The requested new TIF is therefore <strong>not available to download</strong> from this review. The submission guide remains at <a href="executive-summary.html">executive-summary.html</a>, and the landing page labels downloads and submission clearance separately.</p>
+<h2>What was inspected and reproduced</h2>
 <ul>
-<li>Read the standing request, lane instructions, prior reviews, shared evaluator/writer entrypoints, registry pins, run cards and site builders. The original request remains at the end of README; the session addendum at its beginning records the operative status.</li>
-<li>Baseline software suite: <strong>124 tests passed</strong>. These are software checks, not performance scores.</li>
-<li>Restored the two pinned registry witnesses using the existing <code>restore_registry.py</code>; SHA-256 pins match. Re-ran <code>verify_h77l.py</code>: all <strong>23 integrity/scope checks pass</strong>. Its local comparison inventory now contains <strong>39 other TIFFs after reconciliation</strong>. This is not a full registry uniqueness pass.</li>
-<li>The dense witness is positive at all <strong>5,167,373</strong> finite footprint cells. Any nonempty allowed candidate A is a subset of that support W, and hence of its three-pixel dilation. Thus forward overlap is <strong>1.0</strong>, exceeding the literal <strong>0.70</strong> threshold before any new feature or placement is attempted. The request to generate a protocol-unique TIFF cannot be satisfied without changing the binding protocol. No private exemption or random artifact is introduced.</li>
-<li>Hardened <code>release_gate.py</code>: use the unchanged shared validator on actual TIFF bytes and hash-pinned bridge inputs; require the run card's canonical <code>raster_sha256</code> to match those bytes. Positive uniqueness, full-registry, valid/improved holdout and selector declarations must also be explicit in the run card. Manifest booleans and a bare <code>{"verdict":"promote"}</code> no longer suffice. Malformed nested guardrails and non-finite JSON constants are rejected without aborting receipt generation.</li>
-<li>Corrected the H33 marginal-emission derivation. Added deterministic mathematical tests against the pinned implementation, not a private evaluator. See <a href="metric-review.html">corrected analysis</a>.</li>
+<li>Followed <code>AGENTS.md</code>: reviewed the full <code>PROMPT.md</code>, README status, irregularities, registry/preregistration records, current release/readiness reviews, closed H82/H80/H81/H77L run cards, shared-template pin, input manifest, and site generation path.</li>
+<li>The original branch already contains <code>research/why-h33-scored-02778.md</code>. Its conservative conclusion is retained: the pinned H33 mirror is a 37,654-positive binary raster; retained byte forensics say it removes 6,436 near-catalogue dots from a 44,090-dot predecessor without adding positives. This is a plausible sparse-pruning mechanism under a distance-weighted coverage metric, <strong>not causal proof</strong> that it received the owner-reported 0.2778. The owner-supplied score is not tied to these bytes by an organizer receipt; the pinned GEMSDOE32 page itself says it has no organizer score for its artifacts.</li>
+<li><code>registry/template_pin.json</code> hashes were checked by the preflight. Input hashes matched: sample <code>2176d08e…d35cbc</code>, catalogue <code>7ba308cc…ae4093</code>, dense witness <code>ab0a0a62…3872be</code>.</li>
+<li>Fresh preflight measurement: all 5,106,385 allowed pixels are within 3 px of the pinned witness; uncovered count is zero. The proof rejects a nonempty candidate under the current literal overlap definition. This is a <strong>REGISTRY-MEASUREMENT</strong>, not a holdout score or complete-registry uniqueness pass.</li>
+<li>Current local feature stack status: <code>data/raw/training_features.tif</code>, <code>data/processed/stack.npy</code>, and <code>.cache/gems_data/training_features.tif</code> are absent. Existing restore manifests describe owner-supplied mirrors and explicitly do not establish organizer authentication. Therefore no cached-stack feature evaluation was possible.</li>
+<li>No candidate surface or final dots were constructed. The required surface-before-placement and final-dot checks are thus not candidate-specific; the universal witness already makes a placement attempt inadmissible.</li>
 </ul>
-<h2>Pass 2 — edge cases and evidence review</h2>
-<p>The former release gate could approve arbitrary non-TIFF bytes with green manifest flags and a minimal promote card. Tests now cover missing/mismatched card hashes, unreadable TIFFs, altered reference inputs, nested lists/strings in guardrails, string booleans and NaN/Infinity. Legitimate matching recorded evidence still has a positive-path test. The gate <strong>still consumes recorded holdout, registry and selector decisions</strong>; it is not independent scientific certification or an organizer receipt.</p>
-<p>Fresh shared-validator readback also exposes two archived AGO files that are finite and within range but fail the repository's <strong>zero-outside-footprint</strong> convention. This is a local policy failure, not proof that DrivenData rejects them. Existing negative cards and bytes remain unchanged. Every reviewed file remains NOT OK TO SUBMIT.</p>
-<p>The template docstring's claim <code>ΔT &lt;= k</code> is false for a dot covering multiple truth pixels; the shared implementation's recomputation is correct on the regression fixtures. No pinned template file was changed. An issue-creation attempt at the template owner repository failed with <strong>“Resource not accessible by integration”</strong>. The proposed upstream report is saved as <a href="research/shared-metric-documentation-issue.md">a handoff document</a>; do not infer that an upstream issue was opened or fixed.</p>
-<p>A full CI-order build uncovered an inherited manifest collision that the baseline tests missed: at the base commit, <code>docs/data/submission.json</code> described an H28 file, but the LIA builder assumed it was LIA and crashed on the absent ZIP field. The LIA builder now creates a namespaced <code>lia_submission.json</code> by verifying the immutable TIFF and ZIP against the frozen LIA card using the shared validator. It neither regenerates predictions nor attaches LIA science to the H28 file. Tests now check the lane identity and build path, not just that some file is finite.</p>
-<h2>Pass 3 — end-to-end verification</h2>
-<p>The pre-merge suite passed <strong>146 software tests</strong>; the reconciled suite passes <strong>189 software tests</strong>, and the CI-order site build, independent byte audit and verification script pass. The final test/build results are recorded in <code>evidence/review_60aafd45_verification.json</code>. The reviewed release receipt authorizes <strong>zero</strong> files. Direct TIFF/ZIP links, status labels, executive submission instructions and corrected-analysis links are generated from source builders, not edits that CI would overwrite. The original scientific run cards are retained, not relabeled as fresh experiments.</p>
-<p>The source feed now includes all <strong>82</strong> repository names in the request. Initial refresh retrieved <strong>81</strong> inventories; <code>62GEMSDOE</code> returned HTTP 504. This is a timestamped GitHub-page inventory, not a complete raster-registry audit, official-data verification or score feed. Retrieval failures are exposed rather than filled with guessed information.</p>
-<h2>Ranked hypothesis backlog — conditional, no experiment authorized</h2>
-<p>Ranking is qualitative expected scientific value relative to cost. <strong>Expected DTI improvement is unknown for all four proposals.</strong> Code/text keyword inspection did not find the precise first two transforms below, but cannot certify novelty across all sibling/private work. None was trained or validated; the pre-existing universal rejection gate stops the new-candidate pipeline first.</p>
+<h2>Candidate screen — ranked research priorities, not score projections</h2>
+<p>The ranking is <strong>qualitative potential information value relative to cost</strong>. Expected DTI change is unknown for every item. “Not found in executable code” is a bounded repository search claim, not proof of originality across sibling repositories or all participants. No candidate below was preregistered or tested in this review because the duplicate-stop gate fires before feature generation.</p>
 <table>
 <thead>
 <tr>
-<th>Priority</th>
-<th>Layers, physical signature and potential uncatalogued target</th>
-<th>Difference from inspected implementations / mimic</th>
-<th>Cost and viability</th>
+<th>Rank</th>
+<th>Candidate and layers</th>
+<th>Targeted physical signature / why it could reveal a missing fault</th>
+<th>Difference from implemented work; named non-fault mimic</th>
+<th>Data source and availability check</th>
+<th>Cost / status</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>1</td>
-<td>Native RTP/TMI magnetic grid: monogenic phase congruency across wavelengths, normalized independently of amplitude; persistent buried contacts beneath basin fill</td>
-<td>Phase agreement rather than H80T tilt-angle persistence, H77E Euler depth or H79 cross-sensor orientation. Lithologic/intrusive contacts and flight-line artifacts can mimic it.</td>
-<td>Medium. Existing competition-stack mirror manifest is present, but the large stack was not restored or validated for this review. No new external dataset proposed. Conditional next lane only.</td>
+<td><strong>Multiscale magnetic-gravity cross-wavelet phase coherence:</strong> GeoDAWN RTP/TMI and gravity bands from the competition feature stack</td>
+<td>A repeatable localized cross-wavelet coherence/phase relation between RTP/TMI and gravity could flag a shared subsurface boundary where a concealed fault juxtaposes magnetic and density contrasts beneath basin cover, even without a mapped surface trace. Require that relationship to persist across scales and spatial blocks; source-depth differences can shift phase and make this hypothesis fail.</td>
+<td>Static search found that individual-field monogenic phase congruency already exists in <code>src/gems77/features77.py</code> and has been used in the contact-physics lane, and H79 already measures real-space cross-sensor orientation agreement. The proposed transform is specifically localized cross-wavelet magnitude-squared coherence plus relative phase between magnetic and gravity spectra; a repo-wide grep found no wavelet/cross-spectrum implementation, but that is not a global novelty claim. It differs from matching edge-axis direction, not from phase-sensitive methods in general. <strong>Mimic:</strong> lithologic or intrusive contact and flight-line/regridding seam.</td>
+<td>No external dataset is required if the existing stack is restored. Its large raw feature TIFF and processed cache are absent in this checkout; mirrors are owner-supplied, not organizer-authenticated. <strong>Not currently testable.</strong></td>
+<td>Medium implementation cost; highest conditional value/cost because it adds amplitude-normalized structure to existing bands. No DTI estimate. Blocked by both missing stack and universal duplicate stop.</td>
 </tr>
 <tr>
 <td>2</td>
-<td>Well/spring temperatures <strong>with measured depth and acquisition metadata</strong>: remove a regional conductive depth trend before testing line-supported positive residuals</td>
-<td>Tests anomalous advective heating relative to depth, rather than H80-OTA raw hot-point collinearity. Well selection bias, pumping and volcanic heat can mimic it.</td>
-<td>Medium–high. Required depth/metadata completeness has not been checked. Official source: <a href="https://gdr.openei.org/submissions/1391">GDR INGENIOUS 1391</a>. Not viable until those fields and access are verified.</td>
+<td><strong>Uncertainty-weighted 3-D microseismic planes:</strong> event location, depth, horizontal/depth uncertainty and focal mechanism from USGS ComCat</td>
+<td>A persistent depth-consistent plane or aligned swarm between mapped segments may indicate an active blind structure, rather than merely a high event-density cell.</td>
+<td>Distinct from rasterized regional seismicity aggregates, but an event-lineament hypothesis exists elsewhere in prior research notes, so not globally novel. <strong>Mimic:</strong> quarry blasts, aftershock sequences, or geothermal-production-induced seismicity.</td>
+<td>Official USGS <a href="https://earthquake.usgs.gov/fdsnws/event/1/query">ComCat FDSN event service</a>. Prior repository irregularity <code>IR-81-06</code> records the host as unreachable from this sandbox (HTTP 000 / exit 35); no events were retrieved here. <strong>Not obtainable/validated in this environment.</strong></td>
+<td>Medium–high; low data volume, high temporal completeness and event-classification burden. No DTI estimate.</td>
 </tr>
 <tr>
 <td>3</td>
-<td>Calibrated K/Th/U concentrations: compositional log-ratio residual boundary after conditioning on lithologic endmembers</td>
-<td>Conditions on compositional mixing instead of the existing rank-intensity/ratio channels, H82R rank-mixture entropy and lagged radiometric halos. Weathering, soil moisture and sediment sorting can mimic it.</td>
-<td>High. Existing independently quantized uint8 channels are <strong>not calibrated concentrations</strong>; cannot apply chemical-ratio interpretation to them. Official <a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN release</a>, DOI 10.5066/P93LGLVQ, needed. Obtainability not verified here; not viable yet.</td>
+<td><strong>Repeat Landsat thermal-anomaly boundaries:</strong> Level-2 surface temperature, QA/cloud masks and acquisition dates, controlled by elevation/aspect and land cover</td>
+<td>A compact anomaly boundary persistent across seasons and usable acquisitions could localize active upflow or a fault-fed thermal corridor missed by static structural mapping.</td>
+<td>A time-series radiometric response differs from existing point well/spring temperature alignment and static airborne K/Th/U features. <strong>Mimic:</strong> irrigation, wildfire, industrial/urban heat, cloud contamination, or a warm spring unrelated to a fault.</td>
+<td>Official USGS <a href="https://www.usgs.gov/landsat-missions/landsat-collection-2">Landsat Collection 2</a>. AOI scene availability and cloud-free revisit depth were not checked; USGS is outside this sandbox's outbound allowlist. <strong>Not obtainable/validated here.</strong></td>
+<td>High; acquisition/season/QA confounding and processing burden. No DTI estimate.</td>
 </tr>
 <tr>
 <td>4</td>
-<td>Earthquake hypocentres and uncertainty ellipsoids: robust, uncertainty-weighted depth-plane fit after removing blasts and swarm sequences</td>
-<td>Explicit three-dimensional plane support rather than coarse earthquake-count rasters. Quarry blasts, volcanic swarms and aftershock geometry can mimic it.</td>
-<td>High. Official <a href="https://earthquake.usgs.gov/fdsnws/event/1/query">USGS ComCat event service</a> needed; source host is outside this sandbox's allowlist and AOI quality/availability is unverified. Not viable yet.</td>
+<td><strong>Depth-corrected well/spring thermal residuals:</strong> GDR 1391 temperature, measured depth, chemistry and metadata</td>
+<td>Remove a robust regional conductive temperature-depth trend, then test whether off-catalogue positive thermal residuals form a spatially supported lineament; this targets advective upflow without treating every hot well as a fault.</td>
+<td>Different from raw hot-point alignment / advection features already explored in H80/H77V, but the extension is not wholly untried project-wide. <strong>Mimic:</strong> depth-selection bias, production/pumping, shallow groundwater mixing, and volcanic heat.</td>
+<td>Official DOE/NREL <a href="https://gdr.openei.org/submissions/1391">GDR submission 1391</a>. The local manifest records an owner mirror, but the actual CSV is absent here; the source host cannot be reached through the sandbox allowlist. Availability of depth metadata is <strong>not verified</strong>. <strong>Not viable until checked.</strong></td>
+<td>Medium–high; potentially interpretable but selection-bias corrections and complete depth metadata are essential. No DTI estimate.</td>
 </tr>
 </tbody>
 </table>
-<p>All four are <strong>hypotheses</strong>, not established signatures of productive geothermal reservoirs. The competition target is fault prediction; recovering withheld catalogue faults is not direct discovery of geothermal vents.</p>
-<h2>Source audit and H33 answer</h2>
-<p><a href="metric-review.html">Corrected H33 analysis</a> separates fresh measurements, retained forensics and unverified owner score attributions. The pinned H33 mirror has <strong>37,654</strong> binary positives; no receipt ties its SHA-256 to the supplied <strong>0.2778</strong>. Freshly retrieved <a href="https://github.com/buffedlizard55-lab/GEMSDOE32/blob/f62038b54dcb7767d4d997f80b033cdc3d42bef9/docs/index.html">GEMSDOE32 source</a> explicitly says it has no organizer score for its artifacts.</p>
-<p>Sparse emission and flank pruning can reduce redundant false positives, but the exact benefit depends on marginal coverage. Neither causation, a global thinning optimum nor a higher future leaderboard score can be inferred. The supplied leaderboard targets conflict and were not reauthenticated. A public participant row, even when observed, does not identify the submitted file.</p>
-<p><a href="https://github.com/drivendataorg/gems-prize-reference-solution/blob/aebe92f7c8a990f0e3443451b7a825d9afd6336b/README.md">Official organizer reference README</a> was freshly retrieved and supports CPU-only execution; GPU is an acceleration option, not a universal blocker. <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Problem</a>, <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">submission/data portal</a>, <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">leaderboard</a> and <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">NLR rules PDF</a> are manual-review links, not freshly verified sources here. Current slot allowance and portal acceptance are unknown. No authentication secrets are requested.</p>
-<h2>Next session, in order</h2>
+<h3>Candidate selection and validation gate</h3>
+<p>Rank 1 is the only candidate with no <em>new</em> external-data dependency, so it is the conditional first choice <strong>only after</strong> the feature stack is restored with provenance, the protocol owner resolves the shared dense-support rule, and a single method lane is explicitly assigned and preregistered. It was <strong>not</strong> validated here; no canary AUC, holdout DTI, confidence interval, or candidate-specific correlation exists. It would be incorrect to call it viable for this checkout or predict it will outperform 0.2778 or any leaderboard entry. Candidates 2–4 require external sources that are not reachable under this environment's egress policy; they are not presented as currently obtainable.</p>
+<h2>Why H33's reported score could be high — and what remains unknown</h2>
+<p>The available file forensics suggest a plausible metric-alignment explanation: thinning a dense backbone and excluding dots near mapped catalogue faults can reduce redundant prediction mass while retaining spatial support near withheld structures. If the competition score uses a distance-weighted Tversky-like overlap, a sparse prediction can score better than a dense raster even without adding geological information. This is a <strong>mechanistic hypothesis</strong>, not a demonstrated causal explanation. The exact named TIFF-to-score association is unverified, the site reports no organizer score receipt, and the scores supplied for sibling sites are owner-reported unless an organizer receipt is attached. The answer to “can this repo beat that number?” is <strong>unknown</strong>; the current protocol prevents a valid test, and no future score is promised. A leaderboard result is called <strong>ORGANIZER-CONFIRMED</strong> only when copied from an organizer submission-page receipt tied to the file; this review has no such receipt.</p>
+<p>The appropriate comparison, when unblocked, is a matched spatial hide-and-recover test: hold out whole fault segments plus buffer; derive every catalogue feature only from visible segments; mask visible catalogue pixels exactly; run each feature-alone leakage canary; use the pinned shared evaluator/writer and matched folds/dot budget; report pooled HOLDOUT-DTI with evaluator version, withheld-positive count and 95% CI; compare against the matched current best. A projection is never a score. Only a separate selector and organizer receipt can clear a real competition slot.</p>
+<h2>Verification passes</h2>
+<h3>Pass 1 — inspect and reproduce</h3>
+<p>Reviewed the repo instructions and evidence. Installed the exact <code>requirements.txt</code> packages into ignored <code>.venv</code> only; no dependency manifest was changed. Restored the hash-pinned registry witnesses using the existing restore script. Ran <code>.venv/bin/python scripts/preflight_registry.py</code>; it reproduced <code>STOP_UNIVERSAL_DUPLICATE</code> and the proof above (expected process exit 2). No experiment, new TIFF, or slot use.</p>
+<h3>Pass 2 — bugs, assumptions, edge cases</h3>
+<p>Checked that the rejection argument applies to both positive surface support and any final dot set restricted to the allowed domain; because all allowed cells are within the witness dilation, every nonempty subset has overlap one. It does not prove every raster in the full registry is covered, nor does it support a passing uniqueness claim. The preflight correctly labels the scope as one rejection witness. Checked the feature-cache paths directly rather than trusting historical receipts. Reviewed source-access claims: official USGS, DOE/NREL, DrivenData and NLR pages are provided for manual review but were not freshly retrieved through the restricted sandbox network. No scientific findings are attributed to a page we did not fetch.</p>
+<h3>Pass 3 — requirements re-check</h3>
+<p>The user asks for a unique downloadable submission TIF. This review cannot responsibly generate one while the binding rule rejects all nonempty outputs; an empty raster would not be a useful prediction or a meaningful submission. Existing downloadable files are clearly marked inspection-only and none is selector-approved. The current result is negative, with explicit limitations and a next-step order. This report and the homepage now point to each other via the generated latest-review page.</p>
+<h2>Next work, in decision order</h2>
 <ol>
-<li>Resolve dense-surface versus dot-field overlap semantics in the shared protocol/registry; do not silently exempt the witness.</li>
-<li>Supply one method lane, restore its pinned cached inputs, verify physical band meanings, and freeze a complete current registry snapshot.</li>
-<li>Run single-feature leakage canaries, then whole-segment buffered hide-and-recover with visible-only catalogue features and pixel-exact masking. Compare to a rebuilt incumbent on identical folds; pool DTI and report withheld count, evaluator hash/version and 95% interval.</li>
-<li>Only after the required holdout improvement, scan both surface and final dots, write with the shared writer, validate exact grid/finite [0,1], and bind every receipt to the output hash.</li>
-<li>Obtain a separate selector approval and check the current submission allowance. If selected later, retain the organizer's submission-page receipt with artifact hash. Do not turn this review into an implicit slot approval.</li>
+<li>Ask the shared protocol/registry owner to resolve the dense-witness support semantics in the shared template; do not fork or weaken the gate locally.</li>
+<li>Obtain and hash-verify competition data and cached stack; distinguish organizer data from owner mirrors in receipts. Confirm the actual submission grid/range specification with official material.</li>
+<li>Assign one lane; preregister the cross-wavelet-coherence hypothesis and its controls before examining holdout outcomes. Run each feature alone through leakage canaries.</li>
+<li>Use the unchanged pinned <code>gems57</code> hide-and-recover evaluator/writer and stop at three experiments or two hours. Require a matched HOLDOUT-DTI improvement with CI, then audit surface and final dots against the complete accessible registry.</li>
+<li>Only after scientific and format gates pass, request a separate weekly selector decision. Tie any upload and score claim to a public organizer receipt and exact raster SHA-256.</li>
 </ol>
-<h2>Parallel-session reconciliation</h2>
-<p>Merged main through <code>f7845f9</code> into this fixed session branch before opening the PR. Preserved all three negative H82/H82R lanes, the universal-preflight helper, the all-download audit, and all parallel regression tests. Parallel work independently restored the generic LIA manifest and moved H28 to <code>h28-submission.json</code>; this review additionally isolates the live LIA readback in <code>lia_submission.json</code> to prevent recurrence. The mathematical correction agrees with the parallel reviews and all their tests remain. Re-ran the pinned candidate-independent preflight: expected exit 2, <code>STOP_UNIVERSAL_DUPLICATE</code>. No inherited H82 output is claimed as generated by this review.</p></div></main>
+<h2>Official and project sources for manual review</h2>
+<ul>
+<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DrivenData problem description</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">competition rules</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">leaderboard</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">data tab</a></li>
+<li><a href="https://github.com/drivendataorg/gems-prize-reference-solution">Official reference solution on GitHub</a> (the pinned local source receipt covers a commit and CPU/GPU support, not score verification)</li>
+<li><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN release</a> · <a href="https://earthquake.usgs.gov/fdsnws/event/1/query">USGS ComCat</a> · <a href="https://www.usgs.gov/landsat-missions/landsat-collection-2">USGS Landsat Collection 2</a></li>
+<li><a href="https://gdr.openei.org/submissions/1391">DOE/NREL GDR 1391</a> · <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">NLR competition PDF</a> · <a href="https://epsg.io/32611">EPSG:32611</a></li>
+<li>Project evidence: <a href="../research/why-h33-scored-02778.md">corrected H33 forensics</a> · <a href="../evidence/registry_preflight.json">preflight JSON</a> · <a href="../registry/template_pin.json">shared template pin</a> · <a href="data/submission-authorization.json">submission authorization</a></li>
+</ul>
+<p>Links above are for review; this report does <strong>not</strong> claim fresh retrieval of non-GitHub official sources, organizer authentication, current leaderboard rank, source AOI product availability, or portal acceptance.</p>
+<h2>Run card (this repository review)</h2>
+<pre><code class="language-json">{
+  &quot;hypothesis&quot;: &quot;No candidate tested. Conditional rank-1 proposal: localized multiscale cross-wavelet coherence/phase between GeoDAWN RTP/TMI and gravity may reveal a shared concealed magnetic-density boundary; no score projection.&quot;,
+  &quot;mechanism&quot;: &quot;Repository review and candidate screen only; no feature surface, holdout, placement, or new TIFF generated.&quot;,
+  &quot;named_non_fault_process_that_could_mimic_it&quot;: &quot;Lithologic/intrusive contact or airborne survey/regridding seam.&quot;,
+  &quot;holdout_dti&quot;: {
+    &quot;evidence_class&quot;: &quot;NOT RUN&quot;,
+    &quot;evaluator_version&quot;: null,
+    &quot;withheld_positive_count&quot;: null,
+    &quot;value&quot;: null,
+    &quot;ci95&quot;: null
+  },
+  &quot;correlation_overlap_vs_registry&quot;: {
+    &quot;evidence_class&quot;: &quot;REGISTRY-MEASUREMENT&quot;,
+    &quot;surface_candidate&quot;: &quot;NOT BUILT&quot;,
+    &quot;final_dots&quot;: &quot;NOT PLACED&quot;,
+    &quot;witness_sha256&quot;: &quot;ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be&quot;,
+    &quot;allowed_pixels&quot;: 5106385,
+    &quot;allowed_pixels_within_3px&quot;: 5106385,
+    &quot;uncovered_allowed_pixels&quot;: 0,
+    &quot;nonempty_subset_forward_overlap_lower_bound&quot;: 1.0,
+    &quot;strict_stop_threshold&quot;: 0.70,
+    &quot;complete_registry_scan&quot;: false,
+    &quot;interpretation&quot;: &quot;Candidate-independent universal rejection under current literal support rule; not a uniqueness pass.&quot;
+  },
+  &quot;raster_sha256&quot;: null,
+  &quot;validator_output&quot;: {
+    &quot;candidate_tif&quot;: &quot;NOT GENERATED; no candidate to validate&quot;,
+    &quot;no_nan_inside_footprint&quot;: &quot;not applicable&quot;,
+    &quot;values_in_0_1&quot;: &quot;not applicable&quot;,
+    &quot;crs_shape_transform_match&quot;: &quot;not applicable&quot;,
+    &quot;authorization_receipt&quot;: &quot;NOT OK TO SUBMIT; 0 files authorized&quot;
+  },
+  &quot;submission_name&quot;: null,
+  &quot;submission_note&quot;: &quot;Review only; no new TIFF. Do not submit any existing research-only file.&quot;,
+  &quot;verdict&quot;: &quot;negative&quot;
+}
+</code></pre></div></main>
 <footer><div class="wrap">Selector status for every file on this site: <b>not approved</b>. Whether to spend a
 weekly slot is a separate selector decision, not this repository's. Generated by <code>scripts/build_home.py</code> from
 <code>docs/data/*.json</code> and <code>evidence/*.json</code>. Number labels: <b>ORGANIZER-CONFIRMED</b> (public
