@@ -2,7 +2,7 @@
  "note": "All 22 listed TIFF lanes are inspection downloads only; every file is NOT OK TO SUBMIT. H80 (Riedel) is featured because it has complete evidence from the pinned gems57 evaluator; the later AGO variants have only a different quick 4-quadrant proxy and are not comparable. H80-OTA (orphan thermal alignment, negative) was merged in parallel and is listed second. The literal uniqueness/selector gates remain fail-closed; see docs/data/submission-authorization.json. H81 (slip-cone, negative, research-only) and H77G (hydrothermal demagnetization trough, negative, research-only) are listed for inspection only.",
  "lanes": [
   {
-   "lane": "H77G: hydrothermal magnetite-destruction trough × gravity-basement step × MT clay-cap margin (HOLDOUT-DTI 0.0619 s20 / 0.0618 s30, pure 0.0392/0.0471; negative result)",
+   "lane": "H77G: hydrothermal magnetite-destruction trough \u00d7 gravity-basement step \u00d7 MT clay-cap margin (HOLDOUT-DTI 0.0619 s20 / 0.0618 s30, pure 0.0392/0.0471; negative result)",
    "page": "h77g.html",
    "summary": "h77g-executive-summary.html",
    "file": "downloads/gems77-h77g-demagtrough-gravstep-37654dots-20261021-08b78f3c-zeros.tif",
@@ -494,6 +494,35 @@
    "upload": "Not OK to submit. OK to download for inspection only. HOLDOUT-DTI 0.06707 (gems57-pooled-hide-v2, 11,321 withheld positives, 95% CI 0.05523-0.07791); literal gate FAIL; selector not approved; zero weekly slots.",
    "primary": false,
    "why_primary": "H81 strand-tip slip-cone lane; clearance per release gate (not approved)."
+  },
+  {
+   "lane": "H82: hanging-wall fault-damage collar at the 300 m kernel scale (HOLDOUT-DTI 0.1227 [0.1080, 0.1372], negative result)",
+   "page": "h82.html",
+   "summary": "executive-summary.html",
+   "file": "downloads/gems77-h82-faultcollar-37553dots-20261021-a55f4c9c-zeros.tif",
+   "zip": "downloads/gems77-h82-faultcollar-37553dots-20261021-a55f4c9c-zeros.zip",
+   "run_card": "evidence/h82_run_card.json",
+   "format_valid": true,
+   "protocol_unique": false,
+   "informative_unique": false,
+   "beats_holdout_best": false,
+   "verdict": "negative",
+   "primary": false,
+   "name": "gems77-h82-faultcollar-37553dots-20261021-zeros",
+   "note": "H82 fault-damage collar 37553 dots; HOLDOUT-DTI 0.1227 [0.1080,0.1372] s30; below 0.152718 incumbent: NEGATIVE, do not upload",
+   "note_chars": 125,
+   "sha256": "7f71739a2804bf2fa7199d30d512e0a267e4cfa2fdd0d32304b962db65b98662",
+   "zip_sha256": "60c7ec400acc19d949b4f506813dca3905513c04fa1ee487ad8c89194dd8b372",
+   "holdout_dti_hide_v2": 0.1226552189170721,
+   "holdout_evaluator_version": "gems57-pooled-hide-v2",
+   "holdout_positive_pixels": 11342,
+   "holdout_ci95": [
+    0.10799672421127436,
+    0.1372130738097347
+   ],
+   "upload": "Not OK to submit. OK to download for inspection only. Format-valid (17/17 local checks: single float32 band, EPSG:32611, 3730x3292, pinned transform, values exactly {0,1}, 0 NaN anywhere, zeros outside footprint, 0 dots on catalogue). Registry scan incomplete (0/812 locally accessible) and literal dense-witness gate fail-closed. HOLDOUT-DTI 0.1227 [0.1080, 0.1372] seed 30 vs random 0.0435 (delta +0.079, CI excludes 0) but below the 0.152718 repository incumbent. Selector: not approved; zero weekly slots used.",
+   "why_primary": "New H82 geometry-only research lane: negative holdout verdict, format-valid inspection-only download, per-file status shown on the entry page.",
+   "beat_02778_summary": "No: local HOLDOUT-DTI 0.1227 (seed 30) is below the 0.152718 repository incumbent and far below the owner-reported 0.2778 / 0.4413 ORGANIZER-CONFIRMED leaderboard values; no organizer score exists and no slot was used."
   }
  ]
 }

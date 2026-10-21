@@ -1,3 +1,34 @@
+# GEMSDOE77 — DOE GEMS Prize: audited fault-detection research portfolio
+
+> Read at the start of every session. Standing brief: `PROMPT.md` (operative prompt; also appended below in full);
+> lane evidence: `evidence/`, `registry/`. Multi-pass rule: pass 1 implement + verify, pass 2 review and fix,
+> pass 3 re-check against the request, then PR and merge to `main` from the session branch only.
+
+## 🚦 Status at a glance — this session (lane H82, 2026-10-21)
+
+| Question | Answer |
+|---|---|
+| Competition | DOE GEMS Prize (DrivenData #306): one single-band float32 GeoTIFF, or a ZIP containing exactly one; EPSG:32611; 3730×3292; 100 m pixels; transform (100, 0, 243350, 0, −100, 4508550); prediction values in [0, 1] |
+| Leaderboard (2026-10-21) | 0.4413 ORGANIZER-CONFIRMED (first place); owner-reported GEMSDOE32 file 0.2778 (no organizer receipt — attribution not authenticated) |
+| Unique TIF generated this session | `docs/downloads/gems77-h82-faultcollar-37553dots-20261021-a55f4c9c-zeros.tif` + one-TIFF `.zip`; 37,553 binary dots; SHA-256 `7f71739a2804bf2fa7199d30d512e0a267e4cfa2fdd0d32304b962db65b98662` |
+| OK to download? | **YES — for inspection** (direct link on `docs/index.html`, first screen; checksums shown on the page) |
+| OK to submit to the competition? | **NO.** HOLDOUT-DTI 0.1227 [0.1080, 0.1372] (seed 30; 11,342 withheld positives) vs random 0.0435 — significant (+0.079, CI excludes 0) but **below** the 0.152718 repository incumbent, so it cannot be expected to beat 0.2778. Registry scan incomplete (0/812 indexed rasters accessible locally). No selector approval; 0 weekly slots used. |
+| Submission mechanics (only after clearance) | `docs/executive-summary.html` — form fields, the earlier "[0, 1]" portal error, ≤140-character Note, step-by-step |
+
+## Hypotheses tested this session (ranked by expected DTI gain ÷ implementation cost; full text: research/h82_hypotheses.md)
+
+1. **H82-1 (implemented, Exp 1):** hanging-wall fault-damage collar at kernel scale — HOLDOUT-DTI 0.1227 [0.1080, 0.1372], significant vs random (+0.079, CI excludes 0), below incumbent → **negative**, not for upload.
+2. **H82-2** catalogue fault-intersection / relay-node intensity — not implemented (next experiment if any off-catalogue credit appears).
+3. **H82-3** signed across-strike K/Th radiometric asymmetry — deferred (needs USGS GeoDAWN bands, DOI 10.5066/P93LGLVQ; source not reachable from this sandbox).
+4. **H82-4** multi-scale residual curvature after regional trend removal — deferred (needs restored 418 MB feature stack).
+5. **H82-5** thermal spring/well alignment anisotropy (DOE/NREL GDR 1391, DOI 10.15121/1881483) — deferred (source not reachable from this sandbox).
+
+## How this repository answers the prompt
+
+- A **unique TIF exists and is directly downloadable** from the site's first screen (`docs/index.html`), with per-file chips stating OK to download / NOT OK TO SUBMIT — it is obvious whether download and/or submit is permitted.
+- Every number is labelled HOLDOUT-DTI (evaluator version, withheld positives, 95% CI) or flagged as not organizer-confirmed; no projection is ever written as a score.
+- Negative results are deliverables; no competition slot was spent.
+
 <!-- H77E-KNICK PRIMARY STATUS BANNER -->
 > ## 🚦 IMMEDIATE DOWNLOAD & SUBMISSION STATUS AT A GLANCE (`H77E-Knick` Newest Primary Deliverable)
 >

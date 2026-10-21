@@ -11,3 +11,4 @@ data/raw
 data/raw/
 data/processed/
 data/external/
+evidence/*.npy
