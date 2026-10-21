@@ -1,0 +1,18 @@
+{
+ "mine": "docs/downloads/gems77-h84-orgate-collar-37654dots-20261021-2d0a731a-zeros.tif",
+ "dots": 37654,
+ "checked": 48,
+ "worst_spearman": {
+  "file": "gems77-h82-faultcollar-37553dots-20261021-a55f4c9c-zeros.tif",
+  "their_dots": 37553,
+  "spearman_sample": 0.3175866824258045,
+  "frac_my_dots_within3px": 0.7863440803101928
+ },
+ "worst_overlap": {
+  "file": "gems77-h82-ternaryentropy-20261021-RESEARCH-ONLY.tif",
+  "their_dots": 1879873,
+  "spearman_sample": 0.03503049720801035,
+  "frac_my_dots_within3px": 0.9986986774313485
+ },
+ "scope": "local docs/downloads only; full 812-raster registry not accessible locally - NOT a complete-registry clearance"
+}

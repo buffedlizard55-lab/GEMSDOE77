@@ -1,0 +1,88 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>H84 · tip-lobe · GEMSDOE77</title>
+<meta name="description" content="GEMSDOE77 (DOE GEMS Prize): download the submission GeoTIFFs and see, per file, whether it is OK to upload.">
+<link rel="stylesheet" href="assets/lia.css"></head><body>
+<header><div class="wrap"><span class="brand">GEMSDOE77 · DOE GEMS Prize</span><a href="review-latest.html">Latest review</a> <a href="metric-review.html">Corrected H33 analysis</a> <a href="index.html">Start here</a> <a href="h84.html" class=here>H84 · tip-lobe</a> <a href="tsd.html">H77-TSD · inspection</a> <a href="h77v.html">H77V</a> <a href="h82-texture.html">H82-TEXTURE</a> <a href="h82rank.html">H82R</a> <a href="preflight-review.html">Current review</a> <a href="h82-executive-summary.html">H82</a> <a href="h77g.html">H77G</a> <a href="h77g-executive-summary.html">H77G guide</a> <a href="h77e-knick.html">H77E-Knick</a> <a href="release-review.html">Release safety review</a> <a href="executive-summary.html">How to submit</a> <a href="h81.html">H81</a> <a href="h82.html">H82</a> <a href="h83.html">H83</a> <a href="h80t.html">H80T</a> <a href="h80.html">H80</a> <a href="ago.html">AGO</a> <a href="h79-orient.html">H79-ORIENT</a> <a href="h78.html">H78</a> <a href="lia.html">LIA</a> <a href="contactphys.html">Contact-physics</a> <a href="urank.html">Selective-U</a> <a href="lia-analysis.html">Why 0.2778</a> <a href="lia-sources.html">Sources</a>
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE77">GitHub</a></div></header><main><div class="wrap"><h1>H84 lane: fault-tip crack-tip stress lobe (2.5 km) — blind tip splays under Quaternary cover</h1>
+<p class="verdict"><b>Verdict: NEGATIVE — OK TO DOWNLOAD FOR INSPECTION; NOT OK TO SUBMIT.</b>
+Format-valid (17/17 local checks: single float32 band, EPSG:32611, 3730×3292, pinned transform, values exactly {0,1}, 0 NaN anywhere, zeros outside footprint, 0 dots on catalogue). HOLDOUT-DTI 0.1209 [0.1068,0.1354] seed30 (11,342 withheld positives, gems57-pooled-hide-v2) vs random 0.0476 delta +0.0733 [0.0600,0.0877] significant, vs H33-approx 0.0412 delta +0.0797 [0.0617,0.0971] significant, but below repository incumbent 0.152718. Registry: sparse informative max 3-px overlap 0.787 >0.70 vs H82 faultcollar (duplicate by literal rule), literal dense-witness gate 1.0 >0.70 fail-closed. Selector: not approved; 0 weekly slots used.</p>
+<section class="card dl research"><h2>⬇ H84 unique TIF — DOWNLOAD FOR INSPECTION ONLY</h2>
+<a class="btn" href="downloads/gems77-h84-tiplobe-37654dots-20261021-b57c52b3-zeros.tif" download>Download H84 .tif (130 KB) ✓ Valid for portal format</a>
+<a class="btn alt" href="downloads/gems77-h84-tiplobe-37654dots-20261021-b57c52b3-zeros.zip" download>Same file as one-TIFF .zip (95 KB)</a>
+<div class="chips"><span class="chip ok">OK to download: YES — for inspection</span>
+<span class="chip ok">Portal format (local checks): PASS (37,654 binary dots, 0 on catalogue, all finite [0,1], zeros outside)</span>
+<span class="chip bad">Unique, literal rule (dense witness): FAIL — 1.0 >0.70 universal blocker</span>
+<span class="chip bad">Unique, informative sparse: FAIL — 0.787 >0.70 vs H82/H77E-pure</span>
+<span class="chip warn">Selector: not approved · 0 weekly slots used</span>
+<span class="chip bad">NOT OK TO SUBMIT — inspection only</span></div>
+<p class="small muted">Submission name (unique, for reference only — DO NOT UPLOAD) (48 characters)</p><div class="copy"><code>gems77-h84-tiplobe-37654dots-20261021-b57c52b3-zeros</code><button data-copy="gems77-h84-tiplobe-37654dots-20261021-b57c52b3-zeros">Copy</button></div>
+<p class="small muted">Short note ≤140 chars (for reference only — DO NOT UPLOAD) (133 characters)</p><div class="copy"><code>H84 tip-lobe 37654 dots; HOLDOUT-DTI 0.1209 [0.1068,0.1354] s30 vs random +0.073; tip AUC 0.79; NOT FOR UPLOAD without selector</code><button data-copy="H84 tip-lobe 37654 dots; HOLDOUT-DTI 0.1209 [0.1068,0.1354] s30 vs random +0.073; tip AUC 0.79; NOT FOR UPLOAD without selector">Copy</button></div>
+<p class="small">SHA-256 of .tif: <code>2bff4b55cabe5a4eb7ab1aeff6b21e407a87a576d1d0c3c5f20ed3ddb1c279ba</code> · SHA-256 of .zip: <code>5fc768b4384e69858fbec4abd302a83c68bb56e2db5e50783420d50dca798b11</code> · Bytes: 133,412 / 97,294<br>
+<a href="evidence/h84_run_card.json">JSON run card (machine-readable)</a> · <a href="research/h84_hypotheses.md">5 ranked hypotheses (H84-1 implemented)</a> · <a href="registry/preregistration_h84.json">preregistration (locked before Exp1)</a> · <a href="executive-summary.html">How to submit a promoted file →</a></p></section>
+
+<h2>Why this TIF is unique (byte-novel, not a copy)</h2>
+<p>Generated 2026-10-21 from <b>fault-tip geometry only</b>: 6,747 endpoint pixels (8-neighbour count==2) from 60,988 catalogue pixels, distance to nearest tip R=25 px (2.5 km) isotropic field 1−d/R, 37,654 binary dots at min separation 2.8 px, zero on catalogue, zeros outside footprint. No prior lane uses tip-endpoint distance as primary scorer (grep 2026-10-21 negative). Previous best sparse dots: H33 37,654 (pruned near-catalogue), H83 collar 37,553 (isotropic damage collar), H77E-Knick 36,500 (knickpoints+step+LOCO). SHA-256 <code>2bff4b55…</code> is distinct from all 48 sparse registry TIFs checked locally; no byte-identical copy exists.</p>
+
+<h2>Holdout result (every number labelled HOLDOUT-DTI)</h2>
+<p>Shared evaluator <code>gems57-pooled-hide-v2</code>, pooled hide-and-recover, alpha=0.2 beta=0.8, 300 m triangular kernel. Whole buffered fault components withheld (hide_frac 0.20, buffer 3 px, domain erosion 12 px); every catalogue-derived feature derived from <b>visible faults only</b> and visible faults masked pixel-exactly. CIs are paired physical spatial-cluster bootstrap (1,000 draws, 159 clusters).</p>
+<table><tr><th>Arm</th><th>HOLDOUT-DTI</th><th>95% CI</th><th>Evaluator</th><th>Withheld positives</th></tr>
+<tr><td><b>H84 tip-lobe (R=25 px / 2.5 km tip distance)</b></td><td><b>0.120894</b></td><td>0.106793 – 0.135357</td><td>gems57-pooled-hide-v2</td><td>11,342</td></tr>
+<tr><td>A0_random (uniform random, matched budget/domains)</td><td>0.047577</td><td>0.042438 – 0.052537</td><td>gems57-pooled-hide-v2</td><td>11,342</td></tr>
+<tr><td>H33 incumbent approx (distance >2 px, same budget)</td><td>0.041235</td><td>0.032370 – 0.051263</td><td>gems57-pooled-hide-v2</td><td>11,342</td></tr>
+<tr><td>Delta H84 − random</td><td><b>+0.073316</b></td><td>+0.059962 – +0.087702</td><td>gems57-pooled-hide-v2</td><td>11,342</td></tr>
+<tr><td>Delta H84 − H33 approx</td><td><b>+0.079659</b></td><td>+0.061712 – +0.097119</td><td>gems57-pooled-hide-v2</td><td>11,342</td></tr>
+</table>
+<p class="small"><b>Versus repository incumbent 0.152718 (H77-Step, 11,321 withheld, CI 0.1315–0.1752):</b> H84 is below, not a matched paired comparison across same folds, but does not beat incumbent — verdict remains negative.<br>
+<b>Versus owner-reported 0.2778 (GEMSDOE32 h33-2-b2) and 0.4413 ORGANIZER-CONFIRMED leader (xiaofanhu):</b> no claim; no organizer receipt exists for H84, and HOLDOUT-DTI is not a leaderboard projection. The 0.2778 is OWNER-REPORT (no receipt, GEMSDOE32 site says no organizer score exists in that repo).</p>
+
+<h2>Leakage canary</h2>
+<p>Each feature tested alone on holdout; worst symmetric AUC <b>0.7946</b> for tip-lobe field (threshold 0.90). No leakage flag. AUC >0.90 would have stopped run as leakage.</p>
+
+<h2>Registry uniqueness (protocol Rule 1)</h2>
+<p>Literal rule: |Spearman rho| >0.90 or >70% dots within 3 px of one registry raster's dots = duplicate. Checked on surface before placement and on final dots. Our surface is tip-distance field (max 0.96, mean 0.23, 2.46M positive px) with broad coverage.</p>
+<ul><li><b>Informative sparse check (diagnostic):</b> Among 38 sparse dot rasters checked locally (pos <500k, density <0.4), worst forward 3-px overlap = <b>0.787</b> vs <code>gems77-h82-faultcollar</code> / <code>gems77-h77e-pure-submod</code> (limit 0.70) → <b>duplicate by literal rule</b>. Worst |rho| ~0.45 <0.90 passes correlation, but overlap fails. This is expected: tip-proximity dots cluster near faults similarly to collar/knick lanes, though preregistered mechanism is distinct (endpoint distance vs isotropic collar).</li>
+<li><b>Literal dense-witness gate (binding):</b> Full-footprint continuous witness <code>ab0a0a62…</code> (5,166,385 positive, density 1.0) has 3-px halo covering 100% of allowed cells → any non-empty candidate has forward overlap 1.0 >0.70. This is a representation-policy contradiction, not geological identity. Reported as FAIL, no private exemption; protocol owner must change shared policy before any raster can pass.</li>
+<li><b>Scope:</b> 0/812 indexed rasters accessible for byte-identical hash check locally; 38/812 sparse rasters checked for overlap/rho; incomplete scan is limitation, never clearance.</li>
+</ul>
+
+<h2>Named non-fault mimic</h2>
+<p>Pleistocene Lake Lahontan (1332 m) and Bonneville (1552 m) wave-cut terrace risers fanning from range-front tips, alluvial-fan lobe apices, and road/canal cuts radiating from fault tips — linear off-trace alignments with no dislocation damage zone. Relay corridors can mimic inter-fan swales and lithologic contacts between overlapping fans.</p>
+
+<h2>Format preflight — why “Predicted values must be in range [0, 1]” will not occur</h2>
+<p>Previous submission from this site was rejected by portal with “Predicted values must be in range [0, 1]”. Original rejected bytes unavailable, cause not proven, but our writer now enforces <b>all-finite [0,1] with zeros outside footprint (mode=zeros, nodata=None)</b>, single-band float32, EPSG:32611, 3730×3292, transform (100,0,243350,0,-100,4508550). This H84 file passed local readback: 15/15 checks, 0 NaN anywhere in 12,279,160 cells, 5,167,373 inside footprint all in [0,1] (min 0.0 max 1.0, unique values {0,1}), 7,111,787 outside footprint all 0.0 (not NaN), 37,654 dots 0 on catalogue. Local format validity is <b>not</b> organizer acceptance guarantee and does not override NOT OK TO SUBMIT.</p>
+<ul><li><b>Single Band:</b> PASS (1)</li><li><b>Dtype Float32:</b> PASS</li><li><b>Dimensions 3730×3292:</b> PASS</li><li><b>CRS EPSG:32611:</b> PASS (UTM 11N, WGS84)</li><li><b>Transform matches sample:</b> PASS (100,0,243350,0,-100,4508550)</li><li><b>No NaN anywhere:</b> PASS (0 NaN total, 0 inside footprint)</li><li><b>No Inf anywhere:</b> PASS</li><li><b>Range [0,1] guaranteed:</b> PASS (all 12,279,160 cells finite in [0,1])</li><li><b>In footprint all finite:</b> PASS (5,167,373/5,167,373)</li><li><b>In footprint range [0,1]:</b> PASS (5,167,373 in range)</li><li><b>Outside footprint zero:</b> PASS (7,111,787 zeros, 0 NaN, 0 other)</li><li><b>Zero dots on catalogue:</b> PASS (0/37,654 on 60,988 catalogue pixels)</li><li><b>BAND diagnostics:</b> min 0.0 max 1.0 positive 37,654 unique 2 values</li></ul>
+
+<h2>Why H33 scored 0.2778 (OWNER-REPORT) and whether we can beat it — PhD-level judgement</h2>
+<p>Measured forensics (evidence/prior_forensics.json): H33 = 37,654 dots, none on catalogue, nearest catalogue distance √5 px, exactly 44,090 D2.8 predecessor with 6,436 dots at/within 200 m of catalogue removed, no dots added. DTI = TPw / (TPw+0.2 FPw+0.8 FNw) with 300 m triangular kernel. Sparse pruning plausibly cuts redundant FP mass while preserving max-kernel TP coverage of hidden faults near but not on mapped traces — especially effective if hidden truth is spatially correlated with but not coincident with mapped traces (reasonable for Great Basin blind faults under piedmont cover). <b>No causal proof:</b> GEMSDOE32 pinned site says no organizer score exists in that repo, so 0.2778 is OWNER-REPORT without byte-to-score receipt; thinning could also remove uniquely useful coverage, and a truly blind fault can lie near a mapped trace; catalogue masking is pixel-exact, not a halo. Our H84 tip-lobe improves over random (+0.073) and over a simple distance-incumbent (+0.080) but remains below the repository's best holdout 0.1527 (H77-Step) and far from 0.2778 — suggesting tip-only geometry is insufficient alone; winning likely requires joint geophysical confirmation (mag/grav tilt confluence, radiometric halos, lidar scarps) plus strict sparse emission as H33 used. We cannot claim we will beat 0.2778 on leaderboard; need to test joint physics on same hide-and-recover folds and obtain selector approval before spending weekly slot.</p>
+
+<h2>Exact submission steps (only if a future selector approves a cleared file)</h2>
+<ol>
+<li>Do not use H84 now; this page says <b>OK TO SUBMIT: NO — inspection only</b>.</li>
+<li>For a later cleared file, download its single <code>-zeros.tif</code> (never JSON/HTML/repo files, never <code>-nan</code> diagnostic).</li>
+<li>Verify SHA-256 locally: <code>sha256sum file.tif</code> (Linux/macOS) or <code>certutil -hashfile file.tif SHA256</code> (Windows) matches run card.</li>
+<li>On DrivenData (<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData GEMS</a>), sign in, accept rules, confirm weekly allowance (3 slots/week per rules PDF), open <b>New submission</b>.</li>
+<li>Choose the cleared .tif (or ZIP containing exactly that one), paste the ≤140-char note, submit, and archive organizer timestamp/submission ID/score receipt. Only then label that file ORGANIZER-CONFIRMED.</li>
+</ol>
+
+<h2>Official sources and irregularity flags</h2>
+<ul>
+<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DrivenData problem & metric (official)</a> — grid CRS/shape/transform, single-band float32 [0,1], alpha 0.2 beta 0.8 triangular R=300 m, single-band GeoTIFF contract.</li>
+<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Public leaderboard (official)</a> — 2026-10-21 read: #1 xiaofanhu 0.4413 ORGANIZER-CONFIRMED; no H84 receipt exists.</li>
+<li><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">Official NLR rules PDF (official)</a> — 3 weekly feedback slots, finalist selection, disclosure.</li>
+<li><a href="https://github.com/drivendataorg/gems-prize-reference-solution">Reference solution (organizer-linked)</a> — CPU execution supported, GPU not required.</li>
+<li><a href="https://epsg.io/32611">EPSG:32611 (official)</a> — WGS84 / UTM 11N, 100 m pixels.</li>
+<li><a href="https://en.wikipedia.org/wiki/Tversky_index">Tversky index (reference)</a> — DTI is distance-weighted Tversky.</li>
+<li><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN (official, DOI 10.5066/P93LGLVQ)</a> — mag/radiometrics source context.</li>
+<li><a href="https://gbcge.org/current-projects/ingenious/">GBCGE INGENIOUS (official)</a> — Great Basin geothermal fault compilation.</li>
+<li><a href="https://gdr.openei.org/submissions/1391">DOE GDR 1391 (official, DOI 10.15121/1881483, CC BY 4.0)</a> — well/spring temps, QFaults traces.</li>
+<li><a href="https://doi.org/10.1016/j.geothermics.2011.02.004">Faulds et al. 2010 Geothermics (peer-reviewed)</a> — 48% step-overs, 22% tips, 20% intersections host Great Basin geothermal.</li>
+<li><b>IR-H84-01:</b> Registry scan incomplete — 38/812 sparse rasters accessible locally for overlap/rho; 0/812 for byte-identical hash; not global uniqueness clearance.</li>
+<li><b>IR-H84-02:</b> Below repository holdout incumbent 0.152718 — negative verdict, no promotion; still beats random and simple incumbent significantly.</li>
+<li><b>IR-H84-03:</b> Sparse overlap 0.787 >0.70 — duplicate by literal rule; dense witness universal overlap 1.0 — FAIL; no selector approval, 0 slots used.</li>
+<li><b>IR-H84-04:</b> OWNER-REPORT 0.2778 has no byte-to-score receipt in GEMSDOE32 pinned site; do not project leaderboard from holdout.</li>
+</ul>
+<p><a href="executive-summary.html">How to submit a promoted file (step by step) →</a> · <a href="index.html">Return to status table →</a></p>
+</div></main>
+<footer><div class="wrap">Selector status for this file: <b>not approved</b>. Notsubmitted. Generated from <code>evidence/h84_run_card.json</code> and <code>registry/preregistration_h84.json</code>. Number labels: <b>ORGANIZER-CONFIRMED</b> (receipt), <b>HOLDOUT-DTI</b> (local pooled-hide-v2, 11,342 withheld, CI), <b>OWNER-REPORT</b> (family ledger, no receipt).</div></footer>
+<script>document.querySelectorAll('button[data-copy]').forEach(b=>b.onclick=()=>{navigator.clipboard.writeText(b.dataset.copy);b.textContent='Copied';setTimeout(()=>b.textContent='Copy',1200)})</script>
+</body></html>
