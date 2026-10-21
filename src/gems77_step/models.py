@@ -147,6 +147,8 @@ def fit_h77_deconfounded_ensemble(
          alluvial piedmont and intrabasin scarps without suppressing range-front continuations.
     """
     n_fp = X16.shape[0]
+    import lightgbm as lgb
+
     full_cols = np.arange(len(all_names), dtype=np.int32)
     dereg_cols = np.array(
         [i for i, nm in enumerate(all_names) if nm not in REGIONAL_LEVEL_FEATURES],
