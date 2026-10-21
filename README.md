@@ -2,6 +2,8 @@
 
 **Current review (2026-10-21): no GeoTIFF in this repository is approved to submit.** Files can be downloaded for inspection, but the literal registry-uniqueness gate is not cleared and no selector has approved a weekly slot. The best retained result is `H77-Step` at **0.152718 HOLDOUT-DTI** (evaluator `gems57-pooled-hide-v2`, 11,321 withheld positive pixels, 95% CI `[0.131548, 0.175185]`); this is a local spatial holdout result, **not** a leaderboard score. The site start page is the authoritative current per-file download/submit status: [docs/index.html](docs/index.html). See the [repository review](docs/review-2026-10-21.md) for verified issues, contradictions and next steps. Do not infer promotion or organizer acceptance from older run cards or historical report wording.
 
+> **Current independent review (2026-10-21): no repository TIFF is cleared for competition upload.** H78 is closed/negative: its existing TIFF is inspection-download only, scored `0.0708` **HOLDOUT-DTI** (`gems57-pooled-hide-v2`, 11,321 withheld positives, 95% CI `[0.0600, 0.0816]`) versus `0.0958` champion construction, and fails the binding literal registry-uniqueness gate. No new submission or competition slot was created. Read the [current review, validation limits, and next steps](docs/SESSION_REVIEW.md) before downloading any candidate.
+
 **Read this README, including the original request at the end of this file, at the beginning of every session.**
 
 ## Submission Files in This Repository (All 7 Parallel Lanes)
