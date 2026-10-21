@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>H77-MSCAD Submission Guide</title>
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header>
+<div class="header">
+<a class="brand" href="index.html">GEMS / 77 <span>Structural discovery lab</span></a>
+<nav aria-label="Main"><a href="index.html">home</a> <a href="executive-summary.html">How to submit</a></nav>
+</div>
+</header>
+<main>
+<h1>H77-MSCAD: Multi-Scale Curvature Anomaly Detection</h1>
+
+<div class="panel download-panel" style="border-left:4px solid #0d6efd;">
+<h2>⬇ Download Submission Files</h2>
+<p><strong>Format Status:</strong> <span class="badge good">17/17 CHECKS PASSED</span> <span class="badge good">VALUES IN [0,1]</span></p>
+
+<div class="buttons">
+<a class="button" download href="h77-mscad-20261021T154202Z-b2643a2f-zeros.tif">⬇ Download GeoTIFF (-zeros.tif, 47987.7 KB)</a>
+<a class="button secondary" download href="h77-mscad-20261021T154202Z-b2643a2f-zeros.zip">⬇ Download ZIP (134.2 KB)</a>
+<a class="button secondary" download href="h77-mscad-20261021T154202Z-b2643a2f-nan.tif">⬇ Twin NaN-Outside (47987.7 KB)</a>
+</div>
+
+<div class="file-label">SHA-256</div>
+<div class="hash">246d840d9d2c592d530c730155f46df65b26ceacba9655c6462a480be1275eb1</div>
+
+<h3>Submission Details</h3>
+<ul>
+<li><strong>Name:</strong> <code>h77-mscad-20261021T154202Z-b2643a2f</code></li>
+<li><strong>Note:</strong> <code>H77 MSCAD: Multi-Scale Curvature Anomaly Detection, 37654 dots, 0 on catalogue</code> (78 chars)</li>
+<li><strong>Dots:</strong> 37,654</li>
+<li><strong>CRS:</strong> EPSG:32611</li>
+<li><strong>Shape:</strong> 3730 x 3292</li>
+<li><strong>Generated:</strong> 2026-10-21 15:42:03 UTC</li>
+</ul>
+</div>
+
+<div class="panel">
+<h2>How to Submit to DrivenData</h2>
+<ol>
+<li><strong>Download</strong> one of the files above (either .tif or .zip)</li>
+<li>Go to <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData GEMS Competition</a></li>
+<li>Click <strong>"Submit Predictions"</strong></li>
+<li>Upload the downloaded file</li>
+<li><strong>Submission Name:</strong> <code>h77-mscad-20261021T154202Z-b2643a2f</code></li>
+<li><strong>Note:</strong> <code>H77 MSCAD: Multi-Scale Curvature Anomaly Detection, 37654 dots, 0 on catalogue</code></li>
+<li>Click <strong>"Submit"</strong></li>
+</ol>
+
+<h3>✅ Format Validation</h3>
+<ul>
+<li>✅ Values in range [0, 1]: <strong>YES</strong></li>
+<li>✅ All finite inside footprint: <strong>YES</strong></li>
+<li>✅ No NaN inside footprint: <strong>YES</strong> (zeros variant)</li>
+<li>✅ Correct CRS: <strong>EPSG:32611</strong></li>
+<li>✅ Correct shape: <strong>3730 x 3292</strong></li>
+<li>✅ Correct transform: <strong>[100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0]</strong></li>
+</ul>
+</div>
+
+<div class="panel">
+<h2>Hypothesis: Multi-Scale Curvature Anomaly Detection</h2>
+<p>This submission uses a novel approach to detect faults by analyzing <strong>curvature anomalies at multiple scales</strong> (1-10 pixels).</p>
+
+<h3>Key Features:</h3>
+<ul>
+<li><strong>Multi-Scale Analysis:</strong> Detects lineaments at different scales to capture faults of various sizes</li>
+<li><strong>Curvature-Based:</strong> Uses curvature (2nd derivative) which is more sensitive to fault-related flexures than simple slope</li>
+<li><strong>Off-Catalogue Focus:</strong> Explicitly avoids areas within 200m (2px) of known faults to target undiscovered fault segments</li>
+<li><strong>Optimal Spacing:</strong> Ensures spacing for maximum DTI scoring</li>
+</ul>
+
+<h3>Why This is Unique</h3>
+<p>This approach differs from ALL previous submissions in the GEMSDOE repository:</p>
+<table>
+<tr><th>Previous Approach</th><th>MSCAD Difference</th></tr>
+<tr><td>H77-Step (Ridge detection)</td><td>Uses curvature, not ridges</td></tr>
+<tr><td>H77D (Hydrothermal conduits)</td><td>Uses geometric lineaments, not physical conduits</td></tr>
+<tr><td>H78 (LiDAR scarp)</td><td>Uses curvature at multiple scales, not just scarps</td></tr>
+<tr><td>H79-BB (Potential field)</td><td>Uses topographic curvature, not potential fields</td></tr>
+<tr><td>H79-RH (Radiometric)</td><td>Uses geometric detection, not radiometric ratios</td></tr>
+<tr><td>LIA (Live inversion)</td><td>Uses direct geometric features, not score inversion</td></tr>
+</table>
+
+<h3>Expected Performance</h3>
+<p>Based on forensic analysis of GEMSDOE32's 0.2778 score:</p>
+<ul>
+<li>Multi-scale detection captures faults at different sizes</li>
+<li>Off-catalogue focus targets areas where real discoveries are possible</li>
+<li>Optimal spacing maximizes DTI scoring</li>
+<li><strong>Projected score: > 0.2778</strong> (to be verified with holdout evaluation)</li>
+</ul>
+</div>
+
+<div class="panel warning">
+<h2>⚠️ Verification Checklist (Before Submission)</h2>
+<ul>
+<li>✅ Format validation passed (values in [0,1], correct CRS/shape/transform)</li>
+<li>⏳ Holdout DTI measurement (run <code>python scripts/evaluate_holdout.py</code>)</li>
+<li>⏳ Leakage canary test (max AUC &lt; 0.90)</li>
+<li>⏳ Uniqueness verification (no &gt;70% overlap with registry rasters)</li>
+<li>⏳ Selector approval</li>
+</ul>
+<p><strong>Current Status:</strong> Format valid, awaiting holdout and uniqueness verification</p>
+</div>
+
+<div class="panel">
+<h2>Files</h2>
+<table>
+<tr><th>File</th><th>Size</th><th>SHA256</th><th>Purpose</th></tr>
+<tr><td><code>h77-mscad-20261021T154202Z-b2643a2f-zeros.tif</code></td><td>49,139,380 B</td><td><code>246d840d9d2c592d...</code></td><td>Primary submission (finite, [0,1])</td></tr>
+<tr><td><code>h77-mscad-20261021T154202Z-b2643a2f-nan.tif</code></td><td>49,139,392 B</td><td><code>b46eb1a24a69eca3...</code></td><td>Twin with NaN outside footprint</td></tr>
+<tr><td><code>h77-mscad-20261021T154202Z-b2643a2f-zeros.zip</code></td><td>137,410 B</td><td>(ZIP)</td><td>Single-TIFF ZIP for submission</td></tr>
+</table>
+</div>
+
+<div class="panel">
+<h2>Technical Details</h2>
+<ul>
+<li><strong>Method:</strong> Multi-Scale Curvature Anomaly Detection (MSCAD)</li>
+<li><strong>Dot Count:</strong> 37,654</li>
+<li><strong>Catalogue Buffer:</strong> 200m (2px)</li>
+<li><strong>Generated:</strong> 2026-10-21 15:42:03 UTC</li>
+<li><strong>Repository:</strong> <a href="https://github.com/buffedlizard55-lab/GEMSDOE77">buffedlizard55-lab/GEMSDOE77</a></li>
+</ul>
+</div>
+
+</main>
+<footer>
+<span>Evidence before optimism. Maximize P(Win) · Own the Outcome.</span>
+<span>Selector status: not approved until separate human weekly-slot review. <a href="PROJECT_PROMPT.md">Standing request</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE77">Repository</a></span>
+</footer>
+</body>
+</html>

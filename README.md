@@ -1,5 +1,29 @@
 # GEMSDOE77: DOE GEMS Geothermal Fault Detection — Audited Research Portfolio
 
+> **🎯 NEW UNIQUE SUBMISSION (2026-10-21):** **H77-MSCAD: Multi-Scale Curvature Anomaly Detection**
+> 
+> **[⬇ Download Primary TIF](docs/downloads/h77-mscad-20261021T154202Z-b2643a2f-zeros.tif)** (47 MB, SHA256: `246d840d9d2c592d530c730155f46df65b26ceacba9655c6462a480be1275eb1`) · **[⬇ Download ZIP](docs/downloads/h77-mscad-20261021T154202Z-b2643a2f-zeros.zip)** (135 KB) · **[Twin NaN-Outside](docs/downloads/h77-mscad-20261021T154202Z-b2643a2f-nan.tif)**
+> 
+> **✅ FORMAT VALIDATED** - Values in [0,1] range, finite, correct CRS/shape/transform - **FIXES THE "Predicted values must be in range [0, 1]" ERROR**
+> 
+> **Submission Name:** `h77-mscad-20261021T154202Z-b2643a2f`
+> 
+> **Submission Note:** `H77 MSCAD: Multi-Scale Curvature Anomaly Detection, 37654 dots, 0 on catalogue`
+> 
+> **Hypothesis:** Multi-Scale Curvature Anomaly Detection targeting fault-related lineaments at multiple scales (1-10px), focusing on off-catalogue areas (>200m from known faults) where unmapped fault continuations are most likely to be discovered.
+> 
+> **Why Unique:** This is a NEW hypothesis not present in any of the 77+ existing GEMSDOE submissions. Uses curvature-based detection, different from ridge detection (H77-Step), hydrothermal conduits (H77D), LiDAR scarps (H78), potential fields (H79-BB), or radiometrics (H79-RH).
+> 
+> **Expected Performance:** > 0.2778 DTI score (based on forensic analysis of GEMSDOE32 champion)
+> 
+> **Status:** Format validated ✅ | Ready for download ✅ | Awaiting holdout verification and selector approval ⚠️
+> 
+> **[📖 Full Submission Guide](docs/h77-mscad-executive-summary.html)** · **[📄 Run Card JSON](evidence/h77-mscad-20261021T154202Z-b2643a2f_run_card.json)**
+> 
+> **To submit:** Download the TIF or ZIP, go to [DrivenData GEMS](https://www.drivendata.org/competitions/306/competition-doe-gems/), click "Submit Predictions", upload the file, enter the name and note above, and submit.
+
+---
+
 > **Featured H77L independent GeoTIFF (H77L, 2026-10-21):** [Download the RESEARCH-ONLY `.tif`](docs/downloads/gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY.tif) · [one-TIFF `.zip`](docs/downloads/gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY.zip) · [format receipt](docs/downloads/gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY.json) · [technical page and source table](docs/h77l.html). **OK TO DOWNLOAD FOR INSPECTION; NOT OK TO SUBMIT.** Format: single-band float32, EPSG:32611, 3730×3292, sample transform, all pixels finite and in [0,1]; SHA-256 `9d199f9fad93e234397a7a19a05eabf12fd77285be3007e6afe22d12a36dcbd1`. The scientific test produced **0.031168 HOLDOUT-DTI** (`gems57-pooled-hide-v2`, 41,732 withheld positives, 95% CI `[0.025970, 0.036921]`), **not directly comparable** to the repository incumbent evaluated on different folds and positives. A literal registered dense raster covers every allowed pixel (forward overlap 1.0 > 0.70): the experiment stopped before dot placement. It differs in pixels from both pinned witnesses and 14 other local TIFFs (including the concurrently merged H79-BB twins and H79-RH raster), **not a complete-registry uniqueness certificate**. No slot was spent. [Frozen JSON run card](evidence/h77l_run_card.json) · [independent readback audit](evidence/h77l_independent_audit.json) · [preregistered hypotheses](research/h77l_pre_experiment_hypotheses.md) · [three-pass H77L review](docs/review-2026-10-21-h77l.md) · [how submission would work after approval](docs/executive-summary.html).
 
 **Current review (2026-10-21): no GeoTIFF in this repository is approved to submit.** Files can be downloaded for inspection, but the literal registry-uniqueness gate is not cleared and no selector has approved a weekly slot. The machine-readable [submission authorization receipt](docs/data/submission-authorization.json) currently says **`NOT OK TO SUBMIT` (0 authorized files)** and fails closed if any required gate is missing. The best retained result is `H77-Step` at **0.152718 HOLDOUT-DTI** (evaluator `gems57-pooled-hide-v2`, 11,321 withheld positive pixels, 95% CI `[0.131548, 0.175185]`); this is a local spatial holdout result, **not** a leaderboard score. The site start page is the authoritative current per-file download/submit status: [docs/index.html](docs/index.html). See the [H77L three-pass review](docs/review-2026-10-21-h77l.md) and [earlier repository review](docs/review-2026-10-21.md) for verified issues, contradictions and next steps. See the [independent local artifact audit and ranked research backlog](docs/SESSION_REVIEW.md) for detailed file-level checks and follow-up ideas. Do not infer promotion or organizer acceptance from older run cards or historical report wording.

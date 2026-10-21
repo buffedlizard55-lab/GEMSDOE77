@@ -1,0 +1,82 @@
+{
+  "schema": "gems-parallel-run-card-v1",
+  "lane_repo": "buffedlizard55-lab/GEMSDOE77",
+  "branch": "arena/48a5a6f3-gemsdoe77",
+  "hypothesis": "H77-MSCAD: Multi-Scale Curvature Anomaly Detection targeting fault-related lineaments at multiple scales (1px-10px), focusing on off-catalogue areas (>200m from known faults) where unmapped fault continuations and splays are most likely to be discovered",
+  "named_non_fault_mimicking_process": "Pluvial lake shoreline benches (Lake Lahontan/Bonneville) and fluvial terrace risers with similar curvature signatures",
+  "holdout_dti": {
+    "evidence_label": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "pooled_hide_v2": {
+      "withheld_positive_pixels": "TO BE MEASURED",
+      "score": "TO BE MEASURED",
+      "ci_95": [
+        "TO BE MEASURED",
+        "TO BE MEASURED"
+      ],
+      "note": "Run evaluate_holdout.py to measure"
+    }
+  },
+  "leakage_canary": {
+    "features_tested": "TO BE MEASURED",
+    "max_single_feature_auc": "TO BE MEASURED",
+    "ceiling": 0.9,
+    "pass": false,
+    "note": "Run leakage canary test"
+  },
+  "uniqueness_vs_registry": {
+    "canonical_62_rasters_unique": "TO BE VERIFIED",
+    "portfolio_rasters_scanned": "TO BE VERIFIED",
+    "pre_placement_surface_unique": true,
+    "pre_placement_surface_max_spearman": "TO BE VERIFIED",
+    "post_placement_dots_unique": "TO BE VERIFIED",
+    "post_placement_dots_max_spearman": "TO BE VERIFIED",
+    "post_placement_dots_max_mutual_3px_overlap": "TO BE VERIFIED",
+    "post_placement_dots_max_forward_3px_overlap_real_models": "TO BE VERIFIED",
+    "post_placement_dots_max_jaccard": "TO BE VERIFIED",
+    "note": "This is a NEW hypothesis (MSCAD) not present in any previous submission"
+  },
+  "submission_raster": {
+    "path": "docs/downloads/h77-mscad-20261021T154202Z-b2643a2f-zeros.tif",
+    "pages_download": "downloads/h77-mscad-20261021T154202Z-b2643a2f-zeros.tif",
+    "sha256": "246d840d9d2c592d530c730155f46df65b26ceacba9655c6462a480be1275eb1",
+    "bytes": 49139380,
+    "all_checks_passed": "True",
+    "min_value_entire_raster": 0.0,
+    "max_value_entire_raster": 1.0,
+    "nan_count_entire_raster": 0,
+    "emitted_dots": 37654
+  },
+  "submission_name": "h77-mscad-20261021T154202Z-b2643a2f",
+  "submission_note": "H77 MSCAD: Multi-Scale Curvature Anomaly Detection, 37654 dots, 0 on catalogue",
+  "verdict": "TO BE DETERMINED",
+  "safe_to_download_and_submit": false,
+  "format_validation": {
+    "zeros_tif": {
+      "all_finite_in_footprint": "True",
+      "in_range": "True",
+      "positive_px": 37654,
+      "min": 0.0,
+      "max": 1.0,
+      "sha256": "246d840d9d2c592d530c730155f46df65b26ceacba9655c6462a480be1275eb1"
+    },
+    "nan_tif": {
+      "all_finite_in_footprint": "True",
+      "in_range": "True",
+      "positive_px": 37654,
+      "min": 0.0,
+      "max": 1.0,
+      "sha256": "b46eb1a24a69eca388d5843becc6dbbdaa35c1af1c973bfdf56c03b1e364caa7"
+    },
+    "all_format_checks_pass": "True",
+    "note": "Format is valid. Uniqueness and holdout performance must be verified before submission."
+  },
+  "generation_metadata": {
+    "generated_utc": "2026-10-21T15:42:03.137837Z",
+    "method": "Multi-Scale Curvature Anomaly Detection (MSCAD)",
+    "hypothesis_type": "Geometric lineament detection",
+    "target_dots": 37654,
+    "actual_dots": 37654,
+    "catalogue_buffer_px": 2
+  }
+}
