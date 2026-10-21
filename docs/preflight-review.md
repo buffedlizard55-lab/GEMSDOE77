@@ -131,7 +131,7 @@ release-gate NaN/type hardening, and retained both regression suites. All combin
 repeated; no shared-template source or raster bytes were changed.
 
 PR #52 then merged the independent H82 chemistry lane while this review was under reconciliation. Its TIFFs, negative
-status, source code and tests are preserved without rerunning its experiment or claiming authorship. Re-read all
-**30** currently listed primary TIFFs: format/integrity PASS for every file, zero authorized uploads. The current
-30-file manifest-bound readback replaces the earlier 22- and 23-file receipts. The current branch review supersedes
-this historical status snapshot.
+status, source code and tests are preserved without rerunning its experiment or claiming authorship. At that review's
+snapshot, all **30** listed primary TIFFs passed format/integrity readback; zero uploads were authorized. The
+30-file manifest-bound readback replaced the earlier 22- and 23-file receipts at that time. The current branch review
+supersedes this historical status snapshot.

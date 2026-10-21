@@ -311,14 +311,39 @@ def test_current_review_and_metric_correction_are_linked():
     for name in ('index.html', 'executive-summary.html'):
         text = (DOC / name).read_text()
         assert 'review-latest.html' in text and 'metric-review.html' in text
-        assert 'no new TIFF' in text
+        assert 'Current branch review:' in text or name == 'executive-summary.html'
+        assert 'no new TIFF' in text or 'NO NEW TIFF' in text
     analysis = (DOC / 'metric-review.html').read_text()
     assert 'ΔT=k' in analysis and 'only when' in analysis
     assert 'does <strong>not</strong> always increase' in analysis
     review = (DOC / 'review-latest.html').read_text()
     assert 'NOT OK TO SUBMIT' in review
-    assert 'No new TIFF was generated' in review
-    assert 'Resource not accessible by integration' in review
+    assert 'STOP_UNIVERSAL_DUPLICATE' in review
+    assert '5,106,385' in review
+    assert 'Ranked conditional hypothesis shortlist' in review
+    assert 'NOT RUN' in review
+    current_card = json.loads((DOC / 'evidence/review_6a5eca5f_card.json').read_text())
+    assert current_card['branch'] == 'arena/6a5eca5f-gemsdoe77'
+    assert current_card['new_tiff_generated'] is False
+    assert current_card['holdout_dti']['evidence_class'] == 'NOT RUN'
+    assert current_card['ok_to_submit'] is False
+
+
+def test_current_review_has_no_submission_download_or_score_projection():
+    report = (ROOT / 'docs/review-2026-10-21-arena-6a5eca5f.md').read_text()
+    assert 'NO NEW TIFF GENERATED' in report
+    assert 'Expected DTI change is unknown' in report
+    assert 'cross-wavelet coherence' in report
+    assert 'monogenic phase congruency already exists' in report
+    assert 'not obtainable/validated' in report.lower()
+    assert 'ORGANIZER-CONFIRMED' in report
+    assert '0.2778' in report
+    assert 'causal proof' in report
+    assert 'submission_name": null' in report
+    card = json.loads((ROOT / 'evidence/review_6a5eca5f_card.json').read_text())
+    assert card['raster_sha256'] is None
+    assert card['submission_name'] is None
+    assert card['weekly_slots_used'] == 0
 
 
 def test_current_preflight_review_does_not_claim_a_new_submission():
@@ -362,7 +387,7 @@ def test_current_branch_review_is_the_published_review_and_first_status():
     assert len(card["submission_note"]) == card["submission_note_length"] <= 140
     assert (DOC / "evidence/current_review_run_card.json").read_bytes() == (ROOT / "evidence/current_review_run_card.json").read_bytes()
     audit = json.loads((ROOT / "evidence/listed_download_audit.json").read_text())
-    assert audit["listed_count"] == card["validator_output"]["existing_listed_primary_tiff_readback"]["listed_count"] == 30
+    assert audit["listed_count"] == card["validator_output"]["existing_listed_primary_tiff_readback"]["listed_count"] == 33
     assert audit["all_format_pass"] is card["validator_output"]["existing_listed_primary_tiff_readback"]["all_format_pass"] is True
 
 
