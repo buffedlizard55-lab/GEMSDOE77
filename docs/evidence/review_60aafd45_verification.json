@@ -1,9 +1,9 @@
 {
   "status": "PASS",
-  "checked_utc": "2026-10-21T17:01:28.271190+00:00",
+  "checked_utc": "2026-10-21T17:04:31.319599+00:00",
   "branch": "arena/60aafd45-gemsdoe77",
   "baseline_tests_passed": 124,
-  "final_tests_passed": 186,
+  "final_tests_passed": 189,
   "software_checks_not_performance_scores": true,
   "commands_passed": [
     "python scripts/build_site.py",
@@ -31,8 +31,8 @@
   },
   "scope": "Local tests/builds and byte readback only. No new holdout, complete registry certification, portal acceptance or organizer score receipt.",
   "premerge_tests_passed": 146,
-  "reconciled_main": "925b221",
-  "listed_primary_tiffs": 24,
-  "independent_local_other_tiffs": 38,
+  "reconciled_main": "f7845f9",
+  "listed_primary_tiffs": 25,
+  "independent_local_other_tiffs": 39,
   "universal_preflight_exit": 2
 }
