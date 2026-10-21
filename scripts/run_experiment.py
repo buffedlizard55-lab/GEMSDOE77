@@ -12,7 +12,7 @@ import rasterio
 from sklearn.metrics import roc_auc_score
 from gems57 import evaluate_holdout as ev, spatial, uniqueness
 from gems57.submission_writer import write_submission
-from gems77.features import build
+from gems77.urank_features import build
 from prepare_data import prepare
 from fetch_data import sha
 from restore_registry import get_registry

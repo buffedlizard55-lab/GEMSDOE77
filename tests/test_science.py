@@ -5,7 +5,7 @@ import numpy as np
 import pytest
 from scipy import ndimage as ndi
 from gems57 import metric, spatial, evaluate_holdout as ev
-from gems77.features import curvature, normalized, build
+from gems77.urank_features import curvature, normalized, build
 ROOT=Path(__file__).resolve().parents[1]
 
 
