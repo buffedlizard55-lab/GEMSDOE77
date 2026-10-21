@@ -1,0 +1,26 @@
+{
+  "experiment": "H82-E1",
+  "evidence_class": "leakage-canary + feature diagnostic (not HOLDOUT-DTI)",
+  "preregistration": "registry/preregistration_h82.json",
+  "block_coverage_mean": 0.41849419474601746,
+  "block_finite_frac_before_nn_fill": 0.41764169931411743,
+  "depth_full_stats_m": {
+    "min": 103.21578979492188,
+    "max": 394.0252990722656,
+    "mean": 241.95790100097656,
+    "median": 259.99127197265625
+  },
+  "leakage_canary": {
+    "depth_raw_rank": {
+      "auc": 0.48842614642032334,
+      "symmetric_auc": 0.5115738535796767,
+      "leakage_flag": false
+    },
+    "depth_gradient_rank": {
+      "auc": 0.47682291516551195,
+      "symmetric_auc": 0.5231770848344881,
+      "leakage_flag": false
+    }
+  },
+  "any_leakage_flag": false
+}

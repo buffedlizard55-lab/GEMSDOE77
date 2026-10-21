@@ -1,0 +1,16 @@
+{
+  "purpose": "Obtainability check for H82-4/H82-5 (named free official external sources) before proposing them as viable, per the standing science instruction.",
+  "checked_utc": "2026-10-21",
+  "method": "GitHub code-search API (api.github.com is on the sandbox egress allow-list) for digitized AMT/resistivity/self-potential/InSAR rasters anywhere under buffedlizard55-lab",
+  "queries": [
+    {"q": "resistivity org:buffedlizard55-lab", "total_count": 0},
+    {"q": "InSAR org:buffedlizard55-lab", "total_count": 3, "hits_are_data_rasters": false, "note": "all 3 hits are unrelated JSON provenance/verification files (data_verification.json, feature_profile.json), not a geophysical raster"}
+  ],
+  "sandbox_egress_allowlist": ["github.com", "codeload.github.com", "api.github.com", "registry.npmjs.org", "pypi.org", "files.pythonhosted.org"],
+  "official_sources_named_but_unreachable_this_session": [
+    "https://gdr.openei.org/submissions/1391 (GDR, AMT/SP inventory not confirmed digitized/mirrored)",
+    "https://dataspace.copernicus.eu/ (Sentinel-1 InSAR)",
+    "https://search.asf.alaska.edu/ (ASF DAAC InSAR)"
+  ],
+  "verdict": "H82-4 and H82-5 remain BLOCKED this session: no owner GitHub mirror of the needed raster was found, and the official hosts are outside the sandbox allow-list. Not proposed as viable until that access gap closes."
+}

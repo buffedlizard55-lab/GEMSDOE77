@@ -1,0 +1,91 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>H82 · negative · GEMSDOE77</title>
+<meta name="description" content="GEMSDOE77 (DOE GEMS Prize): download the submission GeoTIFFs and see, per file, whether it is OK to upload.">
+<link rel="stylesheet" href="assets/lia.css"></head><body>
+<header><div class="wrap"><span class="brand">GEMSDOE77 · DOE GEMS Prize</span><a href="index.html">Start here</a> <a href="h82.html" class=here>H82 · negative</a> <a href="h77g.html">H77G · negative</a> <a href="h77g-executive-summary.html">H77G guide</a> <a href="h77e-knick.html">H77E-Knick · 0/816 firings</a> <a href="release-review.html">Release safety review</a> <a href="executive-summary.html">How to submit</a> <a href="h81.html">H81 · slip-cone</a> <a href="h80t.html">H80T · tilt-persist</a> <a href="h80t-executive-summary.html">H80T guide</a> <a href="h80.html">H80 · negative</a> <a href="ago.html">AGO · negative proxies</a> <a href="h79-orient.html">H79-ORIENT · negative</a> <a href="h79-orient-executive-summary.html">H79-ORIENT guide</a> <a href="h79.html">H79-BB · research-only</a> <a href="h79-radhalo.html">H79-RH · negative</a> <a href="h77l.html">H77L · research-only</a> <a href="h77d.html">H77D (Zero-SGMC)</a> <a href="h77d-executive-summary.html">H77D guide</a> <a href="h77-step.html">H77-Step</a> <a href="h77e.html">H77E · negative</a> <a href="h78.html">H78 lane</a> <a href="lia.html">LIA lane</a> <a href="contactphys.html">Contact-physics lane</a> <a href="urank.html">Selective-U lane</a> <a href="lia-analysis.html">Why 0.2778</a> <a href="lia-sources.html">Sources</a>
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE77">GitHub</a></div></header><main><div class="wrap"><h1>H82 · windowed spectral magnetic source-depth gradient (Spector &amp; Grant 1970 style)</h1>
+<p class="verdict"><b>Verdict: NEGATIVE — OK TO DOWNLOAD FOR INSPECTION; NOT OK TO SUBMIT.</b>
+A frequency-domain (radial power-spectrum) depth-to-magnetic-source-ensemble estimate was computed from only the
+cached RTP band, in non-overlapping 3.2 km blocks, then its spatial gradient was used as the candidate surface — a
+technique never previously implemented in this repository or any inspected sibling. Both leakage canaries pass
+(symmetric AUC ≤ 0.90). On the pooled buffered-whole-component holdout (<code>gems57-pooled-hide-v2</code>, seed 20,
+11,321 withheld positive pixels) the candidate scores <b>0.025822</b> HOLDOUT-DTI (95% CI 0.018615–0.033600), which is
+<b>below its own matched random control</b> (0.046625, 95% CI 0.041751–0.051482; paired Δ = −0.020803, 95% CI
+−0.029114 to −0.012173, entirely negative) and far below the retained 0.152718 H77-Step repository incumbent. The
+fitted depths also cluster narrowly (103–394 m), indicating the method is resolving near-surface magnetic-source
+texture rather than a genuinely deep regional signal at this window size. H82 failed its own preregistered promotion
+gate before any uniqueness scan or weekly slot was considered; it is delivered strictly as an inspection-only negative
+research artifact.</p>
+<section class="card dl research"><h2>⬇ H82 inspection-only GeoTIFF (DO NOT SUBMIT)</h2>
+<a class="btn" href="downloads/gems77-h82-spectral-depth-gradient-37654dots-20261021-zeros.tif" download>Download .tif (115 KB)</a>
+<a class="btn alt" href="downloads/gems77-h82-spectral-depth-gradient-37654dots-20261021-zeros.zip" download>Download one-TIFF .zip</a>
+<div class="chips"><span class="chip ok">OK to download: YES</span>
+<span class="chip ok">Portal format (writer validator): PASS</span>
+<span class="chip warn">Leakage canaries: PASS (≤0.90)</span>
+<span class="chip bad">Beats matched random control: NO</span>
+<span class="chip bad">Beat 0.1527 H77-Step incumbent: NO</span>
+<span class="chip warn">Selector: not approved (0 weekly slots used)</span></div>
+<p class="small muted">Submission name (for reference only — DO NOT UPLOAD)</p><div class="copy"><code>gems77-h82-spectral-depth-gradient-37654dots-20261021-zeros</code><button data-copy="gems77-h82-spectral-depth-gradient-37654dots-20261021-zeros">Copy</button></div>
+<p class="small muted">Short note &lt;= 140 chars (for reference only — DO NOT UPLOAD)</p><div class="copy"><code>H82 spectral depth-gradient (Spector-Grant); HOLDOUT-DTI 0.0258 &lt; random 0.0466 and incumbent 0.1527; negative, do not submit</code><button data-copy="H82 spectral depth-gradient (Spector-Grant); HOLDOUT-DTI 0.0258 &lt; random 0.0466 and incumbent 0.1527; negative, do not submit">Copy</button></div>
+<p class="small">SHA-256 of .tif: <code>26c9eec0d8b3c78f2285e642c0248c378ca7ab67334f084f0e708252f3f8bd16</code> ·
+SHA-256 of .zip: <code>a370443ee979e4ef4f43e07ea747ab67f3deb3d53d02d27da535f710f6b78c2d</code> ·
+<a href="evidence/h82_run_card.json">JSON run card</a> ·
+<a href="evidence/h82_e1_surface.json">Exp 1 canary/surface receipt</a> ·
+<a href="evidence/h82_e2_holdout.json">Exp 2 holdout receipt</a> ·
+<a href="evidence/h82_source_check.json">H82-4/H82-5 obtainability check</a> ·
+<a href="evidence/preregistration_h82.json">preregistration JSON</a> ·
+<a href="research/h82_hypotheses.md">preregistered hypotheses (ranked, 5 candidates)</a></p></section>
+<h2>Why this is a genuinely new technique in this repository</h2>
+<p>Every prior GEMSDOE77 lane that touched magnetic/gravity depth used a <em>spatial-domain</em> method: Euler
+deconvolution with structural index 0 and upward-continuation phase persistence (H77E, negative, below random);
+tilt zero-crossings, analytic-signal ridges, monogenic phase congruency and pseudogravity-Poisson slope (contact-physics,
+negative); magnetite-destruction trough and gravity-basement step (H77G, negative). H82 is the first
+<em>frequency-domain</em> method: it azimuthally averages the 2-D radial power spectrum of RTP inside each 3.2 km block
+and fits the classical Spector &amp; Grant (1970) single-slope relationship <code>ln(amplitude) ≈ ln(C) − z·k</code> to
+estimate <code>z</code>, the depth to the statistical ensemble of magnetic sources under that block, then takes the
+spatial gradient of the resulting depth surface as the candidate fault-edge signature. A repository-wide
+<code>grep -ril "curie|spectral centroid|power spectrum"</code> before this lane found only one prior mention
+(<code>research/hypotheses-xsen-2026-10-21.md</code>), which rejected the idea on the mistaken premise that it needs a
+new external heat-flow compilation — corrected in <code>research/h82_hypotheses.md</code>: the single-slope estimate
+needs only the cached, already-restored RTP band.</p>
+<h2>Synthetic correctness check before trusting the real-data run</h2>
+<p>Before running the method on the GeoDAWN RTP band, <code>tests/test_h82.py</code> builds a synthetic field whose known
+radial amplitude spectrum decays as <code>exp(-k·z_true)</code> for a chosen <code>z_true = 600 m</code>, feeds it through
+the exact same block estimator, and checks the fitted depth lands within a factor of two of the true value. Both
+synthetic unit tests pass, so the arithmetic itself (radial binning, slope fit) is verified correct independently of
+whether the resulting real-data feature turns out to be predictive (it did not).</p>
+<h2>Exp 1 — leakage canaries (ceiling symmetric AUC ≤ 0.90)</h2>
+<table><tr><th>Channel</th><th>Symmetric AUC</th><th>Leakage flag</th></tr>
+<tr><td><code>depth_raw_rank</code></td><td>0.5116</td><td>false</td></tr>
+<tr><td><code>depth_gradient_rank</code></td><td>0.5232</td><td>false</td></tr></table>
+<h2>Exp 2 — pooled holdout (<code>gems57-pooled-hide-v2</code>, seed 20, 11,321 withheld positive pixels)</h2>
+<table><tr><th>Arm</th><th>HOLDOUT-DTI (95% CI)</th></tr>
+<tr><td>H82_gradient (candidate)</td><td><b>0.025822</b> (0.018615–0.033600)</td></tr>
+<tr><td>H82_raw_depth</td><td><b>0.023487</b> (0.011285–0.036010)</td></tr>
+<tr><td>random (matched control)</td><td><b>0.046625</b> (0.041751–0.051482)</td></tr>
+<tr><td>H77-Step repository incumbent (cross-draw reference, not paired)</td><td><b>0.152718</b></td></tr></table>
+<p>Paired difference, H82_gradient minus random: <b>−0.020803</b> (95% CI −0.029114 to −0.012173). The interval is
+entirely negative: the candidate is measurably <em>worse</em> than chance placement at the same budget, not merely
+statistically indistinguishable from it.</p>
+<h2>Local uniqueness diagnostic (not run as a full registry scan — not needed; the lane already failed its holdout gate)</h2>
+<p>Against the 51 locally available comparison rasters in this repository, H82's final dots have 3-px overlap ≤ 0.194
+and |Spearman ρ| ≤ 0.067 — except against the one whole-footprint dense continuous research surface
+(<code>gems77-h77-urank-curvature-0d868dc271bb-research.tif</code>), which is positive everywhere in the footprint and
+therefore produces a forward overlap of 1.0 against <em>any</em> nonempty candidate. That is the same pre-existing,
+already-documented repository issue (IR-77-09), not a new problem specific to H82, and it is moot here because the
+lane is not a submission candidate regardless.</p>
+<h2>What this lane rules in for next time</h2>
+<p><code>research/h82_hypotheses.md</code> also registers H82-2 (two-depth centroid Curie-point depth fused with the
+already-cached INGENIOUS probe halo, deferred — higher implementation cost) and H82-3 (beheaded-drainage network
+asymmetry from the cached chi bands, deferred — needs the raw DEM, not just the reduced channels). H82-4
+(self-potential/AMT resistivity) and H82-5 (Sentinel-1 InSAR) remain explicitly <b>BLOCKED</b>: their official free
+sources (GDR, Copernicus Dataspace, ASF DAAC) are outside this sandbox's egress allow-list, and
+<code>evidence/h82_source_check.json</code> records a GitHub code-search check that found no owner mirror of either
+data type.</p></div></main>
+<footer><div class="wrap">Selector status for every file on this site: <b>not approved</b>. Whether to spend a
+weekly slot is a separate selector decision, not this repository's. Generated by <code>scripts/build_home.py</code> from
+<code>docs/data/*.json</code> and <code>evidence/*.json</code>. Number labels: <b>ORGANIZER-CONFIRMED</b> (public
+leaderboard / submission page), <b>HOLDOUT-DTI</b> (local hide-and-recover; evaluator version, withheld positives, 95% CI),
+<b>INSTRUMENT</b> (projection, never a score).</div></footer>
+<script>document.querySelectorAll('button[data-copy]').forEach(b=>b.onclick=()=>{navigator.clipboard.writeText(b.dataset.copy);b.textContent='Copied';setTimeout(()=>b.textContent='Copy',1200)})</script>
+</body></html>
