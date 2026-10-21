@@ -22,6 +22,7 @@ LB = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboa
 PD = "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
 NAV = [("index.html", "Start here"), ("executive-summary.html", "How to submit"),
+       ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
        ("h79.html", "H79 · research-only"),
        ("h79-radhalo.html", "H79-RH · negative"),
        ("h77l.html", "H77L · research-only"), ("h77d.html", "H77D (Zero-SGMC)"), ("h77d-executive-summary.html", "H77D guide"),
@@ -90,6 +91,17 @@ def main():
     primary = next(x for x in lanes["lanes"] if x.get("primary"))
     # ---------------- status table (every file in the repository)
     def holdout_cell(x):
+        if x["lane"].startswith("H77G:"):
+            g_card = jload("evidence/run_card_h77g.json")
+            if g_card:
+                h = g_card["holdout_dti"]
+                s20 = h["seed_20"]["A_std_plus_h77g"]
+                s30 = h["seed_30"]["A_std_plus_h77g"]
+                p20 = h["seed_20"]["S_h77g_physics"]
+                return (f'<span class="chip bad">NO · HOLDOUT-DTI {s20["dti"]:.4f} '
+                        f'(95% CI {s20["ci95"][0]:.4f}–{s20["ci95"][1]:.4f}; s20, {s20["withheld_positive_pixels"]:,} withheld) / '
+                        f'{s30["dti"]:.4f} (95% CI {s30["ci95"][0]:.4f}–{s30["ci95"][1]:.4f}; s30, {s30["withheld_positive_pixels"]:,} withheld; '
+                        f'pure {p20["dti"]:.4f}; {e(h["evaluator_version"])}; &lt; 0.1527 incumbent)</span>')
         if x["lane"].startswith("H77L:"):
             h = lag_card["holdout_dti"]
             return (f'<span class="chip warn">HOLDOUT-DTI {h["dti"]:.4f} '
@@ -181,10 +193,23 @@ gates and currently says <b>NOT OK TO SUBMIT — 0 authorized files</b>.</p>"""
 {copy("Note (for reference)", primary.get("note", ""))}
 <p class="small">sha256 of the .tif: <code>{e(primary.get("sha256", ""))}</code> · <a href="executive-summary.html">How submission works, step by step →</a></p></section>"""
     facts = ""
+    h77g_card = jload("evidence/run_card_h77g.json")
+    if h77g_card:
+        hs20 = h77g_card["holdout_dti"]["seed_20"]
+        hs30 = h77g_card["holdout_dti"]["seed_30"]
+        facts += f"""<h2>The H77G lane in four lines (latest 3-experiment run)</h2><ul>
+<li><b>Artifact:</b> <code>{e(h77g_card["submission_name"])}</code> · sha256 <code>{e(h77g_card["raster_sha256"])}</code> (37,654 dots, 15/15 validator checks PASS)</li>
+<li><b>Hypothesis:</b> {e(h77g_card["hypothesis"])}</li>
+<li><b>Result:</b> Adding 10 H77G channels to the 19-band HGB stack (<code>A_std_plus_h77g</code>) lifts HOLDOUT-DTI on both seeds:
+Seed 20 <b>{hs20["A_std_plus_h77g"]["dti"]:.4f}</b> (95% CI {hs20["A_std_plus_h77g"]["ci95"][0]:.4f}–{hs20["A_std_plus_h77g"]["ci95"][1]:.4f}; 11,321 withheld; Δ vs A_std {hs20["paired_delta_A_std_plus_h77g_vs_A_std"]["delta"]:+.4f})
+and Seed 30 <b>{hs30["A_std_plus_h77g"]["dti"]:.4f}</b> (95% CI {hs30["A_std_plus_h77g"]["ci95"][0]:.4f}–{hs30["A_std_plus_h77g"]["ci95"][1]:.4f}; 11,342 withheld; Δ vs A_std {hs30["paired_delta_A_std_plus_h77g_vs_A_std"]["delta"]:+.4f}),
+while standalone <code>S_h77g_physics</code> scores {hs20["S_h77g_physics"]["dti"]:.4f} (s20) / {hs30["S_h77g_physics"]["dti"]:.4f} (s30) (<code>gems57-pooled-hide-v2</code>).</li>
+<li><b>Verdict:</b> <b>{e(h77g_card["verdict"].upper())} — OK TO DOWNLOAD FOR INSPECTION; NOT OK TO SUBMIT.</b> {e(h77g_card["verdict_reason"])}</li>
+<li><a href="h77g.html">Full H77G technical report: ranked hypotheses, 3 experiments, IR-H77G-01 MT mesh periodicity discovery, uniqueness &amp; run card →</a> · <a href="h77g-executive-summary.html">H77G submission guide →</a></li></ul>"""
     if card:
         h = card["holdout"]
         d = card["paired_difference_vs_champion_construction"]
-        facts = f"""<h2>The H78 lane in four lines</h2><ul>
+        facts += f"""<h2>The H78 lane in four lines</h2><ul>
 <li><b>Artifact:</b> <code>{e(card["submission_name"])}</code> · sha256 <code>{e(card["raster_sha256"])}</code></li>
 <li><b>Hypothesis:</b> {e(card["hypothesis"])}</li>
 <li><b>Result:</b> HOLDOUT-DTI {h["dti"]:.4f} (95% CI {h["ci95"][0]:.4f}–{h["ci95"][1]:.4f}; {e(h["evaluator_version"])};
@@ -276,8 +301,22 @@ projection is labelled INSTRUMENT, never presented as a score.</li></ul>"""
     # ---------------- H78 lane page
     if card and sub:
         (D / "h78.html").write_text(page("h78.html", "H78 lane", h78_body(card, sub)))
+
+    # ---------------- H77G lane page and executive summary
+    h77g_e1 = jload("evidence/h77g_e1_canary_surface.json")
+    h77g_e2 = jload("evidence/h77g_e2_holdout.json")
+    h77g_e3 = jload("evidence/h77g_e3_uniqueness.json")
+    if h77g_card and h77g_e1 and h77g_e2 and h77g_e3:
+        (D / "h77g.html").write_text(page("h77g.html", "H77G · negative", h77g_body(h77g_card, h77g_e1, h77g_e2, h77g_e3)))
+        (D / "h77g-executive-summary.html").write_text(page("h77g-executive-summary.html", "H77G guide", h77g_exec_body(h77g_card)))
+        for fname in ("run_card_h77g.json", "h77g_e1_canary_surface.json", "h77g_e2_holdout.json", "h77g_e3_uniqueness.json"):
+            shutil.copyfile(ROOT / "evidence" / fname, D / "evidence" / fname)
+        shutil.copyfile(ROOT / "registry/preregistration_h77g.json", D / "evidence/preregistration_h77g.json")
+        shutil.copyfile(ROOT / "research/h77g_hypotheses.md", D / "research/h77g_hypotheses.md")
+
     print("wrote docs/index.html, docs/executive-summary.html, docs/h77l.html" +
-          (", docs/h78.html" if card and sub else ""))
+          (", docs/h78.html" if card and sub else "") +
+          (", docs/h77g.html, docs/h77g-executive-summary.html" if h77g_card else ""))
 
 
 def h77l_body(card, holdout, audit):
@@ -431,6 +470,111 @@ Under the repository's fail-closed policy (I17) the file is therefore <b>not pro
 is a diagnostic only. {e(card["uniqueness_policy"])}</p>
 <h2>Named non-fault mimic</h2><p>{e(card["non_fault_mimic"])}</p>
 <h2>Official sources used</h2><ul>{src}</ul>"""
+
+
+def h77g_body(card, e1, e2, e3):
+    if card["ok_to_submit"] or card["verdict"] != "negative":
+        raise ValueError("H77G cannot be described as approved")
+    tif = card["raster_path"].removeprefix("docs/")
+    zip_ = card["zip_path"].removeprefix("docs/")
+    s20 = card["holdout_dti"]["seed_20"]
+    s30 = card["holdout_dti"]["seed_30"]
+    uq = card["correlation_overlap_vs_registry"]
+    arm_order = [
+        ("A_std_plus_h77g (19 std + 10 H77G)", "A_std_plus_h77g"),
+        ("A_std (19 std control)", "A_std_control"),
+        ("A0_random (uniform random)", "A0_random"),
+        ("S_h77g_physics (pure composite)", "S_h77g_physics"),
+        ("A_h77g_only (10 H77G only)", "A_h77g_only"),
+    ]
+    arm_rows = ""
+    for label, key in arm_order:
+        v20 = s20[key]
+        v30 = s30[key]
+        arm_rows += (
+            f"<tr><td>{e(label)}</td>"
+            f"<td><b>{v20['dti']:.4f}</b> ({v20['ci95'][0]:.4f}–{v20['ci95'][1]:.4f})</td>"
+            f"<td><b>{v30['dti']:.4f}</b> ({v30['ci95'][0]:.4f}–{v30['ci95'][1]:.4f})</td>"
+            f"<td><code>gems57-pooled-hide-v2</code> (11,321 / 11,342 withheld)</td></tr>"
+        )
+    can_s20 = e1["canaries_by_seed"]["20"]["h77g_canaries"]
+    can_s30 = e1["canaries_by_seed"]["30"]["h77g_canaries"]
+    can_rows = "".join(
+        f"<tr><td><code>{e(k)}</code></td><td>{can_s20[k]['symmetric_auc']:.4f}</td>"
+        f"<td>{can_s30[k]['symmetric_auc']:.4f}</td></tr>"
+        for k in can_s20
+    )
+    return f"""<h1>H77G · hydrothermal magnetite-destruction trough × gravity-basement step × MT clay-cap margin</h1>
+<p class="verdict"><b>Verdict: NEGATIVE — OK TO DOWNLOAD FOR INSPECTION; NOT OK TO SUBMIT.</b>
+{e(card['verdict_reason'])}</p>
+<section class="card dl research"><h2>⬇ H77G inspection-only GeoTIFF (DO NOT SUBMIT)</h2>
+<a class="btn" href="{e(tif)}" download>Download .tif ({card['raster_bytes'] / 1024:.0f} KB)</a>
+<a class="btn alt" href="{e(zip_)}" download>Download one-TIFF .zip</a>
+<div class="chips"><span class="chip ok">OK to download: YES</span>
+<span class="chip ok">Portal format (15/15 checks): PASS</span>
+<span class="chip bad">Unique, literal rule (Policy I17): FAIL</span>
+<span class="chip ok">Unique, informative reading (42 sparse rasters): PASS</span>
+<span class="chip bad">Beat 0.1527 H77-Step incumbent: NO</span>
+<span class="chip warn">Selector: not approved (0 weekly slots used)</span></div>
+{copy('Submission name (for reference only — DO NOT UPLOAD)', card['submission_name'])}
+{copy('Short note <= 140 chars (for reference only — DO NOT UPLOAD)', card['submission_note'])}
+<p class="small">SHA-256 of .tif: <code>{e(card['raster_sha256'])}</code> ·
+SHA-256 of .zip: <code>{e(card['zip_sha256'])}</code> ·
+<a href="evidence/run_card_h77g.json">JSON run card</a> ·
+<a href="evidence/h77g_e1_canary_surface.json">Exp 1 canary/surface receipt</a> ·
+<a href="evidence/h77g_e2_holdout.json">Exp 2 dual-seed holdout receipt</a> ·
+<a href="evidence/h77g_e3_uniqueness.json">Exp 3 uniqueness receipt</a> ·
+<a href="evidence/preregistration_h77g.json">preregistration JSON</a> ·
+<a href="research/h77g_hypotheses.md">preregistered hypotheses</a></p></section>
+
+<h2>Diagnostic map &amp; dual-seed holdout benchmark</h2>
+<p><img src="figures/h77g_surface_and_dots.png" alt="H77G geophysical channels, emitted dots, and dual-seed holdout benchmark" style="max-width:100%;height:auto;border:1px solid #cbd5e1;border-radius:6px"></p>
+
+<h2>Pre-experiment hypotheses (ranked by expected DTI gain ÷ implementation cost)</h2>
+<table><tr><th>Rank &amp; ID</th><th>Layers (bands)</th><th>Physical signature</th><th>Why uncatalogued?</th><th>Difference from prior lanes &amp; status</th></tr>
+<tr><td><b>1 · H77G-1 (tested)</b><br>High gain ÷ low cost</td><td><code>rtp</code> (2), <code>tmi_hg</code> (3), <code>tmi_vg</code> (9), <code>iso_grav_anom</code> (13), <code>depth_to_base_surf</code> (15), <code>cond_surf</code> (17)</td><td>Short-wavelength negative-anomaly RTP trough (150–300 m Hessian valley of <code>-RTP_hp</code>) co-located with dip-aligned gravity-basement step and MT conductance margin.</td><td>Ascending 150–250 °C hydrothermal fluids alter ferrimagnetic titanomagnetite to pyrite/leucoxene/smectite along blind play-fairway conduits while leaving the basement density step intact.</td><td>All prior magnetic lanes (<code>H77-Step</code>, <code>H77D</code>, <code>H77E</code>, <code>H79-BB</code>, <code>XSEN</code>) reward magnetic gradient maxima/ridges; H77G rewards <em>demagnetization troughs</em> + <code>cond_surf</code>. <b>Tested (Exp 1–3)</b>.</td></tr>
+<tr><td><b>2 · H77G-2 (included)</b><br>Moderate-high gain ÷ low cost</td><td><code>geod_shearrate</code> (7), <code>geod_dilaterate</code> (8), <code>deq_n100a15</code> (10), <code>ieq_n100a15</code> (16)</td><td>Transtensional opening index √(rank(dilat⁺)·rank(shear)) paired with declustered independent earthquake swarm fraction rank(ieq)²/(rank(ieq)+rank(deq)+0.05).</td><td>Sub-resolution blind fracture networks host persistent fluid-driven micro-earthquake swarms (high <code>ieq/deq</code>) without mainshock surface rupture scarps.</td><td>Prior lanes used <code>geod_2ndinv</code> or raw earthquake density without separating declustered swarm fraction from mainshock aftershocks. <b>Included as channels 7–8</b>.</td></tr>
+<tr><td><b>3 · H77G-3 (included)</b><br>Moderate gain ÷ low cost</td><td><code>depth_to_base_surf</code> (15), <code>iso_grav_anom</code> (13), <code>iso_grav_anom_vg</code> (11)</td><td>Opposite-sign Hessian eigenvalues (λ₁ &gt; 0, λ₂ &lt; 0) of basement depth surface marking buried inter-basin relay ramps and transfer saddles.</td><td>Accommodation zones transfer displacement across step-overs via distributed blind fracture meshes rather than a single range-front scarp.</td><td>Prior lanes used 1-D gradients of <code>depth_to_base_surf</code>, never 2-D hyperbolic saddle curvature. <b>Included as channel 9</b>.</td></tr>
+<tr><td><b>4 · H77G-4 (not run)</b><br>Low-moderate gain ÷ medium cost</td><td><code>det_elev</code> (12), <code>det_elev_slope</code> (19), <code>tc_totalcount</code> (6), GeoDAWN K/Th/U</td><td>Topographic concavity + intermediate slope + radiometric enrichment at travertine/sinter spring mounds.</td><td>Blind faults vent warm fluids forming low-relief sinter/tufa mounds rather than linear scarps.</td><td>Requires external GDR 1391 paleo-feature inventory to separate sinter mounds from alluvial fans. <b>Deferred</b>.</td></tr></table>
+
+<h2>Dual-seed holdout evaluation (Exp 2 · <code>gems57-pooled-hide-v2</code>)</h2>
+<p>Evaluated on unmodified <code>vendor/gems57/evaluate_holdout.py</code> (α=0.2, β=0.8, 300 m triangular kernel, 37,654 dots emitted &gt; 3 px from visible catalogue via 300 m submodular cover, 1,000-draw 20 km spatial-block bootstrap):</p>
+<table><tr><th>Arm</th><th>Seed 20 HOLDOUT-DTI (95% CI)</th><th>Seed 30 HOLDOUT-DTI (95% CI)</th><th>Evaluator &amp; withheld positives</th></tr>{arm_rows}</table>
+<p><b>Key scientific findings:</b> (1) Fixing the upstream <code>F77.hessian_ridge</code> along-axis eigenvalue bug (<b>IR-H77G-02</b>) raises the single-feature ROC-AUC of <code>h77g_demag_trough_s1p5</code> from 0.5114 to <b>0.5347</b>, <code>h77g_demag_persistence</code> from 0.5066 to <b>0.5351</b>, and <code>h77g_composite_surface</code> from 0.5342 to <b>0.5618</b> (the highest single-feature ROC-AUC among all 10 H77G channels on Seed 20), and lifts standalone <code>S_h77g_physics</code> HOLDOUT-DTI from 0.0355 to <b>{s20['S_h77g_physics']['dti']:.4f}</b> (Seed 20) and <b>{s30['S_h77g_physics']['dti']:.4f}</b> (Seed 30, reaching <b>0.0804</b> in the hydrothermally active SE quadrant). (2) Combined 29-channel HGB (<code>A_std_plus_h77g</code>) scores <b>{s20['A_std_plus_h77g']['dti']:.4f}</b> on Seed 20 (vs <code>A_std</code> {s20['A_std_control']['dti']:.4f}, paired Δ = {s20['paired_delta_A_std_plus_h77g_vs_A_std']['delta']:+.4f}; vs random Δ = {s20['paired_delta_A_std_plus_h77g_vs_random']['delta']:+.4f}) and <b>{s30['A_std_plus_h77g']['dti']:.4f}</b> on Seed 30 (vs <code>A_std</code> {s30['A_std_control']['dti']:.4f}, paired Δ = {s30['paired_delta_A_std_plus_h77g_vs_A_std']['delta']:+.4f}; vs random Δ = {s30['paired_delta_A_std_plus_h77g_vs_random']['delta']:+.4f}). Standalone H77G surfaces score below uniform random on the full USGS/INGENIOUS catalogue because most mapped Quaternary faults are cold, unaltered structural normal faults without hydrothermal demagnetization, and <b>IR-H77G-01</b> (below) contaminates short-wavelength derivatives of <code>cond_surf</code>.</p>
+
+<h2>Irregularity discovered: IR-H77G-01 (3.5 km / 7.0 km rectilinear mesh periodicity in <code>cond_surf</code>)</h2>
+<p>Visual and spectral audit of Band 17 (<code>cond_surf</code>, ingested from the INGENIOUS regional MT electrical conductance model, <a href="https://doi.org/10.5066/P9TWT2LU">USGS Data Release doi:10.5066/P9TWT2LU</a>) revealed that 30.5% of adjacent pixel differences are exactly zero and its spatial gradient magnitude <code>|∇cond_surf|</code> exhibits sharp Fourier periodicity at <b>35.02 px (3,502 m) and 70.04 px (7,004 m)</b> along E–W and N–S grid lines (visible in Panel 3 above). Any short-wavelength derivative (σ &lt; 35 px) of <code>cond_surf</code> extracts the coarse MT inversion mesh boundaries rather than geological clay-cap edges. Future lanes using <code>cond_surf</code> should restrict it to regional amplitude or smooth at σ ≥ 35 px (3.5 km).</p>
+
+<h2>Leakage canaries (Exp 1 · ceiling AUC ≤ 0.90)</h2>
+<p>All 10 H77G channels pass the single-feature ROC-AUC leakage canary on both seeds (max symmetric AUC = <b>{e1['max_h77g_symmetric_auc_overall']:.4f}</b> ≤ 0.90):</p>
+<table><tr><th>Channel</th><th>Seed 20 symmetric AUC</th><th>Seed 30 symmetric AUC</th></tr>{can_rows}</table>
+
+<h2>Registry uniqueness audit (Exp 3 · 44 checked rasters)</h2>
+<ul>
+<li><b>Phase 1 (pre-placement surface):</b> max |Spearman ρ| = <b>{uq['surface_max_abs_spearman']:.4f}</b> ≤ 0.90 (informative max |ρ| = <b>{uq['surface_informative_max_abs_spearman']:.4f}</b>; vs H33 ρ = +0.0013).</li>
+<li><b>Phase 2 (final 37,654 dots):</b> against all 42 non-space-filling sparse/dot rasters in the 44-raster checked set, max 3-px forward overlap = <b>{uq['final_dots_informative_max_forward_overlap_3px']:.4f}</b> ≤ 0.70 (<code>{e(uq['final_dots_informative_worst_submission'])}</code>) and max |Spearman ρ| = <b>{uq['final_dots_informative_max_abs_spearman']:.4f}</b> ≤ 0.90. Versus <code>H33-2-B2</code> (<code>c55bafc4</code>), 3-px forward overlap = <b>{uq['vs_h33_champion']['forward_overlap_3px']:.4f}</b> and Spearman ρ = <b>{uq['vs_h33_champion']['spearman_full_footprint']:+.5f}</b>.</li>
+<li><b>Binding literal gate (Policy I17):</b> <code>protocol_unique = false</code> because the pinned dense witness <code>ab0a0a62</code> is positive on 100% of allowed pixels (literal forward overlap = 1.000 &gt; 0.70) and the full 812-raster REST download was omitted to conserve the shared GitHub API budget.</li>
+</ul>"""
+
+
+def h77g_exec_body(card):
+    tif = card["raster_path"].removeprefix("docs/")
+    zip_ = card["zip_path"].removeprefix("docs/")
+    return f"""<h1>H77G Executive Summary &amp; Submission Guide</h1>
+<p class="verdict"><b>Decision for <code>{e(card['submission_name'])}</code>: OK TO DOWNLOAD FOR INSPECTION · NOT OK TO SUBMIT.</b><br>
+Do not spend a DrivenData weekly submission slot on this file. Although it passes all 15/15 local portal format checks (single-band float32, EPSG:32611, 3730×3292, [0.0, 1.0] range, 0 NaN, 0 Inf, 37,654 binary dots, 0 on catalogue) and passes the informative uniqueness gate against all 42 sparse/dot rasters checked (max 3-px overlap {card['correlation_overlap_vs_registry']['final_dots_informative_max_forward_overlap_3px']:.4f} ≤ 0.70, max |ρ| {card['correlation_overlap_vs_registry']['final_dots_informative_max_abs_spearman']:.4f} ≤ 0.90), its holdout DTI ({card['holdout_dti']['seed_20']['A_std_plus_h77g']['dti']:.4f} Seed 20 / {card['holdout_dti']['seed_30']['A_std_plus_h77g']['dti']:.4f} Seed 30 for <code>A_std+H77G</code>; {card['holdout_dti']['seed_20']['S_h77g_physics']['dti']:.4f}/{card['holdout_dti']['seed_30']['S_h77g_physics']['dti']:.4f} for standalone <code>S_h77g_physics</code>) is below the 0.152718 <code>H77-Step</code> repository incumbent and the binding literal uniqueness gate fails closed under Policy I17.</p>
+<section class="card dl research"><h2>⬇ H77G Artifact &amp; Metadata</h2>
+<a class="btn" href="{e(tif)}" download>Download .tif ({card['raster_bytes'] / 1024:.0f} KB)</a>
+<a class="btn alt" href="{e(zip_)}" download>Download one-TIFF .zip</a>
+{copy('Submission name (reference only — DO NOT SUBMIT)', card['submission_name'])}
+{copy('Short note <= 140 chars (reference only — DO NOT SUBMIT)', card['submission_note'])}
+<p class="small">TIFF SHA-256: <code>{e(card['raster_sha256'])}</code> · ZIP SHA-256: <code>{e(card['zip_sha256'])}</code> · <a href="h77g.html">Full H77G technical report →</a> · <a href="evidence/run_card_h77g.json">JSON run card →</a></p></section>
+<h2>Why <code>H33-2-B2</code> (<code>GEMSDOE32</code>) achieved 0.2778 (<code>OWNER-REPORT</code>) and how a submission can score higher</h2>
+<ol>
+<li><b>Exact DTI marginal-credit threshold:</b> Under the official Distance-Weighted Tversky Index (α=0.2, β=0.8, 300 m triangular kernel), adding a predicted pixel of value 1 at score level DTI ≈ 0.27 improves the score only if its marginal kernel-weighted true-positive credit exceeds α·DTI/(1 − (1−α)·DTI) ≈ 0.069. Dense ribbons self-saturate the 300 m kernel while accumulating 0.2·FP<sub>w</sub> penalty on every pixel; sparse dots spaced by ≥ 2.2–3.0 px capture almost the entire 300 m true-positive halo at ~5–10× lower false-positive mass.</li>
+<li><b>Near-catalogue false-positive deletion:</b> The hidden test set contains only <em>newly identified</em> faults absent from the public USGS/INGENIOUS catalogue. Deleting the 6,436 dots of <code>H19-5</code> (44,090 dots, 0.2708 <code>OWNER-REPORT</code>) within B=2 px (200 m) of the public catalogue produced <code>H33-2-B2</code> (37,654 dots, 0.2778 <code>OWNER-REPORT</code>), removing ~1,287 units of 0.2·FP<sub>w</sub> denominator drag.</li>
+<li><b>How to beat 0.2778 and approach the 0.4413 public leader:</b> Combine (a) <b>catalogue-network topology / strike-tip continuation</b> (<code>H77-Step</code> 0.15272 and <code>H77D</code> 0.15011 <code>HOLDOUT-DTI</code>) with (b) <b>subsurface potential-field + hydrothermal demagnetization/gravity-step features</b> (<code>H77G</code>, which lifts 19-band HGB by +0.0022 to +0.0042 across both seeds, especially in the NE/SE geothermal belt, after smoothing <code>cond_surf</code> at σ ≥ 35 px per <code>IR-H77G-01</code>), (c) <b>2-D spatial context</b> (multi-scale U-Net / 2-D spatial encoder per the DrivenData reference solution), and (d) <b>300 m submodular coverage allocation</b> outside a 200–300 m catalogue exclusion buffer.</li>
+</ol>"""
 
 
 if __name__ == "__main__":

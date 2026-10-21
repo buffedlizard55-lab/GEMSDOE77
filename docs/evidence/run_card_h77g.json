@@ -1,0 +1,285 @@
+{
+  "schema": "gems-parallel-run-card-v1",
+  "lane_id": "H77G",
+  "lane_repo": "buffedlizard55-lab/GEMSDOE77",
+  "branch": "arena/5190e3a6-gemsdoe77",
+  "generated_utc": "2026-10-21T16:20:53Z",
+  "hypothesis": "H77G (Hydrothermal Magnetite-Destruction Trough x Gravity-Basement Step x MT Clay-Cap Margin): Ascending geothermal fluids (150-250 C) along blind Great Basin fault conduits alter primary ferrimagnetic titanomagnetite to paramagnetic pyrite, leucoxene, and smectite clay, creating a narrow linear short-wavelength RTP magnetic trough (negative-anomaly valley curvature at sigma=1.5 and 3.0 px) that coincides with an intact subsurface gravity-basement density step, an electrically conductive MT clay-cap lateral margin, and regional transtensional strain.",
+  "mechanism": "Compute high-pass RTP (Band 2 minus sigma=12 px Gaussian regional) and extract multi-scale positive Hessian ridge curvature of -RTP_hp at sigma=1.5 and 3.0 px; pair this demagnetization trough persistence with dip-aligned gravity-basement normal-fault step concordance (Bands 13 and 15), gravity-over-magnetics analytic-signal decoupling (Bands 3, 9, 13), MT conductance lateral margin (Band 17), geodetic transtensional opening index (Bands 7, 8), declustered independent earthquake swarm fraction (Bands 10, 16), and basement-depth Hessian saddle curvature (Band 15). Emit 37,654 discrete binary dots (>3 px from catalogue) via 300 m submodular cover and serialize via vendor/gems57/submission_writer.py.",
+  "named_non_fault_process_that_could_mimic_it": "Non-tectonic paleo-channels incised into Tertiary volcanic bedrock and filled with non-magnetic lacustrine diatomite or felsic ash-flow tuff against a buried bedrock buttress unconformity, or reversed-polarity volcanic flow boundaries.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "kernel_radius_m": 300.0,
+    "seed_20": {
+      "withheld_positive_pixels": 11321,
+      "S_h77g_physics": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.039212575548823625,
+        "ci95": [
+          0.03047194726481378,
+          0.04837752669405247
+        ],
+        "withheld_positive_pixels": 11321,
+        "tpw": 652.2890352919765,
+        "fpw": 37237.16057398076,
+        "fnw": 10668.710964708025
+      },
+      "A_h77g_only": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.03334833942590746,
+        "ci95": [
+          0.024278823989908684,
+          0.04305639258959067
+        ],
+        "withheld_positive_pixels": 11321,
+        "tpw": 554.5204040929235,
+        "fpw": 37302.11172917169,
+        "fnw": 10766.479595907078
+      },
+      "A_std_plus_h77g": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.06194639507112526,
+        "ci95": [
+          0.046978725387111155,
+          0.07836495924496793
+        ],
+        "withheld_positive_pixels": 11321,
+        "tpw": 1032.3293508551171,
+        "fpw": 37008.079573168856,
+        "fnw": 10288.670649144886
+      },
+      "A_std_control": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.06198914487022662,
+        "ci95": [
+          0.04516563715976827,
+          0.08283155701796045
+        ],
+        "withheld_positive_pixels": 11321,
+        "tpw": 1032.9881855298631,
+        "fpw": 37003.098556464116,
+        "fnw": 10288.011814470143
+      },
+      "A0_random": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.047619197610672286,
+        "ci95": [
+          0.04089644420473823,
+          0.05337609147989754
+        ],
+        "withheld_positive_pixels": 11321,
+        "tpw": 794.5041670233435,
+        "fpw": 37344.170603674735,
+        "fnw": 10526.495832976656
+      },
+      "paired_delta_A_std_plus_h77g_vs_A_std": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": -4.274979910136312e-05,
+        "ci95": [
+          -0.008264779817311739,
+          0.00935704823281535
+        ],
+        "withheld_positive_pixels": 11321
+      },
+      "paired_delta_A_std_plus_h77g_vs_random": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.014327197460452974,
+        "ci95": [
+          -0.001015415459604856,
+          0.031011101068697092
+        ],
+        "withheld_positive_pixels": 11321
+      }
+    },
+    "seed_30": {
+      "withheld_positive_pixels": 11342,
+      "S_h77g_physics": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.047064598515617236,
+        "ci95": [
+          0.036032827136746826,
+          0.05851734705265644
+        ],
+        "withheld_positive_pixels": 11342,
+        "tpw": 784.3087773097687,
+        "fpw": 37170.27359312254,
+        "fnw": 10557.691222690231
+      },
+      "A_h77g_only": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.03573938717166663,
+        "ci95": [
+          0.025500337246258584,
+          0.04733656566196771
+        ],
+        "withheld_positive_pixels": 11342,
+        "tpw": 594.9972392244758,
+        "fpw": 37278.111004536324,
+        "fnw": 10747.002760775527
+      },
+      "A_std_plus_h77g": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.06179049861902418,
+        "ci95": [
+          0.047057805966310526,
+          0.07936912995552914
+        ],
+        "withheld_positive_pixels": 11342,
+        "tpw": 1031.0305714133474,
+        "fpw": 37030.50911965426,
+        "fnw": 10310.969428586654
+      },
+      "A_std_control": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.06699645399400952,
+        "ci95": [
+          0.051073426933352484,
+          0.08556679976271653
+        ],
+        "withheld_positive_pixels": 11342,
+        "tpw": 1118.3610757037757,
+        "fpw": 36977.83807458061,
+        "fnw": 10223.638924296227
+      },
+      "A0_random": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.048087861374762925,
+        "ci95": [
+          0.04204586216129967,
+          0.05404900101911334
+        ],
+        "withheld_positive_pixels": 11342,
+        "tpw": 803.1808667833955,
+        "fpw": 37340.62895607081,
+        "fnw": 10538.819133216599
+      },
+      "paired_delta_A_std_plus_h77g_vs_A_std": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": -0.0052059553749853466,
+        "ci95": [
+          -0.012195974923456032,
+          0.002057084690698422
+        ],
+        "withheld_positive_pixels": 11342
+      },
+      "paired_delta_A_std_plus_h77g_vs_random": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.013702637244261254,
+        "ci95": [
+          -0.001183659951743594,
+          0.03042823350200843
+        ],
+        "withheld_positive_pixels": 11342
+      }
+    },
+    "incumbent_bar": {
+      "lane": "H77-Step",
+      "seed20_holdout_dti": 0.152718,
+      "seed20_ci95": [
+        0.131548,
+        0.175185
+      ],
+      "withheld_positive_pixels": 11321,
+      "beats_incumbent": false
+    }
+  },
+  "leakage_canary": {
+    "evidence_class": "CANARY-DIAGNOSTIC",
+    "channels_tested": 10,
+    "max_symmetric_auc": 0.5674527834597073,
+    "ceiling": 0.9,
+    "pass": true
+  },
+  "correlation_overlap_vs_registry": {
+    "registry_scope": "2 SHA-pinned witnesses (dense_witness ab0a0a62 + H33 c55bafc4) + 32 git-sparse scored rasters (>=0.14) + local GEMSDOE77 lane TIFFs; full 812-raster REST scan omitted to preserve shared GitHub API quota",
+    "registry_rasters_checked": 44,
+    "surface_max_abs_spearman": 0.10896691837729168,
+    "surface_informative_max_abs_spearman": 0.028810222557785817,
+    "final_dots_max_abs_spearman": 0.012139715175034671,
+    "final_dots_informative_max_abs_spearman": 0.012139715175034671,
+    "final_dots_informative_max_forward_overlap_3px": 0.6151537685239284,
+    "final_dots_informative_worst_submission": "GEMSDOE67__gemsdoe67-ovtr-ml-cover-tau3p0-20261012-nan.tif",
+    "final_dots_max_forward_overlap_3px": 1.0,
+    "vs_h33_champion": {
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "spearman_full_footprint": 0.001996275428849167,
+      "forward_overlap_3px": 0.17708609975035852
+    },
+    "vs_dense_witness_ab0a0a62": {
+      "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+      "spearman_full_footprint": 0.002046380422407441,
+      "forward_overlap_3px": 1.0
+    },
+    "informative_sparse_models_unique": true,
+    "duplicate_stop": true,
+    "duplicate_stop_reason": "Literal Policy I17 stop: full-footprint dense witness ab0a0a62 covers 100% of allowed pixels (forward 3-px overlap = 1.000 > 0.70), and full 812-raster REST scan was omitted. Against all non-space-filling sparse/dot rasters in the checked set, informative uniqueness is True (max forward 3-px overlap = 0.6152 <= 0.70, max |Spearman rho| = 0.0121 <= 0.90)."
+  },
+  "raster_path": "docs/downloads/gems77-h77g-demagtrough-gravstep-37654dots-20261021-08b78f3c-zeros.tif",
+  "zip_path": "docs/downloads/gems77-h77g-demagtrough-gravstep-37654dots-20261021-08b78f3c-zeros.zip",
+  "raster_sha256": "7b97596de2cacd1d5b5f99f8fc679dbd9cf6a2bd7ab316adea5bf60ad2bb30d0",
+  "zip_sha256": "3769f9e5938bb5737be3514ed4f7a4f0b1cd81885ae3a86bb303057d3c90c5f4",
+  "raster_bytes": 127612,
+  "dots_emitted": 37654,
+  "validator": {
+    "all_checks_passed": true,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "min": 0.0,
+    "max": 1.0,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "emitted_positive_pixels": 37654,
+    "on_catalogue_positive_pixels": 0
+  },
+  "submission_name": "gems77-h77g-demagtrough-gravstep-37654dots-20261021-08b78f3c-zeros",
+  "submission_note": "H77G demag-trough x grav-base step (37654d); HOLDOUT-DTI 0.0619(s20)/0.0618(s30) pure 0.0392 <0.1527: NEGATIVE",
+  "note_length": 110,
+  "protocol_unique": false,
+  "informative_unique": true,
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "safe_to_download_and_submit": false,
+  "approved_for_weekly_slot": false,
+  "organizer_confirmed_score_for_this_tif": null,
+  "weekly_slots_used": 0,
+  "verdict": "negative",
+  "verdict_reason": "Fixing the upstream F77.hessian_ridge along-axis eigenvalue bug (IR-H77G-02) raises the single-feature ROC-AUC of h77g_composite_surface to 0.5618 (Seed 20) and lifts standalone S_h77g_physics HOLDOUT-DTI to 0.0392 (Seed 20) / 0.0471 (Seed 30). Combined 29-channel HGB (A_std_plus_h77g) scores 0.0619 on Seed 20 (vs A_std 0.0620, paired delta -0.0000; vs random +0.0143) and 0.0618 on Seed 30 (vs A_std 0.0670, paired delta -0.0052; vs random +0.0137). Because all arms remain below the 0.152718 H77-Step repository incumbent and the Policy I17 literal dense-witness gate fails closed, H77G is delivered as a format-valid, informative-unique, inspection-only negative research artifact; 0 weekly slots spent.",
+  "budget": {
+    "experiments_run": 3,
+    "max_experiments": 3,
+    "weekly_slots_spent": 0,
+    "elapsed_seconds_exp3": 107.67
+  }
+}
