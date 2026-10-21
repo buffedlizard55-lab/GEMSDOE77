@@ -196,6 +196,26 @@ def test_h80_featured_homepage_is_generated_from_its_negative_run_card():
     assert 'Will it beat 0.2778?</b> No claim that this file beats' in home
 
 
+def test_ago_quick_proxy_is_not_promoted_as_a_score_or_submission():
+    lanes=json.loads((DOC/'data/lanes.json').read_text())['lanes']
+    ago=[x for x in lanes if x['lane'].startswith('AGO-')]
+    assert len(ago)==3 and all(x['verdict']=='negative' and x['primary'] is False for x in ago)
+    assert all(x['protocol_unique'] is False for x in ago)
+    assert all('Not OK to submit' in x['upload'] and 'inspection only' in x['upload'] for x in ago)
+    assert all('quick 4-quadrant' in x['upload'] and 'exact withheld-positive count and 95% CI' in x['upload'] for x in ago)
+    page=(DOC/'ago.html').read_text()
+    assert 'NOT OK TO SUBMIT' in page and 'DO NOT SUBMIT' in page
+    assert 'not reportable HOLDOUT-DTI scores' in page
+    assert 'exact withheld-positive count and a 95% confidence interval are absent' in page
+    assert 'How to submit this file' not in page and 'RECOMMENDED for portal' not in page
+    assert '0.1034' not in page and '0.0894' not in page and '0.1444' not in page
+    assert 'portal acceptance' in page.lower()
+    builder=(ROOT/'scripts/build_ago_page.py').read_text()
+    assert '/tmp/ago_final_info.json' not in builder
+    assert 'evidence/ago_run_card.json' in builder
+    assert 'No submission steps apply' in builder and 'NOT OK TO SUBMIT' in builder
+
+
 def test_negative_lanes_are_not_recommended_or_promoted_on_entry_page():
     """The aggregate landing page must not recommend files whose overall verdict is negative."""
     lanes=json.loads((DOC/'data/lanes.json').read_text())

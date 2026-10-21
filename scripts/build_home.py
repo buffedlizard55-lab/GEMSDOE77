@@ -23,7 +23,7 @@ LB = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboa
 PD = "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
 NAV = [("index.html", "Start here"), ("release-review.html", "Release safety review"), ("executive-summary.html", "How to submit"),
-       ("h80.html", "H80 · negative"),
+       ("h80.html", "H80 · negative"), ("ago.html", "AGO · negative proxies"),
        ("h79-orient.html", "H79-ORIENT · negative"), ("h79-orient-executive-summary.html", "H79-ORIENT guide"),
        ("h79.html", "H79-BB · research-only"),
        ("h79-radhalo.html", "H79-RH · negative"),
@@ -133,6 +133,8 @@ def main():
                     f'(95% CI {h["ci95"][0]:.4f}–{h["ci95"][1]:.4f}; '
                     f'{e(h["evaluator_version"])}; {h["withheld_positive_pixels"]:,} withheld); '
                     'not comparable to incumbent</span>')
+        if x["lane"].startswith("AGO-"):
+            return '<span class="chip warn">Quick 4-quadrant proxy only; no exact withheld-positive count or 95% CI, not reportable HOLDOUT-DTI</span>'
         if x["lane"].startswith("H79-ORIENT:"):
             h20 = orient_card["holdout"]["seed20"]["scores"]["H79_plus_raw"]
             h30 = orient_card["holdout"]["seed30"]["scores"]["H79_plus_raw"]
