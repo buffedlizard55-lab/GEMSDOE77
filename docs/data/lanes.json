@@ -1,6 +1,34 @@
 {
-  "note": "H77-TSD (transtensional strain-partitioning \u00d7 seismic swarm excess \u00d7 MT clay-cap margin + 12-bit LOCO relay & 300 m submod), H77V, H82-TEXTURE, and H82 chemistry-concordance are distinct negative lanes. All listed files are inspection-only and NOT OK TO SUBMIT; see submission-authorization.json. Historical baseline wins are not matched-current-incumbent evidence. H82R: radiometric negative research file; NOT OK TO SUBMIT.",
+  "note": "H77-RELAY (en-echelon relay linkage, catalogue-only, negative), H77-TSD, H77V, H82-TEXTURE, H82 chemistry etc. are distinct negative lanes. All files inspection-only and NOT OK TO SUBMIT; see submission-authorization.json.",
   "lanes": [
+    {
+      "lane": "H77-RELAY: Relay-ramp linkage corridors between en-echelon normal-fault strands (catalogue-only, deterministic; HOLDOUT-DTI 0.0129 s20 / 0.0122 s30; negative under Policy I17)",
+      "page": "h77relay.html",
+      "summary": "h77relay-executive-summary.html",
+      "file": "downloads/gems77-h77relay-enechelon-link-37654dots-20261021-zeros.tif",
+      "zip": "downloads/gems77-h77relay-enechelon-link-37654dots-20261021-zeros.zip",
+      "run_card": "evidence/h77relay_run_card.json",
+      "format_valid": true,
+      "protocol_unique": false,
+      "informative_unique": true,
+      "beats_holdout_best": false,
+      "selector_approved": false,
+      "verdict": "negative",
+      "primary": false,
+      "name": "gems77-h77relay-enechelon-link-37654dots-20261021-zeros",
+      "note": "H77-RELAY en-echelon relay corridors 37654 dots 2.8px; HOLDOUT-DTI 0.0129 s20 / 0.0122 s30; inspection only",
+      "sha256": "62cd16c7ff0bc22be5ba25c0253fc5e064f8e840dc50122764017dd3bb5133b4",
+      "holdout_dti_hide_v2": 0.012874668933233163,
+      "holdout_evaluator_version": "gems57-pooled-hide-v2",
+      "holdout_positive_pixels": 11321,
+      "holdout_ci95": [
+        0.007433332222616159,
+        0.01933259522958806
+      ],
+      "upload": "Not OK to submit. OK to download for inspection only. Format-valid (15/15 checks, 0 NaN, [0,1], 37,654 dots) and informative-unique vs dot fields (max 3-px forward overlap 0.1408 vs H33 <=0.70, max |rho| 0.0092 <=0.90) but literal uniqueness FAIL (1.0 vs dense continuous witness ab0a0a62, support_fraction 1.0) and HOLDOUT-DTI 0.0129 s20 / 0.0122 s30 is below 0.1527 H77-Step incumbent; leakage canary PASS (0.5238 <=0.90); selector not approved.",
+      "why_primary": "New H77-RELAY catalogue-only relay-ramp linkage lane: 709 corridors from 1,794 visible strands, 37,654 dots at 2.8 px, informative-unique, leakage-clean, but negative on holdout.",
+      "beat_02778_summary": "Not authorized for submission: informative uniqueness PASS but below 0.1527 H77-Step holdout best and blocked under Policy I17 literal rule. HOLDOUT-DTI is not a leaderboard projection."
+    },
     {
       "lane": "H77-TSD: Transtensional strain-partitioning \u00d7 seismic swarm excess \u00d7 MT clay-cap margin + 12-bit LOCO relay & 300 m submod (0.1360 / 0.1337 HOLDOUT-DTI; negative under Policy I17)",
       "page": "tsd.html",

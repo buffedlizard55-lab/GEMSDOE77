@@ -2,12 +2,30 @@
   "schema": "gems-listed-download-readback-v1",
   "evidence_class": "FORMAT-INTEGRITY-MEASUREMENT; NOT SCORE OR PORTAL ACCEPTANCE",
   "scope": "Every primary TIFF in docs/data/lanes.json; no archive or NaN twins, no uniqueness certification",
-  "manifest_sha256": "818ca48fe05413cc3ee651a0111a06064964a208fc5aeb19454b41fd6d947fe4",
+  "manifest_sha256": "0d61797a8ac0357de94b6e1cb3a58c2cb2b8753f4255f84eaf71b58859b4b543",
   "reference_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
-  "listed_count": 28,
+  "listed_count": 30,
   "all_format_pass": true,
   "authorized_to_submit": false,
   "artifacts": [
+    {
+      "lane": "H77-RELAY: Relay-ramp linkage corridors between en-echelon normal-fault strands (catalogue-only, deterministic; HOLDOUT-DTI 0.0129 s20 / 0.0122 s30; negative under Policy I17)",
+      "file": "downloads/gems77-h77relay-enechelon-link-37654dots-20261021-zeros.tif",
+      "sha256": "62cd16c7ff0bc22be5ba25c0253fc5e064f8e840dc50122764017dd3bb5133b4",
+      "checks": {
+        "single_band": true,
+        "crs_matches": true,
+        "shape_matches": true,
+        "transform_matches": true,
+        "finite_entire_raster": true,
+        "no_nan_inside_footprint": true,
+        "values_in_0_1": true,
+        "nodata_none": true,
+        "sha256_matches_manifest": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
     {
       "lane": "H77-TSD: Transtensional strain-partitioning \u00d7 seismic swarm excess \u00d7 MT clay-cap margin + 12-bit LOCO relay & 300 m submod (0.1360 / 0.1337 HOLDOUT-DTI; negative under Policy I17)",
       "file": "downloads/gems77-tsd-transtens-swarm-submod-37654dots-20261021-zeros.tif",
@@ -498,6 +516,24 @@
       "lane": "H77-BGB: buried growth-wedge inflection x transtensional strain-partitioning x clay-cap breach (0.0584 lane / 0.1024 LOCO HOLDOUT-DTI)",
       "file": "downloads/gems77-bgb-growthwedge-transtens-37654dots-20261021-3c58975b-zeros.tif",
       "sha256": "07da3f559dd5f6d7f3971092bcc3dde060cd97b551ad6077b02ed558679f8e54",
+      "checks": {
+        "single_band": true,
+        "crs_matches": true,
+        "shape_matches": true,
+        "transform_matches": true,
+        "finite_entire_raster": true,
+        "no_nan_inside_footprint": true,
+        "values_in_0_1": true,
+        "nodata_none": true,
+        "sha256_matches_manifest": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
+    {
+      "lane": "H82-TCSTEP: radiometric total-count lithologic-offset step x coherence x low-slope blind gate + std19 HGB (HOLDOUT-DTI 0.0688 s20 / 0.0700 s30; physics below random; negative, lane closed)",
+      "file": "downloads/gems77-h82-tcstep-37654dots-20261021-2c501fd1-zeros.tif",
+      "sha256": "2cc14ba3ec8a6ea114c821445ff0ee90f84c7a8e62720e80c533c05475f76860",
       "checks": {
         "single_band": true,
         "crs_matches": true,

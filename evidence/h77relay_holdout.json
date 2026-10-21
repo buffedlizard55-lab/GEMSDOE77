@@ -1,0 +1,46 @@
+{
+  "lane": "H77-RELAY",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "holdout_method": "buffered_component_draw (whole components, 20% hide, 3px buffer, 12px erosion)",
+  "seeds": [
+    20,
+    30
+  ],
+  "seed20": {
+    "pooled_dti": 0.012874668933233163,
+    "ci95": [
+      0.007433332222616159,
+      0.01933259522958806
+    ],
+    "withheld": 11321,
+    "tpw": 156.9885,
+    "fpw": 15526.999,
+    "fnw": 11164.011,
+    "per_fold": {
+      "NW": 0.04127,
+      "NE": 0.06388,
+      "SW": 0.02351,
+      "SE": 0.02865
+    }
+  },
+  "seed30": {
+    "pooled_dti": 0.012175334217974676,
+    "ci95": [
+      0.00708284724563836,
+      0.01807525063405308
+    ],
+    "withheld": 11342,
+    "tpw": 148.643,
+    "fpw": 15526.114,
+    "fnw": 11193.356
+  },
+  "incumbent": 0.152718,
+  "beats_incumbent": false,
+  "alternative_build_holdout": {
+    "seed20": 0.07807,
+    "seed30": 0.07286,
+    "withheld20": 11318,
+    "withheld30": 11315
+  },
+  "note": "Buffered whole-component holdout is current standard; segment-based (build_holdout) gives higher absolute but still below incumbent"
+}

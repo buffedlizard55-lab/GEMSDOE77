@@ -1,0 +1,16 @@
+{
+  "lane": "H77-RELAY",
+  "method": "Per-cell AUC of surface vs withheld truth (60k negatives, sklearn roc_auc_score, symmetric)",
+  "threshold": 0.9,
+  "surface": "relay linkage rank01 (visible_global, 709 corridors, mean 0.5238)",
+  "per_fold": {
+    "draw20_foldNW_all": 0.5192,
+    "draw20_foldNE_all": 0.5254,
+    "draw20_foldSW_all": 0.5272,
+    "draw20_foldSE_all": 0.5232
+  },
+  "mean_sym": 0.5238,
+  "max_sym": 0.5272,
+  "leakage_flag": false,
+  "note": "AUC ~0.52 well below 0.90 confirms LOCO-safe, no leakage"
+}

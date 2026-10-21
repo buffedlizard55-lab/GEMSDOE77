@@ -1,0 +1,168 @@
+{
+  "schema": "gems-run-card-v2",
+  "lane": "H77-RELAY",
+  "title": "Relay-ramp linkage corridors between en-echelon normal-fault strands (catalogue-only, deterministic)",
+  "hypothesis": "Blind transfer faults that link overlapping en-echelon normal-fault segments via relay ramps / breached relay zones are dilatational, geothermal-favorable, and systematically under-mapped under basin fill. The USGS/INGENIOUS catalogue is scarp-biased to range-fronts; relay interiors are its blind spot. A deterministic linkage-corridor field between parallel, overlapping, closely spaced fault strands should recover withheld segments better than single-tip cones or radiometric curvature.",
+  "mechanism": "En-echelon normal faults with 500 m-3 km spacing and >5 px along-strike overlap develop relay ramps that become breached transfer faults (Faulds et al. 2011 Geothermics DOI 10.1016/j.geothermics.2011.02.004; Fossen & Rotevatn 2016). Displacement conservation requires linkage; the linkage zone is dilatational and geothermal. Corridors are 3-px-wide linkage zones between qualifying strand pairs, weighted by overlap/(1+separation/10) and rank01, emitted as 37654 dots with 2.8 px Poisson-disk separation via DTI-exact greedy (src/gems77lia/allocate.greedy_select).",
+  "named_non_fault_process_that_could_mimic_it": "En-echelon lithologic contacts (e.g., folded bedding, lava flow edges), digitisation fragments of a single fault split by rasterization gaps, or already-linked segments mis-split into components could mimic relay geometry. Grid-truncation at footprint edges and mapping-gap strand ends from erosion/cover also mimic. Intrusive contacts could produce similar parallel patterns.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "evaluator_implementation_sha256": {
+      "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+      "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+      "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+      "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+    },
+    "withheld_positive_pixels": 11321,
+    "withheld_seeds": [
+      20,
+      30
+    ],
+    "holdout_method": "buffered_component_draw (whole original 8-connected components withheld, 20% hide_frac, 3 px feature buffer, 12 px boundary erosion; whole components, not 12-px chunks)",
+    "value_seed20": 0.012874668933233163,
+    "ci95_seed20": [
+      0.007433332222616159,
+      0.01933259522958806
+    ],
+    "value_seed30": 0.012175334217974676,
+    "ci95_seed30": [
+      0.00708284724563836,
+      0.01807525063405308
+    ],
+    "pooled_seed20_tpw": 156.98853132655051,
+    "pooled_seed30_tpw": 148.64319467283642,
+    "incumbent": 0.152718,
+    "incumbent_source": "evidence/h77/run_card.json (H77-Step)",
+    "beats_current_best": false,
+    "beats_rule": "Paired 95% CI of difference vs incumbent excludes 0 (not assessed here; point estimate below incumbent)",
+    "alternative_holdout_build_holdout": {
+      "evaluator": "build_holdout (segment-based, 12 px chunks)",
+      "value_seed20": 0.07807,
+      "value_seed30": 0.07286,
+      "withheld_seed20": 11318,
+      "withheld_seed30": 11315,
+      "note": "Segment-based holdout gives higher absolute scores; buffered whole-component holdout is the current standard and is reported as primary"
+    },
+    "leakage_canary": {
+      "method": "Per-cell AUC of surface predicting withheld truth vs active background (60k negatives sampled, sklearn roc_auc_score, symmetric AUC = max(AUC,1-AUC))",
+      "surface": "relay linkage corridor rank01 (visible_global, 709 corridors)",
+      "symmetric_auc_seed20_mean": 0.5238,
+      "symmetric_auc_seed20_max": 0.5272,
+      "symmetric_auc_seed20_per_fold": {
+        "draw20_foldNW_all": 0.5192,
+        "draw20_foldNE_all": 0.5254,
+        "draw20_foldSW_all": 0.5272,
+        "draw20_foldSE_all": 0.5232
+      },
+      "leakage_flag": false,
+      "threshold": 0.9,
+      "note": "AUC ~0.52 (well below 0.90) confirms no leakage; surface is LOCO-safe (visible only, 3 px buffer)"
+    },
+    "paired_vs_random": {
+      "note": "Random baseline not computed with same evaluator in this lane due to time; build_holdout random was 0.034 vs relay 0.078 (relay > random). For buffered holdout, expected random ~0.008-0.01, relay 0.012 is marginally above random but not significantly; paired bootstrap not run for brevity",
+      "verdict_vs_random": "Inconclusive (relay marginally above random on build_holdout, similar order on buffered)"
+    }
+  },
+  "correlation_overlap_vs_registry": {
+    "surface_max_abs_spearman": 0.0092,
+    "surface_spearman_vs_dense_witness": -0.0092,
+    "surface_spearman_vs_h33": -0.0018,
+    "surface_duplicate_by_rho": false,
+    "surface_rho_limit": 0.9,
+    "final_dots_max_forward_overlap_3px_literal": 1.0,
+    "final_dots_max_forward_overlap_3px_informative_dot_fields": 0.1408,
+    "final_dots_vs_dense_witness_overlap": 1.0,
+    "final_dots_vs_h33_overlap": 0.1408,
+    "final_max_abs_spearman_dot": 0.0092,
+    "final_worst_spearman_submission": "17GEMSDOE_E-proba-multiscale (dense, but spearman 0.0092 PASS)",
+    "final_worst_overlap_submission_literal": "17GEMSDOE_E-proba-multiscale (dense_witness ab0a0a62, continuous_surface support_fraction 1.0)",
+    "final_worst_overlap_submission_informative": "GEMSDOE32__h33-2-b2-zeros (0.1408)",
+    "registry_rasters_checked": 2,
+    "registry_rasters_expected": 832,
+    "complete_accessible_scan": false,
+    "incomplete_scope_note": "Checked against 2 hash-pinned witnesses (dense + H33) plus local TIFFs; full 832-raster registry not scanned. Two-phase reading: literal (all rasters) FAIL due to dense continuous_surface witness (support_fraction 1.0 >0.20) forcing overlap 1.0 >0.70; like-for-like (dot fields only, dense_support_fraction 0.20) PASS (max overlap 0.1408 <=0.70, max |rho| 0.0092 <=0.90)",
+    "literal_reading": {
+      "duplicate": true,
+      "note": "Keeps inherited literal support definition (>0). Continuous-surface prior fires on every nonempty candidate; reported for completeness, not evidence of geological duplication"
+    },
+    "like_for_like_reading": {
+      "duplicate": false,
+      "dot_field_rasters": 1,
+      "continuous_surface_rasters": 1,
+      "note": "Inherited thresholds applied to dot fields only; rank correlation applies to every raster"
+    },
+    "literal_protocol_unique": false,
+    "informative_unique": true
+  },
+  "raster_sha256": "62cd16c7ff0bc22be5ba25c0253fc5e064f8e840dc50122764017dd3bb5133b4",
+  "validator_output": {
+    "all_checks_passed": true,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "emitted_positive_pixels": 37654,
+    "in_footprint_positive_pixels": 37654,
+    "outside_footprint_zero": true,
+    "zero_dots_on_mapped_catalogue": true,
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "dtype": "float32",
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance"
+  },
+  "submission_name": "gems77-h77relay-enechelon-link-37654dots-20261021-zeros",
+  "submission_note": "H77-RELAY en-echelon relay corridors 37654 dots 2.8px; HOLDOUT-DTI 0.0129 s20 / 0.0122 s30; inspection only",
+  "note_chars": 107,
+  "verdict": "negative",
+  "budget": {
+    "experiments_used": 3,
+    "max_experiments": 3,
+    "hours_used": 1.5,
+    "max_hours": 2,
+    "weekly_slots_used": 0
+  },
+  "selector_approved": false,
+  "authorized_to_submit": false,
+  "evidence_files": [
+    "docs/downloads/gems77-h77relay-enechelon-link-37654dots-20261021-zeros.tif",
+    "docs/downloads/gems77-h77relay-enechelon-link-37654dots-20261021-zeros.zip",
+    "docs/downloads/gems77-h77relay-enechelon-link-37654dots-20261021-zeros.json",
+    "evidence/h77relay_run_card.json",
+    "evidence/h77relay_holdout.json",
+    "evidence/h77relay_canary.json"
+  ],
+  "generated_utc": "2026-10-21T17:58:07.651638+00:00",
+  "code_version": "GEMSDOE77 H77-RELAY 2026-10-21"
+}

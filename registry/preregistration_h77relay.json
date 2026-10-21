@@ -1,0 +1,95 @@
+{
+  "lane": "H77-RELAY",
+  "title": "Relay-ramp linkage corridors between en-echelon normal-fault strands (catalogue-only, deterministic)",
+  "written_utc": "2026-10-21T00:00:00Z",
+  "written_before_experiment": true,
+  "lane_assignment_note": "No single method paragraph identifiable in supplied 2026-10-21 prompt; this session declares one new narrow lane before Exp 1, per Parallel-Run Protocol Lane rule. Does not retune any stopped lane.",
+  "hypothesis": "Blind transfer faults linking overlapping en-echelon normal-fault segments via relay ramps are dilatational, geothermal-favorable, and under-mapped under basin fill. Catalogue is scarp-biased; relay interiors are blind spot. Deterministic linkage corridors between parallel, overlapping, close strands should recover withheld segments.",
+  "mimic": "En-echelon lithologic contacts, digitisation fragments split by raster gaps, or already-linked segments mis-split could mimic.",
+  "inputs": {
+    "catalogue_geometry_only": "data/bridge/existing_faults.tif SHA 7ba308cc... footprint from sample_submission.tif SHA 2176d08e...",
+    "forbidden": "No training_features, no geophysics, no lidar, no radiometric \u2014 zero SGMC channels"
+  },
+  "fixed_transform": {
+    "component_definition": "Connected components of (existing_faults==1) via 8-connectivity; keep >=5 px (2498 of 25092) for orientation",
+    "orientation": "PCA on pixel coords, largest eigenvector angle",
+    "centroid": "Mean row,col of component",
+    "neighbor_search": "KDTree radius 40 px (4 km)",
+    "en_echelon_criteria": {
+      "parallelism_deg": 20,
+      "along_strike_overlap_px": 5,
+      "across_strike_separation_px": [
+        5,
+        30
+      ]
+    },
+    "corridor_geometry": {
+      "midline": "Centroid-to-centroid projected onto overlap; 3-px-wide buffer",
+      "weight": "overlap/(1+separation/10) then rank01",
+      "aggregation": "Max over pairs, mask to allowed = footprint & ~catalogue"
+    },
+    "leakage_control": "Component-LOCO: component usable iff no pixel within 5 px of hidden truth and endpoints >=10 px inside footprint",
+    "surfaces": {
+      "relay_primary": "Rank01 linkage corridor field",
+      "centroid_proximity": "Canary inverse distance",
+      "random_control": "Uniform random footprint"
+    }
+  },
+  "folds": {
+    "evaluator": "vendor/gems57 pin-verified",
+    "fn": "buffered_component_draw 80 px buffer",
+    "seeds": [
+      20,
+      30
+    ],
+    "buffer_px": 80
+  },
+  "emission": {
+    "method": "Greedy max-coverage min-separation 3.0 px over allowed",
+    "budget": 37654
+  },
+  "experiments": [
+    {
+      "id": "H77-RELAY-E1",
+      "name": "Features + canary + surface uniqueness",
+      "steps": [
+        "Build LOCO-safe surfaces",
+        "Canary AUC",
+        "Spearman vs registry"
+      ],
+      "stop_rules": [
+        "AUC>0.90 STOP",
+        "rho>0.90 or overlap>0.70 STOP"
+      ]
+    },
+    {
+      "id": "H77-RELAY-E2",
+      "name": "Pooled HOLDOUT-DTI vs controls",
+      "steps": [
+        "4-fold hide-and-recover both seeds",
+        "Compare vs controls, pooled DTI + CI"
+      ],
+      "stop_rules": [
+        "If CI below incumbent and random, verdict negative"
+      ]
+    },
+    {
+      "id": "H77-RELAY-E3",
+      "name": "Dot emission + artifact + uniqueness",
+      "steps": [
+        "Greedy to budget",
+        "Shared writer float32 EPSG32611",
+        "Two-phase uniqueness"
+      ],
+      "stop_rules": [
+        "Literal overlap>0.70 expected under Policy I17; report both"
+      ]
+    }
+  ],
+  "promotion": "No slot. Require canaries <=0.90, uniqueness, complete scan, improvement over 0.1527 before selector.",
+  "budget": {
+    "maximum_experiments": 3,
+    "maximum_hours": 2
+  },
+  "expected_improvement": "Unknown; hypotheses are ordinal priorities, never projected scores"
+}

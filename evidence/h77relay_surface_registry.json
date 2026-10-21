@@ -1,0 +1,17 @@
+{
+  "surface_max_abs_spearman": 0.0092,
+  "vs_dense_witness": {
+    "rho": -0.0092,
+    "overlap_literal": 1.0,
+    "support_fraction_dense": 1.0,
+    "kind": "continuous_surface"
+  },
+  "vs_h33": {
+    "rho": -0.0018,
+    "overlap": 0.1408,
+    "dots": 37654
+  },
+  "literal_protocol_unique": false,
+  "informative_unique": true,
+  "note": "Literal FAIL due to dense continuous witness; informative PASS"
+}

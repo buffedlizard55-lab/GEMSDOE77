@@ -1,0 +1,35 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>H77-RELAY · GEMSDOE77</title>
+<link rel="stylesheet" href="assets/lia.css"></head><body>
+<header><div class="wrap"><span class="brand">GEMSDOE77 · DOE GEMS Prize</span><a href="index.html">Start here</a> <a href="executive-summary.html">How to submit</a> <a href="h77relay.html" class=here>H77-RELAY</a> <a href="h81.html">H81</a> <a href="h77e-knick.html">H77E-Knick</a> <a href="tsd.html">H77-TSD</a> <a href="lia-analysis.html">Why 0.2778</a>
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE77">GitHub</a></div></header><main><div class="wrap">
+<h1>H77-RELAY: Relay-ramp linkage corridors between en-echelon faults</h1>
+<p class="verdict"><b>OK to download for inspection: YES. NOT OK TO SUBMIT.</b> Newly generated, byte-unique research artifact. Under the binding literal registry rule it fails (overlap 1.0 with dense continuous witness ab0a0a62); like-for-like dot-field uniqueness PASS; holdout below incumbent; no selector approval; zero slots used.</p>
+<section class="card dl"><h2>⬇ Download (inspection only — DO NOT SUBMIT)</h2>
+<a class="btn" href="downloads/gems77-h77relay-enechelon-link-37654dots-20261021-zeros.tif" download>Download .tif (inspection only)</a> <a class="btn alt" href="downloads/gems77-h77relay-enechelon-link-37654dots-20261021-zeros.zip" download>One-TIFF ZIP</a>
+<div class="chips"><span class="chip ok">OK to download: YES</span><span class="chip ok">Format preflight: PASS (15/15)</span><span class="chip bad">Literal uniqueness: FAIL (1.0 vs dense)</span><span class="chip ok">Informative (dot vs dot): PASS (0.14 vs H33)</span><span class="chip bad">Holdout: NEGATIVE (0.0129 &lt; 0.1527)</span><span class="chip warn">Selector: not approved</span><span class="chip bad">NOT OK TO SUBMIT</span></div>
+<p><b>Submission name (reference only, 55 chars):</b> <code>gems77-h77relay-enechelon-link-37654dots-20261021-zeros</code></p>
+<p><b>Note (107/140):</b> <code>H77-RELAY en-echelon relay corridors 37654 dots 2.8px; HOLDOUT-DTI 0.0129 s20 / 0.0122 s30; inspection only</code></p>
+<p class="small">SHA-256 <code>62cd16c7ff0bc22be5ba25c0253fc5e064f8e840dc50122764017dd3bb5133b4</code> · 37,654 binary dots · single-band float32 EPSG:32611 3730×3292 exact transform · 0 NaN · values [0,1] · 0 on catalogue · 0 outside footprint</p>
+</section>
+<h2>Result</h2>
+<p><b>HOLDOUT-DTI 0.01287 [0.00743, 0.01933] seed 20 / 0.01218 [0.00708, 0.01808] seed 30</b> (gems57-pooled-hide-v2, 11,321 withheld positives, 95% CI via 1k spatial-block bootstrap, 135/139 clusters). Incumbent 0.152718; <b>beats_best: NO</b>; verdict <b>negative</b>. Zero weekly slots. Alternative segment-based holdout gives 0.0781/0.0729 (different fold definition) — still below incumbent.</p>
+<table><tr><th>Arm</th><th>HOLDOUT-DTI</th><th>95% CI</th><th>vs incumbent</th></tr>
+<tr><td>relay_primary (visible_global, 709 corridors)</td><td>0.01287</td><td>[0.00743,0.01933]</td><td>below 0.1527</td></tr>
+<tr><td>random (uniform)</td><td>~0.008-0.010 (expected)</td><td>—</td><td>relay marginally above random on build_holdout (0.078 vs 0.034)</td></tr>
+</table>
+<h2>Method (frozen before Exp 1)</h2>
+<p>Catalogue-only, deterministic, no geophysics, no ML, zero SGMC channels. 2,220 visible fault components (8-connectivity) → 1,794 with ≥5 px → 709 qualifying en-echelon pairs (parallel &lt;20°, along-strike overlap &gt;5 px, across-strike 5-30 px / 0.5-3 km). Each pair draws a 3-px-wide linkage corridor midway, weighted by overlap/(1+separation/10), rank01 over footprint, then 37,654 dots via greedy Poisson-disk (2.8 px). Component-LOCO: global visible = catalogue & ~3 px collar around hidden truth (buffered_component_draw), one surface usable under all folds. Full preregistration: <code>registry/preregistration_h77relay.json</code>.</p>
+<h2>Gates</h2>
+<ul>
+<li>Leakage canary: mean symmetric AUC 0.5238 (max 0.5272, limit 0.90) — <b>PASS</b> (no leakage).</li>
+<li>Surface rank correlation (full footprint, 100k sample): max |ρ| 0.0092 (limit 0.90) — <b>PASS</b>.</li>
+<li>Final dots: literal forward 3-px overlap 1.000 vs dense continuous witness ab0a0a62 (support_fraction 1.0) — <b>FAIL</b> literal; <b>PASS</b> like-for-like (dot vs dot 0.1408 vs H33, limit 0.70; |ρ| 0.0018). Incomplete scan (2 witnesses + local).</li>
+<li>Validator: 15/15 local checks PASS (single-band float32, EPSG:32611, 3730×3292, exact transform, finite [0,1], no NaN/Inf, zero outside footprint, zero on catalogue).</li>
+</ul>
+<h2>Mimic and limits</h2>
+<p>En-echelon lithologic contacts, digitisation fragments split by raster gaps, or already-linked segments mis-split could mimic relay geometry. Mapping-gap strand ends from erosion/cover and grid truncation also mimic. Holdout is catalogue hide-and-recover — a local proxy for unmapped faults, not a leaderboard score or evidence of geothermal vents. No organizer receipt exists for this file. The dense continuous witness is a representation-policy contradiction, not proof of geological duplication; promotion requires protocol-owner exemption.</p>
+<p class="small">Evidence: <code>evidence/h77relay_run_card.json</code>, <code>evidence/h77relay_holdout.json</code>, <code>registry/preregistration_h77relay.json</code>, <code>research/hypotheses-h77relay-2026-10-21.md</code>, <code>research/why-h33-scored-02778.md</code>. Reproduce: <code>python3 /tmp/gen_relay*.py</code> (see card for full steps) then <code>python scripts/validate_submission.py docs/downloads/gems77-h77relay-enechelon-link-37654dots-20261021-zeros.tif</code>.</p>
+<h2>Why H33 scored 0.2778 — summary</h2>
+<p>H33 (37,654 dots) pruned 6,436 near-catalogue dots from its 44,090-dot predecessor without adding dots, thinning thick ribbons while preserving max-kernel truth coverage (DTI numerator is <code>max</code> per truth cell). Thinning raises credit per pixel toward the marginal bar <code>k &gt; α·DTI</code> (α=0.2, bar ≈0.052 at DTI 0.26; exact <code>ΔT &gt; α·DTI·(ΔT+1−k)</code>). Near-catalogue pruning helps if hidden truth is spatially distinct from mapped faults, but 0.2778 remains OWNER-REPORT (no organizer receipt; GEMSDOE32 site states “NO ORGANISER SCORE EXISTS”). Beating it requires a better detector (higher T per dot), not just thinner packing. See <a href="lia-analysis.html">full H33 analysis</a>.</p>
+</div></main><footer><div class="wrap">Selector status for every file on this site: <b>not approved</b> · Not approved. Generated by H77-RELAY lane (preregistered 2026-10-21) from pinned evidence.</div></footer></body></html>
