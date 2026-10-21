@@ -311,7 +311,7 @@ def test_current_review_and_metric_correction_are_linked():
     for name in ('index.html', 'executive-summary.html'):
         text = (DOC / name).read_text()
         assert 'review-latest.html' in text and 'metric-review.html' in text
-        assert 'Current branch review and ranked hypotheses' in text or name == 'executive-summary.html'
+        assert 'Current branch review:' in text or name == 'executive-summary.html'
         assert 'no new TIFF' in text or 'NO NEW TIFF' in text
     analysis = (DOC / 'metric-review.html').read_text()
     assert 'ΔT=k' in analysis and 'only when' in analysis

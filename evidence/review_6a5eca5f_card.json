@@ -40,6 +40,18 @@
   "experiments_run": 0,
   "weekly_slots_used": 0,
   "selector_approved": false,
+  "post_review_integration": {
+    "evidence_class": "REPOSITORY-MERGE, NOT A NEW EXPERIMENT",
+    "merged_origin_main_commit": "077f3c1",
+    "incoming_parallel_artifacts_promoted_by_this_review": false,
+    "release_gate_authorized_files_after_regeneration": 0,
+    "support_semantics_sensitivity": {
+      "evidence_class": "REGISTRY-MEASUREMENT",
+      "shared_support_dense_witness_overlap": 1.0,
+      "alternative_top_n_37654_overlap": 0.018870884196941672,
+      "policy_changed_by_this_review": false
+    }
+  },
   "official_sources_freshly_retrieved": [
     "GitHub-hosted project sources and pinned mirror receipts only"
   ],

@@ -50,6 +50,10 @@ Checked that the rejection argument applies to both positive surface support and
 
 The user asks for a unique downloadable submission TIF. This review cannot responsibly generate one while the binding rule rejects all nonempty outputs; an empty raster would not be a useful prediction or a meaningful submission. Existing downloadable files are clearly marked inspection-only and none is selector-approved. The current result is negative, with explicit limitations and a next-step order. This report and the homepage now point to each other via the generated latest-review page.
 
+### Mainline integration addendum (after this review's experiment budget closed)
+
+After saving this review, I fetched and merged remote `main` at `077f3c1` into the same session branch to make the requested PR mergeable. That integration brought in already-existing parallel-lane research artifacts, including H77V ventsinter/heat-flow and H82-FMD crest-thinning TIFFs and their evidence; this review did not generate or select them. Their frozen records are negative, and the regenerated release gate still authorizes zero files. Main also added the support-semantics sensitivity receipt: for the dense witness, the shared all-positive support yields a measured 3-px overlap of 1.0, while a separate top-N binary convention yields 0.01887 for its 37,654 pixels. Those are **REGISTRY-MEASUREMENTS**, not scores; no policy interpretation was changed here. The current review's own run card remains “no new TIFF, no holdout, no slot.” The merged lane artifacts are separately auditable and are not promoted by this reconciliation.
+
 ## Next work, in decision order
 
 1. Ask the shared protocol/registry owner to resolve the dense-witness support semantics in the shared template; do not fork or weaken the gate locally.
