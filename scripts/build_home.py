@@ -20,7 +20,9 @@ REPO = "https://github.com/buffedlizard55-lab/GEMSDOE77"
 LB = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
 PD = "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
-NAV = [("index.html", "Start here"), ("executive-summary.html", "How to submit"), ("h78.html", "H78 lane"),
+NAV = [("index.html", "Start here"), ("executive-summary.html", "How to submit"),
+       ("h77d.html", "H77D (Zero-SGMC)"), ("h77d-executive-summary.html", "H77D guide"),
+       ("h77-step.html", "H77-Step"), ("h78.html", "H78 lane"),
        ("lia.html", "LIA lane"), ("contactphys.html", "Contact-physics lane"), ("urank.html", "Selective-U lane"),
        ("lia-analysis.html", "Why 0.2778"), ("lia-sources.html", "Sources")]
 
@@ -103,6 +105,10 @@ def main():
 3 px of that raster's dots. Several registry rasters are space-filling: one covers 100% of the allowed pixels. Even random
 dots exceed 0.70 against them, so <b>no non-empty file can pass the literal rule</b>. Only the protocol owner can resolve
 this, with one shared registry policy. Until then, spending a slot is a selector decision outside this repository.</p>"""
+    beat_txt = primary.get(
+        "beat_02778_summary",
+        "Not expected. Its projection is below the 0.2778 file, and its holdout did not beat the champion construction.",
+    )
     dl = f"""<section class="card dl"><h2>⬇ Newest file: download</h2>
 <p class="small muted"><b>{e(primary["lane"])}.</b> {e(primary.get("why_primary", ""))}</p>
 <a class="btn" href="{e(primary["file"])}" download>Download .tif ({size_kb:.0f} KB)</a>{zip_btn}
@@ -110,14 +116,13 @@ this, with one shared registry policy. Until then, spending a slot is a selector
 <span class="chip {'ok' if primary.get('format_valid') else 'bad'}">Portal format (local checks): {'PASS' if primary.get('format_valid') else 'FAIL'}</span>
 <span class="chip {'ok' if primary.get('protocol_unique') else 'bad'}">Unique, literal rule: {'PASS' if primary.get('protocol_unique') else 'FAIL'}</span>
 <span class="chip {'ok' if primary.get('informative_unique') else 'bad'}">Unique, informative reading: {'PASS' if primary.get('informative_unique') else 'FAIL'}</span>
-<span class="chip bad">Beat the champion construction on the holdout: NO</span>
+<span class="chip {'ok' if primary.get('beats_holdout_best') else 'bad'}">Beat the champion construction on the holdout: {'YES' if primary.get('beats_holdout_best') else 'NO'}</span>
 <span class="chip warn">Selector: not approved</span></div>
 <p class="verdict"><b>Can I submit it?</b> <b>No.</b> {e(primary["upload"])}<br>
 <b>Would the portal accept the format?</b> Probably. It passes 17 local checks against the official grid and footprint:
 every cell finite, values exactly 0 or 1, no nodata tag, EPSG:32611, 3730×3292, the official transform. That is the
 encoding of the GEMSDOE32 file that the owner reports scored 0.2778. Local checks are not an organizer receipt.<br>
-<b>Will it beat 0.2778?</b> <b>Not expected.</b> Its projection is below the 0.2778 file, and its holdout did not beat the
-champion construction (see the <a href="{e(primary["page"])}">lane page</a>).</p>
+<b>Will it beat 0.2778?</b> {e(beat_txt)} (See the <a href="{e(primary["page"])}">lane technical report</a> &amp; <a href="{e(primary.get("summary", "executive-summary.html"))}">submission guide</a>.)</p>
 {copy("Submission name (for reference)", primary.get("name", Path(primary["file"]).stem))}
 {copy("Note (for reference)", primary.get("note", ""))}
 <p class="small">sha256 of the .tif: <code>{e(primary.get("sha256", ""))}</code> · <a href="executive-summary.html">How submission works, step by step →</a></p></section>"""
@@ -125,7 +130,8 @@ champion construction (see the <a href="{e(primary["page"])}">lane page</a>).</p
     if card:
         h = card["holdout"]
         d = card["paired_difference_vs_champion_construction"]
-        facts = f"""<h2>The newest lane (H78) in four lines</h2><ul>
+        facts = f"""<h2>The H78 lane in four lines</h2><ul>
+<li><b>Artifact:</b> <code>{e(card["submission_name"])}</code> · sha256 <code>{e(card["raster_sha256"])}</code></li>
 <li><b>Hypothesis:</b> {e(card["hypothesis"])}</li>
 <li><b>Result:</b> HOLDOUT-DTI {h["dti"]:.4f} (95% CI {h["ci95"][0]:.4f}–{h["ci95"][1]:.4f}; {e(h["evaluator_version"])};
 {h["withheld_positive_pixels"]:,} withheld positive pixels) vs the champion construction rebuilt per fold:

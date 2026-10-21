@@ -1,0 +1,586 @@
+{
+  "experiment": "H77D-E1",
+  "evidence_class": "INSTRUMENT (algebraic live-score inversion across 95 scored rasters; never an organizer score)",
+  "n_distinct_scored_rasters": 95,
+  "n_non_h19_family_rasters": 81,
+  "irregularity_I17_discovery": {
+    "summary": "PR #6 cross-multiplied DTI equation (C - y*N)*h = c*y*S weighted rows by (c*S + K)^2 (43x overweight on 250k-dot submissions vs 38k-dot submissions) and inflated K_implied=10,378.8 (2.30x true K=4,521), mathematically clamping all off-support bins to h=0.0000 and leaving +0.1232 on GEMSDOE70 (0.2478 actual vs 0.1246 pred) and +0.1234 on GEMSDOE49 (0.2376 actual vs 0.1142 pred) unexplained.",
+    "legacy_cross_multiplied_S0_loo_rmse": 0.032434778491788815,
+    "legacy_cross_multiplied_K_implied": 10378.828193852227,
+    "legacy_gems70_pred": 0.1246023622020395,
+    "legacy_gems49_pred": 0.11415779594610605
+  },
+  "feature_stack_meta": {
+    "shape": [
+      5167373,
+      58
+    ],
+    "dtype": "float32",
+    "channels": [
+      "raw_mag_anom_hp",
+      "raw_rtp_hp",
+      "raw_rtp",
+      "raw_tmi_hg_log",
+      "raw_geod_2ndinv",
+      "raw_grav_slope_log",
+      "raw_tc_rad",
+      "raw_geod_shear",
+      "raw_geod_dilat",
+      "raw_tmi_vg",
+      "raw_deq",
+      "raw_grav_vg",
+      "raw_det_elev_hp",
+      "raw_det_elev",
+      "raw_iso_grav_hp",
+      "raw_depth_base",
+      "raw_ieq",
+      "raw_cond_surf_log",
+      "raw_det_elev_slope_log",
+      "pot_mag_tilt",
+      "pot_mag_tilt_zero",
+      "pot_mag_as_log",
+      "pot_mag_tex_front_s4",
+      "pot_mag_tex_front_s12",
+      "pot_grav_thdr_log",
+      "pot_grav_tilt_zero",
+      "pot_grav_curv_up",
+      "pot_cg_align_s1p5",
+      "pot_cg_align_s3p0",
+      "pot_cg_align_s6p0",
+      "pot_cg_ortho_conf",
+      "pot_base_grad_log",
+      "pot_base_grav_align",
+      "tiger_road_dist_log",
+      "pied_slope_front_s4",
+      "pied_slope_front_s12",
+      "pied_toe_concavity",
+      "pied_relief_asym_1k",
+      "pied_dem10_front_s6",
+      "lidar_ex_max",
+      "lidar_step_deconf",
+      "lidar_dipole_deconf",
+      "lidar_strike_cont",
+      "lidar_anderson_fav",
+      "dem10_onesided3_deconf",
+      "dem10_hgm50_deconf",
+      "dem10_steep_ratio",
+      "dem10_resid_curv",
+      "dem10_st_ridge",
+      "dem1m_openness_lrm",
+      "hydro_geotherm_excess_near",
+      "hydro_geotherm_excess_far",
+      "hydro_probe2m_sinter",
+      "hydro_demag_alter",
+      "hydro_claycap_grad",
+      "hydro_potassic_kth",
+      "hydro_vent_coupled",
+      "mech_strain_seism"
+    ],
+    "blocks": {
+      "raw_dereg": [
+        "raw_mag_anom_hp",
+        "raw_rtp_hp",
+        "raw_rtp",
+        "raw_tmi_hg_log",
+        "raw_geod_2ndinv",
+        "raw_grav_slope_log",
+        "raw_tc_rad",
+        "raw_geod_shear",
+        "raw_geod_dilat",
+        "raw_tmi_vg",
+        "raw_deq",
+        "raw_grav_vg",
+        "raw_det_elev_hp",
+        "raw_det_elev",
+        "raw_iso_grav_hp",
+        "raw_depth_base",
+        "raw_ieq",
+        "raw_cond_surf_log",
+        "raw_det_elev_slope_log"
+      ],
+      "potential_crossgrad": [
+        "pot_mag_tilt",
+        "pot_mag_tilt_zero",
+        "pot_mag_as_log",
+        "pot_mag_tex_front_s4",
+        "pot_mag_tex_front_s12",
+        "pot_grav_thdr_log",
+        "pot_grav_tilt_zero",
+        "pot_grav_curv_up",
+        "pot_cg_align_s1p5",
+        "pot_cg_align_s3p0",
+        "pot_cg_align_s6p0",
+        "pot_cg_ortho_conf",
+        "pot_base_grad_log",
+        "pot_base_grav_align"
+      ],
+      "scarp_1m_10m_deconf": [
+        "tiger_road_dist_log",
+        "pied_slope_front_s4",
+        "pied_slope_front_s12",
+        "pied_toe_concavity",
+        "pied_relief_asym_1k",
+        "pied_dem10_front_s6",
+        "lidar_ex_max",
+        "lidar_step_deconf",
+        "lidar_dipole_deconf",
+        "lidar_strike_cont",
+        "lidar_anderson_fav",
+        "dem10_onesided3_deconf",
+        "dem10_hgm50_deconf",
+        "dem10_steep_ratio",
+        "dem10_resid_curv",
+        "dem10_st_ridge",
+        "dem1m_openness_lrm"
+      ],
+      "hydro_vent_conduit": [
+        "hydro_geotherm_excess_near",
+        "hydro_geotherm_excess_far",
+        "hydro_probe2m_sinter",
+        "hydro_demag_alter",
+        "hydro_claycap_grad",
+        "hydro_potassic_kth",
+        "hydro_vent_coupled",
+        "mech_strain_seism"
+      ]
+    },
+    "footprint_pixels": 5167373,
+    "lidar_valid_pixels": 3894460,
+    "lidar_missing_pixels_mapped_to_nan": 1272913
+  },
+  "elapsed_seconds": 244.71,
+  "models": {
+    "S0_baseline_H195_x_cat": {
+      "n_bins": 9,
+      "loo_rmse_all95": 0.031165070363434202,
+      "loo_rmse_non_h19_family": 0.03357235729604558,
+      "loo_spearman": 0.9149212416579113,
+      "loo_pearson": 0.9315708093183488,
+      "lofo_rmse": 0.03664044769967345,
+      "lofo_spearman": 0.9161283098473775,
+      "delta_mse_reduction_all95": 0.0,
+      "delta_mse_reduction_all95_ci95": [
+        0.0,
+        0.0
+      ],
+      "delta_mse_reduction_off_family": 0.0,
+      "delta_mse_reduction_off_family_ci95": [
+        0.0,
+        0.0
+      ],
+      "K_implied_from_h": 12962.587624417367,
+      "off_support_truth_pixels_implied": 82.95306754629888,
+      "max_off_support_truth_density_h": 3.4378862835813074e-05,
+      "off_support_isolated_dot_credit_upper": 0.00038961565251826956,
+      "h": [
+        0.028859143715539985,
+        0.0,
+        0.007393321068804185,
+        0.0,
+        0.008360009698295808,
+        0.02335947010382147,
+        0.0,
+        0.0,
+        3.4378862835813074e-05
+      ],
+      "cells": [
+        28839.0,
+        42294.0,
+        50348.0,
+        161003.0,
+        318579.0,
+        385788.0,
+        313552.0,
+        1393073.0,
+        2412909.0
+      ],
+      "key_submissions_loo": {
+        "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros": {
+          "actual_owner_reported": 0.2778,
+          "loo_pred": 0.2720837510003349,
+          "residual_actual_minus_loo": 0.005716248999665108
+        },
+        "gems70-p5-dual-submod300-oof38k-20261020": {
+          "actual_owner_reported": 0.2478,
+          "loo_pred": 0.13388767294705717,
+          "residual_actual_minus_loo": 0.11391232705294282
+        },
+        "gate_ortho_w0.25-40k-20261006T213721Z-nan": {
+          "actual_owner_reported": 0.2376,
+          "loo_pred": 0.1272339030641049,
+          "residual_actual_minus_loo": 0.11036609693589511
+        },
+        "cvarlw-thin-s3p17-54864-20261011T220606Z-c58f60c4-zeros": {
+          "actual_owner_reported": 0.2303,
+          "loo_pred": 0.20799612408414955,
+          "residual_actual_minus_loo": 0.022303875915850452
+        },
+        "r11f-scarp-radiometric-fusion-00e049b51218-zeros": {
+          "actual_owner_reported": 0.1589,
+          "loo_pred": 0.11876795722849863,
+          "residual_actual_minus_loo": 0.04013204277150138
+        }
+      }
+    },
+    "M_scarp_H77D3_offsupport": {
+      "n_bins": 18,
+      "loo_rmse_all95": 0.03125950056789715,
+      "loo_rmse_non_h19_family": 0.033676682514981446,
+      "loo_spearman": 0.9117856006883222,
+      "loo_pearson": 0.9309742951824959,
+      "lofo_rmse": 0.037152314609703134,
+      "lofo_spearman": 0.9130066563506097,
+      "delta_mse_reduction_all95": -5.894764996557633e-06,
+      "delta_mse_reduction_all95_ci95": [
+        -3.823142366749009e-05,
+        3.064823730661566e-05
+      ],
+      "delta_mse_reduction_off_family": -7.015770801511989e-06,
+      "delta_mse_reduction_off_family_ci95": [
+        -4.619066087606356e-05,
+        3.342597351265623e-05
+      ],
+      "K_implied_from_h": 14245.133116115936,
+      "off_support_truth_pixels_implied": 2327.4598178937026,
+      "max_off_support_truth_density_h": 0.05944373034412072,
+      "off_support_isolated_dot_credit_upper": 0.6736757959899201,
+      "h": [
+        0.028922416685789987,
+        0.0,
+        0.020095034283867372,
+        0.0,
+        0.008514348529586296,
+        0.019076130665260475,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.05944373034412072
+      ],
+      "cells": [
+        28839.0,
+        42294.0,
+        50348.0,
+        161003.0,
+        318579.0,
+        385788.0,
+        244170.0,
+        54711.0,
+        10756.0,
+        3915.0,
+        1087139.0,
+        235489.0,
+        51721.0,
+        18724.0,
+        1964318.0,
+        327730.0,
+        81707.0,
+        39154.0
+      ],
+      "key_submissions_loo": {
+        "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros": {
+          "actual_owner_reported": 0.2778,
+          "loo_pred": 0.27145699483487135,
+          "residual_actual_minus_loo": 0.006343005165128646
+        },
+        "gems70-p5-dual-submod300-oof38k-20261020": {
+          "actual_owner_reported": 0.2478,
+          "loo_pred": 0.1330170675883419,
+          "residual_actual_minus_loo": 0.1147829324116581
+        },
+        "gate_ortho_w0.25-40k-20261006T213721Z-nan": {
+          "actual_owner_reported": 0.2376,
+          "loo_pred": 0.1310345442625612,
+          "residual_actual_minus_loo": 0.10656545573743881
+        },
+        "cvarlw-thin-s3p17-54864-20261011T220606Z-c58f60c4-zeros": {
+          "actual_owner_reported": 0.2303,
+          "loo_pred": 0.2097669598496605,
+          "residual_actual_minus_loo": 0.020533040150339493
+        },
+        "r11f-scarp-radiometric-fusion-00e049b51218-zeros": {
+          "actual_owner_reported": 0.1589,
+          "loo_pred": 0.11235238335807421,
+          "residual_actual_minus_loo": 0.046547616641925804
+        }
+      }
+    },
+    "M_pot_crossgrad_H77D4_offsupport": {
+      "n_bins": 18,
+      "loo_rmse_all95": 0.03130119163288908,
+      "loo_rmse_non_h19_family": 0.033728199455351285,
+      "loo_spearman": 0.914515288139527,
+      "loo_pearson": 0.9309093505442458,
+      "lofo_rmse": 0.03701057533649612,
+      "lofo_spearman": 0.9156351599143803,
+      "delta_mse_reduction_all95": -8.502986881041037e-06,
+      "delta_mse_reduction_all95_ci95": [
+        -1.741307492597918e-05,
+        -1.151445327130825e-06
+      ],
+      "delta_mse_reduction_off_family": -1.048826408661408e-05,
+      "delta_mse_reduction_off_family_ci95": [
+        -2.1016750185895497e-05,
+        -1.8213368522370478e-06
+      ],
+      "K_implied_from_h": 13100.411728866713,
+      "off_support_truth_pixels_implied": 413.40068143940596,
+      "max_off_support_truth_density_h": 0.027110836791764313,
+      "off_support_isolated_dot_credit_upper": 0.30724711336106497,
+      "h": [
+        0.027209077158719917,
+        0.0,
+        0.010537329238260134,
+        0.0,
+        0.007770421290613904,
+        0.023060079562911694,
+        0.0,
+        0.0,
+        0.0,
+        0.027110836791764313,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.00011313920560897891,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cells": [
+        28839.0,
+        42294.0,
+        50348.0,
+        161003.0,
+        318579.0,
+        385788.0,
+        237441.0,
+        54563.0,
+        14505.0,
+        7043.0,
+        1091944.0,
+        223359.0,
+        55064.0,
+        22706.0,
+        1966242.0,
+        340008.0,
+        74615.0,
+        32044.0
+      ],
+      "key_submissions_loo": {
+        "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros": {
+          "actual_owner_reported": 0.2778,
+          "loo_pred": 0.2729593691781054,
+          "residual_actual_minus_loo": 0.004840630821894565
+        },
+        "gems70-p5-dual-submod300-oof38k-20261020": {
+          "actual_owner_reported": 0.2478,
+          "loo_pred": 0.13249093898656789,
+          "residual_actual_minus_loo": 0.11530906101343211
+        },
+        "gate_ortho_w0.25-40k-20261006T213721Z-nan": {
+          "actual_owner_reported": 0.2376,
+          "loo_pred": 0.1267328254801408,
+          "residual_actual_minus_loo": 0.1108671745198592
+        },
+        "cvarlw-thin-s3p17-54864-20261011T220606Z-c58f60c4-zeros": {
+          "actual_owner_reported": 0.2303,
+          "loo_pred": 0.20830707193139758,
+          "residual_actual_minus_loo": 0.021992928068602424
+        },
+        "r11f-scarp-radiometric-fusion-00e049b51218-zeros": {
+          "actual_owner_reported": 0.1589,
+          "loo_pred": 0.11792114740243524,
+          "residual_actual_minus_loo": 0.04097885259756477
+        }
+      }
+    },
+    "M_hydro_vent_H77D2_offsupport": {
+      "n_bins": 18,
+      "loo_rmse_all95": 0.031194496989990946,
+      "loo_rmse_non_h19_family": 0.033602659090594386,
+      "loo_spearman": 0.9166984549666185,
+      "loo_pearson": 0.9313458446540066,
+      "lofo_rmse": 0.03670387061632314,
+      "lofo_spearman": 0.9179723180264099,
+      "delta_mse_reduction_all95": -1.8350317007494893e-06,
+      "delta_mse_reduction_all95_ci95": [
+        -9.50213245405085e-06,
+        4.537907786261225e-06
+      ],
+      "delta_mse_reduction_off_family": -2.0355235453605006e-06,
+      "delta_mse_reduction_off_family_ci95": [
+        -1.1489683563099788e-05,
+        5.880549792481391e-06
+      ],
+      "K_implied_from_h": 13211.664550463302,
+      "off_support_truth_pixels_implied": 567.0882352356941,
+      "max_off_support_truth_density_h": 0.019658482172693663,
+      "off_support_isolated_dot_credit_upper": 0.2227895784631373,
+      "h": [
+        0.029196114304080076,
+        0.0,
+        0.010371094740959035,
+        0.0,
+        0.008266284297674318,
+        0.022413763806872298,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.019658482172693663
+      ],
+      "cells": [
+        28839.0,
+        42294.0,
+        50348.0,
+        161003.0,
+        318579.0,
+        385788.0,
+        239270.0,
+        51071.0,
+        15231.0,
+        7980.0,
+        1090959.0,
+        220968.0,
+        56180.0,
+        24966.0,
+        1965398.0,
+        345891.0,
+        72773.0,
+        28847.0
+      ],
+      "key_submissions_loo": {
+        "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros": {
+          "actual_owner_reported": 0.2778,
+          "loo_pred": 0.2719010221024353,
+          "residual_actual_minus_loo": 0.005898977897564717
+        },
+        "gems70-p5-dual-submod300-oof38k-20261020": {
+          "actual_owner_reported": 0.2478,
+          "loo_pred": 0.13396771082133624,
+          "residual_actual_minus_loo": 0.11383228917866375
+        },
+        "gate_ortho_w0.25-40k-20261006T213721Z-nan": {
+          "actual_owner_reported": 0.2376,
+          "loo_pred": 0.12706641990023768,
+          "residual_actual_minus_loo": 0.11053358009976233
+        },
+        "cvarlw-thin-s3p17-54864-20261011T220606Z-c58f60c4-zeros": {
+          "actual_owner_reported": 0.2303,
+          "loo_pred": 0.20776795055920744,
+          "residual_actual_minus_loo": 0.022532049440792568
+        },
+        "r11f-scarp-radiometric-fusion-00e049b51218-zeros": {
+          "actual_owner_reported": 0.1589,
+          "loo_pred": 0.11760054208295193,
+          "residual_actual_minus_loo": 0.04129945791704809
+        }
+      }
+    },
+    "M_joint_multiline_H77D1_offsupport": {
+      "n_bins": 18,
+      "loo_rmse_all95": 0.031219530795522515,
+      "loo_rmse_non_h19_family": 0.03363309564894083,
+      "loo_spearman": 0.9144700927306747,
+      "loo_pearson": 0.9312138914382093,
+      "lofo_rmse": 0.037059292974363736,
+      "lofo_spearman": 0.915775143886237,
+      "delta_mse_reduction_all95": -3.397492334774256e-06,
+      "delta_mse_reduction_all95_ci95": [
+        -1.64239022570689e-05,
+        6.4412208298653995e-06
+      ],
+      "delta_mse_reduction_off_family": -4.081948517458074e-06,
+      "delta_mse_reduction_off_family_ci95": [
+        -1.929519485166808e-05,
+        7.458545971816482e-06
+      ],
+      "K_implied_from_h": 13175.430032614782,
+      "off_support_truth_pixels_implied": 663.5568203348938,
+      "max_off_support_truth_density_h": 0.011604195224004452,
+      "off_support_isolated_dot_credit_upper": 0.13151034447364246,
+      "h": [
+        0.02752260198638104,
+        0.0,
+        0.012732003878460744,
+        0.0,
+        0.007696226802489298,
+        0.022357516884433076,
+        0.0,
+        0.0,
+        0.011604195224004452,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0065098296126355005,
+        0.0
+      ],
+      "cells": [
+        28839.0,
+        42294.0,
+        50348.0,
+        161003.0,
+        318579.0,
+        385788.0,
+        227118.0,
+        64782.0,
+        16030.0,
+        5622.0,
+        1069727.0,
+        247859.0,
+        54797.0,
+        20690.0,
+        1998782.0,
+        305289.0,
+        73357.0,
+        35481.0
+      ],
+      "key_submissions_loo": {
+        "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros": {
+          "actual_owner_reported": 0.2778,
+          "loo_pred": 0.27208349412912547,
+          "residual_actual_minus_loo": 0.005716505870874522
+        },
+        "gems70-p5-dual-submod300-oof38k-20261020": {
+          "actual_owner_reported": 0.2478,
+          "loo_pred": 0.1340360682005963,
+          "residual_actual_minus_loo": 0.1137639317994037
+        },
+        "gate_ortho_w0.25-40k-20261006T213721Z-nan": {
+          "actual_owner_reported": 0.2376,
+          "loo_pred": 0.12709738618138378,
+          "residual_actual_minus_loo": 0.11050261381861623
+        },
+        "cvarlw-thin-s3p17-54864-20261011T220606Z-c58f60c4-zeros": {
+          "actual_owner_reported": 0.2303,
+          "loo_pred": 0.20882330480604994,
+          "residual_actual_minus_loo": 0.02147669519395007
+        },
+        "r11f-scarp-radiometric-fusion-00e049b51218-zeros": {
+          "actual_owner_reported": 0.1589,
+          "loo_pred": 0.11807767633433862,
+          "residual_actual_minus_loo": 0.040822323665661395
+        }
+      }
+    }
+  }
+}

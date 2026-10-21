@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "lane_id": "H77D-HYDROTECT-SUBMOD",
+  "session_branch": "arena/ec0846f1-gemsdoe77",
+  "preregistered_date_utc": "2026-10-21",
+  "status_at_preregistration": "LOCKED_BEFORE_EXPERIMENTS",
+  "lane_declaration": "Self-declared orthogonal research lane (see IR-77-01: prompt references 'the single method paragraph below' without supplying a standalone method paragraph). Builds directly on the next steps left by GEMSDOE77 PR #5 (contactphys) and PR #6 (LIA): unifying de-quantized road-deconfounded 1m LiDAR + 100%-coverage 10m 3DEP micro-scarps, multi-scale potential-field structural coupling, blind hydrothermal geothermometer/2m-probe/paleo-sinter vent physics, fold-strict elastic crack-tip mechanics, and exact 300 m submodular kernel cover.",
+  "ranked_hypotheses": [
+    {
+      "id": "H77D-1",
+      "rank": 1,
+      "title": "Unified Cross-Scale Hydrothermal-Tectonic Conduit Discovery + Exact 300m Submodular DTI Cover",
+      "role": "PRIMARY_IMPLEMENTED_CANDIDATE",
+      "layers": [
+        "training_features.tif (19 bands, correcting Band 6 = Radiometric TC and Band 18 = signed d(iso_grav)/dx)",
+        "external/lidar_scarp_features_u8.tif + lidar_scarp_features.json (all 12 de-quantized 1m USGS 3DEP bands with q=0 mapped strictly to NaN)",
+        "external/tiger_road_distance_m.tif (US Census TIGER road/rail distance de-confounder)",
+        "dem10/*.f32.npy (13-channel 10m USGS 3DEP seamless DEM covering 100.0% of footprint including the 24.6% non-LiDAR gap)",
+        "external/dem1m_high_prior_openness_lrm.npz (1m USGS 3DEP EarthMRI Topographic Openness & Local Relief Model)",
+        "external/geodawn_rad_u8.tif + geodawn_extensions_u8.tif (K, Th, U, TC, Th/K, U/K, U/Th, TMI upward-continued 150m)",
+        "external/gdr_wellspring_in_footprint.csv (DOE GDR 1391 27,092 wells/springs: temp_c, geothermquartz_c, geothermchalc_c, geothermcat_c; dist_known_fault_px STRICTLY EXCLUDED)",
+        "external/derived_gdr_2m_probes_100m_u8.tif (DOE GDR 1391 Coolbaugh 2m shallow temperature probe anomalies)",
+        "external/derived_gdr_paleo_100m_u8.tif (DOE GDR 1391 Ayling siliceous sinter/travertine/tufa geothermal vent deposits)",
+        "external/gdr_volcanic_vents_in_footprint.csv (DOE GDR 1391 Quaternary volcanic vents; dist_known_fault_px STRICTLY EXCLUDED)",
+        "fold['visible'] (strictly visible fault components per fold: off-end crack-tip propagation lobes, en-echelon stepover corridors, visible distance)"
+      ],
+      "physical_signature": "Spatially cross-fitted ensemble combining a broad multi-physics HGB, a piedmont/basin blind-conduit specialist HGB, and a 4-domain physical corroboration operator across surface micro-scarps, subsurface potential-field coupling, hydrothermal fluid/alteration conduits, and active strain/crack-tip mechanics, emitted via exact 300 m submodular marginal kernel cover (Minoux 1978) at live-calibrated prevalence with near-catalogue sub-bar halo exclusion (d > 3.0 px).",
+      "why_unmapped_not_catalogued": "Legacy Quaternary fault compilations capture >2 m range-front escarpments but miss degraded <1 m piedmont scarps, non-LiDAR 10m breaklines, relay ramps, and blind intrabasin geothermal conduits buried under Holocene playa sediment (~75% of Great Basin commercial geothermal systems; Faulds & Hinz 2015).",
+      "named_non_fault_mimic": "Highway/railroad/canal embankments on flat playas (explicitly de-confounded via TIGER road distance), Pleistocene Lake Lahontan shoreline beaches, and unreactivated pre-Tertiary pluton/caldera contacts.",
+      "expected_dti_gain_qualitative": "HIGH (rank 1: highest expected HOLDOUT-DTI and live off-support credit density)",
+      "implementation_cost": "Medium (~12 min total CPU across feature build, dual-seed LOQO holdouts, and 830-raster audit)"
+    },
+    {
+      "id": "H77D-2",
+      "rank": 2,
+      "title": "Anisotropic Hydrothermal Geothermometer Disequilibrium Plume & Paleo-Sinter Vent Conduit Inversion",
+      "role": "ABLATION_AND_LIVE_INVERSION_HYPOTHESIS",
+      "layers": [
+        "gdr_wellspring_in_footprint.csv (geothermquartz_c, geothermchalc_c, geothermcat_c, temp_c)",
+        "derived_gdr_2m_probes_100m_u8.tif",
+        "derived_gdr_paleo_100m_u8.tif",
+        "geodawn_rad_u8.tif (K, Th, U) + geodawn_extensions_u8.tif (TMI_up150) + rtp + cond_surf"
+      ],
+      "physical_signature": "NNE/NW fault-strike anisotropic kernel inversion of chemical geothermometry disequilibrium excess max(T_quartz, T_chalc, T_cat) - T_surface, 2m temperature probe anomalies, and siliceous sinter/travertine vent deposits coupled with shallow hydrothermal magnetite destruction (TMI_up150 - RTP) and smectite clay-cap conductivity gradients.",
+      "why_unmapped_not_catalogued": "Hydrothermal argillic alteration weakens fault cores so surface scarps erode rapidly and become buried beneath sinter aprons or playa silt while preserving high SiO2/Na-K-Ca chemical equilibration memory in cold/warm shallow wells.",
+      "named_non_fault_mimic": "Closed-basin evaporative alkali brines elevating dissolved silica/alkalis or stratiform altered ash-flow tuffs without fault-hosted upflow.",
+      "expected_dti_gain_qualitative": "MODERATE-HIGH in geothermal districts; sparse outside sampled basins",
+      "implementation_cost": "Low"
+    },
+    {
+      "id": "H77D-3",
+      "rank": 3,
+      "title": "Road-Deconfounded 1m LiDAR Strike-Continuous Crest-Toe Scarp Dipole + 10m 3DEP Gap Bridge",
+      "role": "ABLATION_AND_LIVE_INVERSION_HYPOTHESIS",
+      "layers": [
+        "lidar_scarp_features_u8.tif (12 de-quantized bands with q=0 -> NaN)",
+        "tiger_road_distance_m.tif",
+        "dem10/*.f32.npy (13 channels across 100% of AOI)",
+        "dem1m_high_prior_openness_lrm.npz"
+      ],
+      "physical_signature": "Diffusive scarp crest-toe curvature dipole sqrt(lapneg_max * lappos_max) weighted by along-strike vector continuity cos(2 * delta_strike) and anthropogenic road damping, bridged seamlessly across the 24.6% non-LiDAR footprint by 10m 3DEP one-sided breaklines.",
+      "why_unmapped_not_catalogued": "Pre-LiDAR 1:24,000 aerial photography misses <1.5 m degraded alluvial scarps and sun-parallel NNE scarps.",
+      "named_non_fault_mimic": "Anthropogenic highway/rail grades, irrigation canals, gravel pit berms, and pluvial Lake Lahontan wave-cut shorelines.",
+      "expected_dti_gain_qualitative": "HIGH on piedmont/alluvial scarps; misses zero-relief blind basin faults",
+      "implementation_cost": "Low"
+    },
+    {
+      "id": "H77D-4",
+      "rank": 4,
+      "title": "Multi-Scale Gallardo-Meju Potential-Field Structural Coupling Across Gravity x RTP x Basement Depth",
+      "role": "ABLATION_AND_LIVE_INVERSION_HYPOTHESIS",
+      "layers": [
+        "iso_grav_anom, iso_grav_anom_vg (Bands 13, 11)",
+        "rtp, tmi_hg, tmi_vg (Bands 2, 3, 9)",
+        "depth_to_base_surf (Band 15)"
+      ],
+      "physical_signature": "Scale-space cross-gradient structural alignment cos^2(angle(grad g, grad M)) across sigma in {1.5, 3.0, 6.0} px minus orthogonal pluton/volcanic confounder sin^2(angle), corroborated by Miller-Singh tilt zero-crossings and signed basement throw.",
+      "why_unmapped_not_catalogued": "Detects intrabasin normal/transtensional faults buried under 100-1500 m of unconsolidated valley fill with zero surface scarp.",
+      "named_non_fault_mimic": "Unfaulted pre-Tertiary intrusive contacts, Mesozoic thrust ramps, and buried caldera margins.",
+      "expected_dti_gain_qualitative": "MODERATE-HIGH on blind intrabasin faults (explains GEMSDOE49 +0.1234 live residual)",
+      "implementation_cost": "Low"
+    },
+    {
+      "id": "H77D-5",
+      "rank": 5,
+      "title": "Active Crustal Strain-Deficit, Azimuthal Microseismicity & Elastic Crack-Tip Relay Transfer",
+      "role": "ABLATION_AND_LIVE_INVERSION_HYPOTHESIS",
+      "layers": [
+        "geod_2ndinv, geod_shearrate, geod_dilaterate (Bands 4, 7, 8)",
+        "deq_n100a15, ieq_n100a15 (Bands 10, 16)",
+        "fold['visible'] fault endpoints and strike azimuths"
+      ],
+      "physical_signature": "High GPS/InSAR shear + dilatation strain rates and aligned microseismicity far from visible mapped faults combined with off-end elastic crack-tip and en-echelon stepover propagation lobes computed strictly from visible fault traces.",
+      "why_unmapped_not_catalogued": "Distributed accommodation zones (Humboldt Structural Zone / Walker Lane) partition strain across short blind en-echelon faults.",
+      "named_non_fault_mimic": "Aseismic geothermal/magmatic swarm seismicity and coarse GPS station interpolation.",
+      "expected_dti_gain_qualitative": "MODERATE contextual prior; low spatial localization alone without scarp/potential-field pinning",
+      "implementation_cost": "Low"
+    }
+  ],
+  "budget_and_protocol": {
+    "max_experiments": 3,
+    "max_wall_hours": 2.0,
+    "experiments": [
+      "E1: Multi-mechanism algebraic live-score inversion across all 95 distinct organizer-scored rasters (LOO + LOFO cross-validation against S0; zero holdout labels touched)",
+      "E2: 52-channel zero-SGMC feature stack + 56 single-feature leakage canaries (AUC <= 0.90 hard stop) + dual-seed whole-component buffered spatial holdout (seed=20 and seed=30, gems57-pooled-hide-v2, 2000 bootstrap draws) across H77D-1, all domain ablations, submodular-vs-greedy ablation, fold-fair H33, A2_standard, A4_contactphys, A5_lidar, and random",
+      "E3: Spatial cross-fitted full-map OOF surface + Phase 1 surface uniqueness check + exact 300m submodular dot allocation + Phase 2 830-raster uniqueness check + portal-safe GeoTIFF export + 17/17 read-back validation + run card"
+    ],
+    "promotion_rule": {
+      "1_format_validator_17_of_17": true,
+      "2_leakage_canary_max_symmetric_auc_le_0p90": true,
+      "3_phase1_surface_rho_le_0p90_and_phase2_dots_unique_informative_le_0p70": true,
+      "4_holdout_paired_95ci_strictly_above_0_vs_foldfair_H33_AND_A2_standard_AND_A4_contactphys_on_both_seeds": true,
+      "5_human_selector_slot_gate": "Even when run verdict is 'promote', weekly slot consumption remains strictly reserved for human selector sign-off per Protocol Rule 6."
+    }
+  }
+}

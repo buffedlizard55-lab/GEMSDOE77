@@ -17,7 +17,8 @@ def md(name):
 
 def shell(title,active,body):
     nav=''.join(f'<a href="{file}"'+(' aria-current="page"' if key==active else '')+f'>{label}</a>'
-       for file,key,label in [('index.html','home','Start here'),('urank.html','overview','Selective-U lane'),('urank-executive-summary.html','submit','Selective-U guide'),
+       for file,key,label in [('index.html','home','Start here'),('h77d.html','h77d','H77D (Zero-SGMC)'),('h77d-executive-summary.html','h77d-submit','H77D guide'),
+                              ('h77-step.html','h77-step','H77-Step'),('urank.html','overview','Selective-U lane'),('urank-executive-summary.html','submit','Selective-U guide'),
                               ('research.html','research','Research'),('sources.html','sources','Source feed'),('audit.html','audit','Audit trail')])
     return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{esc(title)} · GEMS / 77</title><meta name="description" content="Auditable fault-detection research. Download the locally validated research GeoTIFF. Not approved for competition submission.">
@@ -108,7 +109,11 @@ bash scripts/download_competition_data.sh
         L=json.loads(lj.read_text())
         rows=''.join(f'<tr><td><a href="{esc(x["page"])}">{esc(x["lane"])}</a></td><td><a download href="{esc(x["file"])}">{esc(Path(x["file"]).name)}</a></td><td>{esc(x["verdict"])}</td><td>{esc(x["upload"])}</td></tr>' for x in L['lanes'])
         lanes_box=f'<div class="panel"><span class="eyebrow">All lanes in this repository</span><div class="table-wrap"><table><tr><th>Lane</th><th>File</th><th>Verdict</th><th>Upload status</th></tr>{rows}</table></div><p class="fine">{esc(L["note"])}</p></div>'
-    overview=lanes_box+overview; guide=lanes_box+guide
+    h77d_banner=''
+    if (E/'run_card_h77d.json').exists():
+        from build_h77d_site import build_h77d_pages
+        h77d_banner=build_h77d_pages()
+    overview=h77d_banner+lanes_box+overview; guide=h77d_banner+lanes_box+guide
     # Pages restructure (H78 lane): index.html / executive-summary.html are now the repository-wide
     # "Start here" pages written by scripts/build_home.py; this lane's pages moved to urank*.html.
     for filename,title,active,body in [('urank.html','Selective-U lane','overview',overview),('urank-executive-summary.html','Selective-U submission guide','submit',guide),

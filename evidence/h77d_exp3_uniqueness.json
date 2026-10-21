@@ -1,0 +1,349 @@
+{
+  "experiment": "H77D-E3-UNIQUENESS",
+  "candidate_zeros_tif": "gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.tif",
+  "candidate_nan_tif": "gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-nan.tif",
+  "candidate_zip": "gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.zip",
+  "total_prior_rasters_checked": 865,
+  "valid_readable_rasters_checked": 863,
+  "corrupted_unreadable_archive_blobs": [
+    {
+      "name": "89ffb2d61840859392a758928ffdbae4260f2918",
+      "reason": "89ffb2d61840859392a758928ffdbae4260f2918.tif: MissingRequired:TIFF directory is missing required \"StripOffsets\" field"
+    },
+    {
+      "name": "a97c7b2a513225c9f9f2b35736afe5abf4d2a491",
+      "reason": "shape=(32, 48)"
+    }
+  ],
+  "informative_non_space_filling_rasters": 707,
+  "space_filling_rasters_cov3_ge_0p70": 156,
+  "phase1_surface_max_spearman_abs": 0.41025115110344984,
+  "phase1_surface_nearest_raster": "archive_registry:f77b8df0c589269ac416ca06f5d93751a4f2da5a",
+  "phase2_dot_max_spearman_abs": 0.06538900991203968,
+  "phase2_dot_nearest_spearman_raster": "archive_registry:4b95b4836868628865b4e672b2bda6124504fac6",
+  "phase2_informative_max_forward_overlap_3px": 0.6883199660062675,
+  "phase2_informative_max_mutual_overlap_3px": 0.41342708097074166,
+  "phase2_informative_nearest_raster": "archive_registry:595b5b5c4c079169ac747b17ea88aa32941efd63",
+  "pixels_copied_from_any_prior_submission": 0,
+  "pass_all_uniqueness_gates": true,
+  "literal_vendor_tool_post_snapshot_check": {
+    "registry_rasters_checked": 51,
+    "worst_spearman_abs": null,
+    "worst_dot_overlap": 1.0,
+    "duplicate_count": 2,
+    "unique": false
+  },
+  "top_25_informative_prior_overlaps": [
+    {
+      "source": "archive_registry",
+      "name": "595b5b5c4c079169ac747b17ea88aa32941efd63",
+      "positives": 80000,
+      "coverage_3px": 0.26599,
+      "forward_overlap_3px": 0.68832,
+      "reverse_overlap_3px": 0.3121,
+      "mutual_overlap_3px": 0.3121,
+      "spearman_abs": 0.02412,
+      "surface_spearman_abs": 0.07764
+    },
+    {
+      "source": "archive_registry",
+      "name": "7b158eb8dc03955d27b2c4c14927ca98cfa4b090",
+      "positives": 69281,
+      "coverage_3px": 0.27204,
+      "forward_overlap_3px": 0.65196,
+      "reverse_overlap_3px": 0.25685,
+      "mutual_overlap_3px": 0.25685,
+      "spearman_abs": 0.01814,
+      "surface_spearman_abs": 0.09344
+    },
+    {
+      "source": "archive_registry",
+      "name": "7d19b90ed6e358b14b561bc405690a104c5da64b",
+      "positives": 100000,
+      "coverage_3px": 0.49126,
+      "forward_overlap_3px": 0.6143,
+      "reverse_overlap_3px": 0.13422,
+      "mutual_overlap_3px": 0.13422,
+      "spearman_abs": 0.00571,
+      "surface_spearman_abs": 0.03439
+    },
+    {
+      "source": "archive_registry",
+      "name": "8524700fb48d23f040820fe1854c6f48d0c0b421",
+      "positives": 100000,
+      "coverage_3px": 0.49126,
+      "forward_overlap_3px": 0.6143,
+      "reverse_overlap_3px": 0.13422,
+      "mutual_overlap_3px": 0.13422,
+      "spearman_abs": 0.00571,
+      "surface_spearman_abs": 0.03439
+    },
+    {
+      "source": "archive_registry",
+      "name": "1374c17668adc23d0ab1c67ee07187bbe48f007b",
+      "positives": 100000,
+      "coverage_3px": 0.48761,
+      "forward_overlap_3px": 0.60873,
+      "reverse_overlap_3px": 0.13314,
+      "mutual_overlap_3px": 0.13314,
+      "spearman_abs": 0.0057,
+      "surface_spearman_abs": 0.03219
+    },
+    {
+      "source": "archive_registry",
+      "name": "6cad4d7940897276e76ce1868dc37c7f0261ab13",
+      "positives": 100000,
+      "coverage_3px": 0.48761,
+      "forward_overlap_3px": 0.60873,
+      "reverse_overlap_3px": 0.13314,
+      "mutual_overlap_3px": 0.13314,
+      "spearman_abs": 0.0057,
+      "surface_spearman_abs": 0.03219
+    },
+    {
+      "source": "archive_registry",
+      "name": "6255d3e14dc93525438448a1ed7c87c3322b4b0a",
+      "positives": 82678,
+      "coverage_3px": 0.23563,
+      "forward_overlap_3px": 0.60546,
+      "reverse_overlap_3px": 0.28442,
+      "mutual_overlap_3px": 0.28442,
+      "spearman_abs": 0.02739,
+      "surface_spearman_abs": 0.10727
+    },
+    {
+      "source": "archive_registry",
+      "name": "3b442e92bcee521bbe5fbc16136297ced49d3c76",
+      "positives": 85526,
+      "coverage_3px": 0.31888,
+      "forward_overlap_3px": 0.58992,
+      "reverse_overlap_3px": 0.19705,
+      "mutual_overlap_3px": 0.19705,
+      "spearman_abs": 0.01019,
+      "surface_spearman_abs": 0.05567
+    },
+    {
+      "source": "archive_registry",
+      "name": "b73517951cc3728a405e0f08a155624c02c0acb5",
+      "positives": 85526,
+      "coverage_3px": 0.31888,
+      "forward_overlap_3px": 0.58992,
+      "reverse_overlap_3px": 0.19705,
+      "mutual_overlap_3px": 0.19705,
+      "spearman_abs": 0.01019,
+      "surface_spearman_abs": 0.05567
+    },
+    {
+      "source": "archive_registry",
+      "name": "08a606d69c89bedc2a1dc9aedd3d38e6429e506f",
+      "positives": 97654,
+      "coverage_3px": 0.37506,
+      "forward_overlap_3px": 0.58939,
+      "reverse_overlap_3px": 0.17825,
+      "mutual_overlap_3px": 0.17825,
+      "spearman_abs": 0.01231,
+      "surface_spearman_abs": 0.04503
+    },
+    {
+      "source": "archive_registry",
+      "name": "422ac9465ed5a0ff4158c4551b31fd3954513090",
+      "positives": 97654,
+      "coverage_3px": 0.37506,
+      "forward_overlap_3px": 0.58939,
+      "reverse_overlap_3px": 0.17825,
+      "mutual_overlap_3px": 0.17825,
+      "spearman_abs": 0.01231,
+      "surface_spearman_abs": 0.04503
+    },
+    {
+      "source": "archive_registry",
+      "name": "c77023dd18fa59e1d8b93c5d699081f238d208e0",
+      "positives": 61427,
+      "coverage_3px": 0.24718,
+      "forward_overlap_3px": 0.58456,
+      "reverse_overlap_3px": 0.2536,
+      "mutual_overlap_3px": 0.2536,
+      "spearman_abs": 0.01942,
+      "surface_spearman_abs": 0.08427
+    },
+    {
+      "source": "archive_registry",
+      "name": "2168b3d053fb708a76ad132cc04166e4d49fefc0",
+      "positives": 54864,
+      "coverage_3px": 0.25067,
+      "forward_overlap_3px": 0.57269,
+      "reverse_overlap_3px": 0.23635,
+      "mutual_overlap_3px": 0.23635,
+      "spearman_abs": 0.01325,
+      "surface_spearman_abs": 0.07285
+    },
+    {
+      "source": "archive_registry",
+      "name": "9b2d8dfd989665a2cf2d2261e608a558d42a3d56",
+      "positives": 54864,
+      "coverage_3px": 0.25067,
+      "forward_overlap_3px": 0.57269,
+      "reverse_overlap_3px": 0.23635,
+      "mutual_overlap_3px": 0.23635,
+      "spearman_abs": 0.01325,
+      "surface_spearman_abs": 0.07285
+    },
+    {
+      "source": "archive_registry",
+      "name": "1cd1123a6a2d963c7145f8bf006fae75fdac4833",
+      "positives": 91533,
+      "coverage_3px": 0.41078,
+      "forward_overlap_3px": 0.5725,
+      "reverse_overlap_3px": 0.1541,
+      "mutual_overlap_3px": 0.1541,
+      "spearman_abs": 0.00637,
+      "surface_spearman_abs": 0.04065
+    },
+    {
+      "source": "archive_registry",
+      "name": "9def353346826fecb0d93da203c8159e7570d24c",
+      "positives": 91533,
+      "coverage_3px": 0.41078,
+      "forward_overlap_3px": 0.5725,
+      "reverse_overlap_3px": 0.1541,
+      "mutual_overlap_3px": 0.1541,
+      "spearman_abs": 0.00637,
+      "surface_spearman_abs": 0.04065
+    },
+    {
+      "source": "archive_registry",
+      "name": "11d86dd50ff18d5579f112408fd8b5d2dcf63097",
+      "positives": 68463,
+      "coverage_3px": 0.2564,
+      "forward_overlap_3px": 0.54212,
+      "reverse_overlap_3px": 0.22824,
+      "mutual_overlap_3px": 0.22824,
+      "spearman_abs": 0.01444,
+      "surface_spearman_abs": 0.09324
+    },
+    {
+      "source": "archive_registry",
+      "name": "41f6d55350b2c70e7085092374f6f71f730f8a07",
+      "positives": 68463,
+      "coverage_3px": 0.2564,
+      "forward_overlap_3px": 0.54212,
+      "reverse_overlap_3px": 0.22824,
+      "mutual_overlap_3px": 0.22824,
+      "spearman_abs": 0.01444,
+      "surface_spearman_abs": 0.09324
+    },
+    {
+      "source": "archive_registry",
+      "name": "23ff31cf7832f25616bc47d435eaec9fe796d3bb",
+      "positives": 95927,
+      "coverage_3px": 0.276,
+      "forward_overlap_3px": 0.54098,
+      "reverse_overlap_3px": 0.24439,
+      "mutual_overlap_3px": 0.24439,
+      "spearman_abs": 0.01508,
+      "surface_spearman_abs": 0.08084
+    },
+    {
+      "source": "archive_registry",
+      "name": "363f229be9f79f21b5bc34780fd3c8631b9e6485",
+      "positives": 60710,
+      "coverage_3px": 0.25522,
+      "forward_overlap_3px": 0.51333,
+      "reverse_overlap_3px": 0.22435,
+      "mutual_overlap_3px": 0.22435,
+      "spearman_abs": 0.01393,
+      "surface_spearman_abs": 0.06348
+    },
+    {
+      "source": "archive_registry",
+      "name": "73f3074f37d17aacf59ad3fa4991a500e945a5ae",
+      "positives": 60710,
+      "coverage_3px": 0.25522,
+      "forward_overlap_3px": 0.51333,
+      "reverse_overlap_3px": 0.22435,
+      "mutual_overlap_3px": 0.22435,
+      "spearman_abs": 0.01393,
+      "surface_spearman_abs": 0.06348
+    },
+    {
+      "source": "archive_registry",
+      "name": "c1a0b186dff3b3ed2523b2f222631c0f409a80e6",
+      "positives": 99999,
+      "coverage_3px": 0.45099,
+      "forward_overlap_3px": 0.51328,
+      "reverse_overlap_3px": 0.12456,
+      "mutual_overlap_3px": 0.12456,
+      "spearman_abs": 0.00291,
+      "surface_spearman_abs": 0.01702
+    },
+    {
+      "source": "archive_registry",
+      "name": "09def897aa5079d6b1f12dc632cec40c3df11429",
+      "positives": 58031,
+      "coverage_3px": 0.2518,
+      "forward_overlap_3px": 0.50518,
+      "reverse_overlap_3px": 0.21961,
+      "mutual_overlap_3px": 0.21961,
+      "spearman_abs": 0.01302,
+      "surface_spearman_abs": 0.05566
+    },
+    {
+      "source": "archive_registry",
+      "name": "5938a723dcc387dca2ac2abdfc495ed8009663d0",
+      "positives": 58031,
+      "coverage_3px": 0.2518,
+      "forward_overlap_3px": 0.50518,
+      "reverse_overlap_3px": 0.21961,
+      "mutual_overlap_3px": 0.21961,
+      "spearman_abs": 0.01302,
+      "surface_spearman_abs": 0.05566
+    },
+    {
+      "source": "archive_registry",
+      "name": "0d409af9b3bc43d2063bef5d097c4e321cd2bae6",
+      "positives": 59075,
+      "coverage_3px": 0.18019,
+      "forward_overlap_3px": 0.49833,
+      "reverse_overlap_3px": 0.33312,
+      "mutual_overlap_3px": 0.33312,
+      "spearman_abs": 0.02081,
+      "surface_spearman_abs": 0.08537
+    }
+  ],
+  "gemsdoe77_head_to_head_siblings": {
+    "H77_Step_PR9_gems77-step-propensity-submod300.tif": {
+      "positives": 34625,
+      "forward_overlap_3px": 0.40684,
+      "reverse_overlap_3px": 0.39379,
+      "mutual_overlap_3px": 0.39379,
+      "spearman_abs": 0.03242,
+      "surface_spearman_abs": 0.093
+    },
+    "H78_PR10_gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros.tif": {
+      "positives": 38301,
+      "forward_overlap_3px": 0.3517,
+      "reverse_overlap_3px": 0.18151,
+      "mutual_overlap_3px": 0.18151,
+      "spearman_abs": 0.01351,
+      "surface_spearman_abs": 0.04628
+    },
+    "LIA_PR6_gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif": {
+      "positives": 38323,
+      "forward_overlap_3px": 0.3419,
+      "reverse_overlap_3px": 0.17553,
+      "mutual_overlap_3px": 0.17553,
+      "spearman_abs": 0.01264,
+      "surface_spearman_abs": 0.02982
+    },
+    "ContactPhys_PR5_gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif": {
+      "positives": 44090,
+      "forward_overlap_3px": 0.4974,
+      "reverse_overlap_3px": 0.4134,
+      "mutual_overlap_3px": 0.4134,
+      "spearman_abs": 0.03908,
+      "surface_spearman_abs": 0.08378
+    }
+  },
+  "template_literal_reading_duplicate": true,
+  "policy_i17_dense_witness_note": "Dense continuous archive witness ab0a0a62 covers 100.0% of allowed Nevada footprint pixels, forcing 1.000 forward overlap for every non-empty raster until selector excludes non-dot rasters."
+}
