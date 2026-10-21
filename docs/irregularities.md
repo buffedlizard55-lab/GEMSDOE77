@@ -1,5 +1,14 @@
 # Irregularities and next-session handoff
 
+## H77-PD update (2026-10-21; branch `arena/09741416-gemsdoe77`)
+
+| ID | Verified irregularity | Consequence |
+|---|---|---|
+| IR-77PD-01 | `lidar_scarp_features_u8.tif` sidecar (`lidar_scarp_features.json`) specifies `sqrt` quantization on bands `5..8` (`contour_continuity`, `channel_continuity`, `cross_max`, `downface`), and `24.6%` of Nevada (`1,272,913` cells) has missing 1 m LiDAR coverage. | Dequantized bands `5..8` strictly by `(q/255)^2 * hi` and bridged all `1,272,913` missing-LiDAR cells with 13-channel 10 m 3DEP step purity (`Arm3b = 0.120684` zero-catalogue physics `HOLDOUT-DTI`, `6,133` dots placed inside the 24.6% LiDAR gap). |
+| IR-77PD-02 | Upstream `vendor/gems57/uniqueness.py` filters `like_for_like_reading` by raw positive support `< 0.20` (`DENSE_SUPPORT_FRACTION = 0.20`), missing 29x morphological dilation: archive rasters `5c1a159439735522659ee78969df3f34efddcdde.tif` and `81c802618e6d46c6d62289d856ae74439439bbc6.tif` place `206,895` stride-5 lattice dots (`4.004%` raw support `< 0.20`) whose 3-px halo covers `5,093,638 / 5,100,152 = 99.872%` of all allowed Nevada cells (`6,514` unhaloed cells statewide). By Dirichlet's Pigeonhole Principle, **every possible subset of size `37,654` satisfies forward overlap `>= 1 - 6514/37654 = 0.827004 > 0.7000`**. | Documented exact Pigeonhole Impossibility Certificate in `evidence/run_card_h77pd.json` without modifying `vendor/gems57/uniqueness.py`, failed closed on automatic submission (`verdict: "negative"`, `ok_to_submit: false`, `0` weekly slots used), and proved parameter-free null-expectation uniqueness (`E_Unif[FwdOverlap] = rho_halo < 0.7000`) with **`0 / 881` violations (`max_1way = 0.66498 <= 0.70`, `0.46245` vs `H77-VDS`, `0.37244` vs `H83-NETSIB`)**. |
+| IR-77PD-03 | Prior registry archive file `.cache/registry/89ffb2d61840859392a758928ffdbae4260f2918.tif` is malformed (`MissingRequired: TIFF directory is missing required "StripOffsets" field`), and `b25bae2852d368c75c69ba486350187597fed0b3.tif` marks `12,279,160 / 12,279,160` (`100.0%` including outside footprint) positive. | Logged corrupt raster explicitly under `uniqueness_audit.corrupt_unreadable_rasters` in `evidence/run_card_h77pd.json` and audited all `870` archive + `61` merged local sibling rasters (`931` total). |
+| IR-77PD-04 | Concurrent PRs `#13..#89` merged onto `origin/main` (`d6eeae6`), taking the `h77e` / `h77lag` namespaces across parallel sessions. | Merged `origin/main` cleanly into `arena/09741416-gemsdoe77`, namespaced this lane as `H77-PD` (`gems77pd`, `h77pd_*`), and verified `0` duplicate firings across all `61` newly merged sibling GeoTIFFs. |
+
 ## H77-TSD update (2026-10-21; branch `arena/b2132ad0-gemsdoe77`)
 
 | ID | Verified irregularity | Consequence |

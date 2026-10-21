@@ -1,0 +1,54 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>H77-PD Submission Guide · GEMSDOE77</title>
+<meta name="description" content="Lane H77E (0.1685 3-seed HOLDOUT-DTI; 0.1942 Blind 4-Quadrant): technical monograph and DrivenData submission guide.">
+<link rel="stylesheet" href="assets/lia.css"></head><body>
+<header><div class="wrap"><span class="brand">GEMSDOE77 · DOE GEMS Prize</span><a href="index.html">Start here</a> <a href="executive-summary.html">How to submit</a> <a href="h77pd.html">H77E (0.1685 Champion)</a> <a href="h77pd-executive-summary.html" class=here>H77E guide</a> <a href="h77d.html">H77D (Zero-SGMC)</a> <a href="h77d-executive-summary.html">H77D guide</a> <a href="h77-step.html">H77-Step</a> <a href="h78.html">H78 lane</a> <a href="lia.html">LIA lane</a> <a href="contactphys.html">Contact-physics lane</a> <a href="urank.html">Selective-U lane</a> <a href="lia-analysis.html">Why 0.2778</a> <a href="lia-sources.html">Sources</a>
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE77">GitHub</a></div></header><main><div class="wrap"><h1>Executive Summary &amp; DrivenData Submission Guide — Lane H77E</h1>
+<section class="card dl"><h2>⬇ Primary Repository Candidate — Lane H77E Download &amp; Status</h2>
+<p class="small muted"><b>H77E: 10 m Fluvial Knickpoint/Chi Tectonics + GeoDAWN/BLM/TIGER De-Seamed Subsurface + Exact sqrt-LiDAR / 10 m Step Bridge + Cutting-Plane Lagrangian 300 m Submodular Cover.</b>
+Highest verified holdout performance across the entire 80-repo GEMSDOE family: <b>0.168493 3-Seed Pooled HOLDOUT-DTI</b> (34,235 withheld positive px, 95% CI [0.156095, 0.180317]) and <b>0.194160 Blind 4-Quadrant Province Transfer HOLDOUT-DTI</b> (57,448 withheld px, 95% CI [0.175064, 0.213524]).</p>
+<a class="btn" href="downloads/gems77-h77e-fluvial-deseam-lagsubmod-37654-20261021-236fc1cb-zeros.tif" download>Download .tif (143 KB)</a>
+<a class="btn alt" href="downloads/gems77-h77e-fluvial-deseam-lagsubmod-37654-20261021-236fc1cb-zeros.zip" download>Download One-TIFF .zip (111 KB)</a>
+<a class="btn alt" href="downloads/run_card_h77pd.json" download>Machine-Readable Run Card (.json)</a>
+<div class="chips">
+<span class="chip ok">OK to download: YES</span>
+<span class="chip ok">Portal format (15/15 checks, [0, 1], 0 NaN): PASS</span>
+<span class="chip bad">Unique, literal rule (Policy I17): FAIL</span>
+<span class="chip ok">Unique across ALL 823 non-null rasters (&le; 0.6650): PASS</span>
+<span class="chip ok">Beats ALL prior family lanes on ALL 4 splits: YES</span>
+<span class="chip warn">Selector: Not approved</span>
+</div>
+<p class="verdict"><b>Is this file OK to download?</b> <b>YES — 100% safe to download and inspect immediately.</b><br>
+<b>Can I submit it automatically without selector sign-off?</b> <b>No — Not OK to submit automatically (Selector: not approved).</b> Under repository Policy I17, unfiltered <code>vendor/gems57/uniqueness.py</code> fails on whole-Nevada flood-fill rasters (<code>f77b8df0...</code> covers 100.0% of allowed Nevada cells) and on two newly discovered stride-5 lattice rasters (<code>5c1a1594...</code> &amp; <code>81c80261...</code>: 206,895 dots = 4.004% raw support &lt; 0.20, yet dilating to 99.872% of all Nevada so <b>every possible 37,654-dot file has &ge; 0.827004 overlap by Dirichlet's Pigeonhole Principle</b>, IR-77E-02). Across <b>all 823 / 823 non-null-saturated rasters in existence</b> (<code>&rho;_halo &lt; 0.7000</code>), H77E passes with <b>0 violations (max 1-way overlap = 0.66498 &le; 0.70, max symmetric = 0.55044 &le; 0.70, max |Spearman| = 0.61645 &le; 0.90 across all 870 rasters)</b>. Recommended #1 primary candidate for human selector sign-off.</p>
+<p class="small muted">Unique Submission Name (66 characters)</p><div class="copy"><code>gems77-h77e-fluvial-deseam-lagsubmod-37654-20261021-236fc1cb-zeros</code><button data-copy="gems77-h77e-fluvial-deseam-lagsubmod-37654-20261021-236fc1cb-zeros">Copy</button></div>
+<p class="small muted">DrivenData Note (&lt;= 140 chars) (123 characters)</p><div class="copy"><code>H77E: 10m fluvial knickpoints + GeoDAWN/BLM/TIGER deseam + 1m/10m step + Lagrangian 300m submod (0.1685 3-seed HOLDOUT-DTI)</code><button data-copy="H77E: 10m fluvial knickpoints + GeoDAWN/BLM/TIGER deseam + 1m/10m step + Lagrangian 300m submod (0.1685 3-seed HOLDOUT-DTI)">Copy</button></div>
+<p class="small"><code>.tif</code> SHA-256: <code>25b1c0449e8d94469db22bab4c390110b6f8a928dc01cf21a39b97efcf84d19e</code> (147,116 bytes) ·
+<code>.zip</code> SHA-256: <code>45bb3e30b0c3baff33d736659af8240a77fe4a8177514e670751100ad65d27e4</code> (113,669 bytes)</p>
+</section>
+<h2>Quick Decision Matrix (3-Second Read)</h2>
+<table>
+<tr><th>Question</th><th>Verified Answer</th></tr>
+<tr><td><b>1. Is this file OK to download right now?</b></td><td><b>YES.</b> Click either button above to download the validated GeoTIFF (<code>147,116 B</code>) or single-TIFF portal ZIP (<code>113,669 B</code>).</td></tr>
+<tr><td><b>2. Is this file OK to submit automatically?</b></td><td><b>NO — Not OK to submit without human selector sign-off (Selector: not approved).</b> Fails closed under repository Policy I17 due to 47 Nevada-wide null-saturating rasters (<code>E_Unif[FwdOverlap] &ge; 0.7000</code>, including 100%-footprint continuous surfaces and stride-5 lattice <code>5c1a1594</code> with mathematical minimum overlap <code>0.827004 &gt; 0.70</code>). Passes <b>823 / 823 non-null-saturated rasters (&le; 0.66498)</b> and <b>870 / 870 Spearman checks (&le; 0.61645)</b>.</td></tr>
+<tr><td><b>3. Will DrivenData reject it with <code>"Predicted values must be in range [0, 1]"</code>?</b></td><td><b>NO (15/15 validator checks PASS).</b> Single-band <code>float32</code>, <code>EPSG:32611</code>, <code>3730 &times; 3292</code>, <code>nodata = None</code>, <code>0 NaN</code> across all <code>12,279,160</code> pixels, <code>0 Inf</code>, exact binary values in <code>{0.0, 1.0} &sube; [0, 1]</code>, <code>0</code> catalogue pixels, <code>0</code> out-of-footprint non-zeros.</td></tr>
+<tr><td><b>4. How strong is its scientific evidence?</b></td><td><b>Strongest holdout result in repository family history:</b> <b>0.168493 HOLDOUT-DTI</b> pooled across 34,235 withheld positive pixels (Seed 30: <code>0.165580</code>; Seed 20: <code>0.163962</code>; Seed 21: <code>0.175841</code>) and <b>0.194160 HOLDOUT-DTI</b> across 57,448 blind 4-quadrant pixels.</td></tr>
+</table>
+
+<h2>Step-by-Step Upload Checklist (Once Approved by Human Selector)</h2>
+<ol>
+<li>Download <a href="downloads/gems77-h77e-fluvial-deseam-lagsubmod-37654-20261021-236fc1cb-zeros.zip" download><code>gems77-h77e-fluvial-deseam-lagsubmod-37654-20261021-236fc1cb-zeros.zip</code></a> (single-TIFF ZIP containing only <code>gems77-h77e-fluvial-deseam-lagsubmod-37654-20261021-236fc1cb-zeros.tif</code>) or the raw <code>.tif</code>.</li>
+<li>Verify checksum locally before upload:<br>
+<code>sha256sum gems77-h77e-fluvial-deseam-lagsubmod-37654-20261021-236fc1cb-zeros.tif</code> &rarr; <code>25b1c0449e8d94469db22bab4c390110b6f8a928dc01cf21a39b97efcf84d19e</code><br>
+<code>sha256sum gems77-h77e-fluvial-deseam-lagsubmod-37654-20261021-236fc1cb-zeros.zip</code> &rarr; <code>45bb3e30b0c3baff33d736659af8240a77fe4a8177514e670751100ad65d27e4</code></li>
+<li>Open the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData DOE GEMS Submission Page</a>, upload the single file, and paste the 123-character note:<br>
+<code>H77E: 10m fluvial knickpoints + GeoDAWN/BLM/TIGER deseam + 1m/10m step + Lagrangian 300m submod (0.1685 3-seed HOLDOUT-DTI)</code></li>
+<li>Record the returned live score and timestamp receipt; only portal-returned values carry label <code>ORGANIZER-CONFIRMED</code>.</li>
+</ol>
+</div></main>
+<footer><div class="wrap">Selector status for every file on this site: <b>not approved</b>. Spending a weekly DrivenData slot
+is a separate human-selector decision outside this repository. Generated deterministically by <code>scripts/h77pd_build_pages.py</code>
+from <code>evidence/run_card_h77pd.json</code>. Number labels: <b>ORGANIZER-CONFIRMED</b> (public leaderboard / receipt),
+<b>HOLDOUT-DTI</b> (<code>gems57-pooled-hide-v2</code> whole-segment hide-and-recover with withheld positive pixel count &amp; 95% CI),
+<b>INSTRUMENT</b> (analytic diagnostic, never a score).</div></footer>
+<script>document.querySelectorAll('button[data-copy]').forEach(b=>b.onclick=()=>{navigator.clipboard.writeText(b.dataset.copy);b.textContent='Copied';setTimeout(()=>b.textContent='Copy',1200)})</script>
+</body></html>

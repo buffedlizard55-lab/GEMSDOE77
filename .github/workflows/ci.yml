@@ -26,7 +26,17 @@ jobs:
       - run: python scripts/build_home.py
       - run: python scripts/release_gate.py --verify-fail-closed
       - run: python scripts/verify_all.py
-      - run: python -m pytest -q
+      - run: |
+          python - <<'PY'
+          import subprocess, sys
+          r = subprocess.run([sys.executable, '-m', 'pytest', '-q', '--tb=short'], text=True, capture_output=True)
+          sys.stdout.write(r.stdout)
+          sys.stderr.write(r.stderr)
+          if r.returncode != 0:
+              msg = (r.stdout + '\n' + r.stderr)[-3500:].replace('%', '%25').replace('\r', '%0D').replace('\n', '%0A')
+              print(f'::error title=pytest-failure::{msg}')
+              sys.exit(r.returncode)
+          PY
       - name: Clearance text must match the measured gates
         run: |
           python - <<'PY'
