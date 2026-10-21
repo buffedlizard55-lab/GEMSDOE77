@@ -22,10 +22,12 @@ LB = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboa
 PD = "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
 NAV = [("index.html", "Start here"), ("executive-summary.html", "How to submit"),
+       ("tsd.html", "H77-TSD · inspection"),
        ("h79.html", "H79 · research-only"),
        ("h79-radhalo.html", "H79-RH · negative"),
        ("h77l.html", "H77L · research-only"), ("h77d.html", "H77D (Zero-SGMC)"), ("h77d-executive-summary.html", "H77D guide"),
        ("h77-step.html", "H77-Step"), ("h77e.html", "H77E · negative"), ("h78.html", "H78 lane"),
+       ("xsen.html", "H77-XSEN"),
        ("lia.html", "LIA lane"), ("contactphys.html", "Contact-physics lane"), ("urank.html", "Selective-U lane"),
        ("lia-analysis.html", "Why 0.2778"), ("lia-sources.html", "Sources")]
 
@@ -103,6 +105,15 @@ def main():
                     f'(95% CI {v["ci_95"][0]:.4f}–{v["ci_95"][1]:.4f}; '
                     f'{e(h["evaluator_version"])}; {v["withheld_positive_pixels"]:,} withheld); '
                     'not comparable to H77L or H77-Step</span>')
+        if x["lane"].startswith("H77-TSD:"):
+            rc_tsd = jload("evidence/run_card_tsd.json")
+            s30 = rc_tsd["holdout_dti"]["seed_30"]
+            s20 = rc_tsd["holdout_dti"]["seed_20"]
+            return (f'<span class="chip warn">HOLDOUT-DTI {s30["A_tsd_full_dti"]:.4f} '
+                    f'(95% CI {s30["A_tsd_full_ci95"][0]:.4f}–{s30["A_tsd_full_ci95"][1]:.4f}; '
+                    f'{e(rc_tsd["holdout_dti"]["evaluator_version"])}; {s30["withheld_positive_pixels"]:,} withheld, s30) · '
+                    f'{s20["A_tsd_full_dti"]:.4f} (95% CI {s20["A_tsd_full_ci95"][0]:.4f}–{s20["A_tsd_full_ci95"][1]:.4f}; '
+                    f'{s20["withheld_positive_pixels"]:,} withheld, s20); below 0.1527 repo ceiling</span>')
         if x["lane"].startswith("H79-RH:"):
             h = jload("evidence/h79_radhalo_run_card.json")["holdout_dti"]
             return (f'<span class="chip warn">HOLDOUT-DTI {h["score"]:.4f} '
@@ -192,12 +203,36 @@ gates and currently says <b>NOT OK TO SUBMIT — 0 authorized files</b>.</p>"""
 Δ = {d["delta"]:+.4f} (95% CI {d["ci95"][0]:+.4f} to {d["ci95"][1]:+.4f}).</li>
 <li><b>Verdict:</b> <b>{e(card["verdict"].upper())}</b> — {e(card["verdict_reason"])}</li>
 <li><a href="h78.html">Full H78 page: the hypotheses, the three experiments, uniqueness and the run card →</a></li></ul>"""
+    rc_tsd = jload("evidence/run_card_tsd.json")
+    tsd_box = ""
+    if rc_tsd:
+        tsub = rc_tsd["submission"]
+        th30 = rc_tsd["holdout_dti"]["seed_30"]
+        th20 = rc_tsd["holdout_dti"]["seed_20"]
+        tuq = rc_tsd["registry_uniqueness"]
+        tsd_box = f"""<section class="card dl research"><h2>⬇ New Session Candidate (<code>H77-TSD</code>): OK to download for inspection — NOT OK TO SUBMIT</h2>
+<p class="small muted"><b>{e(rc_tsd["hypothesis"]["title"])}</b> (branch <code>arena/b2132ad0-gemsdoe77</code>, 100% SHA-256-pinned manifest inputs, 0 SGMC channels, 0 prior rasters).</p>
+<a class="btn" href="{e(tsub["tif_path"].removeprefix("docs/"))}" download>Download H77-TSD .tif ({tsub["tif_bytes"]/1024:.0f} KB)</a>
+<a class="btn alt" href="{e(tsub["zip_path"].removeprefix("docs/"))}" download>Download Single-TIFF .zip ({tsub["zip_bytes"]/1024:.0f} KB)</a>
+<a class="btn alt" href="tsd.html">Full H77-TSD Technical Report &amp; 5 Ranked Hypotheses →</a>
+<div class="chips"><span class="chip ok">OK to download: YES</span>
+<span class="chip ok">Portal format (local checks): PASS (15/15, 0 NaN, [0,1])</span>
+<span class="chip bad">Unique, literal rule (Policy I17): FAIL (1.000 vs dense witness ab0a0a62)</span>
+<span class="chip ok">Informative reading (675 sparse rasters): PASS (max 3-px overlap {tuq["phase2_informative_max_forward_overlap_3px"]:.4f} &le; 0.70, max |&rho;| {tuq["phase1_surface_max_spearman_abs"]:.4f} &le; 0.90)</span>
+<span class="chip warn">Selector: not approved</span>
+<span class="chip bad">NOT OK TO SUBMIT</span></div>
+<p class="verdict"><b>Can I submit it?</b> <b>No. NOT OK TO SUBMIT (inspection download only).</b> Under Policy I17 the full-footprint continuous witness <code>ab0a0a62</code> forces literal 3-px forward overlap = 1.000 &gt; 0.70.<br>
+<b>Local holdout evidence:</b> <b>{th30["A_tsd_full_dti"]:.5f} HOLDOUT-DTI</b> (95% CI {th30["A_tsd_full_ci95"][0]:.5f}–{th30["A_tsd_full_ci95"][1]:.5f}; <code>gems57-pooled-hide-v2</code>; {th30["withheld_positive_pixels"]:,} withheld positives on Seed 30; paired &Delta; vs standard stack = <b>{th30["delta_vs_std_greedy"]:+.5f}</b>, 95% CI [{th30["delta_vs_std_greedy_ci95"][0]:+.5f}, {th30["delta_vs_std_greedy_ci95"][1]:+.5f}]) and <b>{th20["A_tsd_full_dti"]:.5f} HOLDOUT-DTI</b> (95% CI {th20["A_tsd_full_ci95"][0]:.5f}–{th20["A_tsd_full_ci95"][1]:.5f}; {th20["withheld_positive_pixels"]:,} withheld positives on Seed 20; paired &Delta; vs standard stack = <b>{th20["delta_vs_std_greedy"]:+.5f}</b>, 95% CI [{th20["delta_vs_std_greedy_ci95"][0]:+.5f}, {th20["delta_vs_std_greedy_ci95"][1]:+.5f}]).</p>
+{copy("H77-TSD unique submission name (inspection reference — DO NOT UPLOAD)", tsub["name"])}
+{copy("H77-TSD short note <= 140 chars (inspection reference — DO NOT UPLOAD)", tsub["note"])}
+<p class="small">GeoTIFF SHA-256: <code>{e(tsub["tif_sha256"])}</code> · ZIP SHA-256: <code>{e(tsub["zip_sha256"])}</code> · <a href="evidence/run_card_tsd.json">Machine-readable Run Card (.json)</a></p></section>"""
     body = f"""<h1>Start here</h1>
 <p>This repository builds and audits fault-probability GeoTIFFs for the <a href="{COMP}">DOE GEMS Prize</a>
 (DrivenData competition 306). The first box distinguishes downloading a file from permission to upload it. The table
 lists the reviewed research candidates, not every historical archived/NaN-twin file; see <a href="audit.html">archive audit</a>.</p>
 {glance}
 {dl}
+{tsd_box}
 <h2>Reviewed downloadable candidates</h2>{table}
 <div class="values"><b>The target, labelled.</b> On 2026-10-21 the <a href="{LB}">public leaderboard</a> showed
 <b>0.4413 ORGANIZER-CONFIRMED</b> for first place and <b>0.2778 ORGANIZER-CONFIRMED</b> for participant extradr19
@@ -219,13 +254,14 @@ not proof that the specific file received that score or that another submission 
 
     # ---------------- general executive summary (how to submit)
     guide = f"""<h1>Executive summary: how to submit — only AFTER approval</h1>
-<p class="verdict"><b>Today: NOT OK TO SUBMIT any file here.</b> The featured H77L file is explicitly
-<b>RESEARCH ONLY</b>. Download is for inspection, not permission to upload. Before spending one of the official
+<p class="verdict"><b>Today: NOT OK TO SUBMIT any file here.</b> The featured H77L file and the new H77-TSD file are explicitly
+<b>RESEARCH / INSPECTION ONLY</b>. Download is for inspection, not permission to upload. Before spending one of the official
 <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">three weekly feedback slots</a>, the shared uniqueness policy must
 be resolved, a candidate must beat a <em>matched</em> holdout incumbent, and a separate selector must approve it. No
 condition is met merely by passing a format check.</p>
 {glance}
 {dl}
+{tsd_box}
 <h2>What the DrivenData submission form asks for</h2>
 <table><tr><th>Field</th><th>What to give it only after clearance</th></tr>
 <tr><td>File to submit</td><td>One <b>cleared</b> single-band float32 GeoTIFF <code>.tif</code> (or a ZIP containing exactly that one GeoTIFF),

@@ -1,0 +1,313 @@
+{
+  "schema_version": "gems-run-card-v2",
+  "lane_id": "H77-TSD",
+  "branch": "arena/b2132ad0-gemsdoe77",
+  "timestamp_utc": "2026-10-21T17:05:00Z",
+  "verdict": "negative",
+  "scientific_holdout_verdict": "positive_over_controls_on_both_seeds",
+  "protocol_unique": false,
+  "safe_to_download": true,
+  "safe_to_submit": false,
+  "submission_status_banner": "NOT OK TO SUBMIT \u2014 inspection download only (fails literal 3-px overlap = 1.000 against full-footprint continuous witness ab0a0a62 under Policy I17; passes sparse dot-field uniqueness <= 0.70)",
+  "experiment_budget_used": "3 of 3 preregistered experiments (E1 canary+screen, E2 dual-seed holdout, E3 full-map OOF build+audit)",
+  "hypothesis": {
+    "id": "H77-TSD",
+    "title": "Transtensional Strain-Partitioning Mode x Seismic Swarm Excess x MT Clay-Cap Margin + 12-Bit LOCO Relay Mechanics & 300 m Submodular Cover",
+    "statement": "Concealed geothermal-hosting faults in the Walker Lane - Basin & Range transition occur where crustal strain partitions into simultaneous shear and positive dilatation (sqrt(rank(geod_shearrate)*rank(max(geod_dilaterate,0)))), accompanied by dependent-over-independent earthquake swarm excess (rank(deq_n100a15) - 0.65*rank(ieq_n100a15)), magnetotelluric smectite clay-cap lateral conductance gradients perched over conductive-basement upwarps, DOE GDR 1391 chemical geothermometer disequilibrium, and missing-coverage-aware 1 m LiDAR scarp dipoles coupled with 12-bit Leave-Own-Component-Out (LOCO) relay mechanics and emitted via exact 300 m submodular coverage.",
+    "physical_mechanism": "Blind geothermal systems (>75% of undiscovered Great Basin resources; Faulds & Hinz 2015) concentrate in transtensional accommodation zones, releasing step-overs, and horsetail fault splays where fluid-driven earthquake swarms (deq >> ieq; Kreemer & Young 2022) and smectite clay-cap boundaries mark permeable fault conduits even where surface scarps are subdued or buried.",
+    "named_non_fault_mimic": "Non-tectonic volcanic or mining/quarry seismic swarms, evaporite/playa brine surface conductivity edges (Carson Sink / Humboldt Sink playas), and Pleistocene Lake Lahontan shoreline scarps."
+  },
+  "leakage_canary": {
+    "channels_tested": 15,
+    "max_single_feature_symmetric_auc": 0.8107427166725447,
+    "worst_canary_feature": "vis_stepover_corridor",
+    "ceiling": 0.9,
+    "leakage_flags": [],
+    "sgmc_channels_used": 0,
+    "gdr_dist_known_fault_px_accessed": false,
+    "in_sample_predicted_pixels": 0,
+    "pixels_copied_from_prior_rasters": 0
+  },
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "implementation_sha256": {
+      "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+      "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+      "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+      "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+    },
+    "alpha": 0.2,
+    "beta": 0.8,
+    "kernel_radius_m": 300.0,
+    "seed_30": {
+      "withheld_positive_pixels": 11342,
+      "A_tsd_full_dti": 0.13602303003011726,
+      "A_tsd_full_ci95": [
+        0.12126577164309392,
+        0.14939560298893598
+      ],
+      "A_tsd_mech_only_dti": 0.12141370509779424,
+      "A_tsd_greedy_dti": 0.11779670704537049,
+      "A_tsd_static_only_dti": 0.10767381551770305,
+      "A_std_greedy_dti": 0.09903098551477123,
+      "A0_random_dti": 0.045468042756270796,
+      "delta_vs_std_greedy": 0.03699204451534603,
+      "delta_vs_std_greedy_ci95": [
+        0.020184833831043022,
+        0.054939290804711924
+      ],
+      "delta_vs_static_only": 0.028349214512414206,
+      "delta_vs_static_only_ci95": [
+        0.01244077069222098,
+        0.04492297360755508
+      ],
+      "delta_vs_tsd_greedy": 0.018226322984746773,
+      "delta_vs_tsd_greedy_ci95": [
+        0.00917155384051966,
+        0.028048414543433466
+      ]
+    },
+    "seed_20": {
+      "withheld_positive_pixels": 11321,
+      "A_tsd_full_dti": 0.13370771406074353,
+      "A_tsd_full_ci95": [
+        0.11796984725395691,
+        0.14923627411385484
+      ],
+      "A_tsd_mech_only_dti": 0.1228364307196389,
+      "A_tsd_greedy_dti": 0.11653784548891608,
+      "A_tsd_static_only_dti": 0.10975563875455457,
+      "A_std_greedy_dti": 0.10792882239694401,
+      "A0_random_dti": 0.047777887890067774,
+      "delta_vs_std_greedy": 0.025778891663799514,
+      "delta_vs_std_greedy_ci95": [
+        0.007842423423854557,
+        0.043152058777735466
+      ],
+      "delta_vs_static_only": 0.023952075306188952,
+      "delta_vs_static_only_ci95": [
+        0.008127514170164028,
+        0.04309930444416099
+      ],
+      "delta_vs_tsd_greedy": 0.01716986857182745,
+      "delta_vs_tsd_greedy_ci95": [
+        0.010108684558143627,
+        0.024628860282638148
+      ]
+    }
+  },
+  "registry_uniqueness": {
+    "total_prior_rasters_checked": 833,
+    "informative_sparse_rasters_checked": 675,
+    "space_filling_rasters_checked": 156,
+    "phase1_surface_max_spearman_abs": 0.45257224777280647,
+    "phase1_surface_nearest_raster": "archive_registry:dense_witness",
+    "phase2_dot_max_spearman_abs": 0.0863094849765692,
+    "phase2_dot_nearest_spearman_raster": "archive_registry:4b95b4836868628865b4e672b2bda6124504fac6",
+    "phase2_informative_max_forward_overlap_3px": 0.6916927816433845,
+    "phase2_informative_max_mutual_overlap_3px": 0.5548148935040103,
+    "phase2_informative_nearest_raster": "archive_registry:7d19b90ed6e358b14b561bc405690a104c5da64b",
+    "phase2_literal_max_forward_overlap_3px": 1.0,
+    "phase2_literal_nearest_raster": "archive_registry:0c42fc03b2c1830b4bbbd09e3a58a7f31c310118",
+    "informative_sparse_gates_pass": true,
+    "literal_gate_passes": false,
+    "policy_i17_note": "Under Policy I17, the 100%-coverage continuous raster 17GEMSDOE_E-proba-multiscale (ab0a0a62) forces literal 3-px forward overlap = 1.000 > 0.70 on every non-empty candidate. Across all 800+ sparse dot-field rasters (<= 100k dots), max 3-px forward overlap is 0.6917 <= 0.70."
+  },
+  "submission": {
+    "name": "gems77-tsd-transtens-swarm-submod-37654dots-20261021-zeros",
+    "note": "H77-TSD transtensional+swarm+MT+LOCO OOF 300m submod (37654 dots); HOLDOUT-DTI 0.1360 (s30)/0.1337 (s20); Policy I17 inspection only",
+    "note_length": 132,
+    "tif_path": "docs/downloads/gems77-tsd-transtens-swarm-submod-37654dots-20261021-zeros.tif",
+    "tif_sha256": "4ebb1da423d26d9823ad15c4f8a0e722edc3e79272c8e720adcd28e6224af68c",
+    "tif_bytes": 132961,
+    "zip_path": "docs/downloads/gems77-tsd-transtens-swarm-submod-37654dots-20261021-zeros.zip",
+    "zip_sha256": "2bbee85e6eb04ff17b3818f032fca1087a794a343b6383a8c4c97a3d27e0e884",
+    "zip_bytes": 94346,
+    "dots": 37654,
+    "catalogue_exclusion_px": 3.0,
+    "validator_output": {
+      "file": "/home/user/GEMSDOE77/docs/downloads/gems77-tsd-transtens-swarm-submod-37654dots-20261021-zeros.tif",
+      "bytes": 132961,
+      "sha256": "4ebb1da423d26d9823ad15c4f8a0e722edc3e79272c8e720adcd28e6224af68c",
+      "meta": {
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "dtype": "float32",
+        "count": 1,
+        "nodata": null,
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "profile_compress": "deflate"
+      },
+      "band_description": [
+        null
+      ],
+      "n_finite": 12279160,
+      "n_nan": 0,
+      "n_infinite": 0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.0030664964579045773,
+      "emitted_positive_pixels": 37654,
+      "checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "transform_matches_sample_submission": true,
+        "no_nan_anywhere": true,
+        "no_inf_anywhere": true,
+        "no_sentinel_values": true,
+        "range_0_1_guaranteed": true,
+        "min_ge_0": true,
+        "max_le_1": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_zero": true,
+        "zero_dots_on_mapped_catalogue": true
+      },
+      "all_checks_passed": true,
+      "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+      "on_catalogue_positive_pixels": 0,
+      "in_footprint_positive_pixels": 37654,
+      "footprint_fraction": 0.007286874781441169,
+      "ok_to_submit": false,
+      "approval_warning": "Format validation is not protocol uniqueness, selector approval or organizer acceptance."
+    },
+    "writer_receipt": {
+      "file": "gems77-tsd-transtens-swarm-submod-37654dots-20261021-zeros.tif",
+      "sha256": "4ebb1da423d26d9823ad15c4f8a0e722edc3e79272c8e720adcd28e6224af68c",
+      "bytes": 132961,
+      "submission_name": "gems77-tsd-transtens-swarm-submod-37654dots-20261021-zeros",
+      "note": "H77-TSD transtensional+swarm+MT+LOCO OOF 300m submod (37654 dots); HOLDOUT-DTI 0.1360 (s30)/0.1337 (s20); Policy I17 inspection only",
+      "note_chars": 132,
+      "validator": {
+        "file": "/home/user/GEMSDOE77/docs/downloads/gems77-tsd-transtens-swarm-submod-37654dots-20261021-zeros.tif",
+        "bytes": 132961,
+        "sha256": "4ebb1da423d26d9823ad15c4f8a0e722edc3e79272c8e720adcd28e6224af68c",
+        "meta": {
+          "crs": "EPSG:32611",
+          "shape": [
+            3730,
+            3292
+          ],
+          "dtype": "float32",
+          "count": 1,
+          "nodata": null,
+          "transform": [
+            100.0,
+            0.0,
+            243350.0,
+            0.0,
+            -100.0,
+            4508550.0
+          ],
+          "profile_compress": "deflate"
+        },
+        "band_description": [
+          null
+        ],
+        "n_finite": 12279160,
+        "n_nan": 0,
+        "n_infinite": 0,
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.0030664964579045773,
+        "emitted_positive_pixels": 37654,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "all_checks_passed": true,
+        "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+        "on_catalogue_positive_pixels": 0,
+        "in_footprint_positive_pixels": 37654,
+        "footprint_fraction": 0.007286874781441169
+      },
+      "template_report": {
+        "path": "/home/user/GEMSDOE77/docs/downloads/gems77-tsd-transtens-swarm-submod-37654dots-20261021-zeros.tif",
+        "bytes": 132961,
+        "sha256": "4ebb1da423d26d9823ad15c4f8a0e722edc3e79272c8e720adcd28e6224af68c",
+        "bands": 1,
+        "dtype": "float32",
+        "crs": "EPSG:32611",
+        "width": 3292,
+        "height": 3730,
+        "bounds": [
+          243350.0,
+          4135550.0,
+          572550.0,
+          4508550.0
+        ],
+        "ref_bounds": [
+          243350.0,
+          4135550.0,
+          572550.0,
+          4508550.0
+        ],
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "nodata": null,
+        "blocksize": [
+          256,
+          256
+        ],
+        "fixture_grid": false,
+        "has_validity_mask": false,
+        "nan_pixels": 0,
+        "infinity_pixels": 0,
+        "n_nan": 0,
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.0030664964579045773,
+        "n_nonzero": 37654,
+        "mass": 37654.0,
+        "mass_outside_footprint": 0,
+        "problems": [],
+        "ok": true,
+        "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+      },
+      "zip_file": "gems77-tsd-transtens-swarm-submod-37654dots-20261021-zeros.zip",
+      "zip_sha256": "2bbee85e6eb04ff17b3818f032fca1087a794a343b6383a8c4c97a3d27e0e884",
+      "approved_for_weekly_slot": false,
+      "promoted": false,
+      "submission_slots_used": 0,
+      "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+      "metadata": {
+        "lane": "H77-TSD",
+        "verdict": "negative",
+        "protocol_unique": false,
+        "policy_i17": "NOT OK TO SUBMIT \u2014 inspection download only (literal dense witness ab0a0a62 overlap = 1.0)"
+      }
+    }
+  }
+}

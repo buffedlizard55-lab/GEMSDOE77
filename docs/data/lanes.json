@@ -1,6 +1,32 @@
 {
- "note": "Eleven reviewed downloadable lanes are retained, including H77L (the featured research-only file), two concurrently merged H79 negative TIFFs, and the new D77 blind-distance band. Every listed artifact is for inspection only, Not OK to submit: the literal dense-witness gate blocks every nonempty candidate under Policy I17. See data/submission-authorization.json.",
+ "note": "Thirteen reviewed downloadable lanes are retained, including H77L (the featured research-only file), H77-TSD (transtensional strain-partitioning × seismic swarm excess × MT clay-cap margin + 12-bit LOCO relay mechanics), two concurrently merged H79 negative TIFFs, D77, and H77-XSEN. Every listed artifact is for inspection only, Not OK to submit: the literal dense-witness gate blocks every nonempty candidate under Policy I17. See data/submission-authorization.json.",
  "lanes": [
+  {
+   "lane": "H77-TSD: Transtensional strain-partitioning × seismic swarm excess × MT clay-cap margin + 12-bit LOCO relay & 300 m submod (0.1360 / 0.1337 HOLDOUT-DTI)",
+   "page": "tsd.html",
+   "summary": "executive-summary.html",
+   "file": "downloads/gems77-tsd-transtens-swarm-submod-37654dots-20261021-zeros.tif",
+   "run_card": "evidence/run_card_tsd.json",
+   "format_valid": true,
+   "protocol_unique": false,
+   "informative_unique": true,
+   "beats_holdout_best": false,
+   "verdict": "negative",
+   "primary": false,
+   "name": "gems77-tsd-transtens-swarm-submod-37654dots-20261021-zeros",
+   "note": "H77-TSD transtensional+swarm+MT+LOCO OOF 300m submod (37654 dots); HOLDOUT-DTI 0.1360 (s30)/0.1337 (s20); Policy I17 inspection only",
+   "sha256": "4ebb1da423d26d9823ad15c4f8a0e722edc3e79272c8e720adcd28e6224af68c",
+   "holdout_dti_hide_v2": 0.13602303003011726,
+   "holdout_evaluator_version": "gems57-pooled-hide-v2",
+   "holdout_positive_pixels": 11342,
+   "holdout_ci95": [
+    0.12126577164309392,
+    0.14939560298893598
+   ],
+   "upload": "Not OK to submit. OK to download for inspection only. Passes format validation (15/15 checks, 0 NaN, [0,1]), beats standard/ablation controls on both holdout seeds (0.13602 [0.1213, 0.1494] s30, +0.03699 vs std; 0.13371 [0.1180, 0.1492] s20, +0.02578 vs std), and passes sparse dot-field uniqueness across all 675 sparse rasters (max 3-px forward overlap 0.6917 <= 0.70, max |rho| 0.4526 <= 0.90), but fails literal uniqueness (1.000 > 0.70) against the full-footprint continuous witness ab0a0a62 under Policy I17 and is below the 0.1527 repo holdout ceiling; selector: not approved.",
+   "why_primary": "Session H77-TSD lane built strictly from SHA-256-pinned manifest inputs.",
+   "beat_02778_summary": "No conclusion that this file beats the owner-reported 0.2778 can be drawn from local holdout measurements; not cleared to submit under Policy I17."
+  },
   {
    "lane": "D77: blind-distance band 250m-1km off catalogue + greedy dots under the exact DTI bar (HOLDOUT-DTI 0.0000 [0.0000, 0.0000]; negative result)",
    "page": "downloads/gems77-d77-blind-band-35106dots-20261021-926076f7-zeros.tif",
