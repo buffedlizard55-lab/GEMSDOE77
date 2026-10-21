@@ -1,10 +1,37 @@
 {
-  "schema": "gems-submission-authorization-v1",
-  "generated_utc": "2026-10-21T17:09:26+00:00",
-  "policy": "Authorization requires artifact existence, matching SHA-256, a readable run card with a promote verdict, local format PASS, literal protocol uniqueness (including <=0.70 real-model forward 3-px overlap and complete registry), improvement over the accepted holdout best, a promote verdict, and explicit selector approval. Missing fields or historical run-card uniqueness/completeness failures fail closed.",
+  "schema": "gems-submission-authorization-v2",
+  "generated_utc": "2026-10-21T17:12:22+00:00",
+  "policy": "Authorization requires artifact existence, matching SHA-256, a readable run card with a promote verdict, matching raster_sha256 and explicit positive uniqueness, registry completeness, valid/improved holdout and selector declarations; actual shared-validator format readback PASS, literal protocol uniqueness (including <=0.70 real-model forward 3-px overlap and complete registry), improvement over the accepted holdout best, a promote verdict, and explicit selector approval. Missing fields or historical run-card uniqueness/completeness failures fail closed.",
   "repository_authorized_file_count": 0,
   "repository_decision": "NOT OK TO SUBMIT",
   "historical_run_card_reconciliation": [
+    {
+      "lane": "H82-TEXTURE: K/Th local second-moment boundary (negative, continuous research surface)",
+      "run_card": "evidence/h82_texture/run_card.json",
+      "recorded_verdict": "negative",
+      "recorded_safe_to_submit": false,
+      "historical_promotion_conflict": false,
+      "operative_decision": "NOT OK TO SUBMIT",
+      "reconciliation_note": "Historical run card and operative release gate both fail closed."
+    },
+    {
+      "lane": "H82R: local ternary radiometric rank-mixture entropy (STOPPED; research only)",
+      "run_card": "evidence/h82rank_run_card.json",
+      "recorded_verdict": "negative",
+      "recorded_safe_to_submit": false,
+      "historical_promotion_conflict": false,
+      "operative_decision": "NOT OK TO SUBMIT",
+      "reconciliation_note": "Historical run card and operative release gate both fail closed."
+    },
+    {
+      "lane": "H82: cool-outlet geothermometer concordance (negative)",
+      "run_card": "evidence/h82_run_card.json",
+      "recorded_verdict": "negative",
+      "recorded_safe_to_submit": false,
+      "historical_promotion_conflict": false,
+      "operative_decision": "NOT OK TO SUBMIT",
+      "reconciliation_note": "Historical run card and operative release gate both fail closed."
+    },
     {
       "lane": "H77G: hydrothermal magnetite-destruction trough \u00d7 gravity-basement step \u00d7 MT clay-cap margin (HOLDOUT-DTI 0.0619 s20 / 0.0618 s30, pure 0.0392/0.0471; negative result)",
       "run_card": "evidence/run_card_h77g.json",
@@ -26,8 +53,8 @@
     {
       "lane": "H80-OTA: orphan thermal alignment - collinear off-catalogue hot wells/springs (0.1039 HOLDOUT-DTI)",
       "run_card": "evidence/run_card_h80.json",
-      "recorded_verdict": "negative",
-      "recorded_safe_to_submit": false,
+      "recorded_verdict": null,
+      "recorded_safe_to_submit": null,
       "historical_promotion_conflict": false,
       "operative_decision": "NOT OK TO SUBMIT",
       "reconciliation_note": "Historical run card and operative release gate both fail closed."
@@ -170,6 +197,204 @@
   ],
   "artifacts": [
     {
+      "lane": "H82-TEXTURE: K/Th local second-moment boundary (negative, continuous research surface)",
+      "file": "downloads/gems77-h82-texture-kt-bf0a3028b4fa-RESEARCH-ONLY.tif",
+      "sha256": "c571af22cb08db9cb8cfd6edf0108364d95b0c3bec8316d09d3dfd116531790e",
+      "checks": {
+        "artifact_exists": true,
+        "run_card_present": true,
+        "format_valid": true,
+        "format_readback_passed": true,
+        "literal_protocol_unique": false,
+        "beats_accepted_holdout_best": false,
+        "scientific_verdict_promote": false,
+        "selector_approved": false,
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": true
+      },
+      "run_card_audit": {
+        "run_card": "evidence/h82_texture/run_card.json",
+        "present": true,
+        "recorded_verdict": "negative",
+        "raster_sha256": "c571af22cb08db9cb8cfd6edf0108364d95b0c3bec8316d09d3dfd116531790e",
+        "explicit_promotion_evidence": false,
+        "recorded_safe_to_submit": false,
+        "literal_duplicate_recorded": true,
+        "real_model_forward_overlap_3px": null,
+        "real_model_forward_overlap_exceeds_070": false,
+        "registry_incomplete": true,
+        "holdout_invalid_for_promotion": false,
+        "historical_promotion_conflict": false,
+        "guardrail_clear": false
+      },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "c571af22cb08db9cb8cfd6edf0108364d95b0c3bec8316d09d3dfd116531790e"
+      },
+      "authorized_to_submit": false,
+      "decision": "NOT OK TO SUBMIT",
+      "failed_gates": [
+        "literal_protocol_unique",
+        "beats_accepted_holdout_best",
+        "scientific_verdict_promote",
+        "selector_approved",
+        "explicit_run_card_promotion_evidence"
+      ]
+    },
+    {
+      "lane": "H82R: local ternary radiometric rank-mixture entropy (STOPPED; research only)",
+      "file": "downloads/gems77-h82-ternaryentropy-20261021-RESEARCH-ONLY.tif",
+      "sha256": "56debe682505bf2649f30d914c7b552dcf669bce4b902ce91eb3e5363031f115",
+      "checks": {
+        "artifact_exists": true,
+        "run_card_present": true,
+        "format_valid": true,
+        "format_readback_passed": true,
+        "literal_protocol_unique": false,
+        "beats_accepted_holdout_best": false,
+        "scientific_verdict_promote": false,
+        "selector_approved": false,
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": true
+      },
+      "run_card_audit": {
+        "run_card": "evidence/h82rank_run_card.json",
+        "present": true,
+        "recorded_verdict": "negative",
+        "raster_sha256": "56debe682505bf2649f30d914c7b552dcf669bce4b902ce91eb3e5363031f115",
+        "explicit_promotion_evidence": false,
+        "recorded_safe_to_submit": false,
+        "literal_duplicate_recorded": true,
+        "real_model_forward_overlap_3px": null,
+        "real_model_forward_overlap_exceeds_070": false,
+        "registry_incomplete": true,
+        "holdout_invalid_for_promotion": false,
+        "historical_promotion_conflict": false,
+        "guardrail_clear": false
+      },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "56debe682505bf2649f30d914c7b552dcf669bce4b902ce91eb3e5363031f115"
+      },
+      "authorized_to_submit": false,
+      "decision": "NOT OK TO SUBMIT",
+      "failed_gates": [
+        "literal_protocol_unique",
+        "beats_accepted_holdout_best",
+        "scientific_verdict_promote",
+        "selector_approved",
+        "explicit_run_card_promotion_evidence"
+      ]
+    },
+    {
+      "lane": "H82: cool-outlet geothermometer concordance (negative)",
+      "file": "downloads/gems77-h82-cool-chemconcord-11185dots-20261021-245bb13136-zeros.tif",
+      "sha256": "84b50d05eaba578c398c4c7ab720dbf5a46de29d63f4254eb02a8ba02a4a43df",
+      "checks": {
+        "artifact_exists": true,
+        "run_card_present": true,
+        "format_valid": true,
+        "format_readback_passed": true,
+        "literal_protocol_unique": false,
+        "beats_accepted_holdout_best": false,
+        "scientific_verdict_promote": false,
+        "selector_approved": false,
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": true
+      },
+      "run_card_audit": {
+        "run_card": "evidence/h82_run_card.json",
+        "present": true,
+        "recorded_verdict": "negative",
+        "raster_sha256": "84b50d05eaba578c398c4c7ab720dbf5a46de29d63f4254eb02a8ba02a4a43df",
+        "explicit_promotion_evidence": false,
+        "recorded_safe_to_submit": false,
+        "literal_duplicate_recorded": true,
+        "real_model_forward_overlap_3px": null,
+        "real_model_forward_overlap_exceeds_070": false,
+        "registry_incomplete": true,
+        "holdout_invalid_for_promotion": false,
+        "historical_promotion_conflict": false,
+        "guardrail_clear": false
+      },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "84b50d05eaba578c398c4c7ab720dbf5a46de29d63f4254eb02a8ba02a4a43df"
+      },
+      "authorized_to_submit": false,
+      "decision": "NOT OK TO SUBMIT",
+      "failed_gates": [
+        "literal_protocol_unique",
+        "beats_accepted_holdout_best",
+        "scientific_verdict_promote",
+        "selector_approved",
+        "explicit_run_card_promotion_evidence"
+      ]
+    },
+    {
       "lane": "H77G: hydrothermal magnetite-destruction trough \u00d7 gravity-basement step \u00d7 MT clay-cap margin (HOLDOUT-DTI 0.0619 s20 / 0.0618 s30, pure 0.0392/0.0471; negative result)",
       "file": "downloads/gems77-h77g-demagtrough-gravstep-37654dots-20261021-08b78f3c-zeros.tif",
       "sha256": "7b97596de2cacd1d5b5f99f8fc679dbd9cf6a2bd7ab316adea5bf60ad2bb30d0",
@@ -177,16 +402,22 @@
         "artifact_exists": true,
         "run_card_present": true,
         "format_valid": true,
+        "format_readback_passed": true,
         "literal_protocol_unique": false,
         "beats_accepted_holdout_best": false,
         "scientific_verdict_promote": false,
         "selector_approved": false,
-        "sha256_matches": true
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": true
       },
       "run_card_audit": {
         "run_card": "evidence/run_card_h77g.json",
         "present": true,
         "recorded_verdict": "negative",
+        "raster_sha256": "7b97596de2cacd1d5b5f99f8fc679dbd9cf6a2bd7ab316adea5bf60ad2bb30d0",
+        "explicit_promotion_evidence": false,
         "recorded_safe_to_submit": false,
         "literal_duplicate_recorded": true,
         "real_model_forward_overlap_3px": null,
@@ -196,13 +427,37 @@
         "historical_promotion_conflict": false,
         "guardrail_clear": false
       },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "7b97596de2cacd1d5b5f99f8fc679dbd9cf6a2bd7ab316adea5bf60ad2bb30d0"
+      },
       "authorized_to_submit": false,
       "decision": "NOT OK TO SUBMIT",
       "failed_gates": [
         "literal_protocol_unique",
         "beats_accepted_holdout_best",
         "scientific_verdict_promote",
-        "selector_approved"
+        "selector_approved",
+        "explicit_run_card_promotion_evidence"
       ]
     },
     {
@@ -213,16 +468,22 @@
         "artifact_exists": true,
         "run_card_present": true,
         "format_valid": true,
+        "format_readback_passed": true,
         "literal_protocol_unique": false,
-        "beats_accepted_holdout_best": true,
+        "beats_accepted_holdout_best": false,
         "scientific_verdict_promote": false,
         "selector_approved": false,
-        "sha256_matches": true
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": false
       },
       "run_card_audit": {
         "run_card": "evidence/h77e/run_card.json",
         "present": true,
         "recorded_verdict": "negative",
+        "raster_sha256": null,
+        "explicit_promotion_evidence": false,
         "recorded_safe_to_submit": false,
         "literal_duplicate_recorded": true,
         "real_model_forward_overlap_3px": null,
@@ -232,12 +493,38 @@
         "historical_promotion_conflict": false,
         "guardrail_clear": false
       },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "db0dd67da44b83bc47f05289c05e2e917118d04b03e4958076f64661b726fb6b"
+      },
       "authorized_to_submit": false,
       "decision": "NOT OK TO SUBMIT",
       "failed_gates": [
         "literal_protocol_unique",
+        "beats_accepted_holdout_best",
         "scientific_verdict_promote",
-        "selector_approved"
+        "selector_approved",
+        "explicit_run_card_promotion_evidence",
+        "run_card_artifact_matches"
       ]
     },
     {
@@ -246,34 +533,66 @@
       "sha256": "703e7dee0a790572c2a9597ed210e04d4d45c93e8bae661aa117b34c0445f4d3",
       "checks": {
         "artifact_exists": true,
-        "run_card_present": true,
+        "run_card_present": false,
         "format_valid": true,
+        "format_readback_passed": true,
         "literal_protocol_unique": false,
         "beats_accepted_holdout_best": false,
         "scientific_verdict_promote": false,
         "selector_approved": false,
-        "sha256_matches": true
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": false
       },
       "run_card_audit": {
         "run_card": "evidence/run_card_h80.json",
         "present": true,
-        "recorded_verdict": "negative",
-        "recorded_safe_to_submit": false,
-        "literal_duplicate_recorded": true,
-        "real_model_forward_overlap_3px": null,
+        "recorded_verdict": null,
+        "raster_sha256": null,
+        "explicit_promotion_evidence": false,
+        "recorded_safe_to_submit": null,
+        "literal_duplicate_recorded": false,
         "real_model_forward_overlap_exceeds_070": false,
         "registry_incomplete": true,
         "holdout_invalid_for_promotion": false,
         "historical_promotion_conflict": false,
-        "guardrail_clear": false
+        "guardrail_clear": false,
+        "read_error": "registry must be an object"
+      },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "703e7dee0a790572c2a9597ed210e04d4d45c93e8bae661aa117b34c0445f4d3"
       },
       "authorized_to_submit": false,
       "decision": "NOT OK TO SUBMIT",
       "failed_gates": [
+        "run_card_present",
         "literal_protocol_unique",
         "beats_accepted_holdout_best",
         "scientific_verdict_promote",
-        "selector_approved"
+        "selector_approved",
+        "explicit_run_card_promotion_evidence",
+        "run_card_artifact_matches"
       ]
     },
     {
@@ -284,16 +603,22 @@
         "artifact_exists": true,
         "run_card_present": true,
         "format_valid": true,
+        "format_readback_passed": true,
         "literal_protocol_unique": false,
         "beats_accepted_holdout_best": false,
         "scientific_verdict_promote": false,
         "selector_approved": false,
-        "sha256_matches": true
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": true
       },
       "run_card_audit": {
         "run_card": "evidence/h80_run_card.json",
         "present": true,
         "recorded_verdict": "negative",
+        "raster_sha256": "bab170ed60ab7e1a8afbfad69386a8266191fa4864ac3abac5b6290b7d25bc57",
+        "explicit_promotion_evidence": false,
         "recorded_safe_to_submit": false,
         "literal_duplicate_recorded": false,
         "real_model_forward_overlap_3px": null,
@@ -303,13 +628,37 @@
         "historical_promotion_conflict": false,
         "guardrail_clear": true
       },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "bab170ed60ab7e1a8afbfad69386a8266191fa4864ac3abac5b6290b7d25bc57"
+      },
       "authorized_to_submit": false,
       "decision": "NOT OK TO SUBMIT",
       "failed_gates": [
         "literal_protocol_unique",
         "beats_accepted_holdout_best",
         "scientific_verdict_promote",
-        "selector_approved"
+        "selector_approved",
+        "explicit_run_card_promotion_evidence"
       ]
     },
     {
@@ -320,16 +669,22 @@
         "artifact_exists": true,
         "run_card_present": true,
         "format_valid": true,
+        "format_readback_passed": true,
         "literal_protocol_unique": false,
         "beats_accepted_holdout_best": false,
         "scientific_verdict_promote": false,
         "selector_approved": false,
-        "sha256_matches": true
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": true
       },
       "run_card_audit": {
         "run_card": "evidence/h80t_run_card.json",
         "present": true,
         "recorded_verdict": "negative",
+        "raster_sha256": "19e92e4db42b0de59c558e95a52ee419fc81f4c187c4fd22e35f252e16a4446a",
+        "explicit_promotion_evidence": false,
         "recorded_safe_to_submit": false,
         "literal_duplicate_recorded": true,
         "real_model_forward_overlap_3px": null,
@@ -339,13 +694,37 @@
         "historical_promotion_conflict": false,
         "guardrail_clear": false
       },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "19e92e4db42b0de59c558e95a52ee419fc81f4c187c4fd22e35f252e16a4446a"
+      },
       "authorized_to_submit": false,
       "decision": "NOT OK TO SUBMIT",
       "failed_gates": [
         "literal_protocol_unique",
         "beats_accepted_holdout_best",
         "scientific_verdict_promote",
-        "selector_approved"
+        "selector_approved",
+        "explicit_run_card_promotion_evidence"
       ]
     },
     {
@@ -356,16 +735,22 @@
         "artifact_exists": true,
         "run_card_present": false,
         "format_valid": true,
+        "format_readback_passed": true,
         "literal_protocol_unique": false,
         "beats_accepted_holdout_best": false,
         "scientific_verdict_promote": false,
         "selector_approved": false,
-        "sha256_matches": true
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": false
       },
       "run_card_audit": {
         "run_card": null,
         "present": false,
         "recorded_verdict": null,
+        "raster_sha256": null,
+        "explicit_promotion_evidence": false,
         "recorded_safe_to_submit": null,
         "literal_duplicate_recorded": false,
         "real_model_forward_overlap_exceeds_070": false,
@@ -374,6 +759,29 @@
         "historical_promotion_conflict": false,
         "guardrail_clear": false
       },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "c971fcf8a05928e7cbd3c31f868b4e9342be805d8cdf15701c097c8949574fde"
+      },
       "authorized_to_submit": false,
       "decision": "NOT OK TO SUBMIT",
       "failed_gates": [
@@ -381,7 +789,9 @@
         "literal_protocol_unique",
         "beats_accepted_holdout_best",
         "scientific_verdict_promote",
-        "selector_approved"
+        "selector_approved",
+        "explicit_run_card_promotion_evidence",
+        "run_card_artifact_matches"
       ]
     },
     {
@@ -392,16 +802,22 @@
         "artifact_exists": true,
         "run_card_present": true,
         "format_valid": true,
+        "format_readback_passed": true,
         "literal_protocol_unique": false,
         "beats_accepted_holdout_best": false,
         "scientific_verdict_promote": false,
         "selector_approved": false,
-        "sha256_matches": true
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": true
       },
       "run_card_audit": {
         "run_card": "evidence/h77l_run_card.json",
         "present": true,
         "recorded_verdict": "negative",
+        "raster_sha256": "9d199f9fad93e234397a7a19a05eabf12fd77285be3007e6afe22d12a36dcbd1",
+        "explicit_promotion_evidence": false,
         "recorded_safe_to_submit": false,
         "literal_duplicate_recorded": true,
         "real_model_forward_overlap_3px": null,
@@ -411,13 +827,37 @@
         "historical_promotion_conflict": false,
         "guardrail_clear": false
       },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "9d199f9fad93e234397a7a19a05eabf12fd77285be3007e6afe22d12a36dcbd1"
+      },
       "authorized_to_submit": false,
       "decision": "NOT OK TO SUBMIT",
       "failed_gates": [
         "literal_protocol_unique",
         "beats_accepted_holdout_best",
         "scientific_verdict_promote",
-        "selector_approved"
+        "selector_approved",
+        "explicit_run_card_promotion_evidence"
       ]
     },
     {
@@ -428,16 +868,22 @@
         "artifact_exists": true,
         "run_card_present": true,
         "format_valid": true,
+        "format_readback_passed": true,
         "literal_protocol_unique": false,
         "beats_accepted_holdout_best": false,
         "scientific_verdict_promote": false,
         "selector_approved": false,
-        "sha256_matches": true
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": false
       },
       "run_card_audit": {
         "run_card": "evidence/h79_run_card.json",
         "present": true,
         "recorded_verdict": "negative",
+        "raster_sha256": null,
+        "explicit_promotion_evidence": false,
         "recorded_safe_to_submit": false,
         "literal_duplicate_recorded": true,
         "real_model_forward_overlap_3px": null,
@@ -447,13 +893,38 @@
         "historical_promotion_conflict": false,
         "guardrail_clear": false
       },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "67aafffc50637a6df9c4275bc2735a0a865ac73904f02667b05f4f257d97587c"
+      },
       "authorized_to_submit": false,
       "decision": "NOT OK TO SUBMIT",
       "failed_gates": [
         "literal_protocol_unique",
         "beats_accepted_holdout_best",
         "scientific_verdict_promote",
-        "selector_approved"
+        "selector_approved",
+        "explicit_run_card_promotion_evidence",
+        "run_card_artifact_matches"
       ]
     },
     {
@@ -464,16 +935,22 @@
         "artifact_exists": true,
         "run_card_present": true,
         "format_valid": true,
+        "format_readback_passed": true,
         "literal_protocol_unique": false,
         "beats_accepted_holdout_best": false,
         "scientific_verdict_promote": false,
         "selector_approved": false,
-        "sha256_matches": true
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": true
       },
       "run_card_audit": {
         "run_card": "evidence/h79_radhalo_run_card.json",
         "present": true,
         "recorded_verdict": "negative",
+        "raster_sha256": "c272025ee653187d09489d941613a86bfe4b88110fb455847a2256cf5699014b",
+        "explicit_promotion_evidence": false,
         "recorded_safe_to_submit": false,
         "literal_duplicate_recorded": true,
         "real_model_forward_overlap_3px": null,
@@ -483,13 +960,37 @@
         "historical_promotion_conflict": false,
         "guardrail_clear": false
       },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "c272025ee653187d09489d941613a86bfe4b88110fb455847a2256cf5699014b"
+      },
       "authorized_to_submit": false,
       "decision": "NOT OK TO SUBMIT",
       "failed_gates": [
         "literal_protocol_unique",
         "beats_accepted_holdout_best",
         "scientific_verdict_promote",
-        "selector_approved"
+        "selector_approved",
+        "explicit_run_card_promotion_evidence"
       ]
     },
     {
@@ -500,16 +1001,22 @@
         "artifact_exists": true,
         "run_card_present": true,
         "format_valid": true,
+        "format_readback_passed": true,
         "literal_protocol_unique": false,
         "beats_accepted_holdout_best": false,
         "scientific_verdict_promote": false,
         "selector_approved": false,
-        "sha256_matches": true
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": true
       },
       "run_card_audit": {
         "run_card": "evidence/h79_orient_run_card.json",
         "present": true,
         "recorded_verdict": "negative",
+        "raster_sha256": "745dbaa427bc1edaf477b3d0b4847b8be8d30d396106a61b1318a8726599be8e",
+        "explicit_promotion_evidence": false,
         "recorded_safe_to_submit": false,
         "literal_duplicate_recorded": true,
         "real_model_forward_overlap_3px": null,
@@ -519,13 +1026,37 @@
         "historical_promotion_conflict": false,
         "guardrail_clear": false
       },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "745dbaa427bc1edaf477b3d0b4847b8be8d30d396106a61b1318a8726599be8e"
+      },
       "authorized_to_submit": false,
       "decision": "NOT OK TO SUBMIT",
       "failed_gates": [
         "literal_protocol_unique",
         "beats_accepted_holdout_best",
         "scientific_verdict_promote",
-        "selector_approved"
+        "selector_approved",
+        "explicit_run_card_promotion_evidence"
       ]
     },
     {
@@ -536,16 +1067,22 @@
         "artifact_exists": true,
         "run_card_present": true,
         "format_valid": true,
+        "format_readback_passed": true,
         "literal_protocol_unique": false,
-        "beats_accepted_holdout_best": true,
+        "beats_accepted_holdout_best": false,
         "scientific_verdict_promote": false,
         "selector_approved": false,
-        "sha256_matches": true
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": false
       },
       "run_card_audit": {
         "run_card": "evidence/run_card_h77d.json",
         "present": true,
         "recorded_verdict": "promote",
+        "raster_sha256": null,
+        "explicit_promotion_evidence": false,
         "recorded_safe_to_submit": false,
         "literal_duplicate_recorded": true,
         "real_model_forward_overlap_3px": null,
@@ -555,12 +1092,38 @@
         "historical_promotion_conflict": true,
         "guardrail_clear": false
       },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "110e7c77ec7e7d201de0ae04ffd2bf3b9db786b4063d800cacb8ab1ded4fd1b9"
+      },
       "authorized_to_submit": false,
       "decision": "NOT OK TO SUBMIT",
       "failed_gates": [
         "literal_protocol_unique",
+        "beats_accepted_holdout_best",
         "scientific_verdict_promote",
-        "selector_approved"
+        "selector_approved",
+        "explicit_run_card_promotion_evidence",
+        "run_card_artifact_matches"
       ]
     },
     {
@@ -571,16 +1134,22 @@
         "artifact_exists": true,
         "run_card_present": true,
         "format_valid": true,
+        "format_readback_passed": true,
         "literal_protocol_unique": false,
-        "beats_accepted_holdout_best": true,
+        "beats_accepted_holdout_best": false,
         "scientific_verdict_promote": false,
         "selector_approved": false,
-        "sha256_matches": true
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": false
       },
       "run_card_audit": {
         "run_card": "evidence/h77/run_card.json",
         "present": true,
         "recorded_verdict": "promote",
+        "raster_sha256": null,
+        "explicit_promotion_evidence": false,
         "recorded_safe_to_submit": true,
         "literal_duplicate_recorded": false,
         "real_model_forward_overlap_3px": 0.734989,
@@ -590,12 +1159,38 @@
         "historical_promotion_conflict": true,
         "guardrail_clear": false
       },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "f55105a091281be14957fff2f5aad9a85fa5b1acc31558e9fcd2aae9fdd588b0"
+      },
       "authorized_to_submit": false,
       "decision": "NOT OK TO SUBMIT",
       "failed_gates": [
         "literal_protocol_unique",
+        "beats_accepted_holdout_best",
         "scientific_verdict_promote",
-        "selector_approved"
+        "selector_approved",
+        "explicit_run_card_promotion_evidence",
+        "run_card_artifact_matches"
       ]
     },
     {
@@ -606,16 +1201,22 @@
         "artifact_exists": true,
         "run_card_present": true,
         "format_valid": true,
+        "format_readback_passed": true,
         "literal_protocol_unique": false,
         "beats_accepted_holdout_best": false,
         "scientific_verdict_promote": false,
         "selector_approved": false,
-        "sha256_matches": true
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": true
       },
       "run_card_audit": {
         "run_card": "evidence/h78_run_card.json",
         "present": true,
         "recorded_verdict": "negative",
+        "raster_sha256": "4571e767757be95e3fb70b4afb05e45528b1cfd74147e168c36253b1247f1c47",
+        "explicit_promotion_evidence": false,
         "recorded_safe_to_submit": false,
         "literal_duplicate_recorded": true,
         "real_model_forward_overlap_3px": null,
@@ -625,13 +1226,37 @@
         "historical_promotion_conflict": false,
         "guardrail_clear": false
       },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "4571e767757be95e3fb70b4afb05e45528b1cfd74147e168c36253b1247f1c47"
+      },
       "authorized_to_submit": false,
       "decision": "NOT OK TO SUBMIT",
       "failed_gates": [
         "literal_protocol_unique",
         "beats_accepted_holdout_best",
         "scientific_verdict_promote",
-        "selector_approved"
+        "selector_approved",
+        "explicit_run_card_promotion_evidence"
       ]
     },
     {
@@ -642,16 +1267,22 @@
         "artifact_exists": true,
         "run_card_present": true,
         "format_valid": true,
+        "format_readback_passed": true,
         "literal_protocol_unique": false,
         "beats_accepted_holdout_best": false,
         "scientific_verdict_promote": false,
         "selector_approved": false,
-        "sha256_matches": true
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": false
       },
       "run_card_audit": {
         "run_card": "docs/data/run-card.json",
         "present": true,
         "recorded_verdict": "negative",
+        "raster_sha256": null,
+        "explicit_promotion_evidence": false,
         "recorded_safe_to_submit": false,
         "literal_duplicate_recorded": true,
         "real_model_forward_overlap_3px": null,
@@ -661,13 +1292,38 @@
         "historical_promotion_conflict": false,
         "guardrail_clear": false
       },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "a8bfb844ab44b5d4157f75ec914a51655c27ae54727f7b4a088eca9d6f396898"
+      },
       "authorized_to_submit": false,
       "decision": "NOT OK TO SUBMIT",
       "failed_gates": [
         "literal_protocol_unique",
         "beats_accepted_holdout_best",
         "scientific_verdict_promote",
-        "selector_approved"
+        "selector_approved",
+        "explicit_run_card_promotion_evidence",
+        "run_card_artifact_matches"
       ]
     },
     {
@@ -678,16 +1334,22 @@
         "artifact_exists": true,
         "run_card_present": true,
         "format_valid": true,
+        "format_readback_passed": true,
         "literal_protocol_unique": false,
         "beats_accepted_holdout_best": false,
         "scientific_verdict_promote": false,
         "selector_approved": false,
-        "sha256_matches": true
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": true
       },
       "run_card_audit": {
         "run_card": "evidence/run_card_contactphys.json",
         "present": true,
         "recorded_verdict": "negative",
+        "raster_sha256": "20be05cc671c85484e4cfc8ea40d2fced71d7ec70f20ab915f36fcc68fcc4851",
+        "explicit_promotion_evidence": false,
         "recorded_safe_to_submit": false,
         "literal_duplicate_recorded": false,
         "real_model_forward_overlap_3px": null,
@@ -697,13 +1359,37 @@
         "historical_promotion_conflict": false,
         "guardrail_clear": true
       },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "20be05cc671c85484e4cfc8ea40d2fced71d7ec70f20ab915f36fcc68fcc4851"
+      },
       "authorized_to_submit": false,
       "decision": "NOT OK TO SUBMIT",
       "failed_gates": [
         "literal_protocol_unique",
         "beats_accepted_holdout_best",
         "scientific_verdict_promote",
-        "selector_approved"
+        "selector_approved",
+        "explicit_run_card_promotion_evidence"
       ]
     },
     {
@@ -714,16 +1400,22 @@
         "artifact_exists": true,
         "run_card_present": true,
         "format_valid": true,
+        "format_readback_passed": true,
         "literal_protocol_unique": false,
         "beats_accepted_holdout_best": false,
         "scientific_verdict_promote": false,
         "selector_approved": false,
-        "sha256_matches": true
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": true
       },
       "run_card_audit": {
         "run_card": "evidence/run_card.json",
         "present": true,
         "recorded_verdict": "negative",
+        "raster_sha256": "9489af2b7e1b06a249203d3c9d6dfe4ed469647f59ebe3a5ffe9c50c67e46b42",
+        "explicit_promotion_evidence": false,
         "recorded_safe_to_submit": false,
         "literal_duplicate_recorded": true,
         "real_model_forward_overlap_3px": null,
@@ -733,13 +1425,37 @@
         "historical_promotion_conflict": false,
         "guardrail_clear": false
       },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "9489af2b7e1b06a249203d3c9d6dfe4ed469647f59ebe3a5ffe9c50c67e46b42"
+      },
       "authorized_to_submit": false,
       "decision": "NOT OK TO SUBMIT",
       "failed_gates": [
         "literal_protocol_unique",
         "beats_accepted_holdout_best",
         "scientific_verdict_promote",
-        "selector_approved"
+        "selector_approved",
+        "explicit_run_card_promotion_evidence"
       ]
     },
     {
@@ -750,16 +1466,22 @@
         "artifact_exists": true,
         "run_card_present": true,
         "format_valid": true,
+        "format_readback_passed": true,
         "literal_protocol_unique": false,
         "beats_accepted_holdout_best": false,
         "scientific_verdict_promote": false,
         "selector_approved": false,
-        "sha256_matches": true
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": true
       },
       "run_card_audit": {
         "run_card": "evidence/run_card_h77e.json",
         "present": true,
         "recorded_verdict": "negative",
+        "raster_sha256": "2269b714c78262a8d45dbd5eb02290a27ec9b99afe02340e343f5cb1ac7c58f3",
+        "explicit_promotion_evidence": false,
         "recorded_safe_to_submit": false,
         "literal_duplicate_recorded": true,
         "real_model_forward_overlap_3px": null,
@@ -769,13 +1491,37 @@
         "historical_promotion_conflict": false,
         "guardrail_clear": false
       },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "2269b714c78262a8d45dbd5eb02290a27ec9b99afe02340e343f5cb1ac7c58f3"
+      },
       "authorized_to_submit": false,
       "decision": "NOT OK TO SUBMIT",
       "failed_gates": [
         "literal_protocol_unique",
         "beats_accepted_holdout_best",
         "scientific_verdict_promote",
-        "selector_approved"
+        "selector_approved",
+        "explicit_run_card_promotion_evidence"
       ]
     },
     {
@@ -786,16 +1532,22 @@
         "artifact_exists": true,
         "run_card_present": false,
         "format_valid": true,
+        "format_readback_passed": true,
         "literal_protocol_unique": false,
         "beats_accepted_holdout_best": false,
         "scientific_verdict_promote": false,
         "selector_approved": false,
-        "sha256_matches": true
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": false
       },
       "run_card_audit": {
         "run_card": null,
         "present": false,
         "recorded_verdict": null,
+        "raster_sha256": null,
+        "explicit_promotion_evidence": false,
         "recorded_safe_to_submit": null,
         "literal_duplicate_recorded": false,
         "real_model_forward_overlap_exceeds_070": false,
@@ -804,6 +1556,29 @@
         "historical_promotion_conflict": false,
         "guardrail_clear": false
       },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "e7c81754420b9a6b4126ad1d7239870ae680eaa61e97a6d3f16f644a620d1c6a"
+      },
       "authorized_to_submit": false,
       "decision": "NOT OK TO SUBMIT",
       "failed_gates": [
@@ -811,7 +1586,9 @@
         "literal_protocol_unique",
         "beats_accepted_holdout_best",
         "scientific_verdict_promote",
-        "selector_approved"
+        "selector_approved",
+        "explicit_run_card_promotion_evidence",
+        "run_card_artifact_matches"
       ]
     },
     {
@@ -822,16 +1599,22 @@
         "artifact_exists": true,
         "run_card_present": false,
         "format_valid": true,
+        "format_readback_passed": false,
         "literal_protocol_unique": false,
         "beats_accepted_holdout_best": false,
         "scientific_verdict_promote": false,
         "selector_approved": false,
-        "sha256_matches": true
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": false
       },
       "run_card_audit": {
         "run_card": null,
         "present": false,
         "recorded_verdict": null,
+        "raster_sha256": null,
+        "explicit_promotion_evidence": false,
         "recorded_safe_to_submit": null,
         "literal_duplicate_recorded": false,
         "real_model_forward_overlap_exceeds_070": false,
@@ -840,14 +1623,40 @@
         "historical_promotion_conflict": false,
         "guardrail_clear": false
       },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": false,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": false,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "fd7c75df77cd653e9fbd97b436bd304e0c1fd6b7283a4f513cdf6a2041136de0"
+      },
       "authorized_to_submit": false,
       "decision": "NOT OK TO SUBMIT",
       "failed_gates": [
         "run_card_present",
+        "format_readback_passed",
         "literal_protocol_unique",
         "beats_accepted_holdout_best",
         "scientific_verdict_promote",
-        "selector_approved"
+        "selector_approved",
+        "explicit_run_card_promotion_evidence",
+        "run_card_artifact_matches"
       ]
     },
     {
@@ -858,16 +1667,22 @@
         "artifact_exists": true,
         "run_card_present": false,
         "format_valid": true,
+        "format_readback_passed": false,
         "literal_protocol_unique": false,
         "beats_accepted_holdout_best": false,
         "scientific_verdict_promote": false,
         "selector_approved": false,
-        "sha256_matches": true
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": false
       },
       "run_card_audit": {
         "run_card": null,
         "present": false,
         "recorded_verdict": null,
+        "raster_sha256": null,
+        "explicit_promotion_evidence": false,
         "recorded_safe_to_submit": null,
         "literal_duplicate_recorded": false,
         "real_model_forward_overlap_exceeds_070": false,
@@ -876,14 +1691,40 @@
         "historical_promotion_conflict": false,
         "guardrail_clear": false
       },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": false,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": false,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "c027f571a45566a8cf10b081f7d00fa48242bc4dfbc7f832ba98c06a5aca194e"
+      },
       "authorized_to_submit": false,
       "decision": "NOT OK TO SUBMIT",
       "failed_gates": [
         "run_card_present",
+        "format_readback_passed",
         "literal_protocol_unique",
         "beats_accepted_holdout_best",
         "scientific_verdict_promote",
-        "selector_approved"
+        "selector_approved",
+        "explicit_run_card_promotion_evidence",
+        "run_card_artifact_matches"
       ]
     },
     {
@@ -894,16 +1735,22 @@
         "artifact_exists": true,
         "run_card_present": false,
         "format_valid": true,
+        "format_readback_passed": true,
         "literal_protocol_unique": false,
         "beats_accepted_holdout_best": false,
         "scientific_verdict_promote": false,
         "selector_approved": false,
-        "sha256_matches": true
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": false
       },
       "run_card_audit": {
         "run_card": null,
         "present": false,
         "recorded_verdict": null,
+        "raster_sha256": null,
+        "explicit_promotion_evidence": false,
         "recorded_safe_to_submit": null,
         "literal_duplicate_recorded": false,
         "real_model_forward_overlap_exceeds_070": false,
@@ -912,6 +1759,29 @@
         "historical_promotion_conflict": false,
         "guardrail_clear": false
       },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "7b3f74a68e7d4b428accc1f24659f21796fcc337fc6bae06fc4e4ff0738e87ec"
+      },
       "authorized_to_submit": false,
       "decision": "NOT OK TO SUBMIT",
       "failed_gates": [
@@ -919,7 +1789,9 @@
         "literal_protocol_unique",
         "beats_accepted_holdout_best",
         "scientific_verdict_promote",
-        "selector_approved"
+        "selector_approved",
+        "explicit_run_card_promotion_evidence",
+        "run_card_artifact_matches"
       ]
     },
     {
@@ -930,16 +1802,22 @@
         "artifact_exists": true,
         "run_card_present": true,
         "format_valid": true,
+        "format_readback_passed": true,
         "literal_protocol_unique": false,
         "beats_accepted_holdout_best": false,
         "scientific_verdict_promote": false,
         "selector_approved": false,
-        "sha256_matches": true
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": true
       },
       "run_card_audit": {
         "run_card": "evidence/h81_run_card.json",
         "present": true,
         "recorded_verdict": "negative",
+        "raster_sha256": "f3eb9e5e3bf03da0285b48b5bb7d41f15b0e450d16bc6b8943aeaa63efadc1f7",
+        "explicit_promotion_evidence": false,
         "recorded_safe_to_submit": false,
         "literal_duplicate_recorded": true,
         "real_model_forward_overlap_3px": null,
@@ -949,13 +1827,37 @@
         "historical_promotion_conflict": false,
         "guardrail_clear": false
       },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "f3eb9e5e3bf03da0285b48b5bb7d41f15b0e450d16bc6b8943aeaa63efadc1f7"
+      },
       "authorized_to_submit": false,
       "decision": "NOT OK TO SUBMIT",
       "failed_gates": [
         "literal_protocol_unique",
         "beats_accepted_holdout_best",
         "scientific_verdict_promote",
-        "selector_approved"
+        "selector_approved",
+        "explicit_run_card_promotion_evidence"
       ]
     },
     {
@@ -966,16 +1868,22 @@
         "artifact_exists": true,
         "run_card_present": true,
         "format_valid": true,
+        "format_readback_passed": true,
         "literal_protocol_unique": false,
         "beats_accepted_holdout_best": false,
         "scientific_verdict_promote": false,
         "selector_approved": false,
-        "sha256_matches": true
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": true
       },
       "run_card_audit": {
         "run_card": "evidence/h82spec_run_card.json",
         "present": true,
         "recorded_verdict": "negative",
+        "raster_sha256": "26c9eec0d8b3c78f2285e642c0248c378ca7ab67334f084f0e708252f3f8bd16",
+        "explicit_promotion_evidence": false,
         "recorded_safe_to_submit": false,
         "literal_duplicate_recorded": false,
         "real_model_forward_overlap_3px": null,
@@ -985,13 +1893,37 @@
         "historical_promotion_conflict": false,
         "guardrail_clear": true
       },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "26c9eec0d8b3c78f2285e642c0248c378ca7ab67334f084f0e708252f3f8bd16"
+      },
       "authorized_to_submit": false,
       "decision": "NOT OK TO SUBMIT",
       "failed_gates": [
         "literal_protocol_unique",
         "beats_accepted_holdout_best",
         "scientific_verdict_promote",
-        "selector_approved"
+        "selector_approved",
+        "explicit_run_card_promotion_evidence"
       ]
     }
   ]
