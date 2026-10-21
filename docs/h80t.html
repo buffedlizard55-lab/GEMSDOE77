@@ -1,0 +1,75 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>H80T · Multi-Scale Tilt-Angle Persistence — GEMSDOE77</title><link rel="stylesheet" href="assets/lia.css"></head><body>
+<header><div class="wrap"><span class="brand">GEMSDOE77 · DOE GEMS Prize</span><a href="index.html">Start here</a> <a href="release-review.html">Release safety review</a> <a href="executive-summary.html">How to submit</a> <a href="h80t.html" class=here>H80T · tilt-persist</a> <a href="h80t-executive-summary.html">H80T guide</a> <a href="h80.html">H80 · wing-crack</a> <a href="ago.html">AGO hybrid</a> <a href="h79-orient.html">H79-ORIENT</a> <a href="h77l.html">H77L</a> <a href="h79-radhalo.html">H79-RH</a> <a href="h77d.html">H77D</a> <a href="h77-step.html">H77-Step</a> <a href="h78.html">H78</a> <a href="https://github.com/buffedlizard55-lab/GEMSDOE77">GitHub</a></div></header>
+<main><div class="wrap">
+<div class="notice"><strong>Research TIFF — NOT OK TO SUBMIT. OK to download for inspection only.</strong> This page documents a negative deliverable: the H80T multi-scale tilt-angle persistence lane. The TIF is format-valid (17/17 local checks + 15/15 shared validator checks, values in [0,1], 0 NaN) and informative-unique against dot-field models (max 3-px forward overlap 0.4468 &le; 0.70, surface max |&rho;| 0.1332 &le; 0.90), but its pooled HOLDOUT-DTI (0.0060) is far below the repository best (0.152718) and the binding literal registry rule fails closed on the full-footprint dense witness (overlap 1.0 &gt; 0.70). Selector: not approved. Zero weekly slots spent. Do not upload this file to the competition portal.</div>
+
+<h1>H80T: Multi-Scale Tilt-Angle Persistence &times; AS-Weighted Zero Proximity + Signed Basement Throw</h1>
+<p class="small muted">Hypothesis H80-1 (rank 1 of 5 preregistered 2026-10-21): buried basement faults under alluvial cover preserve magnetic/gravity tilt phase across wavelengths; multi-scale analytic-signal-weighted zero proximity suppresses shallow noise. Full hypotheses: <a href="research/h80t_hypotheses.md">research/h80t_hypotheses.md</a> &middot; Preregistration: <a href="evidence/preregistration_h80t.json">evidence/preregistration_h80t.json</a></p>
+
+<section class="card dl research"><h2>&#11015; Download research TIF — NOT OK TO SUBMIT</h2>
+<p><b>File:</b> <code>gems77-h80t-tilt-persist-37654dots-20261021-7d5f7b11-zeros.tif</code> — 37,654 binary dots, 0 on catalogue, 300 m greedy spacing, single-band float32 EPSG:32611 3730&times;3292</p>
+<a class="btn" href="downloads/gems77-h80t-tilt-persist-37654dots-20261021-7d5f7b11-zeros.tif" download>Download .tif (116 KB)</a>
+<a class="btn alt" href="downloads/gems77-h80t-tilt-persist-37654dots-20261021-7d5f7b11-zeros.zip" download>Same file as one-TIFF .zip</a>
+<a class="btn alt" href="downloads/gems77-h80t-tilt-persist-37654dots-20261021-7d5f7b11-nan.tif" download>NaN-outside twin (reference)</a>
+<div class="chips"><span class="chip ok">OK to download: YES</span><span class="chip ok">Portal format (local 17/17): PASS</span><span class="chip bad">Unique, literal rule: FAIL (dense witness)</span><span class="chip ok">Informative overlap 0.447 &le;0.70: PASS</span><span class="chip ok">Surface &rho; 0.133 &le;0.90: PASS</span><span class="chip bad">Beats holdout best 0.1527: NO</span><span class="chip warn">Selector: not approved</span></div>
+<p class="small">SHA-256 <code>19e92e4db42b0de59c558e95a52ee419fc81f4c187c4fd22e35f252e16a4446a</code> &middot; 37,654 dots &middot; values {0,1} &middot; 0 NaN &middot; EPSG:32611 &middot; shape 3730&times;3292 &middot; transform (100,0,243350,0,-100,4508550) &middot; <a href="downloads/gems77-h80t-tilt-persist-37654dots-20261021-7d5f7b11-zeros.json">validator JSON receipt</a></p>
+<p><b>Submission name (for reference, 56 chars):</b> <code>gems77-h80t-tilt-persist-37654dots-20261021-7d5f7b11-zeros</code></p>
+<p><b>Note (for reference, 108 chars):</b> <code>H80T dual-scale tilt persistence x basement throw, 37654 dots; HOLDOUT-DTI 0.0060 [0.0048,0.0073]; NEGATIVE</code></p>
+</section>
+
+<h2>Why h33 got 0.2778 [OWNER-REPORT] and can we beat it?</h2>
+<p><b>Mechanism (measured from archived raster bytes, not an organizer receipt):</b> On 2026-10-21 the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">public leaderboard</a> showed <b>0.4413 ORGANIZER-CONFIRMED</b> (#1, xiaofanhu) and <b>0.2778 ORGANIZER-CONFIRMED</b> (#48, extradr19), without naming the underlying GeoTIFFs. The owner-reported H33 lineage (GEMSDOE32 <code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</code>, 37,654 dots) is the H19-5 solid U-Net surface (121,131 px, 0.1922 [OWNER-REPORT]) thinned by Poisson-disk spacing at &approx;2.8 px (&approx; kernel radius 300 m) to 44,090 dots (0.2600 [OWNER-REPORT]) and then pruned &le;200 m (&le;2 px) from the mapped catalogue, removing 6,436 near-catalogue dots (&rarr;37,654 dots, 0.2778 [OWNER-REPORT]; see <a href="evidence/prior_forensics.json">pixel-forensics receipt</a>). Under <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DTI(&alpha;=0.2, &beta;=0.8, R=300 m)</a>, <code>DTI = T / (0.2&middot;(T + S &minus; M) + 0.8&middot;K)</code>, each unit of emitted mass costs <code>0.2</code> in the denominator, so an isolated dot increases DTI iff its marginal kernel credit exceeds <code>0.2&middot;DTI &approx; 0.0556</code> (conditional algebra). Spacing dots at &approx;300 m eliminates redundant overlapping cover, while near-catalogue pruning removes dots that sit on the shoulder of masked catalogue traces where credit against <i>unmapped</i> faults is near zero.</p>
+<p><b>Why beating 0.2778 (and approaching 0.4413) requires a better field, not better thinning:</b> Emission-side thinning on the H19-5 surface is exhausted; reaching 0.4413 at fixed dot count requires ~60% higher mean kernel credit per dot, which can only come from higher top-of-ranking credit density off-catalogue. See <a href="lia-analysis.html">long-form analysis</a>.</p>
+
+<h2>What was tested in H80T (3 experiments within budget)</h2>
+<table><tr><th>Exp</th><th>Question</th><th>Method</th><th>Result</th></tr>
+<tr><td>E1</td><td>Pure multi-scale tilt-angle persistence surface + leakage canary + holdout</td><td>Recompute isotropic THDR and Miller–Singh (1994) tilt <code>atan2(VG, THDR)</code> for magnetics (bands 14, 9) and gravity (bands 13, 11) at &sigma;=1.5 and &sigma;=3.0 px (avoiding mislabelled band 6 = TC and signed band 18); weight zero-proximity by <code>log1p(AS)</code>, take scale persistence <code>min(Z_1.5, Z_3.0)</code>, multiply mag &times; grav, gate by downdip basement throw (band 15). Test all 12 intermediate fields on seed-20 canary (11,318 withheld px), then evaluate 37,654 greedy 300 m dots on 8-fold pooled holdout (seeds 20 &amp; 21, 22,893 withheld px).</td><td><b>Canary PASS</b> (max symmetric AUC <code>0.5499 &le; 0.90</code>). <b>Holdout NEGATIVE:</b> <b>0.0060 HOLDOUT-DTI</b> (<code>gems57-pooled-hide-v2</code>, 22,893 withheld positives, 95% CI <code>[0.0048, 0.0073]</code>), beating random dots (<code>0.0022</code>, paired &Delta; <code>+0.0038</code>, 95% CI <code>[+0.0025, +0.0052]</code>) and statistically tied with gravity-THDR control (<code>0.0053</code>, paired &Delta; <code>+0.0007</code>, 95% CI <code>[-0.0010, +0.0023]</code>), far below the <code>0.152718</code> incumbent. <a href="evidence/h80_e1_fields.json">E1 canary</a> &middot; <a href="evidence/h80_e2_holdout.json">E1/E2 holdout</a></td></tr>
+<tr><td>E2</td><td>Multi-sensor rank fusion (tilt persistence + DEM Hessian ridges + GNSS strain tensor + slope front)</td><td>Fuse H80T tilt persistence (0.25) with multi-scale detrended-elevation Hessian ridges (0.35, band 12), GNSS dilatation/shear/2nd-invariant strain rank (0.20, bands 4, 7, 8), and slope-front rank (0.20, band 19). Emit 37,654 greedy dots and score on the same 8-fold pooled holdout (22,893 withheld positives).</td><td><b>Canary PASS</b> (max symmetric AUC <code>0.5280 &le; 0.90</code>). <b>Holdout NEGATIVE:</b> <b>0.0051 HOLDOUT-DTI</b> (<code>gems57-pooled-hide-v2</code>, 22,893 withheld positives, 95% CI <code>[0.0040, 0.0062]</code>) vs random <code>0.0022</code>. Unweighted label-free rank fusion remains near ~0.005–0.006 on catalogue hide-and-recover. <a href="evidence/h80_e1_ensemble.json">E2 canary</a> &middot; <a href="evidence/h80_e2_ensemble.json">E2 holdout</a></td></tr>
+<tr><td>E3</td><td>Per-fold 21-channel HGB ablation (19 raw bands + 2 derived tilt-Z channels vs 19-channel raw baseline) &amp; Rule 1 uniqueness audit</td><td>Train fold-blind <code>HistGradientBoostingClassifier</code> on <code>footprint &amp; ~fold_region</code> visible positives vs 3&times; far negatives (&gt;3 px from visible catalogue) across all 8 folds, comparing 19 raw bands against 19 raw + 2 derived tilt-Z features (<code>Zmag</code>, <code>Zgrav</code>). Audit Phase 1 surface and Phase 2 dots with <code>vendor/gems57/uniqueness.py</code>.</td><td><b>Paired ablation POSITIVE, overall lane NEGATIVE + surface drift stopped:</b> 21-ch HGB scores <b>0.0166 HOLDOUT-DTI</b> (<code>[0.0141, 0.0192]</code>, 22,893 withheld) vs 19-ch baseline <b>0.0163</b> (<code>[0.0139, 0.0188]</code>), paired &Delta; = <b>+0.000264</b> (95% CI <code>[+0.000061, +0.000481]</code>, excluding 0). However, the 21-ch HGB pre-placement surface has Spearman <code>&rho; = 0.9088 &gt; 0.90</code> against <code>17GEMSDOE__E-proba-multiscale</code> (a 19-band tree model), triggering a <b>Rule 1 surface duplicate stop</b> (<code>IR-80T-02</code>). The published H80T TIF therefore uses the pure E1 tilt-persistence surface (Phase 1 max <code>&rho; = 0.1332 &le; 0.90</code>; Phase 2 dot-field max overlap <code>0.4468 &le; 0.70</code>). <a href="evidence/h80_hgb_e1_canary.json">E3 canary</a> &middot; <a href="evidence/h80_hgb_e2_holdout.json">E3 holdout</a> &middot; <a href="evidence/h80t_uniqueness.json">uniqueness receipt</a></td></tr>
+</table>
+
+<h2>Uniqueness audit (Phase 1 surface before placement &amp; Phase 2 final dots)</h2>
+<p>Measured with unmodified <code>vendor/gems57/uniqueness.py</code> against 18 locally verified rasters (the 2 pinned external witnesses <code>17GEMSDOE__E-proba-multiscale</code> and <code>GEMSDOE32__h33-2-b2-zeros</code> plus 16 local primary GEMSDOE77 lane TIFFs):</p>
+<ul>
+<li><b>Phase 1 (pure tilt-persistence surface before placement):</b> max <code>|Spearman &rho;| = 0.1332 &le; 0.90</code> (vs <code>17GEMSDOE__E-proba-multiscale</code>; vs H33 <code>&rho; = 0.0086</code>). Literal forward overlap = <code>1.000 &gt; 0.70</code> against the full-footprint continuous witness <code>ab0a0a62</code>.</li>
+<li><b>Phase 2 (final 37,654 binary dots):</b> max <code>|Spearman &rho;| = 0.0214 &le; 0.90</code>; max informative dot-field 3-px forward overlap = <code>0.4468 &le; 0.70</code> (vs <code>gems77-ago-hybrid50</code>; vs H33 <code>0.2109</code>, <code>&rho; = 0.0044</code>; 0 dot-field duplicate firings). Literal reading fires on continuous-surface rasters (Policy I17 fail-closed).</li>
+</ul>
+
+<h2>Run card (<a href="evidence/h80t_run_card.json">evidence/h80t_run_card.json</a>)</h2>
+<pre style="background:#f6f6f6;padding:12px;overflow:auto;font-size:12px">{
+  "schema": "gems-parallel-run-card-v1",
+  "lane_id": "H80T",
+  "hypothesis": "H80T: Multi-Scale Tilt-Angle Persistence x AS-Weighted Zero Proximity + Signed Basement Throw",
+  "mechanism": "Derive true magnetic tilt atan2(tmi_vg, |grad_H tmi|) and gravity tilt atan2(grav_vg, |grad_H iso_grav_anom|) at sigma=1.5 and 3.0 px; weight zero-crossing proximity by log1p(AS), take min across scales, multiply mag x grav, gate by downdip basement throw; emit 37,654 greedy 300m dots >2px from catalogue.",
+  "named_non_fault_process_that_could_mimic_it": "Mesozoic pluton/intrusive contacts and caldera ring margins, GeoDAWN airborne survey-block seams, and remanently magnetized Tertiary volcanics.",
+  "holdout_dti": {
+    "evidence_label": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": 22893,
+    "score": 0.006029811997190169,
+    "ci_95": [0.004811043995249961, 0.0073449458723021475],
+    "exp3_hgb_21ch_soft_dti": 0.016604549057377634,
+    "exp3_paired_delta_tilt_vs_19ch": 0.0002635279921159549,
+    "exp3_paired_delta_ci_95": [6.082339349057849e-05, 0.0004810950772558666],
+    "beats_accepted_holdout_best": false
+  },
+  "leakage_canary": {"features_tested": 12, "max_sym_auc": 0.5499240484184486, "ceiling": 0.9, "pass": true},
+  "raster_sha256": "19e92e4db42b0de59c558e95a52ee419fc81f4c187c4fd22e35f252e16a4446a",
+  "submission_name": "gems77-h80t-tilt-persist-37654dots-20261021-7d5f7b11-zeros",
+  "submission_note": "H80T dual-scale tilt persistence x basement throw, 37654 dots; HOLDOUT-DTI 0.0060 [0.0048,0.0073]; NEGATIVE",
+  "verdict": "negative",
+  "safe_to_download_and_submit": false
+}</pre>
+
+<h2>Official verified sources</h2>
+<ul>
+<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DrivenData DOE GEMS Problem Description (Page 967)</a> — official grid (EPSG:32611, 3730&times;3292, 100 m), [0,1] range contract, DTI(&alpha;=0.2, &beta;=0.8, R=300 m).</li>
+<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">DrivenData Leaderboard</a> — 0.4413 (#1) and 0.2778 (#48) ORGANIZER-CONFIRMED row values.</li>
+<li><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">Official DOE GEMS Rules PDF (NREL/TP-5700-96647)</a> — submission requirements and weekly feedback slot cap.</li>
+<li><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN Airborne Magnetic &amp; Radiometric Surveys</a> — source for magnetic/radiometric grids (DOI 10.5066/P93LGLVQ).</li>
+<li><a href="https://gbcge.org/current-projects/ingenious/">GBCGE INGENIOUS Project</a> &amp; <a href="https://gdr.openei.org/submissions/1391">DOE GDR Submission 1391</a> — Great Basin regional dataset compilation.</li>
+<li><a href="https://library.seg.org/doi/10.1190/1.1442197">Blakely &amp; Simpson (1986), Geophysics 51(7), 1494–1498</a>; <a href="https://doi.org/10.1016/0926-9851(94)90022-1">Miller &amp; Singh (1994), J. Appl. Geophys. 32, 213–217</a> — potential-field tilt angle edge localization.</li>
+</ul>
+</div></main>
+<footer><div class="wrap">Selector status: <b>not approved</b>. GEMSDOE77 &middot; H80T lane &middot; 2026-10-21 &middot; <a href="https://github.com/buffedlizard55-lab/GEMSDOE77">GitHub</a> &middot; <a href="h80t-executive-summary.html">H80T submission guide</a></div></footer>
+</body></html>
