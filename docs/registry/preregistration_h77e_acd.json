@@ -1,0 +1,47 @@
+{
+  "schema_version": "gems-preregistration-v1",
+  "lane_id": "H77E-AUTOCTX-DINKELBACH",
+  "branch": "arena/6e98ebcf-gemsdoe77",
+  "registered_utc": "2026-10-21T14:22:00Z",
+  "protocol_rules_enforced": {
+    "max_experiments": 3,
+    "max_walltime_seconds": 7200,
+    "weekly_submission_slots_auto_consumed": 0,
+    "leakage_canary_max_symmetric_auc": 0.90,
+    "surface_spearman_abs_limit": 0.90,
+    "dot_spearman_abs_limit": 0.90,
+    "dot_3px_forward_overlap_limit_sparse_models": 0.70,
+    "allocation_per_raster_overlap_cap": 0.66,
+    "sgmc_channels_allowed": 0,
+    "forbidden_csv_columns": ["dist_known_fault_px", "known_fault", "label"],
+    "prior_prediction_rasters_allowed_in_features_or_labels": 0,
+    "shared_evaluator_file": "vendor/gems57/evaluate_holdout.py",
+    "shared_writer_file": "vendor/gems57/submission_writer.py",
+    "shared_uniqueness_file": "vendor/gems57/uniqueness.py"
+  },
+  "hypotheses_ranked": [
+    "H77E-1: Two-Stage Out-of-Fold Filament Auto-Context Meta-Ensemble + Exact Dinkelbach Fractional-DTI 1-Swap Solver (Primary System)",
+    "H77E-2: Antithetic (upface) vs Synthetic (downface) vs Channel-Bank (cross) 1 m LiDAR Piedmont Graben Tensor + Non-Equipotential Contour Gate",
+    "H77E-3: Multi-Catchment Strike-Coherent Fluvial Chi-Steepness Knickpoint Wave & Interfluve Facet Coupling",
+    "H77E-4: Blakely-Simpson Normal-Hessian Crest Localization + Structural Index N=0 Euler Depth-Step & Hydrothermal Clay-Cap Breach",
+    "H77E-5: Asymmetric Wing-Crack Tensile Stress Lobes, Bilateral Relay Bridges & Tip-Gated Junction Collar"
+  ],
+  "planned_experiments": {
+    "E1": {
+      "script": "scripts/h77e_exp1_canaries_and_live_inversion.py",
+      "description": "Construct streaming low-RAM zero-SGMC H77E physical feature bank; run per-feature symmetric ROC-AUC leakage canaries across Seeds 30, 20, and 21 (hard abort if > 0.90); evaluate H77E-2, H77E-3, H77E-4, and coupled off-support domains on 95 organizer-scored live submissions (LOO & LOFO NNLS in exact DTI space, 2,000-draw paired bootstrap).",
+      "output_evidence": "evidence/h77e_exp1_canaries_and_live_inversion.json"
+    },
+    "E2": {
+      "script": "scripts/h77e_exp2_holdout.py",
+      "description": "Validate H77E-1 and all pre-registered feature/stage/solver ablations head-to-head against exact H77D, H77-Step, fold-fair H33 champion construction, and random controls on unmodified vendor/gems57/evaluate_holdout.py across Seed 30 (11,342 px), Seed 20 (11,321 px), Seed 21 (11,572 px), 3-seed pooled (34,235 px), detached fault strands, and blind 4-quadrant province holdout (57,448 px) with 2,000 paired 20 km spatial-block bootstrap draws.",
+      "promotion_rule": "Paired 95% block-bootstrap CI strictly > 0 against fold-fair H33 AND both prior top GEMSDOE77 candidates (H77D and H77-Step) across pooled multi-seed holdout.",
+      "output_evidence": "evidence/h77e_exp2_holdout.json"
+    },
+    "E3": {
+      "script": "scripts/h77e_exp3_build_and_audit.py",
+      "description": "Build strictly out-of-fold full-Nevada H77E surface, audit Phase 1 continuous surface across all 877 archive+sibling rasters, emit optimal binary GeoTIFF via Exact Dinkelbach Fractional-DTI + 1-Swap Local Search with <= 0.66 overlap cap against all sparse prior rasters, audit Phase 2 final dots via unmodified vendor/gems57/uniqueness.py, write .tif + .zip + -nan.tif via unmodified vendor/gems57/submission_writer.py, verify 17/17 portal checks, and emit run card + diagnostic figures.",
+      "output_evidence": "evidence/h77e_exp3_uniqueness.json"
+    }
+  }
+}

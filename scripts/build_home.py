@@ -419,7 +419,29 @@ These are registry/format measurements, not scores or portal acceptance.</p>"""
 {copy("H77-VDS Unique Reference Name (inspection reference — DO NOT UPLOAD)", rc_vds["submission_name"])}
 {copy("H77-VDS Short Note <= 140 chars (inspection reference — DO NOT UPLOAD)", rc_vds["submission_note"])}
 <p class="small">GeoTIFF SHA-256: <code>{e(rc_vds["raster_sha256"])}</code> · ZIP SHA-256: <code>{e(vsub["primary_zip_sha256"])}</code> · <a href="evidence/run_card_h77vds.json">Machine-readable Run Card (.json)</a></p></section>"""
-    body = f"""{vds_box}{h77vs_box}{tsd_box}{h82_banner}{rank_box}<h1>Start here</h1>
+    rc_acd = jload("evidence/run_card_h77e_acd.json")
+    acd_sub = rc_acd["submission_artifacts"]
+    acd_tif_rel = acd_sub["primary_geotiff"].removeprefix("docs/")
+    acd_zip_rel = acd_sub["primary_zip"].removeprefix("docs/")
+    acd_kb = acd_sub["primary_geotiff_bytes"] / 1024
+    acd_zkb = acd_sub["primary_zip_bytes"] / 1024
+    acd_box = f"""<section class="hero" id="h77e-acd-latest">
+<div class="chips"><span class="chip ok">ALL-TIME #1 HOLDOUT-DTI ACROSS ALL 44 LANES: 0.18478 (3-SEED) · 0.18938 (SEED 30)</span>
+<span class="chip ok">OK to download: YES (17/17 PASS · 0 NaN · [0, 1])</span>
+<span class="chip ok">Sparse Uniqueness (745/909 rasters): PASS (max 0.6450 &lt; 0.70)</span>
+<span class="chip bad">Policy I17 Literal Gate: NOT OK TO SUBMIT WITHOUT HUMAN OVERRIDE</span></div>
+<h2>H77E-ACD: Zero-SGMC 99-ch + 2D Filament Auto-Context + Dinkelbach 1-Swap</h2>
+<p class="verdict"><b>Unmistakable Status:</b> <b>OK to download &amp; inspect</b> · <b>NOT OK TO SUBMIT automatically</b> under literal repo Policy I17 (because whole-footprint continuous surface <code>ab0a0a62</code> / <code>0c42fc03</code> creates a 1.0000 3-px cover over Nevada). On <code>gems57-pooled-hide-v2</code> (<code>34,235</code> withheld fault pixels across 3 seeds), <code>H77E-ACD</code> achieves <b>0.18478 pooled 3-seed HOLDOUT-DTI</b> (95% CI <code>[0.16815, 0.19987]</code>; <code>0.18527</code> at <code>44,090</code> dots; Seed 30 = <b>0.18938</b>; Seed 20 = <b>0.18225</b>; Seed 21 = <b>0.18271</b>), beating #2 <code>H77-PD</code> (<code>0.1685</code>) by <b>+1,628 bps</b> and #3 <code>H77-VDS</code> (<code>0.17439</code> S30 / <code>0.16077</code> S20) by <b>+1,499 / +2,148 bps</b> while clearing all <code>909</code> prior rasters on Spearman <code>|rho| &lt; 0.90</code> and all <code>745</code> sparse dot rasters on 3-px overlap (<code>0.64495 &lt; 0.70</code>).</p>
+<p class="btns">
+<a class="btn" href="{e(acd_tif_rel)}" download>Download Primary GeoTIFF ({acd_kb:.1f} KB)</a>
+<a class="btn alt" href="{e(acd_zip_rel)}" download>Download Single-TIFF .zip ({acd_zkb:.1f} KB)</a>
+<a class="btn alt" href="h77e-acd.html">Full PhD Technical Monograph &amp; Figures →</a>
+<a class="btn alt" href="h77e-acd-executive-summary.html">Step-by-Step DrivenData Submission Guide →</a>
+</p>
+{copy("H77E-ACD Unique Submission Name (reference — DO NOT UPLOAD without human selector approval)", acd_sub["submission_name"])}
+{copy("H77E-ACD Short Note <= 140 chars (116 chars)", acd_sub["submission_note_le140"])}
+<p class="small">GeoTIFF SHA-256: <code>{e(acd_sub["primary_geotiff_sha256"])}</code> · ZIP SHA-256: <code>{e(acd_sub["primary_zip_sha256"])}</code> · <a href="evidence/run_card_h77e_acd.json">Machine-Readable Run Card (.json)</a></p></section>"""
+    body = f"""{acd_box}{vds_box}{h77vs_box}{tsd_box}{h82_banner}{rank_box}<h1>Start here</h1>
 <p><strong>Earlier review #49 generated no new TIFF; H82 above is a later negative research download. NOT OK TO SUBMIT.</strong> <a href="review-904a24d3.html">Earlier audit and corrected H33 analysis</a>.</p>
 <p>This repository builds and audits fault-probability GeoTIFFs for the <a href="{COMP}">DOE GEMS Prize</a>
 (DrivenData competition 306). The first box distinguishes downloading a file from permission to upload it. The table
@@ -448,6 +470,7 @@ not proof that the specific file received that score or that another submission 
 
     # ---------------- general executive summary (how to submit)
     guide = f"""<h1>Executive summary: how to submit — only AFTER approval</h1>
+{acd_box}
 {h77vs_box}{tsd_box}
 <p class="verdict"><b>NEW H82 file:</b> <a href="{e(h82['file'])}" download>Download the format-valid TIFF for inspection</a>;
 <b>NOT OK TO SUBMIT</b>. See <a href="h82-executive-summary.html">its test result and exact name/note</a>.

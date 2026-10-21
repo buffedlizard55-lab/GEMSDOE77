@@ -7,7 +7,7 @@
 ## Pass 1 — Implement & Verify (End-to-End Pipeline, 3-Experiment Budget & Artifact Generation)
 
 1. **Preregistration prior to Experiment 1:**
-   - Wrote [`registry/preregistration_h77v.json`](../registry/preregistration_h77v.json), [`research/h77v_hypotheses.md`](../research/h77v_hypotheses.md), and [`knowledge/03_h77v_synthesis_and_h33_forensics.md`](../knowledge/03_h77v_synthesis_and_h33_forensics.md) before running any holdout evaluation.
+   - Wrote [`registry/preregistration_h77v.json`](registry/preregistration_h77v.json), [`research/h77v_hypotheses.md`](research/h77v_hypotheses.md), and [`knowledge/03_h77v_synthesis_and_h33_forensics.md`](../knowledge/03_h77v_synthesis_and_h33_forensics.md) before running any holdout evaluation.
    - Preregistered 5 ranked geological hypotheses (`H77V-1` through `H77V-5`), the named non-fault geological/anthropogenic mimic process (Coarse MT/Strain Rectilinear Inversion-Mesh Aliasing + Intrabasinal Mafic Sills + Playas + Roads/BLM Mining Disturbances), and the exact 3-experiment budget (`E1` Seed 20, `E2` Seed 30 zero-retuning replication, `E3` Full-Nevada artifact + uniqueness audit).
 2. **Implementation (`src/gems77v/` & `scripts/run_h77v_pipeline.py`):**
    - `src/gems77v/features.py`: Built the 132-channel zero-SGMC static stack (120 `H77E` physical channels + 12 new `H77V` channels implementing `IR-H77G-01` $\sigma=36\text{ px}$ mesh de-aliasing, `IR-H77G-02` across-valley tubular Hessian demagnetization troughs, and `IR-H77G-03` coupling with road/BLM-mining-deconfounded `1 m LiDAR / 10 m 3DEP` scarps and fluvial knickpoints) plus 8 fold-visible `SLOCO` mechanics channels recomputed strictly from visible fault traces (`train_mask & ~holdout_mask`).

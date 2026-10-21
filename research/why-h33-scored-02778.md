@@ -56,7 +56,7 @@ Existing files remain downloadable **for inspection only**. There is no new cand
 
 ## Parallel-session reconciliation
 
-The concurrent readiness review and [904a24d3 review](../docs/review-904a24d3.md) independently found the same marginal-credit error. Their additional tests (`tests/test_h33_reasoning.py`, `tests/test_marginal_dti_review.py`) and candidate-independent [preflight certificate](../evidence/registry_preflight.json) are preserved. Neither review authorizes a candidate.
+The concurrent readiness review and [904a24d3 review](../docs/review-904a24d3.md) independently found the same marginal-credit error. Their additional tests (`tests/test_h33_reasoning.py`, `tests/test_marginal_dti_review.py`) and candidate-independent [preflight certificate](evidence/registry_preflight.json) are preserved. Neither review authorizes a candidate.
 
 ## H83 addendum (2026-10-21, branch arena/e8283608-gemsdoe77)
 
