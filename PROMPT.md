@@ -148,3 +148,7 @@ verdict negative (see README).
 
 ## H82-TEXTURE historical execution addendum
 One narrow texture-boundary feasibility experiment was completed before the parallel universal-preflight review merged. This is distinct from H82 chemistry-concordance. Results: `evidence/h82_texture/run_card.json`; review: `docs/review-h82-texture.md`. Negative, closed, no dots/slot, inspection-only TIFF. Preflight now blocks any new experiment; this addendum grants no exception.
+
+## H83-NETSIB addendum (2026-10-21, branch arena/e8283608-gemsdoe77)
+The standing request and parallel-run protocol above were re-read and applied unchanged. Lane H83-NETSIB (visible fault-network sibling/gap/continuation geometry, learned by synthetic re-withholding) used 3 experiments: Exp1 canaries and surface scan PASS; Exp2 HOLDOUT-DTI 0.1538 (s20) / 0.1637 (s30), above the 0.152718 incumbent by point estimate only; Exp3 built a validator-PASS unique TIFF. The final-dot duplicate rule fired against 16 wide dot rasters, so the verdict is **negative / NOT OK TO SUBMIT**. Evidence: `evidence/h83_run_card.json`, `docs/irregularities.md` IR-83-01..07. Next session: preregister `S_netsib_only` fresh (it scored higher than the candidate), and the owner should decide whether the 70% dot rule should compare only rasters with a similar dot budget.
+
