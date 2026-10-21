@@ -12,6 +12,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -72,19 +73,48 @@ def verify_template_pin(root: Path, pin: dict | None = None) -> None:
         pin = json.loads((root / "registry/template_pin.json").read_text())
     files = pin["files"]
     amendments = pin.get("local_amendments", {})
-    if not isinstance(files, dict) or not isinstance(amendments, dict):
+    if not isinstance(files, dict):
         raise ValueError("shared-template pin schema invalid")
+
+    # Historical pins use a mapping keyed by filename. The H85 shared-template
+    # pin records an audited amendment as a list so it can retain both upstream
+    # and local hashes without pretending that the latter is unmodified. Accept
+    # only these two explicit shapes; every other shape remains fail-closed.
+    amendment_style = "mapping"
+    if isinstance(amendments, list):
+        amendment_style = "list"
+        normalized = {}
+        for declared in amendments:
+            if not isinstance(declared, dict):
+                raise ValueError("shared-template pin schema invalid")
+            name = declared.get("file")
+            upstream_sha = declared.get("upstream_sha256")
+            local_sha = declared.get("local_sha256")
+            if (not isinstance(name, str) or name in normalized or name not in files
+                    or not isinstance(upstream_sha, str) or not re.fullmatch(r"[0-9a-f]{64}", upstream_sha)
+                    or not isinstance(local_sha, str) or not re.fullmatch(r"[0-9a-f]{64}", local_sha)
+                    or files[name] != local_sha
+                    or not isinstance(declared.get("irregularity"), str)
+                    or not isinstance(declared.get("change"), str)
+                    or not isinstance(declared.get("tests"), str)):
+                raise ValueError(f"invalid declared shared-template amendment: {name}")
+            normalized[name] = declared
+        amendments = normalized
+    elif not isinstance(amendments, dict):
+        raise ValueError("shared-template pin schema invalid")
+
     if set(amendments) - set(files):
         raise ValueError("local amendment has no upstream file pin")
     for name, upstream_sha in files.items():
         declared = amendments.get(name)
         expected = upstream_sha
         if declared is not None:
-            if (not isinstance(declared, dict)
-                    or declared.get("upstream_sha256") != upstream_sha
-                    or declared.get("measurement_semantics_unchanged") is not True
-                    or not isinstance(declared.get("local_sha256"), str)):
-                raise ValueError(f"invalid declared shared-template amendment: {name}")
+            if amendment_style == "mapping":
+                if (not isinstance(declared, dict)
+                        or declared.get("upstream_sha256") != upstream_sha
+                        or declared.get("measurement_semantics_unchanged") is not True
+                        or not isinstance(declared.get("local_sha256"), str)):
+                    raise ValueError(f"invalid declared shared-template amendment: {name}")
             expected = declared["local_sha256"]
         if sha256(root / "vendor/gems57" / name) != expected:
             raise ValueError(f"shared-template hash mismatch: {name}")

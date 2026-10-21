@@ -1,0 +1,128 @@
+{
+  "file": "gems77-h82gmns-lagrangian-36500dots-20261021-1c9a641b-zeros.tif",
+  "sha256": "e6f8d6ebbaa28fd758d7c744e4f9bc4928a70b18a0d06d3e51041ad1e3b52257",
+  "bytes": 141192,
+  "submission_name": "gems77-h82gmns-lagrangian-36500dots-20261021-1c9a641b",
+  "note": "GEMSDOE77 H82 GMNS+CP-SAST+LR2M Lagrangian 36500d 0/940 ov<=0.70 float32 EPSG:32611",
+  "note_chars": 83,
+  "validator": {
+    "file": "/home/user/GEMSDOE77/submissions/gems77-h82gmns-lagrangian-36500dots-20261021-1c9a641b-zeros.tif",
+    "bytes": 141192,
+    "sha256": "e6f8d6ebbaa28fd758d7c744e4f9bc4928a70b18a0d06d3e51041ad1e3b52257",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0029725159984081984,
+    "emitted_positive_pixels": 36500,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 36500,
+    "footprint_fraction": 0.007063550473325614
+  },
+  "template_report": {
+    "path": "/home/user/GEMSDOE77/submissions/gems77-h82gmns-lagrangian-36500dots-20261021-1c9a641b-zeros.tif",
+    "bytes": 141192,
+    "sha256": "e6f8d6ebbaa28fd758d7c744e4f9bc4928a70b18a0d06d3e51041ad1e3b52257",
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "width": 3292,
+    "height": 3730,
+    "bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "ref_bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": null,
+    "blocksize": [
+      256,
+      256
+    ],
+    "fixture_grid": false,
+    "has_validity_mask": false,
+    "nan_pixels": 0,
+    "infinity_pixels": 0,
+    "n_nan": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0029725159984081984,
+    "n_nonzero": 36500,
+    "mass": 36500.0,
+    "mass_outside_footprint": 0,
+    "problems": [],
+    "ok": true,
+    "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+  },
+  "zip_file": "gems77-h82gmns-lagrangian-36500dots-20261021-1c9a641b-zeros.zip",
+  "zip_sha256": "2aaca8ef9c5c6a33e2b61fa15c40d53785e90b00b26f52ac6b2253aa44e3bb45",
+  "approved_for_weekly_slot": false,
+  "promoted": false,
+  "submission_slots_used": 0,
+  "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+  "metadata": {
+    "lane": "H82-GMNS-CP-LAGRANGIAN",
+    "branch": "arena/b0d22822-gemsdoe77",
+    "n_informative_rasters_checked": 940,
+    "n_informative_firings_gt_0p70": 0,
+    "max_informative_overlap_3px": 0.691808,
+    "phase1_surface_max_abs_rho": 0.629486,
+    "phase2_dots_max_abs_rho": 0.055284
+  }
+}

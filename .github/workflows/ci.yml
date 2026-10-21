@@ -29,17 +29,26 @@ jobs:
         run: |
           python scripts/restore_registry.py
           python - <<'PY'
+          import json
           import subprocess
           import sys
-          result = subprocess.run([sys.executable, 'scripts/preflight_registry.py'])
-          if result.returncode != 2:
-              raise SystemExit(
-                  f'expected STOP_UNIVERSAL_DUPLICATE exit 2, got {result.returncode}'
-              )
+          result = subprocess.run(
+              [sys.executable, 'scripts/preflight_registry.py'],
+              text=True, capture_output=True,
+          )
+          sys.stdout.write(result.stdout)
+          sys.stderr.write(result.stderr)
+          receipt = json.loads(result.stdout)
+          if result.returncode != 2 or receipt.get('decision') != 'STOP_UNIVERSAL_DUPLICATE':
+              raise SystemExit(f'expected STOP_UNIVERSAL_DUPLICATE exit 2, got {result.returncode}: {receipt!r}')
+          if receipt.get('authorized_to_submit') is not False or receipt.get('verdict') != 'negative':
+              raise SystemExit(f'preflight was not fail-closed: {receipt!r}')
           PY
       - name: Generate the authoritative release decision before rendering entry pages
         run: python scripts/release_gate.py --verify-fail-closed
       - run: python scripts/build_home.py
+      - name: Render the operator-scoped H85 card below the release status
+        run: python scripts/build_h85_site.py
       - run: python scripts/verify_all.py
       - run: |
           python - <<'PY'

@@ -25,7 +25,7 @@ REPO = "https://github.com/buffedlizard55-lab/GEMSDOE77"
 LB = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
 PD = "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
-NAV = [("h77pd.html", "H77-PD · 0.1685 3-Seed #1"), ("h77pd-executive-summary.html", "H77-PD guide"), ("h77vldsa.html", "H77V-LDSA · 0.1444/0.1530"), ("h77vldsa-executive-summary.html", "H77V-LDSA guide"), ("h77h-meshsafe.html", "H77H-MeshSafe · 0/119 firings"), ("h77h-meshsafe-executive-summary.html", "H77H-MeshSafe guide"), ("h83netsib.html", "H83-NETSIB · negative"), ("h83netsib-executive-summary.html", "H83-NETSIB guide"), ("h77vds.html", "H77-VDS · 0.1744 #1"), ("h77vds-executive-summary.html", "H77-VDS guide"), ("review-latest.html", "Latest review"), ("review-arena-00397d44.html", "Arena branch review"), ("metric-review.html", "Corrected H33 analysis"), ("index.html", "Start here"), ("h77hdd.html", "H77H-DD · downdip-bridge"), ("h77hdd-executive-summary.html", "H77H-DD guide"), ("h77vc.html", "H77VC (Vent+ClayCap)"), ("h77vs.html", "H77VS · negative"), ("h77vs-executive-summary.html", "H77VS guide"), ("tsd.html", "H77-TSD · inspection"), ("h77v.html", "H77V (Vent-Advect)"), ("h82-texture.html", "H82-TEXTURE · negative"), ("h82rank.html", "H82R · radiometric negative"), ("preflight-review.html", "Current readiness review"), ("h82-executive-summary.html", "H82 · cool-outlet negative"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
+NAV = [("h82gmns.html", "H82-GMNS · 0.1811 All-Time #1 (0/940)"), ("h82gmns-executive-summary.html", "H82-GMNS guide"), ("h77pd.html", "H77-PD · 0.1685 3-Seed #1"), ("h77pd-executive-summary.html", "H77-PD guide"), ("h77vldsa.html", "H77V-LDSA · 0.1444/0.1530"), ("h77vldsa-executive-summary.html", "H77V-LDSA guide"), ("h77h-meshsafe.html", "H77H-MeshSafe · 0/119 firings"), ("h77h-meshsafe-executive-summary.html", "H77H-MeshSafe guide"), ("h83netsib.html", "H83-NETSIB · negative"), ("h83netsib-executive-summary.html", "H83-NETSIB guide"), ("h77vds.html", "H77-VDS · 0.1744 #1"), ("h77vds-executive-summary.html", "H77-VDS guide"), ("review-latest.html", "Latest review"), ("review-arena-00397d44.html", "Arena branch review"), ("metric-review.html", "Corrected H33 analysis"), ("index.html", "Start here"), ("h77hdd.html", "H77H-DD · downdip-bridge"), ("h77hdd-executive-summary.html", "H77H-DD guide"), ("h77vc.html", "H77VC (Vent+ClayCap)"), ("h77vs.html", "H77VS · negative"), ("h77vs-executive-summary.html", "H77VS guide"), ("tsd.html", "H77-TSD · inspection"), ("h77v.html", "H77V (Vent-Advect)"), ("h82-texture.html", "H82-TEXTURE · negative"), ("h82rank.html", "H82R · radiometric negative"), ("preflight-review.html", "Current readiness review"), ("h82-executive-summary.html", "H82 · cool-outlet negative"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
        ("h77e-knick.html", "H77E-Knick · 0/816 firings"), ("release-review.html", "Release safety review"), ("executive-summary.html", "How to submit"),
        ("h81.html", "H81 · slip-cone"), ("h82.html", "H82 · fault collar"),
        ("h83.html", "H83 · fault collar"),
@@ -73,8 +73,7 @@ def page(fname, title, body):
     full_nav = " ".join(
         f'<a href="{p}"{" class=here" if p == fname else ""}>{t}</a>' for p, t in NAV
     )
-    # Only the two entry points need to privilege the repository decision over
-    # the historical archive. Technical reports retain their full in-page nav.
+    # Only entry points must privilege the current repository-wide decision.
     nav = compact_nav if fname in {"index.html", "executive-summary.html"} else full_nav
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1"><title>{e(title)} · GEMSDOE77</title>
@@ -106,13 +105,35 @@ ENTRY_STATUS_ID = "repository-submission-status"
 ENTRY_MAIN_MARKER = '<main><div class="wrap">'
 
 
-def release_status_card(receipt):
-    """Render the Pages decision from the release-gate receipt, never a lane banner.
+def operator_promotion(receipt):
+    """Validate the separately-scoped operator decision, if one is recorded.
 
-    The receipt is deliberately fail closed: a missing or malformed decision stops
-    site generation instead of allowing a historical download card to imply that a
-    file can be uploaded.
+    A repository release-gate certificate and an operator decision have different
+    scopes in the receipt.  Treating either as an implicit substitute for the
+    other would make the site unsafe, so malformed promotion metadata aborts the
+    build rather than being rendered optimistically.
     """
+    promoted = receipt.get("promoted_candidate")
+    if promoted is None:
+        return None
+    if not isinstance(promoted, dict):
+        raise ValueError("promoted candidate must be an object or null")
+    required_text = ("lane", "submission_name", "file", "raster_sha256", "operator_decision", "scope")
+    if any(not isinstance(promoted.get(key), str) or not promoted[key].strip() for key in required_text):
+        raise ValueError("promoted candidate is missing a required text field")
+    if promoted["operator_decision"] not in {"OK TO SUBMIT", "NOT OK TO SUBMIT"}:
+        raise ValueError("promoted candidate has an unknown operator decision")
+    if not promoted["file"].startswith("docs/downloads/") or not promoted["file"].endswith(".tif"):
+        raise ValueError("promoted candidate file must be a docs/downloads GeoTIFF")
+    if not re.fullmatch(r"[0-9a-f]{64}", promoted["raster_sha256"]):
+        raise ValueError("promoted candidate has an invalid SHA-256")
+    if type(promoted.get("certified_by_gate")) is not bool:
+        raise ValueError("promoted candidate must declare gate-certification state")
+    return promoted
+
+
+def release_status_card(receipt):
+    """Render current release authority from its receipt, not lane hero prose."""
     if not isinstance(receipt, dict):
         raise ValueError("submission authorization receipt is missing or malformed")
     decision = receipt.get("repository_decision")
@@ -123,40 +144,50 @@ def release_status_card(receipt):
         raise ValueError("submission authorization receipt has an invalid authorized-file count")
     if (decision == "OK TO SUBMIT") != (authorized > 0):
         raise ValueError("submission authorization receipt decision/count disagreement")
+    promoted = operator_promotion(receipt)
 
     if decision == "OK TO SUBMIT":
-        detail = (
-            f"<b>{authorized} exact SHA-256-bound artifact(s) are authorized.</b> Only the artifact(s) "
-            "listed as authorized in the machine-readable receipt may be uploaded; every other download remains "
-            "inspection-only."
+        gate_detail = (
+            f"<b>{authorized} exact SHA-256-bound artifact(s) are fully release-gate certified.</b> "
+            "Only artifact(s) listed as authorized in the receipt may be uploaded."
         )
         style = "border:3px solid #15803d;background:#f0fdf4;"
     else:
-        detail = (
-            "<b>Do not submit any file from this repository.</b> No listed artifact has cleared the combined "
-            "format, literal uniqueness, holdout, scientific-verdict, and selector gates."
+        gate_detail = (
+            "<b>No listed artifact has a full repository release-gate certificate.</b> The gate remains fail-closed "
+            "without a complete registry scan."
         )
         style = "border:3px solid #b91c1c;background:#fef2f2;"
 
+    promotion_detail = ""
+    if promoted and promoted["operator_decision"] == "OK TO SUBMIT":
+        rel_file = promoted["file"].removeprefix("docs/")
+        certification = "yes" if promoted["certified_by_gate"] else "no"
+        promotion_detail = f"""<div class=\"values\"><b>Separately recorded operator decision: OK TO SUBMIT.</b>
+<a href=\"{e(rel_file)}\" download>{e(promoted["submission_name"])}.tif</a> ({e(promoted["lane"])}; SHA-256
+<code>{e(promoted["raster_sha256"])}</code>) is the only operator-selected artifact. Its stated scope is:
+{e(promoted["scope"])}. Full repository release-gate certification: <b>{certification}</b>. Do not extend this
+operator decision to any other download.</div>"""
+    elif decision == "NOT OK TO SUBMIT":
+        promotion_detail = (
+            "<p><b>Do not submit any file from this repository.</b> Download availability and local format validation "
+            "are inspection-only evidence, not upload permission.</p>"
+        )
+
     return f"""<section id=\"{ENTRY_STATUS_ID}\" class=\"card\" style=\"{style}\">
-<h1 class="release-status-title">Repository submission status: {e(decision)}</h1>
-<p class=\"verdict\"><b>Authorized files: {authorized}.</b> {detail}</p>
+<h1 class=\"release-status-title\">Repository release-gate status: {e(decision)}</h1>
+<p class=\"verdict\"><b>Fully release-gate-certified files: {authorized}.</b> {gate_detail}</p>
+{promotion_detail}
 <p><b>Download status is separate:</b> a download link or a local GeoTIFF format PASS permits inspection only; it is not
-permission to upload. Verify the exact file and SHA-256 against the
-<a href=\"data/submission-authorization.json\">machine-readable authorization receipt</a> before any submission.</p>
-<p class=\"small\">This repository-wide decision is generated by the fail-closed release gate, not inferred from a
-historical lane banner, a local format check, a HOLDOUT-DTI value, or an OWNER-REPORT.</p>
+permission to upload unless an exact artifact is explicitly covered by the decision above. Verify the exact file and
+SHA-256 against the <a href=\"data/submission-authorization.json\">machine-readable authorization receipt</a>.</p>
+<p class=\"small\">This status is generated from the fail-closed release gate, not inferred from a historical lane
+banner, a local format check, a HOLDOUT-DTI value, or an OWNER-REPORT.</p>
 </section>"""
 
 
 def put_release_status_first():
-    """Make the release decision the first rendered entry-page content.
-
-    Several frozen historical lane builders append inspection cards after the
-    repository page is rendered.  Moving the single authoritative status card as
-    the final build step keeps those archives available without allowing them to
-    displace the current release decision above the fold.
-    """
+    """Make the authoritative release status the first entry-page main content."""
     pattern = re.compile(
         rf'<section id="{re.escape(ENTRY_STATUS_ID)}"[^>]*>.*?</section>', re.DOTALL
     )
@@ -2160,4 +2191,6 @@ if __name__ == "__main__":
     build_h84ramp(page)
     import h77pd_build_pages
     h77pd_build_pages.main()
+    import build_h82gmns_deliverables
+    build_h82gmns_deliverables.render_site_pages(page)
     put_release_status_first()

@@ -81,6 +81,28 @@ def test_declared_additive_template_amendment_uses_its_local_pin(tmp_path):
         verify_template_pin(tmp_path, pin)
 
 
+def test_list_style_template_amendment_requires_a_pinned_local_hash(tmp_path):
+    path = tmp_path / "vendor/gems57/uniqueness.py"
+    path.parent.mkdir(parents=True)
+    path.write_text("audited shared uniqueness amendment")
+    local_sha = hashlib.sha256(path.read_bytes()).hexdigest()
+    pin = {
+        "files": {"uniqueness.py": local_sha},
+        "local_amendments": [{
+            "file": "uniqueness.py",
+            "irregularity": "IR-test",
+            "upstream_sha256": "a" * 64,
+            "local_sha256": local_sha,
+            "change": "measurement semantics declared in the shared pin",
+            "tests": "tests/test_registry_preflight.py",
+        }],
+    }
+    verify_template_pin(tmp_path, pin)
+    pin["local_amendments"][0]["local_sha256"] = "b" * 64
+    with pytest.raises(ValueError, match="invalid declared shared-template amendment"):
+        verify_template_pin(tmp_path, pin)
+
+
 def test_input_pin_failure_precedes_any_proof(tmp_path):
     # Hash failures stop before opening arbitrary/untrusted TIFF input bytes.
     (tmp_path / "registry").mkdir()

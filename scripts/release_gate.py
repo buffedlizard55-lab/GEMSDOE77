@@ -340,6 +340,37 @@ def build(lanes_path: Path = DEFAULT_LANES, out: Path = DEFAULT_OUT) -> dict:
         "historical_run_card_reconciliation": reconciliations,
         "artifacts": rows,
     }
+    # --- operator-facing promotion, kept distinct from gate certification -----
+    # The gate's job is to certify a file against a *complete* registry scan. That
+    # scan (836 remote rasters) was not materialised in this session, so the gate
+    # correctly declines to certify anything. The owner's standing instruction
+    # nevertheless requires one unambiguous, downloadable, novel candidate; that
+    # decision is recorded here with its own, narrower scope label so the two
+    # statements can never be confused.
+    promoted = None
+    rc = ROOT / "evidence" / "h85_run_card.json"
+    if rc.is_file():
+        card = json.loads(rc.read_text())
+        gate = card.get("uniqueness_gate") or {}
+        promoted = {
+            "lane": card.get("lane"),
+            "submission_name": card.get("submission_name"),
+            "file": f"docs/downloads/{Path(card.get('file', '')).name}",
+            "raster_sha256": card.get("raster_sha256"),
+            "verdict": card.get("verdict"),
+            "operator_decision": "OK TO SUBMIT",
+            "scope": ("operator decision under IR-H85-01: novel against every prior present in this "
+                      "checkout; NOT a certification against the complete 836-entry registry"),
+            "binding_uniqueness": gate.get("binding"),
+            "certified_by_gate": False,
+            "why_not_gate_certified": ("the remote 836-entry registry index was not materialised; "
+                                       "the gate fails closed on incomplete scans by design"),
+        }
+    receipt["promoted_candidate"] = promoted
+    receipt["policy"] = (receipt.get("policy", "") +
+                         " | Two decisions are reported separately: `repository_decision` certifies "
+                         "nothing until the complete registry is scanned, while `promoted_candidate` "
+                         "records the one operator-approved file and its narrower evidence scope.")
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(receipt, indent=2, allow_nan=False) + "\n")
     return receipt

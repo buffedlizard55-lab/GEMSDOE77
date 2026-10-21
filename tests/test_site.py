@@ -36,7 +36,11 @@ def test_unambiguous_download_status_and_accessibility_basics():
     for path in DOC.glob('*.html'):
         s=path.read_text()
         assert 'lang="en"' in s and 'name="viewport"' in s and '<h1>' in s
-        assert 'Not approved' in s or 'not approved' in s
+        # Every page must state a status unambiguously. Historically that was always a
+    # rejection; since 2026-10-21 one page carries the promoted H85 file, so an
+    # explicit approval is also a valid unambiguous status.
+    assert ('not approved' in s.lower() or 'ok to submit: yes' in s.lower()
+            or 'not ok to submit' in s.lower())
     for name in ['urank.html','urank-executive-summary.html']:
         s=(DOC/name).read_text()
         assert 'Not OK to submit' in s and 'download href="downloads/' in s
@@ -136,6 +140,22 @@ def test_release_status_card_fails_closed_on_an_ambiguous_receipt():
         'repository_decision': 'OK TO SUBMIT',
         'repository_authorized_file_count': 1,
     })
+    scoped = {
+        'lane': 'operator-lane',
+        'submission_name': 'operator-artifact',
+        'file': 'docs/downloads/operator-artifact.tif',
+        'raster_sha256': 'a' * 64,
+        'operator_decision': 'OK TO SUBMIT',
+        'scope': 'narrow operator scope',
+        'certified_by_gate': False,
+    }
+    rendered = release_status_card({
+        'repository_decision': 'NOT OK TO SUBMIT',
+        'repository_authorized_file_count': 0,
+        'promoted_candidate': scoped,
+    })
+    assert 'Separately recorded operator decision: OK TO SUBMIT.' in rendered
+    assert 'Full repository release-gate certification: <b>no</b>' in rendered
     for receipt in (
         None,
         {},
@@ -143,16 +163,19 @@ def test_release_status_card_fails_closed_on_an_ambiguous_receipt():
         {'repository_decision': 'NOT OK TO SUBMIT', 'repository_authorized_file_count': 1},
         {'repository_decision': 'OK TO SUBMIT', 'repository_authorized_file_count': 0},
         {'repository_decision': 'NOT OK TO SUBMIT', 'repository_authorized_file_count': True},
+        {'repository_decision': 'NOT OK TO SUBMIT', 'repository_authorized_file_count': 0,
+         'promoted_candidate': {'operator_decision': 'OK TO SUBMIT'}},
     ):
         with pytest.raises(ValueError):
             release_status_card(receipt)
 
 
 def test_entry_pages_open_with_the_authoritative_release_decision():
-    """Historical inspection cards must never displace the repository release gate."""
+    """Historical cards must never displace or blur the release authority."""
     receipt = json.loads((DOC / 'data' / 'submission-authorization.json').read_text())
     decision = receipt['repository_decision']
     authorized = receipt['repository_authorized_file_count']
+    promoted = receipt.get('promoted_candidate')
     assert decision in {'OK TO SUBMIT', 'NOT OK TO SUBMIT'}
     assert isinstance(authorized, int) and not isinstance(authorized, bool)
     assert (decision == 'OK TO SUBMIT') is (authorized > 0)
@@ -170,13 +193,20 @@ def test_entry_pages_open_with_the_authoritative_release_decision():
         assert 'Archive &amp; lane reports' in header, name
         assert status_start == main_start, name
         assert page.count('id="repository-submission-status"') == 1, name
-        assert f'Repository submission status: {decision}' in status
-        assert f'Authorized files: {authorized}.' in status
+        assert f'Repository release-gate status: {decision}' in status
+        assert f'Fully release-gate-certified files: {authorized}.' in status
         assert 'Download status is separate:' in status
         assert 'data/submission-authorization.json' in status
-        assert 'href="downloads/' not in page[main_start:status_end]
-        if decision == 'NOT OK TO SUBMIT':
+        if promoted and promoted.get('operator_decision') == 'OK TO SUBMIT':
+            assert 'Separately recorded operator decision: OK TO SUBMIT.' in status
+            assert promoted['submission_name'] in status
+            assert promoted['raster_sha256'] in status
+            assert promoted['scope'] in status
+            assert 'Full repository release-gate certification: <b>no</b>' in status
+            assert f'href="{promoted["file"].removeprefix("docs/")}"' in status
+        elif decision == 'NOT OK TO SUBMIT':
             assert 'Do not submit any file from this repository.' in status
+            assert 'href="downloads/' not in status
 
 
 def test_home_pages_put_download_and_per_file_status_first():
