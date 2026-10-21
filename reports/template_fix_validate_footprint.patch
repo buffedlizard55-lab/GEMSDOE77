@@ -1,0 +1,53 @@
+# Proposed upstream fix for the shared template (GEMSDOE66@0f6762f0, src/gems/validate_submission.py).
+# Not applied to vendor/ (no private forks). Apply upstream with: git apply reports/template_fix_validate_footprint.patch
+# Effect on the GEMSDOE77 files: primary (zeros) and twin (NaN) both PASS; a band-1-footprint file with NaN on the 3,061 official cells FAILS.
+--- a/src/gems/validate_submission.py
++++ b/src/gems/validate_submission.py
+@@ -30,6 +30,22 @@
+     return all(abs(float(x) - float(y)) < tolerance for x, y in zip(a[:6], b[:6]))
+ 
+ 
++def footprint_from_reference(reference_path: str | Path) -> np.ndarray:
++    """OFFICIAL footprint = finite cells of sample_submission.tif (== labels.tif != -1).
++
++    Measured: 5,167,373 cells.  Feature band 1 is valid on 5,165,852 cells and disagrees on
++    3,061 + 1,540 cells, so it must not define the scored region.
++    """
++    import rasterio
++
++    with rasterio.open(reference_path) as src:
++        a = src.read(1)
++        nodata = src.nodata
++    if np.issubdtype(a.dtype, np.floating):
++        return np.isfinite(a) if nodata is None or np.isnan(nodata) else np.isfinite(a) & (a != nodata)
++    return a != (nodata if nodata is not None else -1)
++
++
+ def footprint_from_features(features_path: str | Path, shape_hw=None) -> np.ndarray:
+     """Footprint = cells whose first feature band is finite and above the nodata sentinel."""
+     import rasterio
+@@ -110,6 +126,9 @@
+             feat_transform = feats.transform
+             feat_crs = feats.crs
+         fp = np.isfinite(band) & (band > FEATURE_NODATA_SENTINEL)
++        if reference_path is not None:
++            # use the official footprint, not feature band 1 (they differ by 4,601 cells)
++            fp = footprint_from_reference(reference_path)
+         if ref_shape is not None:
+             grid_shape = ref_shape
+             grid_transform = ref_transform
+@@ -140,9 +159,11 @@
+             nan_inside = int((~finite & fp).sum())
+             checks.append(_check("no NaN inside footprint", nan_inside == 0,
+                                  f"nan_inside={nan_inside} footprint_cells={int(fp.sum())}"))
+-            outside_finite = int((finite & ~fp).sum())
+-            checks.append(_check("NaN-only outside footprint", outside_finite == 0,
+-                                 f"finite_outside={outside_finite}; only NaN is allowed outside"))
++            outside = arr[~fp]
++            outside_ok = bool(np.all(np.isnan(outside)) or np.all(outside == 0.0))
++            checks.append(_check("outside footprint is all-NaN or all-zero", outside_ok,
++                                 f"finite_outside={int(np.isfinite(outside).sum())}; all-zero is the "
++                                 "encoding of the portal-accepted 0.2778 file"))
+     else:
+         checks.append(_check("footprint checks", False,
+                              "SKIPPED: no features raster supplied", status="SKIPPED"))

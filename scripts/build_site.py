@@ -94,6 +94,15 @@ bash scripts/download_competition_data.sh
 <div class="table-wrap"><table><thead><tr><th>Repository / pinned review page</th><th>Status</th><th>Download TIFF paths</th><th>Commit</th><th>Organizer receipt</th></tr></thead><tbody id="repo-rows">{repo_rows}</tbody></table></div>
 <p class="fine">Inventory counts are measurements, not score claims. Download paths may include old, quarantined or duplicate variants. This is not a full raster uniqueness scan. <a href="source-health.json">Full machine-readable feed, page hashes and paths</a>.</p>
 <h2>Verification policy</h2><p>Only the official reference code was obtainable through an official GitHub repository. Data packs and the GeoDAWN report extraction come from owner mirrors. Source existence and matching hashes prove consistency, not scientific interpretation, current licensing, data eligibility or organizer origin. Restricted hosts are not described as nonexistent or down.</p>'''
+    # Additive (LIA lane, PR #6): optional all-lanes box from docs/data/lanes.json at the top of the two entry pages,
+    # so every lane's download and status is visible first. Absent file -> no box; nothing else changes.
+    lanes_box=''
+    lj=DOC/'data/lanes.json'
+    if lj.exists():
+        L=json.loads(lj.read_text())
+        rows=''.join(f'<tr><td><a href="{esc(x["page"])}">{esc(x["lane"])}</a></td><td><a download href="{esc(x["file"])}">{esc(Path(x["file"]).name)}</a></td><td>{esc(x["verdict"])}</td><td>{esc(x["upload"])}</td></tr>' for x in L['lanes'])
+        lanes_box=f'<div class="panel"><span class="eyebrow">All lanes in this repository</span><div class="table-wrap"><table><tr><th>Lane</th><th>File</th><th>Verdict</th><th>Upload status</th></tr>{rows}</table></div><p class="fine">{esc(L["note"])}</p></div>'
+    overview=lanes_box+overview; guide=lanes_box+guide
     for filename,title,active,body in [('index.html','Overview','overview',overview),('executive-summary.html','Submission guide','submit',guide),
            ('research.html','Scientific assessment','research',research),('audit.html','Audit trail','audit',audithtml),('sources.html','Source feed','sources',sourcehtml)]:
         (DOC/filename).write_text(shell(title,active,body))

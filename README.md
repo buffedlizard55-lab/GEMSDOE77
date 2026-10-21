@@ -1,6 +1,162 @@
-# GEMSDOE77 — auditable structural-discovery research
+# GEMSDOE77: DOE GEMS Prize, parallel research lanes
 
-## Download status: research TIFF available; **NOT OK TO SUBMIT**
+**Read this README, including the original request at the end of this file, at the beginning of every session.**
+
+## ⬇ Submission files in this repository (all lanes)
+
+Each row's status is copied from that lane's own run card; links are local.
+
+| Lane | File | Format valid | Protocol-unique | Verdict | Upload status |
+|---|---|---|---|---|---|
+| **LIA**: live-score inversion and allocation (this README's next section) | [`gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif`](docs/downloads/gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif) | Yes, 17/17 | **Yes**, informative reading (worst overlap 0.660, ρ 0.377) | negative | **Safe to upload.** Not recommended for a slot; selector: not approved |
+| Contact-physics ([page](docs/contactphys.html)) | [`gems77-contactphys-44090dots-…-zeros.tif`](docs/downloads/gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif) | Yes (`download_ok_format_valid`) | see its run card | negative | Selector: not approved (`submit_ok_selector_promoted: false`) |
+| Selective-U curvature ([page](docs/index.html)) | [`gems77-h77-urank-curvature-…-research.tif`](docs/downloads/gems77-h77-urank-curvature-0d868dc271bb-research.tif) | Yes | No (literal gate failed) | negative | **Not OK to submit** (research TIFF) |
+| H77C claycap (inherited, quarantined) | [`gemsdoe77-h77c-claycap-breach-…-zeros.tif`](docs/downloads/gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-zeros.tif) | – | rejected by the shared recheck | – | Not approved |
+
+> ### Core values
+> **Maximize P(Win).** "Maximize the Probability of Winning" is our decision-making framework. In every
+> decision we weigh tradeoffs, assess risk, and choose the path that maximizes the probability that we
+> win this prize. We set aside our emotions and make tough decisions in order to maximize P(Win).
+>
+> **Own the Outcome.** We own results end to end, not just our individual slice of the work. When problems
+> arise and we have the means to act, we act without waiting for permission or assignment. We treat
+> failure and success as signals and use them to improve. We stay accountable to the final outcome.
+>
+> *Applied here:* the run's verdict is reported as **negative** rather than dressed up, because a scarce
+> slot should only buy a measured gain or measured information.
+
+---
+
+## ⬇ LIA lane (live-score inversion and allocation): download first
+
+**[Download `gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif`](docs/downloads/gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif)** (151,009 B)
+
+- sha256 `a8bfb844ab44b5d4157f75ec914a51655c27ae54727f7b4a088eca9d6f396898`
+- Same file as a one-TIFF zip: [`…-zeros.zip`](docs/downloads/gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.zip)
+- NaN-outside twin, bit-identical inside the footprint: [`…-nan.tif`](docs/downloads/gems77-h77-lia-38323dots-20261021-aa5c9331-nan.tif)
+
+| Question | Answer |
+|---|---|
+| OK to download? | **Yes** |
+| Will the portal accept it? | **Yes.** It passes 17/17 checks against the official grid and footprint, using the same encoding as the 0.2778 file the portal accepted and scored: all cells finite, binary {0, 1}, no nodata tag, EPSG:32611, 3730×3292 with the official transform. |
+| Unique? | **Yes.** Worst ρ 0.377; worst overlap 0.660 against 765 informative registry rasters. 43 space-filling rasters are reported, not used: each one's 3 px halo covers ≥ 70% of allowed cells, so even random dots exceed 0.70 against it. The first build was logged as a duplicate and not shipped. |
+| Spend a weekly slot? | **Not recommended. Run verdict: NEGATIVE** (pre-registered rule). INSTRUMENT Δ versus the 0.2778 champion is S0 -0.043 and S1 -0.041. HOLDOUT-DTI is 0.0706 against 0.0958 for the fold-fair champion construction (Δ -0.0252, 95% CI [-0.0303, -0.0203]). **The selector decides.** |
+
+**Form fields**
+
+- **Name:** `gems77-h77-lia-38323dots-20261021-aa5c9331-zeros`
+- **Note** (113/140): `GEMSDOE77 H77 live-inversion allocation: 66% H19-5 support + 34% straight-edge dots, 38323 binary, 0 on catalogue`
+
+**Links:** [LIA lane site](https://buffedlizard55-lab.github.io/GEMSDOE77/docs/lia.html) ·
+[LIA executive summary: how to submit](https://buffedlizard55-lab.github.io/GEMSDOE77/docs/lia-executive-summary.html) ·
+[run card](docs/data/run-card.json)
+
+---
+
+### LIA results in brief
+
+Number labels: **ORGANIZER-CONFIRMED** (public leaderboard), **OWNER-REPORTED** (transcribed from the
+submission page), **HOLDOUT-DTI** (local hide-and-recover), **INSTRUMENT** (projection, never a score).
+
+1. **Why GEMSDOE32 `h33-h33-2-b2` scored 0.2778.** We inverted all 95 distinct organizer-scored registry
+   rasters through the exact algebra of the metric (E[TP] = Σ h·M).
+   - The fit reaches leave-one-out Spearman **+0.917**, against **+0.20** for catalogue distance alone.
+   - Hidden (new) faults are concentrated on the H19-5 ridge set (19GEMSDOE): **≈ 38×** the average
+     density more than 2 km from mapped faults, and ≈ 0 more than 3 px from it.
+   - The champion is a 3-px binary thinning of that set, with dots ≤ 200 m from the catalogue removed.
+   - Each dot earns ≈ 0.125 credit, against a break-even bar α·DTI ≈ 0.058.
+   - The model reproduces every step of its lineage, 0.1922 → 0.2477 → 0.2600 → 0.2708 → 0.2778.
+
+   Details: [`reports/why_02778.md`](reports/why_02778.md).
+2. **Can it be beaten?**
+   - Without the uniqueness rule: modestly. 3,825 of its dots, all within 400 m of the catalogue, earn
+     below the bar.
+   - Under the brief's rule: at most 70% of dots may lie within 3 px of one registry raster, and the
+     H19-5 set is itself a registry raster. At least 30% of the dots must then earn credit away from it.
+     No tested off-support field shows leave-one-out-robust credit there, and the break-even is
+     0.056 credit per off-support dot.
+   - Leaderboard #1 is **0.4413** (ORGANIZER-CONFIRMED, read 2026-10-21). The brief's 0.3195 is stale.
+     At our dot count, 0.4413 needs 0.194 credit per dot (1.56× ours), which requires a better field,
+     not better thinning.
+3. **The GEMSDOE77 file.**
+   - **Composition.** 25,293 dots on the live-validated support (> 400 m from the catalogue) plus
+     13,030 dots on a new straight-edge field (H77-1), within a per-raster overlap budget of 0.66.
+   - **HOLDOUT-DTI 0.0706** [0.0599, 0.0815] (`gems57-pooled-hide-v2`,
+     11,321 withheld positives).
+   - **Below** the fold-fair champion construction (Δ -0.0252
+     [-0.0303, -0.0203])
+     and above random (+0.023). Leakage canary clear (max AUC 0.755).
+   - INSTRUMENT Δ versus the champion: S0 -0.043, S1 -0.041.
+   - **Uniqueness costs ≈ 0.04.** With today's fields, "unique" and "beat 0.2778" are in tension.
+
+Experiments: **3 of 3 used** (E1 instrument calibration, E2 hypothesis tests by live inversion,
+E3 candidate, holdout, canary, uniqueness and validator).
+
+**Budget disclosure.**
+
+- E3 included a uniqueness repair. The first build was logged as a duplicate, rebuilt under a
+  per-raster overlap budget, then re-audited and re-tested on the holdout. No new hypothesis was tested.
+- Wall time for the experiments exceeded the 2-hour budget, mainly because of two ~1 h template
+  registry audits.
+
+---
+
+### LIA: reproduce
+
+The environment has 2 CPU and 3 GB RAM; everything below fits.
+
+```bash
+python3 -m venv .venv && .venv/bin/pip install rasterio numpy scipy scikit-learn pandas pytest
+.venv/bin/python scripts/lia_restore_data.py          # 11 inputs via GitHub blob API, sha256-verified (≈40 s)
+.venv/bin/python scripts/fetch_registry.py        # 812 prior rasters (registry), sha256 recorded (≈45 s)
+.venv/bin/python scripts/build_cache.py           # sparse scored rasters, H19-5 distance, H77-1/H77-2 fields
+.venv/bin/python scripts/scored_stats.py          # E1: per-raster structure for 95 scored rasters
+.venv/bin/python scripts/e2_inversion.py          # E1/E2: live-score inversion, LOO
+.venv/bin/python scripts/e2_hypothesis_test.py    # E2: H77-1 / H77-2 tests
+.venv/bin/python scripts/e3_build_candidate.py    # E3: allocation
+.venv/bin/python scripts/e3_holdout.py            # E3: HOLDOUT-DTI + leakage canary (template tools)
+.venv/bin/python scripts/build_submission.py      # write + validate .tif / twin / .zip (fails closed)
+.venv/bin/python scripts/e3_uniqueness.py         # registry audit, both phases (template tool, ~1 h)
+.venv/bin/python scripts/why_02778.py && .venv/bin/python scripts/make_run_card.py && .venv/bin/python scripts/lia_build_site.py
+.venv/bin/python -m pytest -q
+```
+
+### LIA: layout
+
+| Path | What it is |
+|---|---|
+| `docs/` | GitHub Pages site (`lia.html`, `lia-executive-summary.html`, `lia-analysis.html`, `lia-sources.html`), downloads, run card |
+| `reports/why_02778.md` | The full analysis |
+| `docs/research/hypotheses.md` | Pre-registered hypotheses and decision rule (committed before the holdout) |
+| `evidence/*.json` | Every measured number |
+| `registry/` | Data pins, organizer-score transcription, registry index (812 rasters) |
+| `src/gems77lia/` | Core grid/metric, inversion, fields, allocation, validator |
+| `vendor/template66/` | Shared template, byte-identical to GEMSDOE66@0f6762f0 (pins in `TEMPLATE_SHA256.txt`) |
+| `scripts/` | The pipeline above |
+
+### LIA: limitations, irregularities, next steps
+
+These are listed on the [Sources & limits page](docs/lia-sources.html) and in
+[`reports/why_02778.md`](reports/why_02778.md) §6.
+
+Most valuable next steps:
+
+1. If the selector spends a slot on this file, add its score to `registry/live_scores.csv` and re-run
+   E2. One score pins the off-support straight-edge credit (S0 versus S1).
+2. Apply the proposed template validator patch upstream
+   ([`reports/template_fix_validate_footprint.patch`](reports/template_fix_validate_footprint.patch)).
+3. Search for a field with ≥ 0.06 credit per dot away from the H19-5 support. That is the only route
+   to a unique file above 0.2778. Two promising signals:
+   - High-resolution (1 m) lidar scarp mapping away from the support.
+   - The GEMSDOE49/70 positive residuals (+0.13), which show such credit exists.
+
+The full original brief, verbatim and shared by all lanes, is at the end of this README.
+
+---
+
+## Selective-U curvature lane (research TIFF): auditable structural-discovery research
+
+### Selective-U download status: research TIFF available; **NOT OK TO SUBMIT**
 
 **Read this README and the original request below at the beginning of every session.**
 
