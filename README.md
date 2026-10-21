@@ -1,6 +1,81 @@
+> **OK TO DOWNLOAD FOR INSPECTION: YES · OK TO SUBMIT: NO.** Historical H82-TEXTURE (`c571af22cb08db9cb8cfd6edf0108364d95b0c3bec8316d09d3dfd116531790e`) and H77VS (`gems77-h77v-ventsinter-heatflow-37654dots-20261021-cc5e4cd9-zeros`) are inspection-only.
+
 > **🚦 H83-NETSIB (newest, 2026-10-21): ✅ OK TO DOWNLOAD FOR INSPECTION · ⛔ NOT OK TO SUBMIT** — HOLDOUT-DTI 0.1538/0.1637 beat 0.152718 by point estimate, but the final-dot duplicate rule fired. [Details](#h83-netsib-status) · [lane page](docs/h83netsib.html) · [how to submit](docs/h83netsib-executive-summary.html)
 
+> **Current session — branch `arena/17079c9b-gemsdoe77` (`H77H-DD`, 2026-10-21):** **OK TO DOWNLOAD FOR INSPECTION: YES** ([`gems77-h77h-downdip-notch36-bridge-36500dots-20261021-0c05c2bc-zeros.tif`](docs/downloads/gems77-h77h-downdip-notch36-bridge-36500dots-20261021-0c05c2bc-zeros.tif), SHA-256 `d1e87159a8908f0051352c091d9343e8e5128e2c8eea0debdd17589a02692dad`, [`.zip`](docs/downloads/gems77-h77h-downdip-notch36-bridge-36500dots-20261021-0c05c2bc-zeros.zip) `269a6e182cdf1e358c4063c93dd5981da3408978cc9e4e30745302981765077e`) · **OK TO SUBMIT: NO (`verdict: "negative"` under Policy `I17` & below `0.152718` incumbent; `0` weekly slots spent).** `H77H-DD` resolves `IR-H77G-01` (**99.45%** suppression of the 35.02-px MT mesh spectral spike via $\sigma=36\text{ px}$ Gaussian filtering), `IR-H77G-03` (**`0.0715` / `0.0699`** label-free pure physics `HOLDOUT-DTI`, `+82.5%` / `+48.4%` over `H77G`), and `IR-H77H-02` (exact 4-bucket Segment-LOCO), achieving **`0.1150` `[0.0993, 0.1289]`** (Seed 20) / **`0.1149` `[0.0994, 0.1296]`** (Seed 30) `HOLDOUT-DTI` on the capacity-capped deliverable (`0/54` informative duplicate firings, max overlap `0.6800 <= 0.70`; post-merge max local overlap `0.6973 <= 0.70`) and **`0.1301`** / **`0.1298`** on unconstrained `A_h77h_full`, beating both fold-fair `H33` and `A_std_control` on both seeds. ([`docs/h77hdd.html`](docs/h77hdd.html) · [`docs/review-2026-10-21-h77hdd.md`](docs/review-2026-10-21-h77hdd.md) · [`research/h77hdd_hypotheses.md`](research/h77hdd_hypotheses.md) · [`evidence/run_card_h77hdd.json`](evidence/run_card_h77hdd.json)).
 > **Latest review — branch `arena/60aafd45-gemsdoe77` (2026-10-21):** **OK TO DOWNLOAD FOR INSPECTION; NOT OK TO SUBMIT. No new TIFF was generated.** The dense registry witness was restored and independently verified to cover the entire allowed footprint, so the literal duplicate-stop rule blocks every nonempty candidate. No stopped lane was restarted and no weekly slot was used. [Review and ranked conditional hypotheses](docs/review-2026-10-21-60aafd45.md) · [Corrected H33 reasoning](research/why-h33-scored-02778.md) · [existing research TIFF](docs/downloads/gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY.tif) · [how submission works only after approval](docs/executive-summary.html).
+
+> **OK TO DOWNLOAD FOR INSPECTION: YES · OK TO SUBMIT: NO.** Historical H82-TEXTURE research artifact SHA-256: `c571af22cb08db9cb8cfd6edf0108364d95b0c3bec8316d09d3dfd116531790e`. This is an existing negative, not a newly generated submission.
+
+> **This Arena branch review:** no assigned method lane; no TIFF generated; pinned preflight blocks nonempty candidates. [Branch report](docs/review-arena-00397d44.html) · [machine-readable run card](docs/evidence/review_00397d44_run_card.json).
+# GEMSDOE77 — DOE GEMS Prize: audited fault-detection research portfolio
+
+> Read at the start of every session. Standing brief: `PROMPT.md` (operative prompt; also appended below in full);
+> lane evidence: `evidence/`, `registry/`. Multi-pass rule: pass 1 implement + verify, pass 2 review and fix,
+> pass 3 re-check against the request, then PR and merge to `main` from the session branch only.
+
+## 🚦 Status at a glance — this session (lane H84, 2026-10-21)
+
+| Question | Answer |
+|---|---|
+| Competition | DOE GEMS Prize (DrivenData #306): one single-band float32 GeoTIFF, or a ZIP containing exactly one; EPSG:32611; 3730×3292; 100 m pixels; transform (100, 0, 243350, 0, −100, 4508550); prediction values in [0, 1] |
+| Leaderboard (2026-10-21) | 0.4413 ORGANIZER-CONFIRMED (first place xiaofanhu); owner-reported GEMSDOE32 file h33-h33-2-b2 0.2778 (no organizer receipt — GEMSDOE32 site says no organizer score exists for its artifacts) |
+| Unique TIF generated this session | `docs/downloads/gems77-h84-tiplobe-37654dots-20261021-b57c52b3-zeros.tif` + one-TIFF `.zip` (133,412 B / 97,294 B); 37,654 binary dots (0/1) 0 on catalogue; SHA-256 `2bff4b55cabe5a4eb7ab1aeff6b21e407a87a576d1d0c3c5f20ed3ddb1c279ba` ZIP `5fc768b4384e69858fbec4abd302a83c68bb56e2db5e50783420d50dca798b11`. **OK TO DOWNLOAD: YES — for inspection (first screen of docs/index.html, direct download link). NOT OK TO SUBMIT: NO — negative lane (below 0.152718 incumbent, duplicate overlap 0.787 >0.70, dense-witness 1.0 >0.70, selector not approved).** Co-listed checksums on this screen: same H84 tif/zip as above; H83 `7f71739a2804bf2fa7199d30d512e0a267e4cfa2fdd0d32304b962db65b98662`, H82-TEXTURE `c571af22...`, H82R `56debe68...` — all **NOT OK TO SUBMIT**, OK to download for inspection |
+| OK to download? | **YES — for inspection** (direct link on `docs/index.html` first screen and `docs/h84.html`; checksums shown) |
+| OK to submit to the competition? | **NO.** HOLDOUT-DTI 0.1209 [0.1068,0.1354] (seed 30; 11,342 withheld positives, gems57-pooled-hide-v2) vs random 0.0476 delta +0.0733 [0.0600,0.0877] significant and vs H33-approx 0.0412 delta +0.0797 [0.0617,0.0971] significant, but **below** repository incumbent 0.152718 and duplicate by literal rule (sparse overlap 0.787 >0.70, dense 1.0 >0.70). No selector approval; 0 weekly slots used. |
+| Submission mechanics (only after clearance) | `docs/executive-summary.html` and `docs/h84-executive-summary.html` — form fields, the earlier “[0,1]” portal error fix (zeros outside footprint, all finite), ≤140-char Note, step-by-step |
+
+## Hypotheses tested this session (ranked by expected DTI gain ÷ implementation cost; full text: research/h84_hypotheses.md)
+
+1. **H84-1 (implemented, Exp 1):** fault-tip crack-tip stress lobe + en-echelon relay breach (R=25 px/2.5 km isotropic tip distance, 6,747 tips, 37,654 dots min_sep 2.8 px) — HOLDOUT-DTI 0.1209 [0.1068,0.1354] significant vs random and vs H33-approx, below incumbent → **negative**, inspection download only, fixes “[0,1]” error with zeros-outside.
+2. **H84-2** catalogue fault-intersection / relay-node intensity — not implemented (next experiment if tip shows credit).
+3. **H84-3** signed across-strike K/Th radiometric asymmetry — deferred (needs USGS GeoDAWN bands DOI 10.5066/P93LGLVQ; obtainable via owner mirror `registry/data_manifest.json` ext_geodawn_*).
+4. **H84-4** multi-scale residual curvature after regional trend removal — deferred (needs 418 MB feature stack `training_features.tif` 4371c82e...).
+5. **H84-5** thermal spring/well alignment anisotropy (DOE/NREL GDR 1391 DOI 10.15121/1881483) — deferred (owner mirror `ext_gdr_wellspring_in_footprint.csv` exists).
+
+## How this repository answers the prompt (updated 2026-10-21 H84)
+
+- A **unique TIF exists and is directly downloadable** from the site's first screen (`docs/index.html` with H84 banner) and from `docs/h84.html`, with per-file chips stating **OK to download: YES / NOT OK TO SUBMIT: NO** — it is obvious whether download and/or submit is permitted.
+- The TIF is **byte-novel** (SHA-256 2bff4b55… not in any of the 48 sparse registry TIFs checked locally) and **portal-format-valid** (local 15/15 checks: float32 EPSG:32611 3730×3292, values in [0,1] exactly {0,1}, 0 NaN anywhere, zeros outside footprint — will not trigger the prior “Predicted values must be in range [0,1]” error).
+- Every number is labelled HOLDOUT-DTI (evaluator version, withheld positives, 95% CI) or flagged as not organizer-confirmed; no projection is ever written as a score.
+- Negative results are deliverables; no competition slot was spent.
+
+<!-- H84 STATUS BANNER (2026-10-21 session arena/c37917cc-gemsdoe77) -->
+> **Parallel lane H77VC (`arena/969c315b-gemsdoe77`, 2026-10-21): OK TO DOWNLOAD FOR INSPECTION: YES; ⛔ NOT OK TO SUBMIT.** Unique TIF [`docs/downloads/gems77-h77v-geothermal-vent-submod-36250dots-20261021-zeros.tif`](docs/downloads/gems77-h77v-geothermal-vent-submod-36250dots-20261021-zeros.tif) (`137,475 B`, SHA-256 `83df91facbe17d8fd7afae6c851c514317f1d763f61781af954eef9834c2f7d2`, `36,250` binary dots, `0` NaN, `[0,1]`) · [`.zip`](docs/downloads/gems77-h77v-geothermal-vent-submod-36250dots-20261021-zeros.zip) · [Technical Page](docs/h77vc.html) · [Run Card](evidence/run_card_h77vc.json) · [Hypotheses](research/h77v_geothermal_vent_hypotheses.md). Achieves **0.168788 HOLDOUT-DTI** on Seed 30 (`gems57-pooled-hide-v2`, `11,342` withheld positive px, 95% CI `[0.145589, 0.191380]`) and **0.149091 HOLDOUT-DTI** on Seed 20 (`11,321` withheld positive px, 95% CI `[0.128435, 0.171099]`, two-seed mean **0.158628**) with `0` overlap firings across all `674` informative sparse-dot rasters (`max forward_overlap_3px = 0.6350 <= 0.70`), but fails closed (`verdict: "negative"`, `0` weekly slots used, selector: not approved) under the literal Policy `I17` dense-witness gate (`ab0a0a62`).
+
+> **Parallel lane H84-ORGATE-COLLAR (origin/main 2026-10-21):** unique GeoTIFF [`docs/downloads/gems77-h84-orgate-collar-37654dots-20261021-2d0a731a-zeros.tif`](docs/downloads/gems77-h84-orgate-collar-37654dots-20261021-2d0a731a-zeros.tif) (142,608 B, SHA-256 `9a5f5433cbfed4a1a8ac2587678aaa930c8ed93e948b9e94874c8febc549fd57`; ZIP `91a72265e5d87f4a4e1dc2730fac484162ac0d33604e892f44184d9a93ce448f` — full receipt [`docs/h84-orgate.html`](docs/h84-orgate.html)) — also **NOT OK TO SUBMIT** (HOLDOUT-DTI 0.1215 [0.1071,0.1355] vs incumbent 0.1527, 78.6% overlap vs H83 >0.70). This merge preserves both H84 negative lanes; 0 slots used.
+
+> ## 🚦 H84-TIPLOBE: ✅ OK TO DOWNLOAD FOR INSPECTION · ⛔ NOT OK TO SUBMIT (negative, lane closed, 0 slots)
+>
+> - **Unique byte-novel GeoTIFF:** [`docs/downloads/gems77-h84-tiplobe-37654dots-20261021-b57c52b3-zeros.tif`](docs/downloads/gems77-h84-tiplobe-37654dots-20261021-b57c52b3-zeros.tif) (133,412 B, SHA-256 `2bff4b55cabe5a4eb7ab1aeff6b21e407a87a576d1d0c3c5f20ed3ddb1c279ba`; one-TIFF [`.zip`](docs/downloads/gems77-h84-tiplobe-37654dots-20261021-b57c52b3-zeros.zip) 97,294 B, SHA-256 `5fc768b4384e69858fbec4abd302a83c68bb56e2db5e50783420d50dca798b11`). Validator ALL PASS: EPSG:32611, 3730×3292, float32 {0.0,1.0} in [0,1], **0 NaN anywhere**, 37,654 dots, 0 on catalogue, zeros outside footprint.
+> - **⛔ NOT OK TO SUBMIT.** HOLDOUT-DTI **0.1209 [0.1068,0.1354]** (s30, 11,342 withheld, gems57-pooled-hide-v2) vs random 0.0476 delta +0.0733 [0.0600,0.0877] significant and vs H33-approx 0.0412 delta +0.0797 significant, but below 0.152718 incumbent; informative sparse overlap 0.787 >0.70 duplicate vs H82/H77E-pure, literal dense-witness 1.0 >0.70 FAIL; selector not approved; 0 slots used. **Do not re-tune.** [`evidence/h84_run_card.json`](evidence/h84_run_card.json) · [lane page](docs/h84.html) · [H84 guide](docs/h84-executive-summary.html)
+
+
+
+| Question | Answer |
+|---|---|
+| Competition | DOE GEMS Prize (DrivenData #306): one single-band float32 GeoTIFF, or a ZIP containing exactly one; EPSG:32611; 3730×3292; 100 m pixels; transform (100, 0, 243350, 0, −100, 4508550); prediction values in [0, 1] |
+| Leaderboard (2026-10-21) | 0.4413 ORGANIZER-CONFIRMED (first place); owner-reported GEMSDOE32 file 0.2778 (no organizer receipt — attribution not authenticated) |
+| Unique TIF generated this session | `docs/downloads/gems77-h83-faultcollar-37553dots-20261021-a55f4c9c-zeros.tif` + one-TIFF `.zip`; 37,553 binary dots; SHA-256 `7f71739a2804bf2fa7199d30d512e0a267e4cfa2fdd0d32304b962db65b98662`. OK TO SUBMIT: NO — negative lane, inspection download only. Co-listed negative TIFF checksums on this screen: H82-TEXTURE `c571af22cb08db9cb8cfd6edf0108364d95b0c3bec8316d09d3dfd116531790e`; H82R `56debe682505bf2649f30d914c7b552dcf669bce4b902ce91eb3e5363031f115`; H82 cool-outlet `84b50d05eaba578c398c4c7ab720dbf5a46de29d63f4254eb02a8ba02a4a43df` — all **NOT OK TO SUBMIT**, OK to download for inspection |
+| OK to download? | **YES — for inspection** (direct link on `docs/index.html`, first screen; checksums shown on the page) |
+| OK to submit to the competition? | **NO.** HOLDOUT-DTI 0.1227 [0.1080, 0.1372] (seed 30; 11,342 withheld positives) vs random 0.0435 — significant (+0.079, CI excludes 0) but **below** the 0.152718 repository incumbent, so it cannot be expected to beat 0.2778. OK TO SUBMIT: NO — no lane in this session is clearance-approved; registry scan incomplete (0/812 indexed rasters accessible locally); 0 weekly slots used. |
+| Submission mechanics (only after clearance) | `docs/executive-summary.html` — form fields, the earlier "[0, 1]" portal error, ≤140-character Note, step-by-step |
+
+## Hypotheses tested this session (ranked by expected DTI gain ÷ implementation cost; full text: research/h83_hypotheses.md)
+
+1. **H83-1 (implemented, Exp 1):** hanging-wall fault-damage collar at kernel scale — HOLDOUT-DTI 0.1227 [0.1080, 0.1372], significant vs random (+0.079, CI excludes 0), below incumbent → **negative**, not for upload.
+2. **H83-2** catalogue fault-intersection / relay-node intensity — not implemented (next experiment if any off-catalogue credit appears).
+3. **H83-3** signed across-strike K/Th radiometric asymmetry — deferred (needs USGS GeoDAWN bands, DOI 10.5066/P93LGLVQ; source not reachable from this sandbox).
+4. **H83-4** multi-scale residual curvature after regional trend removal — deferred (needs restored 418 MB feature stack).
+5. **H83-5** thermal spring/well alignment anisotropy (DOE/NREL GDR 1391, DOI 10.15121/1881483) — deferred (source not reachable from this sandbox).
+
+## How this repository answers the prompt
+
+- A **unique TIF exists and is directly downloadable** from the site's first screen (`docs/index.html`), with per-file chips stating OK to download / NOT OK TO SUBMIT — it is obvious whether download and/or submit is permitted.
+- Every number is labelled HOLDOUT-DTI (evaluator version, withheld positives, 95% CI) or flagged as not organizer-confirmed; no projection is ever written as a score.
+- Negative results are deliverables; no competition slot was spent.
+
+<!-- H77E-KNICK PRIMARY STATUS BANNER -->
 >
 > The standing request is preserved in full below; re-read it with `PROMPT.md` and `AGENTS.md` every session. This review tightens actual-byte format validation and run-card/hash binding, corrects the false fixed-denominator H33 explanation, and expands the timestamped GitHub inventory to the full 82 requested repositories. No new HOLDOUT-DTI or ORGANIZER-CONFIRMED score is claimed. Older causal, optimality, portal-guarantee and leaderboard observations must not be read as current authenticated evidence. Core values remain **Maximize P(Win)** and **Own the Outcome**: preserve useful negative evidence rather than fabricate a unique submission.
 
@@ -437,6 +512,10 @@ decision before any file in this repository can be cleared.
 Full treatise: [`knowledge/01_why_02778_and_path_to_04413.md`](knowledge/01_why_02778_and_path_to_04413.md) · Full audit & irregularity log: [`evidence/irregularities.json`](evidence/irregularities.json) · Prior lane reports: [`docs/lia.html`](docs/lia.html), [`docs/contactphys.html`](docs/contactphys.html), [`docs/audit.html`](docs/audit.html).
 
 ---
+
+
+
+> **Archived H77V inspection-only artifact:** [`gems77-h77v-ventsinter-heatflow-37654dots-20261021-cc5e4cd9-zeros`](docs/downloads/gems77-h77v-ventsinter-heatflow-37654dots-20261021-cc5e4cd9-zeros.tif) · **NOT OK TO SUBMIT.** Historical record; do not confuse it with the newer H77VS lane.
 
 # Original project request — standing instructions
 

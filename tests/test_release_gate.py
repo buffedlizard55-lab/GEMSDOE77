@@ -253,3 +253,41 @@ def test_malformed_nested_guardrails_fail_closed(tmp_path):
         result = assess(row, tmp_path, root=tmp_path)
         assert not result['authorized_to_submit'], payload
         assert result['run_card_audit']['read_error'], payload
+
+
+@pytest.mark.parametrize("measurement,value,blocked", [
+    ("spearman_full_footprint", 0.91, True),
+    ("surface_max_spearman", 0.91, True),
+    ("phase2_worst_rho", 0.91, True),
+    ("spearman_full_footprint", 0.90, False),
+    ("spearman_full_footprint", -0.95, False),
+    ("my_dots_within_3px_of_theirs", 0.71, True),
+    ("forward_overlap_3px", 0.70, False),
+    ("reverse_overlap_3px", 1.0, False),
+    ("rho_limit", 0.99, False),
+])
+def test_recorded_measurements_override_green_flags(tmp_path, measurement, value, blocked):
+    row = approval_row(tmp_path)
+    row["run_card"] = "card.json"
+    card = {
+        "verdict": "promote", "raster_sha256": row["sha256"],
+        "protocol_unique": True, "holdout_valid_for_promotion": True,
+        "beats_holdout_best": True, "approved_for_weekly_slot": True,
+        "registry": {"full_registry_certified": True,
+                     "surface": {"rows": [{measurement: value}]}}
+    }
+    (tmp_path / "card.json").write_text(json.dumps(card))
+    result = assess(row, tmp_path, root=tmp_path)
+    assert result["authorized_to_submit"] is (not blocked)
+    assert result["run_card_audit"]["literal_duplicate_recorded"] is blocked
+
+
+@pytest.mark.parametrize("value", [True, "0.91", 1.01, -1.01, [], {}])
+def test_malformed_nested_rank_measurement_fails_closed(tmp_path, value):
+    from release_gate import audit_run_card
+    (tmp_path / "card.json").write_text(json.dumps({
+        "registry": {"rows": [[{"spearman_full_footprint": value}]]}
+    }))
+    result = audit_run_card("card.json", root=tmp_path)
+    assert result["read_error"]
+    assert not result["guardrail_clear"]
