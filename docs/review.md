@@ -62,3 +62,41 @@ A protocol-unique, submission-approved TIFF has **not** been achieved; the measu
 ### Remaining blocker
 
 The supplied literal uniqueness rule and the currently measured space-filling registry witnesses are incompatible with the observed candidate: this TIFF fires 35 overlaps even though random placement also exceeds the threshold for those dense witnesses. The correct next action is selector/protocol-owner policy clarification or a registry representation fix in the shared template—not a private exemption and not another submission.
+
+## H78 lane (2026-10-21): three passes
+
+**Pass 1: implement and verify.**
+- E1, E2 and E3 ran as pre-registered.
+- The TIFF was written (zeros + NaN twin + zip). It passes 17/17 portal-equivalence checks and 16/16 on the twin. The zip holds exactly the TIFF bytes.
+- The uniqueness audit ran in two phases with the unchanged template tool against 839 rasters.
+- Merged concurrent main (PRs #7–#9): adopted the fail-closed literal-uniqueness policy (I17) for H78, and kept the H77-Step lane, its pages and its CI steps.
+- Run card assembled from the evidence files; site regenerated; 62 tests pass.
+
+**Pass 2: bug review.** Three bugs were found and fixed before any holdout number was used:
+1. The first E3 draft used a 0.69 overlap budget. The pre-registration says 0.66.
+2. The inherited `budgeted_selection` admitted 1 off-support cell.
+3. A top-half-consensus pool shortcut ran out of admissible cells, leaving a worst overlap of 0.75.
+
+All three are logged in IR-78-03. The pass then re-derived the shipped TIFF independently:
+- 38,301 dots, 0 outside the footprint, 0 on the catalogue.
+- Minimum dot spacing 3.0 px; minimum distance to the catalogue 4.24 px.
+- On-support share 0.660.
+- Jaccard with the LIA file 0.473 (limit 0.50).
+
+Source titles were checked against the live pages. GDR 1391 is the INGENIOUS regional compilation, not only the well/spring resource; the title was corrected. Leaderboard wording was split into a value that is ORGANIZER-CONFIRMED and a file↔score link that is OWNER-REPORTED. The range-error cause is labelled as not confirmed by the organizer.
+
+**Pass 3: recheck against the request.**
+
+| Request | Status |
+|---|---|
+| Unique new TIF | New and not a copy (informative reading: worst overlap 0.660, Jaccard with LIA 0.473). It fails the binding literal rule on space-filling rasters (I17), so it is **Not OK to submit**. |
+| Values in [0,1] | Binary 0/1, all finite |
+| Name + note ≤ 140 characters | Yes, 110 characters |
+| Download at the top of README and site | Yes |
+| Executive summary on how to submit | Yes, now repository-wide |
+| 3–5 hypotheses, ranked, with layers / signature / why uncatalogued / difference from repo | Yes (H78 page and run card) |
+| Blocked holdout before any slot | Yes. **Negative**: Δ vs champion construction −0.0250 [−0.0301, −0.0202] |
+| Free official data named and checked | 3DEP and GDR 1391 pages fetched |
+| Protocol run card | `evidence/h78_run_card.json` |
+| Slots used | 0 |
+| Beat 0.2778 | **No.** Not achieved and not expected (INSTRUMENT S0 0.2450 vs 0.2881). |

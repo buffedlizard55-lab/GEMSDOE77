@@ -1,0 +1,13 @@
+{
+  "amendment_to": "registry/preregistration_h78.json",
+  "written_utc": "2026-10-21T04:20:00Z",
+  "written_after": "E1 screen (evidence/h78_e1_screen.json): NO off-support field is live-supported. Every lidar split and the H77-1 control slightly WORSEN LOO MSE (CI entirely below 0); thermal proximity and region blocks are absorbed with h = 0 (delta exactly 0). The degenerate 'selected' row (H78-2, delta 0) is not live-supported and is NOT carried forward.",
+  "new_hypothesis": {
+    "id": "H78-5 within-support ranking",
+    "statement": "The large positive LOO residuals of GEMSDOE49 gate_ortho, GEMSDOE70 p5-dual and GEMSDOE7 lidarscarp are not off-support credit (E1 rejects that) but heterogeneity ON the H19-5 support: truth is concentrated on the support pixels that an independent topographic/lidar field ranks high, and those rasters' on-support dots sat on them.",
+    "consequence_if_true": "Placing the <=70% on-support dots on the highest-ranked support pixels raises credit per on-support dot and can offset the uniqueness tax on the >=30% off-support dots."
+  },
+  "e2_rule": "Same design as E1, but the split is applied to the ON-support bins: on-support x catalogue {0-4,4-20,>20 px} x field level {top 10 %, 10-40 %, rest} (quantiles over valid on-support cells); near and off bins unchanged (15 params). Fields: H78-1 lidar consensus, lidar upface_max, lidar ex_max, H77-1 straight-edge, det_elev_slope (band 19), thermal proximity, plus region blocks (on-support x 9 regions). Live-supported = paired-bootstrap 95% CI of the LOO-MSE reduction vs S0 excludes 0 AND top-level h exceeds rest-level h in at least one catalogue bin. Select the largest mean reduction.",
+  "budget_accounting": "E2 = this within-support screen. E3 = candidate build + fold-fair HOLDOUT-DTI + leakage canary + uniqueness + validator (as the LIA lane did). No further experiments.",
+  "promotion_rule": "unchanged"
+}

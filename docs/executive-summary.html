@@ -1,33 +1,68 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Submission guide · GEMS / 77</title><meta name="description" content="Auditable fault-detection research. Download the locally validated research GeoTIFF. Not approved for competition submission.">
-<link rel="stylesheet" href="assets/site.css"><script defer src="assets/site.js"></script></head><body>
-<header><div class="header"><a class="brand" href="index.html">GEMS / 77 <span>Structural discovery lab</span></a><nav aria-label="Main"><a href="index.html">Overview</a><a href="executive-summary.html" aria-current="page">Submission guide</a><a href="research.html">Research</a><a href="sources.html">Source feed</a><a href="audit.html">Audit trail</a></nav></div></header>
-<main><div class="panel"><span class="eyebrow">All lanes in this repository</span><div class="table-wrap"><table><tr><th>Lane</th><th>File</th><th>Verdict</th><th>Upload status</th></tr><tr><td><a href="h77-step.html">H77-Step: HW/FW dip-slip step tensor + V-LBCO crack-tip mechanics + Radon + flank-zeroed 300m submod (0.1527 HOLDOUT-DTI)</a></td><td><a download href="downloads/gems77-step-propensity-submod300.tif">gems77-step-propensity-submod300.tif</a></td><td>negative</td><td>Not OK to submit automatically under unfiltered dense-witness literal gate (ab0a0a62 covers 100% of footprint); PASSES gems57 symmetric gate (max mutual 0.493 &lt;= 0.70, max |rho| 0.403 &lt;= 0.90) &amp; all discrete model checks (H33 fwd 0.586, GEMSDOE70 fwd 0.438) — recommended #1 file once human selector confirms non-submission dense-witness exemption (currently not approved for auto-upload).</td></tr><tr><td><a href="lia.html">LIA: live-score inversion and allocation</a></td><td><a download href="downloads/gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif">gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif</a></td><td>negative</td><td>Not OK to submit: format-valid, but literal registry gate failed (35 dense-raster overlap firings) and HOLDOUT-DTI 0.0706 &lt; 0.0958 incumbent; selector: not approved.</td></tr><tr><td><a href="contactphys.html">Contact-physics + front-base</a></td><td><a download href="downloads/gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif">gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif</a></td><td>negative</td><td>Not OK to submit: post-merge literal dense-raster overlap is 0.979; scientific gate failed; selector: not approved.</td></tr><tr><td><a href="index.html">Selective-U curvature (research TIFF)</a></td><td><a download href="downloads/gems77-h77-urank-curvature-0d868dc271bb-research.tif">gems77-h77-urank-curvature-0d868dc271bb-research.tif</a></td><td>negative</td><td>Not OK to submit: research TIFF, literal gate failed.</td></tr></table></div><p class="fine">Status of every submission file in this repository, copied from each lane&#x27;s own run card. Under the unfiltered literal registry check (where dense witness ab0a0a62... has positive values on 100.0% of allowed Nevada pixels), no nonempty raster clears automatic literal uniqueness without selector policy sign-off; H77-Step (0.1527 HOLDOUT-DTI) is the sole candidate passing holdout + all discrete-model uniqueness checks for selector review.</p></div><div class="panel" style="border:2px solid #059669;background:#ecfdf5;margin-bottom:1.25rem;">
-<span class="badge" style="background:#059669;color:#fff;">#1 Holdout Candidate · Selector Review</span>
-<h2>New H77-Step Lane: <code>gems77-step-propensity-submod300.tif</code> (0.1527 HOLDOUT-DTI)</h2>
-<p><strong>Highest holdout score across all 18 repositories:</strong> <code>0.1527</code> HOLDOUT-DTI <code>[0.1315, 0.1752]</code> on <code>gems57-pooled-hide-v2</code> (+58.9% vs Fold-Fair H33 <code>0.0961</code>, +37.2% vs GEMSDOE70 P8 <code>0.1113</code>, +116.3% vs LIA <code>0.0706</code>) and <code>0.1858</code> <code>[0.1619, 0.2093]</code> on Blind 4-Quadrant Transfer. Strictly binary <code>{0.0, 1.0}</code> in <code>[0, 1]</code> with <code>0 NaN</code> across all <code>12,279,160</code> cells. Passes all discrete-model uniqueness checks (<code>H33 = 0.5858</code>, <code>GEMSDOE70 = 0.4379</code>, <code>LIA = 0.3902 &le; 0.70</code>); auto-upload remains <em>Not approved</em> solely pending human selector sign-off on dense non-dot witness <code>ab0a0a62...</code>.</p>
-<div class="buttons"><a class="button" download href="downloads/gems77-step-propensity-submod300.tif">↓ Download H77-Step Validated .tif (134.9 KB)</a><a class="button secondary" href="h77-step.html">Full H77-Step Evidence &amp; Figures →</a><a class="button secondary" href="h77-step-executive-summary.html">H77-Step Executive Brief →</a></div>
-<p class="fine"><strong>Filename:</strong> <code>gems77-step-propensity-submod300.tif</code> · <strong>SHA-256:</strong> <code>f55105a091281be14957fff2f5aad9a85fa5b1acc31558e9fcd2aae9fdd588b0</code><br><strong>Note (122/140):</strong> <code>GEMSDOE77: HW/FW dip-slip step tensor + V-LBCO crack-tip mechanics + Radon multi-scale ensemble + flank-zeroed 300m submod</code></p></div><div class="eyebrow">Executive summary / submission guide</div><h1>Download is easy.<br>Approval is separate.</h1>
-<div class="notice"><strong>Current verdict: NEGATIVE. Do not submit this file.</strong> The research TIFF is format-valid but not protocol-cleared. No real submission has been made.</div><div class="panel download-panel"><span class="badge negative">Not OK to submit</span>
-<h2>A new TIFF. A clear stop.</h2><p>Generated from cached radiometric features—not a copied submission. Local format checks pass, but the literal uniqueness gate fails.</p>
-<div class="buttons"><a class="button" download href="downloads/gems77-h77-urank-curvature-0d868dc271bb-research.tif">↓ Download research TIFF</a><a class="button secondary" download href="downloads/gems77-h77-urank-curvature-0d868dc271bb-research.zip">Single-TIFF ZIP</a></div>
-<p class="fine">18.5 MB · float32 · single band · values in [0, 1]<br>Safe to download for inspection. <strong>Do not upload to the competition.</strong></p>
-<div class="file-label">SHA-256 / actual TIFF bytes</div><div class="hash">9489af2b7e1b06a249203d3c9d6dfe4ed469647f59ebe3a5ffe9c50c67e46b42</div>
-<p class="fine"><a href="downloads/gems77-h77-urank-curvature-0d868dc271bb-research.json">Writer receipt</a> · <a href="evidence/run_card.json">JSON run card</a> · <a href="executive-summary.html">Submission instructions</a></p></div>
-<section class="prose"><h2>How to submit a future approved candidate</h2><p>The supplied form accepts a single-band GeoTIFF or a ZIP containing one TIFF. The current portal and rules could not be independently re-read here; check the official page before using a real slot.</p>
-<ol class="steps"><li><strong>Wait for explicit selector approval.</strong> Require a complete registry clearance, clean canaries, a defensible paired holdout improvement against a fold-rebuilt incumbent, authenticated inputs/rules and a known remaining weekly allowance. This candidate does not qualify.</li>
-<li><strong>Download the approved TIFF or its single-TIFF ZIP.</strong> Do not submit a webpage, receipt JSON, Markdown, preview image or the entire repository.</li>
-<li><strong>Check exact bytes and validator.</strong> Match the SHA-256 in its receipt. Require one band, EPSG:32611, shape 3730 × 3292, the sample's geotransform and finite values in [0,1]. These dimensions are measured against the owner mirror, not independently organizer-authenticated.</li>
-<li><strong>Open the official competition portal.</strong> Use <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData GEMS</a> → the competition's submission form after signing in and accepting current rules. The precise current menu may differ. Never share credentials in chat.</li>
-<li><strong>Choose the approved file and paste its note.</strong> Check the current weekly allowance before pressing the portal's submit control. Do not use the research-only file on this page.</li>
-<li><strong>Keep the organizer receipt.</strong> Record exact filename/hash, note, UTC timestamp and organizer-reported result. Only then label a result ORGANIZER-CONFIRMED. Local validation is not acceptance.</li></ol>
-<h2>Current research file identity</h2><p class="file-label">Name <button class="copy" data-copy="submission-name">Copy</button></p><div id="submission-name" class="hash">gems77-h77-urank-curvature-0d868dc271bb-research</div>
-<p class="file-label">Note · 91 characters <button class="copy" data-copy="submission-note">Copy</button></p><div id="submission-note" class="hash">H77 selective-U rank curvature; research-only, literal registry gate failed; do not submit.</div>
-<h2>Preventing the previous range error</h2><p>The original failure's root cause is not known. Our conservative export policy rejects non-finite and out-of-range predictions before writing, uses explicit zero outside the footprint, removes no-data sentinels, and reads the actual TIFF back. The writer does not silently clip or fill invalid model output. Local PASS does not guarantee portal acceptance.</p>
-<h2>Reproduce locally</h2><pre>python3 -m venv .venv
-.venv/bin/pip install -r requirements.txt
-bash scripts/download_competition_data.sh
-.venv/bin/python scripts/prepare_data.py
-.venv/bin/python scripts/audit_artifact.py
-.venv/bin/python -m pytest -q
-.venv/bin/python scripts/build_site.py</pre><p>The experiment runner refuses to re-run a finalized lane. Its stop is intentional. GitHub Pages hosts precomputed evidence and files; it cannot run a model in your browser or submit on your behalf.</p></section></main><footer><span>Evidence before optimism. Maximize P(Win) · Own the Outcome.</span><span>Research, not a resource assessment. <a href="PROJECT_PROMPT.md">Standing request</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE77">Repository</a></span></footer></body></html>
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>How to submit · GEMSDOE77</title>
+<meta name="description" content="GEMSDOE77 (DOE GEMS Prize): download the submission GeoTIFFs and see, per file, whether it is OK to upload.">
+<link rel="stylesheet" href="assets/lia.css"></head><body>
+<header><div class="wrap"><span class="brand">GEMSDOE77 · DOE GEMS Prize</span><a href="index.html">Start here</a> <a href="executive-summary.html" class=here>How to submit</a> <a href="h78.html">H78 lane</a> <a href="lia.html">LIA lane</a> <a href="contactphys.html">Contact-physics lane</a> <a href="urank.html">Selective-U lane</a> <a href="lia-analysis.html">Why 0.2778</a> <a href="lia-sources.html">Sources</a>
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE77">GitHub</a></div></header><main><div class="wrap"><h1>Executive summary: how to submit a file from this repository</h1>
+<p class="verdict"><b>Bottom line.</b> <b>No file in this repository is cleared to submit today</b> (Not OK to submit).
+Every file is OK to download for inspection. The steps below are how to submit once a file is cleared: it must pass the
+literal uniqueness rule (or a protocol-owner policy replaces that rule), and the selector must approve it. None is expected
+to beat 0.2778.</p>
+<p class="verdict"><b>Status at a glance.</b> <b>OK to download:</b> every file below.
+<b>Not OK to submit:</b> none of them is cleared. The repository fails closed on the brief's literal uniqueness rule
+(irregularity I17). The rule says a file duplicates <i>any</i> registry raster when more than 70% of its dots lie within
+3 px of that raster's dots. Several registry rasters are space-filling: one covers 100% of the allowed pixels. Even random
+dots exceed 0.70 against them, so <b>no non-empty file can pass the literal rule</b>. Only the protocol owner can resolve
+this, with one shared registry policy. Until then, spending a slot is a selector decision outside this repository.</p>
+<section class="card dl"><h2>⬇ Newest file: download</h2>
+<p class="small muted"><b>H78: lidar scarp consensus, uniqueness-capped allocation.</b> Generated in this session (H78 lane). It ties the LIA file: INSTRUMENT S0 projection 0.2450 vs 0.2450, HOLDOUT-DTI 0.0708 vs 0.0706 (same evaluator and split). Showing it here is not a selection; the selector decides.</p>
+<a class="btn" href="downloads/gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros.tif" download>Download .tif (148 KB)</a><a class="btn alt" href="downloads/gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros.zip" download>Same file as one-TIFF .zip</a>
+<div class="chips"><span class="chip ok">OK to download: YES</span>
+<span class="chip ok">Portal format (local checks): PASS</span>
+<span class="chip bad">Unique, literal rule: FAIL</span>
+<span class="chip ok">Unique, informative reading: PASS</span>
+<span class="chip bad">Beat the champion construction on the holdout: NO</span>
+<span class="chip warn">Selector: not approved</span></div>
+<p class="verdict"><b>Can I submit it?</b> <b>No.</b> Not OK to submit: literal registry gate fails (44 firings, all on space-filling rasters; informative reading passes, worst overlap 0.660) and the holdout is negative. Inspection download only; selector: not approved.<br>
+<b>Would the portal accept the format?</b> Probably. It passes 17 local checks against the official grid and footprint:
+every cell finite, values exactly 0 or 1, no nodata tag, EPSG:32611, 3730×3292, the official transform. That is the
+encoding of the GEMSDOE32 file that the owner reports scored 0.2778. Local checks are not an organizer receipt.<br>
+<b>Will it beat 0.2778?</b> <b>Not expected.</b> Its projection is below the 0.2778 file, and its holdout did not beat the
+champion construction (see the <a href="h78.html">lane page</a>).</p>
+<p class="small muted">Submission name (for reference) (61 characters)</p><div class="copy"><code>gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros</code><button data-copy="gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros">Copy</button></div>
+<p class="small muted">Note (for reference) (110 characters)</p><div class="copy"><code>GEMSDOE77 H78: 66% H19-5 support (S0 credit) + 34% 1m-lidar scarp-consensus dots, 38301 binary, 0 on catalogue</code><button data-copy="GEMSDOE77 H78: 66% H19-5 support (S0 credit) + 34% 1m-lidar scarp-consensus dots, 38301 binary, 0 on catalogue">Copy</button></div>
+<p class="small">sha256 of the .tif: <code>4571e767757be95e3fb70b4afb05e45528b1cfd74147e168c36253b1247f1c47</code> · <a href="executive-summary.html">How submission works, step by step →</a></p></section>
+<h2>What the submission form asks for</h2>
+<table><tr><th>Field</th><th>What to give it</th></tr>
+<tr><td>File</td><td>The <code>…-zeros.tif</code> file, or the <code>…-zeros.zip</code> that contains only that one GeoTIFF.
+The form accepts a single GeoTIFF, or a zip containing a single GeoTIFF. The CRS, shape and geotransform must match the
+competition grid: EPSG:32611, 3730 rows × 3292 columns, 100 m pixels, origin (243350, 4508550).</td></tr>
+<tr><td>Note (optional)</td><td>Paste the note from the copy box (it is at most 140 characters).</td></tr></table>
+<h2>Steps</h2><ol>
+<li>Download the cleared file's <code>-zeros.tif</code>. Do not upload this web page, a JSON receipt or the repository.</li>
+<li>Optional check: compare the file's SHA-256 with the one shown on its lane page
+(<code>sha256sum file.tif</code> on Linux/macOS, <code>certutil -hashfile file.tif SHA256</code> on Windows).</li>
+<li>Sign in at <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">the competition page</a> and open its submission form (the menu wording may differ).</li>
+<li>Choose the file, paste the note and submit. Check the weekly submission allowance first.</li>
+<li>Record the score and timestamp the portal reports. Only that number may be labelled ORGANIZER-CONFIRMED.</li></ol>
+<h2>Why the "Predicted values must be in range [0, 1]" error will not recur</h2>
+<p>The problem description asks for one float32 band with values in [0, 1] inside the study area. The earlier rejected
+files most likely had NaN or nodata-tagged cells inside the scored area, which the portal reports as out of range. This
+cause is our reading of the evidence and has not been confirmed by the organizer (irregularity I09). The <code>-zeros</code>
+files avoid this: every one of the 12,279,160 cells is finite and exactly 0.0 or 1.0, there is no nodata tag, and the grid is
+copied from <code>sample_submission.tif</code>. This is the encoding of the GEMSDOE32 file that the owner reports scored 0.2778.
+Each file is read back and passes 17 checks against the official footprint (<code>src/gems77lia/validate.py</code>). The
+shared template validator is also run. It reports only its known mismatch: it derives the footprint from a feature band,
+which differs from <code>sample_submission.tif</code> by 4,601 cells. The <code>-nan</code> twins (NaN outside the study area) are kept for reference only; upload the
+<code>-zeros</code> file.</p>
+<h2>Where each number comes from</h2><ul>
+<li>Format rules and metric: the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">official problem description</a> (α = 0.2, β = 0.8, 300 m triangular kernel).</li>
+<li>Scores of other submissions: the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">public leaderboard</a> (ORGANIZER-CONFIRMED).</li>
+<li>Everything computed here is labelled HOLDOUT-DTI or INSTRUMENT, never a score.</li></ul></div></main>
+<footer><div class="wrap">Selector status for every file on this site: <b>not approved</b>. Whether to spend a
+weekly slot is a separate selector decision, not this repository's. Generated by <code>scripts/build_home.py</code> from
+<code>docs/data/*.json</code> and <code>evidence/*.json</code>. Number labels: <b>ORGANIZER-CONFIRMED</b> (public
+leaderboard / submission page), <b>HOLDOUT-DTI</b> (local hide-and-recover; evaluator version, withheld positives, 95% CI),
+<b>INSTRUMENT</b> (projection, never a score).</div></footer>
+<script>document.querySelectorAll('button[data-copy]').forEach(b=>b.onclick=()=>{navigator.clipboard.writeText(b.dataset.copy);b.textContent='Copied';setTimeout(()=>b.textContent='Copy',1200)})</script>
+</body></html>

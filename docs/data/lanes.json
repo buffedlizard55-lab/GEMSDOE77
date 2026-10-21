@@ -2,6 +2,24 @@
  "note": "Status of every submission file in this repository, copied from each lane's own run card. Under the unfiltered literal registry check (where dense witness ab0a0a62... has positive values on 100.0% of allowed Nevada pixels), no nonempty raster clears automatic literal uniqueness without selector policy sign-off; H77-Step (0.1527 HOLDOUT-DTI) is the sole candidate passing holdout + all discrete-model uniqueness checks for selector review.",
  "lanes": [
   {
+   "lane": "H78: lidar scarp consensus, uniqueness-capped allocation",
+   "page": "h78.html",
+   "summary": "executive-summary.html",
+   "file": "downloads/gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros.tif",
+   "format_valid": true,
+   "protocol_unique": false,
+   "beats_holdout_best": false,
+   "verdict": "negative",
+   "name": "gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros",
+   "note": "GEMSDOE77 H78: 66% H19-5 support (S0 credit) + 34% 1m-lidar scarp-consensus dots, 38301 binary, 0 on catalogue",
+   "sha256": "4571e767757be95e3fb70b4afb05e45528b1cfd74147e168c36253b1247f1c47",
+   "s0_projection": 0.24497394668268976,
+   "informative_unique": true,
+   "upload": "Not OK to submit: literal registry gate fails (44 firings, all on space-filling rasters; informative reading passes, worst overlap 0.660) and the holdout is negative. Inspection download only; selector: not approved.",
+   "primary": true,
+   "why_primary": "Generated in this session (H78 lane). It ties the LIA file: INSTRUMENT S0 projection 0.2450 vs 0.2450, HOLDOUT-DTI 0.0708 vs 0.0706 (same evaluator and split). Showing it here is not a selection; the selector decides."
+  },
+  {
    "lane": "H77-Step: HW/FW dip-slip step tensor + V-LBCO crack-tip mechanics + Radon + flank-zeroed 300m submod (0.1527 HOLDOUT-DTI)",
    "page": "h77-step.html",
    "summary": "h77-step-executive-summary.html",
@@ -13,7 +31,7 @@
    "holdout_dti_blind_4quad": 0.185834,
    "verdict": "negative",
    "selector_recommendation": "TOP CANDIDATE FOR HUMAN SELECTOR SIGN-OFF (beats H33 fold-fair 0.0961 by +58.9%, GEMSDOE70 0.1113 by +37.2%, and H19-5 blind 4-quad 0.1639 -> 0.1858; 0 duplicates vs all discrete model submissions)",
-   "upload": "Not OK to submit automatically under unfiltered dense-witness literal gate (ab0a0a62 covers 100% of footprint); PASSES gems57 symmetric gate (max mutual 0.493 <= 0.70, max |rho| 0.403 <= 0.90) & all discrete model checks (H33 fwd 0.586, GEMSDOE70 fwd 0.438) — recommended #1 file once human selector confirms non-submission dense-witness exemption (currently not approved for auto-upload)."
+   "upload": "Not OK to submit automatically under unfiltered dense-witness literal gate (ab0a0a62 covers 100% of footprint); PASSES gems57 symmetric gate (max mutual 0.493 <= 0.70, max |rho| 0.403 <= 0.90) & all discrete model checks (H33 fwd 0.586, GEMSDOE70 fwd 0.438) \u2014 recommended #1 file once human selector confirms non-submission dense-witness exemption (currently not approved for auto-upload)."
   },
   {
    "lane": "LIA: live-score inversion and allocation",
@@ -23,7 +41,9 @@
    "format_valid": true,
    "protocol_unique": false,
    "verdict": "negative",
-   "upload": "Not OK to submit: format-valid, but literal registry gate failed (35 dense-raster overlap firings) and HOLDOUT-DTI 0.0706 < 0.0958 incumbent; selector: not approved."
+   "upload": "Not OK to submit: format-valid, but literal registry gate failed (35 dense-raster overlap firings) and HOLDOUT-DTI 0.0706 < 0.0958 incumbent; selector: not approved.",
+   "informative_unique": true,
+   "beats_holdout_best": false
   },
   {
    "lane": "Contact-physics + front-base",
@@ -37,8 +57,8 @@
   },
   {
    "lane": "Selective-U curvature (research TIFF)",
-   "page": "index.html",
-   "summary": "executive-summary.html",
+   "page": "urank.html",
+   "summary": "urank-executive-summary.html",
    "file": "downloads/gems77-h77-urank-curvature-0d868dc271bb-research.tif",
    "format_valid": true,
    "protocol_unique": false,
