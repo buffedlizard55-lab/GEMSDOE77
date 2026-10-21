@@ -64,10 +64,12 @@ def card_html(f: dict) -> str:
     b = uniq["binding"]
     return f"""{MARK}
 <section class="card dl" id="h85" style="border:3px solid #1c7c4a">
-<h2>✅ SUBMIT THIS FILE — H85-EDTI, the promoted candidate (OK TO DOWNLOAD: YES · OK TO SUBMIT: YES)</h2>
-<p class="verdict"><b>OK to download: YES.</b> <b>OK to submit to the competition: YES.</b>
-This is the one file in this repository that passed every gate this session: format, holdout improvement and
-like-for-like uniqueness. It is a newly computed raster, not a copy of any prior submission.</p>
+<h2>✅ H85-EDTI — operator-selected submission candidate (OK TO DOWNLOAD: YES · OPERATOR DECISION: OK TO SUBMIT)</h2>
+<p class="verdict"><b>OK to download: YES.</b> <b>Operator decision: OK TO SUBMIT.</b>
+This is the one operator-selected file in this repository that passed the recorded format, holdout-improvement and
+like-for-like uniqueness checks. It is a newly computed raster, not a copy of any prior submission. The repository
+release gate remains separately fail-closed until the complete remote registry is materialised; see the authoritative
+status card above and <a href="data/submission-authorization.json">its machine-readable scope</a>.</p>
 <p><b>HOLDOUT-DTI</b> (<code>{h['evaluator_version']}</code>, alpha 0.2 / beta 0.8, 300 m triangular kernel):
 <code>{h['seed_30']['score']:.6f}</code> on Seed 30 (95% CI <code>{h['seed_30']['ci95'][0]:.6f}–{h['seed_30']['ci95'][1]:.6f}</code>,
 <code>{h['seed_30']['withheld_positive_pixels']:,}</code> withheld positives) and
@@ -109,12 +111,12 @@ def guide_block(f: dict) -> str:
     c = f["card"]
     return f"""{GUIDE_MARK}
 <section class="card dl" style="border:3px solid #1c7c4a">
-<h2>Current status: one file IS approved to submit</h2>
-<p><b><a href="downloads/{f['tif'].name}">{c['submission_name']}</a></b> is the only file in this repository with
-<b>OK TO SUBMIT = YES</b>. Upload the <code>.tif</code> (or the one-TIFF <code>.zip</code>) at
-<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">the DrivenData submission page</a>
-with the name and note below. Every other file on this site is inspection-only.
-<b>Step-by-step:</b> <a href="h85-executive-summary.html">H85 submission guide</a>.</p>
+<h2>Current status: one operator-selected file has an OK TO SUBMIT decision</h2>
+<p><b><a href="downloads/{f['tif'].name}">{c['submission_name']}</a></b> is the only artifact with a recorded
+<b>operator decision = OK TO SUBMIT</b>. Its authority is narrower than a complete repository release-gate certificate;
+read the authoritative status card and <a href="data/submission-authorization.json">machine-readable receipt</a> first.
+Every other file on this site is inspection-only. <b>Step-by-step:</b>
+<a href="h85-executive-summary.html">H85 submission guide</a>.</p>
 </section>
 """
 
@@ -141,6 +143,10 @@ def main() -> None:
     if guide.exists():
         guide.write_text(inject(guide, GUIDE_MARK, guide_block(f),
                                ('<main><div class="wrap">', '<main>', '<body>')))
+    # H85 is intentionally prominent, but its operator-scoped card must never
+    # displace the broader release-gate status at the top of either entry page.
+    from build_home import put_release_status_first
+    put_release_status_first()
     print(f"H85 card injected: {f['tif'].name} sha256={f['sha'][:16]}… "
           f"checks={f['checks']}/{f['total']}")
 

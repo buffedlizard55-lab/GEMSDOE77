@@ -14,6 +14,7 @@ import hashlib
 import html
 import json
 import markdown
+import re
 import shutil
 
 from pathlib import Path
@@ -38,6 +39,15 @@ NAV = [("h82gmns.html", "H82-GMNS · 0.1811 All-Time #1 (0/940)"), ("h82gmns-exe
        ("lia.html", "LIA lane"), ("contactphys.html", "Contact-physics lane"), ("urank.html", "Selective-U lane"),
        ("lia-analysis.html", "Why 0.2778"), ("lia-sources.html", "Sources")]
 
+# Keep current navigation compact: historical lane links remain available on
+# demand but must not push the repository-wide release decision below the fold.
+PRIMARY_NAV = (
+    ("index.html", "Start here"),
+    ("executive-summary.html", "How to submit"),
+    ("preflight-review.html", "Current readiness"),
+    ("metric-review.html", "H33 analysis"),
+)
+
 
 def e(x):
     return html.escape(str(x), quote=True)
@@ -49,7 +59,22 @@ def jload(p):
 
 
 def page(fname, title, body):
-    nav = " ".join(f'<a href="{p}"{" class=here" if p == fname else ""}>{t}</a>' for p, t in NAV)
+    primary_paths = {p for p, _ in PRIMARY_NAV}
+    primary_nav = " ".join(
+        f'<a href="{p}"{" class=here" if p == fname else ""}>{t}</a>'
+        for p, t in PRIMARY_NAV
+    )
+    archive_nav = " ".join(
+        f'<a href="{p}"{" class=here" if p == fname else ""}>{t}</a>'
+        for p, t in NAV if p not in primary_paths
+    )
+    compact_nav = (f'{primary_nav}<details class="site-nav"><summary>Archive &amp; lane reports</summary>'
+                   f'<div class="archive-links">{archive_nav}</div></details>')
+    full_nav = " ".join(
+        f'<a href="{p}"{" class=here" if p == fname else ""}>{t}</a>' for p, t in NAV
+    )
+    # Only entry points must privilege the current repository-wide decision.
+    nav = compact_nav if fname in {"index.html", "executive-summary.html"} else full_nav
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1"><title>{e(title)} · GEMSDOE77</title>
 <meta name="description" content="GEMSDOE77 (DOE GEMS Prize): download the submission GeoTIFFs and see, per file, whether it is OK to upload.">
@@ -76,6 +101,112 @@ def copy(label, text):
             f'<button data-copy="{e(text)}">Copy</button></div>')
 
 
+ENTRY_STATUS_ID = "repository-submission-status"
+ENTRY_MAIN_MARKER = '<main><div class="wrap">'
+
+
+def operator_promotion(receipt):
+    """Validate the separately-scoped operator decision, if one is recorded.
+
+    A repository release-gate certificate and an operator decision have different
+    scopes in the receipt.  Treating either as an implicit substitute for the
+    other would make the site unsafe, so malformed promotion metadata aborts the
+    build rather than being rendered optimistically.
+    """
+    promoted = receipt.get("promoted_candidate")
+    if promoted is None:
+        return None
+    if not isinstance(promoted, dict):
+        raise ValueError("promoted candidate must be an object or null")
+    required_text = ("lane", "submission_name", "file", "raster_sha256", "operator_decision", "scope")
+    if any(not isinstance(promoted.get(key), str) or not promoted[key].strip() for key in required_text):
+        raise ValueError("promoted candidate is missing a required text field")
+    if promoted["operator_decision"] not in {"OK TO SUBMIT", "NOT OK TO SUBMIT"}:
+        raise ValueError("promoted candidate has an unknown operator decision")
+    if not promoted["file"].startswith("docs/downloads/") or not promoted["file"].endswith(".tif"):
+        raise ValueError("promoted candidate file must be a docs/downloads GeoTIFF")
+    if not re.fullmatch(r"[0-9a-f]{64}", promoted["raster_sha256"]):
+        raise ValueError("promoted candidate has an invalid SHA-256")
+    if type(promoted.get("certified_by_gate")) is not bool:
+        raise ValueError("promoted candidate must declare gate-certification state")
+    return promoted
+
+
+def release_status_card(receipt):
+    """Render current release authority from its receipt, not lane hero prose."""
+    if not isinstance(receipt, dict):
+        raise ValueError("submission authorization receipt is missing or malformed")
+    decision = receipt.get("repository_decision")
+    authorized = receipt.get("repository_authorized_file_count")
+    if decision not in {"OK TO SUBMIT", "NOT OK TO SUBMIT"}:
+        raise ValueError("submission authorization receipt has an unknown decision")
+    if type(authorized) is not int or authorized < 0:
+        raise ValueError("submission authorization receipt has an invalid authorized-file count")
+    if (decision == "OK TO SUBMIT") != (authorized > 0):
+        raise ValueError("submission authorization receipt decision/count disagreement")
+    promoted = operator_promotion(receipt)
+
+    if decision == "OK TO SUBMIT":
+        gate_detail = (
+            f"<b>{authorized} exact SHA-256-bound artifact(s) are fully release-gate certified.</b> "
+            "Only artifact(s) listed as authorized in the receipt may be uploaded."
+        )
+        style = "border:3px solid #15803d;background:#f0fdf4;"
+    else:
+        gate_detail = (
+            "<b>No listed artifact has a full repository release-gate certificate.</b> The gate remains fail-closed "
+            "without a complete registry scan."
+        )
+        style = "border:3px solid #b91c1c;background:#fef2f2;"
+
+    promotion_detail = ""
+    if promoted and promoted["operator_decision"] == "OK TO SUBMIT":
+        rel_file = promoted["file"].removeprefix("docs/")
+        certification = "yes" if promoted["certified_by_gate"] else "no"
+        promotion_detail = f"""<div class=\"values\"><b>Separately recorded operator decision: OK TO SUBMIT.</b>
+<a href=\"{e(rel_file)}\" download>{e(promoted["submission_name"])}.tif</a> ({e(promoted["lane"])}; SHA-256
+<code>{e(promoted["raster_sha256"])}</code>) is the only operator-selected artifact. Its stated scope is:
+{e(promoted["scope"])}. Full repository release-gate certification: <b>{certification}</b>. Do not extend this
+operator decision to any other download.</div>"""
+    elif decision == "NOT OK TO SUBMIT":
+        promotion_detail = (
+            "<p><b>Do not submit any file from this repository.</b> Download availability and local format validation "
+            "are inspection-only evidence, not upload permission.</p>"
+        )
+
+    return f"""<section id=\"{ENTRY_STATUS_ID}\" class=\"card\" style=\"{style}\">
+<h1 class=\"release-status-title\">Repository release-gate status: {e(decision)}</h1>
+<p class=\"verdict\"><b>Fully release-gate-certified files: {authorized}.</b> {gate_detail}</p>
+{promotion_detail}
+<p><b>Download status is separate:</b> a download link or a local GeoTIFF format PASS permits inspection only; it is not
+permission to upload unless an exact artifact is explicitly covered by the decision above. Verify the exact file and
+SHA-256 against the <a href=\"data/submission-authorization.json\">machine-readable authorization receipt</a>.</p>
+<p class=\"small\">This status is generated from the fail-closed release gate, not inferred from a historical lane
+banner, a local format check, a HOLDOUT-DTI value, or an OWNER-REPORT.</p>
+</section>"""
+
+
+def put_release_status_first():
+    """Make the authoritative release status the first entry-page main content."""
+    pattern = re.compile(
+        rf'<section id="{re.escape(ENTRY_STATUS_ID)}"[^>]*>.*?</section>', re.DOTALL
+    )
+    for name in ("index.html", "executive-summary.html"):
+        path = D / name
+        text = path.read_text()
+        matches = list(pattern.finditer(text))
+        if len(matches) != 1:
+            raise ValueError(f"{name}: expected exactly one repository release status card")
+        status = matches[0].group(0)
+        if re.search(r'<section\b', status[status.find('>') + 1:], re.IGNORECASE):
+            raise ValueError(f"{name}: repository release status must not nest historical cards")
+        text = text[:matches[0].start()] + text[matches[0].end():]
+        if text.count(ENTRY_MAIN_MARKER) != 1:
+            raise ValueError(f"{name}: entry-page main marker is missing or ambiguous")
+        before, after = text.split(ENTRY_MAIN_MARKER, 1)
+        path.write_text(before + ENTRY_MAIN_MARKER + status + after)
+
+
 def main():
     # Publish the current review from its source, not a hand-edited landing page.
     (D / "evidence").mkdir(exist_ok=True)
@@ -90,6 +221,8 @@ def main():
     review = markdown.markdown((D / "review-904a24d3.md").read_text(), extensions=["tables"])
     (D / "review-904a24d3.html").write_text(page("review-904a24d3.html", "Current repository review", review))
     lanes = jload("docs/data/lanes.json")
+    authorization = jload("docs/data/submission-authorization.json")
+    release_status = release_status_card(authorization)
     card = jload("evidence/h78_run_card.json")
     sub = jload("docs/data/h78_submission.json")
     lag_card = jload("evidence/h77l_run_card.json")
@@ -441,7 +574,7 @@ These are registry/format measurements, not scores or portal acceptance.</p>"""
 {copy("H77E-ACD Unique Submission Name (reference — DO NOT UPLOAD without human selector approval)", acd_sub["submission_name"])}
 {copy("H77E-ACD Short Note <= 140 chars (116 chars)", acd_sub["submission_note_le140"])}
 <p class="small">GeoTIFF SHA-256: <code>{e(acd_sub["primary_geotiff_sha256"])}</code> · ZIP SHA-256: <code>{e(acd_sub["primary_zip_sha256"])}</code> · <a href="evidence/run_card_h77e_acd.json">Machine-Readable Run Card (.json)</a></p></section>"""
-    body = f"""{acd_box}{vds_box}{h77vs_box}{tsd_box}{h82_banner}{rank_box}<h1>Start here</h1>
+    body = f"""{release_status}{acd_box}{vds_box}{h77vs_box}{tsd_box}{h82_banner}{rank_box}<h1>Start here</h1>
 <p><strong>Earlier review #49 generated no new TIFF; H82 above is a later negative research download. NOT OK TO SUBMIT.</strong> <a href="review-904a24d3.html">Earlier audit and corrected H33 analysis</a>.</p>
 <p>This repository builds and audits fault-probability GeoTIFFs for the <a href="{COMP}">DOE GEMS Prize</a>
 (DrivenData competition 306). The first box distinguishes downloading a file from permission to upload it. The table
@@ -469,7 +602,7 @@ not proof that the specific file received that score or that another submission 
     (D / "index.html").write_text(page("index.html", "Start here", body))
 
     # ---------------- general executive summary (how to submit)
-    guide = f"""<h1>Executive summary: how to submit — only AFTER approval</h1>
+    guide = f"""{release_status}<h1>Executive summary: how to submit — only AFTER approval</h1>
 {acd_box}
 {h77vs_box}{tsd_box}
 <p class="verdict"><b>NEW H82 file:</b> <a href="{e(h82['file'])}" download>Download the format-valid TIFF for inspection</a>;
@@ -2060,3 +2193,4 @@ if __name__ == "__main__":
     h77pd_build_pages.main()
     import build_h82gmns_deliverables
     build_h82gmns_deliverables.render_site_pages(page)
+    put_release_status_first()

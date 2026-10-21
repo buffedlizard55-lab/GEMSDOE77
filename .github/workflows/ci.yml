@@ -23,8 +23,32 @@ jobs:
       - run: python scripts/build_h82rank_site.py
       - name: Independently re-read every listed primary TIFF (no model or slot)
         run: python scripts/audit_downloads.py
+      - name: Confirm the pinned universal duplicate preflight remains blocking
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python scripts/restore_registry.py
+          python - <<'PY'
+          import json
+          import subprocess
+          import sys
+          result = subprocess.run(
+              [sys.executable, 'scripts/preflight_registry.py'],
+              text=True, capture_output=True,
+          )
+          sys.stdout.write(result.stdout)
+          sys.stderr.write(result.stderr)
+          receipt = json.loads(result.stdout)
+          if result.returncode != 2 or receipt.get('decision') != 'STOP_UNIVERSAL_DUPLICATE':
+              raise SystemExit(f'expected STOP_UNIVERSAL_DUPLICATE exit 2, got {result.returncode}: {receipt!r}')
+          if receipt.get('authorized_to_submit') is not False or receipt.get('verdict') != 'negative':
+              raise SystemExit(f'preflight was not fail-closed: {receipt!r}')
+          PY
+      - name: Generate the authoritative release decision before rendering entry pages
+        run: python scripts/release_gate.py --verify-fail-closed
       - run: python scripts/build_home.py
-      - run: python scripts/release_gate.py --verify-fail-closed
+      - name: Render the operator-scoped H85 card below the release status
+        run: python scripts/build_h85_site.py
       - run: python scripts/verify_all.py
       - run: |
           python - <<'PY'

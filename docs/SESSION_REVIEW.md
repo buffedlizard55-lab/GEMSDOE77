@@ -112,5 +112,3 @@ The hypotheses below are research proposals, not validated results or permission
 - **Final Disposition (`H83-PCD`):**
   - **OK to Download for Inspection:** **YES** (`docs/downloads/h83pcd-poisson-piedmont-loco-submod-20261021T183000Z-zeros.tif`, `142,109 B`, SHA-256 `1ff7bc32563b56a6b18beb0d4500afa9bad814396485aaba39b2b8cbc8a9fa59`; companion `.zip` SHA-256 `cc85430ca8eb272cf7988fbce740a9c86f011a5eadb7fedb8d9cc3fccaa95c61`; `15/15` shared validator + `17/17` independent readback checks PASS; `100%` of 32 sparse dot-field rasters pass with `max 3-px forward overlap = 0.6400 <= 0.70`, `0.3224` vs `H33`, `max |Spearman rho| = 0.2120 <= 0.90`).
   - **OK to Submit to DrivenData:** **NO — NOT OK TO SUBMIT (`verdict: "negative"`, 0 weekly slots spent)** because Policy `I17` literal all-raster overlap fails on continuous witness `17GEMSDOE_E-proba-multiscale` (`ab0a0a62`, `1.0000 > 0.70`) and `0.132515 / 0.123066 HOLDOUT-DTI` does not exceed the retained `0.152718` `H77-Step` incumbent.
-
-
