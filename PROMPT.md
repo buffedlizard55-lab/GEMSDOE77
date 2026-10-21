@@ -12,8 +12,8 @@ the 2026-10-21 brief — no organizer receipts).*
 
 This session's registered lane is **H79-ORIENT**, not the historical contact-physics
 lane mentioned in older repository notes. The operative preregistration is
-`registry/preregistration_h79.json`; the measured artifact and stop decision are
-in `evidence/h79_run_card.json`. The full request below remains preserved as the
+`registry/preregistration_h79_orient.json`; the measured artifact and stop decision are
+in `evidence/h79_orient_run_card.json`. The full request below remains preserved as the
 standing brief. H79's result is negative, safe to download for inspection, not
 approved to submit, and no weekly slot was selected.
 

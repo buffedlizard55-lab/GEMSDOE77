@@ -3,8 +3,8 @@
  "lanes": [
   {
    "lane": "H79-ORIENT: label-blind cross-sensor orientation persistence (negative holdout)",
-   "page": "h79.html",
-   "summary": "h79-executive-summary.html",
+   "page": "h79-orient.html",
+   "summary": "h79-orient-executive-summary.html",
    "file": "downloads/gems79-orient-persistence-37654dots-20261021-4abff47886.tif",
    "zip": "downloads/gems79-orient-persistence-37654dots-20261021-4abff47886.zip",
    "format_valid": true,

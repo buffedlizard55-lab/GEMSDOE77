@@ -668,5 +668,5 @@
     "IR-79-02",
     "IR-79-03"
   ],
-  "superseded_runner_evidence": "evidence/h79_superseded_zero_bug.json"
+  "superseded_runner_evidence": "evidence/h79_orient_superseded_zero_bug.json"
 }

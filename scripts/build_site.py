@@ -17,7 +17,7 @@ def md(name):
 
 def shell(title,active,body):
     nav=''.join(f'<a href="{file}"'+(' aria-current="page"' if key==active else '')+f'>{label}</a>'
-       for file,key,label in [('index.html','home','Start here'),('h79.html','h79','H79-ORIENT'),('h79-executive-summary.html','h79-submit','H79 guide'),
+       for file,key,label in [('index.html','home','Start here'),('h79-orient.html','h79','H79-ORIENT'),('h79-orient-executive-summary.html','h79-submit','H79 guide'),
                               ('h77d.html','h77d','H77D (Zero-SGMC)'),('h77d-executive-summary.html','h77d-submit','H77D guide'),
                               ('h77-step.html','h77-step','H77-Step'),('urank.html','overview','Selective-U lane'),('urank-executive-summary.html','submit','Selective-U guide'),
                               ('research.html','research','Research'),('sources.html','sources','Source feed'),('audit.html','audit','Audit trail')])
@@ -90,7 +90,7 @@ bash scripts/download_competition_data.sh
 <p class="fine">Maximum per-feature/quadrant AUC = {maximum_auc:.5f} (LEAKAGE-CANARY diagnostic, not a score); no AUC exceeded the preregistered 0.90 threshold. Low AUC is not proof of zero leakage.</p>
 <div class="prose">{md('knowledge.md')}<div class="line"></div>{md('hypotheses.md')}</div>'''
     checks=''.join(f'<tr><td>{esc(k)}</td><td><span class="badge good">PASS</span></td></tr>' for k,v in card['validator'].items() if v)
-    audithtml=f'''<div class="eyebrow">Legacy Selective-U audit / immutable evidence</div><h1>Inspect the result.<br>Not just the claim.</h1><div class="notice"><strong>Format PASS ≠ submission approval.</strong> This page records the older Selective-U lane; its final dot placement/check was not run. The current H79-ORIENT artifact has a separate <a href="h79.html">technical report</a> with both pre-placement and final-dot registry checks.</div>
+    audithtml=f'''<div class="eyebrow">Legacy Selective-U audit / immutable evidence</div><h1>Inspect the result.<br>Not just the claim.</h1><div class="notice"><strong>Format PASS ≠ submission approval.</strong> This page records the older Selective-U lane; its final dot placement/check was not run. The current H79-ORIENT artifact has a separate <a href="h79-orient.html">technical report</a> with both pre-placement and final-dot registry checks.</div>
 <div class="two"><section><h2>TIFF preflight</h2><div class="table-wrap"><table><tbody>{checks}</tbody></table></div></section>
 <section><h2>Receipts & reproducibility</h2><ul>'''+''.join(f'<li><a href="evidence/{p.name}">{esc(p.stem.replace("_"," "))}</a></li>' for p in sorted(E.glob('*.json')))+f'''</ul><p><a href="evidence/experiment.log">Original experiment log</a> · <a href="evidence/tests-pass2.txt">Pass 2 test output</a> · <a href="evidence/tests-pass3.txt">Pass 3 test output</a> · <a href="review.md">Three-pass review</a></p></section></div><div class="prose">{md('irregularities.md')}</div>'''
     repo_rows=''.join(f'<tr><td><a href="{esc(r.get("review_page") or r["url"])}">{esc(r["repo"])}</a></td><td>{esc(r["status"])}</td><td>{r.get("download_tif_count","—")}</td><td><code>{esc(r.get("commit", "")[:12])}</code></td><td>Not verified</td></tr>' for r in sources['repos'])

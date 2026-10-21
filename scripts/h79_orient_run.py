@@ -203,7 +203,7 @@ def canary(h79_flat: np.ndarray, grid: G.Grid, folds: list[dict], names: list[st
         "rows": rows,
         "warning": "AUC below 0.90 is a canary result, not proof of no leakage; negatives are unlabelled proxies.",
     }
-    json_dump(ROOT / "evidence" / "h79_canary.json", out)
+    json_dump(ROOT / "evidence" / "h79_orient_canary.json", out)
     log(f"E1 canary: max symmetric AUC={worst['symmetric_auc']:.4f} ({worst['feature']})")
     if out["any_flag"]:
         raise RuntimeError("H79 leakage canary exceeded symmetric AUC 0.90; fail closed")
@@ -521,9 +521,9 @@ def package_candidate(surface: np.ndarray, grid: G.Grid, registry_surface: dict,
         "verdict": receipt["metadata"]["verdict"],
         "reason": "Negative: primary HOLDOUT-DTI is below the retained 0.152718 incumbent, the dense witness fires the literal registry gate, registry coverage is incomplete, and no organizer score is claimed; format is locally valid for download.",
         "irregularity_refs": ["IR-79-01", "IR-79-02", "IR-79-03"],
-        "superseded_runner_evidence": "evidence/h79_superseded_zero_bug.json",
+        "superseded_runner_evidence": "evidence/h79_orient_superseded_zero_bug.json",
     }
-    json_dump(ROOT / "evidence" / "h79_run_card.json", card)
+    json_dump(ROOT / "evidence" / "h79_orient_run_card.json", card)
     json_dump(OUT_DIR / f"{base}-run-card.json", card)
     return card
 
@@ -550,15 +550,15 @@ def main() -> int:
     registry_surface = audit_against_local_registry(full_surface, grid, "surface_before_placement")
     card = package_candidate(full_surface, grid, registry_surface, hold20, hold30)
     card["elapsed_seconds"] = round(time.monotonic() - started, 1)
-    json_dump(ROOT / "evidence" / "h79_run_card.json", card)
+    json_dump(ROOT / "evidence" / "h79_orient_run_card.json", card)
     # Publish an auditable, read-only copy with the GitHub Pages tree. The
     # repository evidence remains the source of truth; this copy prevents the
     # public technical page from linking to a path that Pages does not stage.
     public_evidence = ROOT / "docs" / "evidence"
     public_evidence.mkdir(parents=True, exist_ok=True)
-    for name in ("h79_run_card.json", "h79_canary.json", "h79_holdout_seed20.json",
-                 "h79_holdout_seed30.json", "h79_registry_surface_before_placement.json",
-                 "h79_registry_final_dots.json"):
+    for name in ("h79_orient_run_card.json", "h79_orient_canary.json", "h79_orient_holdout_seed20.json",
+                 "h79_orient_holdout_seed30.json", "h79_orient_registry_surface_before_placement.json",
+                 "h79_orient_registry_final_dots.json"):
         src = ROOT / "evidence" / name
         if src.exists():
             shutil.copy2(src, public_evidence / name)

@@ -104,7 +104,7 @@ computed this session from SHA-pinned bytes.
 - **Disposition:** corrected placement to use distance from visible catalogue
   cells only, while still masking visible cells and using the shared
   `evaluate_holdout.py`/`submission_writer.py`. Re-ran the fixed three-
-  experiment plan; corrected scores are in `evidence/h79_run_card.json`.
+  experiment plan; corrected scores are in `evidence/h79_orient_run_card.json`.
 
 ## IR-79-02 — Registry snapshot incomplete and dense witness universal
 - **Evidence [MEASURED]:** local exact comparisons covered 13 TIFFs versus 812
