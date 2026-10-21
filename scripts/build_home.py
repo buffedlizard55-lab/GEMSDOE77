@@ -2030,5 +2030,8 @@ if __name__ == "__main__":
     build_h83netsib(page)
 
     _write_h77vldsa()
+
+    from build_h84ramp_site import build as build_h84ramp
+    build_h84ramp(page)
     import h77pd_build_pages
     h77pd_build_pages.main()
