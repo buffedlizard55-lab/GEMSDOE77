@@ -18,6 +18,9 @@
 | I12 | Source feed is GitHub inventory/page freshness, not a competition-score feed. | Timestamp, retain source hashes, flag retrieval errors, never auto-promote. |
 | I13 | Full raw 19-band training stack and GPU network were not restored/trained in this narrow lane. | Reused the obtainable cached GeoDAWN stack required by this hypothesis. CPU suffices for this pilot; no claim full neural pipeline is complete. |
 | I14 | Initial shared-registry call preceded TIFF serialization. | Subsequent immutable-byte audit supplied the actual file SHA and verified decoded equality, ZIP membership, range and stop. No new experiment. |
+| I19 | H79's first holdout runner version used distance to the full catalogue, excluding hidden positives and forcing all arm scores to zero. | Corrected to visible-catalogue distance only; superseded zero logs are retained for audit and not treated as H79 results. The fixed three-experiment plan was rerun with the shared evaluator. |
+| I20 | H79 registry retrieval is incomplete (`13/812` local rasters), and a dense witness covers the allowed footprint. | Fail closed: H79 is OK to download but NOT OK to submit; no byte novelty or sparse-subset comparison is converted into protocol clearance. |
+| I21 | H79 is below the retained incumbent (`0.094507` seed 30 / `0.089063` seed 20 vs `0.152718` HOLDOUT-DTI). | Negative run card; no promotion, no organizer score claim, and zero weekly slots used. |
 
 | I15 | Post-run support audit: default cross erosion does not cover every diagonal offset of the Gaussian stencil. | Preserve the stopped artifact and observed result, label holdout confounded/not promotion-valid, and add a fail-closed feature guard. No rerun or score replacement. See support_audit.json. |
 
@@ -50,6 +53,12 @@
 | IR-XSEN-04 | Registry scan incomplete: 4 of 812 indexed rasters could not be compared (2 CRS/transform mismatch, 1 grid/band mismatch, 1 corrupt TIFF missing StripOffsets). | Scan is fail-closed (`complete_accessible_scan` false in effect); uniqueness is additionally already failed on a compared sparse raster, so the gap does not change the verdict. Registry files are the indexed public owner-repository inventory, not an organizer registry. |
 | IR-XSEN-05 | Shared CLI `scripts/validate_submission.py` crashed for every input in this checkout: it called `load_grid(ROOT/'data')`, but the committed grids live in `data/bridge/` (the vendor default). | Fixed once in the shared script to `load_grid(ROOT/'data'/'bridge')` (no private fork; vendor `gems57` untouched, template pin intact). Re-run passes all 15 checks on the XSEN raster (`evidence/xsen_validator.json`). Other lanes' validator CLIs should be re-run once after this fix. |
 
+| IR-77E-01 | Cross-lane holdout pixel-count discrepancy explained: `H78` (`11,833` px) vs `H77D` / `H77E-Knick` (`11,321` px on `Seed 20`, `11,342` px on `Seed 30`). | Verified directly in `vendor/gems57/evaluate_holdout.py`: `H78` called default `make_holdout_split(..., boundary_px=0)` whereas `H77D` and `H77E-Knick` called `make_holdout_split(..., boundary_px=12)`. Both use unmodified `gems57-pooled-hide-v2`. |
+| IR-77E-02 | Post-audit of `H77-Step` (PR #9) uncovered 5 confounds: intra-quadrant training (`0.1858` vs `0.1527` spatial OOF), `K` swept on `y_test`, absent `tiger_road_distance_m.tif`, `q == 0` LiDAR sentinel read as `0.0`, and `49` informative overlaps up to `0.9573` across the full `861`-raster portfolio. | Documented transparently without mutating closed `H77-Step` artifacts; all 5 fixed cleanly in `H77E-Knick`. |
+| IR-77E-03 | Post-audit of `H77D` (PR #12) uncovered `cov3 >= 0.30` filter masking `18` mid-density informative duplicate firings up to `0.8949` (`gems7-halo15-gbt-v1`). | Enforced exact `vendor/gems57/uniqueness.py:dot_overlap` capacity across ALL `816` `<70%`-halo rasters in `H77E-Knick` (`0 / 816` firings, `max_ov = 0.66800`; `0 / 18` firings vs all sparse `GEMSDOE77` siblings, `max_ov = 0.42104`). |
+| IR-77E-04 | Two malformed / off-grid external TIFFs (`GEMSDOE74` `89ffb2d6...tif` missing `StripOffsets`; `GEMSDOE68` `a97c7b2a...tif` `shape=(32, 48)`). | Logged explicitly in `evidence/h77e/uniqueness_audit_861.json`. |
+| IR-77E-05 | Concurrent session also created `docs/h77e.html` (`ucpeuler-ctx`) on `main` while this lane ran. | Preserved concurrent `docs/h77e.html` + `src/gems77e/fields.py` 100% intact and published this lane's page at `docs/h77e-knick.html` (`max_ov = 0.42104` between the two lanes). |
+
 ## Next session — ordered by risk reduction
 
 1. Read README original request, preregistration, run card and this ledger. Keep H77 stopped; do not re-tune its failed lane.
@@ -77,3 +86,44 @@ GitHub authenticated operations work. CPU scientific transforms, local validatio
 | IR-L-08 | Official competition page asks for **all** faults while this local preregistration masks visible faults; the user seeks geothermal vents but the challenge scores fault pixels. | Treat masked catalogue hide-and-recover as **a local estimator** only. Do not claim final-round masking or a LiDAR+ThK candidate proves geothermal vents. Resolve task/support choice with organizer/selector before any future slot. |
 | IR-L-09 | Main advanced during PR creation: it merged a parallel H79-BB negative TIFF and a fail-closed submission-authorization tool. H79 used 22,633 withheld positives and H77L used 41,732; their HOLDOUT-DTI numbers are not a matched comparison. The H79 TIFF and NaN twin increased local siblings audited from 11 to 13. | Merged origin/main into this same session branch, preserved H79 and the stricter no-promotion wording, reran the independent 23-check H77L byte audit on all 13 local TIFFs, regenerated the release receipt for all eight reviewed lanes (0 authorized), and rebuilt/tested the site. No model experiment or competition slot was run during reconciliation. |
 | IR-L-10 | Main advanced again while PR #24 was open: parallel H79-RH added a new radiometric-lag TIFF and a 808/812-valid registry scan, but its own literal gate failed. This shares the broad idea of spatial lag with H77L yet uses different U-residual/K–Th inputs rather than H77L's LiDAR crest + displaced ThK flank; neither run scored a matched H77L-vs-H79-RH holdout. | Preserved its negative evidence and site page; inventoried it as inspection-only. Re-read H77L against the now-14 local TIFFs, retained its frozen negative run card, rebuilt the nine-lane authorization receipt (0 approved), and documented the overlap in hypothesis scope as a future-lane collision risk. No weekly slot or second H77L experiment. |
+| IR-80T-01 | The 2026-10-21 brief contained no assigned single-method paragraph, and parallel PR #33 concurrently merged an `H80` Riedel wing-crack lane (`docs/h80.html`). | Namespaced this session's multi-scale tilt-angle persistence lane as `H80T` (`registry/preregistration_h80t.json`, `research/h80t_hypotheses.md`, `docs/h80t.html`, `evidence/h80t_run_card.json`) so both lanes coexist without file collisions. |
+| IR-80T-02 | In Experiment 3 (21-channel HGB combining 19 raw bands + 2 derived tilt-Z features), adding `Zmag` and `Zgrav` yielded a statistically significant paired lift (`+0.000264 HOLDOUT-DTI`, 95% CI `[+0.000061, +0.000481]` excluding 0; `0.016605` vs `0.016341` on 22,893 withheld positives), but its Phase 1 pre-placement surface correlated at `Spearman ρ = 0.9088 > 0.90` with `17GEMSDOE__E-proba-multiscale_20260930T044527Z.tif`. | Per Rule 1, logged the 21-channel HGB surface as a lane-drift duplicate and stopped. The published H80T GeoTIFF (`gems77-h80t-tilt-persist-37654dots-20261021-7d5f7b11-zeros.tif`) is emitted strictly from the pure multi-scale tilt-persistence surface (Phase 1 max `|ρ| = 0.1332 <= 0.90`; Phase 2 dot-field max overlap `0.4468 <= 0.70`, vs H33 `0.2109`), which scores `0.0060 HOLDOUT-DTI` (`[0.0048, 0.0073]`) and fails closed on the universal dense witness under Policy I17. |
+
+## H81 updates — 2026-10-21 (this session; earlier rows retained verbatim as history)
+
+| ID | Measured finding | Action / consequence |
+|---|---|---|
+| IR-81-01 | The 2026-10-21 brief again contained no single assigned method paragraph for this session. | Self-declared one new narrow lane (H81 slip-budget tip cones) in `registry/preregistration_h81.json` before Exp 1, with five ranked hypotheses in `research/h81_hypotheses.md`. No assigned-lane claim. |
+| IR-81-02 | Sample submission contains 60,988 pixels == 1 exactly on the mapped catalogue (measured this session), contradicting the official page's "total fault absence" wording. | Retained zeros-primary + NaN-twin artifacts; portal behavior unverified. No portal-acceptance claim. |
+| IR-81-03 | Preregistered promotion rule required beating the 0.152718 incumbent "with paired 95% CI excluding 0", but the incumbent is a historical point estimate, not a re-runnable arm, so no paired cross-lane interval can exist. | Amendment before Exp 1 (`registry/preregistration_amendment_h81.json`): "beats" = H81 lower 95% CI above 0.152718 (stricter, unpaired); paired intervals only vs same-run controls. |
+| IR-81-04 | Frozen record-level tip design yielded only 260 usable interior tips (zone-ends fall outside the footprint; records span up to 380 km / multiple traces). | Frozen E1 STOPPED before any outcome; amended to strand-level tips (degree-1 nodes per trace component) in `registry/preregistration_amendment_h81_04.json` with full disclosure. No outcome from the frozen attempt is recorded. |
+| IR-81-05 | `trace_segments_utm11.csv` vector length (17,388 km total; 6,213 km in-footprint, 99.98% within 1.5 px of the raster) exceeds the raster catalogue (6,099 km); CSV is the fuller public mapping, not a copy of the competition raster. | H81 tips derive from public Qfault-derived mapping with component-LOCO vs hidden raster components (5 px). Hidden truth is by definition not in the public USGS database, so no hidden fault is input. LOCO discipline documented in preregistration. |
+| IR-81-06 | USGS ComCat FDSN (`earthquake.usgs.gov`) unreachable from sandbox (curl HTTP 000 / exit 35, 2026-10-21); no owner GitHub mirror of an event catalog found. | Seismicity-lineament hypothesis (H81-5) named with its specific free official source but marked BLOCKED/not viable; no seismicity surface fabricated. |
+| IR-81-07 | `trace_segments_utm11.csv`, `dem10_chi_100m_i16.tif`, `topo_10m_derived_100m_u8.tif` were fetched this session from 60GEMSDOE@`d5e96cb` and pinned at fetch (see `evidence/h81_data_receipt.json`); chi sha matches its derivation-time manifest, vents sha matches the pre-existing manifest pin. | Provenance disclosed as owner-mirror, not organizer-authenticated. Chi/vents fetched-but-unused by H81 (documented); only segments + topo10 gate enter the lane. |
+
+## H81 lane (2026-10-21; E1 PASS, E2 negative, E3 duplicate-stop)
+- IR-81-08: `slip_proximity` (leakage-canary-only positive control, sym AUC
+  0.8134) uses full-catalogue distance including hidden components. It is NOT
+  an arm and NOT used by the artifact; its high AUC demonstrates canary power.
+  All component-LOCO arm surfaces score AUC 0.56-0.59 (clean).
+- IR-81-09: 4 of 839 registry rows unreadable (2 CRS/transform, 1 corrupt TIFF,
+  1 grid mismatch: 60GEMSDOE strike-corridor, 14GEMSDOE horse-ensemble,
+  GEMSDOE63 smoke.tif, GEMSDOE36 FORMAT_TEST) - same 4-row failure pattern as
+  XSEN; off-grid/test files, not real submissions. Scans report
+  `complete_accessible_scan=false` fail-closed.
+- IR-81-10: first E3 final-uniqueness scan compared the candidate against
+  ITSELF (artifact copied to docs/downloads before the scan; locals appended to
+  registry) -> rho=1.0 self-hit. Contaminated file superseded; code now
+  excludes the candidate stem (+NaN twin) and a clean re-run is the operative
+  E3. Non-self rows of the contaminated scan were reused only as exploratory
+  measurements, never as verdict inputs.
+- IR-81-11: closest thematic neighbor GEMSDOE53 `gems53-h8-tiprelay-ridgeconcord`
+  (80k dots): final-dot forward overlap 0.827 but full-footprint Spearman rho
+  0.03 - independent convergence on fault-tip geography from different data
+  (topo ridges vs catalogue slip), not a copy. Literal protocol verdict still
+  DUPLICATE-STOP (overlap leg fires, as do 25 full-support dense witnesses).
+- IR-81-12: main advanced during PR #43 (parallel H80/H80T/AGO lanes merged;
+  lanes.json grew to 18 lanes). | Resolved by taking main's generated files,
+  re-running `scripts/build_h81_site.py` on top (H81 appended, note preserved),
+  and re-running the test suite. No new experiment; frozen H81 evidence
+  untouched.
