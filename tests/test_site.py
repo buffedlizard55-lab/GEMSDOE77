@@ -129,3 +129,23 @@ def test_home_pages_put_download_and_per_file_status_first():
     prim=[x for x in lanes if x.get('primary')]
     assert len(prim)==1 and prim[0]['format_valid'] and prim[0]['protocol_unique'] is False
     assert prim[0]['name'] in home and prim[0]['note'] in home and len(prim[0]['note'])<=140
+
+
+def test_negative_lanes_are_not_recommended_or_promoted_on_entry_page():
+    """The aggregate landing page must not recommend files whose overall verdict is negative."""
+    lanes=json.loads((DOC/'data/lanes.json').read_text())
+    assert all(x['verdict']=='negative' and x['protocol_unique'] is False for x in lanes['lanes'])
+    assert 'not ok to submit' in lanes['note'].lower()
+    for lane in lanes['lanes']:
+        status=lane['upload'].lower()
+        assert 'not ok to submit' in status
+        assert 'inspection only' in status
+        assert 'recommended' not in status and 'co-primary' not in status
+    for lane in lanes['lanes']:
+        if 'selector_recommendation' in lane:
+            assert 'not approved' in lane['selector_recommendation'].lower()
+    for path in ('index.html','executive-summary.html'):
+        page=(DOC/path).read_text().lower()
+        assert 'top candidates for human selector review' not in page
+        assert 'recommended for human selector sign-off' not in page
+        assert 'recommended co-primary file' not in page
