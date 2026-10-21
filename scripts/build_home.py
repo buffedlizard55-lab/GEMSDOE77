@@ -22,7 +22,8 @@ REPO = "https://github.com/buffedlizard55-lab/GEMSDOE77"
 LB = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
 PD = "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
-NAV = [("index.html", "Start here"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
+NAV = [("index.html", "Start here"), ("h77v.html", "H77V · negative"), ("h77v-executive-summary.html", "H77V guide"),
+       ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
        ("h77e-knick.html", "H77E-Knick · 0/816 firings"), ("release-review.html", "Release safety review"), ("executive-summary.html", "How to submit"),
        ("h81.html", "H81 · slip-cone"),
        ("h80t.html", "H80T · tilt-persist"), ("h80t-executive-summary.html", "H80T guide"),
@@ -737,8 +738,94 @@ Format-valid (15/15 checks, 0 NaN, values in [0,1], 37,654 binary dots) and info
     shutil.copyfile(ROOT / "research/h77g_hypotheses.md", D / "research/h77g_hypotheses.md")
 
 
+def _write_h77v():
+    h77v_card = jload("evidence/run_card_h77v.json")
+    h77v_e1 = jload("evidence/h77v_e1_canary_surface.json")
+    h77v_e2 = jload("evidence/h77v_e2_holdout.json")
+    h77v_e3 = jload("evidence/h77v_e3_uniqueness.json")
+    if not (h77v_card and h77v_e1 and h77v_e2 and h77v_e3):
+        return
+    tif = h77v_card["raster_path"].removeprefix("docs/")
+    zip_ = h77v_card["zip_path"].removeprefix("docs/")
+    s20 = h77v_card["holdout_dti"]["seed_20"]
+    s30 = h77v_card["holdout_dti"]["seed_30"]
+    uq = h77v_card["correlation_overlap_vs_registry"]
+    arm_order = [
+        ("A_std_plus_h77v (19 std + 10 H77V)", "A_std_plus_h77v"),
+        ("A_std (19 std control)", "A_std_control"),
+        ("S_h77v_physics (pure composite)", "S_h77v_physics"),
+        ("A0_random (uniform random)", "A0_random"),
+        ("A_h77v_only (10 H77V only)", "A_h77v_only"),
+    ]
+    arm_rows = "".join(
+        f"<tr><td>{e(label)}</td>"
+        f"<td><b>{s20[key]['dti']:.4f}</b> ({s20[key]['ci95'][0]:.4f}–{s20[key]['ci95'][1]:.4f})</td>"
+        f"<td><b>{s30[key]['dti']:.4f}</b> ({s30[key]['ci95'][0]:.4f}–{s30[key]['ci95'][1]:.4f})</td>"
+        f"<td><code>gems57-pooled-hide-v2</code> (11,321 / 11,342 withheld)</td></tr>"
+        for label, key in arm_order
+    )
+    can_s20 = h77v_e1["canaries_by_seed"]["20"]["h77v_canaries"]
+    can_s30 = h77v_e1["canaries_by_seed"]["30"]["h77v_canaries"]
+    can_rows = "".join(
+        f"<tr><td><code>{e(k)}</code></td><td>{can_s20[k]['symmetric_auc']:.4f}</td>"
+        f"<td>{can_s30[k]['symmetric_auc']:.4f}</td></tr>"
+        for k in can_s20
+    )
+    body = f"""<h1>H77V · tufa-deconfounded siliceous vent-sinter &amp; multi-depth conductive heat-flow strike-conduit coupling</h1>
+<p class="verdict"><b>Verdict: NEGATIVE — OK TO DOWNLOAD FOR INSPECTION; NOT OK TO SUBMIT.</b>
+{e(h77v_card['verdict_reason'])}</p>
+<section class="card dl research"><h2>⬇ H77V inspection-only GeoTIFF (DO NOT SUBMIT)</h2>
+<a class="btn" href="{e(tif)}" download>Download .tif ({h77v_card['raster_bytes'] / 1024:.0f} KB)</a>
+<a class="btn alt" href="{e(zip_)}" download>Download one-TIFF .zip</a>
+<div class="chips"><span class="chip ok">OK to download: YES</span>
+<span class="chip ok">Portal format (15/15 checks): PASS</span>
+<span class="chip bad">Unique, literal rule (Policy I17): FAIL</span>
+<span class="chip ok">Unique, informative reading (60 sparse rasters): PASS</span>
+<span class="chip bad">Beat 0.1527 H77-Step incumbent: NO</span>
+<span class="chip warn">Selector: not approved (0 weekly slots used)</span></div>
+{copy('Submission name (for reference only — DO NOT UPLOAD)', h77v_card['submission_name'])}
+{copy('Short note <= 140 chars (for reference only — DO NOT UPLOAD)', h77v_card['submission_note'])}
+<p class="small">SHA-256 of .tif: <code>{e(h77v_card['raster_sha256'])}</code> ·
+SHA-256 of .zip: <code>{e(h77v_card['zip_sha256'])}</code> ·
+<a href="evidence/run_card_h77v.json">JSON run card</a> ·
+<a href="evidence/h77v_e1_canary_surface.json">Exp 1 canary/surface receipt</a> ·
+<a href="evidence/h77v_e2_holdout.json">Exp 2 dual-seed holdout receipt</a> ·
+<a href="evidence/h77v_e3_uniqueness.json">Exp 3 uniqueness receipt</a> ·
+<a href="evidence/preregistration_h77v.json">preregistration JSON</a> ·
+<a href="research/h77v_hypotheses.md">preregistered hypotheses</a></p></section>
+<h2>Diagnostic map &amp; dual-seed holdout benchmark</h2>
+<p><img src="figures/h77v_surface_and_dots.png" alt="H77V geothermal vent-sinter and conductive heat-flow channels, emitted dots, and dual-seed holdout benchmark" style="max-width:100%;height:auto;border:1px solid #cbd5e1;border-radius:6px"></p>
+<h2>Dual-seed holdout evaluation (Exp 2 · <code>gems57-pooled-hide-v2</code>)</h2>
+<table><tr><th>Arm</th><th>Seed 20 HOLDOUT-DTI (95% CI)</th><th>Seed 30 HOLDOUT-DTI (95% CI)</th><th>Evaluator &amp; withheld positives</th></tr>{arm_rows}</table>
+<h2>Five irregularities discovered &amp; remediated: IR-H77V-01..05</h2>
+<p><b>IR-H77V-01:</b> Out of 281 in-footprint paleo-geothermal records (DOE GDR 1391), 86 (30.6%) are Pleistocene Lake Lahontan shoreline <code>Tufa</code> mounds (median 61.5 px from faults), whereas high-enthalpy <code>Alteration</code> (1.0 px), <code>Sulfur</code> (2.0 px), and <code>Sinter</code> (4.0 px) sit directly on fault conduits.<br>
+<b>IR-H77V-02:</b> Fixed untyped <code>vals[0]</code> geothermometer index shift (171 rows) and recovered 267 Hot/Warm records lacking numeric <code>temp_c</code> in <code>gdr_wellspring_in_footprint.csv</code>.<br>
+<b>IR-H77V-03 &amp; IR-H77V-04:</b> Restored missing 2m probe &amp; paleo archives (fixing dead paths in H77D) and extracted downward-increasing 1m-to-2m vertical temperature gradients <code>dT/dz = T2m - T1m &gt; 0</code> (816 upward conductive heat-flow probes vs 727 downward solar-heated probes; +47% hidden-fault proximity enrichment).<br>
+<b>IR-H77V-05:</b> Replaced <code>F77.rank01</code>'s row-major <code>argsort(kind="stable")</code> tie-breaking ramp and <code>4*sigma</code> box-truncation artifact with tie-aware <code>rankdata(..., method="average")</code> + smooth radial-and-strike advection, lifting <code>A_std_plus_h77v</code> HOLDOUT-DTI to <b>{s20['A_std_plus_h77v']['dti']:.4f}</b> (s20) and <b>{s30['A_std_plus_h77v']['dti']:.4f}</b> (s30; paired Δ vs A_std +0.0160, 95% CI [+0.0012, +0.0317]).</p>
+<h2>Leakage canaries (Exp 1 · ceiling AUC ≤ 0.90)</h2>
+<table><tr><th>Channel</th><th>Seed 20 symmetric AUC</th><th>Seed 30 symmetric AUC</th></tr>{can_rows}</table>
+<h2>Registry uniqueness audit (Exp 3 · {uq['registry_rasters_checked']} checked rasters)</h2>
+<p>Phase 1 surface max |Spearman ρ| = {uq['surface_max_abs_spearman']:.4f} ≤ 0.90; Phase 2 final dots informative max 3-px overlap = {uq['final_dots_informative_max_forward_overlap_3px']:.4f} ≤ 0.70 and max |ρ| = {uq['final_dots_informative_max_abs_spearman']:.4f} ≤ 0.90 (vs H33 overlap {uq['vs_h33_champion']['forward_overlap_3px']:.4f}, ρ {uq['vs_h33_champion']['spearman_full_footprint']:+.5f}). Literal gate fails closed under Policy I17.</p>"""
+    exec_body = f"""<h1>H77V Executive Summary &amp; Submission Guide</h1>
+<p class="verdict"><b>Decision for <code>{e(h77v_card['submission_name'])}</code>: OK TO DOWNLOAD FOR INSPECTION · NOT OK TO SUBMIT.</b><br>
+Format-valid (15/15 checks, 0 NaN, values in [0,1], 37,654 binary dots) and informative-unique against all 60 non-space-filling sparse rasters checked, but HOLDOUT-DTI ({s20['A_std_plus_h77v']['dti']:.4f} s20 / {s30['A_std_plus_h77v']['dti']:.4f} s30) is below the 0.152718 incumbent and Policy I17 fails closed.</p>
+<section class="card dl research"><h2>⬇ H77V Artifact &amp; Metadata</h2>
+<a class="btn" href="{e(tif)}" download>Download .tif ({h77v_card['raster_bytes'] / 1024:.0f} KB)</a>
+<a class="btn alt" href="{e(zip_)}" download>Download one-TIFF .zip</a>
+{copy('Submission name (reference only — DO NOT SUBMIT)', h77v_card['submission_name'])}
+{copy('Short note <= 140 chars (reference only — DO NOT SUBMIT)', h77v_card['submission_note'])}
+<p class="small">TIFF SHA-256: <code>{e(h77v_card['raster_sha256'])}</code> · <a href="h77v.html">Full H77V report →</a> · <a href="evidence/run_card_h77v.json">JSON run card →</a></p></section>"""
+    (D / "h77v.html").write_text(page("h77v.html", "H77V · negative", body))
+    (D / "h77v-executive-summary.html").write_text(page("h77v-executive-summary.html", "H77V guide", exec_body))
+    for fname in ("run_card_h77v.json", "h77v_e1_canary_surface.json", "h77v_e2_holdout.json", "h77v_e3_uniqueness.json"):
+        shutil.copyfile(ROOT / "evidence" / fname, D / "evidence" / fname)
+    shutil.copyfile(ROOT / "registry/preregistration_h77v.json", D / "evidence/preregistration_h77v.json")
+    shutil.copyfile(ROOT / "research/h77v_hypotheses.md", D / "research/h77v_hypotheses.md")
+
+
 if __name__ == "__main__":
     main()
     _write_h77e_knick()
     _inject_h77e_knick_hero()
     _write_h77g()
+    _write_h77v()

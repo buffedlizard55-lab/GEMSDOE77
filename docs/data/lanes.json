@@ -1,6 +1,32 @@
 {
- "note": "All 22 listed TIFF lanes are inspection downloads only; every file is NOT OK TO SUBMIT. H80 (Riedel) is featured because it has complete evidence from the pinned gems57 evaluator; the later AGO variants have only a different quick 4-quadrant proxy and are not comparable. H80-OTA (orphan thermal alignment, negative) was merged in parallel and is listed second. The literal uniqueness/selector gates remain fail-closed; see docs/data/submission-authorization.json. H81 (slip-cone, negative, research-only) and H77G (hydrothermal demagnetization trough, negative, research-only) are listed for inspection only.",
+ "note": "All 23 listed TIFF lanes are inspection downloads only; every file is NOT OK TO SUBMIT. H80 (Riedel) is featured because it has complete evidence from the pinned gems57 evaluator; the later AGO variants have only a different quick 4-quadrant proxy and are not comparable. H80-OTA (orphan thermal alignment, negative) was merged in parallel and is listed second. The literal uniqueness/selector gates remain fail-closed; see docs/data/submission-authorization.json. H81 (slip-cone, negative, research-only), H77G (hydrothermal demagnetization trough, negative, research-only), and H77V (tufa-deconfounded vent-sinter & 2m upward heat-flow conduit coupling, negative, research-only) are listed for inspection only.",
  "lanes": [
+  {
+   "lane": "H77V: tufa-deconfounded vent-sinter & multi-depth 2m conductive heat-flow strike-conduit coupling (HOLDOUT-DTI 0.0649 s20 / 0.0767 s30, pure 0.0502/0.0621; negative result)",
+   "page": "h77v.html",
+   "summary": "h77v-executive-summary.html",
+   "file": "downloads/gems77-h77v-ventsinter-heatflow-37654dots-20261021-cc5e4cd9-zeros.tif",
+   "run_card": "evidence/run_card_h77v.json",
+   "format_valid": true,
+   "protocol_unique": false,
+   "informative_unique": true,
+   "beats_holdout_best": false,
+   "verdict": "negative",
+   "primary": false,
+   "name": "gems77-h77v-ventsinter-heatflow-37654dots-20261021-cc5e4cd9-zeros",
+   "note": "H77V vent-sinter+2m dT/dz+diseq (37654d); HOLDOUT-DTI 0.0649(s20)/0.0767(s30) H77V-only 0.0420 <0.1527: NEGATIVE",
+   "sha256": "2044447ff7d4df318c277846299815591211c83641a3beb20c90f9b33c2255bb",
+   "holdout_dti_hide_v2": 0.06487971341171275,
+   "holdout_evaluator_version": "gems57-pooled-hide-v2",
+   "holdout_positive_pixels": 11321,
+   "holdout_ci95": [
+    0.0514460185450327,
+    0.07880516791372676
+   ],
+   "upload": "Not OK to submit. OK to download for inspection only. Format-valid (15/15 validator checks, 0 NaN, values in [0,1], 37,654 dots) and informative-unique against all 60 non-space-filling sparse/dot rasters in the checked 70-raster set (worst 3-px forward overlap 0.3285 <= 0.70; worst |Spearman rho| 0.0123 <= 0.90; vs H33 overlap 0.2357, rho +0.0079), but the literal registry rule fails closed under Policy I17 (1.000 overlap on dense witness ab0a0a62) and full 812-raster REST scan was omitted. HOLDOUT-DTI 0.0649 (s20) / 0.0767 (s30, +0.0160 over A_std, 95% CI [+0.0012, +0.0317]) for A_std+H77V and 0.0502/0.0621 for standalone S_h77v_physics are below the 0.152718 H77-Step repository incumbent; selector: not approved.",
+   "why_primary": "New H77V tufa-deconfounded vent-sinter & multi-depth 2m conductive heat-flow conduit lane: fixes IR-H77V-01..05 and IR-H77G-01, informative-unique research TIFF, negative overall verdict.",
+   "beat_02778_summary": "Not expected: HOLDOUT-DTI 0.0649 (Seed 20) / 0.0767 (Seed 30) for A_std+H77V and 0.0502/0.0621 for standalone S_h77v_physics are below the 0.152718 H77-Step repository incumbent, with no organizer score."
+  },
   {
    "lane": "H77G: hydrothermal magnetite-destruction trough × gravity-basement step × MT clay-cap margin (HOLDOUT-DTI 0.0619 s20 / 0.0618 s30, pure 0.0392/0.0471; negative result)",
    "page": "h77g.html",
