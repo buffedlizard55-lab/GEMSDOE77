@@ -2,12 +2,30 @@
   "schema": "gems-listed-download-readback-v1",
   "evidence_class": "FORMAT-INTEGRITY-MEASUREMENT; NOT SCORE OR PORTAL ACCEPTANCE",
   "scope": "Every primary TIFF in docs/data/lanes.json; no archive or NaN twins, no uniqueness certification",
-  "manifest_sha256": "45f3feba03af9184a31324a2a79c13c79dd72abc505a4013d52ecfe865b63135",
+  "manifest_sha256": "818ca48fe05413cc3ee651a0111a06064964a208fc5aeb19454b41fd6d947fe4",
   "reference_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
-  "listed_count": 27,
+  "listed_count": 28,
   "all_format_pass": true,
   "authorized_to_submit": false,
   "artifacts": [
+    {
+      "lane": "H77-TSD: Transtensional strain-partitioning \u00d7 seismic swarm excess \u00d7 MT clay-cap margin + 12-bit LOCO relay & 300 m submod (0.1360 / 0.1337 HOLDOUT-DTI; negative under Policy I17)",
+      "file": "downloads/gems77-tsd-transtens-swarm-submod-37654dots-20261021-zeros.tif",
+      "sha256": "4ebb1da423d26d9823ad15c4f8a0e722edc3e79272c8e720adcd28e6224af68c",
+      "checks": {
+        "single_band": true,
+        "crs_matches": true,
+        "shape_matches": true,
+        "transform_matches": true,
+        "finite_entire_raster": true,
+        "no_nan_inside_footprint": true,
+        "values_in_0_1": true,
+        "nodata_none": true,
+        "sha256_matches_manifest": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
     {
       "lane": "H77V: up-gradient geothermal vent advection-backtracking, Lake Lahontan tufa sieve & dilational conduit tensor (HOLDOUT-DTI 0.1270 [0.1128, 0.1422] s30 / 0.1293 [0.1129, 0.1469] s20; negative under Policy I17)",
       "file": "downloads/gems77-h77v-vent-advect-conduit-37654dots-20261021-8910ea15-zeros.tif",
