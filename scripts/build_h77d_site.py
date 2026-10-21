@@ -57,22 +57,22 @@ def status_banner_html(rc: dict, compact: bool = False) -> str:
         if compact
         else f' · <a href="evidence/run_card_h77d.json">Machine Run Card JSON</a> · <a href="evidence/h77d_exp2_holdout.json">Dual-Seed Holdout JSON</a> · <a href="evidence/h77d_exp3_uniqueness.json">865-Raster Uniqueness JSON</a>'
     )
-    return f"""<div class="panel download-panel" style="border-left:4px solid #0b6e4f; margin-bottom:1.5rem;">
+    return f"""<div class="panel download-panel" style="border-left:4px solid #b91c1c; margin-bottom:1.5rem;">
 <div style="display:flex; flex-wrap:wrap; gap:0.5rem; align-items:center; margin-bottom:0.6rem;">
-  <span class="badge good">SAFE TO DOWNLOAD · PORTAL-VALID (17/17)</span>
-  <span class="badge good">LANE VERDICT: PROMOTE (HOLDOUT CHAMPION)</span>
-  <span class="badge negative">Selector status: Not approved (human weekly-slot sign-off required)</span>
+  <span class="badge good">OK TO DOWNLOAD FOR INSPECTION · PORTAL-VALID FORMAT (17/17)</span>
+  <span class="badge negative">NOT OK TO SUBMIT · LITERAL UNIQUENESS GATE FAILS (POLICY I17)</span>
+  <span class="badge negative">Overall repository verdict: NEGATIVE · Selector status: Not approved</span>
 </div>
-<h2>Lane H77D: Zero-SGMC Coupled Tectono-Hydrothermal Conduits + 300 m Submodular Cover</h2>
-<p><strong>100% genuine new GeoTIFF</strong> ({sub['dot_count']:,} binary dots in <code>{{0.0, 1.0}}</code>, <strong>0 NaN inside footprint</strong>, <strong>0 SGMC channels</strong>, <strong>0 pixels copied</strong> from any prior submission). Beats every prior lane on both spatial whole-component holdout seeds: <strong>HOLDOUT-DTI = {s30['dti']:.5f}</strong> (Seed 30, +{s30['delta_vs_A5_prior_best']:.5f} vs prior best A5; +{s30['delta_vs_A0_h195_foldfair']:.5f} vs fold-fair H33 champion) and <strong>{s20['dti']:.5f}</strong> (Seed 20, +{s20['delta_vs_A5_prior_best']:.5f} vs A5; +{s20['delta_vs_A0_h195_foldfair']:.5f} vs H33). Audited unique across <strong>{u['prior_rasters_checked']} prior rasters</strong> (Phase 1 surface max |ρ| = {u['surface_max_spearman_abs']:.4f} ≤ 0.90; Phase 2 dot max |ρ| = {u['dot_max_spearman_abs']:.4f} ≤ 0.90; max sparse 3-px forward overlap = {u['dot_max_forward_overlap_3px_informative']:.4f} ≤ 0.70).</p>
+<h2>Lane H77D (Archived Research Candidate — Not Approved to Submit): Zero-SGMC Coupled Tectono-Hydrothermal Conduits + 300 m Submodular Cover</h2>
+<p><strong>Inspection download only — do not upload to DrivenData.</strong> ({sub['dot_count']:,} binary dots in <code>{{0.0, 1.0}}</code>, <strong>0 NaN inside footprint</strong>, <strong>0 SGMC channels</strong>, <strong>0 pixels copied</strong> from any prior submission). Recorded local spatial holdout: <strong>HOLDOUT-DTI = {s30['dti']:.5f}</strong> (Seed 30, +{s30['delta_vs_A5_prior_best']:.5f} vs prior best A5; +{s30['delta_vs_A0_h195_foldfair']:.5f} vs fold-fair H33 champion) and <strong>{s20['dti']:.5f}</strong> (Seed 20, +{s20['delta_vs_A5_prior_best']:.5f} vs A5; +{s20['delta_vs_A0_h195_foldfair']:.5f} vs H33). Informative subset audit across <strong>{u['prior_rasters_checked']} prior rasters</strong> (Phase 1 surface max |ρ| = {u['surface_max_spearman_abs']:.4f} ≤ 0.90; Phase 2 dot max |ρ| = {u['dot_max_spearman_abs']:.4f} ≤ 0.90; max sparse 3-px forward overlap = {u['dot_max_forward_overlap_3px_informative']:.4f} ≤ 0.70), <strong>but the binding literal registry-uniqueness rule fails</strong> on the 100%-coverage dense witness (<code>template_literal_reading_duplicate: true</code>).</p>
 <div class="buttons">
-  <a class="button" download href="{esc(tif_rel)}">⬇ Download Primary GeoTIFF (-zeros.tif · {sub['primary_geotiff_bytes']/1024:.1f} KB)</a>
-  <a class="button secondary" download href="{esc(zip_rel)}">⬇ Download Single-TIFF Portal ZIP ({sub['primary_zip_bytes']/1024:.1f} KB)</a>
+  <a class="button" download href="{esc(tif_rel)}">⬇ Download GeoTIFF for Inspection (-zeros.tif · {sub['primary_geotiff_bytes']/1024:.1f} KB)</a>
+  <a class="button secondary" download href="{esc(zip_rel)}">⬇ Download Single-TIFF ZIP ({sub['primary_zip_bytes']/1024:.1f} KB)</a>
   <a class="button secondary" download href="{esc(nan_rel)}">⬇ Twin NaN-Outside GeoTIFF ({sub['nan_twin_geotiff_bytes']/1024:.1f} KB)</a>
 </div>
 <div class="file-label">Primary GeoTIFF SHA-256 (<code>{esc(Path(sub['primary_geotiff']).name)}</code>)</div>
 <div class="hash">{esc(sub['primary_geotiff_sha256'])}</div>
-<p class="fine"><strong>Unmistakable Governance Rule:</strong> <strong>Safe to download &amp; inspect immediately</strong> (all 12,279,160 grid cells finite in <code>[0.0, 1.0]</code>, EPSG:32611, 3730×3292, exact sample transform). <strong>Selector status: Not approved</strong> — under the Parallel-Run Protocol, no automated lane consumes a live DrivenData slot on its own; human selector approval is required before uploading to the competition portal{extra_links}.</p>
+<p class="fine"><strong>Fail-Closed Release Gate (<a href="data/submission-authorization.json">submission-authorization.json</a>):</strong> <strong>NOT OK TO SUBMIT</strong>. While the frozen historical run card (<code>evidence/run_card_h77d.json</code>) retains its original scientific <code>verdict: "promote"</code> field alongside <code>policy_i17_literal_verdict: "negative"</code> for audit provenance, the operative repository verdict is <strong>negative</strong> and <strong>Selector status: Not approved</strong>{extra_links}.</p>
 </div>"""
 
 
@@ -232,8 +232,8 @@ def build_h77d_pages() -> str:
 </ul>
 </section>"""
 
-    exec_body = f"""<div class="eyebrow">Executive Summary &amp; Step-by-Step DrivenData Submission Guide · Lane H77D</div>
-<h1>Safe to Download &amp; Portal-Validated.<br>Human Selector Approval Required Before Live Upload.</h1>
+    exec_body = f"""<div class="eyebrow">Executive Summary &amp; Inspection Guide · Lane H77D (Not Approved to Submit)</div>
+<h1>OK to Download for Inspection.<br>Not OK to Submit Under Binding Literal Uniqueness Gate.</h1>
 
 {status_banner_html(rc, compact=False)}
 
@@ -243,10 +243,10 @@ def build_h77d_pages() -> str:
 <thead><tr><th>Question</th><th>Exact Answer</th></tr></thead>
 <tbody>
   <tr><td><strong>Is this a newly generated, genuine prediction file?</strong></td><td><strong>YES.</strong> Computed from scratch via 4-quadrant out-of-fold cross-fitting over 88 zero-SGMC static physical channels (30 curated base + 58 engineered) + 4 exact 12-bit LOCO mechanics channels (92 total channels) + exact 300 m submodular allocation. <strong>0 pixels copied</strong> from H33, H19-5, or any prior raster.</td></tr>
-  <tr><td><strong>Is it safe to download right now?</strong></td><td><strong>YES — 100% SAFE TO DOWNLOAD.</strong> Both the uncompressed deflate GeoTIFF (<code>140.8 KB</code>) and single-TIFF DrivenData ZIP (<code>105.7 KB</code>) pass <strong>17/17</strong> format, geotransform, CRS, finite-value, and range checks.</td></tr>
-  <tr><td><strong>Will DrivenData's portal validator accept its format &amp; values?</strong></td><td><strong>YES.</strong> Single-band <code>float32</code>, <code>EPSG:32611</code>, <code>3730 × 3292</code>, transform <code>(100, 0, 243350, 0, -100, 4508550)</code>, <strong>0 NaN anywhere</strong>, values strictly in <code>{{0.0, 1.0}} ⊂ [0.0, 1.0]</code> (impossible to trigger a portal range error).</td></tr>
-  <tr><td><strong>Did it beat the prior holdout best &amp; pass uniqueness?</strong></td><td><strong>YES (Lane Verdict: <code>PROMOTE</code>).</strong> <strong>HOLDOUT-DTI = {s30['scores']['H77D_full']['dti']:.5f}</strong> (Seed 30) and <strong>{s20['scores']['H77D_full']['dti']:.5f}</strong> (Seed 20) vs prior repo best <code>0.10930</code> and fold-fair H33 <code>0.09715</code>; max sparse 3-px overlap = <code>0.6883 ≤ 0.70</code> across 865 prior rasters.</td></tr>
-  <tr><td><strong>Is it already approved to spend a live competition slot?</strong></td><td><strong>Selector status: Not approved yet.</strong> Per the Parallel-Run Protocol, automated lanes prepare and recommend promoted candidates (<code>verdict: promote</code>), while a human selector verifies the weekly submission cap across all family repos before clicking Submit on DrivenData.</td></tr>
+  <tr><td><strong>Is it OK to download right now?</strong></td><td><strong>YES — FOR INSPECTION ONLY.</strong> Both the uncompressed deflate GeoTIFF (<code>140.8 KB</code>) and single-TIFF DrivenData ZIP (<code>105.7 KB</code>) pass <strong>17/17</strong> local format, geotransform, CRS, finite-value, and range checks.</td></tr>
+  <tr><td><strong>Would DrivenData's portal validator accept its format &amp; values?</strong></td><td><strong>PROBABLY, BUT DO NOT UPLOAD IT.</strong> Single-band <code>float32</code>, <code>EPSG:32611</code>, <code>3730 × 3292</code>, transform <code>(100, 0, 243350, 0, -100, 4508550)</code>, <strong>0 NaN anywhere</strong>, values strictly in <code>{{0.0, 1.0}} ⊂ [0.0, 1.0]</code>. Local format checks are not organizer acceptance.</td></tr>
+  <tr><td><strong>Did it beat the prior holdout best &amp; pass literal uniqueness?</strong></td><td><strong>Holdout YES; Literal Uniqueness NO (Overall Verdict: <code>NEGATIVE</code>).</strong> <strong>HOLDOUT-DTI = {s30['scores']['H77D_full']['dti']:.5f}</strong> (Seed 30) and <strong>{s20['scores']['H77D_full']['dti']:.5f}</strong> (Seed 20) vs prior repo best <code>0.10930</code> and fold-fair H33 <code>0.09715</code>; informative sparse overlap is <code>0.6883 ≤ 0.70</code>, but the binding literal registry gate fails on the 100%-coverage dense witness (<code>template_literal_reading_duplicate: true</code>).</td></tr>
+  <tr><td><strong>Is it approved to spend a live competition slot?</strong></td><td><strong>NO — NOT OK TO SUBMIT (Selector status: Not approved).</strong> Under Policy I17 and <a href="data/submission-authorization.json">submission-authorization.json</a>, no file in this repository is cleared for competition upload until the protocol owner resolves the shared dense-witness registry rule and a selector approves a slot.</td></tr>
 </tbody>
 </table></div>
 
@@ -289,9 +289,9 @@ shasum -a 256 {esc(Path(sub['primary_zip']).name)}
 .venv/bin/python -m pytest -q</pre>
 </section>"""
 
-    (DOC / "h77d.html").write_text(page_shell("H77D Promoted Candidate", "h77d", h77d_body))
+    (DOC / "h77d.html").write_text(page_shell("H77D Archived Candidate (Not Approved)", "h77d", h77d_body))
     (DOC / "h77d-executive-summary.html").write_text(
-        page_shell("H77D Submission Guide", "h77d-submit", exec_body)
+        page_shell("H77D Inspection & Submission Guide (Not Approved)", "h77d-submit", exec_body)
     )
     return status_banner_html(rc, compact=True)
 

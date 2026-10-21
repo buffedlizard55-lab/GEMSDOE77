@@ -9,7 +9,11 @@ import numpy as np
 import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
-DATA = ROOT / ".cache" / "gems_data"
+DATA = (
+    ROOT / ".cache" / "gems_data"
+    if (ROOT / ".cache" / "gems_data" / "sample_submission.tif").exists()
+    else ROOT / "data" / "bridge"
+)
 pytestmark = pytest.mark.skipif(not (DATA / "sample_submission.tif").exists(), reason="restore data first")
 
 

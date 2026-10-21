@@ -182,3 +182,9 @@ def test_negative_lanes_are_not_recommended_or_promoted_on_entry_page():
         assert 'top candidates for human selector review' not in page
         assert 'recommended for human selector sign-off' not in page
         assert 'recommended co-primary file' not in page
+    for subpage in ('h77d.html','h77d-executive-summary.html','h77-step.html','h77-step-executive-summary.html','urank.html','urank-executive-summary.html'):
+        txt=(DOC/subpage).read_text().lower()
+        assert 'not ok to submit' in txt, subpage
+        assert 'not approved' in txt, subpage
+        assert 'lane verdict: promote' not in txt, subpage
+        assert 'recommended for drivendata upload' not in txt, subpage
