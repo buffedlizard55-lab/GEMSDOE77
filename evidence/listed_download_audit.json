@@ -2,9 +2,9 @@
   "schema": "gems-listed-download-readback-v1",
   "evidence_class": "FORMAT-INTEGRITY-MEASUREMENT; NOT SCORE OR PORTAL ACCEPTANCE",
   "scope": "Every primary TIFF in docs/data/lanes.json; no archive or NaN twins, no uniqueness certification",
-  "manifest_sha256": "b9ad9f01ce76e41d8702739dc1aad8b3aad1f8c92d7b0e1332be5130f7a9ee90",
+  "manifest_sha256": "8500d8b5125adcff724ddd64a750db8491f1006d3424a92d48f7b62a1e92a24e",
   "reference_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
-  "listed_count": 38,
+  "listed_count": 39,
   "all_format_pass": true,
   "authorized_to_submit": false,
   "artifacts": [
@@ -678,6 +678,24 @@
       "lane": "H84-ORGATE: geophysics-gated second-strand collar (HOLDOUT-DTI 0.1215 [0.1071,0.1355] s30; negative, inspection only)",
       "file": "downloads/gems77-h84-orgate-collar-37654dots-20261021-2d0a731a-zeros.tif",
       "sha256": "9a5f5433cbfed4a1a8ac2587678aaa930c8ed93e948b9e94874c8febc549fd57",
+      "checks": {
+        "single_band": true,
+        "crs_matches": true,
+        "shape_matches": true,
+        "transform_matches": true,
+        "finite_entire_raster": true,
+        "no_nan_inside_footprint": true,
+        "values_in_0_1": true,
+        "nodata_none": true,
+        "sha256_matches_manifest": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
+    {
+      "lane": "H83-NETSIB: visible fault-network sibling/gap/continuation geometry, synthetic re-withholding HGB (0.1538 s20 / 0.1637 s30 HOLDOUT-DTI; below H77-VDS; duplicate rule fired; negative)",
+      "file": "downloads/gems77-h83-netsib-37654dots-20261021-ed06b51d-zeros.tif",
+      "sha256": "b2f89a83ffb1080c512bb46c6feae3a6211207cd619e0291bd2d767c002be87f",
       "checks": {
         "single_band": true,
         "crs_matches": true,
