@@ -1,0 +1,106 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>H82-RRD · GEMSDOE77</title>
+<meta name="description" content="H82-RRD: RTP-TMI remanence-discordance fault detector. Unique GeoTIFF, format-valid, holdout-negative. OK to download for inspection; NOT OK TO SUBMIT.">
+<link rel="stylesheet" href="assets/lia.css"></head><body>
+<header><div class="wrap"><span class="brand">GEMSDOE77 · DOE GEMS Prize</span><a href="index.html">Start here</a> <a href="executive-summary.html">How to submit</a> <a href="h82.html" class=here>H82-RRD · negative</a> <a href="h81.html">H81 · slip-cone</a> <a href="h80t.html">H80T · tilt-persist</a> <a href="h80.html">H80 · negative</a> <a href="lia-analysis.html">Why 0.2778</a> <a href="lia-sources.html">Sources</a>
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE77">GitHub</a></div></header>
+<main><div class="wrap">
+<h1>H82-RRD: RTP–TMI remanence / block-rotation discordance breaks</h1>
+<p class="verdict"><b>OK TO DOWNLOAD FOR INSPECTION: YES.</b> <b>OK TO SUBMIT: NO — NOT OK TO SUBMIT.</b>
+This session generated one unique, newly computed GeoTIFF (not a copy of any previous submission). It is
+format-valid, but it <b>failed the holdout gate</b> (0.0686 HOLDOUT-DTI vs the 0.152718 incumbent) and its final
+dots <b>fire the duplicate-overlap gate</b> against 3 informative local rasters. Do not spend a weekly slot on it.
+Selector status: <b>not approved</b>. Weekly slots used by this lane: <b>0</b>.</p>
+
+<section class="card dl"><h2>⬇ Download the H82 GeoTIFF (inspection only — DO NOT SUBMIT)</h2>
+<a class="btn" href="downloads/gems77-h82-rrd-discord-37654dots-20261021-c069b8d8-zeros.tif" download>Download .tif (129 KB)</a>
+<a class="btn alt" href="downloads/gems77-h82-rrd-discord-37654dots-20261021-c069b8d8-zeros.zip" download>Same file as one-TIFF .zip (93 KB)</a>
+<a class="btn alt" href="downloads/gems77-h82-rrd-discord-37654dots-20261021-c069b8d8-zeros.json">Format receipt (JSON)</a>
+<div class="chips"><span class="chip ok">OK to download: YES</span>
+<span class="chip ok">Format preflight: PASS 15/15</span>
+<span class="chip bad">Holdout vs incumbent: FAIL (0.0686 &lt; 0.152718)</span>
+<span class="chip bad">Final-dot uniqueness: FAIL (max 0.786 &gt; 0.70)</span>
+<span class="chip warn">Selector: not approved</span>
+<span class="chip bad">OK TO SUBMIT: NO</span></div>
+<p class="small muted">Submission name (for reference only — do not submit):</p>
+<div class="copy"><code>gems77-h82-rrd-discord-37654dots-20261021-c069b8d8-zeros</code></div>
+<p class="small muted">Note-field text (112/140 chars, for reference only):</p>
+<div class="copy"><code>H82-RRD RTP-TMI remanence-discordance breaks; 37654 binary dots &gt;200m off catalogue; holdout-gated, see run card</code></div>
+<p class="small">SHA-256 (.tif): <code>8f0726723898078d480668d887d7aebf9b9ca87b7892912ce1110ab92e164c2c</code> · 131,841 bytes ·
+single-band float32 · EPSG:32611 · 3730×3292 · values exactly {0.0, 1.0} · 0 NaN · nodata=None ·
+37,654 dots · 0 on the mapped catalogue · nearest catalogue distance √5 px (≈224 m).
+Local format PASS does <b>not</b> prove portal acceptance and does <b>not</b> authorize submission.
+Run card: <a href="evidence/h82_run_card.json">evidence/h82_run_card.json</a> ·
+<a href="executive-summary.html">How submission would work after approval →</a></p></section>
+
+<h2>Why did the family best (h33-2-b2, 0.2778) score highest — and can H82 beat it?</h2>
+<p><b>Attribution warning (IR-82-01).</b> The 0.2778 figure is <b>OWNER-REPORT</b>: GEMSDOE32's own site states for
+this exact file <em>“projected live DTI 0.2747 (a MODEL, not a score). NO ORGANISER SCORE EXISTS”</em> and labels it
+UNSCORED (verified by fetching <a href="https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html">the GEMSDOE32 site</a>
+on 2026-10-21; this session also hash-verified the champion bytes, SHA-256 <code>c55bafc4…</code>). The public
+leaderboard #1 is <b>0.4413 ORGANIZER-CONFIRMED</b> (fetched 2026-10-21).</p>
+<p>The reported ordering is nevertheless exactly what the official metric predicts. H33 is one multi-physics ridge
+(H19-5, 121,131 px) progressively <em>thinned</em>: dotted at ≈300 m spacing, then stripped of dots ≤200 m from the
+mapped catalogue (37,654 dots). Because DTI credits each truth pixel with the <em>max</em> kernel value within 300 m,
+redundant neighbouring mass earns ~0 while paying full false-positive cost; thinning keeps the coverage and deletes
+the cost, and the collar strip deletes mass whose only nearby truth is the already-mapped catalogue. That is an
+<em>emission</em> optimum on a 0.19-class field — re-thinning cannot reach 0.4413; only a field that puts mass where
+hidden faults actually are can. <b>H82 tested one such candidate field and it did not beat the holdout incumbent,
+so no claim is made that this file beats 0.2778.</b> HOLDOUT-DTI is a local hide-and-recover number, never a
+leaderboard projection.</p>
+
+<h2>Hypotheses considered (ranked before experiments)</h2>
+<table><tr><th>Rank</th><th>Hypothesis · layers</th><th>Signature</th><th>Why off-catalogue</th><th>Status</th></tr>
+<tr><td>1</td><td><b>H82-1 RRD</b> · TMI(14), RTP(2), mag_anom(1)</td><td>Local RTP≈a·TMI+b regression breaks: |∇r|, |∇a|, residual ridges</td><td>Remanence/rotation block boundaries persist under alluvium with weak amplitude contrast</td><td><b>Tested — negative</b></td></tr>
+<tr><td>2</td><td>Gravity+basement flexure · bands 13/15/19</td><td>Sign-consistent Laplacian zero-crossings on low-relief floors</td><td>Blind basin hinges</td><td>Not run (budget)</td></tr>
+<tr><td>3</td><td>Seismicity lineaments · bands 10/16</td><td>Structure-tensor coherence of epicentre density</td><td>Swarming blind faults</td><td>Not run</td></tr>
+<tr><td>4</td><td>Basement zero-hinge · bands 15/12</td><td>Depth≈0 contour continuations</td><td>Buried range fronts</td><td>Not run</td></tr>
+<tr><td>5</td><td>Volcanic-vent alignments · GDR 1391 vents</td><td>Collinear vent Hough lines</td><td>Fissure-controlled vents</td><td>Too sparse — not viable as primary</td></tr></table>
+<p class="small">Full register with mimics and novelty checks: <code>research/h82_hypotheses.md</code> ·
+preregistration: <code>registry/preregistration_h82.json</code> (frozen before Exp 1). Named non-fault mimic for
+H82-1: unfaulted reversely-magnetized volcanic flow margins; GeoDAWN survey-block seams.</p>
+
+<h2>Results — all numbers HOLDOUT-DTI (<code>gems57-pooled-hide-v2</code>, seed 20, 11,321 withheld positives)</h2>
+<table><tr><th>Arm (37,654-dot budget, &gt;2 px exclusion, no tuning scan)</th><th>HOLDOUT-DTI</th><th>95% CI</th></tr>
+<tr><td><b>A_std19_rrd</b> — HGB(19 raw + 8 RRD) <em>(preregistered winner → TIF)</em></td><td><b>0.0686</b></td><td>[0.0541, 0.0842]</td></tr>
+<tr><td>A_std19 — HGB(19 raw bands) control</td><td>0.0618</td><td>[0.0474, 0.0772]</td></tr>
+<tr><td>A_rrd — HGB(8 RRD channels only)</td><td>0.0490</td><td>[0.0393, 0.0583]</td></tr>
+<tr><td>A0_random control</td><td>0.0471</td><td>[0.0414, 0.0530]</td></tr>
+<tr><td>S_rrd — pure discordance physics surface</td><td>0.0419</td><td>[0.0339, 0.0499]</td></tr>
+<tr><td>Repo incumbent (H77-Step, same instrument)</td><td>0.152718</td><td>[0.131548, 0.175185]</td></tr></table>
+<p>Paired lift of the RRD block over the std19 control: <b>+0.0068, 95% CI [−0.0036, +0.0163]</b> — includes 0, not
+significant. Leakage canaries: worst single-feature symmetric AUC <b>0.5334 ≤ 0.90</b> (pass; no leakage, weak
+individual signal). Phase-1 surface uniqueness (sampled Spearman, 37 local-scope rasters): max |ρ| = <b>0.047 ≤ 0.90</b>
+(pass). Phase-2 final-dot overlap: <b>0.786 vs contactphys</b>, 0.737 vs XSEN, 0.713 vs H80-OTA (3 informative firings
+&gt; 0.70 — <b>duplicate stop</b>); vs the H33 champion only <b>0.321</b> (pixel-distinct from the family best, byte-novel
+in scope). Scope is local downloads/submissions + H33, <b>not</b> the complete family registry. Verdict: <b>negative</b>.</p>
+<p><img src="assets-h82-surface-dots.png" alt="H82 S_rrd discordance surface (grey) with final emitted dots (red), downsampled 4x" style="max-width:100%">
+<br><span class="small muted">S_rrd physics surface (grey) and final A_std19_rrd dots (red), ×4 block-mean. Diagnostic only.</span></p>
+
+<h2>How to submit — only after a future selector approval (not this file)</h2>
+<ol><li>Confirm a future file's row on the <a href="index.html">Start-here page</a> says <b>OK TO SUBMIT</b> for its exact SHA-256 (none does today).</li>
+<li>Download that approved <code>.tif</code> (or its one-TIFF <code>.zip</code>); verify <code>sha256sum</code> matches its run card. Values must already be in [0, 1] — see the portal-error note on the <a href="executive-summary.html">executive summary</a>.</li>
+<li>Sign in to <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData #306</a> → <b>New submission</b> → choose the file under <em>File to submit</em>, paste the file's ≤140-character text into <em>Note (optional)</em>, submit, and archive the organizer receipt. Only a receipt makes a score ORGANIZER-CONFIRMED. This sandbox cannot log in or upload for you.</li></ol>
+
+<h2>Official sources (manual review)</h2>
+<table><tr><th>Claim</th><th>Source</th></tr>
+<tr><td>Task, metric (α=0.2, β=0.8, R=300 m), GeoTIFF format</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Problem page 967</a></td></tr>
+<tr><td>Public leaderboard #1 = 0.4413</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Leaderboard</a></td></tr>
+<tr><td>GeoDAWN magnetic/radiometric surveys (DOI 10.5066/P93LGLVQ)</td><td><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN</a></td></tr>
+<tr><td>INGENIOUS / GDR 1391 (CC BY 4.0)</td><td><a href="https://gdr.openei.org/submissions/1391">GDR 1391</a> · <a href="https://gbcge.org/current-projects/ingenious/">INGENIOUS</a></td></tr>
+<tr><td>Reference solution · rules PDF · EPSG:32611 · Tversky</td><td><a href="https://github.com/drivendataorg/gems-prize-reference-solution">GitHub</a> · <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">96647.pdf</a> · <a href="https://epsg.io/32611">epsg.io/32611</a> · <a href="https://en.wikipedia.org/wiki/Tversky_index">Wikipedia</a></td></tr>
+<tr><td>H33 champion file &amp; its UNSCORED status</td><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html">GEMSDOE32 site</a></td></tr></table>
+
+<h2>Limitations &amp; next steps</h2>
+<ul><li>Catalogue hide-and-recover rewards catalogue-style faults; a discordance field aimed at <em>unlike-catalogue</em> block boundaries is penalized by construction. H82 is falsified as a standalone detector on this instrument, not proven geologically empty live — but protocol forbids spending a slot without a holdout win.</li>
+<li>No catalogue-distance/mechanics features were allowed in this lane; incumbent-class scores (0.15+) in this repo all use them plus lidar/external stacks. A future test of RRD as a small additive block on the full 54–96-channel stack would need a new preregistration and a fresh duplicate check (HGB surfaces converge: Phase-2 fired at 0.786).</li>
+<li>Uniqueness scope is local (37 rasters + H33), not the full 812-raster family registry; a complete scan remains outstanding infrastructure work.</li>
+<li>Data limits: DrivenData files are login-walled (SHA-pinned owner mirrors used; integrity-pinned, not organizer-authenticated); Dropbox mirrors unreachable from the sandbox; no GPU (2 vCPU / 3.8 GB) — HGB-on-CPU only.</li></ul>
+<p class="small muted">Evidence: <code>evidence/h82_e1_canary_surface.json</code> · <code>evidence/h82_e2_holdout.json</code> ·
+<code>evidence/h82_e3_build.json</code> · <code>evidence/h82_run_card.json</code>. Code: <code>src/gems82/fields.py</code>,
+<code>scripts/h82_pipeline.py</code>. Core values: Maximize P(Win) — publish the negative, spend no slot; Own the Outcome.</p>
+</div></main>
+<footer><div class="wrap">Selector status for every file on this site: <b>not approved</b>. Number labels:
+<b>ORGANIZER-CONFIRMED</b> (leaderboard/receipt), <b>HOLDOUT-DTI</b> (local; evaluator, withheld count, CI),
+<b>OWNER-REPORT</b> (family claims without receipt). No projection is written as a score.</div></footer>
+</body></html>

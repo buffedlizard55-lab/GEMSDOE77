@@ -1,3 +1,11 @@
+<!-- H82-RRD STATUS BANNER (2026-10-21, newest lane) -->
+> ## 🚦 H82-RRD DOWNLOAD & SUBMISSION STATUS (2026-10-21 — newest lane, read first)
+>
+> - **✅ OK TO DOWNLOAD FOR INSPECTION: YES** — [`docs/downloads/gems77-h82-rrd-discord-37654dots-20261021-c069b8d8-zeros.tif`](docs/downloads/gems77-h82-rrd-discord-37654dots-20261021-c069b8d8-zeros.tif) (131,841 B, SHA-256 `8f0726723898078d480668d887d7aebf9b9ca87b7892912ce1110ab92e164c2c`; one-TIFF [`.zip`](docs/downloads/gems77-h82-rrd-discord-37654dots-20261021-c069b8d8-zeros.zip) SHA-256 `29e4c1e928d4e83b1c9d91072b20fe3f62e30f189c56a4014e800273b280a6f5`). Format PASS 15/15: single-band float32, EPSG:32611, 3730×3292, values exactly {0,1} in [0,1], 0 NaN, `nodata=None`, 37,654 dots, 0 on catalogue — the portal `Predicted values must be in range [0, 1]` error cannot arise from this file's values (local preflight; not organizer acceptance).
+> - **⛔ OK TO SUBMIT: NO — NOT OK TO SUBMIT.** Winner arm **0.0686 HOLDOUT-DTI** (`gems57-pooled-hide-v2`, seed 20, 11,321 withheld positives, 95% CI [0.0541, 0.0842]) does **not** beat the 0.152718 incumbent; paired RRD lift +0.0068 (CI [−0.0036, +0.0163], n.s.); pure physics 0.0419 < random 0.0471; final dots fire the duplicate gate vs 3 informative local rasters (max 0.786 > 0.70; vs H33 champion 0.321). Verdict **negative**; 0 weekly slots used; selector not approved.
+> - **📖 Lane page / run card / hypotheses:** [`docs/h82.html`](docs/h82.html) · [`evidence/h82_run_card.json`](evidence/h82_run_card.json) · [`research/h82_hypotheses.md`](research/h82_hypotheses.md) · preregistration [`registry/preregistration_h82.json`](registry/preregistration_h82.json). **IR-82-01:** the family-best 0.2778 remains OWNER-REPORT — GEMSDOE32's site labels h33-2-b2 UNSCORED (0.2747 is a model projection, not a score); public #1 0.4413 is ORGANIZER-CONFIRMED.
+> - Submission name (reference only): `gems77-h82-rrd-discord-37654dots-20261021-c069b8d8-zeros` · Note (112/140): `H82-RRD RTP-TMI remanence-discordance breaks; 37654 binary dots >200m off catalogue; holdout-gated, see run card`
+
 <!-- H77E-KNICK PRIMARY STATUS BANNER -->
 > ## 🚦 IMMEDIATE DOWNLOAD & SUBMISSION STATUS AT A GLANCE (`H77E-Knick` Newest Primary Deliverable)
 >

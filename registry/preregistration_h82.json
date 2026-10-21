@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "lane_id": "H82-RRD",
+  "repo": "buffedlizard55-lab/GEMSDOE77",
+  "branch": "arena/7ad85a23-gemsdoe77",
+  "session_date_utc": "2026-10-21",
+  "registered_before_experiments": true,
+  "hypothesis": "Local RTP-vs-TMI regression discordance (remanence / vertical-axis block rotation) marks block-bounding faults that amplitude-based magnetic detectors and DEM scarp detectors both miss under alluvial cover.",
+  "mechanism": "High-pass TMI (band 14) and RTP (band 2) at sigma=3px; Gaussian-weighted (sigma_w=2.5px) local linear regression RTP_hp ~ a*TMI_hp+b gives slope a(x), correlation r(x), residual RMS; discordance breaks are |grad r|, |grad a|, residual RMS ridges and the signed z-difference gradient, with mag_anom(band1)-vs-RTP residual as second pair. 8 label-free channels; composite S_rrd = geometric mean of footprint percentile ranks of (resid_rms, corr_break, slope_break, disc_grad).",
+  "named_non_fault_mimic": "Unfaulted margins of reversely-magnetized volcanic flow units; GeoDAWN survey-block levelling seams.",
+  "layers": {"training_features_bands": [1, 2, 14], "external": [], "catalogue_derived_features": []},
+  "experiments": {
+    "exp1": "Build 8 RRD channels label-free; verify RTP/TMI band identities numerically; per-channel leakage canary on seed-20 draw (symmetric AUC>0.90 stops the lane); Phase-1 surface Spearman vs local registry scope (docs/downloads + submissions TIFFs + fetched H33 champion bytes).",
+    "exp2": "Seed-20 buffered whole-component hide-and-recover, evaluator gems57-pooled-hide-v2 (alpha 0.2, beta 0.8, 300m triangular). Arms: S_rrd physics, A_rrd HGB(8ch), A_std19 HGB(19 raw bands), A_std19_rrd HGB(27ch, primary), A0_random. Fixed budget 37654 dots, exclusion >2px from visible, min-sep 2.8px via src/gems77/emit77. NO operating-point scan. HGB fixed: max_iter=140, lr=0.09, max_leaf_nodes=31, min_samples_leaf=40, random_state=77.",
+    "exp3": "Full-map TIF from preregistered winner rule (highest Exp2 HOLDOUT-DTI among S_rrd/A_rrd/A_std19_rrd; refit on full catalogue if HGB arm wins); shared submission writer (zeros mode, nodata=None); Phase-2 final-dot uniqueness; validator; JSON run card."
+  },
+  "promotion_bar": {
+    "incumbent_holdout_dti": 0.152718,
+    "incumbent_evaluator": "gems57-pooled-hide-v2",
+    "incumbent_seed": 20,
+    "incumbent_withheld_positives": 11321,
+    "requires": ["candidate HOLDOUT-DTI > incumbent", "paired 95% CI vs best control excludes 0", "surface |rho|<=0.90 and final-dot 3px overlap<=0.70 (literal scope reported; Policy-I17 informative subset also reported)", "separate human selector approval"],
+    "weekly_slots_authorized_by_this_lane": 0
+  },
+  "budget": {"max_experiments": 3, "max_hours": 2},
+  "irregularities": ["IR-82-01: 0.2778 has no organizer receipt; GEMSDOE32 site labels the file UNSCORED (research/h82_hypotheses.md)", "IR-82-02: band tags unreliable (band6=TC not tilt; band18 signed dx; bands10/16 hedged)"]
+}
