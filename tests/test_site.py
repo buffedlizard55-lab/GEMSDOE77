@@ -142,7 +142,9 @@ def test_new_research_raster_is_visible_but_never_called_a_submittable_entry():
     detail=(DOC/'h77l.html').read_text()
     assert tif.is_file() and tif.stat().st_size>1000
     assert hashlib.sha256(tif.read_bytes()).hexdigest()==card['raster_sha256']==lane['sha256']
-    assert lane['primary'] and lane['protocol_unique'] is False and lane['verdict']=='negative'
+    assert not lane['primary'] and lane['protocol_unique'] is False and lane['verdict']=='negative'
+    featured=next(x for x in json.loads((DOC/'data/lanes.json').read_text())['lanes'] if x.get('primary'))
+    assert featured['lane'].startswith('H80-DB:') and featured['protocol_unique'] is False
     assert card['validator']['all_checks_passed'] and not card['ok_to_submit']
     assert card['registry']['surface_max_forward_overlap_3px']>0.70
     assert card['registry']['final_dot_placement_audit'].startswith('NOT RUN')
@@ -163,8 +165,56 @@ def test_new_research_raster_is_visible_but_never_called_a_submittable_entry():
     assert '68.4%' in detail and f"{audit['stats']['local_prior_tifs_checked']} other local TIFFs" in detail
     assert audit['all_checks_passed'] and audit['checks']['pixel_distinct_from_all_local_prior_tifs']
     assert audit['stats']['local_prior_tifs_checked']>=14
-    assert 'Unknown. H77L' in home and 'Will it beat 0.2778?</b> No' not in home
+    assert 'H77L:' in home and 'No claim to beat leaderboard scores' in home and 'Unknown. H77L' not in home
+def test_h80_new_download_is_negative_unique_and_fail_closed():
+    import hashlib, zipfile
+    import numpy as np
+    import rasterio
+    card=json.loads((ROOT/'evidence/run_card_h80_depth.json').read_text())
+    prereg=ROOT/'registry/preregistration_h80.json'
+    assert hashlib.sha256(prereg.read_bytes()).hexdigest()==card['preregistration_sha256']
+    assert card['experiment_count']==3 and card['experiment_budget']['weekly_slots_used']==0
+    assert card['preregistration_conformance']['exact_signature_matches_implementation'] is False
+    assert card['execution_irregularities']['failed_software_invocations_before_holdout']==2
+    assert card['execution_irregularities']['model_parameters_changed_during_recovery'] is False
+    lane=next(x for x in json.loads((DOC/'data/lanes.json').read_text())['lanes'] if x['lane'].startswith('H80-DB:'))
+    tif=DOC/lane['file']
+    assert tif.is_file() and hashlib.sha256(tif.read_bytes()).hexdigest()==card['raster_sha256']==lane['sha256']
+    assert not lane['protocol_unique'] and lane['verdict']=='negative' and lane['primary']
+    with rasterio.open(tif) as ds:
+        a=ds.read(1)
+        assert ds.count==1 and ds.dtypes==('float32',) and ds.crs.to_epsg()==32611
+        assert ds.shape==(3730,3292) and tuple(ds.transform)[:6]==(100.0,0.0,243350.0,0.0,-100.0,4508550.0)
+    assert np.isfinite(a).all() and a.min()>=0 and a.max()<=1
+    with zipfile.ZipFile(tif.with_suffix('.zip')) as z:
+        assert z.namelist()==[tif.name] and z.read(tif.name)==tif.read_bytes()
+    hold=card['holdout_dti']
+    assert hold['evidence_class']=='HOLDOUT-DTI' and hold['evaluator_version']=='gems57-pooled-hide-v2'
+    assert hold['withheld_positive_pixels']==7582 and len(hold['ci95'])==2
+    assert card['paired_differences']['A0_random']['delta']<0
+    assert card['paired_differences']['A0_random']['ci95'][1]<0
+    assert card['leakage_canary']['max_symmetric_auc']<0.90
+    assert card['correlation_overlap_vs_registry']['surface_forward_overlap_3px_vs_dense_witness']==1.0
+    assert card['final_dot_placement_audit']['status'].startswith('NOT RUN')
+    assert not card['ok_to_submit'] and card['ok_to_download'] and card['weekly_slots_used']==0
+    assert card['organizer_confirmed_score'] is None and len(card['submission_note'])<=140
+    home=(DOC/'index.html').read_text(); detail=(DOC/'h80-depth.html').read_text()
+    assert tif.name in home and tif.name in detail
+    assert 'NOT OK TO SUBMIT' in home and 'NOT OK TO SUBMIT' in detail
+    assert '0.045552' in detail and '0.061243' in detail
+    auth=json.loads((DOC/'data/submission-authorization.json').read_text())
+    assert auth['repository_decision']=='NOT OK TO SUBMIT' and auth['repository_authorized_file_count']==0
+
+
+def test_h80_runner_refuses_holdout_reuse_after_finalization():
+    import subprocess,sys
+    p=subprocess.run([sys.executable,str(ROOT/'scripts/h80_build.py')],capture_output=True,text=True)
+    assert p.returncode!=0 and 'H80 is finalized; do not rerun' in p.stderr
+
+
 def test_negative_lanes_are_not_recommended_or_promoted_on_entry_page():
+
+
     """The aggregate landing page must not recommend files whose overall verdict is negative."""
     lanes=json.loads((DOC/'data/lanes.json').read_text())
     assert all(x['verdict']=='negative' and x['protocol_unique'] is False for x in lanes['lanes'])

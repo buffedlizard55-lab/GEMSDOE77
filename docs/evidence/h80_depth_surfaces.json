@@ -1,0 +1,47 @@
+{
+  "evidence_class": "H80-SURFACE-BUILD",
+  "footprint_px": 5167373,
+  "finite_intersection_px": 5164312,
+  "feature_safe_support_px_after_13px_erosion": 4928214,
+  "surfaces": {
+    "depth_persist": {
+      "min": 0.0,
+      "max": 0.9999998211860657,
+      "mean": 0.4718824326992035
+    },
+    "cond_edge": {
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.4768587350845337
+    },
+    "grav_edge": {
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.4768587350845337
+    },
+    "geom": {
+      "min": 0.0,
+      "max": 0.9875383973121643,
+      "mean": 0.41366806626319885
+    },
+    "candidate_fused": {
+      "min": 0.0,
+      "max": 0.9884392023086548,
+      "mean": 0.44277527928352356
+    }
+  },
+  "sigma": {
+    "depth": [
+      1.5,
+      3.0
+    ],
+    "cond": 1.5,
+    "grav": 1.5
+  },
+  "fusion": "fused = 0.5*cbrt(depth_persist*cond_edge*grav_edge)+0.5*depth_persist",
+  "inputs": [
+    "training_features.tif b15 depth_to_base_surf",
+    "b17 cond_surf",
+    "b13 iso_grav_anom"
+  ]
+}

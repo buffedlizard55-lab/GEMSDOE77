@@ -1,0 +1,122 @@
+{
+  "scope": "two pinned witnesses only; not full registry",
+  "surface_pre_placement": {
+    "my_file": null,
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "my_dots": 4871234,
+    "candidate_decoded_sha256": "2524524b4f4ddf65eb077c32fbe6ab9c6af1c179cdf352222b00e46bad21aaa2",
+    "candidate_file_sha256": null,
+    "rho_limit": 0.9,
+    "overlap_limit": 0.7,
+    "jaccard_limit": 0.5,
+    "registry_rasters_expected": 2,
+    "registry_rasters_checked": 2,
+    "complete_accessible_scan": false,
+    "missing_or_invalid": 0,
+    "source_errors": [
+      "Legacy list has no complete-inventory certificate; diagnostic only"
+    ],
+    "worst_spearman_full_footprint": 0.06751056984796407,
+    "worst_rho_submission": "docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif",
+    "worst_dot_overlap": 1.0,
+    "worst_overlap_submission": "docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif",
+    "worst_jaccard_dot_sets": 0.942690608941913,
+    "worst_jaccard_submission": "docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif",
+    "byte_unique_among_checked": true,
+    "pixel_unique_among_checked": true,
+    "duplicate_count": 1,
+    "unique": false,
+    "rows": [
+      {
+        "repo": "buffedlizard55-lab/17GEMSDOE",
+        "submission": "docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif",
+        "file": "/home/user/GEMSDOE77/.cache/registry/dense_witness.tif",
+        "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+        "decoded_sha256": "11cb7dffcc88926fee8260f61df01d7712d3a7bb34fcc1bb333fb6b47f77ec05",
+        "their_dots": 5167373,
+        "my_dots_within_3px_of_theirs": 1.0,
+        "their_dots_within_3px_of_mine": 0.0,
+        "spearman_full_footprint": 0.06751056984796407,
+        "jaccard_dot_sets": 0.942690608941913,
+        "identical_bytes": false,
+        "identical_decoded_predictions": false,
+        "duplicate_by_rho": false,
+        "duplicate_by_overlap": true,
+        "duplicate_by_jaccard": true,
+        "representation": "continuous_surface"
+      },
+      {
+        "repo": "buffedlizard55-lab/60GEMSDOE",
+        "submission": "registry/rasters/GEMSDOE32__h33-2-b2-zeros.tif",
+        "file": "/home/user/GEMSDOE77/.cache/registry/h33.tif",
+        "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "decoded_sha256": "aec92fc3ff1e95f0b7a84d48294683199f2a3b25d9cdce2a95329aeccbfd839e",
+        "their_dots": 37654,
+        "my_dots_within_3px_of_theirs": 0.151123719369671,
+        "their_dots_within_3px_of_mine": 0.0,
+        "spearman_full_footprint": 0.006378979143862515,
+        "jaccard_dot_sets": 0.0073270401146519875,
+        "identical_bytes": false,
+        "identical_decoded_predictions": false,
+        "duplicate_by_rho": false,
+        "duplicate_by_overlap": false,
+        "duplicate_by_jaccard": false,
+        "representation": "dot_field"
+      }
+    ],
+    "jaccard_diagnostic_only": true,
+    "verdict": "negative",
+    "stop_required": true,
+    "candidate_rank_variation": true,
+    "scope": "All hash-verified accessible entries in the indexed public owner-repository inventory; not a complete organizer registry. External/private/unlinked/inaccessible files may be absent. Reverse overlap is diagnostic only."
+  },
+  "two_phase_summary": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "rasters_checked": 2,
+    "rasters_expected": 2,
+    "scope_note": "Checked against every registry raster whose bytes are present locally (plus any explicitly fetched witnesses). Un-fetched registry entries are a stated scope limitation, never a claim of absence.",
+    "footprint_cells": 5167373,
+    "dense_support_fraction": 0.2,
+    "thresholds": {
+      "rho": 0.9,
+      "forward_overlap": 0.7,
+      "jaccard": 0.5
+    },
+    "literal_reading": {
+      "worst_spearman_full_footprint": 0.06751056984796407,
+      "worst_spearman_submission": "docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif",
+      "worst_forward_overlap": 1.0,
+      "worst_overlap_submission": "docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif",
+      "forward_overlap_firings": 1,
+      "rho_firings": 0,
+      "duplicate": true,
+      "note": "Keeps the inherited literal support definition. A continuous-surface prior fires on every nonempty candidate, so a firing here is not evidence of duplication; it is reported for completeness."
+    },
+    "like_for_like_reading": {
+      "dot_field_rasters": 1,
+      "continuous_surface_rasters": 1,
+      "worst_forward_overlap_dot_fields": 0.151123719369671,
+      "worst_forward_overlap_dot_field_submission": "registry/rasters/GEMSDOE32__h33-2-b2-zeros.tif",
+      "worst_reverse_overlap": 0.0,
+      "worst_reverse_overlap_submission": "docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif",
+      "worst_jaccard": 0.942690608941913,
+      "worst_jaccard_submission": "docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif",
+      "forward_overlap_firings": 0,
+      "duplicate": false,
+      "note": "Inherited thresholds, applied to dot fields only; rank correlation still applies to every raster including the continuous surfaces."
+    },
+    "literal_firings": [
+      {
+        "submission": "docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif",
+        "repo": "buffedlizard55-lab/17GEMSDOE",
+        "representation": "continuous_surface",
+        "forward_overlap": 1.0,
+        "their_dots": 5167373
+      }
+    ]
+  },
+  "dense_witness_surface_overlap": 1.0,
+  "dense_witness_spearman": 0.06751056984796407,
+  "surface_gate_stop_required": true,
+  "dot_placement_performed": false
+}

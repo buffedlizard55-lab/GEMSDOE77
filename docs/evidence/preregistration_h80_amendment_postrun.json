@@ -1,0 +1,16 @@
+{
+  "schema": "gems-preregistration-postrun-amendment-v1",
+  "registered_utc": "2026-10-21T23:30:00Z",
+  "applies_to": "registry/preregistration_h80.json",
+  "status": "POST-RUN AUDIT — NOT A PREREGISTERED CHANGE",
+  "finding": "The frozen signature describes candidate = sqrt(depth_persist * cond_edge * grav_edge), followed by rank fusion text. The implementation scripts/h80_build.py and receipt evidence/h80_depth_surfaces.json actually compute 0.5*cbrt(depth_persist * cond_edge * grav_edge) + 0.5*depth_persist. Thus the tested surface differs from the literal frozen signature and the holdout/uniqueness evidence applies only to the implemented cube-root blend variant.",
+  "evidence": [
+    "registry/preregistration_h80.json signature and candidate_parameters.fusion",
+    "scripts/h80_build.py build_surfaces()",
+    "evidence/h80_depth_surfaces.json fusion receipt",
+    "evidence/h80_depth_holdout.json"
+  ],
+  "action": "Preserve original preregistration and result; do not edit the preregistration retroactively, do not claim confirmation of the exact originally specified H80-1 formula, and do not rerun because the registered budget is exhausted. Treat current H80 result as a negative for the implemented variant only.",
+  "retest_allowed": false,
+  "weekly_slots_used": 0
+}

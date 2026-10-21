@@ -1,0 +1,166 @@
+{
+  "threshold": 0.9,
+  "flagged": false,
+  "tests": [
+    {
+      "feature": "depth_persist",
+      "fold": "NW",
+      "auc": 0.4989858529429133,
+      "symmetric_auc": 0.5010141470570867,
+      "withheld_positive_pixels": 1450,
+      "evidence_class": "LEAKAGE-CANARY"
+    },
+    {
+      "feature": "cond_edge",
+      "fold": "NW",
+      "auc": 0.49553974577536497,
+      "symmetric_auc": 0.504460254224635,
+      "withheld_positive_pixels": 1450,
+      "evidence_class": "LEAKAGE-CANARY"
+    },
+    {
+      "feature": "grav_edge",
+      "fold": "NW",
+      "auc": 0.5008666792679595,
+      "symmetric_auc": 0.5008666792679595,
+      "withheld_positive_pixels": 1450,
+      "evidence_class": "LEAKAGE-CANARY"
+    },
+    {
+      "feature": "geom",
+      "fold": "NW",
+      "auc": 0.5130249055182402,
+      "symmetric_auc": 0.5130249055182402,
+      "withheld_positive_pixels": 1450,
+      "evidence_class": "LEAKAGE-CANARY"
+    },
+    {
+      "feature": "candidate_fused",
+      "fold": "NW",
+      "auc": 0.505473152326851,
+      "symmetric_auc": 0.505473152326851,
+      "withheld_positive_pixels": 1450,
+      "evidence_class": "LEAKAGE-CANARY"
+    },
+    {
+      "feature": "depth_persist",
+      "fold": "NE",
+      "auc": 0.5885856379436054,
+      "symmetric_auc": 0.5885856379436054,
+      "withheld_positive_pixels": 1775,
+      "evidence_class": "LEAKAGE-CANARY"
+    },
+    {
+      "feature": "cond_edge",
+      "fold": "NE",
+      "auc": 0.4882879726577226,
+      "symmetric_auc": 0.5117120273422774,
+      "withheld_positive_pixels": 1775,
+      "evidence_class": "LEAKAGE-CANARY"
+    },
+    {
+      "feature": "grav_edge",
+      "fold": "NE",
+      "auc": 0.5708319270425463,
+      "symmetric_auc": 0.5708319270425463,
+      "withheld_positive_pixels": 1775,
+      "evidence_class": "LEAKAGE-CANARY"
+    },
+    {
+      "feature": "geom",
+      "fold": "NE",
+      "auc": 0.5686657160189259,
+      "symmetric_auc": 0.5686657160189259,
+      "withheld_positive_pixels": 1775,
+      "evidence_class": "LEAKAGE-CANARY"
+    },
+    {
+      "feature": "candidate_fused",
+      "fold": "NE",
+      "auc": 0.5822344277434535,
+      "symmetric_auc": 0.5822344277434535,
+      "withheld_positive_pixels": 1775,
+      "evidence_class": "LEAKAGE-CANARY"
+    },
+    {
+      "feature": "depth_persist",
+      "fold": "SW",
+      "auc": 0.48828494883144347,
+      "symmetric_auc": 0.5117150511685565,
+      "withheld_positive_pixels": 2395,
+      "evidence_class": "LEAKAGE-CANARY"
+    },
+    {
+      "feature": "cond_edge",
+      "fold": "SW",
+      "auc": 0.49802935095384143,
+      "symmetric_auc": 0.5019706490461586,
+      "withheld_positive_pixels": 2395,
+      "evidence_class": "LEAKAGE-CANARY"
+    },
+    {
+      "feature": "grav_edge",
+      "fold": "SW",
+      "auc": 0.49985210368266075,
+      "symmetric_auc": 0.5001478963173392,
+      "withheld_positive_pixels": 2395,
+      "evidence_class": "LEAKAGE-CANARY"
+    },
+    {
+      "feature": "geom",
+      "fold": "SW",
+      "auc": 0.4851427377104657,
+      "symmetric_auc": 0.5148572622895343,
+      "withheld_positive_pixels": 2395,
+      "evidence_class": "LEAKAGE-CANARY"
+    },
+    {
+      "feature": "candidate_fused",
+      "fold": "SW",
+      "auc": 0.4886818896285914,
+      "symmetric_auc": 0.5113181103714086,
+      "withheld_positive_pixels": 2395,
+      "evidence_class": "LEAKAGE-CANARY"
+    },
+    {
+      "feature": "depth_persist",
+      "fold": "SE",
+      "auc": 0.5706575288885298,
+      "symmetric_auc": 0.5706575288885298,
+      "withheld_positive_pixels": 1962,
+      "evidence_class": "LEAKAGE-CANARY"
+    },
+    {
+      "feature": "cond_edge",
+      "fold": "SE",
+      "auc": 0.46578706415298754,
+      "symmetric_auc": 0.5342129358470125,
+      "withheld_positive_pixels": 1962,
+      "evidence_class": "LEAKAGE-CANARY"
+    },
+    {
+      "feature": "grav_edge",
+      "fold": "SE",
+      "auc": 0.5728397689723849,
+      "symmetric_auc": 0.5728397689723849,
+      "withheld_positive_pixels": 1962,
+      "evidence_class": "LEAKAGE-CANARY"
+    },
+    {
+      "feature": "geom",
+      "fold": "SE",
+      "auc": 0.5687671165145294,
+      "symmetric_auc": 0.5687671165145294,
+      "withheld_positive_pixels": 1962,
+      "evidence_class": "LEAKAGE-CANARY"
+    },
+    {
+      "feature": "candidate_fused",
+      "fold": "SE",
+      "auc": 0.572858888297508,
+      "symmetric_auc": 0.572858888297508,
+      "withheld_positive_pixels": 1962,
+      "evidence_class": "LEAKAGE-CANARY"
+    }
+  ]
+}

@@ -22,7 +22,7 @@ LB = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboa
 PD = "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
 NAV = [("index.html", "Start here"), ("executive-summary.html", "How to submit"),
-       ("h79.html", "H79 · research-only"),
+       ("h80-depth.html", "H80-DB · negative"), ("h79.html", "H79 · research-only"),
        ("h79-radhalo.html", "H79-RH · negative"),
        ("h77l.html", "H77L · research-only"), ("h77d.html", "H77D (Zero-SGMC)"), ("h77d-executive-summary.html", "H77D guide"),
        ("h77-step.html", "H77-Step"), ("h77e.html", "H77E · negative"), ("h78.html", "H78 lane"),
@@ -90,6 +90,11 @@ def main():
     primary = next(x for x in lanes["lanes"] if x.get("primary"))
     # ---------------- status table (every file in the repository)
     def holdout_cell(x):
+        if x["lane"].startswith("H80-DB:"):
+            h = jload("evidence/run_card_h80_depth.json")["holdout_dti"]
+            return (f'<span class="chip warn">HOLDOUT-DTI {h["score"]:.4f} '
+                    f'(95% CI {h["ci95"][0]:.4f}–{h["ci95"][1]:.4f}; '
+                    f'{e(h["evaluator_version"])}; {h["withheld_positive_pixels"]:,} withheld); negative</span>')
         if x["lane"].startswith("H77L:"):
             h = lag_card["holdout_dti"]
             return (f'<span class="chip warn">HOLDOUT-DTI {h["dti"]:.4f} '
@@ -203,8 +208,8 @@ lists the reviewed research candidates, not every historical archived/NaN-twin f
 <b>0.4413 ORGANIZER-CONFIRMED</b> for first place and <b>0.2778 ORGANIZER-CONFIRMED</b> for participant extradr19
 (at row #48 in this read). Neither public row identifies the underlying raster. The owner's claim that the specific
 <code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</code> file achieved 0.2778 is <b>OWNER-REPORT, not a submission
-receipt</b>; GEMSDOE32's own published page said it had no organizer score for that file. No H77L file has an organizer
-score. H77L used <b>zero</b> of the <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">three weekly feedback slots</a>.</div>
+receipt</b>; GEMSDOE32's own published page said it had no organizer score for that file. No H80-DB file has an organizer
+score. H80-DB used <b>zero</b> of the <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">three weekly feedback slots</a>.</div>
 {facts}
 <h2>Why the H33 file might have achieved the owner's reported 0.2778</h2>
 <p><b>Direct raster measurement, not an authenticated causal leaderboard attribution:</b> the archived H33 file has 37,654
@@ -219,7 +224,7 @@ not proof that the specific file received that score or that another submission 
 
     # ---------------- general executive summary (how to submit)
     guide = f"""<h1>Executive summary: how to submit — only AFTER approval</h1>
-<p class="verdict"><b>Today: NOT OK TO SUBMIT any file here.</b> The featured H77L file is explicitly
+<p class="verdict"><b>Today: NOT OK TO SUBMIT any file here.</b> The featured H80-DB file is explicitly
 <b>RESEARCH ONLY</b>. Download is for inspection, not permission to upload. Before spending one of the official
 <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">three weekly feedback slots</a>, the shared uniqueness policy must
 be resolved, a candidate must beat a <em>matched</em> holdout incumbent, and a separate selector must approve it. No
@@ -231,7 +236,7 @@ condition is met merely by passing a format check.</p>
 <tr><td>File to submit</td><td>One <b>cleared</b> single-band float32 GeoTIFF <code>.tif</code> (or a ZIP containing exactly that one GeoTIFF),
 never this HTML page, a PDF, a JSON run card, or a file marked RESEARCH ONLY. Match the <a href="{PD}">official grid</a>:
 EPSG:32611; 3730 rows × 3292 columns; 100 m resolution; top-left origin (243350, 4508550). Prediction values [0, 1].</td></tr>
-<tr><td>Note (optional)</td><td>Paste the <b>approved file's</b> distinct short note, no longer than 140 characters. The H77L
+<tr><td>Note (optional)</td><td>Paste the <b>approved file's</b> distinct short note, no longer than 140 characters. The featured H80-DB
 research-file note says DO NOT SUBMIT and is <em>not</em> an upload recommendation.</td></tr></table>
 <h2>Actual submission steps (not executable for today's files)</h2><ol>
 <li>First confirm the site's per-file row says <b>OK TO SUBMIT</b> and the selector has approved this exact SHA-256;
@@ -244,13 +249,13 @@ and open <b>New submission</b>. This sandbox cannot log into your account or upl
 <li>Choose the cleared <code>.tif</code>, enter its approved short note, and submit. Read the response; archive its
 organizer timestamp, submission ID and score receipt. Only then label that *file's* result ORGANIZER-CONFIRMED.</li>
 <li>For finalist materials, consult the <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">official rules PDF</a>:
-choose only one final submission and disclose generative-AI involvement in the required narrative when applicable.</li></ol>
+finalists must choose one submission for both prize phases and provide the required solution code assets and documentation. Check the competition platform for any additional current instructions.</li></ol>
 <h2>About the earlier “Predicted values must be in range [0, 1]” error</h2>
 <p>The original rejected bytes/organizer diagnostics are unavailable, so the cause is <b>not proven</b>. The pinned
 shared writer refuses non-finite or out-of-range values rather than clipping them, writes a single float32 band with no
-nodata sentinel, and re-opens its output to check the sample's CRS/shape/transform. For the linked H77L file, the
-read-back range is [0.0, 1.0], zero NaNs inside the footprint and anywhere else, and zeros outside the template's finite
-footprint (see <a href="evidence/h77l_run_card.json">validator receipt</a>). This removes the measured local risk of
+nodata sentinel, and re-opens its output to check the sample's CRS/shape/transform. For the featured H80-DB file, the
+read-back range is [0.0, 0.9884392], zero NaNs inside the footprint and anywhere else, and zeros outside the sample
+footprint (see <a href="downloads/gemsdoe77-h80-basement-cond-edge-RESEARCH-ONLY.json">validator receipt</a>). This removes the measured local risk of
 out-of-range pixels; it is <b>not an organizer acceptance guarantee</b> and does not override NOT OK TO SUBMIT.</p>
 <h2>Evidence classes</h2><ul>
 <li><b>ORGANIZER-CONFIRMED</b>: public <a href="{LB}">leaderboard</a> values and actual submission-page receipts;
@@ -272,6 +277,13 @@ projection is labelled INSTRUMENT, never presented as a score.</li></ul>"""
         shutil.copyfile(ROOT / "evidence" / fname, D / "evidence" / fname)
     shutil.copyfile(ROOT / "registry/preregistration_h77l.json", D / "evidence/preregistration_h77l.json")
     shutil.copyfile(ROOT / "research/h77l_pre_experiment_hypotheses.md", D / "research/h77l_pre_experiment_hypotheses.md")
+
+    # ---------------- H80 frozen evidence mirrored into the GitHub Pages tree
+    for fname in ("run_card_h80_depth.json", "h80_depth_holdout.json", "h80_depth_canaries.json", "h80_depth_surface_uniqueness.json", "h80_depth_input_receipt.json", "h80_depth_surfaces.json"):
+        shutil.copyfile(ROOT / "evidence" / fname, D / "evidence" / fname)
+    shutil.copyfile(ROOT / "registry/preregistration_h80.json", D / "evidence/preregistration_h80.json")
+    shutil.copyfile(ROOT / "registry/preregistration_h80_amendment_postrun.json", D / "evidence/preregistration_h80_amendment_postrun.json")
+    shutil.copyfile(ROOT / "research/h80_pre_experiment_hypotheses.md", D / "research/h80_pre_experiment_hypotheses.md")
 
     # ---------------- H78 lane page
     if card and sub:
