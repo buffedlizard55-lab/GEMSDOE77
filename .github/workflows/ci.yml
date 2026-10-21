@@ -23,8 +23,23 @@ jobs:
       - run: python scripts/build_h82rank_site.py
       - name: Independently re-read every listed primary TIFF (no model or slot)
         run: python scripts/audit_downloads.py
+      - name: Confirm the pinned universal duplicate preflight remains blocking
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python scripts/restore_registry.py
+          python - <<'PY'
+          import subprocess
+          import sys
+          result = subprocess.run([sys.executable, 'scripts/preflight_registry.py'])
+          if result.returncode != 2:
+              raise SystemExit(
+                  f'expected STOP_UNIVERSAL_DUPLICATE exit 2, got {result.returncode}'
+              )
+          PY
+      - name: Generate the authoritative release decision before rendering entry pages
+        run: python scripts/release_gate.py --verify-fail-closed
       - run: python scripts/build_home.py
-      - run: python scripts/release_gate.py --verify-fail-closed
       - run: python scripts/verify_all.py
       - run: |
           python - <<'PY'

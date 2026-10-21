@@ -1,5 +1,7 @@
 import json
 import re
+
+import pytest
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlparse, unquote
@@ -125,6 +127,56 @@ def test_pages_staging_preserves_legacy_docs_urls_and_excludes_secrets(tmp_path)
     assert 'href="research/h80_hypotheses.md"' in h80
     # Re-running replaces only a marked generated directory.
     assert stage(out)==out
+
+
+def test_release_status_card_fails_closed_on_an_ambiguous_receipt():
+    from build_home import release_status_card
+
+    assert 'OK TO SUBMIT' in release_status_card({
+        'repository_decision': 'OK TO SUBMIT',
+        'repository_authorized_file_count': 1,
+    })
+    for receipt in (
+        None,
+        {},
+        {'repository_decision': 'MAYBE', 'repository_authorized_file_count': 0},
+        {'repository_decision': 'NOT OK TO SUBMIT', 'repository_authorized_file_count': 1},
+        {'repository_decision': 'OK TO SUBMIT', 'repository_authorized_file_count': 0},
+        {'repository_decision': 'NOT OK TO SUBMIT', 'repository_authorized_file_count': True},
+    ):
+        with pytest.raises(ValueError):
+            release_status_card(receipt)
+
+
+def test_entry_pages_open_with_the_authoritative_release_decision():
+    """Historical inspection cards must never displace the repository release gate."""
+    receipt = json.loads((DOC / 'data' / 'submission-authorization.json').read_text())
+    decision = receipt['repository_decision']
+    authorized = receipt['repository_authorized_file_count']
+    assert decision in {'OK TO SUBMIT', 'NOT OK TO SUBMIT'}
+    assert isinstance(authorized, int) and not isinstance(authorized, bool)
+    assert (decision == 'OK TO SUBMIT') is (authorized > 0)
+
+    marker = '<main><div class="wrap">'
+    for name in ('index.html', 'executive-summary.html'):
+        page = (DOC / name).read_text()
+        main_start = page.index(marker) + len(marker)
+        header = page[:main_start]
+        status_start = page.index('<section id="repository-submission-status"')
+        status_end = page.index('</section>', status_start) + len('</section>')
+        status = page[status_start:status_end]
+
+        assert '<details class="site-nav">' in header, name
+        assert 'Archive &amp; lane reports' in header, name
+        assert status_start == main_start, name
+        assert page.count('id="repository-submission-status"') == 1, name
+        assert f'Repository submission status: {decision}' in status
+        assert f'Authorized files: {authorized}.' in status
+        assert 'Download status is separate:' in status
+        assert 'data/submission-authorization.json' in status
+        assert 'href="downloads/' not in page[main_start:status_end]
+        if decision == 'NOT OK TO SUBMIT':
+            assert 'Do not submit any file from this repository.' in status
 
 
 def test_home_pages_put_download_and_per_file_status_first():
