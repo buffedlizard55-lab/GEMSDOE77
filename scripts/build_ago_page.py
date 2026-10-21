@@ -7,15 +7,29 @@ ROOT = Path(__file__).resolve().parents[1]
 D = ROOT / "docs"
 REPO = "https://github.com/buffedlizard55-lab/GEMSDOE77"
 
-info = json.loads(Path("/tmp/ago_final_info.json").read_text())
-card = json.loads(Path("evidence/ago_run_card.json").read_text())
+card = json.loads((ROOT / "evidence/ago_run_card.json").read_text())
+variants = card["variants"]
+info = {
+    "primary": {
+        "tag": Path(card["raster_path_zeros"]).stem.removesuffix("-zeros"),
+        "sha256_zeros": card["raster_sha256"],
+    },
+    "safe": {
+        "tag": variants["safe_50pct"]["tag"],
+        "sha256_zeros": variants["safe_50pct"]["sha256"],
+    },
+    "high": {
+        "tag": variants["high_holdout_0pct"]["tag"],
+        "sha256_zeros": variants["high_holdout_0pct"]["sha256"],
+    },
+}
 
 # Build the page HTML
 with open(D / "assets/lia.css") as f:
     pass  # check exists
 
 NAV = [("index.html", "Start here"), ("executive-summary.html", "How to submit"),
-       ("ago.html", "AGO · NEW primary"), 
+       ("ago.html", "AGO · negative proxies"),
        ("h79.html", "H79 · research-only"), ("h79-radhalo.html", "H79-RH · negative"),
        ("h77l.html", "H77L · research-only"), ("h77d.html", "H77D (Zero-SGMC)"),
        ("h77d-executive-summary.html", "H77D guide"), ("h77-step.html", "H77-Step"),
@@ -32,52 +46,51 @@ s = info["safe"]
 
 body = f"""
 <h1>AGO: ML Backbone × Geophysical Displacement — Hybrid Fault Prediction</h1>
-<p class="verdict"><b>Verdict: NEGATIVE (research) — but PORTAL FORMAT PASS.</b>
-This lane will <b>NOT</b> trigger the portal error "Predicted values must be in range [0, 1]" — all pixels are verified finite in [0,1].
-It is a research artifact: no organizer score exists, no weekly slot was spent, and the selector has not approved it.
-Download for inspection and portal-format testing.</p>
+<p class="verdict"><b>Verdict: NEGATIVE. NOT OK TO SUBMIT — RESEARCH DOWNLOAD FOR INSPECTION ONLY.</b>
+Local format preflight passed for the recorded zeros variants (finite values in [0,1]), but this does <b>not</b> guarantee remote portal acceptance.
+The literal registry gate fails, no organizer score exists, no weekly slot was spent, and no selector approved any AGO file.
+Do not upload these artifacts.</p>
 
 <div class="card dl" style="border: 2px solid #2a7ae2; background: #f0f7ff;">
-<h2>⬇ PRIMARY DOWNLOAD — Portal-valid GeoTIFF (will NOT give range [0,1] error)</h2>
+<h2>⬇ AGO-Hybrid35 — inspection download only; DO NOT SUBMIT</h2>
 <p><b>AGO-Hybrid35</b>: 35% of 37,654 dots are far-field geophysics maxima displaced &gt;5px from the ML backbone;
 65% retained as backbone dots on strong grav-mag contacts. Overlap <b>0.65 &lt; 0.70 PASSED</b> (backbone-specific).</p>
 <p>
-<a class="btn" href="downloads/{p['tag']}-zeros.tif" download>Download .tif — zeros outside (RECOMMENDED for portal)</a>
-<a class="btn alt" href="downloads/{p['tag']}-zeros.zip" download>Same as one-TIFF .zip (portal accepts .zip)</a>
-<a class="btn alt" href="downloads/{p['tag']}-nan.tif" download>Download .tif — NaN outside (sample-submission style)</a>
+<a class="btn" href="downloads/{p['tag']}-zeros.tif" download>Download .tif for inspection — zeros outside</a>
+<a class="btn alt" href="downloads/{p['tag']}-zeros.zip" download>Inspection copy as one-TIFF .zip</a>
+<a class="btn alt" href="downloads/{p['tag']}-nan.tif" download>NaN-outside reference variant (inspection only)</a>
 </p>
 <div class="chips">
-<span class="chip ok">Portal format: PASS (all 12,279,160 pixels finite in [0,1])</span>
+<span class="chip ok">Local format preflight: PASS (all 12,279,160 pixels finite in [0,1])</span>
 <span class="chip ok">Backbone overlap: 0.65 &lt; 0.70 PASS</span>
 <span class="chip bad">Literal dense witness: 1.0 &gt; 0.70 FAIL (Policy I17 — needs owner fix)</span>
 <span class="chip warn">Selector: not approved</span>
 <span class="chip warn">No organizer score</span>
 </div>
 <p class="small">File: <code>{p['tag']}-zeros.tif</code> · {Path(D / f"downloads/{p['tag']}-zeros.tif").stat().st_size // 1024} KB · SHA-256 <code>{p['sha256_zeros']}</code></p>
-<p class="small">Submission name (copy for DrivenData form — 67 chars):</p>
+<p class="small"><b>Artifact identity only — not an approved submission name or note.</b></p>
 <div class="copy"><code>{p['tag']}</code><button data-copy="{p['tag']}">Copy</button></div>
-<p class="small">Note for DrivenData form (copy — 99 chars):</p>
-<div class="copy"><code>AGO hybrid35: ML backbone x geophys selective displacement (35% far-field infill, 37654 dots, 0 on catalogue)</code><button data-copy="AGO hybrid35: ML backbone x geophys selective displacement (35% far-field infill, 37654 dots, 0 on catalogue)">Copy</button></div>
-<p class="small"><a href="downloads/{p['tag']}.json">Format/validator receipt (JSON)</a> · <a href="evidence/ago_run_card.json">Full run card (JSON)</a> · <a href="executive-summary.html">How to submit →</a></p>
-<p class="small"><b>How to submit this file:</b> Download the <b>zeros</b> variant above → go to <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData competition page</a> → New submission → choose the downloaded <code>.tif</code> (or <code>.zip</code>) → paste the Note above → submit. The zeros variant has <b>all 12,279,160 pixels finite in [0,1]</b> with zeros outside the 5,165,852-pixel footprint, so the portal error <code>Predicted values must be in range [0, 1]</code> <b>will not occur</b>.</p>
+<p class="small"><code>AGO hybrid35: ML backbone x geophys selective displacement (35% far-field infill, 37654 dots, 0 on catalogue)</code> is retained as historical metadata only. Do not use it for an upload.</p>
+<p class="small"><a href="downloads/{p['tag']}.json">Local format receipt (JSON)</a> · <a href="evidence/ago_run_card.json">Frozen lane run card (JSON)</a> · <a href="data/submission-authorization.json">Repository authorization receipt</a></p>
+<p class="small"><b>No submission steps apply.</b> The repository authorization receipt says <b>NOT OK TO SUBMIT</b> and authorizes zero files. Local format checks cannot establish portal acceptance or override the negative scientific/uniqueness verdict.</p>
 </div>
 
 <section class="card">
-<h2>Two additional variants (also portal-valid)</h2>
+<h2>Two additional research variants (inspection only; NOT approved)</h2>
 <table>
-<tr><th>Variant</th><th>Download (.tif / .zip)</th><th>Overlap vs D2.8</th><th>Holdout (quick)</th><th>Portal</th></tr>
-<tr><td><b>Hybrid50</b> — 50% displaced (most unique)</td>
+<tr><th>Variant</th><th>Download (.tif / .zip)</th><th>Backbone overlap diagnostic</th><th>Quick-evaluation status</th><th>Submission</th></tr>
+<tr><td><b>Hybrid50</b> — 50% displaced</td>
 <td><a download href="downloads/{s['tag']}-zeros.tif">{s['tag']}-zeros.tif</a><br><a download href="downloads/{s['tag']}-zeros.zip">.zip</a><br><small>SHA <code>{s['sha256_zeros'][:16]}…</code></small></td>
-<td>0.50 <span class="chip ok">PASS</span></td><td>0.0894</td><td><span class="chip ok">PASS</span></td></tr>
-<tr><td><b>Select</b> — 0% displaced (pure subset, highest holdout)</td>
+<td>0.50 (narrow backbone-only diagnostic)</td><td>Quick proxy lacks exact withheld-positive count and 95% CI; not a reportable HOLDOUT-DTI score</td><td>NOT OK TO SUBMIT</td></tr>
+<tr><td><b>Select</b> — no displacement</td>
 <td><a download href="downloads/{h['tag']}-zeros.tif">{h['tag']}-zeros.tif</a><br><a download href="downloads/{h['tag']}-zeros.zip">.zip</a><br><small>SHA <code>{h['sha256_zeros'][:16]}…</code></small></td>
-<td>1.00 <span class="chip bad">FAIL</span></td><td>0.1444</td><td><span class="chip ok">PASS</span></td></tr>
+<td>1.00 (subset duplicates backbone under this diagnostic)</td><td>Quick proxy lacks exact withheld-positive count and 95% CI; not a reportable HOLDOUT-DTI score</td><td>NOT OK TO SUBMIT</td></tr>
 </table>
 <p class="small muted">All three: 37,654 binary dots, 0 on catalogue, single-band float32, EPSG:32611, 3730×3292, transform identical to sample_submission.tif. Each has a NaN-outside twin and ZIP.</p>
 </section>
 
 <h2>Why this lane is genuinely new</h2>
-<p>The H33 family improved leaderboard by <em>blindly</em> removing near-catalogue dots (all 6,436 within 200 m). This lane does <em>selectively</em>:</p>
+<p>The repository's H33 forensics describe a candidate mechanism: sparse thinning near mapped faults could reduce redundant false-positive mass under distance-tolerant DTI while preserving some coverage. The reported 0.2778 remains OWNER-REPORT without a file-to-receipt link, and this does not establish that H33 thinning caused a score gain. AGO tests a distinct geophysics-reranking hypothesis; it does not inherit that reported score.</p>
 <table>
 <tr><th>Step</th><th>What</th><th>Why it matters</th></tr>
 <tr><td>1. Score backbone</td><td>Combined grav-mag gradient strength: <code>sqrt(grav_gmag × rtp_gmag) × (0.5 + 0.5 × dilatation)</code></td><td>Strong contacts = likely real structure; dilatation weights active (geothermal-relevant) extension</td></tr>
@@ -96,31 +109,24 @@ Download for inspection and portal-format testing.</p>
 <h2>Five hypotheses ranked (expected DTI gain ÷ cost)</h2>
 <table>
 <tr><th>Rank</th><th>Hypothesis</th><th>Layers &amp; signature</th><th>Why off-catalogue?</th><th>Difference from repo</th><th>Cost</th><th>Status</th></tr>
-<tr><td>1 ★</td><td><b>ML backbone × geophysical displacement (THIS LANE)</b></td><td>H19-5 D2.8 backbone + grav-mag gradient × dilatation; 35% far-field infill</td><td>ML backbone misses some blind fronts; geophysics fills gaps where training was sparse</td><td>No prior lane reused backbone with scored displacement</td><td>Low (reuse + Poisson)</td><td>TESTED: 0.103 holdout, 0.65 overlap PASS</td></tr>
+<tr><td>1 ★</td><td><b>ML backbone × geophysical displacement (THIS LANE)</b></td><td>H19-5 D2.8 backbone + grav-mag gradient × dilatation; 35% far-field infill</td><td>ML backbone misses some blind fronts; geophysics fills gaps where training was sparse</td><td>No prior lane reused backbone with scored displacement</td><td>Low (reuse + Poisson)</td><td>TESTED; negative overall. Quick-evaluation numbers are not reportable HOLDOUT-DTI scores.</td></tr>
 <tr><td>2</td><td>Anisotropic dip-slip polarity asymmetry</td><td>iso_grav_anom + RTP: directional sampling ±300 m along gradient (hangingwall low, footwall high)</td><td>Blind fronts under alluvium have no scarp but retain basement grav step</td><td>H77-Step used step tensor magnitude; this uses <em>directional polarity</em></td><td>Low</td><td>TESTED: 0.067 (= random) — REJECTED</td></tr>
 <tr><td>3</td><td>Conductivity curvature × gravity slope (hydrothermal halo)</td><td>cond_surf + iso_grav_anom_slope curvature</td><td>Alteration changes conductivity near blind geothermal conduits</td><td>No lane has used cond_surf productively</td><td>Low-medium</td><td>NOT TESTED — needs next session</td></tr>
 <tr><td>4</td><td>Multi-scale strain divergence × openness</td><td>geod_2ndinv + geod_dilat / det_elev openness</td><td>Relay ramps visible at specific scales</td><td>Multi-scale decomposition not in cached stack</td><td>Medium-high</td><td>NOT TESTED — needs GPU + new features</td></tr>
 <tr><td>5</td><td>Tilt-derivative zero-contour persistence</td><td>Derived tilt from TMI bands filtered by depth_to_base coherence</td><td>Under-cover contacts have persistent zero-contours</td><td>Band 6 is NOT tilt (it's radiometric TC per forensics)</td><td>Low</td><td>NOT TESTED — genuine tilt derivation needed</td></tr>
 </table>
 
-<h2>Holdout evaluation (quick 4-quadrant spatial)</h2>
-<p>Quick holdout (4 quadrants split at midlines ±30px buffer; visible faults masked; same evaluation grid as prior quick checks).
-Not gems57-pooled-hide-v2 — see caveat.</p>
-<table>
-<tr><th>File (quick evaluator)</th><th>Dots</th><th>Holdout-DTI</th><th>vs D2.8 raw (0.1667)</th><th>vs Random (0.0688)</th><th>Overlap vs D2.8</th></tr>
-<tr><td>D2.8 raw (44,090 dots)</td><td>44,090</td><td>0.1667</td><td>—</td><td>+0.0979</td><td>—</td></tr>
-<tr><td>H19-5 solid (121K dots)</td><td>121,106</td><td>0.1716</td><td>+0.0049</td><td>+0.1028</td><td>—</td></tr>
-<tr><td><b>AGO-Hybrid35 (PRIMARY)</b></td><td>37,654</td><td><b>0.1034</b></td><td>−0.0633</td><td><b>+0.0346</b></td><td><b>0.650 PASS</b></td></tr>
-<tr><td>AGO-Hybrid50 (safe uniqueness)</td><td>37,654</td><td>0.0894</td><td>−0.0773</td><td>+0.0206</td><td>0.500 PASS</td></tr>
-<tr><td>AGO-Select (no displacement)</td><td>37,654</td><td>0.1444</td><td>−0.0223</td><td>+0.0756</td><td>1.000 FAIL</td></tr>
-<tr><td>AGO-polar (pure geophysics)</td><td>37,654</td><td>0.0667</td><td>−0.1000</td><td>−0.0021</td><td>—</td></tr>
-<tr><td>Random (37654 dots)</td><td>37,654</td><td>0.0688</td><td>—</td><td>—</td><td>—</td></tr>
-</table>
-<p class="small muted">Leakage canary: individual grav/RTM gradient magnitudes score 0.056–0.065 on this holdout (all below random); the combined field alone scores 0.067 (random-level). The ML backbone dominates holdout performance; displacement trades ~0.04 holdout for uniqueness. These are <em>quick-evaluator</em> numbers (30px quadrant buffer, not gems57-pooled-hide-v2 with 8-connected-component buffered hide-and-recover), so not comparable to H77-Step 0.1527.</p>
+<h2>Quick-evaluation diagnostics — not HOLDOUT-DTI scores</h2>
+<p>The frozen AGO card records a four-quadrant spatial proxy with a 30-pixel buffer. It is not the pinned
+<code>gems57-pooled-hide-v2</code> evaluator; the exact withheld-positive count and a 95% confidence interval are absent.
+Accordingly, its raw numbers are <b>not reportable HOLDOUT-DTI scores</b>, are not comparable with the repository's pinned-evaluator results,
+and do not support any leaderboard or H33 0.2778 inference. They are retained without numeric promotion here; see the
+<a href="evidence/ago_run_card.json">immutable AGO run card</a> for the historical diagnostic and its limitations.
+No organizer-confirmed score exists for any AGO TIFF.</p>
+<p class="small muted">The source card records a quick quadrant proxy and leakage-canary diagnostics. These are not substitutes for the protocol's whole-component buffered holdout, exact withheld-positive count and confidence interval.</p>
 
-<h2>Portal format validation</h2>
-<p>Every zeros-variant TIF below is verified <b>all-finite in [0,1]</b> — it will NOT trigger
-<code>Predicted values must be in range [0, 1]</code> on the DrivenData portal.</p>
+<h2>Local format preflight (not portal acceptance)</h2>
+<p>The tracked receipts record local checks for the zeros variants: finite values in [0,1], expected dtype/grid, and no nodata sentinel. This is <b>not</b> a remote portal test and cannot guarantee acceptance or submission eligibility.</p>
 <table>
 <tr><th>Check</th><th>Result (all 3 AGO files)</th></tr>
 <tr><td>Single band, float32, 3730×3292</td><td>PASS</td></tr>
@@ -132,13 +138,8 @@ Not gems57-pooled-hide-v2 — see caveat.</p>
 </table>
 <p class="small">NaN-outside twins also provided (NaN outside footprint, as in sample_submission.tif). Some older validators may reject NaN outside; use the zeros variant to avoid the issue. The <code>docs/downloads/*.json</code> receipt for each file contains the exact byte verification.</p>
 
-<h2>Submission mechanics</h2>
-<ol>
-<li>Click <b>Download .tif — zeros outside</b> above (or the .zip containing it). That file is <b>all finite in [0,1]</b>.</li>
-<li>Go to <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">the competition</a> → <b>New submission</b>.</li>
-<li>Choose the downloaded <code>.tif</code> (or <code>.zip</code>). Paste the Note for that file. Submit.</li>
-<li>The portal should <b>not</b> return <code>Predicted values must be in range [0, 1]</code> — if it does, file a bug report with the receipt JSON (<code>docs/downloads/&lt;name&gt;.json</code>) showing your local validator passed.</li>
-</ol>
+<h2>Submission status</h2>
+<p><b>NOT OK TO SUBMIT.</b> These files are downloadable for inspection only. The selector has approved none, the registry gate fails under the shared literal rule, and local format receipts are not remote acceptance receipts. No upload instructions are provided.</p>
 
 <h2>Non-fault mimic &amp; caveats</h2>
 <p><b>Named non-fault process:</b> Paleozoic thrust contacts, intrusive aureoles, and pluvial Lake Lahontan shoreline benches can mimic grav-mag steps — discriminated here by requiring positive geodetic dilatation and by the ML backbone's topographic context (which pure geophysics lacks). Pluvial benches are horizontal, not dipping, so polarity disambiguation helps.</p>
@@ -155,11 +156,11 @@ Not gems57-pooled-hide-v2 — see caveat.</p>
 NAV_STR = " ".join(f'<a href="{p}"{" class=here" if p == "ago.html" else ""}>{t}</a>' for p, t in NAV)
 hdr = f'<header><div class="wrap"><span class="brand">GEMSDOE77 · DOE GEMS Prize</span>{NAV_STR} <a href="{REPO}">GitHub</a></div></header>'
 html = f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1"><title>AGO · NEW hybrid submission · GEMSDOE77</title>
-<meta name="description" content="GEMSDOE77 AGO lane: ML backbone × geophysical displacement — NEW hybrid submission GeoTIFFs">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>AGO · negative research artifacts · GEMSDOE77</title>
+<meta name="description" content="GEMSDOE77 AGO lane: negative, inspection-only ML-backbone and geophysical-displacement research TIFFs">
 <link rel="stylesheet" href="assets/lia.css"></head><body>
 {hdr}<main><div class="wrap">{body}</div></main>
-<footer><div class="wrap">All files are research artifacts; no selector has approved a weekly slot. Generated from <code>evidence/ago_run_card.json</code> and <code>docs/downloads/*.json</code> receipts. Number labels: <b>ORGANIZER-CONFIRMED</b> (public leaderboard), <b>HOLDOUT-DTI</b> (local spatial hide-and-recover).</div></footer>
+<footer><div class="wrap">All files are research artifacts for inspection only and NOT OK TO SUBMIT; no selector has approved a weekly slot. Frozen evidence: <code>evidence/ago_run_card.json</code> and <code>docs/downloads/*.json</code> receipts. AGO quick-evaluation numbers lack the exact withheld-positive count and 95% CI required for a reportable HOLDOUT-DTI score. No organizer-confirmed AGO score exists.</div></footer>
 <script>document.querySelectorAll('button[data-copy]').forEach(b=>b.onclick=()=>{{navigator.clipboard.writeText(b.dataset.copy);b.textContent='Copied';setTimeout(()=>b.textContent='Copy',1200)}})</script>
 </body></html>"""
 

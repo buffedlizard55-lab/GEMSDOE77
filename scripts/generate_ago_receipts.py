@@ -29,7 +29,7 @@ with rasterio.open(ROOT / "data/bridge/labels.tif") as s:
 def make_receipt(entry, label_suffix):
     tif_zeros = ROOT / entry["file_zeros"]
     tif_nan = ROOT / entry["file_nan"]
-    
+
     with rasterio.open(tif_zeros) as src:
         a = src.read(1)
         meta = dict(crs=str(src.crs), width=src.width, height=src.height,
@@ -44,7 +44,7 @@ def make_receipt(entry, label_suffix):
         in01_all = bool(np.all((a >= 0) & (a <= 1)))
         transform_match = src.transform == tpl_transform
         crs_match = str(src.crs) == tpl_crs
-    
+
     receipt = {
         "file": entry["file_zeros"],
         "file_nan": entry["file_nan"],
