@@ -66,7 +66,9 @@ def test_submission_status_obeys_literal_uniqueness_gate():
 
 def test_feed_is_not_score_verification():
     feed=json.loads((DOC/'source-health.json').read_text())
-    assert len(feed['repos'])==78
+    assert len(feed['repos'])==82
+    assert len({r['repo'] for r in feed['repos']})==82
+    assert {f'GEMSDOE{i}' for i in range(79,83)} <= {r['repo'] for r in feed['repos']}
     assert feed['checked_utc']
     assert all(not r.get('authenticated_score_receipt',False) for r in feed['repos'])
     assert not any(r['score_verified'] for r in feed['official_sources'])
@@ -177,7 +179,9 @@ def test_new_research_raster_is_visible_but_never_called_a_submittable_entry():
     assert tif.name in home and tif.name in detail and 'RESEARCH ONLY' in guide
     assert 'NOT OK TO SUBMIT' in home and 'NOT OK TO SUBMIT' in detail
     assert '0.0 or 1.0' not in home[:home.index('Reviewed downloadable candidates')]
-    assert 'row #48' in home and 'OWNER-REPORT' in home
+    assert 'unverified claims in this review' in home
+    assert 'not submission-page receipts' in home
+    assert 'row #48' not in home
     assert (DOC/'evidence/h77l_run_card.json').is_file()
     assert 'independent re-read audit' in detail and 'three-pass review' in detail
     audit=json.loads((DOC/'evidence/h77l_independent_audit.json').read_text())
@@ -301,6 +305,20 @@ def test_h80t_lane_artifact_and_run_card_fail_closed():
     assert uniq['phase1_surface_before_placement']['worst_spearman_full_footprint'] <= 0.90
     assert uniq['phase2_final_dots']['worst_dot_overlap_informative_dot_fields'] <= 0.70
     assert uniq['phase2_final_dots']['worst_dot_overlap_literal'] > 0.70
+
+
+def test_current_review_and_metric_correction_are_linked():
+    for name in ('index.html', 'executive-summary.html'):
+        text = (DOC / name).read_text()
+        assert 'review-latest.html' in text and 'metric-review.html' in text
+        assert 'no new TIFF' in text
+    analysis = (DOC / 'metric-review.html').read_text()
+    assert 'ΔT=k' in analysis and 'only when' in analysis
+    assert 'does <strong>not</strong> always increase' in analysis
+    review = (DOC / 'review-latest.html').read_text()
+    assert 'NOT OK TO SUBMIT' in review
+    assert 'No new TIFF was generated' in review
+    assert 'Resource not accessible by integration' in review
 
 
 def test_current_preflight_review_does_not_claim_a_new_submission():
