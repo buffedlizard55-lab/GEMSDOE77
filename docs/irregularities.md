@@ -265,3 +265,11 @@ GitHub authenticated operations work. CPU scientific transforms, local validatio
 ### 05f9e6f8 final integration repair
 
 Incoming H82-FMD added diagnostics inside the pinned vendor module and caused the strict preflight to return STOP_INPUT_ERROR. Restored the original shared file, original pin policy and strict hash test; retained the extra diagnostic report helpers outside vendor in `src/gems82fmd/registry_diagnostics.py`. Both callers updated, literal measurements and authorization rules unchanged. Earlier local-amendment notes are historical only, not the operative pin policy.
+
+
+### Session `arena/8d925533-gemsdoe77` (`Lane H77-VDS`)
+
+- **IR-77VDS-01 (`vis_mech` OOF isolation & zero post-holdout drift):** `MO.fit_predict_h77e_full` fits `C(4,2)=6` disjoint 2-quadrant HGB physical stackers and 3-split component cross-fits strictly inside each 3-quadrant training region (`0` test pixels and `0` self-component pixels touched), sharing `MO.FROZEN_H77E_PARAMS` verbatim between `E2` and `E3`.
+- **IR-77VDS-02 (Memory & `float16` dynamic scaling):** Channel-major `static_ch_fp.f32` + pre-scaled `float16` feature matrix (`966 MB`, zero strain-rate underflow, exact `NaN` preservation) + bit-packed `(5.17M, 106)` `uint8` witness halos (`549 MB`) + `malloc_trim(0)` keep peak container `VmRSS <= 2,479 MiB` across all 4 quadrants.
+- **IR-77VDS-03 (Global witness cap in Dinkelbach submodular cover):** Global `cap_int = int(0.650 * budget - 1e-6)` over `680,000` candidates fills `100.0%` of `B = 44,090` with `max_sparse_overlap = 0.649989 < 0.7000` across all `846` sparse archive + merged `GEMSDOE73–77` rasters (`max` across all `107` sibling/merged rasters = `0.5925`).
+- **IR-77VDS-04 (Quadrant sensor-regime calibration across missing 1 m LiDAR tiles):** `quadrant_calibrate = True` inside `DK.bayes_prior_calibrate` eliminates eastern/southeastern `NE/SE` probability-tail compression where 1 m LiDAR tile coverage drops from `~85%` to `~52%`, recovering `+0.00952` `HOLDOUT-DTI` on both seeds (`0.174393` Seed 30; `0.160773`–`0.160795` Seed 20).

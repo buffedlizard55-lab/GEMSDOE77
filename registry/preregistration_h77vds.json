@@ -1,0 +1,57 @@
+{
+  "schema_version": "gems-preregistration-v2",
+  "lane_id": "H77E-VALVE-DINKELBACH",
+  "preregistration_id": "GEMSDOE77-PREREG-H77E-1",
+  "registered_utc": "2026-10-21T14:22:00Z",
+  "branch": "arena/8d925533-gemsdoe77",
+  "protocol_rules": {
+    "single_lane_only": true,
+    "sgmc_channels_allowed": 0,
+    "prior_prediction_rasters_in_features": 0,
+    "forbidden_external_columns": [
+      "dist_known_fault_px",
+      "known_fault",
+      "label"
+    ],
+    "leakage_canary_max_symmetric_auc": 0.90,
+    "surface_spearman_abs_limit": 0.90,
+    "dot_spearman_abs_limit": 0.90,
+    "dot_3px_forward_overlap_limit_sparse": 0.70,
+    "dinkelbach_per_raster_overlap_cap": 0.66,
+    "max_experiments": 3,
+    "max_walltime_hours": 2.0,
+    "evaluator": "vendor/gems57/evaluate_holdout.py (gems57-pooled-hide-v2, unchanged)",
+    "writer": "vendor/gems57/submission_writer.py (unchanged)",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "kernel_radius_m": 300.0,
+    "bootstrap_draws": 1000,
+    "weekly_slots_to_spend": 0
+  },
+  "primary_hypothesis": {
+    "id": "H77E-H1+H2+H3+H4",
+    "title": "Survey-Block & Mining-Deconfounded Multi-Scale Scarp-Chi-Potential Physics + Sibson Seismogenic Fault-Valve Upflow + Cross-Family OOF Mechanics + Exact Bayes-Dinkelbach Submodular Expected-DTI Allocation",
+    "physical_mechanism": "Hidden Quaternary geothermal faults in the northwestern Great Basin and Walker Lane are blind or subtle normal/transtensional conduits characterized simultaneously by (1) within-survey-block magnetic/gravity steps and shallow TMI - TMI_up150 offsets free of GeoDAWN flight-altitude and BLM open-pit mining artifacts, (2) aligned 1 m LiDAR crest-toe dipoles and 10 m 3DEP fluvial chi-knickpoint / tributary-branch jumps across fans, (3) Sibson (1990) microseismic swarm alignments (+deq_n100a15 sign-corrected) and deep silica/cation geothermometer excess over cool surface seeps plus 2m thermal probes and relict sinters, and (4) Pollard-Segall crack-tip / step-over relay propagation. Mapping cross-family (HGB + colsample LightGBM) out-of-fold log-odds via exact Bayes prior-shift calibration removes the 3.31x 2D blob integration bias of rank-squashed emitters and allows exact Dinkelbach fractional-programming submodular optimization over the 300 m triangular DTI kernel.",
+    "named_non_fault_mimics": [
+      "BLM open-pit epithermal gold/silver/lithium mines, leach pads, and haul benches (de-confounded via blm_closed_claim_distance_m.tif)",
+      "US Census TIGER highway/interstate/railroad embankments across flat playas (de-confounded via tiger_road_distance_m.tif)",
+      "GeoDAWN Area-1 helicopter (100 m / 200 m) vs Area-2 fixed-wing (175 m / 400 m) amplitude jumps and block seams (normalized within acquisition_block_id_100m.tif)",
+      "Pleistocene Lake Lahontan (1332 m) & Lake Bonneville wave-cut benches and symmetric desert canyons (separated via along-strike elevation variance and one-sided step polarity)",
+      "Paleozoic/Mesozoic SGMC pre-Quaternary bedrock contacts (0 SGMC channels used)"
+    ]
+  },
+  "experiments_budget_plan": [
+    {
+      "id": "E1",
+      "purpose": "Single-feature leakage canary across all 106 channels (symmetric AUC <= 0.90) + Seed-30 (11,342 withheld px) zero-SGMC physical feature ablation (A0 fold-fair H33 vs B0 sign-fixed raw vs B1 block+mine deconfounded vs B2 full 98-ch fault-valve + chi + 12-band LiDAR physical model)."
+    },
+    {
+      "id": "E2",
+      "purpose": "Dual-seed (Seed 30 [11,342 px] + Seed 20 [11,321 px] = 22,663 withheld positives) structural ensemble & emitter ablation comparing H77E physical-only, H77E cross-family (HGB+LGBM) with legacy H77D rank-submodular E=3 emitter, and full H77E cross-family with exact Bayes-calibrated Dinkelbach submodular DTI emitter (E=2.0 px), requiring statistically significant positive paired 95% CI delta over both fold-fair H33 and prior repo bests H77D (0.1501 / 0.1403) and H77-Step (0.1527)."
+    },
+    {
+      "id": "E3",
+      "purpose": "Zero-in-sample 4-quadrant OOF full-footprint production build, pre-placement surface & post-placement dot uniqueness audit against all 864+ prior archive & GEMSDOE73-77 sibling rasters (enforcing <= 0.660 sparse 3-px dot overlap inside Dinkelbach heap + reporting verbatim gems57.uniqueness literal output under Policy I17), and 17-check GeoTIFF + ZIP verification."
+    }
+  ]
+}

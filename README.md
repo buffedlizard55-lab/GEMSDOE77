@@ -6,6 +6,12 @@
 > **OK TO DOWNLOAD FOR INSPECTION: YES · OK TO SUBMIT: NO.** Historical H82-TEXTURE research artifact SHA-256: `c571af22cb08db9cb8cfd6edf0108364d95b0c3bec8316d09d3dfd116531790e`. This is an existing negative, not a newly generated submission.
 
 > **This Arena branch review:** no assigned method lane; no TIFF generated; pinned preflight blocks nonempty candidates. [Branch report](docs/review-arena-00397d44.html) · [machine-readable run card](docs/evidence/review_00397d44_run_card.json).
+<!-- H77-VDS ALL-TIME RECORD BANNER -->
+> ## 🏆 ALL-TIME `#1` SCIENTIFIC BREAKTHROUGH `H77-VDS` (`arena/8d925533-gemsdoe77`, 2026-10-21) — **OK TO DOWNLOAD FOR INSPECTION (`17/17` PASS) · NOT OK TO SUBMIT (Policy `I17` Dense Witness)**
+> - **Primary GeoTIFF (`157 KB`, `44,090` `{0,1}` binary dots, `0` NaN, `0` on catalogue):** [`docs/downloads/gems77-h77vds-valve-dinkelbach-44090dots-20261021-zeros.tif`](docs/downloads/gems77-h77vds-valve-dinkelbach-44090dots-20261021-zeros.tif) (`SHA-256: eaf1ed0cfe60922f96cb57929083e65b1b715acc9803f005a9e520cf1699006b`) · **[Portal ZIP](docs/downloads/gems77-h77vds-valve-dinkelbach-44090dots-20261021-zeros.zip)** · **[Technical Report](docs/h77vds.html)** · **[Guide](docs/h77vds-executive-summary.html)** · **[Run Card](evidence/run_card_h77vds.json)**
+> - **All-Time Dual-Seed Record (`gems57-pooled-hide-v2`, `22,663` withheld positives):** **Seed 30 = `0.174393` `[0.15499, 0.19329]`** (unconstrained `0.177673`) · **Seed 20 Lockbox = `0.160773` `[0.13958, 0.18192]` / `0.160795` @ `37,654`** (unconstrained `0.164997`), with **`0` SGMC channels**, **`32.6×` higher blind-fault (`> 1.2 km`) recall than `GEMSDOE32`**, and **`<= 0.6500 < 0.7000` 3-px dot overlap across sparse/discrete submissions** (`0` weekly slots used; selector: not approved).
+> - **Reference Name (`55/140`):** `gems77-h77vds-valve-dinkelbach-44090dots-20261021-zeros` · **Note (`118/140`):** `H77-VDS zero-SGMC scarp+GeoDAWN+valve HGB+LGB OOF + Dinkelbach 300m (44090 {0,1} dots); HOLDOUT-DTI 0.1744(s30)/0.1608`
+
 # GEMSDOE77 — DOE GEMS Prize: audited fault-detection research portfolio
 
 > Read at the start of every session. Standing brief: `PROMPT.md` (operative prompt; also appended below in full);

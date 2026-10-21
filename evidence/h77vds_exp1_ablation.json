@@ -1,0 +1,280 @@
+{
+  "evidence_class": "HOLDOUT-DTI",
+  "experiment": "H77E-E1-CANARIES-AND-PHYSICAL-ABLATION",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "evaluator_hashes": {
+    "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+    "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+    "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+    "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+  },
+  "seed": 30,
+  "budget": 37654,
+  "excl_px": 3.0,
+  "withheld_positive_pixels": 11342,
+  "elapsed_seconds": 1006.23,
+  "arms": {
+    "E1_B0_raw19_signfixed": {
+      "dots": 37654,
+      "per_fold": {
+        "NW": {
+          "dti": 0.07845902089698228,
+          "n_truth": 1919,
+          "emitted": 8586
+        },
+        "NE": {
+          "dti": 0.12498045605571519,
+          "n_truth": 2356,
+          "emitted": 10650
+        },
+        "SW": {
+          "dti": 0.048344863252081684,
+          "n_truth": 3805,
+          "emitted": 10202
+        },
+        "SE": {
+          "dti": 0.1267750081839565,
+          "n_truth": 3262,
+          "emitted": 8215
+        }
+      },
+      "pooled_holdout_dti": 0.09300968985154341
+    },
+    "E1_B1_survey_mine_deconf39": {
+      "dots": 37654,
+      "per_fold": {
+        "NW": {
+          "dti": 0.0903394230745487,
+          "n_truth": 1919,
+          "emitted": 8586
+        },
+        "NE": {
+          "dti": 0.11768302980012252,
+          "n_truth": 2356,
+          "emitted": 10650
+        },
+        "SW": {
+          "dti": 0.06006676498174514,
+          "n_truth": 3805,
+          "emitted": 10202
+        },
+        "SE": {
+          "dti": 0.12094359105387528,
+          "n_truth": 3262,
+          "emitted": 8213
+        }
+      },
+      "pooled_holdout_dti": 0.09560488239220503
+    },
+    "E1_B2_scarp_chi80": {
+      "dots": 37654,
+      "per_fold": {
+        "NW": {
+          "dti": 0.1394829993641434,
+          "n_truth": 1919,
+          "emitted": 8586
+        },
+        "NE": {
+          "dti": 0.16782503196217663,
+          "n_truth": 2356,
+          "emitted": 10649
+        },
+        "SW": {
+          "dti": 0.07637883331696657,
+          "n_truth": 3805,
+          "emitted": 10202
+        },
+        "SE": {
+          "dti": 0.1599047311276924,
+          "n_truth": 3262,
+          "emitted": 8212
+        }
+      },
+      "pooled_holdout_dti": 0.13241295231521977
+    },
+    "E1_B3_full_phys98_ens": {
+      "dots": 37654,
+      "per_fold": {
+        "NW": {
+          "dti": 0.14353252556553117,
+          "n_truth": 1919,
+          "emitted": 8586
+        },
+        "NE": {
+          "dti": 0.16061371924332193,
+          "n_truth": 2356,
+          "emitted": 10649
+        },
+        "SW": {
+          "dti": 0.09326993664809509,
+          "n_truth": 3805,
+          "emitted": 10202
+        },
+        "SE": {
+          "dti": 0.16474279212821719,
+          "n_truth": 3262,
+          "emitted": 8213
+        }
+      },
+      "pooled_holdout_dti": 0.13781433786932953
+    },
+    "C0_random": {
+      "dots": 37654,
+      "per_fold": {
+        "NW": {
+          "dti": 0.036059394628249475,
+          "n_truth": 1919,
+          "emitted": 8586
+        },
+        "NE": {
+          "dti": 0.0417083777265038,
+          "n_truth": 2356,
+          "emitted": 10650
+        },
+        "SW": {
+          "dti": 0.04530851284717742,
+          "n_truth": 3805,
+          "emitted": 10203
+        },
+        "SE": {
+          "dti": 0.05022027601323302,
+          "n_truth": 3262,
+          "emitted": 8213
+        }
+      },
+      "pooled_holdout_dti": 0.04388747863822418
+    }
+  },
+  "pooled_summary": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "triangular_radius_m": 300.0,
+    "pooled": true,
+    "scores": {
+      "E1_B0_raw19_signfixed": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.09300968985154341,
+        "ci95": [
+          0.0757948183855064,
+          0.11043761418339627
+        ],
+        "withheld_positive_pixels": 11342,
+        "tpw": 1561.4962760101027,
+        "fpw": 37013.170262415675,
+        "fnw": 9780.503723989897
+      },
+      "E1_B1_survey_mine_deconf39": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.09560488239220503,
+        "ci95": [
+          0.08025839118346087,
+          0.11095533757893136
+        ],
+        "withheld_positive_pixels": 11342,
+        "tpw": 1605.3770083276931,
+        "fpw": 36985.5677734811,
+        "fnw": 9736.622991672304
+      },
+      "E1_B2_scarp_chi80": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.13241295231521977,
+        "ci95": [
+          0.11258146265873037,
+          0.15219149076701993
+        ],
+        "withheld_positive_pixels": 11342,
+        "tpw": 2230.541445326848,
+        "fpw": 36628.16773705222,
+        "fnw": 9111.458554673147
+      },
+      "E1_B3_full_phys98_ens": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.13781433786932953,
+        "ci95": [
+          0.11786583834530015,
+          0.1572656286892595
+        ],
+        "withheld_positive_pixels": 11342,
+        "tpw": 2323.311839767362,
+        "fpw": 36600.05710220154,
+        "fnw": 9018.688160232632
+      },
+      "C0_random": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.04388747863822418,
+        "ci95": [
+          0.038867884504041016,
+          0.048907463698754615
+        ],
+        "withheld_positive_pixels": 11342,
+        "tpw": 732.5534326953306,
+        "fpw": 37357.58262633392,
+        "fnw": 10609.446567304669
+      }
+    },
+    "best_comparable_control": "E1_B2_scarp_chi80",
+    "paired_differences": {
+      "E1_B0_raw19_signfixed": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.04480464801778612,
+        "ci95": [
+          0.032519510089973544,
+          0.057406890940390254
+        ],
+        "withheld_positive_pixels": 11342
+      },
+      "E1_B1_survey_mine_deconf39": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.0422094554771245,
+        "ci95": [
+          0.031173084608447074,
+          0.053217548756191446
+        ],
+        "withheld_positive_pixels": 11342
+      },
+      "E1_B2_scarp_chi80": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.005401385554109767,
+        "ci95": [
+          0.00052797337926053,
+          0.010379637991209003
+        ],
+        "withheld_positive_pixels": 11342
+      },
+      "C0_random": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.09392685923110536,
+        "ci95": [
+          0.07462627466085399,
+          0.11310858749341064
+        ],
+        "withheld_positive_pixels": 11342
+      }
+    },
+    "bootstrap": {
+      "method": "paired physical spatial-cluster percentile",
+      "clusters": 159,
+      "draws": 2000,
+      "seed": 520810,
+      "confidence": 0.95,
+      "caveat": "Conditional on fitted folds, catalogue labels and fixed budgets; not a leaderboard interval."
+    },
+    "implementation_sha256": {
+      "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+      "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+      "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+      "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+    }
+  }
+}
