@@ -1,0 +1,49 @@
+{
+  "run_type": "repository_review_no_model_experiment",
+  "hypothesis": "No geological hypothesis tested; absent lane assignment and existing duplicate-stop block generation.",
+  "mechanism": "Audit marginal DTI algebra and fail-closed release evidence; preserve shared evaluator and prior TIFF bytes.",
+  "non_fault_mimic": "Intrusive/lithologic contacts can mimic fault-related potential-field boundaries; not tested here.",
+  "holdout_dti": {
+    "value": null,
+    "ci95": null,
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "reason": "No new holdout run; no performance score claimed."
+  },
+  "correlation_overlap_vs_registry": {
+    "new_surface": null,
+    "new_final_dots": null,
+    "existing_H77L_forward_overlap_dense_witness": 1.0,
+    "full_registry_pass": false,
+    "evidence": "evidence/h77l_independent_audit.json"
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "new_raster": null,
+    "existing_inspection_artifact": {
+      "path": "docs/downloads/gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY.tif",
+      "sha256": "9d199f9fad93e234397a7a19a05eabf12fd77285be3007e6afe22d12a36dcbd1",
+      "no_nan_inside_footprint": true,
+      "values_in_0_1": true,
+      "crs_shape_transform_match": true,
+      "independent_checks_passed": 23
+    }
+  },
+  "submission_name": null,
+  "submission_note": "Review only. No new TIFF; dense-registry overlap blocks generation. Existing downloads are inspection-only, not approved.",
+  "verdict": "negative",
+  "new_tiff_generated": false,
+  "ok_to_submit": false,
+  "experiments_run": 0,
+  "weekly_slots_used": 0,
+  "software_tests": {
+    "passed": 129,
+    "failed": 0
+  },
+  "remaining_work": [
+    "Resolve overlap semantics in shared protocol without local exemption.",
+    "Assign one new method lane and verify inputs/registry.",
+    "Correct shared metric prose upstream; no numeric fork.",
+    "Run canaries and matched holdout before writing and promoting a candidate."
+  ]
+}

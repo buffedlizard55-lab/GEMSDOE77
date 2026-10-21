@@ -45,7 +45,7 @@ def test_h82_pages_and_manifest_fail_closed():
 
 def test_parallel_lane_receipts_do_not_overwrite_lia():
     lia = json.loads((ROOT/'docs/data/submission.json').read_text())
-    h28 = json.loads((ROOT/'docs/data/h28_submission.json').read_text())
+    h28 = json.loads((ROOT/'docs/data/h28-submission.json').read_text())
     assert lia['name'].startswith('gems77-h77-lia-')
     assert 'zip' in lia and lia['zip']['passed']
     assert h28['name'].startswith('gems77-h28-')

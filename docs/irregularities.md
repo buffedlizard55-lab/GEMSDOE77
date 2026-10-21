@@ -137,6 +137,19 @@ GitHub authenticated operations work. CPU scientific transforms, local validatio
 | IR-H77G-03 | **Cold-structural vs hydrothermal fault dichotomy on catalogue holdouts:** Standalone `S_h77g_physics` (`0.0392` / `0.0471`) scores below uniform random (`0.0476` / `0.0481`) on the pooled 4-quadrant catalogue holdout except in the hydrothermally active SE quadrant (`0.0804` vs `0.0515`). | Most of the 59,661 mapped USGS/INGENIOUS Quaternary fault pixels are cold structural normal faults without hydrothermal demagnetization. Hydrothermal alteration channels must be used as a local sub-regime interaction modifier inside a structural/topographic/catalogue-continuation backbone. |
 
 
+## Review 904a24d3 — 2026-10-21
+
+- IR-904-01: H33 analysis incorrectly assumed every added dot has deltaT=q and
+  deltaD=alpha. Corrected the general marginal inequality; removed unsupported
+  universal distance, near-catalogue false-positive and performance-gain claims.
+- IR-904-02: Shared pinned metric prose says deltaT<=q, false when a dot credits
+  multiple truth pixels. Numerical evaluator unchanged; regression added.
+  Upstream prose correction remains pending; no private template fork.
+- IR-904-03: Release-gate nested malformed objects could crash, and NaN overlap
+  could bypass numeric comparisons. Added fail-closed type/range/finite checks.
+- IR-904-04: The requested single method paragraph is absent. No lane invented,
+  no stopped experiment rerun. Dense registry rejection witness reproduced;
+  new compliant TIFF not delivered. Historical downloads are inspection-only.
 ## H82 updates — 2026-10-21 (local radiometric rank-mixture entropy deficit)
 
 | ID | Verified observation | Consequence |
@@ -146,4 +159,6 @@ GitHub authenticated operations work. CPU scientific transforms, local validatio
 | IR-H82-03 | Literal 3 px overlap vs pinned full-footprint raster = 1.0 on stopped H82 surface; rho max abs 0.01063 on two witnesses. | Mandatory duplicate stop before placement, no final-dot audit; research-only TIFF, zero authorized slots. Two witnesses suffice to reject, not to clear the complete registry. |
 | IR-H82-04 | One-ID mirror restore temporarily overwrote historical 23-file receipt with a one-file receipt. | Restored historical receipt unchanged; H82 directly checks the current mirror SHA against `registry/data_manifest.json`. Do not interpret historical receipt as proof 23 files are present in this checkout. |
 | IR-H82-05 | First regenerated aggregate note omitted the test-required phrase 'NOT OK TO SUBMIT'. | Fixed site builder note, rebuilt pages, re-ran 126 tests and fail-closed release gate. |
-| IR-H82-06 | After this lane began, main advanced via PR #47 and overwrote LIA's `docs/data/submission.json` with an H28 record missing its ZIP and pointing `twin_nan` to an AGO file. `scripts/lia_build_site.py` raised `KeyError: 'zip'` and CI would fail. | Preserved the H28 record as `docs/data/h28_submission.json` for audit; restored LIA's generated `docs/data/submission.json` from pre-PR main (commit `2b22987`), which is what the shared LIA site builder, tests, and validators require. Re-ran full CI sequence: 127 tests pass including a receipt-collision regression. H28 is NOT cleared or promoted; do not use the incomplete H28 metadata as a validator. Future lanes must namespace their output receipts and test the aggregate CI build. |
+| IR-H82-06 | After this lane began, main advanced via PR #47 and overwrote LIA's `docs/data/submission.json` with an H28 record missing its ZIP and pointing `twin_nan` to an AGO file. `scripts/lia_build_site.py` raised `KeyError: 'zip'` and CI would fail. | Preserved the H28 record as `docs/data/h28-submission.json` for audit; restored LIA's generated `docs/data/submission.json` from pre-PR main (commit `2b22987`), which is what the shared LIA site builder, tests, and validators require. Re-ran full CI sequence: 127 tests pass including a receipt-collision regression. H28 is NOT cleared or promoted; do not use the incomplete H28 metadata as a validator. Future lanes must namespace their output receipts and test the aggregate CI build. |
+
+- IR-H82-07: Concurrent review PR #49 corrected an unsupported universal marginal-DTI condition in the older H33 analysis (see `research/why-h33-scored-02778.md` and `tests/test_marginal_dti_review.py`). H82's scientific result does not rely on that condition; the README now links the corrected analysis. Do not reinstate the old per-dot 283m threshold or claim near-catalogue dots are always false positives.
