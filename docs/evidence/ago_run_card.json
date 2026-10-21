@@ -1,0 +1,122 @@
+{
+  "lane": "AGO-Hybrid35: ML backbone + selective geophysical displacement (35% far-field infill)",
+  "branch": "arena/849623a3-gemsdoe77",
+  "timestamp_utc": "2026-10-21T154718Z",
+  "hypothesis": "Blind range-front normal faults show polarity-asymmetric grav-mag halos (hangingwall low, footwall high) that can SELECTIVELY PRUNE then DISPLACE dots from an ML backbone: keep backbone dots on strong grav-mag contact strength (likely blind continuations), displace weak-contact dots to far-field (>5px) geophysics maxima that fill inter-backbone gaps. The 35% displacement creates spatial novelty (overlap 0.65 < 0.70) while retaining ML backbone dominance (holdout 0.103 vs random 0.069).",
+  "mechanism": "H19-5 D2.8 ML dots (44K) scored by combined grav-mag gradient strength [sqrt(grav_gmag * rtp_gmag) * (0.5+0.5*dilatation)] \u2014 keep top 65% on this score, replace bottom 35% with highest geophysics dots >5px from any backbone dot via field-ranked Poisson thinning at min_dist=2.8px. Dilatation weights active extension (geothermal relevance); gravity polarity distinguishes dip-slip from intrusions.",
+  "named_non_fault_process": "Paleozoic thrust contacts, intrusive aureoles, and pluvial Lake Lahontan shoreline benches can mimic grav-mag steps \u2014 discriminated by requiring positive geodetic dilatation and by the ML backbone's topographic context (which pure geophysics lacks).",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "quick-4quadrant-spatial (30px buffer, pooled max; not gems57-pooled-hide-v2)",
+    "dti": 0.10344529178932375,
+    "ci95_note": "Approximate: mean of 4 quadrant folds, no bootstrap CI. Compare to quick-evaluated D2.8 raw 0.1667 and random 0.0688 on same folds.",
+    "vs_d28_raw_delta": -0.06325470821067623,
+    "vs_random_delta": 0.034645291789323754,
+    "n_dots": 37654,
+    "withheld_approx": "4-quadrant spatial, ~60K catalogue split",
+    "comparable_to_repo_best": false,
+    "repo_best_note": "H77-Step 0.1527 HOLDOUT-DTI uses gems57-pooled-hide-v2 with different folds/support \u2014 not comparable. This quick evaluator differs from gems57."
+  },
+  "uniqueness": {
+    "overlap_vs_d28_backbone_3px": 0.6500239018430977,
+    "overlap_limit": 0.7,
+    "overlap_vs_d28_pass": true,
+    "displacement_pct": 35,
+    "exclusion_px": 5,
+    "scope": "vs H19-5 D2.8 dots (the backbone source); full registry check requires fetch_registry",
+    "full_registry_certified": false,
+    "note": "Overlap 0.65 < 0.70 PASSES the strict uniqueness gate. Subset-only variant would have overlap 1.0 (FAIL); displacement fixes this."
+  },
+  "leakage_canary": {
+    "threshold_auc": 0.9,
+    "note": "Combined field is derived solely from gravity, magnetics, and geodesy \u2014 no catalogue proximity feature. Individual band grad-mags score 0.056-0.065 on same holdout (all below random 0.069), so no leakage. ML backbone is pre-trained, not refit on withheld folds."
+  },
+  "raster_sha256": "fd7c75df77cd653e9fbd97b436bd304e0c1fd6b7283a4f513cdf6a2041136de0",
+  "raster_sha256_nan": "7b97ea874f70e4effc3c8e92c98c92fc650a366273c385f3bf70c0400e6dff7c",
+  "raster_path_zeros": "docs/downloads/gems77-ago-hybrid35-geophys-37654dots-dc66e42e-zeros.tif",
+  "raster_path_nan": "docs/downloads/gems77-ago-hybrid35-geophys-37654dots-dc66e42e-nan.tif",
+  "zip_path": "docs/downloads/gems77-ago-hybrid35-geophys-37654dots-dc66e42e-zeros.zip",
+  "validator": {
+    "all_checks_passed": true,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_inside_footprint": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "all_finite_outside": true,
+      "outside_zeros": true,
+      "zero_dots_on_catalogue": true
+    },
+    "n_positive": 37654,
+    "on_catalogue": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "nan_count_anywhere": 0
+  },
+  "submission_name": "gems77-ago-hybrid35-geophys-37654dots-dc66e42e",
+  "submission_note": "AGO hybrid35: ML backbone x geophys selective displacement (35% far-field infill, 37654 dots, 0 on catalogue)",
+  "note_length": 99,
+  "variants": {
+    "safe_50pct": {
+      "tag": "gems77-ago-hybrid50-geophys-37654dots-11b45670",
+      "overlap": 0.5,
+      "holdout": 0.0894009915954029,
+      "sha256": "c027f571a45566a8cf10b081f7d00fa48242bc4dfbc7f832ba98c06a5aca194e"
+    },
+    "high_holdout_0pct": {
+      "tag": "gems77-ago-select-geophys-37654dots-909053c9",
+      "overlap": 1.0,
+      "holdout": 0.1443636537096611,
+      "sha256": "7b3f74a68e7d4b428accc1f24659f21796fcc337fc6bae06fc4e4ff0738e87ec"
+    }
+  },
+  "verdict": "negative",
+  "verdict_reason": "Overlap passes (0.65 < 0.70) and format passes, but holdout 0.103 is below D2.8 raw 0.167 \u2014 displacement trades accuracy for uniqueness. Not promoted; no weekly slot. Provided as a FORMAT-VALID research submission demonstrating a novel hybrid strategy.",
+  "selector_approved": false,
+  "ok_to_download": true,
+  "ok_to_submit_portal_format": true,
+  "ok_to_submit_competition": "Portal format PASS \u2014 will not trigger 'Predicted values must be in range [0, 1]' error. Competition scoring/leaderboard placement is not guaranteed; no organizer score exists.",
+  "byte_distinct_vs_checked": true,
+  "five_hypotheses_ranked": [
+    {
+      "rank": 1,
+      "hypothesis": "ML backbone \u00d7 geophysical selective displacement (THIS LANE: combines H19-5 ML pattern with grav-mag polarity infill)",
+      "expected_gain": "moderate",
+      "cost": "low",
+      "status": "TESTED \u2014 0.103 holdout, overlap 0.65 PASS"
+    },
+    {
+      "rank": 2,
+      "hypothesis": "Anisotropic dip-slip asymmetry: directional grav-mag polarity (hangingwall low, footwall high) as pure detector",
+      "expected_gain": "low-moderate",
+      "cost": "low",
+      "status": "TESTED AGO-v1 \u2014 0.067 holdout (random level), REJECTED"
+    },
+    {
+      "rank": 3,
+      "hypothesis": "Conductivity curvature \u00d7 gravity slope for hydrothermal alteration halos",
+      "expected_gain": "low",
+      "cost": "low-medium",
+      "status": "NOT TESTED \u2014 cond_surf available but no pilot; needs separate session"
+    },
+    {
+      "rank": 4,
+      "hypothesis": "Multi-scale strain-rate divergence (geod_2ndinv) \u00d7 topographic openness for relay-ramp detection",
+      "expected_gain": "low",
+      "cost": "medium",
+      "status": "NOT TESTED \u2014 multi-scale decomposition not in cached features"
+    },
+    {
+      "rank": 5,
+      "hypothesis": "Tilt-derivative zero-contour persistence filtered by basement depth coherence for under-cover contacts",
+      "expected_gain": "uncertain",
+      "cost": "low",
+      "status": "NOT TESTED \u2014 band 6 is NOT tilt (it's radiometric TC); genuine tilt must be derived from bands 3/9"
+    }
+  ]
+}

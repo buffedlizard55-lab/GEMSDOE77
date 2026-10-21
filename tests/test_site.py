@@ -127,8 +127,11 @@ def test_home_pages_put_download_and_per_file_status_first():
     assert 'single-band float32 GeoTIFF' in guide and 'Note' in guide and 'EPSG:32611' in guide and '[0, 1]' in guide
     assert 'Not OK to submit' in guide
     prim=[x for x in lanes if x.get('primary')]
-    assert len(prim)==1 and prim[0]['format_valid'] and prim[0]['protocol_unique'] is False
+    assert len(prim)==1 and prim[0]['lane'].startswith('H80:')
+    assert prim[0]['format_valid'] and prim[0]['protocol_unique'] is False
     assert prim[0]['name'] in home and prim[0]['note'] in home and len(prim[0]['note'])<=140
+    assert 'HOLDOUT-DTI 0.09579668 (gems57-pooled-hide-v2; 11,319 withheld positives; 95% CI 0.08818346–0.10324797)' in home
+    assert 'Will it beat 0.2778?</b> No claim that this file beats' in home
 
 
 def test_new_research_raster_is_visible_but_never_called_a_submittable_entry():
@@ -142,7 +145,7 @@ def test_new_research_raster_is_visible_but_never_called_a_submittable_entry():
     detail=(DOC/'h77l.html').read_text()
     assert tif.is_file() and tif.stat().st_size>1000
     assert hashlib.sha256(tif.read_bytes()).hexdigest()==card['raster_sha256']==lane['sha256']
-    assert lane['primary'] and lane['protocol_unique'] is False and lane['verdict']=='negative'
+    assert lane['primary'] is False and lane['protocol_unique'] is False and lane['verdict']=='negative'
     assert card['validator']['all_checks_passed'] and not card['ok_to_submit']
     assert card['registry']['surface_max_forward_overlap_3px']>0.70
     assert card['registry']['final_dot_placement_audit'].startswith('NOT RUN')
@@ -163,7 +166,56 @@ def test_new_research_raster_is_visible_but_never_called_a_submittable_entry():
     assert '68.4%' in detail and f"{audit['stats']['local_prior_tifs_checked']} other local TIFFs" in detail
     assert audit['all_checks_passed'] and audit['checks']['pixel_distinct_from_all_local_prior_tifs']
     assert audit['stats']['local_prior_tifs_checked']>=14
-    assert 'Unknown. H77L' in home and 'Will it beat 0.2778?</b> No' not in home
+    assert 'Unknown. H77L' not in home and 'Will it beat 0.2778?</b> No claim that this file beats' in home
+
+
+def test_h80_featured_homepage_is_generated_from_its_negative_run_card():
+    import hashlib
+    lanes=json.loads((DOC/'data/lanes.json').read_text())['lanes']
+    lane=next(x for x in lanes if x['lane'].startswith('H80:'))
+    card=json.loads((ROOT/'evidence/h80_run_card.json').read_text())
+    tif=DOC/lane['file']
+    home=(DOC/'index.html').read_text()
+    assert lane['primary'] is True and lane['verdict']=='negative'
+    assert lane['file']==card['download'].removeprefix('docs/')
+    assert hashlib.sha256(tif.read_bytes()).hexdigest()==card['raster_sha256']==lane['sha256']
+    hold=card['holdout_dti']
+    assert hold['evidence_class']=='HOLDOUT-DTI'
+    assert hold['evaluator_version']=='gems57-pooled-hide-v2'
+    assert hold['n_withheld_positives']==11319
+    assert hold['value'] < 0.152718
+    assert len(hold['ci95'])==2
+    assert card['validator']['ok'] and card['validator']['n_dots']==12000
+    overlap=card['correlation_overlap_vs_registry']
+    assert overlap['n_compared']==19 and overlap['max_3px_overlap']>0.70
+    assert card['safe_to_submit'] is False
+    assert 'Can I submit it?</b> <b>No. NOT OK TO SUBMIT.' in home
+    assert 'HOLDOUT-DTI 0.09579668' in home and '11,319 withheld positives' in home
+    assert '0.981583' in home and '19 local rasters' in home
+    assert 'Pre-placement surface rank-correlation is not recorded' in home
+    assert 'Will it beat 0.2778?</b> No claim that this file beats' in home
+
+
+def test_ago_quick_proxy_is_not_promoted_as_a_score_or_submission():
+    lanes=json.loads((DOC/'data/lanes.json').read_text())['lanes']
+    ago=[x for x in lanes if x['lane'].startswith('AGO-')]
+    assert len(ago)==3 and all(x['verdict']=='negative' and x['primary'] is False for x in ago)
+    assert all(x['protocol_unique'] is False for x in ago)
+    assert all('Not OK to submit' in x['upload'] and 'inspection only' in x['upload'] for x in ago)
+    assert all('quick 4-quadrant' in x['upload'] and 'exact withheld-positive count and 95% CI' in x['upload'] for x in ago)
+    page=(DOC/'ago.html').read_text()
+    assert 'NOT OK TO SUBMIT' in page and 'DO NOT SUBMIT' in page
+    assert 'not reportable HOLDOUT-DTI scores' in page
+    assert 'exact withheld-positive count and a 95% confidence interval are absent' in page
+    assert 'How to submit this file' not in page and 'RECOMMENDED for portal' not in page
+    assert '0.1034' not in page and '0.0894' not in page and '0.1444' not in page
+    assert 'portal acceptance' in page.lower()
+    builder=(ROOT/'scripts/build_ago_page.py').read_text()
+    assert '/tmp/ago_final_info.json' not in builder
+    assert 'evidence/ago_run_card.json' in builder
+    assert 'No submission steps apply' in builder and 'NOT OK TO SUBMIT' in builder
+
+
 def test_negative_lanes_are_not_recommended_or_promoted_on_entry_page():
     """The aggregate landing page must not recommend files whose overall verdict is negative."""
     lanes=json.loads((DOC/'data/lanes.json').read_text())
@@ -188,45 +240,3 @@ def test_negative_lanes_are_not_recommended_or_promoted_on_entry_page():
         assert 'not approved' in txt, subpage
         assert 'lane verdict: promote' not in txt, subpage
         assert 'recommended for drivendata upload' not in txt, subpage
-
-
-def test_ago_variants_are_listed_as_exploratory_and_fail_closed():
-    lanes=json.loads((DOC/'data/lanes.json').read_text())['lanes']
-    ago=[x for x in lanes if x['lane'].startswith('AGO-')]
-    assert len(ago)==3
-    auth=json.loads((DOC/'data/submission-authorization.json').read_text())
-    home=(DOC/'index.html').read_text()
-    page=(DOC/'ago.html').read_text()
-    assert 'OK TO SUBMIT: NO' in page and 'Do not submit this file.' in page
-    assert 'How to submit this file' not in page
-    for lane in ago:
-        assert lane['verdict']=='negative'
-        assert lane['protocol_unique'] is False
-        assert (DOC/lane['file']).is_file()
-        assert lane['holdout_evaluator']=='quick-4quadrant-spatial (30px buffer)'
-        assert 'withheld-positive count and 95% CI not recorded' in home
-        assert lane['file'].split('/')[-1] in home
-        assert any(x['lane']==lane['lane'] and not x['authorized_to_submit'] for x in auth['artifacts'])
-    assert auth['repository_authorized_file_count']==0
-
-
-def test_h80_latest_candidate_is_in_inventory_and_fails_closed():
-    import hashlib
-    card=json.loads((ROOT/'evidence/h80_run_card.json').read_text())
-    lanes=json.loads((DOC/'data/lanes.json').read_text())['lanes']
-    lane=next(x for x in lanes if x['lane'].startswith('H80:'))
-    tif=DOC/lane['file']
-    home=(DOC/'index.html').read_text()
-    auth=json.loads((DOC/'data/submission-authorization.json').read_text())
-    assert tif.is_file() and hashlib.sha256(tif.read_bytes()).hexdigest()==card['raster_sha256']==lane['sha256']
-    assert lane['run_card']=='evidence/h80_run_card.json'
-    assert lane['verdict']=='negative' and lane['protocol_unique'] is False
-    assert lane['selector_approved'] is False and card['safe_to_submit'] is False
-    assert card['validator']['ok'] and card['correlation_overlap_vs_registry']['max_3px_overlap']>0.70
-    assert lane['holdout_evaluator_version']=='gems57-pooled-hide-v2'
-    assert lane['holdout_positive_pixels']==11319 and lane['holdout_dti_hide_v2']==card['holdout_dti']['value']
-    assert len(lane['note'])<=140 and lane['note']==card['note']
-    assert tif.name in home and 'H80: parallel negative geology lane' in home
-    assert 'OK TO SUBMIT: NO' in home and 'Do not submit.' in home
-    assert auth['repository_authorized_file_count']==0
-    assert any(x['lane'].startswith('H80:') and not x['authorized_to_submit'] for x in auth['artifacts'])

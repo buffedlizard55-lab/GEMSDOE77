@@ -10,6 +10,7 @@ lane's view (IR-78-06).
 """
 from __future__ import annotations
 
+import hashlib
 import html
 import json
 import shutil
@@ -22,7 +23,7 @@ LB = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboa
 PD = "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
 NAV = [("index.html", "Start here"), ("release-review.html", "Release safety review"), ("executive-summary.html", "How to submit"),
-       ("ago.html", "AGO · negative variants"), ("h80.html", "H80 · research-only"),
+       ("h80.html", "H80 · negative"), ("ago.html", "AGO · negative proxies"),
        ("h79-orient.html", "H79-ORIENT · negative"), ("h79-orient-executive-summary.html", "H79-ORIENT guide"),
        ("h79.html", "H79-BB · research-only"),
        ("h79-radhalo.html", "H79-RH · negative"),
@@ -75,13 +76,6 @@ def main():
     sub = jload("docs/data/h78_submission.json")
     lag_card = jload("evidence/h77l_run_card.json")
     orient_card = jload("evidence/h79_orient_run_card.json")
-    h80_card = jload("evidence/h80_run_card.json")
-    h80_rows = [x for x in lanes["lanes"] if x["lane"].startswith("H80:")]
-    if len(h80_rows) != 1 or not h80_card or h80_card["verdict"] != "negative" or h80_card["safe_to_submit"]:
-        raise ValueError("H80 research lane missing from manifest/card or wrong clearance")
-    h80 = h80_rows[0]
-    if h80["sha256"] != h80_card["raster_sha256"] or h80["name"] != h80_card["submission_name"]:
-        raise ValueError("H80 site differs from frozen run card")
     orient_rows = [x for x in lanes["lanes"] if x["lane"].startswith("H79-ORIENT:")]
     if len(orient_rows) != 1 or not orient_card or orient_card["verdict"] != "negative" or orient_card["ok_to_submit"]:
         raise ValueError("H79-ORIENT research lane missing from manifest/card or wrong clearance")
@@ -101,22 +95,46 @@ def main():
             raise ValueError(f"H77L site {field} differs from frozen run card")
     if lag["protocol_unique"] or not lag["format_valid"] or lag_card["registry"]["full_registry_certified"]:
         raise ValueError("H77L cannot be presented as eligible to submit")
+    h80_rows = [x for x in lanes["lanes"] if x["lane"].startswith("H80:")]
+    h80_card = jload("evidence/h80_run_card.json")
+    if len(h80_rows) != 1 or not h80_card:
+        raise ValueError("H80 negative lane missing from manifest or frozen run card")
+    h80 = h80_rows[0]
+    h80_tif = D / h80["file"]
+    h80_holdout = h80_card["holdout_dti"]
+    h80_overlap = h80_card["correlation_overlap_vs_registry"]
+    if (h80_card["verdict"] != "negative" or h80_card["safe_to_submit"] is not False
+            or h80["file"] != h80_card["download"].removeprefix("docs/")
+            or h80["name"] != h80_card["submission_name"]
+            or h80["note"] != h80_card["note"]
+            or h80["sha256"] != h80_card["raster_sha256"]
+            or not h80_tif.is_file()
+            or hashlib.sha256(h80_tif.read_bytes()).hexdigest() != h80_card["raster_sha256"]
+            or h80["format_valid"] is not h80_card["validator"]["ok"]
+            or h80["holdout_evaluator_version"] != h80_holdout["evaluator_version"]
+            or h80["holdout_positive_pixels"] != h80_holdout["n_withheld_positives"]
+            or h80["holdout_dti_hide_v2"] != h80_holdout["value"]
+            or h80["holdout_ci95"] != h80_holdout["ci95"]
+            or h80_overlap["max_3px_overlap"] <= h80_overlap["limit"]
+            or h80["informative_max_dot_overlap"] != h80_overlap["max_3px_overlap"]
+            or h80["informative_checked_rasters"] != h80_overlap["n_compared"]
+            or h80["primary"] is not True
+            or h80["protocol_unique"] is not False
+            or h80["beats_holdout_best"] is not False):
+        raise ValueError("H80 manifest/landing page differs from the frozen negative run card")
     if sum(bool(x.get("primary")) for x in lanes["lanes"]) != 1:
         raise ValueError("exactly one download must be featured")
     primary = next(x for x in lanes["lanes"] if x.get("primary"))
     # ---------------- status table (every file in the repository)
     def holdout_cell(x):
-        if x["lane"].startswith("H80:"):
-            h = h80_card["holdout_dti"]
-            return (f'<span class="chip warn">HOLDOUT-DTI {h["value"]:.4f} '
-                    f'(95% CI {h["ci95"][0]:.4f}–{h["ci95"][1]:.4f}; '
-                    f'{e(h["evaluator_version"])}; {h["n_withheld_positives"]:,} withheld); negative</span>')
         if x["lane"].startswith("H77L:"):
             h = lag_card["holdout_dti"]
             return (f'<span class="chip warn">HOLDOUT-DTI {h["dti"]:.4f} '
                     f'(95% CI {h["ci95"][0]:.4f}–{h["ci95"][1]:.4f}; '
                     f'{e(h["evaluator_version"])}; {h["withheld_positive_pixels"]:,} withheld); '
                     'not comparable to incumbent</span>')
+        if x["lane"].startswith("AGO-"):
+            return '<span class="chip warn">Quick 4-quadrant proxy only; no exact withheld-positive count or 95% CI, not reportable HOLDOUT-DTI</span>'
         if x["lane"].startswith("H79-ORIENT:"):
             h20 = orient_card["holdout"]["seed20"]["scores"]["H79_plus_raw"]
             h30 = orient_card["holdout"]["seed30"]["scores"]["H79_plus_raw"]
@@ -137,10 +155,6 @@ def main():
                     f'(95% CI {h["ci95"][0]:.4f}–{h["ci95"][1]:.4f}; '
                     f'{e(h["evaluator_version"])}; {h["withheld_positive_pixels"]:,} withheld); '
                     'not comparable to H77L</span>')
-        if x.get("holdout_quick") is not None:
-            return (f'<span class="chip warn">exploratory {x["holdout_quick"]:.4f} '
-                    f'({e(x.get("holdout_evaluator", "unverified evaluator"))}); '
-                    'withheld-positive count and 95% CI not recorded; not a qualified HOLDOUT-DTI receipt</span>')
         if x.get("beats_holdout_best") is not None:
             return yn(x["beats_holdout_best"], "YES", "NO")
         if x.get("holdout_dti_hide_v2") is not None:
@@ -195,9 +209,12 @@ gates and currently says <b>NOT OK TO SUBMIT — 0 authorized files</b>.</p>"""
                        f'CRS/shape/transform match, no NaN anywhere, range [{v["min"]}, {v["max"]}], '
                        'no nodata tag. This is not a portal acceptance receipt; DO NOT UPLOAD.')
     else:
-        format_text = ('Local format preflight passes. This does not guarantee portal acceptance or approval; '
-                       'see the individual lane receipt before making any decision.')
-    dl = f"""<section class="card dl {'research' if primary is lag else ''}"><h2>⬇ Featured research-only file: download for inspection — DO NOT SUBMIT</h2>
+        format_text = primary.get(
+            "format_description",
+            'Local format preflight passes. This does not guarantee portal acceptance or approval; '
+            'see the individual lane receipt before making any decision.',
+        )
+    dl = f"""<section class="card dl {'research' if primary.get('verdict') == 'negative' else ''}"><h2>⬇ Featured research-only file: download for inspection — DO NOT SUBMIT</h2>
 <p class="small muted"><b>{e(primary["lane"])}.</b> {e(primary.get("why_primary", ""))}</p>
 <a class="btn" href="{e(primary["file"])}" download>Download .tif ({size_kb:.0f} KB)</a>{zip_btn}
 <div class="chips"><span class="chip ok">OK to download: YES</span>
@@ -214,18 +231,11 @@ gates and currently says <b>NOT OK TO SUBMIT — 0 authorized files</b>.</p>"""
 <p class="small">sha256 of the .tif: <code>{e(primary.get("sha256", ""))}</code> · <a href="executive-summary.html">How submission works, step by step →</a></p></section>"""
     o20 = orient_card["holdout"]["seed20"]["scores"]["H79_plus_raw"]
     o30 = orient_card["holdout"]["seed30"]["scores"]["H79_plus_raw"]
-    orient_box = f"""<section class="card" style="border:2px solid #b45309;background:#fffbeb;"><h2>⬇ H79-ORIENT: latest negative candidate</h2>
+    orient_box = f"""<section class="card" style="border:2px solid #b45309;background:#fffbeb;"><h2>⬇ H79-ORIENT: earlier negative lane</h2>
 <p><b>OK TO DOWNLOAD: YES.</b> <b>OK TO SUBMIT: NO.</b> The label-blind orientation/persistence artifact is a distinct research lane, but its primary is HOLDOUT-DTI {o30['dti']:.6f} on seed 30 (95% CI {o30['ci95'][0]:.6f}–{o30['ci95'][1]:.6f}; {o30['withheld_positive_pixels']:,} withheld positives) and {o20['dti']:.6f} on seed 20. The retained incumbent is 0.152718 HOLDOUT-DTI. The registry gate is also fail-closed.</p>
 <a class="btn" href="{e(orient['file'])}" download>Download H79-ORIENT .tif</a> <a class="btn alt" href="{e(orient['zip'])}" download>One-TIFF ZIP</a>
 <div class="chips"><span class="chip ok">Format preflight: PASS</span><span class="chip bad">Holdout: NEGATIVE</span><span class="chip bad">Registry: FAIL</span><span class="chip warn">Slots used: 0</span></div>
 <p class="small">SHA-256 <code>{e(orient['sha256'])}</code> · <a href="h79-orient.html">technical report</a> · <a href="h79-orient-executive-summary.html">H79-ORIENT guide</a> · <a href="evidence/h79_orient_run_card.json">run card</a></p></section>"""
-    h80_holdout = h80_card["holdout_dti"]
-    h80_zip = Path(h80["file"]).with_suffix(".zip").as_posix()
-    h80_box = f"""<section class="card" style="border:2px solid #b45309;background:#fffbeb;"><h2>⬇ H80: parallel negative geology lane</h2>
-<p><b>OK TO DOWNLOAD: YES.</b> <b>OK TO SUBMIT: NO.</b> Riedel wing-crack tip rays are format-valid, but <b>HOLDOUT-DTI {h80_holdout['value']:.5f}</b> ({e(h80_holdout['evaluator_version'])}; {h80_holdout['n_withheld_positives']:,} withheld positives; 95% CI {h80_holdout['ci95'][0]:.5f}–{h80_holdout['ci95'][1]:.5f}) is below the retained 0.152718 HOLDOUT-DTI incumbent. Its local 3-px overlap is {h80_card['correlation_overlap_vs_registry']['max_3px_overlap']:.4f} with the selective-U raster; this exceeds the 0.70 stop. <b>Do not submit.</b></p>
-<a class="btn" href="{e(h80['file'])}" download>Download H80 .tif</a> <a class="btn alt" href="{e(h80_zip)}" download>One-TIFF ZIP</a>
-<div class="chips"><span class="chip ok">Format: PASS (local)</span><span class="chip bad">Holdout: NEGATIVE</span><span class="chip bad">Uniqueness: FAIL</span><span class="chip warn">Slots used: 0</span></div>
-<p class="small">SHA-256 <code>{e(h80['sha256'])}</code> · <a href="h80.html">technical report</a> · <a href="downloads/gems77-h80-riedel-wingcrack-tips-20261021-zeros.json">run card</a></p></section>"""
     facts = ""
     if card:
         h = card["holdout"]
@@ -243,7 +253,6 @@ gates and currently says <b>NOT OK TO SUBMIT — 0 authorized files</b>.</p>"""
 (DrivenData competition 306). The first box distinguishes downloading a file from permission to upload it. The table
 lists the reviewed research candidates, not every historical archived/NaN-twin file; see <a href="audit.html">archive audit</a>.</p>
 {glance}
-{h80_box}
 {dl}
 {orient_box}
 <h2>Reviewed downloadable candidates</h2>{table}
@@ -267,13 +276,12 @@ not proof that the specific file received that score or that another submission 
 
     # ---------------- general executive summary (how to submit)
     guide = f"""<h1>Executive summary: how to submit — only AFTER approval</h1>
-<p class="verdict"><b>Today: NOT OK TO SUBMIT any file here.</b> The featured H77L file is explicitly
+<p class="verdict"><b>Today: NOT OK TO SUBMIT any file here.</b> The featured H80 file is explicitly
 <b>RESEARCH ONLY</b>. Download is for inspection, not permission to upload. Before spending one of the official
 <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">three weekly feedback slots</a>, the shared uniqueness policy must
 be resolved, a candidate must beat a <em>matched</em> holdout incumbent, and a separate selector must approve it. No
 condition is met merely by passing a format check.</p>
 {glance}
-{h80_box}
 {dl}
 {orient_box}
 <h2>What the DrivenData submission form asks for</h2>
@@ -281,7 +289,7 @@ condition is met merely by passing a format check.</p>
 <tr><td>File to submit</td><td>One <b>cleared</b> single-band float32 GeoTIFF <code>.tif</code> (or a ZIP containing exactly that one GeoTIFF),
 never this HTML page, a PDF, a JSON run card, or a file marked RESEARCH ONLY. Match the <a href="{PD}">official grid</a>:
 EPSG:32611; 3730 rows × 3292 columns; 100 m resolution; top-left origin (243350, 4508550). Prediction values [0, 1].</td></tr>
-<tr><td>Note (optional)</td><td>Paste the <b>approved file's</b> distinct short note, no longer than 140 characters. The H77L
+<tr><td>Note (optional)</td><td>Paste the <b>approved file's</b> distinct short note, no longer than 140 characters. The featured H80
 research-file note says DO NOT SUBMIT and is <em>not</em> an upload recommendation.</td></tr></table>
 <h2>Actual submission steps (not executable for today's files)</h2><ol>
 <li>First confirm the site's per-file row says <b>OK TO SUBMIT</b> and the selector has approved this exact SHA-256;
