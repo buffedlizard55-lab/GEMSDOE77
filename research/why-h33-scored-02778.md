@@ -53,3 +53,7 @@ A catalogue holdout measures recovery of withheld mapped faults, not geothermal 
 A freshly restored registry witness has positive support across all 5,167,373 footprint cells. Every nonempty allowed prediction set is therefore contained in its support and its three-pixel dilation. Under the currently binding literal rule, forward overlap is exactly 1, exceeding 0.70. This is a deterministic rejection certificate, not geological similarity evidence. No low rank correlation or new filename can undo this rejection. Changing the shared protocol requires its owner's decision; this review does not exempt dense rasters privately.
 
 Existing files remain downloadable **for inspection only**. There is no new candidate, no new holdout score, no selector approval and no competition slot use.
+
+## Parallel-session reconciliation
+
+The concurrent readiness review and [904a24d3 review](../docs/review-904a24d3.md) independently found the same marginal-credit error. Their additional tests (`tests/test_h33_reasoning.py`, `tests/test_marginal_dti_review.py`) and candidate-independent [preflight certificate](../evidence/registry_preflight.json) are preserved. Neither review authorizes a candidate.

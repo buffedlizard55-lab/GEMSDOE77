@@ -1,0 +1,202 @@
+{
+  "experiment": "H82-E3",
+  "name": "gems77-h82-cool-chemconcord-11185dots-20261021-245bb13136-zeros",
+  "note": "H82 cool-outlet concordant geothermometers; research-only, NOT APPROVED",
+  "sha256": "84b50d05eaba578c398c4c7ab720dbf5a46de29d63f4254eb02a8ba02a4a43df",
+  "receipt": {
+    "file": "gems77-h82-cool-chemconcord-11185dots-20261021-245bb13136-zeros.tif",
+    "sha256": "84b50d05eaba578c398c4c7ab720dbf5a46de29d63f4254eb02a8ba02a4a43df",
+    "bytes": 61611,
+    "submission_name": "gems77-h82-cool-chemconcord-11185dots-20261021-245bb13136-zeros",
+    "note": "H82 cool-outlet concordant geothermometers; research-only, NOT APPROVED",
+    "note_chars": 71,
+    "validator": {
+      "file": "/home/user/GEMSDOE77/docs/downloads/gems77-h82-cool-chemconcord-11185dots-20261021-245bb13136-zeros.tif",
+      "bytes": 61611,
+      "sha256": "84b50d05eaba578c398c4c7ab720dbf5a46de29d63f4254eb02a8ba02a4a43df",
+      "meta": {
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "dtype": "float32",
+        "count": 1,
+        "nodata": null,
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "profile_compress": "deflate"
+      },
+      "band_description": [
+        null
+      ],
+      "n_finite": 12279160,
+      "n_nan": 0,
+      "n_infinite": 0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.0009108929079957306,
+      "emitted_positive_pixels": 11185,
+      "checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "transform_matches_sample_submission": true,
+        "no_nan_anywhere": true,
+        "no_inf_anywhere": true,
+        "no_sentinel_values": true,
+        "range_0_1_guaranteed": true,
+        "min_ge_0": true,
+        "max_le_1": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_zero": true,
+        "zero_dots_on_mapped_catalogue": true
+      },
+      "all_checks_passed": true,
+      "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+      "on_catalogue_positive_pixels": 0,
+      "in_footprint_positive_pixels": 11185,
+      "footprint_fraction": 0.0021645427957300545
+    },
+    "template_report": {
+      "path": "/home/user/GEMSDOE77/docs/downloads/gems77-h82-cool-chemconcord-11185dots-20261021-245bb13136-zeros.tif",
+      "bytes": 61611,
+      "sha256": "84b50d05eaba578c398c4c7ab720dbf5a46de29d63f4254eb02a8ba02a4a43df",
+      "bands": 1,
+      "dtype": "float32",
+      "crs": "EPSG:32611",
+      "width": 3292,
+      "height": 3730,
+      "bounds": [
+        243350.0,
+        4135550.0,
+        572550.0,
+        4508550.0
+      ],
+      "ref_bounds": [
+        243350.0,
+        4135550.0,
+        572550.0,
+        4508550.0
+      ],
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "nodata": null,
+      "blocksize": [
+        256,
+        256
+      ],
+      "fixture_grid": false,
+      "has_validity_mask": false,
+      "nan_pixels": 0,
+      "infinity_pixels": 0,
+      "n_nan": 0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.0009108929079957306,
+      "n_nonzero": 11185,
+      "mass": 11185.0,
+      "mass_outside_footprint": 0,
+      "problems": [],
+      "ok": true,
+      "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+    },
+    "zip_file": "gems77-h82-cool-chemconcord-11185dots-20261021-245bb13136-zeros.zip",
+    "zip_sha256": "6157eb5db0763d392704cabe629889137ec27e2e06c3dbda9b9a0e461198f084",
+    "approved_for_weekly_slot": false,
+    "promoted": false,
+    "submission_slots_used": 0,
+    "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+    "metadata": {
+      "lane": "H82",
+      "selector_approved": false
+    }
+  },
+  "postplacement_registry": {
+    "my_file": null,
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "my_dots": 11185,
+    "candidate_decoded_sha256": "245bb13136279d806058dd02214c5e3e61a22ce5374c7777e542880a8feec318",
+    "candidate_file_sha256": null,
+    "rho_limit": 0.9,
+    "overlap_limit": 0.7,
+    "jaccard_limit": 0.5,
+    "registry_rasters_expected": 2,
+    "registry_rasters_checked": 2,
+    "complete_accessible_scan": false,
+    "missing_or_invalid": 0,
+    "source_errors": [
+      "Only two pinned witnesses checked; NOT a complete registry scan"
+    ],
+    "worst_spearman_full_footprint": 0.014890779094254944,
+    "worst_rho_submission": "dense_witness",
+    "worst_dot_overlap": 1.0,
+    "worst_overlap_submission": "dense_witness",
+    "worst_jaccard_dot_sets": 0.0021645427957300545,
+    "worst_jaccard_submission": "dense_witness",
+    "byte_unique_among_checked": true,
+    "pixel_unique_among_checked": true,
+    "duplicate_count": 1,
+    "unique": false,
+    "rows": [
+      {
+        "repo": "buffedlizard55-lab/17GEMSDOE",
+        "submission": "dense_witness",
+        "file": "/home/user/GEMSDOE77/.cache/h82/dense.tif",
+        "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+        "decoded_sha256": "11cb7dffcc88926fee8260f61df01d7712d3a7bb34fcc1bb333fb6b47f77ec05",
+        "their_dots": 5167373,
+        "my_dots_within_3px_of_theirs": 1.0,
+        "their_dots_within_3px_of_mine": 0.0,
+        "spearman_full_footprint": 0.014890779094254944,
+        "jaccard_dot_sets": 0.0021645427957300545,
+        "identical_bytes": false,
+        "identical_decoded_predictions": false,
+        "duplicate_by_rho": false,
+        "duplicate_by_overlap": true,
+        "duplicate_by_jaccard": false
+      },
+      {
+        "repo": "buffedlizard55-lab/60GEMSDOE",
+        "submission": "h33",
+        "file": "/home/user/GEMSDOE77/.cache/h82/h33.tif",
+        "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "decoded_sha256": "aec92fc3ff1e95f0b7a84d48294683199f2a3b25d9cdce2a95329aeccbfd839e",
+        "their_dots": 37654,
+        "my_dots_within_3px_of_theirs": 0.16075100581135449,
+        "their_dots_within_3px_of_mine": 0.0,
+        "spearman_full_footprint": 0.00031805449913874554,
+        "jaccard_dot_sets": 0.0018050911776168693,
+        "identical_bytes": false,
+        "identical_decoded_predictions": false,
+        "duplicate_by_rho": false,
+        "duplicate_by_overlap": false,
+        "duplicate_by_jaccard": false
+      }
+    ],
+    "jaccard_diagnostic_only": true,
+    "verdict": "negative",
+    "stop_required": true,
+    "candidate_rank_variation": true,
+    "scope": "All hash-verified accessible entries in the indexed public owner-repository inventory; not a complete organizer registry. External/private/unlinked/inaccessible files may be absent. Reverse overlap is diagnostic only."
+  },
+  "worst_overlap": 1.0,
+  "worst_overlap_submission": "dense_witness",
+  "duplicate_stop": true,
+  "registry_complete": false,
+  "slot_used": false
+}

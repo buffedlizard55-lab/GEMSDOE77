@@ -1,0 +1,85 @@
+{
+  "hypothesis": "Cool outlet + three-geothermometer concordance predicts concealed hydrothermal permeability",
+  "mechanism": "Concordant hotter-than-outlet estimated temperatures, pointwise maxima then 2 km Gaussian field",
+  "named_non_fault_process_that_could_mimic_it": "Conductive non-fault basin aquifers and road-clustered sampling",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "dti": 0.012183573151637725,
+    "ci95": [
+      0.0036995165161437336,
+      0.022843915166265796
+    ],
+    "withheld_positive_pixels": 11321,
+    "tpw": 137.39690701293176,
+    "fpw": 10964.732721331258,
+    "fnw": 11183.603092987069
+  },
+  "paired_controls": {
+    "presence": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.00027787768492209056,
+      "ci95": [
+        -0.0016265050298452078,
+        0.0025120273784397886
+      ],
+      "withheld_positive_pixels": 11321
+    },
+    "random": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": -0.006121414860185611,
+      "ci95": [
+        -0.01539019637159446,
+        0.00497298981245266
+      ],
+      "withheld_positive_pixels": 11321
+    }
+  },
+  "leakage_canary": {
+    "concordance": {
+      "auc": 0.499491891506934,
+      "symmetric_auc": 0.500508108493066,
+      "leakage_flag": false
+    },
+    "presence": {
+      "auc": 0.4992421170832965,
+      "symmetric_auc": 0.5007578829167034,
+      "leakage_flag": false
+    },
+    "cool": {
+      "auc": 0.4989335520272061,
+      "symmetric_auc": 0.501066447972794,
+      "leakage_flag": false
+    }
+  },
+  "correlation_overlap_vs_registry": {
+    "surface_max_abs_spearman": 0.046510725340842496,
+    "final_max_forward_3px_overlap": 1.0,
+    "worst_submission": "dense_witness",
+    "registry_rasters_checked": 2,
+    "registry_complete": false,
+    "duplicate": true,
+    "dense_witness": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "final_max_abs_spearman": 0.014890779094254944,
+    "vs_h33_forward_overlap_3px": 0.16075100581135449
+  },
+  "raster_sha256": "84b50d05eaba578c398c4c7ab720dbf5a46de29d63f4254eb02a8ba02a4a43df",
+  "validator_output": {
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "crs_shape_transform_match": true,
+    "all_checks_passed": true
+  },
+  "submission_name": "gems77-h82-cool-chemconcord-11185dots-20261021-245bb13136-zeros",
+  "note": "H82 cool-outlet concordant geothermometers; research-only, NOT APPROVED",
+  "note_chars": 71,
+  "verdict": "negative",
+  "ok_to_download_for_inspection": true,
+  "ok_to_submit": false,
+  "reason": "STOP: final dots duplicate full-footprint registry witness; incomplete global registry and holdout gate. No selector authorization or organizer score.",
+  "experiments_used": 3,
+  "weekly_slots_used": 0,
+  "evaluator_version": "gems57-pooled-hide-v2"
+}

@@ -97,7 +97,7 @@ def test_lia_receipt_cannot_borrow_another_lanes_manifest(tmp_path):
     from lia_build_site import verified_lia_receipt
     card = json.loads((ROOT / "docs/data/run-card.json").read_text())
     receipt = verified_lia_receipt(card, output=tmp_path / "lia.json")
-    generic = json.loads((ROOT / "docs/data/submission.json").read_text())
+    generic = json.loads((ROOT / "docs/data/h28-submission.json").read_text())
     assert receipt["primary"]["file"] == card["raster"]["file"]
     assert receipt["primary"]["sha256"] == card["raster"]["sha256"]
     assert receipt["zip"]["sha256"] == card["raster"]["zip_sha256"]

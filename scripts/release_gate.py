@@ -65,11 +65,12 @@ def check_guardrail_types(card: dict) -> None:
     mapping_keys = {"uniqueness_audit", "registry_comparison", "uniqueness_vs_registry",
                     "correlation_overlap_vs_registry", "registry", "literal_reading"}
     numeric_keys = {"final_dots_max_forward_overlap_3px", "surface_max_forward_overlap_3px",
+                    "final_max_forward_3px_overlap",
                     "duplicate_count", "duplicate_rasters_in_checked_subset",
                     "literal_reading_firings_final_dots", "post_placement_dots_max_forward_3px_overlap_real_models",
                     "dot_duplicate_count", "max_forward_overlap_3px", "unreadable_registry_files"}
     boolean_keys = {"protocol_unique", "template_literal_reading_duplicate", "duplicate",
-                    "duplicate_stop", "complete_accessible_scan", "complete", "full_registry_certified",
+                    "duplicate_stop", "complete_accessible_scan", "complete", "full_registry_certified", "registry_complete",
                     "holdout_valid_for_promotion", "beats_holdout_best", "approved_for_weekly_slot",
                     "safe_to_download_and_submit", "ok_to_submit"}
     def visit(obj):
@@ -78,8 +79,10 @@ def check_guardrail_types(card: dict) -> None:
                 continue
             if key in mapping_keys and not isinstance(value, dict):
                 raise ValueError(f"{key} must be an object")
-            if key in numeric_keys and (type(value) not in (int, float) or not math.isfinite(value)):
-                raise ValueError(f"{key} must be a finite number")
+            if key in numeric_keys and (type(value) not in (int, float) or not math.isfinite(value) or value < 0):
+                raise ValueError(f"{key} must be a finite nonnegative number")
+            if key in numeric_keys and "overlap" in key and value > 1:
+                raise ValueError(f"{key} must be in [0,1]")
             if key in boolean_keys and type(value) is not bool:
                 raise ValueError(f"{key} must be a boolean")
             if isinstance(value, dict):
@@ -147,6 +150,8 @@ def audit_run_card(run_card_rel: str | None, root: Path = ROOT) -> dict:
         or rcmp.get("template_literal_reading_duplicate") is True
         or lit_read.get("duplicate") is True
         or cov.get("duplicate_stop") is True
+        or cov.get("duplicate") is True
+        or (cov.get("final_max_forward_3px_overlap") or 0) > 0.70
         or (cov.get("final_dots_max_forward_overlap_3px") or 0) > 0.70
         or (reg.get("surface_max_forward_overlap_3px") or 0) > 0.70
         or "fails closed" in str(uvr.get("unfiltered_dense_witness_note") or "").lower()
@@ -165,6 +170,7 @@ def audit_run_card(run_card_rel: str | None, root: Path = ROOT) -> dict:
     )
     reg_incomplete = bool(
         reg.get("complete") is False
+        or cov.get("registry_complete") is False
         or reg.get("full_registry_certified") is False
         or cov_incomplete
         or (rcmp.get("unreadable_registry_files") or 0) > 0
