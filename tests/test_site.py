@@ -234,9 +234,31 @@ def test_negative_lanes_are_not_recommended_or_promoted_on_entry_page():
         assert 'top candidates for human selector review' not in page
         assert 'recommended for human selector sign-off' not in page
         assert 'recommended co-primary file' not in page
-    for subpage in ('h77d.html','h77d-executive-summary.html','h77-step.html','h77-step-executive-summary.html','urank.html','urank-executive-summary.html'):
+    for subpage in ('h77d.html','h77d-executive-summary.html','h77-step.html','h77-step-executive-summary.html','urank.html','urank-executive-summary.html','h80t.html','h80t-executive-summary.html'):
         txt=(DOC/subpage).read_text().lower()
         assert 'not ok to submit' in txt, subpage
         assert 'not approved' in txt, subpage
         assert 'lane verdict: promote' not in txt, subpage
         assert 'recommended for drivendata upload' not in txt, subpage
+
+
+def test_h80t_lane_artifact_and_run_card_fail_closed():
+    import hashlib
+    card = json.loads((ROOT / 'evidence/h80t_run_card.json').read_text())
+    uniq = json.loads((ROOT / 'evidence/h80t_uniqueness.json').read_text())
+    lanes = json.loads((DOC / 'data/lanes.json').read_text())['lanes']
+    row = next(x for x in lanes if x['lane'].startswith('H80T:'))
+    tif = ROOT / card['submission_raster']['pages_download']
+    zip_p = ROOT / card['submission_raster']['zip_download']
+    assert tif.is_file() and zip_p.is_file()
+    assert hashlib.sha256(tif.read_bytes()).hexdigest() == card['raster_sha256'] == row['sha256']
+    assert card['verdict'] == 'negative' and not card['safe_to_download_and_submit'] and not card['ok_to_submit']
+    assert row['verdict'] == 'negative' and row['protocol_unique'] is False and row['informative_unique'] is True
+    assert card['leakage_canary']['pass'] is True and card['leakage_canary']['max_sym_auc'] <= 0.90
+    assert card['holdout_dti']['evaluator_version'] == 'gems57-pooled-hide-v2'
+    assert card['holdout_dti']['withheld_positive_pixels'] == 22893
+    assert len(card['submission_note']) <= 140
+    assert uniq['phase1_surface_before_placement']['worst_spearman_full_footprint'] <= 0.90
+    assert uniq['phase2_final_dots']['worst_dot_overlap_informative_dot_fields'] <= 0.70
+    assert uniq['phase2_final_dots']['worst_dot_overlap_literal'] > 0.70
+
