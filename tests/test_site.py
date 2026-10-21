@@ -41,7 +41,7 @@ def test_historical_build_utility_cannot_delete_or_overwrite_other_lane_artifact
 
 def test_submission_status_obeys_literal_uniqueness_gate():
     lanes=json.loads((DOC/'data/lanes.json').read_text())
-    lia=lanes['lanes'][0]
+    lia=next(x for x in lanes['lanes'] if x['lane'].startswith('LIA:'))
     assert lia['protocol_unique'] is False
     assert 'not ok to submit' in lia['upload'].lower()
     assert (DOC/lia['file']).is_file()
@@ -50,7 +50,7 @@ def test_submission_status_obeys_literal_uniqueness_gate():
     assert ('Can I submit it?</b> <b>No' in page or 'Can I upload it?</b> <b>No' in page)
     assert 'Can I upload it?</b> Yes.' not in page
     assert 'do not upload' in (DOC/'lia-executive-summary.html').read_text().lower()
-    contact=lanes['lanes'][1]
+    contact=next(x for x in lanes['lanes'] if x['lane'].startswith('Contact-physics'))
     assert contact['protocol_unique'] is False
     assert 'not ok to submit' in contact['upload'].lower()
 
@@ -159,8 +159,26 @@ def test_new_research_raster_is_visible_but_never_called_a_submittable_entry():
     assert 'row #48' in home and 'OWNER-REPORT' in home
     assert (DOC/'evidence/h77l_run_card.json').is_file()
     assert 'independent re-read audit' in detail and 'three-pass review' in detail
-    assert '68.4%' in detail and '11 other local TIFFs' in detail
     audit=json.loads((DOC/'evidence/h77l_independent_audit.json').read_text())
+    assert '68.4%' in detail and f"{audit['stats']['local_prior_tifs_checked']} other local TIFFs" in detail
     assert audit['all_checks_passed'] and audit['checks']['pixel_distinct_from_all_local_prior_tifs']
-    assert audit['stats']['local_prior_tifs_checked']>=11
+    assert audit['stats']['local_prior_tifs_checked']>=13
     assert 'Unknown. H77L' in home and 'Will it beat 0.2778?</b> No' not in home
+def test_negative_lanes_are_not_recommended_or_promoted_on_entry_page():
+    """The aggregate landing page must not recommend files whose overall verdict is negative."""
+    lanes=json.loads((DOC/'data/lanes.json').read_text())
+    assert all(x['verdict']=='negative' and x['protocol_unique'] is False for x in lanes['lanes'])
+    assert 'not ok to submit' in lanes['note'].lower()
+    for lane in lanes['lanes']:
+        status=lane['upload'].lower()
+        assert 'not ok to submit' in status
+        assert 'inspection only' in status
+        assert 'recommended' not in status and 'co-primary' not in status
+    for lane in lanes['lanes']:
+        if 'selector_recommendation' in lane:
+            assert 'not approved' in lane['selector_recommendation'].lower()
+    for path in ('index.html','executive-summary.html'):
+        page=(DOC/path).read_text().lower()
+        assert 'top candidates for human selector review' not in page
+        assert 'recommended for human selector sign-off' not in page
+        assert 'recommended co-primary file' not in page

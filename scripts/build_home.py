@@ -22,6 +22,7 @@ LB = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboa
 PD = "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
 NAV = [("index.html", "Start here"), ("executive-summary.html", "How to submit"),
+       ("h79.html", "H79 · research-only"),
        ("h77l.html", "H77L · research-only"), ("h77d.html", "H77D (Zero-SGMC)"), ("h77d-executive-summary.html", "H77D guide"),
        ("h77-step.html", "H77-Step"), ("h78.html", "H78 lane"),
        ("lia.html", "LIA lane"), ("contactphys.html", "Contact-physics lane"), ("urank.html", "Selective-U lane"),
@@ -94,6 +95,13 @@ def main():
                     f'(95% CI {h["ci95"][0]:.4f}–{h["ci95"][1]:.4f}; '
                     f'{e(h["evaluator_version"])}; {h["withheld_positive_pixels"]:,} withheld); '
                     'not comparable to incumbent</span>')
+        if x["lane"].startswith("H79-BB:"):
+            h = jload("evidence/h79_run_card.json")["holdout_dti"]
+            v = h["pooled_hide_v2"]
+            return (f'<span class="chip warn">HOLDOUT-DTI {v["score"]:.4f} '
+                    f'(95% CI {v["ci_95"][0]:.4f}–{v["ci_95"][1]:.4f}; '
+                    f'{e(h["evaluator_version"])}; {v["withheld_positive_pixels"]:,} withheld); '
+                    'not comparable to H77L or H77-Step</span>')
         if x.get("beats_holdout_best") is not None:
             return yn(x["beats_holdout_best"], "YES", "NO")
         if x.get("holdout_dti_hide_v2") is not None:
@@ -127,7 +135,9 @@ def main():
 100% of allowed pixels, so every non-empty candidate has a 3 px forward overlap of 1.0 (limit 0.70). This is a
 representation-policy contradiction, not proof that every geological hypothesis is the same. No private exemption is
 applied; the protocol owner must change the shared policy before any raster can pass. Format validation alone does not
-authorize an upload; the separate weekly-slot selector has approved none.</p>"""
+authorize an upload; the separate weekly-slot selector has approved none. The independent
+<a href="data/submission-authorization.json">machine-readable authorization receipt</a> combines all required release
+gates and currently says <b>NOT OK TO SUBMIT — 0 authorized files</b>.</p>"""
     beat_txt = primary.get(
         "beat_02778_summary",
         "No organizer-confirmed evidence of a gain and no clearance for a competition slot.",
@@ -140,7 +150,7 @@ authorize an upload; the separate weekly-slot selector has approved none.</p>"""
     else:
         format_text = ('Local format preflight passes. This does not guarantee portal acceptance or approval; '
                        'see the individual lane receipt before making any decision.')
-    dl = f"""<section class="card dl {'research' if primary is lag else ''}"><h2>⬇ Newest file: download for inspection — DO NOT SUBMIT</h2>
+    dl = f"""<section class="card dl {'research' if primary is lag else ''}"><h2>⬇ Featured research-only file: download for inspection — DO NOT SUBMIT</h2>
 <p class="small muted"><b>{e(primary["lane"])}.</b> {e(primary.get("why_primary", ""))}</p>
 <a class="btn" href="{e(primary["file"])}" download>Download .tif ({size_kb:.0f} KB)</a>{zip_btn}
 <div class="chips"><span class="chip ok">OK to download: YES</span>
