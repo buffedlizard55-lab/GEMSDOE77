@@ -1,0 +1,80 @@
+{
+  "schema_version": "gems-preregistration-v2",
+  "lane_id": "H83-PCD",
+  "branch": "arena/5c385eb9-gemsdoe77",
+  "registered_utc": "2026-10-21T17:55:00Z",
+  "title": "Multi-Scale Poisson Pseudogravity-Gravity Gradient Discordance x Piedmont Scarp-Toe Asymmetry x Geothermal-Strain Conduit Coupling + 12-Bit LOCO Transfer Relay & 300 m Submodular Cover",
+  "assigned_paragraph_note": "The 2026-10-21 session prompt contains no external single-method paragraph; per Protocol Rule 1 and IR-77-06, this session self-declares and freezes Lane H83-PCD before running Experiment 1, namespaced h83pcd_* to avoid any file collision with closed/parallel lanes.",
+  "hypotheses_document": "research/h83pcd_hypotheses.md",
+  "primary_hypothesis": {
+    "id": "H83-PCD",
+    "layers": [
+      "training_features.tif Band 2 (rtp)",
+      "training_features.tif Band 3 (tmi_hg)",
+      "training_features.tif Band 4 (geod_2ndinv)",
+      "training_features.tif Band 6 (tc_totalcount, verified radiometric TC)",
+      "training_features.tif Band 7 (geod_shearrate)",
+      "training_features.tif Band 8 (geod_dilaterate)",
+      "training_features.tif Band 9 (tmi_vg)",
+      "training_features.tif Band 10 (deq_n100a15)",
+      "training_features.tif Band 11 (iso_grav_anom_vg)",
+      "training_features.tif Band 12 (det_elev)",
+      "training_features.tif Band 13 (iso_grav_anom)",
+      "training_features.tif Band 15 (depth_to_base_surf)",
+      "training_features.tif Band 16 (ieq_n100a15)",
+      "training_features.tif Band 17 (cond_surf, smoothed sigma=6 px per IR-H77G-01)",
+      "training_features.tif Band 19 (det_elev_slope)",
+      "external/lidar_scarp_features_u8.tif Bands 1, 3, 4, 5, 6, 10, 12 (q==0 -> NaN per IR-77D-01)",
+      "external/geodawn_rad_u8.tif Bands 1-3 (K, Th, U)",
+      "external/geodawn_extensions_u8.tif Band 4 (TMI_up150)",
+      "external/gdr_wellspring_in_footprint.csv (temp_c, geothermquartz_c, geothermchalc_c, geothermcat_c; dist_known_fault_px forbidden)",
+      "external/gdr_volcanic_vents_in_footprint.csv"
+    ],
+    "physical_signature": "Multi-scale (sigma=2.5, 5.0 px) Cordell-Grauch Poisson pseudogravity-to-gravity horizontal gradient anti-concordance (1 - cos angle(grad_H g_iso, grad_H PG(RTP))) gated by basement depth step (|grad_H depth_to_base_surf|), Gallardo-Meju cross-gradient rotational ridges, gravity-normal basement profile inflection, missing-coverage-aware 1 m LiDAR down-facing piedmont scarp-toe curvature dipole bridged by 100 m DEM ridges, kinematic transtensional strain x swarm excess, and DOE GDR 1391 chemical geothermometer disequilibrium conduits, coupled with fold-visible 12-bit Leave-Own-Component-Out (LOCO) transfer-relay mechanics and 300 m submodular kernel cover.",
+    "why_uncatalogued": "Mapped USGS/INGENIOUS Quaternary faults are predominantly steep range-front bedrock scarps. Intrabasin accommodation transfer faults, piedmont step-out splays (200 m-3 km basinward of range fronts), and argillic-altered hydrothermal conduits have subdued or buried surface scarps missed by legacy mapping, but retain strong subsurface density-vs-magnetization Poisson decoupling (dense weakly-magnetic basement juxtaposed against magnetic volcanic fill, or hydrothermal magnetite destruction along fluid conduits) and subtle piedmont scarp-toe breaklines.",
+    "named_non_fault_mimic": "Unfaulted erosional margins of reversely magnetized Tertiary ash-flow tuffs lapping onto dense Paleozoic carbonate basement, pluvial Lake Lahontan wave-cut shoreline terraces overlying buried pluton contacts, or highway/railroad embankments across flat basin floors."
+  },
+  "static_pcd_channels": [
+    "pcd_poisson_anti_step",
+    "pcd_crossgrad_rot_ridge",
+    "pcd_basement_bench_inflect",
+    "pcd_piedmont_toe_scarp",
+    "pcd_transtens_swarm_gate",
+    "pcd_hydro_demag_conduit",
+    "pcd_rad_kth_discord",
+    "pcd_composite_surface"
+  ],
+  "fold_visible_loco_channels": [
+    "vis_dist_clipped",
+    "vis_cracktip_lobe",
+    "vis_stepover_corridor",
+    "vis_strain_deficit",
+    "vis_pcd_transfer_relay"
+  ],
+  "experiment_budget": {
+    "max_experiments": 3,
+    "max_hours": 2.0,
+    "experiments": [
+      {
+        "id": "H83-PCD-E1",
+        "description": "Feature synthesis, single-feature symmetric ROC-AUC leakage canaries on Seed 30 and Seed 20 (stop if any > 0.90), Phase-1 pre-placement surface Spearman correlation scan against registry/local rasters (stop if |rho| > 0.90), and standalone label-free surface screen on gems57-pooled-hide-v2."
+      },
+      {
+        "id": "H83-PCD-E2",
+        "description": "Dual-seed buffered whole-component spatial holdout evaluation (gems57-pooled-hide-v2, Seed 30: 11,342 withheld positives; Seed 20: 11,321 withheld positives) comparing A_pcd_full (static + LOCO + 300m submodular), A_pcd_greedy (same surface + greedy disk), A_pcd_static_only (no LOCO), A_pcd_mech_only, A_std_greedy (standard 19-band + terrain + rad control), and A0_random, with 1,000-draw paired block-bootstrap 95% CIs."
+      },
+      {
+        "id": "H83-PCD-E3",
+        "description": "Full-map 4-quadrant strictly out-of-fold H83-PCD surface build, sparse-overlap-capped 37,654-dot 300 m submodular emission (0 pixels copied, 0 SGMC channels), shared submission_writer.py packaging + 15/15 validator & 17/17 independent readback checks, Phase-2 final-dot uniqueness audit (reporting both sparse informative pass <= 0.70 and literal Policy I17 dense-witness stop), and frozen JSON run card."
+      }
+    ]
+  },
+  "gates": {
+    "leakage_canary_max_symmetric_auc": 0.90,
+    "surface_max_abs_spearman": 0.90,
+    "sparse_final_dots_max_forward_overlap_3px": 0.70,
+    "sparse_overlap_cap_in_allocator": 0.64,
+    "retained_incumbent_holdout_dti": 0.152718,
+    "policy_i17_literal_dense_witness": "Fail-closed: dense continuous witness ab0a0a62 covers 100% of allowed footprint pixels, so literal 3-px forward overlap is 1.000 > 0.70; candidate must be marked verdict='negative' and NOT OK TO SUBMIT (inspection download only, 0 weekly slots spent)."
+  }
+}
