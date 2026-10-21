@@ -1,0 +1,430 @@
+{
+  "experiment": "H77V-E1",
+  "evidence_class": "CANARY-AND-SURFACE-DIAGNOSTIC",
+  "channel_diagnostics": {
+    "h77v_sinter_alter_vent_conduit": {
+      "in_footprint_mean": 0.5,
+      "in_footprint_std": 0.2886751890182495,
+      "min": 0.0,
+      "max": 1.0,
+      "nan_count": 0
+    },
+    "h77v_tufa_shoreline_deconf_contrast": {
+      "in_footprint_mean": 0.5,
+      "in_footprint_std": 0.2886751890182495,
+      "min": 0.0,
+      "max": 1.0,
+      "nan_count": 0
+    },
+    "h77v_probe_upward_heatflow_dtdz": {
+      "in_footprint_mean": 0.5,
+      "in_footprint_std": 0.2886751890182495,
+      "min": 0.0,
+      "max": 1.0,
+      "nan_count": 0
+    },
+    "h77v_geotherm_disequilibrium": {
+      "in_footprint_mean": 0.5,
+      "in_footprint_std": 0.2886751890182495,
+      "min": 0.0,
+      "max": 1.0,
+      "nan_count": 0
+    },
+    "h77v_fixed_spring_well_upflow": {
+      "in_footprint_mean": 0.5,
+      "in_footprint_std": 0.2886751890182495,
+      "min": 0.0,
+      "max": 1.0,
+      "nan_count": 0
+    },
+    "h77v_epithermal_k_th_alteration": {
+      "in_footprint_mean": 0.5,
+      "in_footprint_std": 0.2886751890182495,
+      "min": 0.0,
+      "max": 1.0,
+      "nan_count": 0
+    },
+    "h77v_demag_grav_step_conduit": {
+      "in_footprint_mean": 0.4999992847442627,
+      "in_footprint_std": 0.28867560625076294,
+      "min": 0.0,
+      "max": 1.0,
+      "nan_count": 0
+    },
+    "h77v_seamfree_claycap_transtension": {
+      "in_footprint_mean": 0.5,
+      "in_footprint_std": 0.2886751890182495,
+      "min": 0.0,
+      "max": 1.0,
+      "nan_count": 0
+    },
+    "h77v_scarp_strike_vent_bridge": {
+      "in_footprint_mean": 0.497626930475235,
+      "in_footprint_std": 0.2900451421737671,
+      "min": 0.0,
+      "max": 1.0,
+      "nan_count": 0
+    },
+    "h77v_composite_surface": {
+      "in_footprint_mean": 0.5,
+      "in_footprint_std": 0.2886751890182495,
+      "min": 0.0,
+      "max": 1.0,
+      "nan_count": 0
+    }
+  },
+  "source_audit": {
+    "vent_records_in_footprint": 195,
+    "tufa_records_in_footprint": 86,
+    "probes_in_footprint": 2782,
+    "probes_with_vertical_grad": 1543,
+    "upward_heatflow_probes": 816,
+    "downward_solar_probes": 727,
+    "wellspring_rows_read": 27092,
+    "recovered_hot_warm_missing_temp": 267,
+    "fixed_geotherm_without_temp": 171,
+    "volcanic_vents_in_footprint": 21,
+    "forbidden_columns_excluded": [
+      "dist_known_fault_px",
+      "known_fault",
+      "label"
+    ],
+    "sgmc_in_features": false,
+    "prior_submissions_in_features": false,
+    "cond_surf_filter_sigma_px": 36.0
+  },
+  "canaries_by_seed": {
+    "20": {
+      "withheld_positive_pixels": 11321,
+      "negative_sample_pixels": 200000,
+      "h77v_canaries": {
+        "h77v_sinter_alter_vent_conduit": {
+          "auc": 0.4543751051143892,
+          "symmetric_auc": 0.5456248948856108
+        },
+        "h77v_tufa_shoreline_deconf_contrast": {
+          "auc": 0.45830799377263487,
+          "symmetric_auc": 0.5416920062273651
+        },
+        "h77v_probe_upward_heatflow_dtdz": {
+          "auc": 0.5203871135500397,
+          "symmetric_auc": 0.5203871135500397
+        },
+        "h77v_geotherm_disequilibrium": {
+          "auc": 0.49599027206077195,
+          "symmetric_auc": 0.504009727939228
+        },
+        "h77v_fixed_spring_well_upflow": {
+          "auc": 0.4963440634661249,
+          "symmetric_auc": 0.5036559365338751
+        },
+        "h77v_epithermal_k_th_alteration": {
+          "auc": 0.5568571314371522,
+          "symmetric_auc": 0.5568571314371522
+        },
+        "h77v_demag_grav_step_conduit": {
+          "auc": 0.5382012315608161,
+          "symmetric_auc": 0.5382012315608161
+        },
+        "h77v_seamfree_claycap_transtension": {
+          "auc": 0.5282081958307571,
+          "symmetric_auc": 0.5282081958307571
+        },
+        "h77v_scarp_strike_vent_bridge": {
+          "auc": 0.5933394843653387,
+          "symmetric_auc": 0.5933394843653387
+        },
+        "h77v_composite_surface": {
+          "auc": 0.56065869446162,
+          "symmetric_auc": 0.56065869446162
+        }
+      },
+      "std19_canaries": {
+        "mag_anom": {
+          "auc": 0.5110860938108293,
+          "symmetric_auc": 0.5110860938108293
+        },
+        "rtp": {
+          "auc": 0.5193039933903725,
+          "symmetric_auc": 0.5193039933903725
+        },
+        "tmi_hg": {
+          "auc": 0.5326538208232015,
+          "symmetric_auc": 0.5326538208232015
+        },
+        "geod_2ndinv": {
+          "auc": 0.5694610389635038,
+          "symmetric_auc": 0.5694610389635038
+        },
+        "iso_grav_anom_slope": {
+          "auc": 0.5234456834017541,
+          "symmetric_auc": 0.5234456834017541
+        },
+        "tc_totalcount": {
+          "auc": 0.4666397396330614,
+          "symmetric_auc": 0.5333602603669386
+        },
+        "geod_shearrate": {
+          "auc": 0.5690160497680586,
+          "symmetric_auc": 0.5690160497680586
+        },
+        "geod_dilaterate": {
+          "auc": 0.5168781407495638,
+          "symmetric_auc": 0.5168781407495638
+        },
+        "tmi_vg": {
+          "auc": 0.48749383433165633,
+          "symmetric_auc": 0.5125061656683436
+        },
+        "deq_n100a15": {
+          "auc": 0.5406284973537603,
+          "symmetric_auc": 0.5406284973537603
+        },
+        "iso_grav_anom_vg": {
+          "auc": 0.5162394437777148,
+          "symmetric_auc": 0.5162394437777148
+        },
+        "det_elev": {
+          "auc": 0.5139605463589569,
+          "symmetric_auc": 0.5139605463589569
+        },
+        "iso_grav_anom": {
+          "auc": 0.45893915690791576,
+          "symmetric_auc": 0.5410608430920842
+        },
+        "tmi": {
+          "auc": 0.5105985619805049,
+          "symmetric_auc": 0.5105985619805049
+        },
+        "depth_to_base_surf": {
+          "auc": 0.5248371605511536,
+          "symmetric_auc": 0.5248371605511536
+        },
+        "ieq_n100a15": {
+          "auc": 0.5448856152527956,
+          "symmetric_auc": 0.5448856152527956
+        },
+        "cond_surf": {
+          "auc": 0.4788020640596646,
+          "symmetric_auc": 0.5211979359403354
+        },
+        "iso_grav_anom_hg_signed": {
+          "auc": 0.4922772770085118,
+          "symmetric_auc": 0.5077227229914882
+        },
+        "det_elev_slope": {
+          "auc": 0.5679819146667193,
+          "symmetric_auc": 0.5679819146667193
+        }
+      },
+      "max_h77v_symmetric_auc": 0.5933394843653387,
+      "max_h77v_channel": "h77v_scarp_strike_vent_bridge",
+      "max_std_symmetric_auc": 0.5694610389635038,
+      "max_std_channel": "geod_2ndinv",
+      "leakage_flagged": false
+    },
+    "30": {
+      "withheld_positive_pixels": 11342,
+      "negative_sample_pixels": 200000,
+      "h77v_canaries": {
+        "h77v_sinter_alter_vent_conduit": {
+          "auc": 0.475030147681185,
+          "symmetric_auc": 0.524969852318815
+        },
+        "h77v_tufa_shoreline_deconf_contrast": {
+          "auc": 0.46539190001763364,
+          "symmetric_auc": 0.5346080999823664
+        },
+        "h77v_probe_upward_heatflow_dtdz": {
+          "auc": 0.5446056850643626,
+          "symmetric_auc": 0.5446056850643626
+        },
+        "h77v_geotherm_disequilibrium": {
+          "auc": 0.5282174486422148,
+          "symmetric_auc": 0.5282174486422148
+        },
+        "h77v_fixed_spring_well_upflow": {
+          "auc": 0.5174489082613295,
+          "symmetric_auc": 0.5174489082613295
+        },
+        "h77v_epithermal_k_th_alteration": {
+          "auc": 0.5325442825339446,
+          "symmetric_auc": 0.5325442825339446
+        },
+        "h77v_demag_grav_step_conduit": {
+          "auc": 0.5520892917915712,
+          "symmetric_auc": 0.5520892917915712
+        },
+        "h77v_seamfree_claycap_transtension": {
+          "auc": 0.5737277338652795,
+          "symmetric_auc": 0.5737277338652795
+        },
+        "h77v_scarp_strike_vent_bridge": {
+          "auc": 0.5815159262034915,
+          "symmetric_auc": 0.5815159262034915
+        },
+        "h77v_composite_surface": {
+          "auc": 0.5855283014459531,
+          "symmetric_auc": 0.5855283014459531
+        }
+      },
+      "std19_canaries": {
+        "mag_anom": {
+          "auc": 0.5003746476219476,
+          "symmetric_auc": 0.5003746476219476
+        },
+        "rtp": {
+          "auc": 0.49449112593616273,
+          "symmetric_auc": 0.5055088740638373
+        },
+        "tmi_hg": {
+          "auc": 0.509587044700005,
+          "symmetric_auc": 0.509587044700005
+        },
+        "geod_2ndinv": {
+          "auc": 0.5683211920660054,
+          "symmetric_auc": 0.5683211920660054
+        },
+        "iso_grav_anom_slope": {
+          "auc": 0.5715740701025616,
+          "symmetric_auc": 0.5715740701025616
+        },
+        "tc_totalcount": {
+          "auc": 0.44808530693056176,
+          "symmetric_auc": 0.5519146930694383
+        },
+        "geod_shearrate": {
+          "auc": 0.5746268679363353,
+          "symmetric_auc": 0.5746268679363353
+        },
+        "geod_dilaterate": {
+          "auc": 0.5169339253648864,
+          "symmetric_auc": 0.5169339253648864
+        },
+        "tmi_vg": {
+          "auc": 0.4989546033201935,
+          "symmetric_auc": 0.5010453966798065
+        },
+        "deq_n100a15": {
+          "auc": 0.5506778738733638,
+          "symmetric_auc": 0.5506778738733638
+        },
+        "iso_grav_anom_vg": {
+          "auc": 0.5458853316221708,
+          "symmetric_auc": 0.5458853316221708
+        },
+        "det_elev": {
+          "auc": 0.47550370014780446,
+          "symmetric_auc": 0.5244962998521956
+        },
+        "iso_grav_anom": {
+          "auc": 0.4680000407248258,
+          "symmetric_auc": 0.5319999592751742
+        },
+        "tmi": {
+          "auc": 0.5052733762129826,
+          "symmetric_auc": 0.5052733762129826
+        },
+        "depth_to_base_surf": {
+          "auc": 0.5317439152980366,
+          "symmetric_auc": 0.5317439152980366
+        },
+        "ieq_n100a15": {
+          "auc": 0.5670752359406817,
+          "symmetric_auc": 0.5670752359406817
+        },
+        "cond_surf": {
+          "auc": 0.5201111249527646,
+          "symmetric_auc": 0.5201111249527646
+        },
+        "iso_grav_anom_hg_signed": {
+          "auc": 0.4790938029695824,
+          "symmetric_auc": 0.5209061970304176
+        },
+        "det_elev_slope": {
+          "auc": 0.5432361408600727,
+          "symmetric_auc": 0.5432361408600727
+        }
+      },
+      "max_h77v_symmetric_auc": 0.5855283014459531,
+      "max_h77v_channel": "h77v_composite_surface",
+      "max_std_symmetric_auc": 0.5746268679363353,
+      "max_std_channel": "geod_shearrate",
+      "leakage_flagged": false
+    }
+  },
+  "max_h77v_symmetric_auc_overall": 0.5933394843653387,
+  "leakage_ceiling_auc": 0.9,
+  "leakage_pass": true,
+  "phase1_composite_surface_uniqueness": {
+    "registry_rasters_checked": 70,
+    "space_filling_rasters_count": 5,
+    "space_filling_sha256s": [
+      "033df94ceef16350030a69d5cfdec0afe7bc605bb155d8f3b98b203aabf80abd",
+      "9489af2b7e1b06a249203d3c9d6dfe4ed469647f59ebe3a5ffe9c50c67e46b42",
+      "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+      "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+      "c9d1398e464603350e464fff7213a8a5e380f1ccf505e263a685607970ae28ef"
+    ],
+    "literal_worst_spearman_full_footprint": 0.16523972260714698,
+    "literal_worst_rho_submission": "dense_witness.tif",
+    "literal_worst_dot_overlap": 1.0,
+    "literal_worst_overlap_submission": "dense_witness.tif",
+    "literal_unique": false,
+    "literal_duplicate_count": 5,
+    "informative_non_space_filling": {
+      "n_informative_rasters": 65,
+      "worst_abs_spearman": 0.05822283567459493,
+      "worst_rho_submission": "19GEMSDOE__h19-5-powerlaw-budget-multiline.tif",
+      "worst_forward_overlap_3px": 0.31933950178156323,
+      "worst_overlap_submission": "h60_union_d2_75308.tif",
+      "informative_gate_pass": true,
+      "top5_by_overlap": [
+        {
+          "submission": "h60_union_d2_75308.tif",
+          "sha256": "772cf4502bfc",
+          "forward_overlap_3px": 0.31933950178156323,
+          "abs_spearman": 0.005389988713436141
+        },
+        {
+          "submission": "calib_hedgev2_01563_sample.tif",
+          "sha256": "052688eafbc7",
+          "forward_overlap_3px": 0.2835644501692543,
+          "abs_spearman": 0.05530943162114053
+        },
+        {
+          "submission": "calib_h28ridge_01839.tif",
+          "sha256": "7637b72d4c6c",
+          "forward_overlap_3px": 0.27203537891214336,
+          "abs_spearman": 0.03394805604492333
+        },
+        {
+          "submission": "calib_h25ctx_01280.tif",
+          "sha256": "1381e784fb8b",
+          "forward_overlap_3px": 0.2631105327814603,
+          "abs_spearman": 0.05718398657494992
+        },
+        {
+          "submission": "h52_coincidence8_80k.tif",
+          "sha256": "a2ed87fac9fd",
+          "forward_overlap_3px": 0.23857097960046228,
+          "abs_spearman": 0.019843126674434046
+        }
+      ]
+    },
+    "vs_h33_champion": {
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "spearman_full_footprint": 0.031220761099154712,
+      "forward_overlap_3px": 0.15085347058427379
+    },
+    "vs_dense_witness_ab0a0a62": {
+      "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+      "spearman_full_footprint": 0.16523972260714698,
+      "forward_overlap_3px": 1.0
+    },
+    "byte_unique_among_checked": true,
+    "pixel_unique_among_checked": true
+  },
+  "surface_spearman_gate_pass": true,
+  "elapsed_seconds": 134.64
+}

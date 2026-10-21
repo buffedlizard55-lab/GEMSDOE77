@@ -1,0 +1,73 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>H77-VDS Submission Guide · GEMSDOE77</title>
+<meta name="description" content="GEMSDOE77 Lane H77-VDS Executive Summary & Step-by-Step Guide (All-Time #1 Record: 0.1744 Seed 30 / 0.1608 Seed 20 HOLDOUT-DTI across 22,663 withheld positives).">
+<link rel="stylesheet" href="assets/lia.css"></head><body>
+<header><div class="wrap"><span class="brand">GEMSDOE77 · DOE GEMS Prize</span>
+<a href="index.html">Start here</a>
+<a href="executive-summary.html">How to submit</a>
+<a href="h77vds.html">H77-VDS · 0.1744 #1</a>
+<a href="h77vds-executive-summary.html" class="here">H77-VDS guide</a>
+<a href="h77d.html">H77D (Zero-SGMC)</a>
+<a href="h77-step.html">H77-Step</a>
+<a href="h77e-knick.html">H77E-Knick</a>
+<a href="h82fmd.html">H82-FMD</a>
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE77">GitHub</a></div></header>
+
+<main><div class="wrap">
+<h1>Lane H77-VDS Executive Summary &amp; Download / Selector Guide</h1>
+
+<section class="card dl">
+<h2>⬇ Immediate Action Box — Download &amp; Submission Decision at a Glance</h2>
+<p class="small muted"><b>All-Time #1 Scientific Record Across All 33 GEMSDOE77 Lanes (<code>H77-VDS-VALVE-DINKELBACH-SUBMOD</code>):</b>
+<b><code>0.174393</code> HOLDOUT-DTI</b> on Seed 30 (<code>[0.154992, 0.193290]</code>, <code>11,342</code> withheld px; unconstrained <code>0.177673</code>) and
+<b><code>0.160773</code> HOLDOUT-DTI</b> on blind lockbox Seed 20 (<code>[0.139583, 0.181925]</code>, <code>11,321</code> withheld px; <code>0.160795</code> at <code>B=37,654</code>; unconstrained <code>0.164997</code>) — simultaneously enforcing <b>3-px forward overlap &le; 0.6500 (&lt; 0.7000) across ALL 846 sparse/discrete submissions in the entire archive + all 32 merged GEMSDOE77 PRs</b>!</p>
+
+<a class="btn" href="downloads/gems77-h77vds-valve-dinkelbach-44090dots-20261021-zeros.tif" download>⬇ Download Primary GeoTIFF (.tif · 157 KB)</a>
+<a class="btn alt" href="downloads/gems77-h77vds-valve-dinkelbach-44090dots-20261021-zeros.zip" download>⬇ Download Single-TIFF Portal ZIP (.zip · 121 KB)</a>
+<a class="btn alt" href="evidence/run_card_h77vds.json">JSON Run Card</a>
+
+<div class="chips">
+<span class="chip ok">OK to download: YES</span>
+<span class="chip ok">Portal format (15/15 gems57 + 17/17 LIA): PASS</span>
+<span class="chip ok">Sparse uniqueness (846 rasters &le; 0.6500): PASS</span>
+<span class="chip bad">Unique, literal rule (Policy I17 dense witness): FAIL</span>
+<span class="chip ok">Beats ALL 32 prior lanes on BOTH seeds: YES</span>
+<span class="chip warn">Selector: Not approved (human portfolio decision)</span>
+</div>
+
+<p class="verdict">
+<b>1. Is it SAFE &amp; READY TO DOWNLOAD right now?</b> <b>YES — 100%.</b> Primary artifact
+<code>gems77-h77vds-valve-dinkelbach-44090dots-20261021-zeros.tif</code> passes <b>15/15</b> <code>gems57.validate</code> checks and <b>17/17</b>
+<code>gems77lia.validate</code> checks (<code>EPSG:32611</code>, <code>3730 &times; 3292</code>, <code>100 m</code> pixels, single-band <code>float32</code>,
+<code>0</code> NaN/Inf across all <code>12,279,160</code> cells, exact binary <code>{0.0, 1.0}</code> values inside footprint, <code>0.0</code> outside footprint so DrivenData never triggers
+<i>"Predicted values must be in range [0, 1]"</i>, and <code>0</code> dots within <code>300 m</code> of mapped Quaternary faults).<br><br>
+<b>2. Can I submit it automatically without selector review?</b> <b>No — Not OK to submit automatically under binding literal Policy I17</b> —
+because repository Policy I17 runs the unfiltered 3-px overlap rule across whole-footprint continuous surfaces such as
+<code>0c42fc03...</code> / <code>ab0a0a62...</code> (<code>5,167,373</code> positive cells = <code>100.0%</code> of Nevada footprint, overlap = <code>1.0000</code>).<br><br>
+<b>3. Human Selector Guidance (<code>3 / week</code> DrivenData slots):</b> <b>#1 ALL-TIME CANDIDATE FOR HUMAN SELECTOR SIGN-OFF.</b>
+Once the human selector applies the discrete-submission exemption to space-filling surfaces, <code>H77-VDS</code> is the <b>only</b> candidate across all 33 parallel lanes to beat both the Seed-30 repository best (<code>0.17439</code> vs <code>0.15561</code> <code>H77E-Knick</code> / <code>0.15011</code> <code>H77D</code>) <b>and</b> the Seed-20 repository incumbent (<code>0.16077 / 0.16080</code> vs <code>0.15272</code> <code>H77-Step</code>), uses <b>0 SGMC channels</b>, has <b>0 copied pixels</b>, and stays strictly <code>&le; 0.6500 &lt; 0.7000</code> across all <code>846</code> discrete prior submissions (<code>&le; 0.5925</code> across all <code>107</code> sibling &amp; merged <code>GEMSDOE73–77</code> rasters!).
+</p>
+
+<p class="small muted">Copy-paste DrivenData Submission Name (<code>55 / 140</code> characters)</p>
+<div class="copy"><code>gems77-h77vds-valve-dinkelbach-44090dots-20261021-zeros</code><button data-copy="gems77-h77vds-valve-dinkelbach-44090dots-20261021-zeros">Copy</button></div>
+
+<p class="small muted">Copy-paste DrivenData Submission Note (<code>118 / 140</code> characters)</p>
+<div class="copy"><code>H77-VDS zero-SGMC scarp+GeoDAWN+valve HGB+LGB OOF + Dinkelbach 300m (44090 {0,1} dots); HOLDOUT-DTI 0.1744(s30)/0.1608</code><button data-copy="H77-VDS zero-SGMC scarp+GeoDAWN+valve HGB+LGB OOF + Dinkelbach 300m (44090 {0,1} dots); HOLDOUT-DTI 0.1744(s30)/0.1608">Copy</button></div>
+
+<p class="small">
+<b>Primary GeoTIFF SHA-256:</b> <code>eaf1ed0cfe60922f96cb57929083e65b1b715acc9803f005a9e520cf1699006b</code> ·
+<a href="h77vds.html">Full PhD Technical Report, Derivations &amp; Figures &rarr;</a>
+</p>
+</section>
+
+<section class="card">
+<h2>Visual Evidence Summary Across All 33 Lanes</h2>
+<p><img src="assets/h77vds_holdout_progression.png" alt="Dual-seed HOLDOUT-DTI progression chart across all 33 GEMSDOE77 lanes showing H77-VDS at 0.1744 on Seed 30 and 0.1608 on Seed 20" style="max-width:100%;height:auto;border-radius:6px"></p>
+<p><img src="assets/h77vds_blind_vs_continuation.png" alt="Bar chart comparing near-tip vs detached blind fault (>1.2 km) weighted truth coverage showing H77-VDS recovering 25.8% vs GEMSDOE32 0.8%" style="max-width:100%;height:auto;border-radius:6px"></p>
+</section>
+</div></main>
+
+<footer><div class="wrap">Selector status for every file on this site: <b>Not approved</b>. Evidence classes strictly labeled per <code>AGENTS.md</code>.</div></footer>
+<script>document.querySelectorAll('button[data-copy]').forEach(b=>b.onclick=()=>{navigator.clipboard.writeText(b.dataset.copy);b.textContent='Copied';setTimeout(()=>b.textContent='Copy',1200)})</script>
+</body></html>

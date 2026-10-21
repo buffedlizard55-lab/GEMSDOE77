@@ -1,0 +1,17 @@
+{
+  "registered_utc": "2026-10-21",
+  "lane": "H77E upward-continuation persistence + Euler depth coherence (potential fields)",
+  "assignment_irregularity": "No single method paragraph identifiable in supplied prompt (same as IR-77-06); autonomous narrow lane declared before Exp 1, not a claimed assigned lane.",
+  "hypothesis": "Deep basement source edges that persist under Fourier upward continuation (200/400/800 m) in BOTH magnetics and gravity, with depth-coherent Euler (SI=0) solutions, mark buried intrabasin faults missing from the surface catalogue.",
+  "mimic": "Intrusive/lithologic basement contacts and caldera margins (deep, persistent, Euler-coherent); GeoDAWN survey-block seams; thick uniform alluvium for the texture block",
+  "inputs": ["data/raw/training_features.tif bands 2,3,9,13,14 (+ all 19 for the standard control arm)", "data/bridge/existing_faults.tif only for split/mask/exclusion", "data/bridge/sample_submission.tif only for footprint/grid", "data/raw/scored/gems19-h19-5-...-nan.tif only as fold-fair champion-construction control, never as a feature"],
+  "signature": "exp(-|k|h) upward continuation h=200/400/800m; per-height percentile-normalised analytic-signal edge; persistence=mean across heights; deep=800m edge; crossfield=min(mag persistence, grav persistence); Euler SI=0 windowed solutions (7px window, stride 2, depth 50-1500m) rasterised as density + depth coherence; texture block: 5/11px RTP roughness ratio anisotropy",
+  "candidate_parameters": {"continuation_heights_m": [0, 200, 400, 800], "euler_window_px": 7, "euler_stride_px": 2, "euler_structural_index": 0, "budget_dots": 37654, "catalogue_exclusion_px": 3.0, "submodular_min_sep_px": 2.2},
+  "controls": ["standard raw-19-band HGB (same folds/training protocol)", "fold-fair H19-5 champion construction", "matched random surface"],
+  "canaries": "every new field alone, symmetric ROC-AUC vs withheld positives; >0.90 = leakage stop",
+  "validation": "vendor/gems57 evaluate_holdout gems57-pooled-hide-v2: buffered_component_draw whole components, buffer 3px, boundary 12px, visible faults masked pixel-exactly, pooled DTI alpha 0.2 beta 0.8 300m triangular kernel, paired 20km-block bootstrap 1000 draws. Seeds 20 (primary) and 30 (candidate-vs-standard replication).",
+  "promotion": "No weekly slot spent here. Require canaries <=0.90, paired HOLDOUT-DTI beating current repo best 0.15272, informative uniqueness (rho<=0.90, forward 3px overlap<=0.70 vs sparse registry rasters), shared-writer on-disk validation. Literal Policy-I17 dense-witness reading reported separately and fails closed for every lane in this repo.",
+  "registry_policy": "Literal vendor/gems57/uniqueness thresholds on surface before placement AND on final dots; dense space-filling witnesses reported as Policy-I17 blockers, sparse-raster informative reading reported as diagnostic. Stop and log duplicate if either stage exceeds thresholds on sparse model rasters.",
+  "budget": {"maximum_experiments": 3, "maximum_hours": 2, "planned_experiments": 3},
+  "expected_improvement": "Unknown; hypotheses are ordinal priorities, never projected scores."
+}

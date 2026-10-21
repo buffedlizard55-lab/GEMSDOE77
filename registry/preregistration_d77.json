@@ -1,0 +1,14 @@
+{
+  "registered_utc": "2026-10-21",
+  "lane": "D77 blind-distance band + metric-aware greedy dots",
+  "assignment_irregularity": "No single method paragraph identifiable in the supplied brief for this session; self-declared narrow lane (analogous to IR-77-06). Not H77: H77 is stopped and negative per AGENTS.md and is not re-tuned here.",
+  "hypothesis": "Hidden geothermal faults missed by the USGS/INGENIOUS catalogue lie in the blind band 250 m-1 000 m from mapped traces (beyond the H33 flank prune at <= 200 m), not on the catalogue itself; dots spaced about one kernel radius apart pay the minimum false-positive tax under DTI (alpha = 0.2, beta = 0.8).",
+  "mechanism": "Euclidean distance to nearest catalogue fault computed from visible faults only; triangular posterior peaking at 600 m over the 250 m-1 km blind band; exact two-sided DTI-bar greedy allocation; zeros outside the footprint and on the mapped catalogue.",
+  "named_non_fault_mimic": "Pluvial Lake Lahontan shoreline benches and alluvial fan toes, which also sit at moderate distance from range-front faults without a seismogenic fault.",
+  "inputs": ["data/bridge/existing_faults.tif (catalogue) only for split/mask/feature", "data/bridge/sample_submission.tif only for footprint/grid"],
+  "signature": "distance-to-catalogue EDT; triangular band weight peak 6 px; greedy_allocate exact two-sided bar; submission_writer fail-closed",
+  "validation": "Unchanged gems57.holdout hide-and-recover: whole fault segments withheld per buffered quadrant fold (12 px domain erosion), every catalogue-based feature from visible faults only, visible faults masked pixel-exactly, pooled DTI alpha 0.2 beta 0.8 300 m triangular kernel, bootstrap 95% CI. Leakage canary: single distance-band feature AUC vs withheld truth must be <= 0.90.",
+  "uniqueness_rule": "Spearman |rho| <= 0.90 on the placement surface vs every locally accessible registry raster; dots within 3 px <= 0.70 vs every registry dot field. Dense whole-footprint witness surfaces are reported separately (Policy I17); no private exemption.",
+  "budget": {"maximum_experiments": 3, "maximum_hours": 2, "planned_experiments": 1},
+  "expected_improvement": "Unknown; no live score. Holdout is expected near zero (catalogue-proximal recovery conflicts with the blind-band design; the family's H33 scored 0.0043 holdout vs 0.2778 owner-reported live). Negative results are deliverables."
+}

@@ -1,0 +1,10 @@
+[16:13:37] registry records=812/812
+[16:15:34] reg 200/812
+[16:17:32] reg 400/812
+[16:19:40] reg 600/812
+[16:21:40] reg 800/812
+[16:21:47] phase2 registry: {"label": "phase2_final_dots_vs_fetched_registry812", "checked": 808, "errors": 4, "all": {"n": 808, "worst_spearman": 0.13382436783070029, "worst_spearman_submission": "GEMSDOE10:docs/downloads/gems10-h16-continuation-20260927T065521077735Z-3431b83c7c.tif", "worst_forward_overlap_3px": 1.0, "worst_overlap_submission": "GEMSDOE48:docs/downloads/GEMSDOE48-unassigned-mass-20261006.tif", "duplicate_firings_rho_or_overlap": 106, "identical_decoded": 0}, "sparse_le150k": {"n": 688, "worst_spearman": 0.13223063132820037, "worst_spearman_submission": "GEMSDOE51:archive/submissions/2026-10-07/gemsdoe51-ste-hd-w035-s24-r347-20261007T024659Z-nan.tif", "worst_forward_overlap_3px": 0.9244436182078929, "worst_overlap_submission": "12GEMSDOE:docs/downloads/12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62.tif", "duplicate_firings_rho_or_overlap": 36, "identical_decoded": 0}}
+[16:21:47] champion rows=1
+[16:22:03] phase2 local: {"label": "phase2_final_dots_vs_local_lanes", "checked": 24, "errors": 0, "all": {"n": 24, "worst_spearman": 0.3164456998655037, "worst_spearman_submission": "downloads/gems77-xsen-coincide-hgb-37654dots-20261021-zeros.tif", "worst_forward_overlap_3px": 0.9769214426090189, "worst_overlap_submission": "downloads/gems77-h77-urank-curvature-0d868dc271bb-research.tif", "duplicate_firings_rho_or_overlap": 4, "identical_decoded": 0}, "sparse_le150k": {"n": 23, "worst_spearman": 0.3164456998655037, "worst_spearman_submission": "downloads/gems77-xsen-coincide-hgb-37654dots-20261021-zeros.tif", "worst_forward_overlap_3px": 0.873904498858023, "worst_overlap_submission": "downloads/gems77-xsen-coincide-hgb-37654dots-20261021-zeros.tif", "duplicate_firings_rho_or_overlap": 3, "identical_decoded": 0}}
+[16:22:03] done compare 506s
+EXIT=0

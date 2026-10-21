@@ -1,0 +1,89 @@
+{
+  "hypothesis": "Riedel R/R' wing cracks at degree-1 mapped-fault tips (15\u00b0 and -75\u00b0 from local strike, 400\u20131000 m).",
+  "mechanism": "Catalogue-only geometry: emit soft rays from visible tips; Poisson-disk binary dots; zeros on mapped faults and outside footprint.",
+  "named_non_fault_mimic": "Linear drainages leaving canyon mouths; cadastral/road alignments.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "value": 0.09579668088380372,
+    "ci95": [
+      0.08818346093522027,
+      0.1032479741261599
+    ],
+    "n_withheld_positives": 11319,
+    "random_control_dti": 0.014885618022699831
+  },
+  "correlation_overlap_vs_registry": {
+    "scope": "local docs/downloads only \u2014 NOT complete family registry",
+    "max_3px_overlap": 0.9815833333333334,
+    "max_file": "gems77-h77-urank-curvature-0d868dc271bb-research.tif",
+    "limit": 0.7,
+    "pass_vs_local_dots": false,
+    "n_compared": 19,
+    "top": [
+      {
+        "file": "gems77-h77-urank-curvature-0d868dc271bb-research.tif",
+        "overlap_3px": 0.9815833333333334
+      },
+      {
+        "file": "gems77-h77e-ucpeuler-ctx-37654dots-20261021-22873551-nan.tif",
+        "overlap_3px": 0.6015833333333334
+      },
+      {
+        "file": "gems77-h77e-ucpeuler-ctx-37654dots-20261021-22873551-zeros.tif",
+        "overlap_3px": 0.6015833333333334
+      },
+      {
+        "file": "gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif",
+        "overlap_3px": 0.40808333333333335
+      },
+      {
+        "file": "gems77-xsen-coincide-hgb-37654dots-20261021-zeros.tif",
+        "overlap_3px": 0.4033333333333333
+      },
+      {
+        "file": "gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-nan.tif",
+        "overlap_3px": 0.349
+      },
+      {
+        "file": "gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.tif",
+        "overlap_3px": 0.349
+      },
+      {
+        "file": "gems77-step-propensity-submod300.tif",
+        "overlap_3px": 0.2695
+      }
+    ]
+  },
+  "raster_sha256": "bab170ed60ab7e1a8afbfad69386a8266191fa4864ac3abac5b6290b7d25bc57",
+  "validator": {
+    "ok": true,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true
+    },
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "crs_shape_transform_match": true,
+    "n_dots": 12000,
+    "min": 0.0,
+    "max": 1.0
+  },
+  "submission_name": "gems77-h80-riedel-wingcrack-tips-20261021-zeros",
+  "note": "H80 Riedel 15/75deg tip rays; fold-fair HOLDOUT negative expected; research only DO NOT SUBMIT",
+  "note_len": 94,
+  "verdict": "negative",
+  "safe_to_submit": false,
+  "canary_auc": 0.6868240255675756,
+  "download": "docs/downloads/gems77-h80-riedel-wingcrack-tips-20261021-zeros.tif",
+  "authorization": "NOT OK TO SUBMIT \u2014 research inspection only; selector not approved; weekly slot unused."
+}

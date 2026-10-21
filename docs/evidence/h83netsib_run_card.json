@@ -1,0 +1,396 @@
+{
+ "schema": "gems-parallel-run-card-v1",
+ "lane": "H83-NETSIB",
+ "generated_utc": "2026-10-21T18:39:08+00:00",
+ "branch": "arena/e8283608-gemsdoe77",
+ "preregistration": "registry/preregistration_h83_netsib.json",
+ "hypothesis": "Unmapped faults belong to the same organised normal-fault arrays as mapped ones: they lie parallel to mapped traces at characteristic spacing, bridge collinear gaps, or continue along strike. A model trained on synthetic whole-component withholdings of the visible catalogue learns where an absent strand goes; fused with geophysical/topographic evidence it recovers withheld faults better than geophysics alone and better than the incumbent.",
+ "mechanism": "From the VISIBLE catalogue only: structure-tensor strike (sigma1=1, sigma2=3 px), 12 strike bins of 15 deg; per bin FFT convolution with oriented kernels: along-strike continuation (|a|<=25 px, lateral sigma 1.5 px, exp(-|a|/12)), forward/backward half kernels combined as bilateral gap sqrt(F*B), parallel-sibling band (4<=|c|<=20 px perpendicular, |a|<=15 px); plus isotropic Gaussian network density at sigma 4/12/32 px, log1p distance-to-visible, and local strike coherence. Training positives = (i) synthetic re-withheld visible components (20% per quadrant, whole 8-connected components, 3 px collar removed from features, 2 independent draws) and (ii) the real withheld components of the OTHER quadrants; features for each row computed from the catalogue state that row would see at test time. Negatives = footprint pixels > 3 px from every catalogue pixel, half within 15 px.",
+ "named_non_fault_mimic": "Mapping-density bias: dense catalogue where geologists mapped intensively (e.g. around known geothermal fields) \u2013 the network prior then predicts more faults where mapping effort, not faulting, was high",
+ "other_mimics": [
+  "Pluvial Lake Lahontan shoreline benches parallel to range fronts \u2013 parallel to faults at km spacing, mimic the sibling kernel in topography-gated cells",
+  "Bedding/foliation-parallel lithologic contacts in tilted fault blocks (sub-parallel to faults at sub-km spacing)"
+ ],
+ "experiments_used": 3,
+ "leakage_canary": {
+  "max_symmetric_auc_by_seed": {
+   "20": 0.8054,
+   "30": 0.8092
+  },
+  "max_feature_by_seed": {
+   "20": "ns_logdist",
+   "30": "ns_cont"
+  },
+  "ceiling": 0.9,
+  "pass": true
+ },
+ "holdout_dti": {
+  "20": {
+   "label": "HOLDOUT-DTI",
+   "evaluator_version": "gems57-pooled-hide-v2",
+   "withheld_positive_pixels": 11321,
+   "candidate_A_netsib_full": {
+    "dti": 0.153825,
+    "ci95": [
+     0.135659,
+     0.172588
+    ]
+   },
+   "control_A_base": {
+    "dti": 0.078008,
+    "ci95": [
+     0.061303,
+     0.09632
+    ]
+   },
+   "arm_S_netsib_only": {
+    "dti": 0.157736,
+    "ci95": [
+     0.14216,
+     0.172537
+    ]
+   },
+   "random_A0": {
+    "dti": 0.044499,
+    "ci95": [
+     0.039504,
+     0.049285
+    ]
+   },
+   "paired_delta_vs_A_base": {
+    "delta": 0.075817,
+    "ci95": [
+     0.059804,
+     0.091671
+    ]
+   },
+   "paired_delta_vs_S_netsib_only": {
+    "delta": -0.003911,
+    "ci95": [
+     -0.018974,
+     0.011
+    ]
+   },
+   "bootstrap": "paired physical spatial-cluster percentile, 159 clusters, 2000 draws"
+  },
+  "30": {
+   "label": "HOLDOUT-DTI",
+   "evaluator_version": "gems57-pooled-hide-v2",
+   "withheld_positive_pixels": 11342,
+   "candidate_A_netsib_full": {
+    "dti": 0.1637,
+    "ci95": [
+     0.144749,
+     0.18474
+    ]
+   },
+   "control_A_base": {
+    "dti": 0.083995,
+    "ci95": [
+     0.067587,
+     0.099503
+    ]
+   },
+   "arm_S_netsib_only": {
+    "dti": 0.165766,
+    "ci95": [
+     0.149475,
+     0.182431
+    ]
+   },
+   "random_A0": {
+    "dti": 0.046917,
+    "ci95": [
+     0.041303,
+     0.052221
+    ]
+   },
+   "paired_delta_vs_A_base": {
+    "delta": 0.079705,
+    "ci95": [
+     0.063181,
+     0.098598
+    ]
+   },
+   "paired_delta_vs_S_netsib_only": {
+    "delta": -0.002066,
+    "ci95": [
+     -0.016568,
+     0.012805
+    ]
+   },
+   "bootstrap": "paired physical spatial-cluster percentile, 159 clusters, 2000 draws"
+  }
+ },
+ "incumbent": {
+  "label": "HOLDOUT-DTI",
+  "score": 0.152718,
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "withheld_positive_pixels": 11321,
+  "ci95": [
+   0.131548,
+   0.175185
+  ],
+  "source": "evidence/h77/run_card.json"
+ },
+ "beats_incumbent_point_estimate_both_seeds": true,
+ "beats_incumbent_ci_lower_bound_both_seeds": false,
+ "seed20_delta_vs_incumbent_point": 0.001107,
+ "registry": {
+  "pre_placement_deterministic_surface_max_abs_spearman": 0.820199354038477,
+  "pre_placement_deterministic_surface_worst": "7GEMSDOE:downloads/gems7-halo15-gbt-v1-90fb7dc0fc1f.tif",
+  "pre_placement_candidate_surface_max_abs_spearman": 0.675934529504408,
+  "pre_placement_candidate_surface_worst": "witness:dense_witness.tif",
+  "surface_rasters_compared": 614,
+  "final_dots": {
+   "evidence_class": "REGISTRY-MEASUREMENT",
+   "my_dots": 37654,
+   "unique_decoded_rasters_compared": 615,
+   "rows_total_including_duplicates_and_errors": 881,
+   "rho_limit": 0.9,
+   "overlap_limit": 0.7,
+   "max_abs_spearman": 0.08888587637661795,
+   "max_abs_spearman_raster": "witness:dense_witness.tif",
+   "informative_rasters": 578,
+   "max_forward_overlap_informative": 0.9091198810219365,
+   "max_forward_overlap_informative_raster": "GEMSDOE3:docs/downloads/coverage-v3-wide-20260925T054019Z-0ac095a7ed.tif",
+   "max_forward_overlap_literal_all": 1.0,
+   "max_forward_overlap_literal_all_raster": "GEMSDOE48:docs/downloads/GEMSDOE48-unassigned-mass-20261006.tif",
+   "literal_firings_noninformative": 37,
+   "max_matched_budget_overlap_dense": 0.41621076114091465,
+   "max_matched_budget_overlap_dense_raster": "GEMSDOE23:docs/downloads/gemsdoe23-h30-arrangement-matched-habitat-20261002-0d4e02e8-allfinite.tif",
+   "identical_pixels_any": false,
+   "duplicate": true,
+   "self_comparisons_removed": 2
+  },
+  "scan_errors": [
+   {
+    "raster": "GEMSDOE63:docs/downloads/smoke.tif",
+    "error": "89ffb2d61840859392a758928ffdbae4260f2918.tif: MissingRequired:TIFF directory is missing required \"StripOffsets\" field"
+   },
+   {
+    "raster": "GEMSDOE36:docs/downloads/GEMS36_FORMAT_TEST_NOT_SUBMISSION.tif",
+    "skipped": "grid mismatch"
+   }
+  ],
+  "interpretation": "IR-H83N-01: dot-overlap applied where informative (their 3-px cover < 70% of allowed domain) plus matched-budget top-37,654 for dense rasters; literal all-raster value reported alongside.",
+  "scope": "Every raster in registry/registry_index.json (812 entries, built 2026-10-21T02:30Z) fetched and SHA-verified this session, plus both pinned witnesses and every local TIFF; deduplicated by decoded pixels. Not a complete organizer registry."
+ },
+ "raster_sha256": "b2f89a83ffb1080c512bb46c6feae3a6211207cd619e0291bd2d767c002be87f",
+ "raster_bytes": 137795,
+ "zip_sha256": "ef61cfe593aa69468ed72303f49e293da9199fd4c84ddf325134a06c3155a93a",
+ "download": "docs/downloads/gems77-h83-netsib-37654dots-20261021-ed06b51d-zeros.tif",
+ "zip": "docs/downloads/gems77-h83-netsib-37654dots-20261021-ed06b51d-zeros.zip",
+ "validator_output": {
+  "all_checks_passed": true,
+  "checks": {
+   "single_band": true,
+   "dtype_float32": true,
+   "dimensions_3730x3292": true,
+   "crs_epsg_32611": true,
+   "transform_matches_sample_submission": true,
+   "no_nan_anywhere": true,
+   "no_inf_anywhere": true,
+   "no_sentinel_values": true,
+   "range_0_1_guaranteed": true,
+   "min_ge_0": true,
+   "max_le_1": true,
+   "in_footprint_all_finite": true,
+   "in_footprint_range_0_1": true,
+   "outside_footprint_zero": true,
+   "zero_dots_on_mapped_catalogue": true
+  },
+  "min": 0.0,
+  "max": 1.0,
+  "n_nan": 0,
+  "emitted_positive_pixels": 37654,
+  "on_catalogue_positive_pixels": 0,
+  "meta": {
+   "crs": "EPSG:32611",
+   "shape": [
+    3730,
+    3292
+   ],
+   "dtype": "float32",
+   "count": 1,
+   "nodata": null,
+   "transform": [
+    100.0,
+    0.0,
+    243350.0,
+    0.0,
+    -100.0,
+    4508550.0
+   ],
+   "profile_compress": "deflate"
+  }
+ },
+ "submission_name": "gems77-h83-netsib-37654dots-20261021-ed06b51d-zeros",
+ "note": "H83-NETSIB fault-network sibling/gap/continuation geometry, synthetic re-withholding HGB; 37654 dots sep2.8 >2px off catalogue",
+ "note_chars": 126,
+ "promotion_rule_results": {
+  "a_beats_incumbent_both_seeds": true,
+  "b_paired_delta_vs_base_ci_excludes_0": true,
+  "c_no_leakage": true,
+  "d_uniqueness": false,
+  "format_validator": true
+ },
+ "verdict": "negative",
+ "verdict_reason": "Stopped as preregistered: DUPLICATE logged: final dots exceed the 0.70 forward 3-px overlap limit against 16 informative registry rasters (worst 0.9091; all with |rho| <= 0.083).",
+ "duplicate_logged": true,
+ "informational_overlap_firings": [
+  {
+   "raster": "GEMSDOE3:docs/downloads/coverage-v3-wide-20260925T054019Z-0ac095a7ed.tif",
+   "forward_overlap_3px": 0.9091,
+   "their_dots": 624025,
+   "their_3px_cover_of_allowed": 0.6097,
+   "chance_corrected": 0.7672,
+   "spearman": 0.0263
+  },
+  {
+   "raster": "13GEMSDOE:docs/downloads/archive/13gems-r6-ensemble-20260929T182914Z.tif",
+   "forward_overlap_3px": 0.9,
+   "their_dots": 344041,
+   "their_3px_cover_of_allowed": 0.6413,
+   "chance_corrected": 0.7211,
+   "spearman": 0.0159
+  },
+  {
+   "raster": "GEMSDOE67:docs/downloads/gemsdoe67-ovtr-ml-cover-tau3p0-20261012-nan.tif",
+   "forward_overlap_3px": 0.8583,
+   "their_dots": 167597,
+   "their_3px_cover_of_allowed": 0.5437,
+   "chance_corrected": 0.6894,
+   "spearman": 0.0125
+  },
+  {
+   "raster": "GEMSDOE22:docs/downloads/gems22-h23-b-dti-optimal-emission-10pct-20261002-86176698-allfinite.tif",
+   "forward_overlap_3px": 0.8479,
+   "their_dots": 516738,
+   "their_3px_cover_of_allowed": 0.5312,
+   "chance_corrected": 0.6756,
+   "spearman": 0.0437
+  },
+  {
+   "raster": "7GEMSDOE:downloads/gems7-halo15-gbt-v1-90fb7dc0fc1f.tif",
+   "forward_overlap_3px": 0.8392,
+   "their_dots": 1828699,
+   "their_3px_cover_of_allowed": 0.4018,
+   "chance_corrected": 0.7313,
+   "spearman": 0.0826
+  },
+  {
+   "raster": "13GEMSDOE:docs/downloads/archive/13gems-toporef-holdoutref.tif",
+   "forward_overlap_3px": 0.8028,
+   "their_dots": 246469,
+   "their_3px_cover_of_allowed": 0.676,
+   "chance_corrected": 0.3915,
+   "spearman": -0.0014
+  },
+  {
+   "raster": "12GEMSDOE:docs/downloads/12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62.tif",
+   "forward_overlap_3px": 0.7627,
+   "their_dots": 103347,
+   "their_3px_cover_of_allowed": 0.3166,
+   "chance_corrected": 0.6527,
+   "spearman": 0.0252
+  },
+  {
+   "raster": "12GEMSDOE:docs/downloads/12GEMSDOE_r6-nms3-h28-texture_8721329b55c7.tif",
+   "forward_overlap_3px": 0.7607,
+   "their_dots": 103347,
+   "their_3px_cover_of_allowed": 0.3012,
+   "chance_corrected": 0.6576,
+   "spearman": 0.0323
+  },
+  {
+   "raster": "12GEMSDOE:docs/downloads/12GEMSDOE_r5-nms3-trace_055e9aac96b8.tif",
+   "forward_overlap_3px": 0.7562,
+   "their_dots": 103347,
+   "their_3px_cover_of_allowed": 0.3006,
+   "chance_corrected": 0.6515,
+   "spearman": 0.0286
+  },
+  {
+   "raster": "GEMSDOE22:docs/downloads/gems22-h23-a-dti-optimal-emission-6pct-20261002-e2ec4b49-allfinite.tif",
+   "forward_overlap_3px": 0.7534,
+   "their_dots": 335879,
+   "their_3px_cover_of_allowed": 0.4094,
+   "chance_corrected": 0.5824,
+   "spearman": 0.0449
+  },
+  {
+   "raster": "GEMSDOE3:docs/downloads/riftline-context-distance-20260925T011817Z-7b6010637a.tif",
+   "forward_overlap_3px": 0.7432,
+   "their_dots": 352506,
+   "their_3px_cover_of_allowed": 0.3891,
+   "chance_corrected": 0.5797,
+   "spearman": 0.0287
+  },
+  {
+   "raster": "GEMSDOE48:docs/downloads/diagnostics/GEMSDOE48-H57-ds-relief-augmented-20261007-e6b785718c07-diag-plausibility.tif",
+   "forward_overlap_3px": 0.7406,
+   "their_dots": 985492,
+   "their_3px_cover_of_allowed": 0.3808,
+   "chance_corrected": 0.5811,
+   "spearman": 0.0171
+  },
+  {
+   "raster": "GEMSDOE37:docs/downloads/gemsdoe37-h6-physics-dotted-80k-20261005T055000Z-0bef9211631c.tif",
+   "forward_overlap_3px": 0.7294,
+   "their_dots": 80000,
+   "their_3px_cover_of_allowed": 0.2678,
+   "chance_corrected": 0.6303,
+   "spearman": 0.0285
+  },
+  {
+   "raster": "60GEMSDOE:registry/rasters/calib_h25ctx_01280.tif",
+   "forward_overlap_3px": 0.7067,
+   "their_dots": 174232,
+   "their_3px_cover_of_allowed": 0.2558,
+   "chance_corrected": 0.6058,
+   "spearman": 0.0378
+  },
+  {
+   "raster": "59GEMSDOE:docs/downloads/gems59-h59i2-loco-ipp-corridor-20261011T000000Z-zeros.tif",
+   "forward_overlap_3px": 0.7057,
+   "their_dots": 77727,
+   "their_3px_cover_of_allowed": 0.2304,
+   "chance_corrected": 0.6175,
+   "spearman": 0.0247
+  },
+  {
+   "raster": "GEMSDOE50:docs/downloads/gemsdoe50-h59-topo-lineament-scatter-180k-20261007T170212Z-allfinite.tif",
+   "forward_overlap_3px": 0.7019,
+   "their_dots": 180000,
+   "their_3px_cover_of_allowed": 0.6365,
+   "chance_corrected": 0.1801,
+   "spearman": 0.0025
+  }
+ ],
+ "ok_to_download": true,
+ "ok_to_submit": false,
+ "weekly_slots_used": 0,
+ "organizer_score": null,
+ "caveats": [
+  "HOLDOUT-DTI is a local hide-and-recover measurement, not a leaderboard score; no leaderboard projection is made.",
+  "Seed-20 improvement over the incumbent is a point-estimate improvement only; the 95% CIs overlap.",
+  "Informational only (NOT the preregistered rule): against registry rasters with <= 2x our dot budget (75,308 dots), the max forward overlap is 0.6816805651458012.",
+  "S_netsib_only (network geometry alone) scored marginally higher than the preregistered candidate on both seeds; paired CI includes 0. Not swapped post hoc.",
+  "Inputs are owner mirrors, SHA-pinned, not organizer-authenticated."
+ ],
+ "repository_best_at_merge": {
+  "lane": "H77-VDS (evidence/run_card_h77vds.json; merged to main concurrently, verdict negative under Policy I17)",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "dti_at_37654_dots": {
+   "20": 0.16079518807544965,
+   "30": 0.1716247961760679
+  },
+  "h83_netsib_minus_best": {
+   "20": -0.00697,
+   "30": -0.007925
+  },
+  "h83_netsib_beats_current_best": false
+ },
+ "beats_current_repository_best": false
+}

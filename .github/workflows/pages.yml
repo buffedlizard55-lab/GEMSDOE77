@@ -28,7 +28,11 @@ jobs:
         run: python scripts/refresh_sources.py
       - run: python scripts/build_site.py
       - run: python scripts/lia_build_site.py
+      - run: python scripts/build_h82rank_site.py
+      - name: Independently re-read every listed primary TIFF (no model or slot)
+        run: python scripts/audit_downloads.py
       - run: python scripts/build_home.py
+      - run: python scripts/release_gate.py --verify-fail-closed
       - run: python -m pytest -q
       - run: python scripts/stage_pages.py
       - uses: actions/configure-pages@v5

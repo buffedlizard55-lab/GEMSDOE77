@@ -1,0 +1,1104 @@
+{
+  "experiment": "H77H-E1",
+  "evidence_class": "CANARY-DIAGNOSTIC",
+  "timestamp_utc": "2026-10-21T17:43:04Z",
+  "static_diagnostics": {
+    "n_fp": 5167373,
+    "lidar_valid_pixels": 3894460,
+    "lidar_missing_pixels_mapped_to_nan": 1272913,
+    "h77h_names": [
+      "h77h_downdip_grav_step_500m",
+      "h77h_downdip_base_step_500m",
+      "h77h_downdip_scarp_coupled",
+      "h77h_laplace_svd_grav_dipole",
+      "h77h_laplace_svd_rtp_demag",
+      "h77h_mt_notch36_margin",
+      "h77h_transtension_notch36",
+      "h77h_gdr_geotherm_diseq",
+      "h77h_hydro_scarp_modulator",
+      "h77h_lidar_scarp_crest",
+      "h77h_lidar_anderson_strike_coh",
+      "h77h_composite_physics_prior"
+    ],
+    "ext_names": [
+      "ext_lidar_has_coverage",
+      "ext_lidar_ex_max",
+      "ext_lidar_ex_mean",
+      "ext_lidar_step_max",
+      "ext_lidar_lapneg_max",
+      "ext_lidar_lappos_max",
+      "ext_lidar_downface_max",
+      "ext_lidar_upface_max",
+      "ext_lidar_cross_max",
+      "ext_lidar_relief",
+      "ext_lidar_coh100",
+      "ext_lidar_strike",
+      "ext_lidar_dipole",
+      "ext_lidar_sharpness",
+      "ext_rad_k",
+      "ext_rad_th",
+      "ext_rad_u",
+      "ext_rad_th_over_k",
+      "ext_rad_u_over_k",
+      "ext_mag_up150"
+    ],
+    "mt_mesh_periodicity_audit_ir_h77g_01": {
+      "raw_cond_adjacent_zero_step_frac": 0.721737,
+      "sigma_raw_px": 2.0,
+      "sigma_notched_px": 36.0,
+      "mesh_35px_relative_amp_sigma2": 0.911587,
+      "mesh_35px_relative_amp_sigma36": 0.004968,
+      "mesh_35px_suppression_fraction": 0.99455,
+      "mesh_70px_relative_amp_sigma2": 1.111174,
+      "mesh_70px_relative_amp_sigma36": 0.04012,
+      "mesh_70px_suppression_fraction": 0.963894
+    },
+    "channel_stats": {
+      "h77h_downdip_grav_step_500m": {
+        "in_footprint_mean": 0.5,
+        "in_footprint_std": 0.288675,
+        "min": 0.0,
+        "max": 1.0,
+        "nan_count": 0
+      },
+      "h77h_downdip_base_step_500m": {
+        "in_footprint_mean": 0.5,
+        "in_footprint_std": 0.288675,
+        "min": 0.0,
+        "max": 1.0,
+        "nan_count": 0
+      },
+      "h77h_downdip_scarp_coupled": {
+        "in_footprint_mean": 0.5,
+        "in_footprint_std": 0.288675,
+        "min": 0.0,
+        "max": 1.0,
+        "nan_count": 0
+      },
+      "h77h_laplace_svd_grav_dipole": {
+        "in_footprint_mean": 0.5,
+        "in_footprint_std": 0.288675,
+        "min": 0.0,
+        "max": 1.0,
+        "nan_count": 0
+      },
+      "h77h_laplace_svd_rtp_demag": {
+        "in_footprint_mean": 0.5,
+        "in_footprint_std": 0.288675,
+        "min": 0.0,
+        "max": 1.0,
+        "nan_count": 0
+      },
+      "h77h_mt_notch36_margin": {
+        "in_footprint_mean": 0.5,
+        "in_footprint_std": 0.288675,
+        "min": 0.0,
+        "max": 1.0,
+        "nan_count": 0
+      },
+      "h77h_transtension_notch36": {
+        "in_footprint_mean": 0.5,
+        "in_footprint_std": 0.288675,
+        "min": 0.0,
+        "max": 1.0,
+        "nan_count": 0
+      },
+      "h77h_gdr_geotherm_diseq": {
+        "in_footprint_mean": 0.5,
+        "in_footprint_std": 0.288675,
+        "min": 0.0,
+        "max": 1.0,
+        "nan_count": 0
+      },
+      "h77h_hydro_scarp_modulator": {
+        "in_footprint_mean": 0.5,
+        "in_footprint_std": 0.288675,
+        "min": 0.0,
+        "max": 1.0,
+        "nan_count": 0
+      },
+      "h77h_lidar_scarp_crest": {
+        "in_footprint_mean": 0.5,
+        "in_footprint_std": 0.288675,
+        "min": 0.0,
+        "max": 1.0,
+        "nan_count": 0
+      },
+      "h77h_lidar_anderson_strike_coh": {
+        "in_footprint_mean": 0.5,
+        "in_footprint_std": 0.288675,
+        "min": 0.0,
+        "max": 1.0,
+        "nan_count": 0
+      },
+      "h77h_composite_physics_prior": {
+        "in_footprint_mean": 0.5,
+        "in_footprint_std": 0.288675,
+        "min": 0.0,
+        "max": 1.0,
+        "nan_count": 0
+      }
+    }
+  },
+  "canary_seed20": {
+    "seed": 20,
+    "withheld_positive_pixels": 11321,
+    "negative_sample_pixels": 60000,
+    "ceiling": 0.9,
+    "n_features_checked": 56,
+    "passed": true,
+    "violators": [],
+    "max_overall": {
+      "feature": "h77h_loco_stepover_relay",
+      "block": "h77h_loco",
+      "raw_auc": 0.807239,
+      "symmetric_auc": 0.807239,
+      "valid_fraction": 1.0,
+      "exceeds_0p90_ceiling": false
+    },
+    "max_h77h_static": {
+      "feature": "h77h_composite_physics_prior",
+      "block": "h77h_static",
+      "raw_auc": 0.632599,
+      "symmetric_auc": 0.632599,
+      "valid_fraction": 1.0,
+      "exceeds_0p90_ceiling": false
+    },
+    "features": [
+      {
+        "feature": "h77h_downdip_grav_step_500m",
+        "block": "h77h_static",
+        "raw_auc": 0.532058,
+        "symmetric_auc": 0.532058,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "h77h_downdip_base_step_500m",
+        "block": "h77h_static",
+        "raw_auc": 0.544628,
+        "symmetric_auc": 0.544628,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "h77h_downdip_scarp_coupled",
+        "block": "h77h_static",
+        "raw_auc": 0.609133,
+        "symmetric_auc": 0.609133,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "h77h_laplace_svd_grav_dipole",
+        "block": "h77h_static",
+        "raw_auc": 0.54089,
+        "symmetric_auc": 0.54089,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "h77h_laplace_svd_rtp_demag",
+        "block": "h77h_static",
+        "raw_auc": 0.556981,
+        "symmetric_auc": 0.556981,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "h77h_mt_notch36_margin",
+        "block": "h77h_static",
+        "raw_auc": 0.465644,
+        "symmetric_auc": 0.534356,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "h77h_transtension_notch36",
+        "block": "h77h_static",
+        "raw_auc": 0.555547,
+        "symmetric_auc": 0.555547,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "h77h_gdr_geotherm_diseq",
+        "block": "h77h_static",
+        "raw_auc": 0.502069,
+        "symmetric_auc": 0.502069,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "h77h_hydro_scarp_modulator",
+        "block": "h77h_static",
+        "raw_auc": 0.602855,
+        "symmetric_auc": 0.602855,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "h77h_lidar_scarp_crest",
+        "block": "h77h_static",
+        "raw_auc": 0.602958,
+        "symmetric_auc": 0.602958,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "h77h_lidar_anderson_strike_coh",
+        "block": "h77h_static",
+        "raw_auc": 0.512425,
+        "symmetric_auc": 0.512425,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "h77h_composite_physics_prior",
+        "block": "h77h_static",
+        "raw_auc": 0.632599,
+        "symmetric_auc": 0.632599,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "ext_lidar_has_coverage",
+        "block": "ext_lidar_rad",
+        "raw_auc": 0.534692,
+        "symmetric_auc": 0.534692,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "ext_lidar_ex_max",
+        "block": "ext_lidar_rad",
+        "raw_auc": 0.589806,
+        "symmetric_auc": 0.589806,
+        "valid_fraction": 0.76108,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "ext_lidar_ex_mean",
+        "block": "ext_lidar_rad",
+        "raw_auc": 0.579976,
+        "symmetric_auc": 0.579976,
+        "valid_fraction": 0.76108,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "ext_lidar_step_max",
+        "block": "ext_lidar_rad",
+        "raw_auc": 0.59226,
+        "symmetric_auc": 0.59226,
+        "valid_fraction": 0.76108,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "ext_lidar_lapneg_max",
+        "block": "ext_lidar_rad",
+        "raw_auc": 0.595529,
+        "symmetric_auc": 0.595529,
+        "valid_fraction": 0.76108,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "ext_lidar_lappos_max",
+        "block": "ext_lidar_rad",
+        "raw_auc": 0.601696,
+        "symmetric_auc": 0.601696,
+        "valid_fraction": 0.76108,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "ext_lidar_downface_max",
+        "block": "ext_lidar_rad",
+        "raw_auc": 0.604677,
+        "symmetric_auc": 0.604677,
+        "valid_fraction": 0.76108,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "ext_lidar_upface_max",
+        "block": "ext_lidar_rad",
+        "raw_auc": 0.611249,
+        "symmetric_auc": 0.611249,
+        "valid_fraction": 0.76108,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "ext_lidar_cross_max",
+        "block": "ext_lidar_rad",
+        "raw_auc": 0.603543,
+        "symmetric_auc": 0.603543,
+        "valid_fraction": 0.76108,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "ext_lidar_relief",
+        "block": "ext_lidar_rad",
+        "raw_auc": 0.58932,
+        "symmetric_auc": 0.58932,
+        "valid_fraction": 0.76108,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "ext_lidar_coh100",
+        "block": "ext_lidar_rad",
+        "raw_auc": 0.488494,
+        "symmetric_auc": 0.511506,
+        "valid_fraction": 0.76108,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "ext_lidar_strike",
+        "block": "ext_lidar_rad",
+        "raw_auc": 0.515576,
+        "symmetric_auc": 0.515576,
+        "valid_fraction": 0.76108,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "ext_lidar_dipole",
+        "block": "ext_lidar_rad",
+        "raw_auc": 0.600006,
+        "symmetric_auc": 0.600006,
+        "valid_fraction": 0.76108,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "ext_lidar_sharpness",
+        "block": "ext_lidar_rad",
+        "raw_auc": 0.597965,
+        "symmetric_auc": 0.597965,
+        "valid_fraction": 0.76108,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "ext_rad_k",
+        "block": "ext_lidar_rad",
+        "raw_auc": 0.461136,
+        "symmetric_auc": 0.538864,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "ext_rad_th",
+        "block": "ext_lidar_rad",
+        "raw_auc": 0.475905,
+        "symmetric_auc": 0.524095,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "ext_rad_u",
+        "block": "ext_lidar_rad",
+        "raw_auc": 0.469134,
+        "symmetric_auc": 0.530866,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "ext_rad_th_over_k",
+        "block": "ext_lidar_rad",
+        "raw_auc": 0.500514,
+        "symmetric_auc": 0.500514,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "ext_rad_u_over_k",
+        "block": "ext_lidar_rad",
+        "raw_auc": 0.508685,
+        "symmetric_auc": 0.508685,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "ext_mag_up150",
+        "block": "ext_lidar_rad",
+        "raw_auc": 0.511634,
+        "symmetric_auc": 0.511634,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "std_mag_anom",
+        "block": "raw_19",
+        "raw_auc": 0.51164,
+        "symmetric_auc": 0.51164,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "std_rtp",
+        "block": "raw_19",
+        "raw_auc": 0.519653,
+        "symmetric_auc": 0.519653,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "std_tmi_hg",
+        "block": "raw_19",
+        "raw_auc": 0.531564,
+        "symmetric_auc": 0.531564,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "std_geod_2ndinv",
+        "block": "raw_19",
+        "raw_auc": 0.567753,
+        "symmetric_auc": 0.567753,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "std_iso_grav_anom_slope",
+        "block": "raw_19",
+        "raw_auc": 0.522503,
+        "symmetric_auc": 0.522503,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "std_tc_totalcount",
+        "block": "raw_19",
+        "raw_auc": 0.466283,
+        "symmetric_auc": 0.533717,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "std_geod_shearrate",
+        "block": "raw_19",
+        "raw_auc": 0.567455,
+        "symmetric_auc": 0.567455,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "std_geod_dilaterate",
+        "block": "raw_19",
+        "raw_auc": 0.516291,
+        "symmetric_auc": 0.516291,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "std_tmi_vg",
+        "block": "raw_19",
+        "raw_auc": 0.486873,
+        "symmetric_auc": 0.513127,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "std_deq_n100a15",
+        "block": "raw_19",
+        "raw_auc": 0.540028,
+        "symmetric_auc": 0.540028,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "std_iso_grav_anom_vg",
+        "block": "raw_19",
+        "raw_auc": 0.516578,
+        "symmetric_auc": 0.516578,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "std_det_elev",
+        "block": "raw_19",
+        "raw_auc": 0.51461,
+        "symmetric_auc": 0.51461,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "std_iso_grav_anom",
+        "block": "raw_19",
+        "raw_auc": 0.460815,
+        "symmetric_auc": 0.539185,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "std_tmi",
+        "block": "raw_19",
+        "raw_auc": 0.510854,
+        "symmetric_auc": 0.510854,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "std_depth_to_base_surf",
+        "block": "raw_19",
+        "raw_auc": 0.524312,
+        "symmetric_auc": 0.524312,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "std_ieq_n100a15",
+        "block": "raw_19",
+        "raw_auc": 0.544356,
+        "symmetric_auc": 0.544356,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "std_cond_surf",
+        "block": "raw_19",
+        "raw_auc": 0.477499,
+        "symmetric_auc": 0.522501,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "std_iso_grav_anom_hg_signed",
+        "block": "raw_19",
+        "raw_auc": 0.4924,
+        "symmetric_auc": 0.5076,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "std_det_elev_slope",
+        "block": "raw_19",
+        "raw_auc": 0.568569,
+        "symmetric_auc": 0.568569,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "h77h_loco_dist_other_log",
+        "block": "h77h_loco",
+        "raw_auc": 0.198186,
+        "symmetric_auc": 0.801814,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "h77h_loco_splay_collar",
+        "block": "h77h_loco",
+        "raw_auc": 0.800801,
+        "symmetric_auc": 0.800801,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "h77h_loco_tip_lobe",
+        "block": "h77h_loco",
+        "raw_auc": 0.703246,
+        "symmetric_auc": 0.703246,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "h77h_loco_stepover_relay",
+        "block": "h77h_loco",
+        "raw_auc": 0.807239,
+        "symmetric_auc": 0.807239,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "h77h_loco_bilateral_bridge",
+        "block": "h77h_loco",
+        "raw_auc": 0.725679,
+        "symmetric_auc": 0.725679,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      }
+    ]
+  },
+  "canary_seed30": {
+    "seed": 30,
+    "withheld_positive_pixels": 11342,
+    "negative_sample_pixels": 60000,
+    "ceiling": 0.9,
+    "n_features_checked": 56,
+    "passed": true,
+    "violators": [],
+    "max_overall": {
+      "feature": "h77h_loco_stepover_relay",
+      "block": "h77h_loco",
+      "raw_auc": 0.805605,
+      "symmetric_auc": 0.805605,
+      "valid_fraction": 1.0,
+      "exceeds_0p90_ceiling": false
+    },
+    "max_h77h_static": {
+      "feature": "h77h_composite_physics_prior",
+      "block": "h77h_static",
+      "raw_auc": 0.635212,
+      "symmetric_auc": 0.635212,
+      "valid_fraction": 1.0,
+      "exceeds_0p90_ceiling": false
+    },
+    "features": [
+      {
+        "feature": "h77h_downdip_grav_step_500m",
+        "block": "h77h_static",
+        "raw_auc": 0.583196,
+        "symmetric_auc": 0.583196,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "h77h_downdip_base_step_500m",
+        "block": "h77h_static",
+        "raw_auc": 0.571396,
+        "symmetric_auc": 0.571396,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "h77h_downdip_scarp_coupled",
+        "block": "h77h_static",
+        "raw_auc": 0.631937,
+        "symmetric_auc": 0.631937,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "h77h_laplace_svd_grav_dipole",
+        "block": "h77h_static",
+        "raw_auc": 0.541469,
+        "symmetric_auc": 0.541469,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "h77h_laplace_svd_rtp_demag",
+        "block": "h77h_static",
+        "raw_auc": 0.562549,
+        "symmetric_auc": 0.562549,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "h77h_mt_notch36_margin",
+        "block": "h77h_static",
+        "raw_auc": 0.48673,
+        "symmetric_auc": 0.51327,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "h77h_transtension_notch36",
+        "block": "h77h_static",
+        "raw_auc": 0.57513,
+        "symmetric_auc": 0.57513,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "h77h_gdr_geotherm_diseq",
+        "block": "h77h_static",
+        "raw_auc": 0.532375,
+        "symmetric_auc": 0.532375,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "h77h_hydro_scarp_modulator",
+        "block": "h77h_static",
+        "raw_auc": 0.618495,
+        "symmetric_auc": 0.618495,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "h77h_lidar_scarp_crest",
+        "block": "h77h_static",
+        "raw_auc": 0.575033,
+        "symmetric_auc": 0.575033,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "h77h_lidar_anderson_strike_coh",
+        "block": "h77h_static",
+        "raw_auc": 0.500609,
+        "symmetric_auc": 0.500609,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "h77h_composite_physics_prior",
+        "block": "h77h_static",
+        "raw_auc": 0.635212,
+        "symmetric_auc": 0.635212,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "ext_lidar_has_coverage",
+        "block": "ext_lidar_rad",
+        "raw_auc": 0.529924,
+        "symmetric_auc": 0.529924,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "ext_lidar_ex_max",
+        "block": "ext_lidar_rad",
+        "raw_auc": 0.549967,
+        "symmetric_auc": 0.549967,
+        "valid_fraction": 0.763015,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "ext_lidar_ex_mean",
+        "block": "ext_lidar_rad",
+        "raw_auc": 0.54025,
+        "symmetric_auc": 0.54025,
+        "valid_fraction": 0.763015,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "ext_lidar_step_max",
+        "block": "ext_lidar_rad",
+        "raw_auc": 0.552509,
+        "symmetric_auc": 0.552509,
+        "valid_fraction": 0.763015,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "ext_lidar_lapneg_max",
+        "block": "ext_lidar_rad",
+        "raw_auc": 0.559479,
+        "symmetric_auc": 0.559479,
+        "valid_fraction": 0.763015,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "ext_lidar_lappos_max",
+        "block": "ext_lidar_rad",
+        "raw_auc": 0.563228,
+        "symmetric_auc": 0.563228,
+        "valid_fraction": 0.763015,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "ext_lidar_downface_max",
+        "block": "ext_lidar_rad",
+        "raw_auc": 0.564605,
+        "symmetric_auc": 0.564605,
+        "valid_fraction": 0.763015,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "ext_lidar_upface_max",
+        "block": "ext_lidar_rad",
+        "raw_auc": 0.577216,
+        "symmetric_auc": 0.577216,
+        "valid_fraction": 0.763015,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "ext_lidar_cross_max",
+        "block": "ext_lidar_rad",
+        "raw_auc": 0.564789,
+        "symmetric_auc": 0.564789,
+        "valid_fraction": 0.763015,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "ext_lidar_relief",
+        "block": "ext_lidar_rad",
+        "raw_auc": 0.551626,
+        "symmetric_auc": 0.551626,
+        "valid_fraction": 0.763015,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "ext_lidar_coh100",
+        "block": "ext_lidar_rad",
+        "raw_auc": 0.485257,
+        "symmetric_auc": 0.514743,
+        "valid_fraction": 0.763015,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "ext_lidar_strike",
+        "block": "ext_lidar_rad",
+        "raw_auc": 0.521101,
+        "symmetric_auc": 0.521101,
+        "valid_fraction": 0.763015,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "ext_lidar_dipole",
+        "block": "ext_lidar_rad",
+        "raw_auc": 0.561873,
+        "symmetric_auc": 0.561873,
+        "valid_fraction": 0.763015,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "ext_lidar_sharpness",
+        "block": "ext_lidar_rad",
+        "raw_auc": 0.562811,
+        "symmetric_auc": 0.562811,
+        "valid_fraction": 0.763015,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "ext_rad_k",
+        "block": "ext_lidar_rad",
+        "raw_auc": 0.45593,
+        "symmetric_auc": 0.54407,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "ext_rad_th",
+        "block": "ext_lidar_rad",
+        "raw_auc": 0.446608,
+        "symmetric_auc": 0.553392,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "ext_rad_u",
+        "block": "ext_lidar_rad",
+        "raw_auc": 0.461659,
+        "symmetric_auc": 0.538341,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "ext_rad_th_over_k",
+        "block": "ext_lidar_rad",
+        "raw_auc": 0.466687,
+        "symmetric_auc": 0.533313,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "ext_rad_u_over_k",
+        "block": "ext_lidar_rad",
+        "raw_auc": 0.505637,
+        "symmetric_auc": 0.505637,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "ext_mag_up150",
+        "block": "ext_lidar_rad",
+        "raw_auc": 0.50587,
+        "symmetric_auc": 0.50587,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "std_mag_anom",
+        "block": "raw_19",
+        "raw_auc": 0.498792,
+        "symmetric_auc": 0.501208,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "std_rtp",
+        "block": "raw_19",
+        "raw_auc": 0.493148,
+        "symmetric_auc": 0.506852,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "std_tmi_hg",
+        "block": "raw_19",
+        "raw_auc": 0.511439,
+        "symmetric_auc": 0.511439,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "std_geod_2ndinv",
+        "block": "raw_19",
+        "raw_auc": 0.569806,
+        "symmetric_auc": 0.569806,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "std_iso_grav_anom_slope",
+        "block": "raw_19",
+        "raw_auc": 0.570715,
+        "symmetric_auc": 0.570715,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "std_tc_totalcount",
+        "block": "raw_19",
+        "raw_auc": 0.449153,
+        "symmetric_auc": 0.550847,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "std_geod_shearrate",
+        "block": "raw_19",
+        "raw_auc": 0.57621,
+        "symmetric_auc": 0.57621,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "std_geod_dilaterate",
+        "block": "raw_19",
+        "raw_auc": 0.518408,
+        "symmetric_auc": 0.518408,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "std_tmi_vg",
+        "block": "raw_19",
+        "raw_auc": 0.499895,
+        "symmetric_auc": 0.500105,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "std_deq_n100a15",
+        "block": "raw_19",
+        "raw_auc": 0.552018,
+        "symmetric_auc": 0.552018,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "std_iso_grav_anom_vg",
+        "block": "raw_19",
+        "raw_auc": 0.544752,
+        "symmetric_auc": 0.544752,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "std_det_elev",
+        "block": "raw_19",
+        "raw_auc": 0.474227,
+        "symmetric_auc": 0.525773,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "std_iso_grav_anom",
+        "block": "raw_19",
+        "raw_auc": 0.464283,
+        "symmetric_auc": 0.535717,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "std_tmi",
+        "block": "raw_19",
+        "raw_auc": 0.5051,
+        "symmetric_auc": 0.5051,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "std_depth_to_base_surf",
+        "block": "raw_19",
+        "raw_auc": 0.534594,
+        "symmetric_auc": 0.534594,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "std_ieq_n100a15",
+        "block": "raw_19",
+        "raw_auc": 0.568152,
+        "symmetric_auc": 0.568152,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "std_cond_surf",
+        "block": "raw_19",
+        "raw_auc": 0.519611,
+        "symmetric_auc": 0.519611,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "std_iso_grav_anom_hg_signed",
+        "block": "raw_19",
+        "raw_auc": 0.479826,
+        "symmetric_auc": 0.520174,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "std_det_elev_slope",
+        "block": "raw_19",
+        "raw_auc": 0.540382,
+        "symmetric_auc": 0.540382,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "h77h_loco_dist_other_log",
+        "block": "h77h_loco",
+        "raw_auc": 0.200259,
+        "symmetric_auc": 0.799741,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "h77h_loco_splay_collar",
+        "block": "h77h_loco",
+        "raw_auc": 0.798453,
+        "symmetric_auc": 0.798453,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "h77h_loco_tip_lobe",
+        "block": "h77h_loco",
+        "raw_auc": 0.697003,
+        "symmetric_auc": 0.697003,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "h77h_loco_stepover_relay",
+        "block": "h77h_loco",
+        "raw_auc": 0.805605,
+        "symmetric_auc": 0.805605,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      },
+      {
+        "feature": "h77h_loco_bilateral_bridge",
+        "block": "h77h_loco",
+        "raw_auc": 0.725777,
+        "symmetric_auc": 0.725777,
+        "valid_fraction": 1.0,
+        "exceeds_0p90_ceiling": false
+      }
+    ]
+  },
+  "phase1_composite_prior_surface": {
+    "worst_spearman_full_footprint": 0.342266307729905,
+    "worst_abs_spearman": 0.342266,
+    "worst_rho_submission": "dense_witness.tif",
+    "exceeds_0p90_limit": false,
+    "space_filling_rasters": [
+      "9489af2b7e1b06a249203d3c9d6dfe4ed469647f59ebe3a5ffe9c50c67e46b42",
+      "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be"
+    ]
+  },
+  "elapsed_s": 165.48
+}

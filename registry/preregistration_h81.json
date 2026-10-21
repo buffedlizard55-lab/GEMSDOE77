@@ -1,0 +1,77 @@
+{
+  "lane": "H81",
+  "title": "Slip-budget fault-tip continuation cones (deterministic, catalogue-only)",
+  "written_utc": "2026-10-21T16:00:00Z",
+  "written_before_experiment": true,
+  "lane_assignment_note": "The 2026-10-21 brief contained no identifiable single assigned method paragraph, so this session declares one new narrow lane here before Exp 1 (logged as IR-81-01). It does not re-tune any stopped lane (H77/H77L/H78/H77D/H77-Step/H77E/LIA/contact-physics/XSEN/H79-BB/H79-RH/D77/selective-U).",
+  "hypotheses_doc": "research/h81_hypotheses.md",
+  "inputs": {
+    "trace_segments": {
+      "file": "external/trace_segments_utm11.csv",
+      "repo": "buffedlizard55-lab/60GEMSDOE",
+      "ref": "d5e96cbeb61cc932dcefb684305d745be1cb81c8",
+      "path": "data/external/trace_segments_utm11.csv",
+      "sha256": "c5edf9df3e0e1413c52784884fc38e5b9ca54627b27c6f8baf7713e908f48513",
+      "bytes": 5283577,
+      "provenance": "owner mirror, pinned at fetch 2026-10-21; NOT organizer-authenticated; grid-checked on use (all vertices inside EPSG:32611 footprint bounds or flagged)"
+    },
+    "catalogue_mask_only": "existing_faults.tif (SHA-pinned via registry/data_manifest.json; used ONLY as an exact mask, never as a ranking feature)",
+    "sensitivity_only": "external/topo_10m_derived_100m_u8.tif bands hs_lineament + curv_prof_absmax (owner mirror of USGS 3DEP 1/3 arc-second derivation; rank gate only, one arm)"
+  },
+  "fixed_transform": {
+    "record_chaining": "group segments by record_id; chain by shared endpoints within 1 m; keep longest chain; tips = its two end vertices (record-level, not segment joints)",
+    "end_tangent": "vector from vertex max(0,n-5) to end vertex, normalized; cone opens outward (away from record interior)",
+    "tip_slip": "max slip_mm_yr over record segments; weight = average rank / (n_tips-1) over usable tips (0..1)",
+    "cone": "half-angle 30 deg, length 20 px (2.0 km), linear decay (1 - d/20); pixel value = max over tips of weight*decay, float32",
+    "loco_record_rule": "a record is usable iff NO vertex lies within 5 px (500 m) of any hidden-truth pixel (fold hidden_all union) AND both tips lie >= 10 px inside the footprint (map-edge cut-end guard)",
+    "surface_scope": "one globally LOCO-safe surface per experiment (tips usable under all folds), so no hidden component informs any fold",
+    "surfaces": {
+      "slip_cone_primary": "slip-weighted cones from all-sense usable tips",
+      "tip_uniform": "identical cones with weight = 1 (isolates the slip budget)",
+      "normal_only": "slip-weighted cones from usable tips whose record modal sense == N (isolates kinematics)",
+      "scarp_gated": "slip_cone_primary * rank01(hs_lineament + curv_prof_absmax) on footprint (single corroboration sensitivity)",
+      "slip_proximity": "canary-only: nearest-usable-record slip weight / (1 + d_px/10)"
+    }
+  },
+  "folds": {
+    "evaluator": "vendor/gems57 (pin-verified against registry/template_pin.json; unmodified)",
+    "fn": "buffered_component_draw",
+    "seed": 20,
+    "hide_frac": 0.20,
+    "buffer_px": 3,
+    "comparability": "same fold construction as H77-Step best (0.152718) and H79-RH (0.04773): 11,321 withheld positives expected"
+  },
+  "emission": {
+    "method": "greedy min-separation 3.0 px Euclidean (src/gems77lia/allocate.greedy_select) over allowed = footprint & ~masked_known & (surface > 0)",
+    "budget": 37654,
+    "budget_fallback": "if any fold or the full-catalogue surface yields fewer than 37654 dots, budget B = floor(min_capacity/100)*100 applied identically to ALL arms; B is reported, never tuned per arm",
+    "catalogue_rule": "zero positive pixels on mapped catalogue in the final artifact (shared writer enforces)"
+  },
+  "experiments": [
+    {
+      "id": "H81-E1",
+      "name": "features + leakage canary + surface uniqueness",
+      "steps": ["build frozen surfaces", "per-feature symmetric AUC on hide-and-recover folds (300k negatives/fold max, seed 81)", "full-footprint Spearman vs every accessible registry raster + local TIFFs"],
+      "stop_rules": ["any symmetric AUC > 0.90 -> STOP (leakage)", "surface max |rho| > 0.90 -> STOP (duplicate lane)"]
+    },
+    {
+      "id": "H81-E2",
+      "name": "pooled holdout",
+      "arms": ["H81_slip", "tip_uniform", "normal_only", "scarp_gated", "random"],
+      "metric": "pooled HOLDOUT-DTI via evaluate_holdout.evaluate + pooled_summary (draws=2000, candidate=H81_slip)",
+      "gate": "no within-experiment tuning; surfaces frozen from E1"
+    },
+    {
+      "id": "H81-E3",
+      "name": "dot emission + final uniqueness + artifact",
+      "steps": ["emit B dots from full-catalogue primary surface", "final-dot Spearman + 3px forward/reverse overlap vs registry + locals", "shared submission_writer artifact (zeros primary + NaN twin + zip + receipt)"],
+      "stop_rules": ["final max |rho| > 0.90 or forward 3px overlap > 0.70 vs ANY raster -> log duplicate, verdict negative, artifact stays research-only"]
+    }
+  ],
+  "promotion_rule": "promote IFF pooled H81_slip HOLDOUT-DTI beats 0.152718 with paired 95% CI excluding 0 AND literal uniqueness passes AND all canaries <= 0.90 AND shared-writer validation passes; otherwise negative. Selector approval is a separate step; this lane spends no weekly slot.",
+  "budget": "3 experiments; stop after E3 regardless",
+  "name_note": {
+    "submission_name": "gems77-h81-slipcone-37654dots-20261021-zeros (suffix adjusted to actual B/sha at build)",
+    "note_max_140": "reserved; <=140 chars; written at build time from measured numbers only"
+  }
+}

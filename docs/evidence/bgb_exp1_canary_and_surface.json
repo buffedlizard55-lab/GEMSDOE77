@@ -1,0 +1,761 @@
+{
+  "experiment": "Exp1_BGB_Canaries_PrePlacementSurface_And_StandaloneHoldout",
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "seed": 30,
+  "withheld_positive_pixels": 11342,
+  "leakage_canary": {
+    "threshold_auc": 0.9,
+    "highest_symmetric_auc": 0.63782,
+    "flagged": false,
+    "channels_seed30": {
+      "bgb_01_basement_step_along_grav": {
+        "channel_index": 0,
+        "pooled_roc_auc": 0.56195,
+        "pooled_symmetric_auc": 0.56195,
+        "fold_roc_aucs": {
+          "NW": 0.55781,
+          "NE": 0.58526,
+          "SW": 0.47277,
+          "SE": 0.63782
+        },
+        "fold_symmetric_aucs": {
+          "NW": 0.55781,
+          "NE": 0.58526,
+          "SW": 0.52723,
+          "SE": 0.63782
+        },
+        "max_symmetric_auc": 0.63782,
+        "threshold_auc": 0.9,
+        "flagged_leakage": false
+      },
+      "bgb_02_growth_wedge_inflection": {
+        "channel_index": 1,
+        "pooled_roc_auc": 0.56541,
+        "pooled_symmetric_auc": 0.56541,
+        "fold_roc_aucs": {
+          "NW": 0.556,
+          "NE": 0.58165,
+          "SW": 0.49637,
+          "SE": 0.63694
+        },
+        "fold_symmetric_aucs": {
+          "NW": 0.556,
+          "NE": 0.58165,
+          "SW": 0.50363,
+          "SE": 0.63694
+        },
+        "max_symmetric_auc": 0.63694,
+        "threshold_auc": 0.9,
+        "flagged_leakage": false
+      },
+      "bgb_03_blind_basin_basement_dipole": {
+        "channel_index": 2,
+        "pooled_roc_auc": 0.51002,
+        "pooled_symmetric_auc": 0.51002,
+        "fold_roc_aucs": {
+          "NW": 0.46299,
+          "NE": 0.52855,
+          "SW": 0.45162,
+          "SE": 0.58043
+        },
+        "fold_symmetric_aucs": {
+          "NW": 0.53701,
+          "NE": 0.52855,
+          "SW": 0.54838,
+          "SE": 0.58043
+        },
+        "max_symmetric_auc": 0.58043,
+        "threshold_auc": 0.9,
+        "flagged_leakage": false
+      },
+      "bgb_04_grav_basement_concordance": {
+        "channel_index": 3,
+        "pooled_roc_auc": 0.57043,
+        "pooled_symmetric_auc": 0.57043,
+        "fold_roc_aucs": {
+          "NW": 0.54934,
+          "NE": 0.58346,
+          "SW": 0.51756,
+          "SE": 0.61561
+        },
+        "fold_symmetric_aucs": {
+          "NW": 0.54934,
+          "NE": 0.58346,
+          "SW": 0.51756,
+          "SE": 0.61561
+        },
+        "max_symmetric_auc": 0.61561,
+        "threshold_auc": 0.9,
+        "flagged_leakage": false
+      },
+      "bgb_05_transtensional_mode_tau": {
+        "channel_index": 4,
+        "pooled_roc_auc": 0.56399,
+        "pooled_symmetric_auc": 0.56399,
+        "fold_roc_aucs": {
+          "NW": 0.59661,
+          "NE": 0.57356,
+          "SW": 0.5028,
+          "SE": 0.6155
+        },
+        "fold_symmetric_aucs": {
+          "NW": 0.59661,
+          "NE": 0.57356,
+          "SW": 0.5028,
+          "SE": 0.6155
+        },
+        "max_symmetric_auc": 0.6155,
+        "threshold_auc": 0.9,
+        "flagged_leakage": false
+      },
+      "bgb_06_strain_partition_grad": {
+        "channel_index": 5,
+        "pooled_roc_auc": 0.54905,
+        "pooled_symmetric_auc": 0.54905,
+        "fold_roc_aucs": {
+          "NW": 0.52926,
+          "NE": 0.51516,
+          "SW": 0.50085,
+          "SE": 0.53684
+        },
+        "fold_symmetric_aucs": {
+          "NW": 0.52926,
+          "NE": 0.51516,
+          "SW": 0.50085,
+          "SE": 0.53684
+        },
+        "max_symmetric_auc": 0.54905,
+        "threshold_auc": 0.9,
+        "flagged_leakage": false
+      },
+      "bgb_07_aseismic_dilation_excess": {
+        "channel_index": 6,
+        "pooled_roc_auc": 0.55191,
+        "pooled_symmetric_auc": 0.55191,
+        "fold_roc_aucs": {
+          "NW": 0.54578,
+          "NE": 0.56262,
+          "SW": 0.53112,
+          "SE": 0.52912
+        },
+        "fold_symmetric_aucs": {
+          "NW": 0.54578,
+          "NE": 0.56262,
+          "SW": 0.53112,
+          "SE": 0.52912
+        },
+        "max_symmetric_auc": 0.56262,
+        "threshold_auc": 0.9,
+        "flagged_leakage": false
+      },
+      "bgb_08_conductivity_margin_grad": {
+        "channel_index": 7,
+        "pooled_roc_auc": 0.49439,
+        "pooled_symmetric_auc": 0.50561,
+        "fold_roc_aucs": {
+          "NW": 0.48828,
+          "NE": 0.49661,
+          "SW": 0.51594,
+          "SE": 0.47401
+        },
+        "fold_symmetric_aucs": {
+          "NW": 0.51172,
+          "NE": 0.50339,
+          "SW": 0.51594,
+          "SE": 0.52599
+        },
+        "max_symmetric_auc": 0.52599,
+        "threshold_auc": 0.9,
+        "flagged_leakage": false
+      },
+      "bgb_09_upflow_demag_breach": {
+        "channel_index": 8,
+        "pooled_roc_auc": 0.49914,
+        "pooled_symmetric_auc": 0.50086,
+        "fold_roc_aucs": {
+          "NW": 0.49648,
+          "NE": 0.4836,
+          "SW": 0.5111,
+          "SE": 0.47315
+        },
+        "fold_symmetric_aucs": {
+          "NW": 0.50352,
+          "NE": 0.5164,
+          "SW": 0.5111,
+          "SE": 0.52685
+        },
+        "max_symmetric_auc": 0.52685,
+        "threshold_auc": 0.9,
+        "flagged_leakage": false
+      },
+      "bgb_10_geotherm_diseq_coupled": {
+        "channel_index": 9,
+        "pooled_roc_auc": 0.53418,
+        "pooled_symmetric_auc": 0.53418,
+        "fold_roc_aucs": {
+          "NW": 0.52606,
+          "NE": 0.55787,
+          "SW": 0.48368,
+          "SE": 0.57285
+        },
+        "fold_symmetric_aucs": {
+          "NW": 0.52606,
+          "NE": 0.55787,
+          "SW": 0.51632,
+          "SE": 0.57285
+        },
+        "max_symmetric_auc": 0.57285,
+        "threshold_auc": 0.9,
+        "flagged_leakage": false
+      }
+    },
+    "channels_seed20": {
+      "bgb_01_basement_step_along_grav": {
+        "channel_index": 0,
+        "pooled_roc_auc": 0.54199,
+        "pooled_symmetric_auc": 0.54199,
+        "fold_roc_aucs": {
+          "NW": 0.57314,
+          "NE": 0.51285,
+          "SW": 0.4953,
+          "SE": 0.58947
+        },
+        "fold_symmetric_aucs": {
+          "NW": 0.57314,
+          "NE": 0.51285,
+          "SW": 0.5047,
+          "SE": 0.58947
+        },
+        "max_symmetric_auc": 0.58947,
+        "threshold_auc": 0.9,
+        "flagged_leakage": false
+      },
+      "bgb_02_growth_wedge_inflection": {
+        "channel_index": 1,
+        "pooled_roc_auc": 0.52683,
+        "pooled_symmetric_auc": 0.52683,
+        "fold_roc_aucs": {
+          "NW": 0.53138,
+          "NE": 0.51975,
+          "SW": 0.47252,
+          "SE": 0.58652
+        },
+        "fold_symmetric_aucs": {
+          "NW": 0.53138,
+          "NE": 0.51975,
+          "SW": 0.52748,
+          "SE": 0.58652
+        },
+        "max_symmetric_auc": 0.58652,
+        "threshold_auc": 0.9,
+        "flagged_leakage": false
+      },
+      "bgb_03_blind_basin_basement_dipole": {
+        "channel_index": 2,
+        "pooled_roc_auc": 0.47741,
+        "pooled_symmetric_auc": 0.52259,
+        "fold_roc_aucs": {
+          "NW": 0.41872,
+          "NE": 0.50993,
+          "SW": 0.44193,
+          "SE": 0.51888
+        },
+        "fold_symmetric_aucs": {
+          "NW": 0.58128,
+          "NE": 0.50993,
+          "SW": 0.55807,
+          "SE": 0.51888
+        },
+        "max_symmetric_auc": 0.58128,
+        "threshold_auc": 0.9,
+        "flagged_leakage": false
+      },
+      "bgb_04_grav_basement_concordance": {
+        "channel_index": 3,
+        "pooled_roc_auc": 0.53949,
+        "pooled_symmetric_auc": 0.53949,
+        "fold_roc_aucs": {
+          "NW": 0.52435,
+          "NE": 0.55473,
+          "SW": 0.49504,
+          "SE": 0.57046
+        },
+        "fold_symmetric_aucs": {
+          "NW": 0.52435,
+          "NE": 0.55473,
+          "SW": 0.50496,
+          "SE": 0.57046
+        },
+        "max_symmetric_auc": 0.57046,
+        "threshold_auc": 0.9,
+        "flagged_leakage": false
+      },
+      "bgb_05_transtensional_mode_tau": {
+        "channel_index": 4,
+        "pooled_roc_auc": 0.53648,
+        "pooled_symmetric_auc": 0.53648,
+        "fold_roc_aucs": {
+          "NW": 0.57451,
+          "NE": 0.49483,
+          "SW": 0.52118,
+          "SE": 0.54532
+        },
+        "fold_symmetric_aucs": {
+          "NW": 0.57451,
+          "NE": 0.50517,
+          "SW": 0.52118,
+          "SE": 0.54532
+        },
+        "max_symmetric_auc": 0.57451,
+        "threshold_auc": 0.9,
+        "flagged_leakage": false
+      },
+      "bgb_06_strain_partition_grad": {
+        "channel_index": 5,
+        "pooled_roc_auc": 0.54686,
+        "pooled_symmetric_auc": 0.54686,
+        "fold_roc_aucs": {
+          "NW": 0.54122,
+          "NE": 0.4921,
+          "SW": 0.49238,
+          "SE": 0.54813
+        },
+        "fold_symmetric_aucs": {
+          "NW": 0.54122,
+          "NE": 0.5079,
+          "SW": 0.50762,
+          "SE": 0.54813
+        },
+        "max_symmetric_auc": 0.54813,
+        "threshold_auc": 0.9,
+        "flagged_leakage": false
+      },
+      "bgb_07_aseismic_dilation_excess": {
+        "channel_index": 6,
+        "pooled_roc_auc": 0.54451,
+        "pooled_symmetric_auc": 0.54451,
+        "fold_roc_aucs": {
+          "NW": 0.48282,
+          "NE": 0.51616,
+          "SW": 0.54238,
+          "SE": 0.54119
+        },
+        "fold_symmetric_aucs": {
+          "NW": 0.51718,
+          "NE": 0.51616,
+          "SW": 0.54238,
+          "SE": 0.54119
+        },
+        "max_symmetric_auc": 0.54451,
+        "threshold_auc": 0.9,
+        "flagged_leakage": false
+      },
+      "bgb_08_conductivity_margin_grad": {
+        "channel_index": 7,
+        "pooled_roc_auc": 0.52264,
+        "pooled_symmetric_auc": 0.52264,
+        "fold_roc_aucs": {
+          "NW": 0.49788,
+          "NE": 0.50318,
+          "SW": 0.53708,
+          "SE": 0.5369
+        },
+        "fold_symmetric_aucs": {
+          "NW": 0.50212,
+          "NE": 0.50318,
+          "SW": 0.53708,
+          "SE": 0.5369
+        },
+        "max_symmetric_auc": 0.53708,
+        "threshold_auc": 0.9,
+        "flagged_leakage": false
+      },
+      "bgb_09_upflow_demag_breach": {
+        "channel_index": 8,
+        "pooled_roc_auc": 0.51697,
+        "pooled_symmetric_auc": 0.51697,
+        "fold_roc_aucs": {
+          "NW": 0.4776,
+          "NE": 0.49113,
+          "SW": 0.52836,
+          "SE": 0.5222
+        },
+        "fold_symmetric_aucs": {
+          "NW": 0.5224,
+          "NE": 0.50887,
+          "SW": 0.52836,
+          "SE": 0.5222
+        },
+        "max_symmetric_auc": 0.52836,
+        "threshold_auc": 0.9,
+        "flagged_leakage": false
+      },
+      "bgb_10_geotherm_diseq_coupled": {
+        "channel_index": 9,
+        "pooled_roc_auc": 0.51202,
+        "pooled_symmetric_auc": 0.51202,
+        "fold_roc_aucs": {
+          "NW": 0.53143,
+          "NE": 0.56125,
+          "SW": 0.45644,
+          "SE": 0.52361
+        },
+        "fold_symmetric_aucs": {
+          "NW": 0.53143,
+          "NE": 0.56125,
+          "SW": 0.54356,
+          "SE": 0.52361
+        },
+        "max_symmetric_auc": 0.56125,
+        "threshold_auc": 0.9,
+        "flagged_leakage": false
+      }
+    }
+  },
+  "phase1_pre_placement_surface_uniqueness": {
+    "rasters_scanned": 831,
+    "rasters_readable": 829,
+    "rasters_unreadable": 2,
+    "worst_abs_spearman": 0.1421,
+    "worst_spearman_match": "archive_registry:a059d85462e9527a72a660bb8900556fa4f42925",
+    "spearman_threshold": 0.9,
+    "spearman_duplicate": false,
+    "top_10_by_abs_spearman": [
+      {
+        "source": "archive_registry",
+        "name": "a059d85462e9527a72a660bb8900556fa4f42925",
+        "abs_spearman": 0.1421
+      },
+      {
+        "source": "archive_registry",
+        "name": "07535677519e5d2d8ca34bd3b42c23c3eb683b27",
+        "abs_spearman": 0.11344
+      },
+      {
+        "source": "archive_registry",
+        "name": "8828617f0df6983faa8e4bfaf1fbca9bb2a458e7",
+        "abs_spearman": 0.11344
+      },
+      {
+        "source": "archive_registry",
+        "name": "3604c84562f0b4c24a411f44b9fc24855c761d2f",
+        "abs_spearman": 0.10341
+      },
+      {
+        "source": "archive_registry",
+        "name": "9b69f2be32d3095042b9ccbfb5f7974dba00867b",
+        "abs_spearman": 0.10206
+      },
+      {
+        "source": "archive_registry",
+        "name": "d1701aad825e8f46cdbe043545825038b3d963dc",
+        "abs_spearman": 0.10206
+      },
+      {
+        "source": "archive_registry",
+        "name": "b6b967e1dbce604cbe87f7682f62dddebe85fcc1",
+        "abs_spearman": 0.10127
+      },
+      {
+        "source": "archive_registry",
+        "name": "0d2ca5cdc47b8dc5a051dee3039de28a257e046e",
+        "abs_spearman": 0.09818
+      },
+      {
+        "source": "archive_registry",
+        "name": "a58346e563d56c89cd75ba379be1d815d16ba160",
+        "abs_spearman": 0.09714
+      },
+      {
+        "source": "archive_registry",
+        "name": "0db9810a5b5d787fbae714468723d1387903d83d",
+        "abs_spearman": 0.09366
+      }
+    ]
+  },
+  "standalone_surface_holdout_seed30": {
+    "A0_random": {
+      "dots": 37654,
+      "per_fold": {
+        "NW": {
+          "dti": 0.047446,
+          "n_truth": 1919,
+          "emitted": 8586
+        },
+        "NE": {
+          "dti": 0.044809,
+          "n_truth": 2356,
+          "emitted": 10650
+        },
+        "SW": {
+          "dti": 0.052973,
+          "n_truth": 3805,
+          "emitted": 10202
+        },
+        "SE": {
+          "dti": 0.047874,
+          "n_truth": 3262,
+          "emitted": 8213
+        }
+      },
+      "pooled_holdout_dti": 0.048611,
+      "ci95": [
+        0.043063,
+        0.053762
+      ]
+    },
+    "S_growth_wedge": {
+      "dots": 37654,
+      "per_fold": {
+        "NW": {
+          "dti": 0.0173,
+          "n_truth": 1919,
+          "emitted": 8586
+        },
+        "NE": {
+          "dti": 0.030929,
+          "n_truth": 2356,
+          "emitted": 10649
+        },
+        "SW": {
+          "dti": 0.023285,
+          "n_truth": 3805,
+          "emitted": 10202
+        },
+        "SE": {
+          "dti": 0.069951,
+          "n_truth": 3262,
+          "emitted": 8214
+        }
+      },
+      "pooled_holdout_dti": 0.03596,
+      "ci95": [
+        0.02505,
+        0.048893
+      ]
+    },
+    "S_strain_part": {
+      "dots": 37654,
+      "per_fold": {
+        "NW": {
+          "dti": 0.049675,
+          "n_truth": 1919,
+          "emitted": 8585
+        },
+        "NE": {
+          "dti": 0.044953,
+          "n_truth": 2356,
+          "emitted": 10650
+        },
+        "SW": {
+          "dti": 0.033203,
+          "n_truth": 3805,
+          "emitted": 10202
+        },
+        "SE": {
+          "dti": 0.047884,
+          "n_truth": 3262,
+          "emitted": 8213
+        }
+      },
+      "pooled_holdout_dti": 0.043034,
+      "ci95": [
+        0.031977,
+        0.054698
+      ]
+    },
+    "S_upflow_breach": {
+      "dots": 37654,
+      "per_fold": {
+        "NW": {
+          "dti": 0.028339,
+          "n_truth": 1919,
+          "emitted": 8585
+        },
+        "NE": {
+          "dti": 0.023066,
+          "n_truth": 2356,
+          "emitted": 10650
+        },
+        "SW": {
+          "dti": 0.034964,
+          "n_truth": 3805,
+          "emitted": 10203
+        },
+        "SE": {
+          "dti": 0.028701,
+          "n_truth": 3262,
+          "emitted": 8214
+        }
+      },
+      "pooled_holdout_dti": 0.029188,
+      "ci95": [
+        0.0218,
+        0.03776
+      ]
+    },
+    "S_bgb_composite": {
+      "dots": 37654,
+      "per_fold": {
+        "NW": {
+          "dti": 0.029336,
+          "n_truth": 1919,
+          "emitted": 8586
+        },
+        "NE": {
+          "dti": 0.034656,
+          "n_truth": 2356,
+          "emitted": 10648
+        },
+        "SW": {
+          "dti": 0.032978,
+          "n_truth": 3805,
+          "emitted": 10203
+        },
+        "SE": {
+          "dti": 0.060432,
+          "n_truth": 3262,
+          "emitted": 8211
+        }
+      },
+      "pooled_holdout_dti": 0.039715,
+      "ci95": [
+        0.030276,
+        0.050027
+      ]
+    }
+  },
+  "pooled_summary_seed30": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "triangular_radius_m": 300.0,
+    "pooled": true,
+    "scores": {
+      "A0_random": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.048611432885267196,
+        "ci95": [
+          0.0430632971788404,
+          0.053762297050372436
+        ],
+        "withheld_positive_pixels": 11342,
+        "tpw": 811.9173556703017,
+        "fpw": 37331.029296179164,
+        "fnw": 10530.082644329694
+      },
+      "S_growth_wedge": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.03596013656057773,
+        "ci95": [
+          0.025049806305901378,
+          0.04889326680402419
+        ],
+        "withheld_positive_pixels": 11342,
+        "tpw": 599.0105985210871,
+        "fpw": 37321.13230271705,
+        "fnw": 10742.989401478913
+      },
+      "S_strain_part": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.04303400592795047,
+        "ci95": [
+          0.03197672641540851,
+          0.054698286214411314
+        ],
+        "withheld_positive_pixels": 11342,
+        "tpw": 717.1950233343741,
+        "fpw": 37243.675699871754,
+        "fnw": 10624.804976665622
+      },
+      "S_upflow_breach": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.02918750709980077,
+        "ci95": [
+          0.02180041773124362,
+          0.03776002118564121
+        ],
+        "withheld_positive_pixels": 11342,
+        "tpw": 485.73068859052427,
+        "fpw": 37354.932341394626,
+        "fnw": 10856.269311409475
+      },
+      "S_bgb_composite": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.039715431992190194,
+        "ci95": [
+          0.030276289382233378,
+          0.050026501053096376
+        ],
+        "withheld_positive_pixels": 11342,
+        "tpw": 661.6411551332634,
+        "fpw": 37268.100043221464,
+        "fnw": 10680.358844866738
+      }
+    },
+    "best_comparable_control": "A0_random",
+    "paired_differences": {
+      "A0_random": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": -0.008896000893077002,
+        "ci95": [
+          -0.019706187763266738,
+          0.0020248833508471143
+        ],
+        "withheld_positive_pixels": 11342
+      },
+      "S_growth_wedge": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.0037552954316124668,
+        "ci95": [
+          -0.005002305198019906,
+          0.011796553845397115
+        ],
+        "withheld_positive_pixels": 11342
+      },
+      "S_strain_part": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": -0.003318573935760273,
+        "ci95": [
+          -0.014497308879361988,
+          0.0074548446477826795
+        ],
+        "withheld_positive_pixels": 11342
+      },
+      "S_upflow_breach": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.010527924892389424,
+        "ci95": [
+          0.00041298068673695237,
+          0.021307244547862765
+        ],
+        "withheld_positive_pixels": 11342
+      }
+    },
+    "bootstrap": {
+      "method": "paired physical spatial-cluster percentile",
+      "clusters": 159,
+      "draws": 1000,
+      "seed": 520810,
+      "confidence": 0.95,
+      "caveat": "Conditional on fitted folds, catalogue labels and fixed budgets; not a leaderboard interval."
+    },
+    "implementation_sha256": {
+      "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+      "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+      "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+      "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+    }
+  }
+}

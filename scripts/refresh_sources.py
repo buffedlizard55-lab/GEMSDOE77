@@ -17,7 +17,8 @@ REPOS = ['GEMSDOE','GEMSDOE2','GEMSDOE3','GEMSDOE4','5GEMSDOE','6GEMSDOE','7GEMS
  'GEMSDOE49','GEMSDOE50','GEMSDOE51','GEMSDOE52','GEMSDOE53','GEMSDOE54','55GEMSDOE','56GEMSDOE',
  '57GEMSDOE','58GEMSDOE','59GEMSDOE','60GEMSDOE','61GEMSDOE','62GEMSDOE','GEMSDOE63','GEMSDOE64',
  'GEMSDOE65','GEMSDOE66','GEMSDOE67','GEMSDOE68','GEMSDOE69','GEMSDOE70','GEMSDOE71','GEMSDOE72',
- 'GEMSDOE73','GEMSDOE74','GEMSDOE75','GEMSDOE76','GEMSDOE77','GEMSDOE78']
+ 'GEMSDOE73','GEMSDOE74','GEMSDOE75','GEMSDOE76','GEMSDOE77','GEMSDOE78',
+ 'GEMSDOE79','GEMSDOE80','GEMSDOE81','GEMSDOE82']
 OFFICIAL = [
  ('Organizer reference','https://github.com/drivendataorg/gems-prize-reference-solution'),
  ('Competition problem','https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/'),
@@ -73,8 +74,8 @@ def official_health(pair):
         except Exception as e: row.update(status='error',error=str(e))
     else:
         # Do not evade the sandbox allowlist or mislabel lack of access as source unavailability.
-        row.update(status='not accessed — sandbox outbound host restriction',
-                   verification='Manual-review official link, not independently verified in this environment')
+        row.update(status='not fetched by scheduled CI runner (restricted outbound hosts)',
+                   verification='Automated feed has no official-page check. Dated manual web-fetch review: docs/review-2026-10-21-h77l.md. Do not infer current scores from that snapshot.')
     return row
 
 
@@ -84,7 +85,7 @@ def main():
             'purpose':'Repository/page freshness and artifact inventory, NOT scores, scientific validation, or full raster uniqueness',
             'repos':rows,'official_sources':[official_health(p) for p in OFFICIAL],
             'score_policy':'No organizer-confirmed receipt is available. Never treat webpage mentions as verified scores.',
-            'weekly_cap':None,'weekly_cap_status':'Not observed; no slots consumed'}
+            'weekly_cap':None,'weekly_cap_status':'CI does not re-check official rules PDF. Dated manual review 2026-10-21 observed three feedback submissions/week; see docs/review-2026-10-21-h77l.md. Zero slots consumed by this pipeline.'}
     for path in [ROOT/'evidence/source_health.json',ROOT/'docs/source-health.json']:
         path.parent.mkdir(exist_ok=True,parents=True)
         path.write_text(json.dumps(report,indent=2)+'\n')

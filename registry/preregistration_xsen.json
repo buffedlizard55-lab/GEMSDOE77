@@ -1,0 +1,38 @@
+{
+  "registered_utc": "2026-10-21",
+  "session_branch": "arena/f054d26e-gemsdoe77",
+  "lane": "H77-XSEN cross-sensor edge coincidence: magnetic analytic-signal ridge x radiometric Th/K+U/K compositional boundary",
+  "assignment_irregularity": "IR-XSEN-01: the 2026-10-21 brief again contained no identifiable single method paragraph, so this lane was self-assigned and preregistered before Experiment 1 (same irregularity class as IR-77-06 / IR-78-01 in docs/irregularities.md).",
+  "hypothesis": "A concealed (catalogue-missing) fault under alluvium juxtaposes radiometric domains AND offsets magnetic basement, so the product of (a) multi-scale magnetic analytic-signal ridge persistence and (b) radiometric Th/K and U/K compositional-boundary strength is high on unmapped faults but low on single-sensor mimics (lithologic contacts show only (b); magnetic dikes/intrusives and flight-line seams show only (a)).",
+  "mimic": "Non-fault lithologic contacts (radiometric boundary without displacement), magnetic dikes, and GeoDAWN flight-line / levelling seams (magnetic edge without a fault).",
+  "inputs": [
+    "data/raw/training_features.tif bands 3 (tmi_hg) and 9 (tmi_vg) only for the new analytic-signal channels; full 19-band stack via scripts/build_features.py for the HGB control/candidate arms (SHA-pinned restore, registry/data_manifest.json)",
+    "data/raw/external/geodawn_extensions_u8.tif bands ThK, UK, UTh (uint8 percentile-quantised ratios; rank transforms only, never treated as concentrations)",
+    "data/raw/external/geodawn_rad_u8.tif (control arms via the cached stack rad block)",
+    "existing_faults.tif ONLY for holdout split / visible masking; sample_submission.tif ONLY for footprint/grid"
+  ],
+  "new_signature_channels": [
+    "xsen_as_ridge_s1p5: Hessian ridge of log analytic signal sqrt(tmi_hg^2+tmi_vg^2) at sigma 1.5 px",
+    "xsen_as_ridge_s3: same at sigma 3 px",
+    "xsen_as_persist: rank01(min(rank ridge s1.5, rank ridge s3)) (scale persistence)",
+    "xsen_radgrad_thk: |grad| of ThK at sigma 1.5 px, rank01 in footprint",
+    "xsen_radgrad_uk: |grad| of UK at sigma 1.5 px, rank01 in footprint",
+    "xsen_radgrad: rank01(max(rank ThK-grad, rank UK-grad))",
+    "xsen_coincide: sqrt(rank01(as_persist) * rank01(radgrad)) - the preregistered coincidence product",
+    "xsen_coincide_min: min(rank01(as_persist), rank01(radgrad)) - sensitivity variant, reported but not the primary surface"
+  ],
+  "physical_units_caveat": "Radiometric extension bands are independently uint8 percentile-quantised (1st-99th pct) reductions of USGS GeoDAWN grids (DOI 10.5066/P93LGLVQ, per registry/data_manifest.json provenance); all transforms are rank/intensity based, NOT calibrated concentration ratios.",
+  "controls": [
+    "A_std: HGB on cached-stack blocks raw+terrain+rad (same folds, same budget)",
+    "A_xsen: HGB on raw+terrain+rad + the 8 xsen channels (primary candidate arm)",
+    "S_xsen_coincide: coincidence surface alone, no training",
+    "S_as_only / S_rad_only: single-sensor surfaces alone (ablations)",
+    "A0_random: random surface, same emitter/budget"
+  ],
+  "validation": "Unchanged vendor/gems57: buffered_component_draw(seed=30, hide_frac=0.20, buffer_px=3) whole-component hide-and-recover; catalogue-derived quantities recomputed from visible faults only per fold where used; visible faults masked pixel-exactly in scoring (masked_known); pooled DTI alpha=0.2 beta=0.8, 300 m triangular kernel via gems57.evaluate_holdout (gems57-pooled-hide-v2) with paired 20 km block bootstrap (1000 draws). Fixed emitter: gems77.emit77.emit_dots, budget 37654, min_sep 2.8 px, exclusion dist_visible>2 px (champion collar, GEMSDOE32 forensics evidence/why_02778.json).",
+  "leakage_canary": "Every new channel alone: symmetric ROC-AUC on withheld positives vs catalogue-far negatives must be <= 0.90 or the lane stops (protocol rule 4).",
+  "uniqueness": "Prompt protocol gates: Spearman rank-correlation > 0.90 OR > 70% of dots within 3 px of one registry raster = duplicate (check on the continuous surface before placement AND on final dots), using vendor gems57.uniqueness against the indexed registry (registry/registry_index.json) fetched to .cache/registry. Any confirmed duplicate: log and stop, verdict negative.",
+  "promotion_bar": "Verdict promote only if ALL hold: (1) canaries <= 0.90; (2) A_xsen pooled HOLDOUT-DTI beats A_std in-run with paired delta 95% CI excluding 0 on the positive side; (3) A_xsen pooled HOLDOUT-DTI exceeds 0.152718 (best retained repo result, H77-Step, evaluator gems57-pooled-hide-v2, 11321 withheld px, seed-20 draw - cross-draw comparison flagged as such); (4) surface and dots pass both uniqueness gates; (5) writer validator all checks pass (finite, [0,1], EPSG:32611, 3730x3292, pinned transform, zero dots on catalogue). Otherwise verdict negative and the site must say NOT OK to submit. Promotion never spends a slot: selector step is separate.",
+  "budget": {"maximum_experiments": 3, "maximum_hours": 2, "planned_experiments": 3},
+  "expected_improvement": "Unknown. No projected score is a score; only HOLDOUT-DTI with CI or ORGANIZER-CONFIRMED receipts may be reported as scores."
+}

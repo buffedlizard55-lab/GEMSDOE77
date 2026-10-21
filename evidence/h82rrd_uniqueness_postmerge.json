@@ -1,0 +1,372 @@
+{
+  "candidate": "gems77-h82-rrd-discord-37654dots-20261021-c069b8d8-zeros.tif",
+  "scope": "all sha-deduped local docs/downloads + submissions TIFFs present after merging origin/main (parallel H82/BGB/H77V lanes included); NOT complete family registry",
+  "n_compared": 44,
+  "max_forward_overlap_3px": 0.9982737557762787,
+  "firings_gt070": [
+    {
+      "file": "gems77-h82-ternaryentropy-20261021-RESEARCH-ONLY.tif",
+      "sha256": "56debe682505bf2649f30d914c7b552dcf669bce4b902ce91eb3e5363031f115",
+      "their_dots": 1879873,
+      "forward_overlap_3px": 0.9982737557762787
+    },
+    {
+      "file": "gems77-h82-texture-kt-bf0a3028b4fa-RESEARCH-ONLY.tif",
+      "sha256": "c571af22cb08db9cb8cfd6edf0108364d95b0c3bec8316d09d3dfd116531790e",
+      "their_dots": 5007344,
+      "forward_overlap_3px": 0.9878100600201838
+    },
+    {
+      "file": "gems77-h77-urank-curvature-0d868dc271bb-research.tif",
+      "sha256": "9489af2b7e1b06a249203d3c9d6dfe4ed469647f59ebe3a5ffe9c50c67e46b42",
+      "their_dots": 4961936,
+      "forward_overlap_3px": 0.9744515854889255
+    },
+    {
+      "file": "gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif",
+      "sha256": "20be05cc671c85484e4cfc8ea40d2fced71d7ec70f20ab915f36fcc68fcc4851",
+      "their_dots": 44090,
+      "forward_overlap_3px": 0.7857332554310299
+    },
+    {
+      "file": "gems77-xsen-coincide-hgb-37654dots-20261021-zeros.tif",
+      "sha256": "e7c81754420b9a6b4126ad1d7239870ae680eaa61e97a6d3f16f644a620d1c6a",
+      "their_dots": 37654,
+      "forward_overlap_3px": 0.7372390715461836
+    },
+    {
+      "file": "gems77-h80-orphan-thermal-align-37654dots-20261021-zeros.tif",
+      "sha256": "703e7dee0a790572c2a9597ed210e04d4d45c93e8bae661aa117b34c0445f4d3",
+      "their_dots": 37654,
+      "forward_overlap_3px": 0.7130450948106443
+    }
+  ],
+  "top10": [
+    {
+      "file": "gems77-h82-ternaryentropy-20261021-RESEARCH-ONLY.tif",
+      "sha256": "56debe682505bf2649f30d914c7b552dcf669bce4b902ce91eb3e5363031f115",
+      "their_dots": 1879873,
+      "forward_overlap_3px": 0.9982737557762787
+    },
+    {
+      "file": "gems77-h82-texture-kt-bf0a3028b4fa-RESEARCH-ONLY.tif",
+      "sha256": "c571af22cb08db9cb8cfd6edf0108364d95b0c3bec8316d09d3dfd116531790e",
+      "their_dots": 5007344,
+      "forward_overlap_3px": 0.9878100600201838
+    },
+    {
+      "file": "gems77-h77-urank-curvature-0d868dc271bb-research.tif",
+      "sha256": "9489af2b7e1b06a249203d3c9d6dfe4ed469647f59ebe3a5ffe9c50c67e46b42",
+      "their_dots": 4961936,
+      "forward_overlap_3px": 0.9744515854889255
+    },
+    {
+      "file": "gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif",
+      "sha256": "20be05cc671c85484e4cfc8ea40d2fced71d7ec70f20ab915f36fcc68fcc4851",
+      "their_dots": 44090,
+      "forward_overlap_3px": 0.7857332554310299
+    },
+    {
+      "file": "gems77-xsen-coincide-hgb-37654dots-20261021-zeros.tif",
+      "sha256": "e7c81754420b9a6b4126ad1d7239870ae680eaa61e97a6d3f16f644a620d1c6a",
+      "their_dots": 37654,
+      "forward_overlap_3px": 0.7372390715461836
+    },
+    {
+      "file": "gems77-h80-orphan-thermal-align-37654dots-20261021-zeros.tif",
+      "sha256": "703e7dee0a790572c2a9597ed210e04d4d45c93e8bae661aa117b34c0445f4d3",
+      "their_dots": 37654,
+      "forward_overlap_3px": 0.7130450948106443
+    },
+    {
+      "file": "gems77-h77e-pure-submod-36500dots-20261021-e106c72c-zeros.tif",
+      "sha256": "abb0cb1349c9745a27156ebd95b435dec6086d38d9be3ec637400001d9fa33a0",
+      "their_dots": 36500,
+      "forward_overlap_3px": 0.6263079619695119
+    },
+    {
+      "file": "gems77-h28-dotted-pruned2px-20261021-35b64879-zeros.tif",
+      "sha256": "35b648795818c96c444ee66d1d58fbf1146aa9ef70a4a2f69cab27784b210b86",
+      "their_dots": 55403,
+      "forward_overlap_3px": 0.6172252615923939
+    },
+    {
+      "file": "gems77-h77e-knick-deconf-submod-36500dots-20261021-101e200b-nan.tif",
+      "sha256": "516661e70e3e9c923a4e162a8ece8c7c9ad21e9814a7a3db13c805bc06d9f39a",
+      "their_dots": 36500,
+      "forward_overlap_3px": 0.5482817230573113
+    },
+    {
+      "file": "gems77-h77e-knick-deconf-submod-36500dots-20261021-101e200b-zeros.tif",
+      "sha256": "db0dd67da44b83bc47f05289c05e2e917118d04b03e4958076f64661b726fb6b",
+      "their_dots": 36500,
+      "forward_overlap_3px": 0.5482817230573113
+    }
+  ],
+  "rows": [
+    {
+      "file": "gems77-h82-ternaryentropy-20261021-RESEARCH-ONLY.tif",
+      "sha256": "56debe682505bf2649f30d914c7b552dcf669bce4b902ce91eb3e5363031f115",
+      "their_dots": 1879873,
+      "forward_overlap_3px": 0.9982737557762787
+    },
+    {
+      "file": "gems77-h82-texture-kt-bf0a3028b4fa-RESEARCH-ONLY.tif",
+      "sha256": "c571af22cb08db9cb8cfd6edf0108364d95b0c3bec8316d09d3dfd116531790e",
+      "their_dots": 5007344,
+      "forward_overlap_3px": 0.9878100600201838
+    },
+    {
+      "file": "gems77-h77-urank-curvature-0d868dc271bb-research.tif",
+      "sha256": "9489af2b7e1b06a249203d3c9d6dfe4ed469647f59ebe3a5ffe9c50c67e46b42",
+      "their_dots": 4961936,
+      "forward_overlap_3px": 0.9744515854889255
+    },
+    {
+      "file": "gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif",
+      "sha256": "20be05cc671c85484e4cfc8ea40d2fced71d7ec70f20ab915f36fcc68fcc4851",
+      "their_dots": 44090,
+      "forward_overlap_3px": 0.7857332554310299
+    },
+    {
+      "file": "gems77-xsen-coincide-hgb-37654dots-20261021-zeros.tif",
+      "sha256": "e7c81754420b9a6b4126ad1d7239870ae680eaa61e97a6d3f16f644a620d1c6a",
+      "their_dots": 37654,
+      "forward_overlap_3px": 0.7372390715461836
+    },
+    {
+      "file": "gems77-h80-orphan-thermal-align-37654dots-20261021-zeros.tif",
+      "sha256": "703e7dee0a790572c2a9597ed210e04d4d45c93e8bae661aa117b34c0445f4d3",
+      "their_dots": 37654,
+      "forward_overlap_3px": 0.7130450948106443
+    },
+    {
+      "file": "gems77-h77e-pure-submod-36500dots-20261021-e106c72c-zeros.tif",
+      "sha256": "abb0cb1349c9745a27156ebd95b435dec6086d38d9be3ec637400001d9fa33a0",
+      "their_dots": 36500,
+      "forward_overlap_3px": 0.6263079619695119
+    },
+    {
+      "file": "gems77-h28-dotted-pruned2px-20261021-35b64879-zeros.tif",
+      "sha256": "35b648795818c96c444ee66d1d58fbf1146aa9ef70a4a2f69cab27784b210b86",
+      "their_dots": 55403,
+      "forward_overlap_3px": 0.6172252615923939
+    },
+    {
+      "file": "gems77-h77e-knick-deconf-submod-36500dots-20261021-101e200b-nan.tif",
+      "sha256": "516661e70e3e9c923a4e162a8ece8c7c9ad21e9814a7a3db13c805bc06d9f39a",
+      "their_dots": 36500,
+      "forward_overlap_3px": 0.5482817230573113
+    },
+    {
+      "file": "gems77-h77e-knick-deconf-submod-36500dots-20261021-101e200b-zeros.tif",
+      "sha256": "db0dd67da44b83bc47f05289c05e2e917118d04b03e4958076f64661b726fb6b",
+      "their_dots": 36500,
+      "forward_overlap_3px": 0.5482817230573113
+    },
+    {
+      "file": "gems77-h77e-ucpeuler-ctx-37654dots-20261021-22873551-nan.tif",
+      "sha256": "111c7048be1bde71ffe586448fd493d4b522ab3b0e8bd5866888cc3b1c58f744",
+      "their_dots": 37654,
+      "forward_overlap_3px": 0.461332129388644
+    },
+    {
+      "file": "gems77-h77e-ucpeuler-ctx-37654dots-20261021-22873551-zeros.tif",
+      "sha256": "2269b714c78262a8d45dbd5eb02290a27ec9b99afe02340e343f5cb1ac7c58f3",
+      "their_dots": 37654,
+      "forward_overlap_3px": 0.461332129388644
+    },
+    {
+      "file": "gems77-h81-slipcone-37654dots-20261021-0fbeaf41-nan.tif",
+      "sha256": "0a777607efad7d0a5630f761e05d6551394d12fc9fdc749f69587a00f0b1fa16",
+      "their_dots": 37654,
+      "forward_overlap_3px": 0.42040686248472936
+    },
+    {
+      "file": "gems77-h81-slipcone-37654dots-20261021-0fbeaf41-zeros.tif",
+      "sha256": "f3eb9e5e3bf03da0285b48b5bb7d41f15b0e450d16bc6b8943aeaa63efadc1f7",
+      "their_dots": 37654,
+      "forward_overlap_3px": 0.42040686248472936
+    },
+    {
+      "file": "gems77-step-propensity-submod300.tif",
+      "sha256": "f55105a091281be14957fff2f5aad9a85fa5b1acc31558e9fcd2aae9fdd588b0",
+      "their_dots": 34625,
+      "forward_overlap_3px": 0.3903436553885377
+    },
+    {
+      "file": "gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-nan.tif",
+      "sha256": "0cf731f58b4450c5407bff6a0585b9151d95dc1703414775031b526960260bb2",
+      "their_dots": 37654,
+      "forward_overlap_3px": 0.38195145270090824
+    },
+    {
+      "file": "gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.tif",
+      "sha256": "110e7c77ec7e7d201de0ae04ffd2bf3b9db786b4063d800cacb8ab1ded4fd1b9",
+      "their_dots": 37654,
+      "forward_overlap_3px": 0.38195145270090824
+    },
+    {
+      "file": "gems77-ago-select-geophys-37654dots-909053c9-nan.tif",
+      "sha256": "5f4cb8a76250884c38779c0a2a268c1ecc6ca576cca6ddcff720ff824183a3ed",
+      "their_dots": 37654,
+      "forward_overlap_3px": 0.35231316725978645
+    },
+    {
+      "file": "gems77-ago-select-geophys-37654dots-909053c9-zeros.tif",
+      "sha256": "7b3f74a68e7d4b428accc1f24659f21796fcc337fc6bae06fc4e4ff0738e87ec",
+      "their_dots": 37654,
+      "forward_overlap_3px": 0.35231316725978645
+    },
+    {
+      "file": "gems77-h77v-vent-advect-conduit-37654dots-20261021-8910ea15-nan.tif",
+      "sha256": "cc99644e7af32f38a7436de913fa41700e3e8a59bca61c3d091b735d002e0707",
+      "their_dots": 37654,
+      "forward_overlap_3px": 0.3371487756944813
+    },
+    {
+      "file": "gems77-h77v-vent-advect-conduit-37654dots-20261021-8910ea15-zeros.tif",
+      "sha256": "2cef6d5133bceaf5206b5ee3701abb66120ef35aedd8850ab21946c2176b0e10",
+      "their_dots": 37654,
+      "forward_overlap_3px": 0.3371487756944813
+    },
+    {
+      "file": "gems77-ago-hybrid35-geophys-37654dots-dc66e42e-nan.tif",
+      "sha256": "7b97ea874f70e4effc3c8e92c98c92fc650a366273c385f3bf70c0400e6dff7c",
+      "their_dots": 37654,
+      "forward_overlap_3px": 0.2810591172252616
+    },
+    {
+      "file": "gems77-ago-hybrid35-geophys-37654dots-dc66e42e-zeros.tif",
+      "sha256": "fd7c75df77cd653e9fbd97b436bd304e0c1fd6b7283a4f513cdf6a2041136de0",
+      "their_dots": 37654,
+      "forward_overlap_3px": 0.2810591172252616
+    },
+    {
+      "file": "gems77-ago-hybrid50-geophys-37654dots-11b45670-nan.tif",
+      "sha256": "5a08bfa0cf69935a65c4a2cbab15d884e4de0e853b3a92e99d1973a16f81e737",
+      "their_dots": 37654,
+      "forward_overlap_3px": 0.24871195623306952
+    },
+    {
+      "file": "gems77-ago-hybrid50-geophys-37654dots-11b45670-zeros.tif",
+      "sha256": "c027f571a45566a8cf10b081f7d00fa48242bc4dfbc7f832ba98c06a5aca194e",
+      "their_dots": 37654,
+      "forward_overlap_3px": 0.24871195623306952
+    },
+    {
+      "file": "gems77-d77-blind-band-35106dots-20261021-926076f7-zeros.tif",
+      "sha256": "c971fcf8a05928e7cbd3c31f868b4e9342be805d8cdf15701c097c8949574fde",
+      "their_dots": 35106,
+      "forward_overlap_3px": 0.24414404844106868
+    },
+    {
+      "file": "gems77-h80-riedel-wingcrack-tips-20261021-zeros.tif",
+      "sha256": "bab170ed60ab7e1a8afbfad69386a8266191fa4864ac3abac5b6290b7d25bc57",
+      "their_dots": 12000,
+      "forward_overlap_3px": 0.21145163860413235
+    },
+    {
+      "file": "gems77-h79-crossgrad-ridge-37654dots-20261021-dd0dbf9c-nan.tif",
+      "sha256": "9564988206c6c4b669e7d5b7aeab485a2d1cd1682b7fd34bfd47e23c1451121f",
+      "their_dots": 37654,
+      "forward_overlap_3px": 0.1834864821798481
+    },
+    {
+      "file": "gems77-h79-crossgrad-ridge-37654dots-20261021-dd0dbf9c-zeros.tif",
+      "sha256": "67aafffc50637a6df9c4275bc2735a0a865ac73904f02667b05f4f257d97587c",
+      "their_dots": 37654,
+      "forward_overlap_3px": 0.1834864821798481
+    },
+    {
+      "file": "gems77-bgb-growthwedge-transtens-37654dots-20261021-3c58975b-zeros.tif",
+      "sha256": "07da3f559dd5f6d7f3971092bcc3dde060cd97b551ad6077b02ed558679f8e54",
+      "their_dots": 37654,
+      "forward_overlap_3px": 0.1729431136134275
+    },
+    {
+      "file": "gems77-bgb-growthwedge-transtens-37654dots-20261021-3c58975b-nan.tif",
+      "sha256": "b03cb25b7d675b42d7327f8c77dad71a643d65db3ec2454106786bfdede5fb1a",
+      "their_dots": 37654,
+      "forward_overlap_3px": 0.1729431136134275
+    },
+    {
+      "file": "gems77-h77-lia-38323dots-20261021-aa5c9331-nan.tif",
+      "sha256": "4b8c51f390bbc47deb513bd88823cdebe55633f4bfa4717b463068113e01bf62",
+      "their_dots": 38323,
+      "forward_overlap_3px": 0.1680565145801243
+    },
+    {
+      "file": "gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif",
+      "sha256": "a8bfb844ab44b5d4157f75ec914a51655c27ae54727f7b4a088eca9d6f396898",
+      "their_dots": 38323,
+      "forward_overlap_3px": 0.1680565145801243
+    },
+    {
+      "file": "gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-nan.tif",
+      "sha256": "55ad78e51317d1b072fa096966977d8dbc45ef20a0d4916552f0d55ee60b21c0",
+      "their_dots": 38301,
+      "forward_overlap_3px": 0.1653741966324959
+    },
+    {
+      "file": "gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros.tif",
+      "sha256": "4571e767757be95e3fb70b4afb05e45528b1cfd74147e168c36253b1247f1c47",
+      "their_dots": 38301,
+      "forward_overlap_3px": 0.1653741966324959
+    },
+    {
+      "file": "gems77-h79-radhalo-lag3-37654-20261021-zeros.tif",
+      "sha256": "c272025ee653187d09489d941613a86bfe4b88110fb455847a2256cf5699014b",
+      "their_dots": 37654,
+      "forward_overlap_3px": 0.1648961597705423
+    },
+    {
+      "file": "gems77-h80t-tilt-persist-37654dots-20261021-7d5f7b11-nan.tif",
+      "sha256": "d9f63db37c2ddfd8a403a02beecf9e89409c83e18a18dc19aca3e7940121b563",
+      "their_dots": 37654,
+      "forward_overlap_3px": 0.14957242258458597
+    },
+    {
+      "file": "gems77-h80t-tilt-persist-37654dots-20261021-7d5f7b11-zeros.tif",
+      "sha256": "19e92e4db42b0de59c558e95a52ee419fc81f4c187c4fd22e35f252e16a4446a",
+      "their_dots": 37654,
+      "forward_overlap_3px": 0.14957242258458597
+    },
+    {
+      "file": "gems79-orient-persistence-37654dots-20261021-4abff47886.tif",
+      "sha256": "745dbaa427bc1edaf477b3d0b4847b8be8d30d396106a61b1318a8726599be8e",
+      "their_dots": 37654,
+      "forward_overlap_3px": 0.13682477293249057
+    },
+    {
+      "file": "gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-nan.tif",
+      "sha256": "160ee4fcdbbac19520870c740a0f01cc153226885ac90a3d78ccdbbda5685a30",
+      "their_dots": 44090,
+      "forward_overlap_3px": 0.11557869017899824
+    },
+    {
+      "file": "gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-zeros.tif",
+      "sha256": "0f86bf205eff2522fad4253d88dbd62220d06408deafb25a9672cc2e7ea0acab",
+      "their_dots": 44090,
+      "forward_overlap_3px": 0.11557869017899824
+    },
+    {
+      "file": "gems77-h77g-demagtrough-gravstep-37654dots-20261021-08b78f3c-zeros.tif",
+      "sha256": "7b97596de2cacd1d5b5f99f8fc679dbd9cf6a2bd7ab316adea5bf60ad2bb30d0",
+      "their_dots": 37654,
+      "forward_overlap_3px": 0.10405269028522866
+    },
+    {
+      "file": "gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY.tif",
+      "sha256": "9d199f9fad93e234397a7a19a05eabf12fd77285be3007e6afe22d12a36dcbd1",
+      "their_dots": 25439,
+      "forward_overlap_3px": 0.09353587932224997
+    },
+    {
+      "file": "gems77-h82-cool-chemconcord-11185dots-20261021-245bb13136-zeros.tif",
+      "sha256": "84b50d05eaba578c398c4c7ab720dbf5a46de29d63f4254eb02a8ba02a4a43df",
+      "their_dots": 11185,
+      "forward_overlap_3px": 0.024884474425027885
+    }
+  ]
+}
