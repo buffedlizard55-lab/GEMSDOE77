@@ -2,9 +2,9 @@
   "schema": "gems-listed-download-readback-v1",
   "evidence_class": "FORMAT-INTEGRITY-MEASUREMENT; NOT SCORE OR PORTAL ACCEPTANCE",
   "scope": "Every primary TIFF in docs/data/lanes.json; no archive or NaN twins, no uniqueness certification",
-  "manifest_sha256": "18279d2ca09fb841ef23e534747f2263e31755f8f9d37099d7e8c362be9a7996",
+  "manifest_sha256": "e1056fe391ba074352408022d4865ee1b8d2462b655b7598a1cf749abc634ee9",
   "reference_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
-  "listed_count": 33,
+  "listed_count": 35,
   "all_format_pass": true,
   "authorized_to_submit": false,
   "artifacts": [
@@ -588,6 +588,42 @@
       "lane": "H83: hanging-wall fault-damage collar at the 300 m kernel scale (negative result)",
       "file": "downloads/gems77-h83-faultcollar-37553dots-20261021-a55f4c9c-zeros.tif",
       "sha256": "7f71739a2804bf2fa7199d30d512e0a267e4cfa2fdd0d32304b962db65b98662",
+      "checks": {
+        "single_band": true,
+        "crs_matches": true,
+        "shape_matches": true,
+        "transform_matches": true,
+        "finite_entire_raster": true,
+        "no_nan_inside_footprint": true,
+        "values_in_0_1": true,
+        "nodata_none": true,
+        "sha256_matches_manifest": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
+    {
+      "lane": "H84-TIPLOBE: fault-tip crack-tip stress lobe + en-echelon relay breach (HOLDOUT-DTI 0.1209 [0.1068,0.1354] s30; negative, inspection only)",
+      "file": "downloads/gems77-h84-tiplobe-37654dots-20261021-b57c52b3-zeros.tif",
+      "sha256": "2bff4b55cabe5a4eb7ab1aeff6b21e407a87a576d1d0c3c5f20ed3ddb1c279ba",
+      "checks": {
+        "single_band": true,
+        "crs_matches": true,
+        "shape_matches": true,
+        "transform_matches": true,
+        "finite_entire_raster": true,
+        "no_nan_inside_footprint": true,
+        "values_in_0_1": true,
+        "nodata_none": true,
+        "sha256_matches_manifest": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
+    {
+      "lane": "H84-ORGATE: geophysics-gated second-strand collar (HOLDOUT-DTI 0.1215 [0.1071,0.1355] s30; negative, inspection only)",
+      "file": "downloads/gems77-h84-orgate-collar-37654dots-20261021-2d0a731a-zeros.tif",
+      "sha256": "9a5f5433cbfed4a1a8ac2587678aaa930c8ed93e948b9e94874c8febc549fd57",
       "checks": {
         "single_band": true,
         "crs_matches": true,
