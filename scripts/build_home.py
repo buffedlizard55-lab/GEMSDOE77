@@ -76,6 +76,29 @@ def copy(label, text):
             f'<button data-copy="{e(text)}">Copy</button></div>')
 
 
+def current_review_banner():
+    preflight = jload("evidence/registry_preflight.json")
+    authorization = jload("docs/data/submission-authorization.json")
+    if not preflight or preflight.get("decision") != "STOP_UNIVERSAL_DUPLICATE":
+        raise ValueError("current review banner requires the pinned universal-duplicate stop")
+    proof = preflight.get("proof", {})
+    if not proof.get("universal_overlap_blocker") or proof.get("nonempty_subset_forward_overlap_lower_bound") <= proof.get("overlap_stop_threshold_strictly_greater_than"):
+        raise ValueError("preflight no longer establishes the universal duplicate stop")
+    if not authorization or authorization.get("repository_decision") != "NOT OK TO SUBMIT" or authorization.get("repository_authorized_file_count") != 0:
+        raise ValueError("current review banner requires a zero-file fail-closed authorization receipt")
+    return f'''<section class="card" id="current-review-status">
+<h2>Current checkout: no new TIFF · inspection downloads only</h2>
+<p class="verdict"><b>OK to download listed research files: YES, for inspection · OK to submit: NO (0 files authorized).</b>
+This review ran no geological experiment, generated no candidate surface/dots, and used no weekly slot.</p>
+<p>The pinned preflight is a one-witness rejection proof, not a complete registry scan: its witness covers
+<strong>{proof["exact_witness_positive_allowed_pixels"]:,} / {proof["allowed_pixels"]:,}</strong> allowed pixels, forcing
+literal forward 3-px overlap at least <strong>{proof["nonempty_subset_forward_overlap_lower_bound"]:.1f}</strong>
+(&gt; {proof["overlap_stop_threshold_strictly_greater_than"]:.2f}) for every nonempty candidate. No new file is approved.</p>
+<div class="buttons"><a class="btn" href="review-latest.html">Read the current three-pass review</a>
+<a class="btn alt" href="evidence/registry_preflight.json">Open the machine-readable stop receipt</a></div>
+</section>'''
+
+
 def main():
     # Publish the current review from its source, not a hand-edited landing page.
     (D / "evidence").mkdir(exist_ok=True)
@@ -244,7 +267,7 @@ def main():
              f'<th>Beat the champion construction on the holdout?</th><th>Selector</th>'
              f'<th>Can I submit it?</th></tr>{rows}</table><p class="small muted">{e(lanes["note"])}</p>')
     h82_score = h82_card["holdout_dti"]
-    h82_banner = (f'<section class="card dl research"><h2>⬇ New H82 research GeoTIFF — DOWNLOAD FOR INSPECTION ONLY</h2>'
+    h82_banner = (f'<section class="card dl research"><h2>⬇ Earlier H82 research GeoTIFF — DOWNLOAD FOR INSPECTION ONLY</h2>'
         f'<p class="verdict"><b>OK TO DOWNLOAD: YES.</b> <b>OK TO SUBMIT: NO.</b> '
         f'Format preflight PASS (all finite, [0,1], sample grid), but H82 has only '
         f'<b>HOLDOUT-DTI {h82_score["dti"]:.6f}</b> (gems57-pooled-hide-v2; '
@@ -352,7 +375,7 @@ These are registry/format measurements, not scores or portal acceptance.</p>"""
         th30 = rc_tsd["holdout_dti"]["seed_30"]
         th20 = rc_tsd["holdout_dti"]["seed_20"]
         tuq = rc_tsd["registry_uniqueness"]
-        tsd_box = f"""<section class="card dl research"><h2>⬇ New Session Candidate (<code>H77-TSD</code>): OK to download for inspection — NOT OK TO SUBMIT</h2>
+        tsd_box = f"""<section class="card dl research"><h2>⬇ Earlier H77-TSD research candidate (<code>arena/b2132ad0-gemsdoe77</code>): inspection only — NOT OK TO SUBMIT</h2>
 <p class="small muted"><b>{e(rc_tsd["hypothesis"]["title"])}</b> (branch <code>arena/b2132ad0-gemsdoe77</code>, 100% SHA-256-pinned manifest inputs, 0 SGMC channels, 0 prior rasters).</p>
 <a class="btn" href="{e(tsub["tif_path"].removeprefix("docs/"))}" download>Download H77-TSD .tif ({tsub["tif_bytes"]/1024:.0f} KB)</a>
 <a class="btn alt" href="{e(tsub["zip_path"].removeprefix("docs/"))}" download>Download Single-TIFF .zip ({tsub["zip_bytes"]/1024:.0f} KB)</a>
@@ -368,7 +391,8 @@ These are registry/format measurements, not scores or portal acceptance.</p>"""
 {copy("H77-TSD unique submission name (inspection reference — DO NOT UPLOAD)", tsub["name"])}
 {copy("H77-TSD short note <= 140 chars (inspection reference — DO NOT UPLOAD)", tsub["note"])}
 <p class="small">GeoTIFF SHA-256: <code>{e(tsub["tif_sha256"])}</code> · ZIP SHA-256: <code>{e(tsub["zip_sha256"])}</code> · <a href="evidence/run_card_tsd.json">Machine-readable Run Card (.json)</a></p></section>"""
-    body = f"""{tsd_box}{h82_banner}{rank_box}<h1>Start here</h1>
+    current_banner = current_review_banner()
+    body = f"""{current_banner}{tsd_box}{h82_banner}{rank_box}<h1>Start here</h1>
 <p><strong>Earlier review #49 generated no new TIFF; H82 above is a later negative research download. NOT OK TO SUBMIT.</strong> <a href="review-904a24d3.html">Earlier audit and corrected H33 analysis</a>.</p>
 <p>This repository builds and audits fault-probability GeoTIFFs for the <a href="{COMP}">DOE GEMS Prize</a>
 (DrivenData competition 306). The first box distinguishes downloading a file from permission to upload it. The table
@@ -396,9 +420,9 @@ not proof that the specific file received that score or that another submission 
     (D / "index.html").write_text(page("index.html", "Start here", body))
 
     # ---------------- general executive summary (how to submit)
-    guide = f"""<h1>Executive summary: how to submit — only AFTER approval</h1>
+    guide = f"""{current_banner}<h1>Executive summary: how to submit — only AFTER approval</h1>
 {tsd_box}
-<p class="verdict"><b>NEW H82 file:</b> <a href="{e(h82['file'])}" download>Download the format-valid TIFF for inspection</a>;
+<p class="verdict"><b>Earlier H82 research file:</b> <a href="{e(h82['file'])}" download>Download the format-valid TIFF for inspection</a>;
 <b>NOT OK TO SUBMIT</b>. See <a href="h82-executive-summary.html">its test result and exact name/note</a>.
 This is a negative experiment, not a competition submission authorization.</p>
 <p class="verdict"><b>Today: NOT OK TO SUBMIT any file here.</b> The featured H80 file is explicitly
@@ -863,12 +887,12 @@ Format-valid (15/15 checks, 0 NaN, values in [0,1], 37,654 binary dots) and info
 
 def write_review_pages():
     for source, output, title in (
-        ("docs/review-2026-10-21-60aafd45.md", "review-latest.html", "Latest repository review"),
+        ("docs/review-2026-10-21-arena-eb664779.md", "review-latest.html", "Latest repository review"),
         ("research/why-h33-scored-02778.md", "metric-review.html", "Corrected H33 analysis"),
     ):
         body = markdown.markdown((ROOT / source).read_text(), extensions=["tables", "fenced_code"])
         (D / output).write_text(page(output, title, body))
-    for name in ("review_60aafd45_card.json", "review_60aafd45_verification.json"):
+    for name in ("review_eb664779_card.json", "review_eb664779_verification.json"):
         shutil.copyfile(ROOT / "evidence" / name, D / "evidence" / name)
 
 
@@ -962,7 +986,7 @@ literal dense-witness gate (Policy I17) is fail-closed and this lane claims no e
 <h2>Official sources and irregularity flags</h2>
 <ul>
 <li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DrivenData problem and metric specification</a> — submission grid, single-band contract, alpha=0.2, beta=0.8, 300 m triangular kernel.</li>
-<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Public leaderboard</a> — 2026-10-21 read: 0.4413 ORGANIZER-CONFIRMED (first place).</li>
+<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Public leaderboard</a> — historical repository record dated 2026-10-21 listed 0.4413 at #1 (ORGANIZER-CONFIRMED public-row snapshot); not refreshed in this review and not tied to any repository TIFF.</li>
 <li><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">Official rules PDF</a> — three weekly feedback slots; finalist disclosure requirements.</li>
 <li><a href="https://github.com/drivendataorg/gems-prize-reference-solution">Organizer-linked reference solution</a> — implementation context, not a score receipt.</li>
 <li><b>IR-H83-01:</b> registry scan incomplete — 0/812 indexed rasters accessible locally; not a claim of global uniqueness.</li>

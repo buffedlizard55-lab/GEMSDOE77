@@ -1,9 +1,37 @@
 """H82 stopped research artifact must never become a submit recommendation."""
+import copy
 import hashlib
 import json
 from pathlib import Path
 
+import pytest
+
+from scripts.build_h82rank_site import upsert_h82r_lane
+
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def test_h82rank_manifest_upsert_is_idempotent_and_preserves_sibling_order():
+    manifest = json.loads((ROOT/'docs/data/lanes.json').read_text())
+    row = copy.deepcopy(next(r for r in manifest['lanes'] if r['lane'].startswith('H82R:')))
+    original_rows = copy.deepcopy(manifest['lanes'])
+    assert upsert_h82r_lane(manifest, row) is False
+    assert manifest['lanes'] == original_rows
+
+    without_h82r = copy.deepcopy(manifest)
+    without_h82r['lanes'] = [r for r in without_h82r['lanes'] if not r['lane'].startswith('H82R:')]
+    sibling_order = copy.deepcopy(without_h82r['lanes'])
+    assert upsert_h82r_lane(without_h82r, row) is True
+    assert [r for r in without_h82r['lanes'] if not r['lane'].startswith('H82R:')] == sibling_order
+    h82_index = next(i for i, r in enumerate(without_h82r['lanes']) if r['lane'].startswith('H82:'))
+    assert without_h82r['lanes'][h82_index + 1]['lane'].startswith('H82R:')
+    assert len(without_h82r['lanes']) == 30
+    assert 'H82R:' in without_h82r['note']
+
+    duplicate = copy.deepcopy(manifest)
+    duplicate['lanes'].append(copy.deepcopy(row))
+    with pytest.raises(ValueError, match='duplicate H82R'):
+        upsert_h82r_lane(duplicate, row)
 
 
 def test_h82_card_and_download_are_negative():

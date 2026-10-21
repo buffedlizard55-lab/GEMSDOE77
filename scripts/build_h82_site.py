@@ -24,9 +24,9 @@ def build(render):
     tif = card["raster_path"].removeprefix("docs/")
     score = card["holdout_dti"]
     lo, hi = score["ci95"]
-    box = f'''<section class="card dl research" id="h82-status"><h2>H82-TEXTURE: new research-only TIFF — negative result</h2>
+    box = f'''<section class="card dl research" id="h82-status"><h2>Archived H82-TEXTURE research TIFF — prior negative result</h2>
 <p class="verdict"><b>OK TO DOWNLOAD: YES, for inspection. NOT OK TO SUBMIT.</b>
-Newly computed K/Th texture-boundary surface, not a copied prior prediction. Format PASS does not mean competition approval.
+This artifact belongs to an earlier closed H82-TEXTURE lane; it was not generated in the current review. Format PASS does not mean competition approval.
 Literal registry overlap fails; stopped before dot placement. Selector not approved; no slot used.</p>
 <a class="btn" href="{esc(tif)}" download>Download H82 research .tif ({path.stat().st_size / 1e6:.1f} MB)</a>
 <a class="btn alt" href="{esc(tif.replace('.tif', '.zip'))}" download>One-TIFF ZIP</a>
@@ -78,13 +78,19 @@ with 6,436 near-catalogue dots removed, leaving 37,654. Sparse placement can red
 0.2778 remains OWNER-REPORT. Neither that lineage nor the conflicting requested leaderboard targets prove a causal effect,
 an optimal 200 m buffer, or a future gain. H82 supplies no evidence of beating it.</p>'''
     (D / "h82-texture.html").write_text(render("h82-texture.html", "H82 · negative research", body))
-    # Put the current session status before historical banners on both entry pages.
+    # Keep the current review banner first; the archived lane card follows it.
     for name in ("index.html", "executive-summary.html"):
         p = D / name
         text = p.read_text()
         text = re.sub(r'<section class="card dl research" id="h82-status">.*?</section>', "", text, flags=re.S)
-        marker = '<main><div class="wrap">'
-        text = text.replace(marker, marker + box, 1)
+        start = text.find('<section class="card" id="current-review-status">')
+        if start < 0:
+            raise ValueError(f"{name} is missing the fail-closed current-review banner")
+        end = text.find('</section>', start)
+        if end < 0:
+            raise ValueError(f"{name} has an incomplete current-review banner")
+        end += len('</section>')
+        text = text[:end] + box + text[end:]
         p.write_text(text)
     target = D / "evidence/h82_texture"
     target.mkdir(parents=True, exist_ok=True)

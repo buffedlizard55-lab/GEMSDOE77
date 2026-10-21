@@ -307,18 +307,41 @@ def test_h80t_lane_artifact_and_run_card_fail_closed():
     assert uniq['phase2_final_dots']['worst_dot_overlap_literal'] > 0.70
 
 
+def test_readme_front_matter_tracks_this_branch_and_keeps_the_original_prompt():
+    readme = (ROOT / 'README.md').read_text()
+    opening = readme[:readme.index('# Original project request')]
+    assert 'arena/eb664779-gemsdoe77' in opening
+    assert 'NO NEW TIFF' in opening and 'NOT OK TO SUBMIT' in opening
+    assert 'this session (lane H83' not in opening
+    assert '# Original project request' in readme
+
+
 def test_current_review_and_metric_correction_are_linked():
     for name in ('index.html', 'executive-summary.html'):
         text = (DOC / name).read_text()
         assert 'review-latest.html' in text and 'metric-review.html' in text
         assert 'no new TIFF' in text
+        assert 'current-review-status' in text and 'OK to submit: NO' in text
+        assert text.index('id="current-review-status"') < text.index('id="h82-status"')
+        assert 'Archived H82-TEXTURE research TIFF' in text
+        assert 'H82-TEXTURE: new research-only TIFF' not in text
+        assert 'Earlier H77-TSD research candidate' in text
+        assert 'New Session Candidate' not in text
+        if name == 'index.html':
+            assert 'Earlier H82 research GeoTIFF' in text
+        else:
+            assert 'Earlier H82 research file' in text
     analysis = (DOC / 'metric-review.html').read_text()
     assert 'ΔT=k' in analysis and 'only when' in analysis
     assert 'does <strong>not</strong> always increase' in analysis
     review = (DOC / 'review-latest.html').read_text()
     assert 'NOT OK TO SUBMIT' in review
-    assert 'No new TIFF was generated' in review
-    assert 'Resource not accessible by integration' in review
+    assert 'No new TIFF' in review
+    assert 'arena/eb664779-gemsdoe77' in review
+    assert 'STOP_UNIVERSAL_DUPLICATE' in review
+    assert 'one-witness rejection proof' in review
+    for name in ('review_eb664779_card.json', 'review_eb664779_verification.json'):
+        assert (DOC / 'evidence' / name).read_bytes() == (ROOT / 'evidence' / name).read_bytes()
 
 
 def test_current_preflight_review_does_not_claim_a_new_submission():

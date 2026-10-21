@@ -1,0 +1,94 @@
+{
+  "schema": "gems-repository-review-card-v1",
+  "review_id": "arena-eb664779-gemsdoe77-2026-10-21",
+  "branch": "arena/eb664779-gemsdoe77",
+  "review_type": "repository, artifact, policy and release review; no scientific experiment",
+  "hypothesis": "No new geological hypothesis was tested. The current invocation has no assigned method paragraph and the existing lanes are closed.",
+  "mechanism": "No new feature, model, surface, or placement mechanism was implemented. A pinned registry rejection witness blocks every nonempty candidate under the currently binding literal overlap rule.",
+  "named_non_fault_process_that_could_mimic_it": "Not applicable to a candidate that was not created. The conditional candidate-specific mimics are documented in the review report.",
+  "holdout_dti": {
+    "evidence_class": "NO NEW HOLDOUT-DTI RESULT",
+    "evaluator_version": null,
+    "withheld_positive_pixels": null,
+    "score": null,
+    "ci95": null,
+    "reason": "No candidate or holdout was run in this repository review.",
+    "historical_local_reference_only": {
+      "evidence_class": "HOLDOUT-DTI",
+      "lane": "H77-Step repository benchmark",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "withheld_positive_pixels": 11321,
+      "score": 0.152718,
+      "ci95": [
+        0.131548,
+        0.175185
+      ],
+      "source": "evidence/h77/run_card.json",
+      "note": "Historical local benchmark only; not an organizer score and not measured in this review."
+    }
+  },
+  "reported_score_context": {
+    "h33_score": 0.2778,
+    "evidence_class": "OWNER-REPORT; no authenticated artifact-to-score receipt",
+    "leaderboard": "Historical repository notes contain conflicting values; no current official leaderboard page was freshly checked in this review.",
+    "score_claim_for_this_review": null
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT; NOT HOLDOUT-DTI OR ORGANIZER SCORE",
+    "candidate_surface_rank_correlation": null,
+    "candidate_final_dot_forward_3px_overlap": null,
+    "candidate_surface_generated": false,
+    "candidate_final_dots_generated": false,
+    "preflight_decision": "STOP_UNIVERSAL_DUPLICATE",
+    "scope": "One hash-pinned rejection witness; not a complete registry scan.",
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "allowed_pixels": 5106385,
+    "exact_witness_positive_allowed_pixels": 5106385,
+    "allowed_pixels_within_3px": 5106385,
+    "uncovered_allowed_pixels": 0,
+    "nonempty_candidate_forward_overlap_lower_bound": 1.0,
+    "stop_threshold_strictly_greater_than": 0.7,
+    "rank_correlation_reason": "No candidate surface exists; the universal overlap proof alone is sufficient to stop.",
+    "source": "evidence/registry_preflight.json"
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "new_candidate_tiff": "not generated; not applicable",
+    "listed_primary_tiffs": 30,
+    "listed_primary_tiff_format_integrity_passes": 30,
+    "listed_download_audit": "PASS; local format/readback only, not uniqueness or organizer acceptance",
+    "repository_authorized_file_count": 0,
+    "repository_decision": "NOT OK TO SUBMIT",
+    "release_gate": "fail-closed; zero files authorized",
+    "new_candidate_format_validation": "not run because no candidate was generated"
+  },
+  "experiment_budget": {
+    "experiments_run": 0,
+    "maximum_experiments": 3,
+    "new_raster_generated": false,
+    "weekly_slots_used": 0,
+    "selector_approved": false
+  },
+  "submission_name": null,
+  "submission_note": "No TIFF generated; no currently listed file is approved for submission.",
+  "verdict": "negative",
+  "authorized_to_submit": false,
+  "generated_utc": "2026-10-21T18:15:24Z",
+  "verification_receipt": "evidence/review_eb664779_verification.json",
+  "pinned_preflight_inputs": {
+    "sample_template_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "catalogue_sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "witness_source_repo": "buffedlizard55-lab/17GEMSDOE",
+    "witness_source_ref": "6fc71d19d49dca4960d5434bd81b6dd06fcc030a",
+    "witness_source_path": "docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif",
+    "source_note": "Pinned owner-mirror bytes establish reproducibility, not organizer-origin authenticity."
+  },
+  "input_availability": {
+    "training_features_tiff": "data/raw/training_features.tif",
+    "processed_stack": "data/processed/stack.npy",
+    "gems_cache_tiff": ".cache/gems_data/training_features.tif",
+    "all_checked_paths_present": false,
+    "note": "No feature engineering, canary, holdout or candidate build was run."
+  }
+}

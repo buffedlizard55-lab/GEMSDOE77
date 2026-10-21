@@ -1,0 +1,82 @@
+{
+  "schema": "gems-repository-review-verification-v1",
+  "review_id": "arena-eb664779-gemsdoe77-2026-10-21",
+  "generated_utc": "2026-10-21T18:23:34Z",
+  "status": "PASS",
+  "no_new_scientific_artifact": true,
+  "no_weekly_slot_used": true,
+  "registry_preflight": {
+    "decision": "STOP_UNIVERSAL_DUPLICATE",
+    "expected_process_exit": 2,
+    "evidence_class": "REGISTRY-MEASUREMENT; NOT HOLDOUT-DTI OR ORGANIZER SCORE",
+    "scope": "One hash-pinned rejection witness; not a complete registry scan",
+    "template_hashes_verified": true,
+    "grid_matches": true,
+    "allowed_pixels": 5106385,
+    "exact_witness_positive_allowed_pixels": 5106385,
+    "allowed_pixels_within_3px": 5106385,
+    "uncovered_allowed_pixels": 0,
+    "universal_overlap_blocker": true,
+    "nonempty_subset_forward_overlap_lower_bound": 1.0,
+    "overlap_stop_threshold_strictly_greater_than": 0.7,
+    "sha256": "8f49e9009c1fc8cc703730d8365b3f89797ba6da3a945365547e14e4eea6a01c"
+  },
+  "listed_download_audit": {
+    "evidence_class": "FORMAT-INTEGRITY-MEASUREMENT; NOT SCORE OR PORTAL ACCEPTANCE",
+    "listed_count": 30,
+    "all_format_pass": true,
+    "authorized_to_submit": false,
+    "sha256": "f0d7b907faa76cd7264d965c55eafd40bf446eaea5911dbc250399ae451740d0"
+  },
+  "release_gate": {
+    "decision": "NOT OK TO SUBMIT",
+    "authorized_file_count": 0,
+    "generated_utc": "2026-10-21T18:22:33+00:00",
+    "sha256": "998fdd266b95ccc48c640432de8d405cd898db00738640dd6243c1022643d69c"
+  },
+  "builder_regression": {
+    "test": "test_h82rank_manifest_upsert_is_idempotent_and_preserves_sibling_order",
+    "result": "PASS as part of full suite",
+    "manifest_before_and_after_build_sha256": "d6debe55b431f3ef11bc877284ebb0b61a99f3c8b13867e59811e60aeeeb2f90",
+    "manifest_bytes_unchanged": true
+  },
+  "public_status_pages": {
+    "index_status_banner": "PASS; current status precedes archived H82-TEXTURE/H82/H77-TSD cards",
+    "executive_summary_status_banner": "PASS; current status precedes archived H82-TEXTURE/H77-TSD cards",
+    "latest_review_links_current_branch": true,
+    "download_and_submit_status_explicit": true
+  },
+  "ci_equivalent": {
+    "commands": [
+      "python scripts/build_site.py",
+      "python scripts/lia_build_site.py",
+      "python scripts/build_h82rank_site.py",
+      "python scripts/audit_downloads.py",
+      "python scripts/build_home.py",
+      "python scripts/release_gate.py --verify-fail-closed",
+      "python scripts/verify_all.py",
+      "python -m pytest -q"
+    ],
+    "all_commands_passed": true,
+    "verify_all_passed": true,
+    "pytest": "218 passed"
+  },
+  "sha256": {
+    "README.md": "3bb9e96dfa9a3d27b561a791aa3682b9803a424f937e258cdfbb8f0e65319a96",
+    "docs/review-2026-10-21-arena-eb664779.md": "d59d6cc695a44794639b5615437b86df455ddb965ca3f0f0936fb30c62b1ae04",
+    "evidence/review_eb664779_card.json": "cb40aa0f1572e64246b0a7b2b4c11fee958eec09f317da0512bc665d6307db8d",
+    "evidence/registry_preflight.json": "8f49e9009c1fc8cc703730d8365b3f89797ba6da3a945365547e14e4eea6a01c",
+    "evidence/listed_download_audit.json": "f0d7b907faa76cd7264d965c55eafd40bf446eaea5911dbc250399ae451740d0",
+    "docs/data/submission-authorization.json": "998fdd266b95ccc48c640432de8d405cd898db00738640dd6243c1022643d69c",
+    "docs/data/lanes.json": "d6debe55b431f3ef11bc877284ebb0b61a99f3c8b13867e59811e60aeeeb2f90",
+    "scripts/build_h82rank_site.py": "490d9f0ca5c03efeec81387c83a89bd631da4eede1223653037ae45b6f6793b6",
+    "scripts/build_h82_site.py": "ab5cecb643964809b2e2fd6eeb3a3544f7fd8c1a949f55f641addc99f1ff59bb",
+    "scripts/build_home.py": "95ee0535cfc5bcb0c21d0090ba734bc36ec2b9a7d98bc2735dde11222fc13e8a",
+    "tests/test_h82rank_release.py": "17e7e1a3498440661f6c718153ecd1698923f00da00f2ab2de9361ce5705eacb",
+    "tests/test_site.py": "85724e71872ae60ec248b329aef240bc7d6c90779843475907c46311f4569959",
+    "docs/index.html": "e918cf9273d9d75142a85f93d5ceba8143318f04e7315d6177ef89726a4b4032",
+    "docs/executive-summary.html": "6fad39f452fefde253a7de0eca805e6d33f89832284105c24da204bd46420432",
+    "docs/review-latest.html": "38f87cd632320bf84062a877198fd0960562a66d0060b13b0efadd42acbe2148",
+    "docs/evidence/review_eb664779_card.json": "cb40aa0f1572e64246b0a7b2b4c11fee958eec09f317da0512bc665d6307db8d"
+  }
+}

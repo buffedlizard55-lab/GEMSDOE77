@@ -1,34 +1,30 @@
-> **Latest review — branch `arena/60aafd45-gemsdoe77` (2026-10-21):** **OK TO DOWNLOAD FOR INSPECTION; NOT OK TO SUBMIT. No new TIFF was generated.** The dense registry witness was restored and independently verified to cover the entire allowed footprint, so the literal duplicate-stop rule blocks every nonempty candidate. No stopped lane was restarted and no weekly slot was used. [Review and ranked conditional hypotheses](docs/review-2026-10-21-60aafd45.md) · [Corrected H33 reasoning](research/why-h33-scored-02778.md) · [existing research TIFF](docs/downloads/gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY.tif) · [how submission works only after approval](docs/executive-summary.html).
+> **Current checkout review — branch `arena/eb664779-gemsdoe77` (2026-10-21):** **NO NEW TIFF; NOT OK TO SUBMIT.** The pinned universal-duplicate preflight stopped before any candidate, model, holdout or raster was produced. Existing listed TIFFs are downloadable for inspection only. [Three-pass review](docs/review-2026-10-21-arena-eb664779.md) · [JSON run card](evidence/review_eb664779_card.json) · [current site review](docs/review-latest.html) · [submission instructions (only after approval)](docs/executive-summary.html).
+> **Historical file reference, not this review's output:** H82-TEXTURE research TIFF SHA-256 `c571af22cb08db9cb8cfd6edf0108364d95b0c3bec8316d09d3dfd116531790e`; OK TO DOWNLOAD FOR INSPECTION: YES · **OK TO SUBMIT: NO**.
 # GEMSDOE77 — DOE GEMS Prize: audited fault-detection research portfolio
 
-> Read at the start of every session. Standing brief: `PROMPT.md` (operative prompt; also appended below in full);
-> lane evidence: `evidence/`, `registry/`. Multi-pass rule: pass 1 implement + verify, pass 2 review and fix,
-> pass 3 re-check against the request, then PR and merge to `main` from the session branch only.
+> Read at the start of every session. The operative standing brief is `PROMPT.md` (also retained in full below);
+> detailed controls are in `AGENTS.md`. Follow the assigned-lane, fail-closed preflight and three-pass review rules.
 
-## 🚦 Status at a glance — this session (lane H83, 2026-10-21)
+## Current checkout status — review only; no lane assigned
 
-| Question | Answer |
+| Question | Verified status |
 |---|---|
-| Competition | DOE GEMS Prize (DrivenData #306): one single-band float32 GeoTIFF, or a ZIP containing exactly one; EPSG:32611; 3730×3292; 100 m pixels; transform (100, 0, 243350, 0, −100, 4508550); prediction values in [0, 1] |
-| Leaderboard (2026-10-21) | 0.4413 ORGANIZER-CONFIRMED (first place); owner-reported GEMSDOE32 file 0.2778 (no organizer receipt — attribution not authenticated) |
-| Unique TIF generated this session | `docs/downloads/gems77-h83-faultcollar-37553dots-20261021-a55f4c9c-zeros.tif` + one-TIFF `.zip`; 37,553 binary dots; SHA-256 `7f71739a2804bf2fa7199d30d512e0a267e4cfa2fdd0d32304b962db65b98662`. OK TO SUBMIT: NO — negative lane, inspection download only. Co-listed negative TIFF checksums on this screen: H82-TEXTURE `c571af22cb08db9cb8cfd6edf0108364d95b0c3bec8316d09d3dfd116531790e`; H82R `56debe682505bf2649f30d914c7b552dcf669bce4b902ce91eb3e5363031f115`; H82 cool-outlet `84b50d05eaba578c398c4c7ab720dbf5a46de29d63f4254eb02a8ba02a4a43df` — all **NOT OK TO SUBMIT**, OK to download for inspection |
-| OK to download? | **YES — for inspection** (direct link on `docs/index.html`, first screen; checksums shown on the page) |
-| OK to submit to the competition? | **NO.** HOLDOUT-DTI 0.1227 [0.1080, 0.1372] (seed 30; 11,342 withheld positives) vs random 0.0435 — significant (+0.079, CI excludes 0) but **below** the 0.152718 repository incumbent, so it cannot be expected to beat 0.2778. OK TO SUBMIT: NO — no lane in this session is clearance-approved; registry scan incomplete (0/812 indexed rasters accessible locally); 0 weekly slots used. |
-| Submission mechanics (only after clearance) | `docs/executive-summary.html` — form fields, the earlier "[0, 1]" portal error, ≤140-character Note, step-by-step |
+| New candidate / experiment / TIFF | **None.** This invocation has no assigned method paragraph; existing lanes are closed. No surface or final dots were generated, no holdout was run, and no candidate was promoted. |
+| Download status | **YES, for inspection only:** the 30 currently listed primary TIFFs passed local format/integrity readback. This is not uniqueness, organizer acceptance, or permission to upload. The generated site labels listed files individually. |
+| Submission status | **NOT OK TO SUBMIT.** `docs/data/submission-authorization.json` authorizes 0 files. Weekly slots used in this review: 0. |
+| Binding preflight | **`STOP_UNIVERSAL_DUPLICATE` — REGISTRY-MEASUREMENT, not HOLDOUT-DTI or an organizer score.** One SHA-pinned witness covers all 5,106,385 allowed pixels; any nonempty subset has literal forward 3-px overlap lower bound 1.0, above the strict 0.70 stop. This is a one-witness rejection proof, **not** a complete registry scan. See `evidence/registry_preflight.json`. |
+| Data availability | `data/raw/training_features.tif`, `data/processed/stack.npy`, and `.cache/gems_data/training_features.tif` are absent from this checkout. A historical restore receipt is not proof that those files are currently present. |
+| H33 `0.2778` | **OWNER-REPORT**, not an authenticated organizer receipt. The thinning / near-catalogue-pruning mechanism is plausible but not proven as the cause of that reported value. See [corrected metric analysis](research/why-h33-scored-02778.md). |
+| Leaderboard | Historical notes contain conflicting values, including `0.3195` and `0.4413`. No current official leaderboard page or file-to-score receipt was freshly checked here; neither value is asserted as current by this review. |
+| Candidate slate | Four conditional, untested concepts and their official data sources/limitations are in the [three-pass review](docs/review-2026-10-21-arena-eb664779.md). They are proposals, not predictions; expected DTI gain is unknown. |
 
-## Hypotheses tested this session (ranked by expected DTI gain ÷ implementation cost; full text: research/h83_hypotheses.md)
+**Bottom line:** download an existing research file only for inspection; do not upload any file. Do not clone, relabel, or repackage an old TIFF as a new submission. Resolve the shared uniqueness stop and obtain a method-lane assignment before any new experiment.
 
-1. **H83-1 (implemented, Exp 1):** hanging-wall fault-damage collar at kernel scale — HOLDOUT-DTI 0.1227 [0.1080, 0.1372], significant vs random (+0.079, CI excludes 0), below incumbent → **negative**, not for upload.
-2. **H83-2** catalogue fault-intersection / relay-node intensity — not implemented (next experiment if any off-catalogue credit appears).
-3. **H83-3** signed across-strike K/Th radiometric asymmetry — deferred (needs USGS GeoDAWN bands, DOI 10.5066/P93LGLVQ; source not reachable from this sandbox).
-4. **H83-4** multi-scale residual curvature after regional trend removal — deferred (needs restored 418 MB feature stack).
-5. **H83-5** thermal spring/well alignment anisotropy (DOE/NREL GDR 1391, DOI 10.15121/1881483) — deferred (source not reachable from this sandbox).
+## How this repository answers the standing request
 
-## How this repository answers the prompt
-
-- A **unique TIF exists and is directly downloadable** from the site's first screen (`docs/index.html`), with per-file chips stating OK to download / NOT OK TO SUBMIT — it is obvious whether download and/or submit is permitted.
-- Every number is labelled HOLDOUT-DTI (evaluator version, withheld positives, 95% CI) or flagged as not organizer-confirmed; no projection is ever written as a score.
-- Negative results are deliverables; no competition slot was spent.
+- The first screen separates “OK to download” from “OK to submit”; currently listed files are inspection-only and the release gate authorizes zero uploads.
+- Scores are explicitly labelled **HOLDOUT-DTI** with evaluator, withheld positives and 95% CI, or **ORGANIZER-CONFIRMED** only when a receipt exists. Owner reports, registry measurements and projections are kept separate.
+- The original prompt remains below; re-read it together with `PROMPT.md` and `AGENTS.md` each session. Historical lane banners below are archive records, not this review's work or a current leaderboard snapshot.
 
 <!-- H77E-KNICK PRIMARY STATUS BANNER -->
 >
