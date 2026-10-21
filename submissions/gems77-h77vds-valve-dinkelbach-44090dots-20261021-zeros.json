@@ -1,0 +1,146 @@
+{
+  "file": "gems77-h77vds-valve-dinkelbach-44090dots-20261021-zeros.tif",
+  "sha256": "eaf1ed0cfe60922f96cb57929083e65b1b715acc9803f005a9e520cf1699006b",
+  "bytes": 157246,
+  "submission_name": "gems77-h77vds-valve-dinkelbach-44090dots-20261021-zeros",
+  "note": "H77-VDS zero-SGMC scarp+GeoDAWN+valve HGB+LGB OOF + Dinkelbach 300m (44090 {0,1} dots); HOLDOUT-DTI 0.1744(s30)/0.1608",
+  "note_chars": 118,
+  "validator": {
+    "file": "/home/user/GEMSDOE77/docs/downloads/gems77-h77vds-valve-dinkelbach-44090dots-20261021-zeros.tif",
+    "bytes": 157246,
+    "sha256": "eaf1ed0cfe60922f96cb57929083e65b1b715acc9803f005a9e520cf1699006b",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.003590636420994997,
+    "emitted_positive_pixels": 44090,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 44090,
+    "footprint_fraction": 0.00853238192791579
+  },
+  "template_report": {
+    "path": "/home/user/GEMSDOE77/docs/downloads/gems77-h77vds-valve-dinkelbach-44090dots-20261021-zeros.tif",
+    "bytes": 157246,
+    "sha256": "eaf1ed0cfe60922f96cb57929083e65b1b715acc9803f005a9e520cf1699006b",
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "width": 3292,
+    "height": 3730,
+    "bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "ref_bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": null,
+    "blocksize": [
+      256,
+      256
+    ],
+    "fixture_grid": false,
+    "has_validity_mask": false,
+    "nan_pixels": 0,
+    "infinity_pixels": 0,
+    "n_nan": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.003590636420994997,
+    "n_nonzero": 44090,
+    "mass": 44090.0,
+    "mass_outside_footprint": 0,
+    "problems": [],
+    "ok": true,
+    "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+  },
+  "zip_file": "gems77-h77vds-valve-dinkelbach-44090dots-20261021-zeros.zip",
+  "zip_sha256": "4361e1e9e40ff2df037e29a2a15e32abc7671f208a6efac4cf5781c2b0a0bd14",
+  "approved_for_weekly_slot": false,
+  "promoted": false,
+  "submission_slots_used": 0,
+  "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+  "metadata": {
+    "lane_id": "H77-VDS-VALVE-DINKELBACH-SUBMOD",
+    "frozen_params": {
+      "pi_scale_ht": 0.25,
+      "w_stack_log_odds": 0.68,
+      "dinkelbach_pi_true": 0.0022,
+      "dinkelbach_temperature": 1.0,
+      "dinkelbach_fp_lambda": 0.012,
+      "dinkelbach_min_sep_px": 2.35,
+      "dinkelbach_candidate_pool": 680000,
+      "quadrant_calibrate": true,
+      "excl_px": 3.0,
+      "sparse_overlap_cap": 0.65,
+      "max_sparse_positives": 125000
+    },
+    "alloc_stats": {
+      "n_dots": 44090,
+      "expected_tp_w": 2936.5058,
+      "expected_fp_w": 43583.7404,
+      "expected_k_hat": 10383.0312,
+      "expected_dti_at_budget": 0.166748,
+      "dinkelbach_peak_expected_dti": 0.168481,
+      "dinkelbach_opt_budget": 36529,
+      "sparse_overlap_cap_skips": 21653,
+      "max_sparse_overlap_achieved": 0.649989
+    }
+  }
+}

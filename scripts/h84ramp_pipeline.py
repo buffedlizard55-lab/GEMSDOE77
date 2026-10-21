@@ -397,7 +397,7 @@ def run_exp1() -> int:
     EVID.mkdir(exist_ok=True)
     DOCS_EVID.mkdir(exist_ok=True)
     for d in (EVID, DOCS_EVID):
-        (d / "h84_e1_canary_surface.json").write_text(json.dumps(out, indent=2, allow_nan=False) + "\n")
+        (d / "h84ramp_e1_canary_surface.json").write_text(json.dumps(out, indent=2, allow_nan=False) + "\n")
     if any_leak or rho_fail:
         raise SystemExit("STOP: leakage canary or surface Spearman gate failed")
     return 0
@@ -645,7 +645,7 @@ def run_exp2() -> int:
         "elapsed_seconds": round(time.time() - t0, 2),
     }
     for d in (EVID, DOCS_EVID):
-        (d / "h84_e2_holdout.json").write_text(json.dumps(out, indent=2, allow_nan=False) + "\n")
+        (d / "h84ramp_e2_holdout.json").write_text(json.dumps(out, indent=2, allow_nan=False) + "\n")
     return 0
 
 
@@ -1055,7 +1055,7 @@ def run_exp3() -> int:
             "vs_dense_witness": dense_row,
             "protocol_unique": False,
             "informative_unique": e3_out["informative_sparse_summary"]["informative_unique"],
-            "receipt": "evidence/h84_e3_uniqueness.json",
+            "receipt": "evidence/h84ramp_e3_uniqueness.json",
         },
         "raster_path": f"docs/downloads/{name}.tif",
         "zip_path": f"docs/downloads/{name}.zip",
@@ -1095,8 +1095,8 @@ def run_exp3() -> int:
     }
 
     for d in (EVID, DOCS_EVID):
-        (d / "h84_e3_uniqueness.json").write_text(json.dumps(e3_out, indent=2, allow_nan=False) + "\n")
-        (d / "h84_run_card.json").write_text(json.dumps(run_card, indent=2, allow_nan=False) + "\n")
+        (d / "h84ramp_e3_uniqueness.json").write_text(json.dumps(e3_out, indent=2, allow_nan=False) + "\n")
+        (d / "h84ramp_run_card.json").write_text(json.dumps(run_card, indent=2, allow_nan=False) + "\n")
     log(f"Built {name}.tif sha256={receipt['sha256']} verdict={run_card['verdict']}")
     return 0
 

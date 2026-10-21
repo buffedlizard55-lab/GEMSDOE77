@@ -74,15 +74,15 @@ def test_h84_field_operators_and_self_collapse_tautology():
 
 
 def test_h84_preregistration_and_evidence_receipts():
-    prereg = json.loads((ROOT / "registry" / "preregistration_h84.json").read_text())
+    prereg = json.loads((ROOT / "registry" / "preregistration_h84ramp.json").read_text())
     assert prereg["lane_id"] == "H84-RAMP"
     assert len(prereg["ranked_hypotheses"]) == 5
     assert prereg["ranked_hypotheses"][0]["implemented_in_pass_1"] is True
 
-    hyp_md = (ROOT / "research" / "h84_hypotheses.md").read_text()
+    hyp_md = (ROOT / "research" / "h84ramp_hypotheses.md").read_text()
     assert "0.2778" in hyp_md and "0.4413" in hyp_md and "IR-H84-01" in hyp_md
 
-    e1 = json.loads((ROOT / "evidence" / "h84_e1_canary_surface.json").read_text())
+    e1 = json.loads((ROOT / "evidence" / "h84ramp_e1_canary_surface.json").read_text())
     assert e1["leakage_pass"] is True
     assert e1["surface_spearman_gate_pass"] is True
     for seed in ("20", "30"):
@@ -93,7 +93,7 @@ def test_h84_preregistration_and_evidence_receipts():
         assert taut["naive_visible_positive_means"]["h84_relay_medial_bridge"] == 0.0
         assert taut["blbco_deconfounded_visible_positive_means"]["h84_relay_medial_bridge"] > 0.05
 
-    e2 = json.loads((ROOT / "evidence" / "h84_e2_holdout.json").read_text())
+    e2 = json.loads((ROOT / "evidence" / "h84ramp_e2_holdout.json").read_text())
     assert e2["evaluator_version"] == "gems57-pooled-hide-v2"
     for seed, exp_pos in (("20", 11321), ("30", 11342)):
         s = e2["seeds"][seed]["summary"]
@@ -109,7 +109,7 @@ def test_h84_preregistration_and_evidence_receipts():
 
 
 def test_h84_run_card_geotiff_and_site_integration():
-    rc = json.loads((ROOT / "evidence" / "h84_run_card.json").read_text())
+    rc = json.loads((ROOT / "evidence" / "h84ramp_run_card.json").read_text())
     assert rc["lane"] == "H84-RAMP"
     assert rc["verdict"] == "negative"
     assert rc["ok_to_download"] is True
@@ -162,7 +162,7 @@ def test_h84_run_card_geotiff_and_site_integration():
     assert h84_lanes[0]["verdict"] == "negative"
     assert h84_lanes[0]["protocol_unique"] is False
 
-    for page_name in ("h84.html", "h84-executive-summary.html"):
+    for page_name in ("h84-ramp.html", "h84-ramp-executive-summary.html"):
         html_txt = (ROOT / "docs" / page_name).read_text()
         assert 'lang="en"' in html_txt
         assert "not approved" in html_txt.lower()

@@ -356,7 +356,7 @@
     },
     "protocol_unique": false,
     "informative_unique": true,
-    "receipt": "evidence/h84_e3_uniqueness.json"
+    "receipt": "evidence/h84ramp_e3_uniqueness.json"
   },
   "raster_path": "docs/downloads/gems77-h84-ramp-relay-37654dots-20261021-1b76b4b7-zeros.tif",
   "zip_path": "docs/downloads/gems77-h84-ramp-relay-37654dots-20261021-1b76b4b7-zeros.zip",
