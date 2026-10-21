@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 390" width="920" height="390" font-family="system-ui, sans-serif">
+<rect width="920" height="390" fill="#f8fafc" rx="8"/>
+<text x="24" y="32" font-size="15" font-weight="bold" fill="#0f172a">Lane H77V: Dual-Seed HOLDOUT-DTI Benchmark (gems57-pooled-hide-v2, 22,663 Withheld Fault Pixels)</text>
+<text x="24" y="52" font-size="12" fill="#475569">Dark bar = Seed 30 (11,342 px) · Light bar = Seed 20 (11,321 px) · Informative 3-px max overlap = 0.6350 &lt;= 0.70 (674 rasters)</text>
+<text x="210" y="90" font-size="11.5" text-anchor="end" fill="#1e293b">H77V-LOFO (Submod300)</text>
+<rect x="220" y="76" width="472" height="13" fill="#047857" rx="2"/>
+<text x="698" y="87" font-size="10.5" font-weight="bold" fill="#0f172a">s30: 0.1688</text>
+<rect x="220" y="91" width="417" height="13" fill="#047857" fill-opacity="0.62" rx="2"/>
+<text x="643" y="102" font-size="10.5" fill="#334155">s20: 0.1490</text>
+<text x="210" y="127" font-size="11.5" text-anchor="end" fill="#1e293b">H77V-37654 (Submod300)</text>
+<rect x="220" y="113" width="471" height="13" fill="#059669" rx="2"/>
+<text x="697" y="124" font-size="10.5" font-weight="bold" fill="#0f172a">s30: 0.1684</text>
+<rect x="220" y="128" width="416" height="13" fill="#059669" fill-opacity="0.62" rx="2"/>
+<text x="642" y="139" font-size="10.5" fill="#334155">s20: 0.1489</text>
+<text x="210" y="164" font-size="11.5" text-anchor="end" fill="#1e293b">H77V-36250 (Unique)</text>
+<rect x="220" y="150" width="469" height="13" fill="#10b981" rx="2"/>
+<text x="695" y="161" font-size="10.5" font-weight="bold" fill="#0f172a">s30: 0.1678</text>
+<rect x="220" y="165" width="417" height="13" fill="#10b981" fill-opacity="0.62" rx="2"/>
+<text x="643" y="176" font-size="10.5" fill="#334155">s20: 0.1491</text>
+<text x="210" y="201" font-size="11.5" text-anchor="end" fill="#1e293b">H77V Strict OOF (Submod300)</text>
+<rect x="220" y="187" width="472" height="13" fill="#0d9488" rx="2"/>
+<text x="698" y="198" font-size="10.5" font-weight="bold" fill="#0f172a">s30: 0.1688</text>
+<rect x="220" y="202" width="415" height="13" fill="#0d9488" fill-opacity="0.62" rx="2"/>
+<text x="641" y="213" font-size="10.5" fill="#334155">s20: 0.1484</text>
+<text x="210" y="238" font-size="11.5" text-anchor="end" fill="#1e293b">H77D Prior Repo Best</text>
+<rect x="220" y="224" width="420" height="13" fill="#475569" rx="2"/>
+<text x="646" y="235" font-size="10.5" font-weight="bold" fill="#0f172a">s30: 0.1501</text>
+<rect x="220" y="239" width="392" height="13" fill="#475569" fill-opacity="0.62" rx="2"/>
+<text x="618" y="250" font-size="10.5" fill="#334155">s20: 0.1403</text>
+<text x="210" y="275" font-size="11.5" text-anchor="end" fill="#1e293b">H33 Fold-Fair Reclipped</text>
+<rect x="220" y="261" width="276" height="13" fill="#d97706" rx="2"/>
+<text x="502" y="272" font-size="10.5" font-weight="bold" fill="#0f172a">s30: 0.0989</text>
+<rect x="220" y="276" width="269" height="13" fill="#d97706" fill-opacity="0.62" rx="2"/>
+<text x="495" y="287" font-size="10.5" fill="#334155">s20: 0.0961</text>
+<text x="210" y="312" font-size="11.5" text-anchor="end" fill="#1e293b">H77V 7x7 NMS (37,654)</text>
+<rect x="220" y="298" width="267" height="13" fill="#2563eb" rx="2"/>
+<text x="493" y="309" font-size="10.5" font-weight="bold" fill="#0f172a">s30: 0.0955</text>
+<rect x="220" y="313" width="250" height="13" fill="#2563eb" fill-opacity="0.62" rx="2"/>
+<text x="476" y="324" font-size="10.5" fill="#334155">s20: 0.0893</text>
+<text x="210" y="349" font-size="11.5" text-anchor="end" fill="#1e293b">H33 Live Static (Masked)</text>
+<rect x="220" y="335" width="12" height="13" fill="#94a3b8" rx="2"/>
+<text x="238" y="346" font-size="10.5" font-weight="bold" fill="#0f172a">s30: 0.0043</text>
+<rect x="220" y="350" width="10" height="13" fill="#94a3b8" fill-opacity="0.62" rx="2"/>
+<text x="236" y="361" font-size="10.5" fill="#334155">s20: 0.0037</text>
+</svg>
