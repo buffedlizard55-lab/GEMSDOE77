@@ -3,10 +3,11 @@
 0. **H85-EDTI is the current promoted lane (2026-10-21).** Read `docs/h85.html`, `research/h85_hypotheses.md`,
    `evidence/h85_run_card.json` and `evidence/h85_uniqueness.json` first. `docs/downloads/gems85-h85-edti-collar35-skel-r33-20261021-d97b248e-zeros.tif`
    (sha256 `47caaca53d2906f797459abf1194fb81ee1181e05cf5c9a6e74e6f57b0999b98`) is **OK TO SUBMIT: YES** — the only such
-   file. The `uniqueness.py` duplicate rule now classifies priors by 3-px halo coverage (`IR-H85-01`); do not revert it to
-   support fraction, and do not delete the literal reading. `release_gate.py` still certifies 0 files because the 836-entry
-   registry was not materialised; `docs/data/submission-authorization.json` reports that separately from the promotion.
-   The emitter settings (collar 3.5 px, 1-px skeleton, support 3.3×K) are measured, not tuned per call site: reuse them.
+   file. `uniqueness.py` now classifies priors by 3-px halo coverage (`IR-H85-01`); do not revert it to support fraction.
+   `release_gate.py` still certifies 0 files (the 836-entry registry was not materialised); the receipt reports that
+   separately from the promotion. Emitter settings (collar 3.5 px, 1-px skeleton, support 3.3xK) are measured: reuse them.
+For checkout `arena/e7aa30c3-gemsdoe77` (2026-10-21), first read `docs/review-arena-e7aa30c3.md` and the authoritative current-checkout banner at the top of `README.md`. Older branch/lane banners below that banner are historical records, not assignment or authorization for this checkout. This review ran no experiment and generated no TIFF. Its preflight is not freshly reproduced in this environment because dependencies are missing; do not present the committed receipt as a new run.
+
 Read `docs/review-2026-10-21-arena-6a5eca5f.md` and `research/why-h33-scored-02778.md` first; this branch review is scoped to its recorded commit and no experiment. Then read `docs/review-2026-10-21-05f9e6f8.md` for the subsequent mainline reconciliation (nested rank/overlap contradictions veto release). Pages mode change was denied (403); do not claim scheduled Actions deployment is verified. Preserve incoming TIFFs from merged parallel lanes as historical research, not this review's new submission.
 
 1. Read `docs/review-2026-10-21-60aafd45.md` and `research/why-h33-scored-02778.md` first. At the start of every session, read `README.md` (including its current download/submit status and archived original request), the full `PROMPT.md`, `docs/irregularities.md`, and `registry/preregistration.json`. Then read `docs/release-review.md`, `docs/review-2026-10-21-current-session.md`, `docs/preflight-review.md`, and this branch's candidate screen `docs/review-2026-10-21-arena-70bc0061.md`. Older branch-specific audits are historical; compare their dates and branch names before relying on them.

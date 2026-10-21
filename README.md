@@ -38,8 +38,21 @@
 *Status text below is historical and must not be read as current authorization. The binding receipt is
 `docs/data/submission-authorization.json`; the start page `docs/index.html` carries the same H85 card.*
 
+
 <details><summary><b>Historical status banners (superseded 2026-10-21 by the H85 promotion above)</b></summary>
-> **Current checkout review (2026-10-21, `arena/826a741c-gemsdoe77`):** [three-pass audit](docs/review-2026-10-21-arena-826a741c.md). No new TIFF was generated; the registry preflight stops every nonempty candidate under the current literal overlap rule, and the release manifest authorizes **0** files (**NOT OK TO SUBMIT**). Historical materials below do not supersede this current fail-closed status. Read [`PROMPT.md`](PROMPT.md) before further project work.
+
+<!-- H82-GMNS ALL-TIME #1 PRIMARY STATUS BANNER -->
+> **🏆 ALL-TIME `#1` PRIMARY DELIVERABLE `H82-GMNS` (`arena/b0d22822-gemsdoe77`, 2026-10-21) — ✅ OK TO DOWNLOAD FOR INSPECTION: YES · ⛔ OK TO SUBMIT: NO (`verdict: "negative"` under Policy `I17`; `0` slots spent).** [`docs/downloads/gems77-h82gmns-lagrangian-36500dots-20261021-1c9a641b-zeros.tif`](docs/downloads/gems77-h82gmns-lagrangian-36500dots-20261021-1c9a641b-zeros.tif) (`141,192 B`, `15/15` PASS, `{0,1}`, `0` NaN) · [`.zip`](docs/downloads/gems77-h82gmns-lagrangian-36500dots-20261021-1c9a641b-zeros.zip) · [Run Card](evidence/h82gmns/run_card.json) · [Guide](docs/h82gmns-executive-summary.html) · [Report](docs/h82gmns.html) · **`HOLDOUT-DTI`: `0.172129` Seed 20 `#1` · `0.190001` Seed 30 `#1` · `0.181065` Dual-Seed `#1` (`0.1985`/`0.2219` pure) · `0 / 940` informative overlaps across `1,007` rasters (`max = 0.6918 <= 0.70`)!** *(Historical H82-TEXTURE inspection-only `c571af22cb08db9cb8cfd6edf0108364d95b0c3bec8316d09d3dfd116531790e` also NOT OK TO SUBMIT.)*
+
+<!-- CURRENT CHECKOUT STATUS — authoritative for arena/e7aa30c3-gemsdoe77, 2026-10-21 -->
+> ## Current checkout review — `arena/e7aa30c3-gemsdoe77`
+> **No new submission TIF generated · no weekly slot used · NOT OK TO SUBMIT any file based on this review.** This checkout has no assigned method lane. Its committed pinned-registry preflight records `STOP_UNIVERSAL_DUPLICATE`; do not bypass the shared overlap rule. Existing TIFF links below are inherited historical artifacts, each with its own inspection/authorization record; they are not new candidates or organizer-approved files. Fresh preflight, download-audit and pytest commands could not run in this sandbox because dependencies (`numpy` and `pytest`) are absent, so no new validator/holdout/uniqueness result is claimed. [Three-pass checkout review](docs/review-arena-e7aa30c3.md) · [Preflight rationale](docs/preflight-review.md).
+>
+> **Historical H82-TEXTURE frozen artifact SHA-256 (retained for regression audit):** `c571af22cb08db9cb8cfd6edf0108364d95b0c3bec8316d09d3dfd116531790e`. Historical inspection-only; no submit authorization.
+>
+> **Submission decision:** no file is selected or authorized by this review. `OK TO DOWNLOAD FOR INSPECTION` is not permission to submit. Before any candidate is generated, resolve the universal overlap semantics in the shared protocol, assign a method lane, restore dependencies and hash-pinned inputs, run the prescribed canaries and buffered holdout, clear uniqueness, then obtain separate selector approval.
+>
+> Mainline review context from the concurrent merge: [three-pass audit](docs/review-2026-10-21-arena-826a741c.md). That is a separate review and does not replace this branch's explicit status or clear any file for submission. Read [`PROMPT.md`](PROMPT.md) before further project work.
 
 <!-- H77V-LDSA PRIMARY STATUS BANNER -->
 > **🚦 Current session — branch `arena/65c05dc9-gemsdoe77` (`H77V-LDSA`, 2026-10-21): ✅ OK TO DOWNLOAD FOR INSPECTION: YES · ⛔ OK TO SUBMIT: NO (`verdict: "negative"` under Policy `I17` dense witness; `0` weekly slots spent).**
@@ -84,6 +97,7 @@
 > - **Primary GeoTIFF (`157 KB`, `44,090` `{0,1}` binary dots, `0` NaN, `0` on catalogue):** [`docs/downloads/gems77-h77vds-valve-dinkelbach-44090dots-20261021-zeros.tif`](docs/downloads/gems77-h77vds-valve-dinkelbach-44090dots-20261021-zeros.tif) (`SHA-256: eaf1ed0cfe60922f96cb57929083e65b1b715acc9803f005a9e520cf1699006b`) · **[Portal ZIP](docs/downloads/gems77-h77vds-valve-dinkelbach-44090dots-20261021-zeros.zip)** · **[Technical Report](docs/h77vds.html)** · **[Guide](docs/h77vds-executive-summary.html)** · **[Run Card](evidence/run_card_h77vds.json)**
 > - **All-Time Dual-Seed Record (`gems57-pooled-hide-v2`, `22,663` withheld positives):** **Seed 30 = `0.174393` `[0.15499, 0.19329]`** (unconstrained `0.177673`) · **Seed 20 Lockbox = `0.160773` `[0.13958, 0.18192]` / `0.160795` @ `37,654`** (unconstrained `0.164997`), with **`0` SGMC channels**, **`32.6×` higher blind-fault (`> 1.2 km`) recall than `GEMSDOE32`**, and **`<= 0.6500 < 0.7000` 3-px dot overlap across sparse/discrete submissions** (`0` weekly slots used; selector: not approved).
 > - **Reference Name (`55/140`):** `gems77-h77vds-valve-dinkelbach-44090dots-20261021-zeros` · **Note (`118/140`):** `H77-VDS zero-SGMC scarp+GeoDAWN+valve HGB+LGB OOF + Dinkelbach 300m (44090 {0,1} dots); HOLDOUT-DTI 0.1744(s30)/0.1608`
+
 </details>
 
 ## Next steps this session could not finish (for the next session)
@@ -108,6 +122,7 @@
    not addressed.
 6. **Still blockers, unchanged:** no DrivenData credentials in this sandbox (the competition files are SHA-pinned
    owner mirrors), no GPU, 3 GB RAM / 2 cores, and no organizer score for any file in this repository.
+
 
 # GEMSDOE77 — DOE GEMS Prize: audited fault-detection research portfolio
 
