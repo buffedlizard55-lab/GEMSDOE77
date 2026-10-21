@@ -8,8 +8,8 @@ Each row's status is copied from that lane's own run card; links are local.
 
 | Lane | File | Format valid | Protocol-unique | Verdict | Upload status |
 |---|---|---|---|---|---|
-| **LIA**: live-score inversion and allocation (this README's next section) | [`gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif`](docs/downloads/gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif) | Yes, 17/17 | **Yes**, informative reading (worst overlap 0.660, ρ 0.377) | negative | **Safe to upload.** Not recommended for a slot; selector: not approved |
-| Contact-physics ([page](docs/contactphys.html)) | [`gems77-contactphys-44090dots-…-zeros.tif`](docs/downloads/gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif) | Yes (`download_ok_format_valid`) | see its run card | negative | Selector: not approved (`submit_ok_selector_promoted: false`) |
+| **LIA**: live-score inversion and allocation (this README's next section) | [`gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif`](docs/downloads/gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif) | Yes, 17/17 local format checks | **No** under literal protocol (35 overlap firings on dense registry witnesses; informative-only subset 0.660) | negative | **Download for inspection only. NOT OK TO SUBMIT; selector not approved.** |
+| Contact-physics ([page](docs/contactphys.html)) | [`gems77-contactphys-44090dots-…-zeros.tif`](docs/downloads/gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif) | Local format checks passed | **Not established** (only 43 local registry rasters checked; full inventory clearance absent) | negative | **Not approved to submit**; selector approval and full registry clearance absent |
 | Selective-U curvature ([page](docs/index.html)) | [`gems77-h77-urank-curvature-…-research.tif`](docs/downloads/gems77-h77-urank-curvature-0d868dc271bb-research.tif) | Yes | No (literal gate failed) | negative | **Not OK to submit** (research TIFF) |
 | H77C claycap (inherited, quarantined) | [`gemsdoe77-h77c-claycap-breach-…-zeros.tif`](docs/downloads/gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-zeros.tif) | – | rejected by the shared recheck | – | Not approved |
 
@@ -37,10 +37,10 @@ Each row's status is copied from that lane's own run card; links are local.
 
 | Question | Answer |
 |---|---|
-| OK to download? | **Yes** |
-| Will the portal accept it? | **Yes.** It passes 17/17 checks against the official grid and footprint, using the same encoding as the 0.2778 file the portal accepted and scored: all cells finite, binary {0, 1}, no nodata tag, EPSG:32611, 3730×3292 with the official transform. |
-| Unique? | **Yes.** Worst ρ 0.377; worst overlap 0.660 against 765 informative registry rasters. 43 space-filling rasters are reported, not used: each one's 3 px halo covers ≥ 70% of allowed cells, so even random dots exceed 0.70 against it. The first build was logged as a duplicate and not shipped. |
-| Spend a weekly slot? | **Not recommended. Run verdict: NEGATIVE** (pre-registered rule). INSTRUMENT Δ versus the 0.2778 champion is S0 -0.043 and S1 -0.041. HOLDOUT-DTI is 0.0706 against 0.0958 for the fold-fair champion construction (Δ -0.0252, 95% CI [-0.0303, -0.0203]). **The selector decides.** |
+| OK to download? | **Yes, for inspection and audit.** |
+| OK to submit? | **No.** The literal protocol uniqueness audit records 35 overlap firings on space-filling registry rasters. The 0.660 maximum applies only after excluding those witnesses; the protocol text does not provide that exemption. No selector approval or organizer acceptance receipt exists. |
+| Local format checks? | **17/17 PASS** against the pinned local sample/mask mirrors: all cells finite, binary {0, 1}, no nodata tag, EPSG:32611, 3730×3292 and matching transform. This is a local format result, not a guarantee of portal acceptance. |
+| Spend a weekly slot? | **No. Run verdict: NEGATIVE** (pre-registered rule). INSTRUMENT Δ versus the owner-reported 0.2778 reference is S0 -0.043 and S1 -0.041. HOLDOUT-DTI is 0.0706 (gems57-pooled-hide-v2, 11,321 withheld positives; 95% CI [0.0599, 0.0815]); against the fold-fair champion construction, Δ -0.0252 (95% CI [-0.0303, -0.0203]). |
 
 **Form fields**
 
@@ -101,25 +101,17 @@ E3 candidate, holdout, canary, uniqueness and validator).
 
 ---
 
-### LIA: reproduce
+### LIA: reproduction status
 
-The environment has 2 CPU and 3 GB RAM; everything below fits.
+**This lane is closed.** It used its three-experiment budget and exceeded the two-hour cap; do not rerun feature construction, scoring, candidate placement, holdout, registry scans, or submission generation in this branch. Historical receipts and their exact hashes are retained under `evidence/`, `docs/data/`, and `docs/downloads/`. The current static pages were regenerated from those receipts only; no new model experiment or competition slot was used. For a documentation-only rebuild and regression suite:
 
 ```bash
-python3 -m venv .venv && .venv/bin/pip install rasterio numpy scipy scikit-learn pandas pytest
-.venv/bin/python scripts/lia_restore_data.py          # 11 inputs via GitHub blob API, sha256-verified (≈40 s)
-.venv/bin/python scripts/fetch_registry.py        # 812 prior rasters (registry), sha256 recorded (≈45 s)
-.venv/bin/python scripts/build_cache.py           # sparse scored rasters, H19-5 distance, H77-1/H77-2 fields
-.venv/bin/python scripts/scored_stats.py          # E1: per-raster structure for 95 scored rasters
-.venv/bin/python scripts/e2_inversion.py          # E1/E2: live-score inversion, LOO
-.venv/bin/python scripts/e2_hypothesis_test.py    # E2: H77-1 / H77-2 tests
-.venv/bin/python scripts/e3_build_candidate.py    # E3: allocation
-.venv/bin/python scripts/e3_holdout.py            # E3: HOLDOUT-DTI + leakage canary (template tools)
-.venv/bin/python scripts/build_submission.py      # write + validate .tif / twin / .zip (fails closed)
-.venv/bin/python scripts/e3_uniqueness.py         # registry audit, both phases (template tool, ~1 h)
-.venv/bin/python scripts/why_02778.py && .venv/bin/python scripts/make_run_card.py && .venv/bin/python scripts/lia_build_site.py
+.venv/bin/python scripts/lia_build_site.py
+.venv/bin/python scripts/build_site.py
 .venv/bin/python -m pytest -q
 ```
+
+The historical `scripts/build_submission.py` is not a candidate-approval tool. It no longer deletes unrelated files and refuses same-name overwrite, but its original primary writer path is not the pinned `gems57` writer end-to-end; do not use it to regenerate or submit this negative artifact.
 
 ### LIA: layout
 

@@ -2,34 +2,36 @@
 <meta name="viewport" content="width=device-width,initial-scale=1"><title>Executive summary · GEMSDOE77</title>
 <link rel="stylesheet" href="assets/lia.css"></head><body>
 <header><div class="wrap"><span class="brand">GEMSDOE77 · DOE GEMS Prize</span><a href="lia.html">LIA lane overview</a> <a href="lia-executive-summary.html" class=here>How to submit</a> <a href="lia-analysis.html">Why 0.2778</a> <a href="lia-sources.html">Sources & limits</a> <a href="index.html">All GEMSDOE77 lanes</a>
-<a href="https://github.com/buffedlizard55-lab/GEMSDOE77">GitHub</a></div></header><main><div class="wrap"><section class="card dl"><h2>⬇ Download the GEMSDOE77 submission</h2>
-<a class="btn" href="downloads/gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif" download>Download .tif (147 KB) — the file to upload</a>
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE77">GitHub</a></div></header><main><div class="wrap"><section class="card dl"><h2>⬇ Download candidate TIFF (inspection only)</h2>
+<a class="btn" href="downloads/gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif" download>Download .tif (147 KB) — format-validated candidate</a>
 <a class="btn alt" href="downloads/gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.zip" download>Same file as one-TIFF .zip</a>
-<div class="chips"><span class="chip ok">OK to download: YES</span>
-<span class="chip ok">Portal format: 17/17 checks PASS</span>
-<span class="chip ok">Unique vs 765 informative registry rasters: PASS (worst overlap 0.660 ≤ 0.70)</span>
+<div class="chips"><span class="chip ok">OK to download for inspection: YES</span>
+<span class="chip ok">Local format: 17/17 checks PASS</span>
+<span class="chip bad">Literal protocol uniqueness: FAIL — duplicate witness</span>
+<span class="chip ok">Informative-only subset: PASS (worst overlap 0.660 across 765)</span>
 <span class="chip ok">Leakage canary: clear</span>
 <span class="chip warn">Run verdict: NEGATIVE</span>
-<span class="chip warn">Selector: not approved (no decision yet)</span></div>
-<p class="verdict"><b>Can I upload it?</b> Yes. It is unique under the informative reading, and it has the same encoding as the
-GEMSDOE32 0.2778 file that the portal accepted and scored: all cells finite, values in {0, 1}, no nodata tag, EPSG:32611, and 3730×3292 with the official transform.
-<br><b>Should I spend a weekly slot on it?</b> <b>Not recommended.</b> The pre-registered verdict is <b>NEGATIVE</b>.
-The conservative instrument projects it -0.0431 versus the 0.2778 champion; the in-sample instrument projects -0.0407.
-A live score would only measure whether straight-edge dots in cells no prior raster covered earn credit.
-The slot decision belongs to the separate selector step.</p>
+<span class="chip bad">Competition submission: NOT APPROVED</span></div>
+<p class="verdict"><b>Can I submit it?</b> <b>No. Do not spend a competition slot on this file.</b>
+The on-disk TIFF passes local format checks, but the registry audit records a duplicate under the literal protocol reading
+(35 overlap firings on space-filling registry rasters). Excluding those rasters produces an informative-only comparison, not protocol clearance.
+Portal acceptance has not been confirmed by an organizer receipt.
+<br><b>Why retain a download?</b> For research inspection and audit only. The pre-registered scientific verdict is <b>NEGATIVE</b>.
+The conservative live-inversion instrument is -0.0431 versus the owner-reported 0.2778 reference; this is a projection, not a score.
+The slot decision belongs to a separate selector step.</p>
 <div class="copy"><span class="small">Name</span><code>gems77-h77-lia-38323dots-20261021-aa5c9331-zeros</code><button data-copy="gems77-h77-lia-38323dots-20261021-aa5c9331-zeros">Copy</button></div>
 <div class="copy"><span class="small">Note (113/140)</span><code>GEMSDOE77 H77 live-inversion allocation: 66% H19-5 support + 34% straight-edge dots, 38323 binary, 0 on catalogue</code><button data-copy="GEMSDOE77 H77 live-inversion allocation: 66% H19-5 support + 34% straight-edge dots, 38323 binary, 0 on catalogue">Copy</button></div>
 <p class="small muted">sha256 <code>a8bfb844ab44b5d4157f75ec914a51655c27ae54727f7b4a088eca9d6f396898</code> · 38,323 binary dots ·
 NaN-outside twin (bit-identical inside the footprint): <a href="downloads/gems77-h77-lia-38323dots-20261021-aa5c9331-nan.tif">gems77-h77-lia-38323dots-20261021-aa5c9331-nan.tif</a> ·
 <a href="data/run-card.json">run card (JSON)</a> · <a href="data/submission.json">validator report (JSON)</a></p></section>
-<h1>Executive summary: exactly how to submit</h1>
+<h1>Executive summary: submission workflow and current stop</h1>
+<p><b>This candidate is not approved for submission.</b> Keep the TIFF for inspection only; do not upload it or spend a weekly slot. For a future selector-approved candidate:</p>
 <ol>
-<li>Download the <b>.tif</b> from the green box above. Do not rename it.</li>
-<li>Sign in at DrivenData. Open the competition's <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">Submissions page</a> (requires login; this is the official URL).</li>
-<li>Upload the .tif, or the one-TIFF .zip, but <b>only one of them</b>. Each upload uses one of your weekly submissions.
-The website limit prevails over the rules' parenthetical "three per week" (DrivenData staff, <a href="https://community.drivendata.org/t/submission-amount-question/11553">forum 11553</a>).</li>
-<li>Paste the note from the box above (it is optional and 113/140 characters), then submit.</li>
-<li>Record the public score next to the file name and its sha256 (<code>a8bfb844ab44b5d4…</code>). A new score feeds directly back into the live inversion (<code>registry/live_scores.csv</code>).</li>
+<li>Wait for an explicit selector approval and a complete literal-rule uniqueness clearance. Format PASS or informative-subset uniqueness is not approval.</li>
+<li>Download the approved <b>.tif</b> or its one-TIFF <b>.zip</b> from its run card. Never use the research-only link above.</li>
+<li>Sign in at DrivenData and open the competition's <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">Submissions page</a>; confirm current rules and the remaining weekly allowance directly in the portal.</li>
+<li>Upload exactly one approved TIFF or ZIP, enter that candidate's unique name/note if requested, and submit only after the selector authorizes the slot.</li>
+<li>Save the organizer receipt, timestamp, exact filename and SHA-256. Only an organizer receipt can establish portal acceptance or an organizer-confirmed score.</li>
 </ol>
 <h2>Is the file OK?</h2>
 <table><tr><th>Requirement (official source)</th><th>This file</th></tr>
@@ -38,8 +40,7 @@ The website limit prevails over the rules' parenthetical "three per week" (Drive
 <tr><td>Values in [0, 1]</td><td>PASS: binary {0, 1}; all 12,279,160 cells finite</td></tr>
 <tr><td>Outside the bounds: null/NaN</td><td>Primary file has 0.0 outside (the same encoding as the scored 0.2778 file). The NaN twin is provided.</td></tr>
 <tr><td>Known faults are masked from scoring (<a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516">forum 11516</a>)</td><td>0 dots on catalogue pixels</td></tr>
-<tr><td>Unique, by the brief's rule (rank ρ ≤ 0.90, ≤ 70% of dots within 3 px of any one registry raster)</td><td>PASS: worst overlap 0.660 against 765 informative rasters; worst ρ 0.377 over 808 rasters.
-43 space-filling rasters are reported, not used. Each one's 3 px halo covers ≥ 70% of allowed cells, so uniformly random dots would exceed 0.70 against it and the test is uninformative there: <a href="lia-analysis.html#uniqueness">details</a></td></tr></table>
+<tr><td>Unique, by the brief's literal rule (rank ρ ≤ 0.90; no more than 70% within 3 px of any registry raster)</td><td><b>FAIL.</b> The audit records 35 overlap firings against 43 space-filling rasters. The informative-only subset had worst overlap 0.660 over 765 rasters, but excluding witnesses is not permitted by the literal wording. Worst rank correlation was 0.377 across the 808-raster snapshot. <a href="lia-analysis.html#uniqueness">Audit details</a></td></tr></table>
 <h2>Why the portal said "Predicted values must be in range [0, 1]"</h2>
 <p>We measured two mechanisms from the official inputs.</p>
 <ol>

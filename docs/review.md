@@ -37,3 +37,28 @@ PR #3 merged and the scheduled Pages workflow deployed successfully. The Pages-s
 ## Not fulfilled / not claimed
 
 A protocol-unique, submission-approved TIFF has **not** been achieved; the measured universal overlap blocker prevents that under the supplied literal rule. No improved organizer score, current leaderboard record, complete family novelty, direct official PDF verification, full GPU training pipeline, or authenticated external-data eligibility is claimed. The negative research artifact is the deliverable required by the stop protocol. It is downloadable, but NOT OK TO SUBMIT.
+
+## Follow-up repository review — 2026-10-21 (no new experiment)
+
+### Pass 1 — cross-check public-facing status against immutable receipts
+
+- Found a contradiction: the LIA landing/summary described the TIFF as "safe to upload" and "unique" after excluding 43 dense rasters, while the same run card records `template_literal_reading_duplicate: true`, `template_like_for_like_reading_duplicate: true`, and 35 space-filling-raster overlap firings.
+- The user's protocol says **any** registry raster exceeding 70% is a duplicate and gives no density exemption. Therefore the informative-only overlap (0.660) is a diagnostic, not a protocol pass.
+- Found another overclaim: local format checks had been phrased as certainty that the external portal would accept the file, without an organizer receipt. Reclassified this as local validation only.
+
+### Pass 2 — fix source data, generator, and visible interface
+
+- Changed the LIA run-card interpretation to `protocol_unique: false` and `ok_to_submit: false`; retained historical measured overlap values as-is.
+- Updated `docs/data/lanes.json`, the README, the generated LIA overview/submission/analysis pages, and the root overview/guide so download is explicitly **for inspection only**, and submission is **not approved**.
+- Updated `scripts/make_run_card.py` to use the literal all-registry uniqueness gate in promotion criteria. Updated the site generator to distinguish the informative-only subset from literal protocol uniqueness and to avoid asserting portal acceptance.
+- Added a regression test so future site builds cannot reintroduce the contradictory approval language.
+
+### Pass 3 — revalidate and edge-case review
+
+- Rebuilt both static-site families using their source scripts; static link/status suite and all repository tests pass: **54 passed, 3 skipped**.
+- Read the actual LIA TIFF back with rasterio. Its SHA-256 is `a8bfb844ab44b5d4157f75ec914a51655c27ae54727f7b4a088eca9d6f396898`; it is one float32 band, EPSG:32611, 3730×3292, matching the local sample mirror's transform; every cell is finite, min/max 0/1, and 38,323 positive cells. One-TIFF ZIP has byte-identical contents. It has zero positive overlap with the locally mirrored catalogue raster.
+- This is **format verification against owner-held local mirrors**, not independent organizer authentication or portal acceptance. No model rerun, holdout experiment, uniqueness exemption, or competition slot was used. No unique candidate is cleared for upload; keep the existing TIFF as a negative research artifact only.
+
+### Remaining blocker
+
+The supplied literal uniqueness rule and the currently measured space-filling registry witnesses are incompatible with the observed candidate: this TIFF fires 35 overlaps even though random placement also exceeds the threshold for those dense witnesses. The correct next action is selector/protocol-owner policy clarification or a registry representation fix in the shared template—not a private exemption and not another submission.

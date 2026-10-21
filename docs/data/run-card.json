@@ -157,7 +157,7 @@
   "5_holdout_paired_ci_not_entirely_below_0": false
  },
  "verdict": "negative",
- "verdict_reason": "Pre-registered rule: S0 (LOO-validated) projects -0.0431 and S1 projects -0.0407 vs the 0.2778 champion (same instrument). Valid, unique (informative reading) and safe to upload; not projected to beat the champion. Slot decision: selector.",
+ "verdict_reason": "The informative-only reading has worst overlap 0.660, but the audit records 35 overlap firings on space-filling rasters under the literal protocol reading. Therefore this TIFF is not protocol-unique and is not approved for submission; local format validity does not confirm portal acceptance. The selector has not approved a slot.",
  "budget": {
   "experiments_used": 3,
   "limit": 3,
@@ -168,5 +168,15 @@
   "submission": "GEMSDOE32 h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
   "owner_reported_score": 0.2778,
   "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9"
+ },
+ "protocol_unique": false,
+ "ok_to_submit": false,
+ "submission_status": {
+  "ok_to_download_for_inspection": true,
+  "ok_to_submit": false,
+  "literal_protocol_uniqueness": "FAIL",
+  "reason": "The registry audit records literal overlap firings on space-filling rasters. The informative-only subset is diagnostic and does not override the protocol threshold.",
+  "portal_acceptance": "NOT ORGANIZER-CONFIRMED",
+  "selector_approved": false
  }
 }

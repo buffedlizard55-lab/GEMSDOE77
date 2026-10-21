@@ -2,21 +2,23 @@
 <meta name="viewport" content="width=device-width,initial-scale=1"><title>LIA lane overview · GEMSDOE77</title>
 <link rel="stylesheet" href="assets/lia.css"></head><body>
 <header><div class="wrap"><span class="brand">GEMSDOE77 · DOE GEMS Prize</span><a href="lia.html" class=here>LIA lane overview</a> <a href="lia-executive-summary.html">How to submit</a> <a href="lia-analysis.html">Why 0.2778</a> <a href="lia-sources.html">Sources & limits</a> <a href="index.html">All GEMSDOE77 lanes</a>
-<a href="https://github.com/buffedlizard55-lab/GEMSDOE77">GitHub</a></div></header><main><div class="wrap"><section class="card dl"><h2>⬇ Download the GEMSDOE77 submission</h2>
-<a class="btn" href="downloads/gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif" download>Download .tif (147 KB) — the file to upload</a>
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE77">GitHub</a></div></header><main><div class="wrap"><section class="card dl"><h2>⬇ Download candidate TIFF (inspection only)</h2>
+<a class="btn" href="downloads/gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif" download>Download .tif (147 KB) — format-validated candidate</a>
 <a class="btn alt" href="downloads/gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.zip" download>Same file as one-TIFF .zip</a>
-<div class="chips"><span class="chip ok">OK to download: YES</span>
-<span class="chip ok">Portal format: 17/17 checks PASS</span>
-<span class="chip ok">Unique vs 765 informative registry rasters: PASS (worst overlap 0.660 ≤ 0.70)</span>
+<div class="chips"><span class="chip ok">OK to download for inspection: YES</span>
+<span class="chip ok">Local format: 17/17 checks PASS</span>
+<span class="chip bad">Literal protocol uniqueness: FAIL — duplicate witness</span>
+<span class="chip ok">Informative-only subset: PASS (worst overlap 0.660 across 765)</span>
 <span class="chip ok">Leakage canary: clear</span>
 <span class="chip warn">Run verdict: NEGATIVE</span>
-<span class="chip warn">Selector: not approved (no decision yet)</span></div>
-<p class="verdict"><b>Can I upload it?</b> Yes. It is unique under the informative reading, and it has the same encoding as the
-GEMSDOE32 0.2778 file that the portal accepted and scored: all cells finite, values in {0, 1}, no nodata tag, EPSG:32611, and 3730×3292 with the official transform.
-<br><b>Should I spend a weekly slot on it?</b> <b>Not recommended.</b> The pre-registered verdict is <b>NEGATIVE</b>.
-The conservative instrument projects it -0.0431 versus the 0.2778 champion; the in-sample instrument projects -0.0407.
-A live score would only measure whether straight-edge dots in cells no prior raster covered earn credit.
-The slot decision belongs to the separate selector step.</p>
+<span class="chip bad">Competition submission: NOT APPROVED</span></div>
+<p class="verdict"><b>Can I submit it?</b> <b>No. Do not spend a competition slot on this file.</b>
+The on-disk TIFF passes local format checks, but the registry audit records a duplicate under the literal protocol reading
+(35 overlap firings on space-filling registry rasters). Excluding those rasters produces an informative-only comparison, not protocol clearance.
+Portal acceptance has not been confirmed by an organizer receipt.
+<br><b>Why retain a download?</b> For research inspection and audit only. The pre-registered scientific verdict is <b>NEGATIVE</b>.
+The conservative live-inversion instrument is -0.0431 versus the owner-reported 0.2778 reference; this is a projection, not a score.
+The slot decision belongs to a separate selector step.</p>
 <div class="copy"><span class="small">Name</span><code>gems77-h77-lia-38323dots-20261021-aa5c9331-zeros</code><button data-copy="gems77-h77-lia-38323dots-20261021-aa5c9331-zeros">Copy</button></div>
 <div class="copy"><span class="small">Note (113/140)</span><code>GEMSDOE77 H77 live-inversion allocation: 66% H19-5 support + 34% straight-edge dots, 38323 binary, 0 on catalogue</code><button data-copy="GEMSDOE77 H77 live-inversion allocation: 66% H19-5 support + 34% straight-edge dots, 38323 binary, 0 on catalogue">Copy</button></div>
 <p class="small muted">sha256 <code>a8bfb844ab44b5d4157f75ec914a51655c27ae54727f7b4a088eca9d6f396898</code> · 38,323 binary dots ·
@@ -33,16 +35,16 @@ The hidden faults turn out to sit on the H19-5 ridge set (19GEMSDOE), away from 
 The champion is a 3-px binary thinning of that ridge set with near-catalogue dots removed. It earns about 0.125 credit per dot against a break-even bar of 0.058. <a href="lia-analysis.html">Full analysis</a>.</li>
 <li><b>Can we beat it?</b> Without the uniqueness rule, modestly: 3,825 of its dots sit below the bar. Under the brief's rule (at most 70% of dots within 3 px of any one registry raster), at least 30% of the dots must earn credit away from H19-5, and no tested off-support field shows leave-one-out-robust credit there.
 Leaderboard #1 is <b>0.4413</b> (ORGANIZER-CONFIRMED). The brief's 0.3195 is stale. At our dot count, 0.4413 needs 0.194 credit per dot, 1.56× ours.</li>
-<li><b>The new file</b> is unique and valid. 66% of its dots are on the live-validated support, and 34% are on a new straight-edge field (H77-1), all within a per-raster overlap budget of 0.66.
+<li><b>The candidate TIFF passes local format checks but is not protocol-unique.</b> 66% of its dots are on the live-validated support, and 34% are on a new straight-edge field (H77-1). Its informative-only overlap cap was 0.66, but the template audit logged 35 overlap firings against space-filling registry rasters; the literal rule marks it a duplicate.
 HOLDOUT-DTI 0.0706 [0.0599, 0.0815] (gems57-pooled-hide-v2, 11,321 withheld positives).
 That is <b>below</b> the fold-fair champion construction (Δ -0.0252 [-0.0303, -0.0203]) and above random (Δ +0.023).
-Uniqueness costs about 0.04 in projected score, and the verdict is <b>negative</b>.</li>
+The verdict is <b>negative</b>; do not submit or spend a slot.</li>
 </ol>
 <h2>Experiments (budget: 3 of 3 used)</h2>
 <table><tr><th>#</th><th>Experiment</th><th>Result</th></tr>
 <tr><td>E1</td><td>Calibrate instruments against organizer scores</td><td>Catalogue distance alone: LOO ρ +0.20. H19-5 support alone: +0.867. Support × catalogue: +0.920 with 30 bins and +0.917 with the 9-bin S0 (n = 95)</td></tr>
 <tr><td>E2</td><td>Test hypotheses H77-1, H77-2 and H77-4 by live inversion</td><td>None improves the LOO fit. H77-1: ΔMSE -0.000024 (CI straddles 0). H77-2: identical fit (all its bins get h = 0). H77-4 ring density 0. <b>Negative or inconclusive.</b></td></tr>
-<tr><td>E3</td><td>Build the unique candidate; holdout, canary, uniqueness, validator</td><td>The first build was <b>logged as a DUPLICATE</b> by the template audit (it was not shipped). The repaired build stays within a per-raster overlap budget of 0.66. Candidate − champion rule (HOLDOUT-DTI) -0.0252 [-0.0303, -0.0203]. S0 Δ -0.0431. Verdict <b>negative</b></td></tr></table>
+<tr><td>E3</td><td>Build candidate; holdout, canary, literal uniqueness, validator</td><td>The first build was <b>logged as a DUPLICATE</b>. The rebuilt TIFF met the informative-only overlap budget of 0.66 but still triggers 35 literal overlap firings on space-filling rasters. It is not protocol-unique and is retained for audit only. Candidate − champion rule (HOLDOUT-DTI) -0.0252 [-0.0303, -0.0203]. S0 Δ -0.0431. Verdict <b>negative</b></td></tr></table>
 <p>Start with the <a href="lia-executive-summary.html">executive summary (how to submit)</a>. The full brief is in the <a href="https://github.com/buffedlizard55-lab/GEMSDOE77#readme">README</a>.</p></div></main>
 <footer><div class="wrap">Selector status for every file on this page: not approved (the slot decision is a separate selector step). Generated by <code>scripts/lia_build_site.py</code> from <code>docs/data/*.json</code> and
 <code>evidence/*.json</code>. Labels: <b>ORGANIZER-CONFIRMED</b> (public leaderboard), <b>OWNER-REPORTED</b>
