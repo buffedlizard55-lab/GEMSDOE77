@@ -1,5 +1,5 @@
 {
- "note": "Eight reviewed downloadable lanes are retained, including H77L (the featured research-only file) and H79 (a concurrent parallel-lane artifact). Every TIFF is for inspection only and Not OK to submit. The literal dense-witness 3px rule rejects every nonempty candidate, so pairwise novelty and local HOLDOUT-DTI are not selector approval; see data/submission-authorization.json for per-file failed gates.",
+ "note": "Nine reviewed downloadable lanes are retained, including H77L (the featured research-only file) and two concurrently merged H79 negative TIFFs. Every listed artifact is for inspection only, Not OK to submit: the literal dense-witness gate blocks every nonempty candidate. See data/submission-authorization.json for nine per-file failed-gate receipts. Scores across different withheld supports are not directly comparable.",
  "lanes": [
   {
    "lane": "H77L: 300 m lagged ThK / LiDAR scarp (RESEARCH ONLY)",
@@ -48,6 +48,28 @@
    "upload": "Not OK to submit. OK to download for inspection only. Literal dense-witness uniqueness fails; H79 0.032328 HOLDOUT-DTI (gems57-pooled-hide-v2, 22,633 withheld positives, 95% CI 0.028377–0.036450) is below its same-support random control; selector not approved.",
    "primary": false,
    "why_primary": "Historical H79 parallel lane, with a new format-valid TIFF; the binding literal uniqueness gate failed, and its holdout result is negative."
+  },
+  {
+   "lane": "H79-RH: lagged radiometric U-halo pairing (parallel negative)",
+   "page": "h79-radhalo.html",
+   "summary": "executive-summary.html",
+   "file": "downloads/gems77-h79-radhalo-lag3-37654-20261021-zeros.tif",
+   "format_valid": true,
+   "protocol_unique": false,
+   "informative_unique": false,
+   "beats_holdout_best": false,
+   "verdict": "negative",
+   "name": "gems77-h79-radhalo-lag3-37654-20261021-zeros",
+   "note": "H79 lag-3px U-residual halo paired to K-Th edge; 37654 spaced dots; HOLDOUT negative—research only, do not submit",
+   "sha256": "c272025ee653187d09489d941613a86bfe4b88110fb455847a2256cf5699014b",
+   "holdout_dti": 0.04773265734715734,
+   "holdout_ci95": [
+    0.03958335878724709,
+    0.05557557296791166
+   ],
+   "upload": "Not OK to submit. OK to download for inspection only. Literal registry overlap = 1.0 > 0.70 and HOLDOUT-DTI 0.047733 (gems57-pooled-hide-v2, 11,321 withheld positives, 95% CI 0.039583–0.055576) fails scientific promotion. Selector not approved; zero weekly slots.",
+   "primary": false,
+   "why_primary": "Concurrent negative H79-RH radiometric halo, retained for audit and inspection only."
   },
   {
    "lane": "H77D: Coupled Zero-SGMC Tectono-Hydrothermal Conduits + 12-Bit LOCO + 300 m Submodular Cover (0.15011 / 0.14030 HOLDOUT-DTI)",

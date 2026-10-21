@@ -162,7 +162,7 @@ def test_new_research_raster_is_visible_but_never_called_a_submittable_entry():
     audit=json.loads((DOC/'evidence/h77l_independent_audit.json').read_text())
     assert '68.4%' in detail and f"{audit['stats']['local_prior_tifs_checked']} other local TIFFs" in detail
     assert audit['all_checks_passed'] and audit['checks']['pixel_distinct_from_all_local_prior_tifs']
-    assert audit['stats']['local_prior_tifs_checked']>=13
+    assert audit['stats']['local_prior_tifs_checked']>=14
     assert 'Unknown. H77L' in home and 'Will it beat 0.2778?</b> No' not in home
 def test_negative_lanes_are_not_recommended_or_promoted_on_entry_page():
     """The aggregate landing page must not recommend files whose overall verdict is negative."""

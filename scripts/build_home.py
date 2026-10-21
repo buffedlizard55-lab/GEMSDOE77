@@ -23,6 +23,7 @@ PD = "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
 NAV = [("index.html", "Start here"), ("executive-summary.html", "How to submit"),
        ("h79.html", "H79 · research-only"),
+       ("h79-radhalo.html", "H79-RH · negative"),
        ("h77l.html", "H77L · research-only"), ("h77d.html", "H77D (Zero-SGMC)"), ("h77d-executive-summary.html", "H77D guide"),
        ("h77-step.html", "H77-Step"), ("h78.html", "H78 lane"),
        ("lia.html", "LIA lane"), ("contactphys.html", "Contact-physics lane"), ("urank.html", "Selective-U lane"),
@@ -102,6 +103,12 @@ def main():
                     f'(95% CI {v["ci_95"][0]:.4f}–{v["ci_95"][1]:.4f}; '
                     f'{e(h["evaluator_version"])}; {v["withheld_positive_pixels"]:,} withheld); '
                     'not comparable to H77L or H77-Step</span>')
+        if x["lane"].startswith("H79-RH:"):
+            h = jload("evidence/h79_radhalo_run_card.json")["holdout_dti"]
+            return (f'<span class="chip warn">HOLDOUT-DTI {h["score"]:.4f} '
+                    f'(95% CI {h["ci95"][0]:.4f}–{h["ci95"][1]:.4f}; '
+                    f'{e(h["evaluator_version"])}; {h["withheld_positive_pixels"]:,} withheld); '
+                    'not comparable to H77L</span>')
         if x.get("beats_holdout_best") is not None:
             return yn(x["beats_holdout_best"], "YES", "NO")
         if x.get("holdout_dti_hide_v2") is not None:
@@ -113,10 +120,18 @@ def main():
         v = x.get("informative_unique", x.get("gems57_symmetric_and_discrete_models_unique"))
         return yn(v, "PASS", "FAIL")
 
+    def download_cell(x):
+        p = Path(x["file"])
+        z = p.with_suffix(".zip")
+        zip_link = (f'<br><a download href="{e(z.as_posix())}">{e(z.name)}</a>'
+                    if (D / z).is_file() else '')
+        return (f'<a download href="{e(p.as_posix())}">{e(p.name)}</a>{zip_link}'
+                f'<br><small>sha256 <code>{e(x.get("sha256", "not recorded"))}</code></small>')
+
     rows = ""
     for x in lanes["lanes"]:
         rows += (f'<tr><td><a href="{e(x["page"])}">{e(x["lane"])}</a></td>'
-                 f'<td><a download href="{e(x["file"])}">{e(Path(x["file"]).name)}</a></td>'
+                 f'<td>{download_cell(x)}</td>'
                  f'<td>{yn(x.get("format_valid"), "PASS", "FAIL")}</td>'
                  f'<td>{yn(x.get("protocol_unique"), "PASS", "FAIL")}</td>'
                  f'<td>{info_cell(x)}</td>'
