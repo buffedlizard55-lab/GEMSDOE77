@@ -1,0 +1,34 @@
+{
+  "hypothesis": "Release authorization must not pass without a readable, agreeing run card; audit only, no geological experiment.",
+  "mechanism": "Require card presence and promote-verdict agreement; independently recheck existing TIFF and rejection witness.",
+  "named_non_fault_process_that_could_mimic_it": "Not applicable to release audit; inherited H77L geological mimic: road/canal embankment or lake shoreline bench.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": null,
+    "withheld_positive_count": null,
+    "value": null,
+    "ci95": null,
+    "status": "NOT RUN; no new experiment or re-scoring"
+  },
+  "correlation_overlap_vs_registry": {
+    "scope": "Two pinned rejection witnesses only, not full registry",
+    "rank_correlation": "NOT RECOMPUTED",
+    "existing_h77l_forward_overlap_dense_witness_3px": 1.0,
+    "literal_gate": "FAIL; no fresh dot placement"
+  },
+  "raster_sha256": "9d199f9fad93e234397a7a19a05eabf12fd77285be3007e6afe22d12a36dcbd1",
+  "raster_status": "Existing H77L research file independently audited; NO NEW TIFF generated",
+  "validator": {
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "crs_shape_transform_match": true,
+    "reference": "Tracked integrity-pinned mirror sample, not organizer-authenticated",
+    "checks_passed": 23,
+    "portal_acceptance": null
+  },
+  "submission_name": "NONE \u2014 audit only",
+  "submission_note": "No new TIFF: mandatory dense-witness duplicate stop. Existing downloads are research-only; do not submit.",
+  "verdict": "negative",
+  "weekly_slots_spent": 0,
+  "software_tests_passed": 99
+}

@@ -1,7 +1,7 @@
 {
   "schema": "gems-submission-authorization-v1",
-  "generated_utc": "2026-10-21T15:34:06+00:00",
-  "policy": "Authorization requires artifact existence, matching SHA-256, local format PASS, literal protocol uniqueness (including <=0.70 real-model forward 3-px overlap and complete registry), improvement over the accepted holdout best, a promote verdict, and explicit selector approval. Missing fields or historical run-card uniqueness/completeness failures fail closed.",
+  "generated_utc": "2026-10-21T15:38:27+00:00",
+  "policy": "Authorization requires artifact existence, matching SHA-256, a readable run card with a promote verdict, local format PASS, literal protocol uniqueness (including <=0.70 real-model forward 3-px overlap and complete registry), improvement over the accepted holdout best, a promote verdict, and explicit selector approval. Missing fields or historical run-card uniqueness/completeness failures fail closed.",
   "repository_authorized_file_count": 0,
   "repository_decision": "NOT OK TO SUBMIT",
   "historical_run_card_reconciliation": [
@@ -112,6 +112,7 @@
       "sha256": "c971fcf8a05928e7cbd3c31f868b4e9342be805d8cdf15701c097c8949574fde",
       "checks": {
         "artifact_exists": true,
+        "run_card_present": false,
         "format_valid": true,
         "literal_protocol_unique": false,
         "beats_accepted_holdout_best": false,
@@ -129,11 +130,12 @@
         "registry_incomplete": false,
         "holdout_invalid_for_promotion": false,
         "historical_promotion_conflict": false,
-        "guardrail_clear": true
+        "guardrail_clear": false
       },
       "authorized_to_submit": false,
       "decision": "NOT OK TO SUBMIT",
       "failed_gates": [
+        "run_card_present",
         "literal_protocol_unique",
         "beats_accepted_holdout_best",
         "scientific_verdict_promote",
@@ -146,6 +148,7 @@
       "sha256": "9d199f9fad93e234397a7a19a05eabf12fd77285be3007e6afe22d12a36dcbd1",
       "checks": {
         "artifact_exists": true,
+        "run_card_present": true,
         "format_valid": true,
         "literal_protocol_unique": false,
         "beats_accepted_holdout_best": false,
@@ -181,6 +184,7 @@
       "sha256": "67aafffc50637a6df9c4275bc2735a0a865ac73904f02667b05f4f257d97587c",
       "checks": {
         "artifact_exists": true,
+        "run_card_present": true,
         "format_valid": true,
         "literal_protocol_unique": false,
         "beats_accepted_holdout_best": false,
@@ -216,6 +220,7 @@
       "sha256": "c272025ee653187d09489d941613a86bfe4b88110fb455847a2256cf5699014b",
       "checks": {
         "artifact_exists": true,
+        "run_card_present": true,
         "format_valid": true,
         "literal_protocol_unique": false,
         "beats_accepted_holdout_best": false,
@@ -251,6 +256,7 @@
       "sha256": "745dbaa427bc1edaf477b3d0b4847b8be8d30d396106a61b1318a8726599be8e",
       "checks": {
         "artifact_exists": true,
+        "run_card_present": true,
         "format_valid": true,
         "literal_protocol_unique": false,
         "beats_accepted_holdout_best": false,
@@ -286,6 +292,7 @@
       "sha256": "110e7c77ec7e7d201de0ae04ffd2bf3b9db786b4063d800cacb8ab1ded4fd1b9",
       "checks": {
         "artifact_exists": true,
+        "run_card_present": true,
         "format_valid": true,
         "literal_protocol_unique": false,
         "beats_accepted_holdout_best": true,
@@ -320,6 +327,7 @@
       "sha256": "f55105a091281be14957fff2f5aad9a85fa5b1acc31558e9fcd2aae9fdd588b0",
       "checks": {
         "artifact_exists": true,
+        "run_card_present": true,
         "format_valid": true,
         "literal_protocol_unique": false,
         "beats_accepted_holdout_best": true,
@@ -354,6 +362,7 @@
       "sha256": "4571e767757be95e3fb70b4afb05e45528b1cfd74147e168c36253b1247f1c47",
       "checks": {
         "artifact_exists": true,
+        "run_card_present": true,
         "format_valid": true,
         "literal_protocol_unique": false,
         "beats_accepted_holdout_best": false,
@@ -389,6 +398,7 @@
       "sha256": "a8bfb844ab44b5d4157f75ec914a51655c27ae54727f7b4a088eca9d6f396898",
       "checks": {
         "artifact_exists": true,
+        "run_card_present": true,
         "format_valid": true,
         "literal_protocol_unique": false,
         "beats_accepted_holdout_best": false,
@@ -424,6 +434,7 @@
       "sha256": "20be05cc671c85484e4cfc8ea40d2fced71d7ec70f20ab915f36fcc68fcc4851",
       "checks": {
         "artifact_exists": true,
+        "run_card_present": true,
         "format_valid": true,
         "literal_protocol_unique": false,
         "beats_accepted_holdout_best": false,
@@ -459,6 +470,7 @@
       "sha256": "9489af2b7e1b06a249203d3c9d6dfe4ed469647f59ebe3a5ffe9c50c67e46b42",
       "checks": {
         "artifact_exists": true,
+        "run_card_present": true,
         "format_valid": true,
         "literal_protocol_unique": false,
         "beats_accepted_holdout_best": false,
@@ -494,6 +506,7 @@
       "sha256": "2269b714c78262a8d45dbd5eb02290a27ec9b99afe02340e343f5cb1ac7c58f3",
       "checks": {
         "artifact_exists": true,
+        "run_card_present": true,
         "format_valid": true,
         "literal_protocol_unique": false,
         "beats_accepted_holdout_best": false,
@@ -529,6 +542,7 @@
       "sha256": "e7c81754420b9a6b4126ad1d7239870ae680eaa61e97a6d3f16f644a620d1c6a",
       "checks": {
         "artifact_exists": true,
+        "run_card_present": false,
         "format_valid": true,
         "literal_protocol_unique": false,
         "beats_accepted_holdout_best": false,
@@ -546,11 +560,12 @@
         "registry_incomplete": false,
         "holdout_invalid_for_promotion": false,
         "historical_promotion_conflict": false,
-        "guardrail_clear": true
+        "guardrail_clear": false
       },
       "authorized_to_submit": false,
       "decision": "NOT OK TO SUBMIT",
       "failed_gates": [
+        "run_card_present",
         "literal_protocol_unique",
         "beats_accepted_holdout_best",
         "scientific_verdict_promote",
