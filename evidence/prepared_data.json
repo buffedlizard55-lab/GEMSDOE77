@@ -1,0 +1,25 @@
+{
+  "shape": [
+    3730,
+    3292
+  ],
+  "crs": "EPSG:32611",
+  "transform": [
+    100.0,
+    0.0,
+    243350.0,
+    0.0,
+    -100.0,
+    4508550.0
+  ],
+  "feature_bands": [
+    "K",
+    "Th",
+    "U",
+    "TC"
+  ],
+  "footprint_pixels": 5167373,
+  "catalogue_pixels": 60988,
+  "training_labels": "known catalogue, NOT hidden organizer truth",
+  "radiometric_units": "independently percentile-quantized channels, not concentrations"
+}

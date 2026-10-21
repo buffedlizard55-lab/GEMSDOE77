@@ -53,7 +53,7 @@ computed this session from SHA-pinned bytes.
 ## IR-77-06 — Brief assigns no identifiable single method-paragraph lane
 - **Evidence:** the prompt's lane paragraph slot contains the parallel-run
   protocol itself, not a method (same irregularity GEMSDOE70 recorded).
-- **Disposition:** lane declared in `registry/preregistration.json` before
+- **Disposition:** lane declared in `registry/preregistration_contactphys.json` before
   Exp 1 (contact-physics + front-base, no SGMC population, no lidar primary);
   uniqueness gates enforced against 43 local registry rasters on surface +
   dots (0 duplicates). Full-inventory uniqueness remains a selector step —
@@ -66,6 +66,32 @@ computed this session from SHA-pinned bytes.
   a formula discrepancy.
 - **Disposition:** none needed; formula implemented from the equations and
   brute-force-verified.
+
+## IR-77-09 — Shared uniqueness tool has diverged between sibling templates
+- **Evidence [MEASURED, post-merge]:** `vendor/gems57/uniqueness.py` on `main`
+  (merged via PRs #1–#4) is the literal version (dot support = any finite
+  value > 0; forward-overlap gate). The copy this lane restored from
+  GEMSDOE70 carries a 2026-10-20 fix (binary 1.0-dot support; mutual-overlap
+  gate) written because a whole-footprint continuous registry surface makes
+  *every* nonempty candidate a literal "duplicate" (forward overlap ≈ 1).
+  This merge kept main's version byte-identical (its hashes are pinned by
+  `registry/template_pin.json` tests).
+- **Measured consequence:** vs the concurrently merged urank research surface
+  (4,961,936 positive px — a dense continuous field, not a dot placement),
+  the literal tool reports forward overlap 0.979 ("duplicate"); the
+  binary-dot reading reports forward 0.110 / reverse 0.134, ρ = 0.0013.
+  Vs the H77C claycap zeros raster both readings agree: distinct
+  (0.108 / 0.145, ρ = 0.0027). Full record:
+  `evidence/uniqueness_supplement_postmerge.json`
+  (`scripts/check_uniqueness_postmerge.py`).
+- **Disposition:** this lane's Exp-2 uniqueness numbers (binary-dot tool,
+  43 rasters, 0 duplicates) and the post-merge supplement (both tools,
+  2 further rasters) are both on record; the lane verdict is negative under
+  either reading, so nothing turns on the divergence here. **The family
+  should converge on one template version** — recommended: adopt the
+  binary-dot/mutual fix upstream with a saturation certificate retained for
+  continuous priors, since the literal gate cannot distinguish duplication
+  from density.
 
 ## IR-77-08 — Operating-point selection bias (self-flagged)
 - **Evidence:** budget/exclusion (44,090, >3 px) chosen as the max of 16

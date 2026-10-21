@@ -25,7 +25,7 @@ prompt.
    and stop. Check on the surface before placement AND on the final dots.
    *(GEMSDOE77 note: the 2026-10-21 brief contained no identifiable single
    method paragraph, so the lane was declared in
-   `registry/preregistration.json` before Exp 1 — IR-77-06.)*
+   `registry/preregistration_contactphys.json` before Exp 1 — IR-77-06.)*
 2. **Reuse, don't rebuild.** Use the template's cached feature stack,
    `evaluate_holdout.py` and `submission_writer.py`. Holdout = hide-and-recover:
    withhold whole fault segments with a buffer, derive every catalogue-based
@@ -116,3 +116,5 @@ gate_ortho 0.2376 · GEMSDOE63 cvarlw-thin 0.2303 · GEMSDOE48 h59-cover 0.2296 
 7GEMSDOE lidarscarp 0.1461 · GEMSDOE46 scarp-radiometric 0.1589 · all other
 listed sites ≤0.1461 down to 0.0000. GEMSDOE77 (this repo): no organizer score;
 verdict negative (see README).
+
+*Post-merge namespacing note (PR #5): this lane's files that collided with concurrently merged lanes were renamed — `registry/preregistration_contactphys.json`, `evidence/run_card_contactphys.json`, `docs/contactphys*.html`, `scripts/build_site_contactphys.py`. Frozen receipts (`registry/preregistration_amendment_exp3.json`, `evidence/*.json`) retain their original internal path strings as historical record.*

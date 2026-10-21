@@ -108,7 +108,7 @@ genuinely untried inputs, not re-derivations of a shipped band.
   100 km-radius aggregates and cannot localize a fault at 300 m (family
   autocorrelation measurements, GEMSDOE32 H33-E).
 
-## Decision rule (frozen in `registry/preregistration.json`)
+## Decision rule (frozen in `registry/preregistration_contactphys.json`)
 
 Exp 1 trains fold-wise HGB rankers (whole-component quadrant holdout, seed 30)
 for: standard block, new-physics block (H77-1…4), combined (primary, no lidar),

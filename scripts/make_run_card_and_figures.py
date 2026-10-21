@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Assemble the protocol run card (docs/downloads/run_card.json + evidence/)
+"""Assemble the protocol run card (docs/downloads/run_card_contactphys.json + evidence/)
 and simple overview figures from measured receipts only."""
 from __future__ import annotations
 import json, sys
@@ -84,8 +84,8 @@ card = {
     "experiments_used": "3 of 3 (Exp1 holdout, Exp2 final build, Exp3 replication)",
     "slots_spent": 0,
 }
-(ROOT / "evidence" / "run_card.json").write_text(json.dumps(card, indent=2) + "\n")
-(ROOT / "docs" / "downloads" / "run_card.json").write_text(json.dumps(card, indent=2) + "\n")
+(ROOT / "evidence" / "run_card_contactphys.json").write_text(json.dumps(card, indent=2) + "\n")
+(ROOT / "docs" / "downloads" / "run_card_contactphys.json").write_text(json.dumps(card, indent=2) + "\n")
 for src, dst in (("evidence/holdout_exp1.json", "docs/downloads/holdout_exp1.json"),
                  ("evidence/holdout_exp3_replication.json", "docs/downloads/holdout_exp3_replication.json"),
                  ("evidence/verification_pass2.json", "docs/downloads/verification_pass2.json"),

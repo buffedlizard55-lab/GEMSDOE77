@@ -1,146 +1,21 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>GEMSDOE77 — contact-physics fault lane · verdict: negative (do not submit)</title><link rel="stylesheet" href="assets/site.css"></head><body><div class="wrap">
-<header><h1>GEMSDOE77 — contact-physics fault discovery for the DOE GEMS Prize</h1>
-<p>DOE GEMS Prize (DrivenData #306, GeoDAWN NW Nevada). Lane: correctly derived potential-field contact transforms
-(tilt / analytic signal / phase congruency / pseudogravity-Poisson) + range-front-base geomorphology, supervised-ranked.
-Every number below is labelled HOLDOUT-DTI, ORGANIZER-CONFIRMED, or OWNER-REPORT. No projection is written as a score.</p></header>
-
-<div class="card stop"><h2>⛔ DO NOT SUBMIT — verdict: negative</h2>
-<p><b>Is the file on this page OK to download and submit? NO.</b> The GeoTIFF is format-valid and unique (receipts below),
-and you may download it for inspection (that is its only approved use). It is <b>not</b> approved for a DrivenData
-submission slot: it failed the preregistered holdout promotion gate. The new-physics arm did not significantly beat the
-standard-feature arm — paired Δ(HOLDOUT-DTI) = +0.0026 with 95% CI
-[-0.0030, +0.0080] across two independent draws
-(22,914 withheld catalogue pixels). A CI containing 0 means
-“no detectable improvement”, and this project does not spend scarce weekly slots on undetectable improvements.
-Promotion, if any later lane earns it, is a separate human selector step. <b>0 slots were spent by this work.</b></p>
-<p>Why publish a negative? Because a measured negative with receipts is a deliverable: it stops the next session
-re-spending a slot on the same idea, and its by-products below (two mislabelled band identifications, one strong
-single geomorphic feature, an off-catalogue proxy observation) are the usable yield. See <a href="#next">what to do instead</a>.</p></div>
-
-<div class="card"><h2>⬇ Download (for inspection / reproducibility only)</h2>
-<a class="btn" href="downloads/gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif">Download GeoTIFF (150,542 bytes)</a>
-<a class="btn2" href="downloads/gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.zip">ZIP (single GeoTIFF inside)</a>
-<a class="btn2" href="downloads/run_card.json">JSON run card</a>
-<table>
-<tr><th>Filename</th><td><code>gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif</code></td></tr>
-<tr><th>Unique submission name (if a human ever overrode the verdict — not recommended)</th><td><code>gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros</code></td></tr>
-<tr><th>Note field text (103/140 chars)</th><td><code>GEMSDOE77 contact-physics: derived tilt/AS/phase+front-base HGB, 44090 off-cat dots >3px, min-sep 2.8px</code></td></tr>
-<tr><th>SHA-256</th><td><code>20be05cc671c85484e4cfc8ea40d2fced71d7ec70f20ab915f36fcc68fcc4851</code></td></tr>
-<tr><th>Format (independently re-read)</th><td>single band · float32 · EPSG:32611 · 100 m · 3730×3292 · 44,090 dots · 0 NaN anywhere · min 0.0 max 1.0 · no nodata tag · 0 dots on the mapped catalogue · nearest dot 3.16 px from the catalogue — <a href="downloads/verification_pass2.json">pass-2 receipt</a> · <a href="downloads/gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.json">writer receipt</a></td></tr>
-<tr><th>Download OK? (format)</th><td><span class="ok">YES — format-valid</span></td></tr>
-<tr><th>Submit OK? (science / selector)</th><td><span class="no">NO — verdict negative, see banner</span></td></tr>
-</table>
-<p><small>Step-by-step DrivenData submission instructions (for any future promoted file) are on the
-<a href="executive-summary.html">executive summary</a> page, including the root cause of the portal error
-“Predicted values must be in range [0, 1]”.</small></p></div>
-
-<div class="card"><h2>Why did h33-2-b2 score 0.2778 (OWNER-REPORT), and can it be beaten?</h2>
-<p>The family's best file is not new geology — it is <b>emission arithmetic on an older field</b>. Owner-reported chain:
-solid H19-5 surface (121,131 px → 0.1922) → dotted thinning d1.5 (60,069 px → 0.2477) → d2.8 (44,090 px → 0.2600) →
-solo prune (40,199 px → 0.2708) → <b>h33-2-b2 deletes every dot within 2 px (200 m) of the mapped catalogue</b>
-(37,654 px → 0.2778). Under the official metric
-DTI = TP<sub>w</sub> / (TP<sub>w</sub> + 0.2·FP<sub>w</sub> + 0.8·FN<sub>w</sub>) with a 300 m triangular kernel,
-each emitted unit always adds 0.2 to the denominator but earns at most its kernel credit k; a dot helps iff
-<b>k &gt; 0.2·DTI</b> (≈0.054 at DTI 0.27). Dots hugging known faults cover structures that are already mapped
-(and therefore not in the hidden truth) — they pay the false-positive tax for almost no credit. Deleting them,
-and spacing the rest so one dot covers each 300 m kernel footprint, raises credit per dot without finding a single
-new fault. That is why thinning bought +0.086 (0.1922→0.2778).</p>
-<p><b>Beating it — let alone the public leader at 0.4413 (ORGANIZER-CONFIRMED, leaderboard read 2026-10-21) —
-cannot come from more thinning.</b> At equal emitted mass the leader's pixels earn roughly 60% more mean kernel
-credit than the H19-5 family's; only a better-ranked <i>field</i> (pixels closer to real unmapped faults) can supply
-that. This repository tested one new field family honestly; it did not clear the bar (below). No score in this
-repository is organizer-confirmed for any local file; 0.2778 itself is an owner report without a receipt in any
-inspected sibling repo, and no local proxy reproduces it — flagged as irregularity IR-77-04.</p></div>
-
-<div class="card"><h2>What was tested (preregistered, 3 experiments)</h2>
-<p>Ranked hypotheses were frozen in <code>registry/preregistration.json</code> before Exp 1. Top lane:
-buried basement contacts (magnetic tilt zero-cross + analytic-signal ridge coincident with a gravity-tilt edge,
-gated by the sign of the basement-depth step) and range-front bases (flat piedmont pixels adjacent to a straight
-steep front). Named non-fault mimics: intrusive contacts/caldera margins, Lake Lahontan shoreline benches,
-survey-block seams. Validation = shared-template whole-component quadrant hide-and-recover
-(<code>gems57-pooled-hide-v2</code>, α=0.2 β=0.8 R=300 m): whole fault components withheld, 3 px feature buffer,
-12 px domain erosion, visible faults masked pixel-exactly, pooled DTI with paired 20 km-block bootstrap CIs.
-Leakage canary first: worst new-feature symmetric holdout AUC = <b>0.5874</b>
-(frontness) — far below the 0.90 leakage stop.</p>
-<table><tr><th>Arm (seed-30 draw)</th><th>HOLDOUT-DTI</th><th>95% CI</th><th>Dots in folds</th></tr>
-<tr><td>A5 standard+new+lidar (ablation only)</td><td><b>0.1130</b></td><td>[0.0961, 0.1325]</td><td>44,089</td></tr>
-<tr><td>A4 primary: standard+new physics (no lidar)</td><td><b>0.1090</b></td><td>[0.0921, 0.1277]</td><td>44,089</td></tr>
-<tr><td>A2 standard block (control)</td><td><b>0.1043</b></td><td>[0.0866, 0.1221]</td><td>44,089</td></tr>
-<tr><td>A3 new physics only (16 ch)</td><td><b>0.0988</b></td><td>[0.0842, 0.1155]</td><td>44,089</td></tr>
-<tr><td>Single feature: frontness</td><td><b>0.0836</b></td><td>[0.0689, 0.1004]</td><td>44,089</td></tr>
-<tr><td>Single feature: contact confluence</td><td><b>0.0571</b></td><td>[0.0447, 0.0690]</td><td>44,089</td></tr>
-<tr><td>Single feature: phase congruency (mag)</td><td><b>0.0404</b></td><td>[0.0326, 0.0486]</td><td>44,089</td></tr>
-<tr><td>A0 random dots (matched)</td><td><b>0.0545</b></td><td>[0.0478, 0.0610]</td><td>44,089</td></tr>
-</table>
-<p>Paired Δ A4−A2 (seed 30): <b>+0.0047 [-0.0027, +0.0124]</b> — gate failed.
-Pre-declared replication (seed 21, 11,572 withheld):
-Δ <b>+0.0005 [-0.0081, +0.0093]</b>.
-Two-draw pooled Δ <b>+0.0026 [-0.0030, +0.0080]</b>.
-Receipts: <a href="downloads/holdout_exp1.json">Exp 1</a> · <a href="downloads/holdout_exp3_replication.json">Exp 3 replication</a>.
-Operating point from the Exp-1 scan (16 cells reported in the receipt): 44,090 dots, &gt;3 px catalogue exclusion.
-Caveat: catalogue holdout rewards catalogue-style faults; archived H33 dots score 0.0043 HOLDOUT-DTI here because
-they were pruned <i>away</i> from the catalogue by construction — instrument divergence, not evidence about live score.</p>
-<img src="assets/fig_holdout_arms.png" alt="Holdout DTI by arm with 95 percent confidence intervals"></div>
-
-<div class="card"><h2>Maps</h2>
-<img src="assets/fig_surface_and_dots.png" alt="Final probability surface and emitted dots versus mapped catalogue">
-<p><small>Left: final full-catalogue probability surface (400 m mean downsample). Right: mapped catalogue (red) and the
-44,090 emitted off-catalogue dots (yellow, 400 m max downsample). Dots flank and extend mapped traces and follow
-off-catalogue lineaments — visually plausible is not validation; the holdout table above governs.</small></p></div>
-
-<div class="card"><h2>Two band mislabels, measured (usable by every sibling lane)</h2>
-<table><tr><th>Finding</th><th>Measurement (200k footprint sample)</th></tr>
-<tr><td>Band 6 <code>tc</code>, tagged “Tilt angle or total curvature”, is <b>radiometric total count</b>. The shipped stack contains no tilt derivative.</td>
-<td>Spearman(band 6, GeoDAWN TC) = <b>1.0000</b>; vs derived tilt atan2(vg,hg) = 0.0199; range [2.95, 88.57]</td></tr>
-<tr><td>Band 18 <code>iso_grav_anom_hg</code> is the <b>x-derivative</b> of gravity, not a horizontal-gradient magnitude (it is signed).</td>
-<td>Spearman vs ∂g/∂x = <b>0.9451</b>; vs |∇g| = -0.0040</td></tr>
-<tr><td>Controls: band 3 ≈ |∇TMI| (ρ=0.9976); band 9 ≈ vertical derivative (ρ=0.9899); band 19 ≈ |∇DEM| (ρ=0.9719).</td>
-<td><a href="downloads/band_diagnostics.json">diagnostics receipt</a></td></tr></table>
-<p>Also measured single-feature results worth keeping: <b>frontness alone</b> reaches HOLDOUT-DTI
-0.0836 (best single channel tested); the new-physics-only arm is the best of all arms on the
-secondary SGMC-off-catalogue proxy (PROXY-DTI 0.1226 vs standard
-0.0926, 62,122 proxy pixels) —
-an hypothesis for a future preregistration, <b>not</b> a claim here.</p></div>
-
-<div class="card"><h2>Uniqueness vs prior submissions (lane discipline)</h2>
-<p>Compared with the shared <code>gems57.uniqueness</code> tool against 43
-locally hash-verified sibling rasters (GEMSDOE32 + GEMSDOE70 downloads), on the continuous surface before placement
-and again on final dots. Thresholds: Spearman ρ &gt; 0.90 or mutual 3-px dot overlap &gt; 0.70 ⇒ duplicate.
-Result: <b>0 duplicates</b>. Worst surface ρ = 0.160;
-worst final-dot mutual overlap = 0.460
-(worst forward 0.528 vs
-<code>gems70-p5-submodular-multiphysics-hydro-54000-20261020.tif</code>).
-Scope caveat: this is the locally present subset, not a certified full-inventory scan — full certification is a
-selector step. Prior submissions were used only for decorrelation checking, never as input to the field.</p></div>
-
-<div class="card" id="next"><h2>What to do instead (next steps, in order)</h2>
-<ol>
-<li><b>Do not submit this file.</b> For upcoming weekly slots, prefer sibling candidates that passed their own preregistered gates (e.g. GEMSDOE70's promoted P8/P9 per that repo's selector checklist), subject to the human selector and the weekly cap on the submission page.</li>
-<li><b>Preregister the two follow-ups this session surfaced</b> (new draw, frozen gates, before fitting): (a) lidar-augmented arm A5 as a primary candidate (Exp-1 point estimate was highest, 0.1130 HOLDOUT-DTI, but it was ablation-only by precommitment and must re-earn promotion); (b) new-physics-only field judged on a piedmont/off-catalogue instrument declared in advance, since it led the SGMC proxy while trailing on catalogue holdout.</li>
-<li><b>Get sub-km seismicity</b> (USGS ComCat FDSN / Nevada Seismological Lab; free official sources) on an unrestricted machine — unreachable from this sandbox (verified HTTP 000) and still the family's largest unused data source, including the 2020 Monte Cristo rupture inside the footprint.</li>
-<li><b>Apply the band corrections family-wide:</b> rename band 6 to total-count and band 18 to ∂g/∂x wherever features are built; re-audit any “tilt” channel that consumed band 6.</li>
-</ol></div>
-
-<div class="card"><h2>Sources (official first; fetch status honest)</h2>
-<table><tr><th>Source</th><th>Status here</th></tr>
-<tr><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DrivenData #306 problem description, metric, submission format</a></td><td>Fetched &amp; verified 2026-10-21 (α=0.2 β=0.8 R=300 m; worked example recomputed)</td></tr>
-<tr><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Public leaderboard</a></td><td>Fetched 2026-10-21: #1 xiaofanhu 0.4413 ORGANIZER-CONFIRMED (public board)</td></tr>
-<tr><td><a href="https://github.com/drivendataorg/gems-prize-reference-solution">Official reference solution (U-Net)</a></td><td>Fetched 2026-10-21</td></tr>
-<tr><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html">GEMSDOE32 (h33-2-b2 origin)</a> · <a href="https://buffedlizard55-lab.github.io/GEMSDOE70/">GEMSDOE70</a></td><td>Fetched 2026-10-21; 0.2778 remains OWNER-REPORT (no receipt found)</td></tr>
-<tr><td><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN data release</a> · <a href="https://gbcge.org/current-projects/ingenious/">INGENIOUS</a> · <a href="https://gdr.openei.org/submissions/1391">GDR 1391</a> · <a href="https://epsg.io/32611">EPSG:32611</a> · <a href="https://en.wikipedia.org/wiki/Tversky_index">Tversky index</a></td><td>Listed from the competition pages/brief; not re-fetched this session</td></tr>
-<tr><td><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">NLR rules PDF 96647</a> · <a href="https://earthquake.usgs.gov/fdsnws/event/1/query">USGS FDSN event service</a></td><td>Unreachable from this sandbox (HTTP 000, verified 2026-10-21); named official sources for an unrestricted machine</td></tr>
-<tr><td>Miller &amp; Singh 1994 tilt derivative <a href="https://doi.org/10.1016/0926-9851(94)90022-1">DOI</a>; Verduzco et al. 2004 <a href="https://doi.org/10.1190/1.1651454">DOI</a></td><td>Bibliographic (paywalled; transforms implemented from standard definitions and unit-tested on synthetics)</td></tr>
-<tr><td>Competition rasters</td><td>Owner-supplied GitHub mirrors of the login-walled DrivenData files, restored SHA-256 fail-closed (manifest in repo). Integrity-pinned, NOT organizer-authenticated.</td></tr>
-</table></div>
-
-<div class="card"><h2>Reproduce (CPU, no DrivenData login)</h2>
-<p><code>python3 scripts/restore_data.py --ids all</code> (needs <code>gh</code>) →
-<code>python3 scripts/build_features.py</code> → <code>python3 scripts/run_holdout.py</code> →
-<code>python3 scripts/build_final.py --arm A4_primary</code> → <code>python3 scripts/run_replication.py</code> →
-<code>python3 scripts/verify_all.py</code> → <code>python3 scripts/make_run_card_and_figures.py</code> →
-<code>python3 scripts/build_site.py</code>. Shared template (<code>vendor/gems57</code>: evaluate_holdout,
-submission_writer, uniqueness) is reused unmodified. Run card: <a href="downloads/run_card.json"><code>run_card.json</code></a>.</p></div>
-
-<footer>GEMSDOE77 · Core values: Maximize P(Win) — every slot is an experiment with a frozen gate · Own the Outcome — a failed gate is published, not quietly dropped. · Generated 2026-10-21 from <code>evidence/*.json</code> by <code>scripts/build_site.py</code>. HOLDOUT-DTI numbers use evaluator gems57-pooled-hide-v2; they are not leaderboard scores and no organizer score exists for any file here.</footer>
-</div></body></html>
+<title>Overview · GEMS / 77</title><meta name="description" content="Auditable fault-detection research. Download the locally validated research GeoTIFF. Not approved for competition submission.">
+<link rel="stylesheet" href="assets/site.css"><script defer src="assets/site.js"></script></head><body>
+<header><div class="header"><a class="brand" href="index.html">GEMS / 77 <span>Structural discovery lab</span></a><nav aria-label="Main"><a href="index.html" aria-current="page">Overview</a><a href="executive-summary.html">Submission guide</a><a href="research.html">Research</a><a href="sources.html">Source feed</a><a href="audit.html">Audit trail</a></nav></div></header>
+<main><div class="eyebrow">DOE GEMS research · H77 · 21 October 2026</div><h1>Find structure.<br>Keep the evidence honest.</h1>
+<p class="intro">A reproducible, independently generated fault-detection pilot. Download its GeoTIFF below—and see exactly why it is <strong>not approved for submission</strong>.</p>
+<div class="hero-grid"><div class="panel download-panel"><span class="badge negative">Not OK to submit</span>
+<h2>A new TIFF. A clear stop.</h2><p>Generated from cached radiometric features—not a copied submission. Local format checks pass, but the literal uniqueness gate fails.</p>
+<div class="buttons"><a class="button" download href="downloads/gems77-h77-urank-curvature-0d868dc271bb-research.tif">↓ Download research TIFF</a><a class="button secondary" download href="downloads/gems77-h77-urank-curvature-0d868dc271bb-research.zip">Single-TIFF ZIP</a></div>
+<p class="fine">18.5 MB · float32 · single band · values in [0, 1]<br>Safe to download for inspection. <strong>Do not upload to the competition.</strong></p>
+<div class="file-label">SHA-256 / actual TIFF bytes</div><div class="hash">9489af2b7e1b06a249203d3c9d6dfe4ed469647f59ebe3a5ffe9c50c67e46b42</div>
+<p class="fine"><a href="downloads/gems77-h77-urank-curvature-0d868dc271bb-research.json">Writer receipt</a> · <a href="evidence/run_card.json">JSON run card</a> · <a href="executive-summary.html">Submission instructions</a></p></div><div class="panel"><span class="eyebrow">Experiment 01 / stopped</span><h2>Selective-U curvature</h2><p>Subtract the K/Th common mode from U rank-intensity, then emphasize narrow, directional curvature. A test of concealed structure—not a claimed geothermal-vent discovery.</p>
+<img class="preview" src="assets/surface.png" alt="Downsampled H77 radiometric curvature surface over the irregular study-area footprint">
+<p class="fine">Research surface, not calibrated probabilities. Brighter = higher response. Image uses pixel coordinates, not a basemap.</p></div></div>
+<div class="metrics"><div class="metric"><span>HOLDOUT-DTI</span><strong>0.06804</strong><small>95% CI 0.06223–0.07415</small></div>
+<div class="metric"><span>Hidden positive pixels</span><strong>58,731</strong><small>gems57-pooled-hide-v2 · pooled four-fold</small></div>
+<div class="metric"><span>Real submission slots used</span><strong>0</strong><small>Weekly cap not observed. Selector approval required.</small></div></div>
+<div class="notice"><strong>Negative result, useful evidence.</strong> The paired gain over the strongest ablation is not statistically clear. A post-run audit also found potential diagonal nodata-stencil contact; the historical holdout result is confounded and not valid for promotion. A dense registry surface also forces 100% forward overlap under the literal shared rule. We stopped before dot placement; a new filename is not uniqueness clearance.</div>
+<div class="two"><section><h2>What was verified</h2><ul><li>Shared evaluator and writer copied byte-for-byte from a pinned template.</li><li>Whole-component hide/recover, buffered spatial folds and per-feature canaries.</li><li>Actual TIFF readback: no NaN/Inf, bounded values, matching CRS, shape and transform.</li><li>ZIP contains exactly the same single TIFF.</li></ul></section>
+<section><h2>What remains unverified</h2><ul><li>No authenticated organizer receipt or current leaderboard.</li><li>Mirror integrity is not proof of official input origin.</li><li>Full-family novelty and the current weekly cap are not established.</li><li>Official portal, PDF and science-host access is restricted here.</li></ul></section></div>
+<p class="fine"><strong>Concurrent artifact notice:</strong> inherited H77C files are preserved but also NOT approved. Their earlier registry PASS was not measured clearance; the shared recheck rejects the artifact. <a href="evidence/inherited_h77c_review.json">Inherited-artifact review</a>.</p><div class="buttons"><a class="button secondary" href="research.html">Read the scientific assessment →</a><a class="button secondary" href="sources.html">Explore the source feed →</a></div></main><footer><span>Evidence before optimism. Maximize P(Win) · Own the Outcome.</span><span>Research, not a resource assessment. <a href="PROJECT_PROMPT.md">Standing request</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE77">Repository</a></span></footer></body></html>

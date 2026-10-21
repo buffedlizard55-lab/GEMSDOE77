@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gems77"
+version = "77.2.0"
+description = "GEMSDOE77 — auditable fault-detection research and negative evidence"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "numpy>=1.24",
+    "scipy>=1.10",
+    "scikit-learn>=1.2",
+    "rasterio>=1.3",
+    "matplotlib>=3.7",
+    "pandas>=2.0",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[project.urls]
+Homepage = "https://buffedlizard55-lab.github.io/GEMSDOE77/"
+Repository = "https://github.com/buffedlizard55-lab/GEMSDOE77"

@@ -1,46 +1,19 @@
 {
-  "id": "GEMSDOE77-PREREG-1",
-  "date_utc": "2026-10-21",
-  "session_branch": "arena/547efca2-gemsdoe77",
-  "lane_single_method_paragraph": "Expert-criteria contact physics, supervised-ranked: an HGB ranker whose distinctive inputs are (a) correctly derived potential-field contact transforms that the shipped 19-band stack does NOT contain (magnetic tilt from bands 9/3, gravity tilt from bands 11/13-gradient, analytic-signal amplitudes, monogenic phase congruency, pseudogravity-Poisson slope/correlation) with magnetic-gravity edge confluence and signed basement-depth throw across the edge, and (b) range-front-base slope asymmetry on detrended elevation. Primary arm uses NO catalogue-derived features, NO SGMC training population, and NO lidar block. Dots are allocated off-catalogue with the shared template greedy max-coverage emitter at a holdout-selected budget.",
-  "why_lane_is_new_evidence": [
-    "Band 6 tag claims 'Tilt angle or total curvature'; measured here Spearman(band6, external GeoDAWN total-count radiometrics)=+1.0000 and Spearman vs derived tilt=+0.0200: band 6 IS radiometric total count, so the shipped stack contains no tilt derivative (evidence/band6_resolution.json).",
-    "grep for phase-congruency/monogenic/Riesz/pseudogravity/Poisson/sinuosity over GEMSDOE32+GEMSDOE70 code and docs returned no implementation (2026-10-21, this session).",
-    "GEMSDOE70 heroes are dual-population (Quaternary+SGMC) HGB with lidar and submodular emission; primary arm here excludes SGMC population and lidar by precommitment."
-  ],
-  "data": {
-    "manifest": "registry/data_manifest.json (copied from GEMSDOE32; every restored file SHA-256 verified, fail-closed)",
-    "training_features_sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
-    "labels_sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
-    "sample_submission_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
-    "provenance_caveat": "Owner-supplied GitHub mirrors of login-walled DrivenData files; integrity-pinned, NOT organizer-authenticated."
-  },
-  "template": {
-    "source": "vendor/gems57 copied byte-identical from GEMSDOE70 vendor cache (upstream 60GEMSDOE src/gems57 @32024716f218d06a94e01464157392119c03cb15 per vendor/README.md)",
-    "evaluator": "gems57.evaluate_holdout VERSION gems57-pooled-hide-v2 (alpha=0.2, beta=0.8, R=300 m triangular)",
-    "holdout_draw": "gems57.holdout.buffered_component_draw: whole 8-connected components, quadrant LOQO, hide_frac=0.20, feature buffer 3 px, domain erosion 12 px, seeds fixed below",
-    "writer": "gems57.submission_writer.write_submission (fail-closed, no repair)",
-    "uniqueness_tool": "gems57.uniqueness.compare_array_to_registry + two_phase_summary (rho>0.90 or mutual 3-px overlap>0.70 = duplicate)"
-  },
-  "experiments_budget": "max 3 experiments / ~2 h compute (parallel-run protocol rule 6)",
-  "exp1_holdout_arms": [
-    "canary: every new-physics feature alone -> holdout AUC (max(AUC,1-AUC)>0.90 = leakage stop)",
-    "A0 seeded random dotted control, matched budget/exclusion/spacing",
-    "A2 HGB standard block (19 raw bands + terrain derivatives; no new physics, no lidar)",
-    "A3 HGB new-physics block only",
-    "A4 HGB standard + new physics (primary, no lidar)",
-    "A5 HGB standard + new physics + lidar (ablation reference only, not primary)",
-    "REF H33 archived dots scored on same folds (reference only; declared full-catalogue pruning caveat, never the promotion bar)"
-  ],
-  "holdout_seed": 30,
-  "emission_scan": "budgets {20000,30000,37654,44090} x catalogue exclusions {>0,>1,>2,>3 px} on OOF surface; pick max pooled dotted HOLDOUT-DTI, tie -> smaller budget then smaller exclusion; all cells reported",
-  "promotion_gates_all_required_else_negative": [
-    "leakage canaries pass (no feature symmetric AUC > 0.90)",
-    "primary arm pooled HOLDOUT-DTI beats A2 standard-block arm with paired 95% CI excluding 0 (gems57 pooled_summary, 20 km blocks)",
-    "primary arm beats matched random control with paired 95% CI excluding 0",
-    "uniqueness: no registry raster with |surface Spearman|>0.90 implications per template rule (rho>0.90) and mutual 3-px dot overlap <=0.70 on surface AND final dots, over locally hash-verified registry subset (full-inventory certification remains a selector step)",
-    "shared-writer TIFF validates on disk: single-band float32 EPSG:32611 3730x3292, all-finite, values in [0,1], no nodata sentinel, 0 on catalogue and outside footprint"
-  ],
-  "slot_policy": "No weekly slot is spent or authorized by this session. Promotion means 'candidate for human selector sign-off' only. download_ok (format) is reported separately from verdict (science).",
-  "number_labelling": "Every score is HOLDOUT-DTI (evaluator gems57-pooled-hide-v2, withheld-positive count, 95% CI) or ORGANIZER-CONFIRMED (copied from an organizer page/receipt) or OWNER-REPORT (user/family ledger, no receipt). Projections are never written as scores."
+  "registered_utc": "2026-10-21",
+  "lane": "H77 radiometric selective-U curvature after K/Th common-mode subtraction",
+  "assignment_irregularity": "No single method paragraph identifiable in supplied prompt; autonomous narrow lane, not a claimed assigned lane.",
+  "hypothesis": "Narrow, anisotropic curvature of U relative to K/Th rank-intensity may identify selective geochemical transport above unmapped fractures.",
+  "mimic": "Groundwater redox fronts and fluvial heavy-mineral sorting without a fault",
+  "inputs": ["cached geodawn_rad_u8.tif K,Th,U", "existing_faults.tif only for split/mask", "sample_submission.tif only for footprint/grid"],
+  "signature": "U/254 - (K/254+Th/254)/2; Gaussian Hessian at sigma 2 pixels; absolute principal curvature times Hessian anisotropy; normalize by label-free 99th percentile",
+  "physical_units_caveat": "Independently percentile-quantized channels; subtraction is a rank-intensity contrast, NOT a concentration ratio or calibrated uranium enrichment.",
+  "candidate_parameters": {"sigma_px": 2, "normalization_percentile": 99, "boundary_erosion_px": 10},
+  "controls": ["K-Th common-mode principal curvature", "constant 0.01 probability"],
+  "canaries": ["K", "Th", "U", "absolute_selective_U", "principal_curvature", "anisotropy", "common_mode_curvature", "candidate"],
+  "validation": "Unchanged gems57.spatial.folds: fixed quadrants, whole intersecting components hidden, 80 pixel buffer. No catalogue-derived features or model training. Finite support eroded 10 pixels. Pooled shared evaluator; paired 20km physical-block bootstrap, 1000 draws.",
+  "promotion": "No weekly slot. Require canaries <=0.90 AUC, literal uniqueness, complete registry, official input provenance and improvement over comparable best before selector.",
+  "registry_policy": "Unchanged template literal support >0. Stop on first confirmed duplicate witness; partial scan can prove rejection, never uniqueness. No mutual-overlap or density exemption.",
+  "retention": "If surface gate fails, retain exactly that surface as a locally validated research-only GeoTIFF; no dot placement, no additional experiments.",
+  "budget": {"maximum_experiments": 3, "maximum_hours": 2, "planned_experiments": 1},
+  "expected_improvement": "Unknown; hypotheses are ordinal priorities, never projected scores."
 }

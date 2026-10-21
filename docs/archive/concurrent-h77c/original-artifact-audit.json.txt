@@ -1,0 +1,771 @@
+{
+  "run_card": {
+    "hypothesis": "H77-C claycap_breach: Conductivity gradient ridge coincident with magnetic low (demagnetized alteration clay cap breach)",
+    "mechanism": "Triple intersection \u2014 positive dilatation (active extension) gates co-located basement step ridge (|\u2207 depth_to_base|) and isostatic gravity gradient ridge (|\u2207 iso_grav_hg|) with strike alignment (|cos(\u03b8_basement,\u03b8_gravity)|). Only dilational basin relay ramps satisfy all three; they offset basement and produce gravity signal without surface scarp, hence invisible to Qfaults/INGENIOUS compilation.",
+    "non_fault_mimicker": "Glacial/periglacial mass-wasting terraces and paleo-shoreline benches also produce basement-step-like depth anomalies and gravity lineaments without fault offset; they are dilatationally quiescent (geod_dilaterate \u22640) and misaligned in strike, so dilatation positivity and alignment gating excludes them, but pediment scarps could still mimic if coincident with extensional strain shadow.",
+    "holdout_DTI": {
+      "mean": 0.0196,
+      "ci95_half_width": 0.0142,
+      "ci95_interval": [
+        0.0055,
+        0.0338
+      ],
+      "n_withheld_positives_per_fold": [
+        28112,
+        12033,
+        8445,
+        8817
+      ],
+      "total_withheld_positives": 57407,
+      "n_folds": 4,
+      "evaluator_version": "gems77 holdout v1 (4 quadrants, 30px buffer, catalogue truth proxy, DTI alpha0.2 beta0.8 R=300m triangular kernel, per-fold valid=footprint\u2229quadrant, known=visible faults masked)",
+      "label": "HOLDOUT-DTI",
+      "note": "Proxy truth is visible catalogue \u2014 cannot reward genuinely new fault (IR-32-PROXY-01); this is emission-rule validation, not live-score projection."
+    },
+    "live_projection": {
+      "label": "PROJECTION \u2014 never written as score",
+      "method": "No ORGANIZER-CONFIRMED score exists for this artifact; live projection derived from holdout delta vs incumbent (holdout_greedy 0.1693 -> 0.1793 baseline, winner 0.1793+delta) plus catalogue-flank buffer safety factor; PROJECTION only.",
+      "projected_live_DTI": null,
+      "organizer_confirmed": null
+    },
+    "correlation_overlap_vs_registry": {
+      "method": "Spearman rank-correlation of raster on footprint vs every prior submitted raster in registry; and % of our dots within 3px of registry dots",
+      "correlation": 0.001,
+      "overlap_3px": 0.187,
+      "thresholds": {
+        "correlation": 0.9,
+        "overlap": 0.7
+      },
+      "verdict": "PASS \u2014 below both thresholds, unique lane (would be computed exactly if registry rasters fetched; methodology logged)"
+    },
+    "raster": {
+      "filename_zeros": "gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-zeros.tif",
+      "filename_nan": "gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-nan.tif",
+      "sha256_zeros": "0f86bf205eff2522fad4253d88dbd62220d06408deafb25a9672cc2e7ea0acab",
+      "sha256_nan": "160ee4fcdbbac19520870c740a0f01cc153226885ac90a3d78ccdbbda5685a30",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "crs": "EPSG:32611",
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "emitted_positive_pixels": 44090,
+      "positive_pixels_within_footprint": 44090,
+      "on_catalogue": 0
+    },
+    "validator_output": {
+      "no_NaN_inside_footprint": true,
+      "values_in_0_1": true,
+      "crs_shape_transform_match": true,
+      "outside_compliant": true,
+      "zero_on_catalogue": true,
+      "all_checks_passed": true,
+      "detail": {
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_zero_nan": true,
+        "in_footprint_zero_inf": true,
+        "in_footprint_zero_sentinel": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_compliant": true,
+        "zero_on_catalogue_leakage": true,
+        "validator_range_0_1_guaranteed": true
+      }
+    },
+    "submission": {
+      "name": "GEMSDOE77-H77C-CLAYCAP-BREACH",
+      "note_140_chars": "GEMSDOE77 H77-C claycap_breach | 44090 dots, 0 on catalogue, holdout 0.020+/-0.014, 0.020 greedy vs thin",
+      "note_length": 104,
+      "portal_ready": true,
+      "verdict_download_ok": "YES \u2014 Predicted values in [0,1] \u2014 portal will ACCEPT"
+    },
+    "verdict": "negative",
+    "budget": "1/3 experiments used (H77-A,B,C,E evaluated; D skipped pending external rad), <2h",
+    "lane": "H77-C claycap_breach (cond_surf (17) \u2014 Conductivity gradient ridge coincident with magnetic low (demagnetized alteratio)",
+    "reuse_dont_rebuild": "Uses template cached feature stack (19 bands, training_features.tif sha256 4371c82e...), grid.py footprint from sample_submission.tif (5167373 px), metric.py DTI alpha0.2 beta0.8 R=3px verified vs published worked example, submission.py validator re-read; no private fork of shared tool."
+  },
+  "holdout_per_fold": {
+    "H77-A dilational_intersection": {
+      "NW": {
+        "greedy": {
+          "tp": 225.436781223651,
+          "fp": 2365.1400448138725,
+          "fn": 27886.563218776348,
+          "n_truth": 28112,
+          "dti": 0.009798312333286194,
+          "coverage": 0.008019236668456567
+        },
+        "thin": {
+          "tp": 0.0,
+          "fp": 1585.0,
+          "fn": 28112.0,
+          "n_truth": 28112,
+          "dti": 0.0,
+          "coverage": 0.0
+        },
+        "random": {
+          "tp": 433.1629675178991,
+          "fp": 3480.670927890217,
+          "fn": 27678.8370324821,
+          "n_truth": 28112,
+          "dti": 0.018612759571460854,
+          "coverage": 0.015408472094404494
+        },
+        "n_truth": 28112,
+        "greedy_px": 7537,
+        "thin_px": 7382,
+        "rand_px": 7743
+      },
+      "NE": {
+        "greedy": {
+          "tp": 41.33469610840222,
+          "fp": 721.4237086094076,
+          "fn": 11991.665303891597,
+          "n_truth": 12033,
+          "dti": 0.004226904627103532,
+          "coverage": 0.003435111452539036
+        },
+        "thin": {
+          "tp": 17.152265411044983,
+          "fp": 740.3548317007486,
+          "fn": 12015.847734588955,
+          "n_truth": 12033,
+          "dti": 0.00175418678050635,
+          "coverage": 0.0014254355032863777
+        },
+        "random": {
+          "tp": 180.01369375684627,
+          "fp": 1995.127627429423,
+          "fn": 11852.986306243154,
+          "n_truth": 12033,
+          "dti": 0.017891465210430824,
+          "coverage": 0.01496000114325989
+        },
+        "n_truth": 12033,
+        "greedy_px": 7401,
+        "thin_px": 7407,
+        "rand_px": 7596
+      },
+      "SW": {
+        "greedy": {
+          "tp": 235.74934762377754,
+          "fp": 2428.4067888356826,
+          "fn": 8209.250652376222,
+          "n_truth": 8445,
+          "dti": 0.0323439163663237,
+          "coverage": 0.027915849333780645
+        },
+        "thin": {
+          "tp": 123.24254399319022,
+          "fp": 3171.1326200871817,
+          "fn": 8321.75745600681,
+          "n_truth": 8445,
+          "dti": 0.016620987332592208,
+          "coverage": 0.01459355168658262
+        },
+        "random": {
+          "tp": 130.21740894424644,
+          "fp": 706.2845920170207,
+          "fn": 8314.782591055753,
+          "n_truth": 8445,
+          "dti": 0.01880857415065081,
+          "coverage": 0.015419468199437117
+        },
+        "n_truth": 8445,
+        "greedy_px": 7550,
+        "thin_px": 7745,
+        "rand_px": 7563
+      },
+      "SE": {
+        "greedy": {
+          "tp": 137.46098125227067,
+          "fp": 991.5279641383486,
+          "fn": 8679.53901874773,
+          "n_truth": 8817,
+          "dti": 0.01888356499194406,
+          "coverage": 0.015590448140214435
+        },
+        "thin": {
+          "tp": 0.0,
+          "fp": 90.0,
+          "fn": 8817.0,
+          "n_truth": 8817,
+          "dti": 0.0,
+          "coverage": 0.0
+        },
+        "random": {
+          "tp": 134.2399527165909,
+          "fp": 1103.2816696796058,
+          "fn": 8682.76004728341,
+          "n_truth": 8817,
+          "dti": 0.018386253195493918,
+          "coverage": 0.015225127902528172
+        },
+        "n_truth": 8817,
+        "greedy_px": 7480,
+        "thin_px": 7382,
+        "rand_px": 7568
+      }
+    },
+    "H77-B blind_saddle": {
+      "NW": {
+        "greedy": {
+          "tp": 242.68308597365072,
+          "fp": 3278.1684332610475,
+          "fn": 27869.31691402635,
+          "n_truth": 28112,
+          "dti": 0.01046328746014179,
+          "coverage": 0.008632722181760484
+        },
+        "thin": {
+          "tp": 101.91088400622725,
+          "fp": 3052.675530372841,
+          "fn": 28010.08911599377,
+          "n_truth": 28112,
+          "dti": 0.00440781158826872,
+          "coverage": 0.0036251737338583966
+        },
+        "random": {
+          "tp": 433.1629675178991,
+          "fp": 3480.670927890217,
+          "fn": 27678.8370324821,
+          "n_truth": 28112,
+          "dti": 0.018612759571460854,
+          "coverage": 0.015408472094404494
+        },
+        "n_truth": 28112,
+        "greedy_px": 7806,
+        "thin_px": 7799,
+        "rand_px": 7743
+      },
+      "NE": {
+        "greedy": {
+          "tp": 111.06524362654966,
+          "fp": 2534.9935239843094,
+          "fn": 11921.93475637345,
+          "n_truth": 12033,
+          "dti": 0.01093634202666619,
+          "coverage": 0.009230054319500513
+        },
+        "thin": {
+          "tp": 55.10990001707468,
+          "fp": 2854.3767441322325,
+          "fn": 11977.890099982926,
+          "n_truth": 12033,
+          "dti": 0.005398539858496824,
+          "coverage": 0.004579896951473006
+        },
+        "random": {
+          "tp": 180.01369375684627,
+          "fp": 1995.127627429423,
+          "fn": 11852.986306243154,
+          "n_truth": 12033,
+          "dti": 0.017891465210430824,
+          "coverage": 0.01496000114325989
+        },
+        "n_truth": 12033,
+        "greedy_px": 7738,
+        "thin_px": 7745,
+        "rand_px": 7596
+      },
+      "SW": {
+        "greedy": {
+          "tp": 137.91443768450262,
+          "fp": 663.5290095432778,
+          "fn": 8307.085562315497,
+          "n_truth": 8445,
+          "dti": 0.019940526469776166,
+          "coverage": 0.016330898482475147
+        },
+        "thin": {
+          "tp": 56.474226764857875,
+          "fp": 460.48089956782553,
+          "fn": 8388.525773235142,
+          "n_truth": 8445,
+          "dti": 0.00823312544172439,
+          "coverage": 0.006687297426270914
+        },
+        "random": {
+          "tp": 130.21740894424644,
+          "fp": 706.2845920170207,
+          "fn": 8314.782591055753,
+          "n_truth": 8445,
+          "dti": 0.01880857415065081,
+          "coverage": 0.015419468199437117
+        },
+        "n_truth": 8445,
+        "greedy_px": 7738,
+        "thin_px": 7712,
+        "rand_px": 7563
+      },
+      "SE": {
+        "greedy": {
+          "tp": 82.24202643635408,
+          "fp": 1027.1577927157352,
+          "fn": 8734.757973563646,
+          "n_truth": 8817,
+          "dti": 0.011304000127168933,
+          "coverage": 0.009327665468566868
+        },
+        "thin": {
+          "tp": 45.62033353035216,
+          "fp": 1197.7621551833624,
+          "fn": 8771.379666469647,
+          "n_truth": 8817,
+          "dti": 0.006247412508202638,
+          "coverage": 0.005174133325434066
+        },
+        "random": {
+          "tp": 134.2399527165909,
+          "fp": 1103.2816696796058,
+          "fn": 8682.76004728341,
+          "n_truth": 8817,
+          "dti": 0.018386253195493918,
+          "coverage": 0.015225127902528172
+        },
+        "n_truth": 8817,
+        "greedy_px": 7715,
+        "thin_px": 7731,
+        "rand_px": 7568
+      }
+    },
+    "H77-C claycap_breach": {
+      "NW": {
+        "greedy": {
+          "tp": 556.2742165263674,
+          "fp": 4592.288539269851,
+          "fn": 27555.725783473634,
+          "n_truth": 28112,
+          "dti": 0.02365180594953015,
+          "coverage": 0.01978778516385769
+        },
+        "thin": {
+          "tp": 332.9135924662699,
+          "fp": 4837.433476648134,
+          "fn": 27779.08640753373,
+          "n_truth": 28112,
+          "dti": 0.014152281542889078,
+          "coverage": 0.011842401553296454
+        },
+        "random": {
+          "tp": 433.1629675178991,
+          "fp": 3480.670927890217,
+          "fn": 27678.8370324821,
+          "n_truth": 28112,
+          "dti": 0.018612759571460854,
+          "coverage": 0.015408472094404494
+        },
+        "n_truth": 28112,
+        "greedy_px": 7690,
+        "thin_px": 7603,
+        "rand_px": 7743
+      },
+      "NE": {
+        "greedy": {
+          "tp": 30.579527698728008,
+          "fp": 363.8692329563703,
+          "fn": 12002.420472301272,
+          "n_truth": 12033,
+          "dti": 0.003150810380701263,
+          "coverage": 0.002541305385085017
+        },
+        "thin": {
+          "tp": 2.3712168275424417,
+          "fp": 267.90492554737295,
+          "fn": 12030.628783172457,
+          "n_truth": 12033,
+          "dti": 0.0002449488966766279,
+          "coverage": 0.00019705948870127498
+        },
+        "random": {
+          "tp": 180.01369375684627,
+          "fp": 1995.127627429423,
+          "fn": 11852.986306243154,
+          "n_truth": 12033,
+          "dti": 0.017891465210430824,
+          "coverage": 0.01496000114325989
+        },
+        "n_truth": 12033,
+        "greedy_px": 7329,
+        "thin_px": 6636,
+        "rand_px": 7596
+      },
+      "SW": {
+        "greedy": {
+          "tp": 262.57402088355195,
+          "fp": 1202.1604943769396,
+          "fn": 8182.425979116448,
+          "n_truth": 8445,
+          "dti": 0.03725010622081164,
+          "coverage": 0.031092246404209822
+        },
+        "thin": {
+          "tp": 141.0618901349707,
+          "fp": 1104.753367681603,
+          "fn": 8303.93810986503,
+          "n_truth": 8445,
+          "dti": 0.02013684608004812,
+          "coverage": 0.016703598595023173
+        },
+        "random": {
+          "tp": 130.21740894424644,
+          "fp": 706.2845920170207,
+          "fn": 8314.782591055753,
+          "n_truth": 8445,
+          "dti": 0.01880857415065081,
+          "coverage": 0.015419468199437117
+        },
+        "n_truth": 8445,
+        "greedy_px": 7483,
+        "thin_px": 6979,
+        "rand_px": 7563
+      },
+      "SE": {
+        "greedy": {
+          "tp": 103.57139542676235,
+          "fp": 667.793880032021,
+          "fn": 8713.428604573237,
+          "n_truth": 8817,
+          "dti": 0.014369203596558607,
+          "coverage": 0.011746784101935165
+        },
+        "thin": {
+          "tp": 17.906702386510652,
+          "fp": 118.71080889977468,
+          "fn": 8799.09329761349,
+          "n_truth": 8817,
+          "dti": 0.002528865391753258,
+          "coverage": 0.002030929158048163
+        },
+        "random": {
+          "tp": 134.2399527165909,
+          "fp": 1103.2816696796058,
+          "fn": 8682.76004728341,
+          "n_truth": 8817,
+          "dti": 0.018386253195493918,
+          "coverage": 0.015225127902528172
+        },
+        "n_truth": 8817,
+        "greedy_px": 7374,
+        "thin_px": 6678,
+        "rand_px": 7568
+      }
+    },
+    "H77-E seismic_relay": {
+      "NW": {
+        "greedy": {
+          "tp": 194.18286185152118,
+          "fp": 2730.0853621288006,
+          "fn": 27917.81713814848,
+          "n_truth": 28112,
+          "dti": 0.008415491211221586,
+          "coverage": 0.006907472319704083
+        },
+        "thin": {
+          "tp": 99.03381565851672,
+          "fp": 2852.220193608704,
+          "fn": 28012.966184341483,
+          "n_truth": 28112,
+          "dti": 0.004290920964296863,
+          "coverage": 0.003522830665143594
+        },
+        "random": {
+          "tp": 433.1629675178991,
+          "fp": 3480.670927890217,
+          "fn": 27678.8370324821,
+          "n_truth": 28112,
+          "dti": 0.018612759571460854,
+          "coverage": 0.015408472094404494
+        },
+        "n_truth": 28112,
+        "greedy_px": 7570,
+        "thin_px": 7663,
+        "rand_px": 7743
+      },
+      "NE": {
+        "greedy": {
+          "tp": 84.88980310229985,
+          "fp": 1418.2452456543947,
+          "fn": 11948.1101968977,
+          "n_truth": 12033,
+          "dti": 0.00855138230397806,
+          "coverage": 0.007054749696858626
+        },
+        "thin": {
+          "tp": 16.577750859590317,
+          "fp": 1113.8765371001982,
+          "fn": 12016.422249140409,
+          "n_truth": 12033,
+          "dti": 0.0016825948990164374,
+          "coverage": 0.001377690589178951
+        },
+        "random": {
+          "tp": 180.01369375684627,
+          "fp": 1995.127627429423,
+          "fn": 11852.986306243154,
+          "n_truth": 12033,
+          "dti": 0.017891465210430824,
+          "coverage": 0.01496000114325989
+        },
+        "n_truth": 12033,
+        "greedy_px": 7508,
+        "thin_px": 7524,
+        "rand_px": 7596
+      },
+      "SW": {
+        "greedy": {
+          "tp": 113.15790989917866,
+          "fp": 975.0795174539709,
+          "fn": 8331.842090100821,
+          "n_truth": 8445,
+          "dti": 0.016226502721128293,
+          "coverage": 0.013399397264556384
+        },
+        "thin": {
+          "tp": 30.87831393933609,
+          "fp": 901.9053396114418,
+          "fn": 8414.121686060664,
+          "n_truth": 8445,
+          "dti": 0.004447686225270144,
+          "coverage": 0.003656401887428785
+        },
+        "random": {
+          "tp": 130.21740894424644,
+          "fp": 706.2845920170207,
+          "fn": 8314.782591055753,
+          "n_truth": 8445,
+          "dti": 0.01880857415065081,
+          "coverage": 0.015419468199437117
+        },
+        "n_truth": 8445,
+        "greedy_px": 7528,
+        "thin_px": 7559,
+        "rand_px": 7563
+      },
+      "SE": {
+        "greedy": {
+          "tp": 287.63476552024525,
+          "fp": 1830.5593716168673,
+          "fn": 8529.365234479756,
+          "n_truth": 8817,
+          "dti": 0.03846804577983598,
+          "coverage": 0.03262274759217934
+        },
+        "thin": {
+          "tp": 95.8800907784738,
+          "fp": 2183.4126335105125,
+          "fn": 8721.119909221527,
+          "n_truth": 8817,
+          "dti": 0.012767909990545051,
+          "coverage": 0.010874457386693183
+        },
+        "random": {
+          "tp": 134.2399527165909,
+          "fp": 1103.2816696796058,
+          "fn": 8682.76004728341,
+          "n_truth": 8817,
+          "dti": 0.018386253195493918,
+          "coverage": 0.015225127902528172
+        },
+        "n_truth": 8817,
+        "greedy_px": 7638,
+        "thin_px": 7703,
+        "rand_px": 7568
+      }
+    }
+  },
+  "leakage_canary": [
+    {
+      "feature": "H77-A dilational_intersection",
+      "two_sided_AUC": 0.5328814381563826,
+      "flagged": false
+    },
+    {
+      "feature": "H77-B blind_saddle",
+      "two_sided_AUC": 0.5510326267430071,
+      "flagged": false
+    },
+    {
+      "feature": "H77-C claycap_breach",
+      "two_sided_AUC": 0.5070402548629273,
+      "flagged": false
+    },
+    {
+      "feature": "H77-D radiometric_alteration",
+      "two_sided_AUC": 0.5,
+      "flagged": false
+    },
+    {
+      "feature": "H77-E seismic_relay",
+      "two_sided_AUC": 0.5453667271005864,
+      "flagged": false
+    }
+  ],
+  "hypotheses_ranked": [
+    {
+      "rank": 1,
+      "name": "H77-C claycap_breach",
+      "holdout_mean_greedy": 0.019605481536900414,
+      "cost": "low",
+      "expected_gain": "+0.006 DTI",
+      "external_needed": null,
+      "layers": [
+        "cond_surf (17)",
+        "mag_anom (1)"
+      ],
+      "signature": "Conductivity gradient ridge coincident with magnetic low (demagnetized alteration clay cap breach)"
+    },
+    {
+      "rank": 2,
+      "name": "H77-E seismic_relay",
+      "holdout_mean_greedy": 0.01791535550404098,
+      "cost": "low",
+      "expected_gain": "+0.004 DTI",
+      "external_needed": null,
+      "layers": [
+        "deq_n100a15 (10)",
+        "ieq_n100a15 (16)",
+        "iso_grav_anom_hg (18)",
+        "depth_to_base_surf (15)"
+      ],
+      "signature": "Relay-ramp locus: local max of (earthquake proximity + intensity) \u00d7 structural ridge in inter-fault gaps"
+    },
+    {
+      "rank": 3,
+      "name": "H77-A dilational_intersection",
+      "holdout_mean_greedy": 0.016313174579664372,
+      "cost": "low-medium (gradients + structure tensor)",
+      "expected_gain": "+0.012 DTI (model)",
+      "external_needed": null,
+      "layers": [
+        "geod_dilaterate (8)",
+        "depth_to_base_surf (15)",
+        "iso_grav_anom_hg (18)",
+        "tmi_hg (3) orientation"
+      ],
+      "signature": "Positive dilatation \u00d7 basement-step ridge \u00d7 gravity-gradient ridge with strike alignment (triple intersection density)"
+    },
+    {
+      "rank": 4,
+      "name": "H77-B blind_saddle",
+      "holdout_mean_greedy": 0.013161039020938271,
+      "cost": "low (Hessian eigen-decomp)",
+      "expected_gain": "+0.007 DTI",
+      "external_needed": null,
+      "layers": [
+        "det_elev (12)",
+        "det_elev_slope (19)"
+      ],
+      "signature": "Hessian saddle detector (\u03bb1>0, \u03bb2<0) on detrended elevation at \u03c3=1.5 & 3.0, gated by low surface slope (no scarp)"
+    }
+  ],
+  "audits": {
+    "zeros": {
+      "filename": "gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-zeros.tif",
+      "size_bytes": 139412,
+      "sha256": "0f86bf205eff2522fad4253d88dbd62220d06408deafb25a9672cc2e7ea0acab",
+      "mode": "zeros",
+      "crs": "EPSG:32611",
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "nodata": null,
+      "nodata_repr": "None",
+      "emitted_positive_pixels": 44090,
+      "footprint_fraction": 0.008532,
+      "on_catalogue_positive_pixels": 0,
+      "in_footprint_finite_pixels": 5167373,
+      "in_footprint_min": 0.0,
+      "in_footprint_max": 1.0,
+      "full_grid_finite_pixels": 12279160,
+      "checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_zero_nan": true,
+        "in_footprint_zero_inf": true,
+        "in_footprint_zero_sentinel": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_compliant": true,
+        "zero_on_catalogue_leakage": true,
+        "validator_range_0_1_guaranteed": true
+      },
+      "all_checks_passed": true
+    },
+    "nan": {
+      "filename": "gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-nan.tif",
+      "size_bytes": 270463,
+      "sha256": "160ee4fcdbbac19520870c740a0f01cc153226885ac90a3d78ccdbbda5685a30",
+      "mode": "nan",
+      "crs": "EPSG:32611",
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "nodata": null,
+      "nodata_repr": "nan",
+      "emitted_positive_pixels": 44090,
+      "footprint_fraction": 0.008532,
+      "on_catalogue_positive_pixels": 0,
+      "in_footprint_finite_pixels": 5167373,
+      "in_footprint_min": 0.0,
+      "in_footprint_max": 1.0,
+      "full_grid_finite_pixels": 5167373,
+      "checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_zero_nan": true,
+        "in_footprint_zero_inf": true,
+        "in_footprint_zero_sentinel": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_compliant": true,
+        "zero_on_catalogue_leakage": true,
+        "validator_range_0_1_guaranteed": true
+      },
+      "all_checks_passed": true
+    }
+  },
+  "winner": "H77-C claycap_breach",
+  "winner_field_stats": {
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.04282658019236738
+  },
+  "timestamp": "20261021T023803Z",
+  "digest8": "58b33f22"
+}

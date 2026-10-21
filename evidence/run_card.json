@@ -1,173 +1,75 @@
 {
-  "run_card": "GEMSDOE77-2026-10-21",
-  "hypothesis": "Expert-mapped hidden faults include (a) buried basement contacts where magnetic tilt zero-crossings/analytic-signal ridges coincide with gravity-tilt edges and a signed basement-depth step, and (b) low-slip range fronts whose scarp is buried but whose front-base slope asymmetry remains linear. A supervised ranker using these correctly derived contact-physics channels (the shipped 'tilt' band is measurably radiometric total count) should recover withheld fault segments better than the standard band/terrain block.",
-  "mechanism": "HGB (LOQO whole-component holdout for validation; full-catalogue fit for the artifact) over 19 shipped bands + terrain derivatives + 16 new channels (derived mag/gravity tilt, analytic signals, tilt-confluence, signed basement step along magnetic gradient, monogenic phase congruency on RTP/gravity, pseudogravity-Poisson slope/correlation/residual-gradient, front-base asymmetry, signed profile curvature). Dots: template expected-credit ranking, min-separation 2.8 px, budget/exclusion selected on Exp1 scan (44,090 dots, >3 px from catalogue). No catalogue-derived features, no SGMC training population, no lidar in the primary arm.",
-  "named_non_fault_mimic": "Intrusive/lithologic contacts and caldera margins (potential-field edges without throw); pluvial Lake Lahontan shoreline benches (front-base mimic); GeoDAWN survey-block/flight-line seams (phase-congruent straight edges).",
-  "holdout_dti": {
+  "hypothesis": "H77 selective-U curvature after K/Th common-mode subtraction",
+  "mechanism": "Anisotropic curvature of a label-free U minus K-Th rank-intensity residual; no old predictions used",
+  "non_fault_mimic": "Groundwater redox fronts and fluvial heavy-mineral sorting",
+  "holdout": {
     "evidence_class": "HOLDOUT-DTI",
     "evaluator_version": "gems57-pooled-hide-v2",
-    "primary_arm_A4": {
-      "dti": 0.10898227453444186,
-      "ci95": [
-        0.0921068327148631,
-        0.12769150400433593
-      ],
-      "withheld_positive_pixels": 11342,
-      "draw": "seed30"
-    },
-    "control_A2_standard": {
-      "evidence_class": "HOLDOUT-DTI",
-      "evaluator_version": "gems57-pooled-hide-v2",
-      "dti": 0.10426857641380814,
-      "ci95": [
-        0.08663254070407166,
-        0.12210628704449904
-      ],
-      "withheld_positive_pixels": 11342,
-      "tpw": 1883.7256185901556,
-      "fpw": 43078.73075564187,
-      "fnw": 9458.27438140985
-    },
-    "paired_delta_A4_minus_A2_seed30": {
-      "delta": 0.004713698120633714,
-      "ci95": [
-        -0.002671431055152343,
-        0.012419977196127205
-      ],
-      "gate": "FAIL (CI includes 0)"
-    },
-    "replication_seed21": {
-      "delta": 0.00045097959013855327,
-      "ci95": [
-        -0.008077051076901346,
-        0.00925119491199935
-      ],
-      "withheld_positive_pixels": 11572
-    },
-    "two_draw_pooled": {
-      "delta": 0.0025689170260613514,
-      "ci95": [
-        -0.003034501821752542,
-        0.007976206015042538
-      ],
-      "withheld_positive_pixels_total": 22914
-    },
-    "random_control_seed30": {
-      "evidence_class": "HOLDOUT-DTI",
-      "evaluator_version": "gems57-pooled-hide-v2",
-      "dti": 0.05454325921274369,
-      "ci95": [
-        0.04782927473893621,
-        0.06096527156857646
-      ],
-      "withheld_positive_pixels": 11342,
-      "tpw": 982.244233477459,
-      "fpw": 43692.43451865366,
-      "fnw": 10359.75576652254
-    },
-    "ablation_A5_with_lidar_seed30_point_only": {
-      "evidence_class": "HOLDOUT-DTI",
-      "evaluator_version": "gems57-pooled-hide-v2",
-      "dti": 0.1129774199983948,
-      "ci95": [
-        0.09607821754435185,
-        0.13245350674528636
-      ],
-      "withheld_positive_pixels": 11342,
-      "tpw": 2042.5760787292468,
-      "fpw": 42986.95994033846,
-      "fnw": 9299.42392127075
-    },
-    "newphysics_only_A3_seed30": {
-      "evidence_class": "HOLDOUT-DTI",
-      "evaluator_version": "gems57-pooled-hide-v2",
-      "dti": 0.09877365440066853,
-      "ci95": [
-        0.08423564996066181,
-        0.11554046047858534
-      ],
-      "withheld_positive_pixels": 11342,
-      "tpw": 1784.3607538890203,
-      "fpw": 43173.38272072636,
-      "fnw": 9557.63924611098
-    },
-    "sgmc_offcatalogue_proxy_not_holdout": {
-      "n_truth_px": 62122,
-      "note": "PROXY-DTI vs SGMC\\catalogue (d>3px); not HOLDOUT-DTI, not an organizer score",
-      "A2_standard": {
-        "dti": 0.09256908977671463,
-        "coverage": 0.08791030259042547
-      },
-      "A3_newphysics": {
-        "dti": 0.12262953974601341,
-        "coverage": 0.11692868244272282
-      },
-      "A4_primary": {
-        "dti": 0.09868064369645978,
-        "coverage": 0.0937681467581058
-      },
-      "A5_primary_lidar": {
-        "dti": 0.09554617204481972,
-        "coverage": 0.09075915341336062
-      }
-    },
-    "leakage_canary_worst_new_symmetric_auc": 0.5873870446129431
+    "dti": 0.06804221930569511,
+    "ci95": [
+      0.06222907133733568,
+      0.07414839652802621
+    ],
+    "withheld_positive_pixels": 58731,
+    "tpw": 21716.888028091347,
+    "fpw": 1339198.3019403678,
+    "fnw": 37014.11197190865
   },
-  "correlation_overlap_vs_registry": {
-    "registry_rasters_checked_locally": 43,
-    "scope_caveat": "Locally hash-verified subset from GEMSDOE32+GEMSDOE70 clones; full-inventory certification is a selector step.",
-    "surface": {
-      "worst_spearman": 0.16045500916514394,
-      "worst_submission": "gems70-stepperamp-relay-diagnostic-BLOCKED-DO-NOT-SUBMIT.tif",
-      "duplicate_count": 0
-    },
-    "final_dots": {
-      "worst_spearman": 0.04447292568609795,
-      "worst_mutual_3px_overlap": 0.4596507144477206,
-      "worst_forward_3px_overlap": 0.5278521206622817,
-      "worst_forward_submission": "gems70-p5-submodular-multiphysics-hydro-54000-20261020.tif",
-      "duplicate_count": 0
-    },
-    "thresholds": {
-      "rho_limit": 0.9,
-      "overlap_limit": 0.7
-    },
-    "template_unique_bool_note": "Template 'unique' is False only because the local subset lacks a complete-inventory certificate; zero duplicates fired among the 43 checked rasters (two_phase readings in evidence/final_bundle.json). Full-inventory certification remains a selector step."
+  "best_comparable_control": "anisotropy",
+  "paired_difference_to_best_control": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "delta": 0.00018730259396551596,
+    "ci95": [
+      -0.0009781470527181837,
+      0.0013254914320979978
+    ],
+    "withheld_positive_pixels": 58731
   },
-  "raster_sha256": "20be05cc671c85484e4cfc8ea40d2fced71d7ec70f20ab915f36fcc68fcc4851",
-  "raster_file": "gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif",
-  "validator_output": {
-    "writer_checks_all_passed": true,
-    "independent_pass2_all_passed": true,
-    "no_nan_inside_footprint": true,
-    "values_in_0_1": true,
-    "n_nan_anywhere": 0,
-    "min": 0.0,
-    "max": 1.0,
-    "crs_shape_transform_match_sample": true,
-    "dots": 44090,
-    "dots_on_catalogue": 0,
-    "min_dot_distance_to_catalogue_px": 3.1622776601683795,
-    "metric_exact_vs_bruteforce_max_err": 7.105427357601002e-15
+  "canary_any_auc_above_090": false,
+  "registry": {
+    "scope": "Partial pinned template registry: rejection witness only, never uniqueness certification",
+    "complete": false,
+    "checked": 2,
+    "max_spearman": -0.0006582457393953083,
+    "max_forward_overlap_3px": 1.0,
+    "duplicate_count": 1,
+    "surface_gate": "FAIL",
+    "final_dot_gate": "NOT RUN \u2014 stopped before placement"
   },
-  "band_discoveries_measured": {
-    "band6_is_radiometric_total_count_spearman": 0.999951791113324,
-    "band6_vs_derived_tilt_spearman": 0.019949396585376457,
-    "band18_vs_gravity_dx_spearman": 0.9450998798494928,
-    "band18_vs_gravity_gradmag_spearman": -0.003953964565531005
+  "raster_sha256": "9489af2b7e1b06a249203d3c9d6dfe4ed469647f59ebe3a5ffe9c50c67e46b42",
+  "validator": {
+    "single_band": true,
+    "dtype_float32": true,
+    "dimensions_3730x3292": true,
+    "crs_epsg_32611": true,
+    "transform_matches_sample_submission": true,
+    "no_nan_anywhere": true,
+    "no_inf_anywhere": true,
+    "no_sentinel_values": true,
+    "range_0_1_guaranteed": true,
+    "min_ge_0": true,
+    "max_le_1": true,
+    "in_footprint_all_finite": true,
+    "in_footprint_range_0_1": true,
+    "outside_footprint_zero": true,
+    "zero_dots_on_mapped_catalogue": true
   },
-  "submission_name": "gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros",
-  "submission_note_le_140": "GEMSDOE77 contact-physics: derived tilt/AS/phase+front-base HGB, 44090 off-cat dots >3px, min-sep 2.8px",
-  "submission_note_chars": 103,
-  "download_ok_format_valid": true,
-  "submit_ok_selector_promoted": false,
+  "submission_name": "gems77-h77-urank-curvature-0d868dc271bb-research",
+  "note": "H77 selective-U rank curvature; research-only, literal registry gate failed; do not submit.",
+  "file": "docs/downloads/gems77-h77-urank-curvature-0d868dc271bb-research.tif",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "byte_novel_within_checked_registry": true,
+  "protocol_unique": false,
+  "approved_for_weekly_slot": false,
+  "weekly_slots_used": 0,
+  "organizer_confirmed_score": null,
   "verdict": "negative",
-  "verdict_reason": "Preregistered primary gate failed on seed-30 draw and under the amended two-draw rule: the new-physics block does not significantly improve pooled HOLDOUT-DTI over the standard block (two-draw paired delta +0.0026, 95% CI includes 0). Format-validity and uniqueness gates passed. Do not spend a weekly slot on this artifact; it is published as an auditable negative deliverable with full receipts.",
-  "organizer_confirmed_scores_copied": {
-    "public_leaderboard_1_2026-10-21": "xiaofanhu 0.4413 (DrivenData leaderboard page fetched 2026-10-21)",
-    "this_artifact": "none (never submitted by this session)",
-    "family_h33_0p2778": "OWNER-REPORT (user brief; no organizer receipt in inspected repos)"
-  },
-  "experiments_used": "3 of 3 (Exp1 holdout, Exp2 final build, Exp3 replication)",
-  "slots_spent": 0
+  "reason": "Literal surface duplicate stop; incomplete registry; boundary-support confound. Research-only TIFF, no slot approval.",
+  "experiments_run": 1,
+  "elapsed_seconds": 41.72,
+  "holdout_valid_for_promotion": false,
+  "holdout_caveat": "Post-run audit: 10px cross erosion insufficient for diagonal Gaussian stencil. Retained historical result only; no rerun.",
+  "support_audit": "evidence/support_audit.json"
 }
