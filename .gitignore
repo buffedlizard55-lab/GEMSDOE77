@@ -12,7 +12,7 @@ data/raw/
 data/processed/
 data/external/
 
-# Restored pinned inputs (regenerate with scripts/fetch_data.py)
-data/geodawn_rad_u8.tif
-data/existing_faults.tif
-data/sample_submission.tif
+# SHA-pinned cache inputs (regenerate with scripts/fetch_data.py)
+/data/sample_submission.tif
+/data/existing_faults.tif
+/data/geodawn_rad_u8.tif

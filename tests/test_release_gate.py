@@ -138,3 +138,24 @@ def test_consistent_promotion_can_pass_recorded_decision_gate(tmp_path):
     assert assess(row, tmp_path, root=tmp_path)["authorized_to_submit"]
     row["selector_approved"] = False
     assert not assess(row, tmp_path, root=tmp_path)["authorized_to_submit"]
+
+
+def test_malformed_nested_guardrails_fail_closed(tmp_path):
+    row = approval_row(tmp_path)
+    row['run_card'] = 'card.json'
+    payloads = [
+        {'registry': 'complete'},
+        {'uniqueness_audit': []},
+        {'registry_comparison': {'literal_reading': 'clear'}},
+        {'registry': {'duplicate_count': '0'}},
+        {'correlation_overlap_vs_registry': {'final_dots_max_forward_overlap_3px': float('nan')}},
+        {'registry': {'surface_max_forward_overlap_3px': float('inf')}},
+        {'registry': {'surface_max_forward_overlap_3px': -1}},
+        {'registry': {'surface_max_forward_overlap_3px': 1.1}},
+        {'registry': {'duplicate_count': False}},
+    ]
+    for payload in payloads:
+        (tmp_path / 'card.json').write_text(json.dumps({'verdict': 'promote', **payload}))
+        result = assess(row, tmp_path, root=tmp_path)
+        assert not result['authorized_to_submit'], payload
+        assert result['run_card_audit']['read_error'], payload

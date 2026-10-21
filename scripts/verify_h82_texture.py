@@ -39,7 +39,19 @@ def verify():
     checks["duplicate_stop_before_dots"] = (card["registry"]["surface_max_forward_overlap_3px"] > .70
         and card["registry"]["final_dots"].startswith("NOT PLACED"))
     checks["no_canary_leakage_flag"] = not card["leakage_canary"]["flagged"]
+    comparisons = []
+    for other in sorted((ROOT / "docs/downloads").glob("*.tif")):
+        if other == tif:
+            continue
+        with rasterio.open(other) as ds:
+            same_grid = (ds.shape, ds.crs, ds.transform) == (a.shape, rasterio.crs.CRS.from_epsg(32611),
+                rasterio.Affine(100, 0, 243350, 0, -100, 4508550))
+            equal = bool(np.array_equal(ds.read(1)[fp], a[fp])) if same_grid and ds.count == 1 else None
+        comparisons.append(dict(file=other.name, same_grid=same_grid, identical_footprint_values=equal))
+    checks["pixel_distinct_current_local_inventory"] = bool(comparisons) and all(
+        row["identical_footprint_values"] is False for row in comparisons)
     record = dict(evidence_class="INDEPENDENT ARTIFACT READBACK, not a score or organizer acceptance",
+        current_local_inventory=comparisons, current_local_inventory_count=len(comparisons),
         file=card["raster_path"], sha256=card["raster_sha256"], checks=checks,
         passed=all(checks.values()), min=float(a.min()), max=float(a.max()),
         nan_count=int(np.isnan(a).sum()), shape=list(a.shape), positive_support_pixels=int((a > 0).sum()))

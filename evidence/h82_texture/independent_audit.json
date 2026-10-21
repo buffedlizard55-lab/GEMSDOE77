@@ -1,5 +1,193 @@
 {
   "evidence_class": "INDEPENDENT ARTIFACT READBACK, not a score or organizer acceptance",
+  "current_local_inventory": [
+    {
+      "file": "gems77-ago-hybrid35-geophys-37654dots-dc66e42e-nan.tif",
+      "same_grid": true,
+      "identical_footprint_values": false
+    },
+    {
+      "file": "gems77-ago-hybrid35-geophys-37654dots-dc66e42e-zeros.tif",
+      "same_grid": true,
+      "identical_footprint_values": false
+    },
+    {
+      "file": "gems77-ago-hybrid50-geophys-37654dots-11b45670-nan.tif",
+      "same_grid": true,
+      "identical_footprint_values": false
+    },
+    {
+      "file": "gems77-ago-hybrid50-geophys-37654dots-11b45670-zeros.tif",
+      "same_grid": true,
+      "identical_footprint_values": false
+    },
+    {
+      "file": "gems77-ago-select-geophys-37654dots-909053c9-nan.tif",
+      "same_grid": true,
+      "identical_footprint_values": false
+    },
+    {
+      "file": "gems77-ago-select-geophys-37654dots-909053c9-zeros.tif",
+      "same_grid": true,
+      "identical_footprint_values": false
+    },
+    {
+      "file": "gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif",
+      "same_grid": true,
+      "identical_footprint_values": false
+    },
+    {
+      "file": "gems77-d77-blind-band-35106dots-20261021-926076f7-zeros.tif",
+      "same_grid": true,
+      "identical_footprint_values": false
+    },
+    {
+      "file": "gems77-h28-dotted-pruned2px-20261021-35b64879-zeros.tif",
+      "same_grid": true,
+      "identical_footprint_values": false
+    },
+    {
+      "file": "gems77-h77-lia-38323dots-20261021-aa5c9331-nan.tif",
+      "same_grid": true,
+      "identical_footprint_values": false
+    },
+    {
+      "file": "gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif",
+      "same_grid": true,
+      "identical_footprint_values": false
+    },
+    {
+      "file": "gems77-h77-urank-curvature-0d868dc271bb-research.tif",
+      "same_grid": true,
+      "identical_footprint_values": false
+    },
+    {
+      "file": "gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-nan.tif",
+      "same_grid": true,
+      "identical_footprint_values": false
+    },
+    {
+      "file": "gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.tif",
+      "same_grid": true,
+      "identical_footprint_values": false
+    },
+    {
+      "file": "gems77-h77e-knick-deconf-submod-36500dots-20261021-101e200b-nan.tif",
+      "same_grid": true,
+      "identical_footprint_values": false
+    },
+    {
+      "file": "gems77-h77e-knick-deconf-submod-36500dots-20261021-101e200b-zeros.tif",
+      "same_grid": true,
+      "identical_footprint_values": false
+    },
+    {
+      "file": "gems77-h77e-pure-submod-36500dots-20261021-e106c72c-zeros.tif",
+      "same_grid": true,
+      "identical_footprint_values": false
+    },
+    {
+      "file": "gems77-h77e-ucpeuler-ctx-37654dots-20261021-22873551-nan.tif",
+      "same_grid": true,
+      "identical_footprint_values": false
+    },
+    {
+      "file": "gems77-h77e-ucpeuler-ctx-37654dots-20261021-22873551-zeros.tif",
+      "same_grid": true,
+      "identical_footprint_values": false
+    },
+    {
+      "file": "gems77-h77g-demagtrough-gravstep-37654dots-20261021-08b78f3c-zeros.tif",
+      "same_grid": true,
+      "identical_footprint_values": false
+    },
+    {
+      "file": "gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY.tif",
+      "same_grid": true,
+      "identical_footprint_values": false
+    },
+    {
+      "file": "gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-nan.tif",
+      "same_grid": true,
+      "identical_footprint_values": false
+    },
+    {
+      "file": "gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros.tif",
+      "same_grid": true,
+      "identical_footprint_values": false
+    },
+    {
+      "file": "gems77-h79-crossgrad-ridge-37654dots-20261021-dd0dbf9c-nan.tif",
+      "same_grid": true,
+      "identical_footprint_values": false
+    },
+    {
+      "file": "gems77-h79-crossgrad-ridge-37654dots-20261021-dd0dbf9c-zeros.tif",
+      "same_grid": true,
+      "identical_footprint_values": false
+    },
+    {
+      "file": "gems77-h79-radhalo-lag3-37654-20261021-zeros.tif",
+      "same_grid": true,
+      "identical_footprint_values": false
+    },
+    {
+      "file": "gems77-h80-orphan-thermal-align-37654dots-20261021-zeros.tif",
+      "same_grid": true,
+      "identical_footprint_values": false
+    },
+    {
+      "file": "gems77-h80-riedel-wingcrack-tips-20261021-zeros.tif",
+      "same_grid": true,
+      "identical_footprint_values": false
+    },
+    {
+      "file": "gems77-h80t-tilt-persist-37654dots-20261021-7d5f7b11-nan.tif",
+      "same_grid": true,
+      "identical_footprint_values": false
+    },
+    {
+      "file": "gems77-h80t-tilt-persist-37654dots-20261021-7d5f7b11-zeros.tif",
+      "same_grid": true,
+      "identical_footprint_values": false
+    },
+    {
+      "file": "gems77-h81-slipcone-37654dots-20261021-0fbeaf41-nan.tif",
+      "same_grid": true,
+      "identical_footprint_values": false
+    },
+    {
+      "file": "gems77-h81-slipcone-37654dots-20261021-0fbeaf41-zeros.tif",
+      "same_grid": true,
+      "identical_footprint_values": false
+    },
+    {
+      "file": "gems77-step-propensity-submod300.tif",
+      "same_grid": true,
+      "identical_footprint_values": false
+    },
+    {
+      "file": "gems77-xsen-coincide-hgb-37654dots-20261021-zeros.tif",
+      "same_grid": true,
+      "identical_footprint_values": false
+    },
+    {
+      "file": "gems79-orient-persistence-37654dots-20261021-4abff47886.tif",
+      "same_grid": true,
+      "identical_footprint_values": false
+    },
+    {
+      "file": "gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-nan.tif",
+      "same_grid": true,
+      "identical_footprint_values": false
+    },
+    {
+      "file": "gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-zeros.tif",
+      "same_grid": true,
+      "identical_footprint_values": false
+    }
+  ],
+  "current_local_inventory_count": 37,
   "file": "docs/downloads/gems77-h82-texture-kt-bf0a3028b4fa-RESEARCH-ONLY.tif",
   "sha256": "c571af22cb08db9cb8cfd6edf0108364d95b0c3bec8316d09d3dfd116531790e",
   "checks": {
@@ -17,7 +205,8 @@
     "zip_exactly_one_identical_tiff": true,
     "negative_not_approved_no_slot": true,
     "duplicate_stop_before_dots": true,
-    "no_canary_leakage_flag": true
+    "no_canary_leakage_flag": true,
+    "pixel_distinct_current_local_inventory": true
   },
   "passed": true,
   "min": 0.0,

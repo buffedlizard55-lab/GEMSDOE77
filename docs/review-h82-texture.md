@@ -55,3 +55,9 @@ The named-file **0.2778 is OWNER-REPORT**, not a freshly verified exact-file org
 3. Establish one canonical incumbent artifact, fold/support definition and matched re-runnable baseline. Keep constrained/pure twins distinct. Do not authorize based on a stale baseline flag.
 4. Obtain authoritative data/receipt provenance through an approved authenticated workflow (no credentials in chat). Name an explicit new method lane, preregister canaries/ablation/control, and require matched improvement before selector consideration.
 5. Only after all gates pass: generate with the shared writer, validate exact bytes, run complete surface/final-dot registry audits, seek separate selector approval, observe the portal's current weekly cap, and attach the organizer receipt to the exact artifact SHA. No slot is selected by this session.
+
+## Parallel reconciliation and final local verification
+
+Main advanced through PRs #48/#49 during this session. Merged `origin/main` into the same session branch, preserving the independently generated H28 artifact, corrected H33 marginal-DTI analysis, stricter release-card schema checks, and earlier H81 review. Relabeled the older “no new TIFF generated” banner as an earlier parallel review so it does not contradict H82. Frozen H82 evidence still describes the 36-file inventory at experiment time, not the later H28 addition; additional current-inventory readback comparisons are in the independent audit. No experiment was rerun during reconciliation.
+
+Final merged local suite: **138 software tests passed**. Full CI build order, `scripts/verify_all.py`, independent H82 audit, local-link checks, ZIP/readback checks and release gate pass; authorization remains **0 files**. These are software/format checks, not organizer acceptance.
