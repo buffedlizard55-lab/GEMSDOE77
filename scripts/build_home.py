@@ -23,7 +23,7 @@ REPO = "https://github.com/buffedlizard55-lab/GEMSDOE77"
 LB = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
 PD = "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
-NAV = [("index.html", "Start here"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
+NAV = [("index.html", "Start here"), ("h82-executive-summary.html", "H82 · newest negative"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
        ("h77e-knick.html", "H77E-Knick · 0/816 firings"), ("release-review.html", "Release safety review"), ("executive-summary.html", "How to submit"),
        ("h81.html", "H81 · slip-cone"),
        ("h80t.html", "H80T · tilt-persist"), ("h80t-executive-summary.html", "H80T guide"),
@@ -82,6 +82,22 @@ def main():
     sub = jload("docs/data/h78_submission.json")
     lag_card = jload("evidence/h77l_run_card.json")
     orient_card = jload("evidence/h79_orient_run_card.json")
+    h82_card = jload("evidence/h82_run_card.json")
+    h82_rows = [x for x in lanes["lanes"] if x["lane"].startswith("H82:")]
+    if len(h82_rows) != 1 or not h82_card or h82_card["verdict"] != "negative" or h82_card["ok_to_submit"]:
+        raise ValueError("H82 research lane missing or incorrectly authorized")
+    h82 = h82_rows[0]
+    h82_file = D / h82["file"]
+    if (h82["name"] != h82_card["submission_name"] or
+        h82["sha256"] != h82_card["raster_sha256"] or
+        h82["note"] != h82_card["note"] or
+        h82["protocol_unique"] is not False or
+        hashlib.sha256(h82_file.read_bytes()).hexdigest() != h82["sha256"]):
+        raise ValueError("H82 manifest/bytes/run-card disagreement")
+    for fname in ("h82_run_card.json", "h82_e1.json", "h82_e2.json", "h82_e3.json"):
+        shutil.copyfile(ROOT / "evidence" / fname, D / "evidence" / fname)
+    shutil.copyfile(ROOT / "registry/preregistration_h82.json", D / "evidence/preregistration_h82.json")
+    shutil.copyfile(ROOT / "research/h82_hypotheses.md", D / "research/h82_hypotheses.md")
     orient_rows = [x for x in lanes["lanes"] if x["lane"].startswith("H79-ORIENT:")]
     if len(orient_rows) != 1 or not orient_card or orient_card["verdict"] != "negative" or orient_card["ok_to_submit"]:
         raise ValueError("H79-ORIENT research lane missing from manifest/card or wrong clearance")
@@ -133,6 +149,12 @@ def main():
     primary = next(x for x in lanes["lanes"] if x.get("primary"))
     # ---------------- status table (every file in the repository)
     def holdout_cell(x):
+        if x["lane"].startswith("H82:"):
+            h = h82_card["holdout_dti"]
+            return (f'<span class="chip bad">HOLDOUT-DTI {h["dti"]:.6f} '
+                    f'(95% CI {h["ci95"][0]:.6f}–{h["ci95"][1]:.6f}; '
+                    f'{e(h["evaluator_version"])}; {h["withheld_positive_pixels"]:,} withheld); '
+                    'NO</span>')
         if x["lane"].startswith("H77L:"):
             h = lag_card["holdout_dti"]
             return (f'<span class="chip warn">HOLDOUT-DTI {h["dti"]:.4f} '
@@ -194,6 +216,20 @@ def main():
              f'<th>Unique, literal rule (binding)</th><th>Unique, informative reading (diagnostic)</th>'
              f'<th>Beat the champion construction on the holdout?</th><th>Selector</th>'
              f'<th>Can I submit it?</th></tr>{rows}</table><p class="small muted">{e(lanes["note"])}</p>')
+    h82_score = h82_card["holdout_dti"]
+    h82_banner = (f'<section class="card dl research"><h2>⬇ New H82 research GeoTIFF — DOWNLOAD FOR INSPECTION ONLY</h2>'
+        f'<p class="verdict"><b>OK TO DOWNLOAD: YES.</b> <b>OK TO SUBMIT: NO.</b> '
+        f'Format preflight PASS (all finite, [0,1], sample grid), but H82 has only '
+        f'<b>HOLDOUT-DTI {h82_score["dti"]:.6f}</b> (gems57-pooled-hide-v2; '
+        f'{h82_score["withheld_positive_pixels"]:,} withheld positives; 95% CI '
+        f'{h82_score["ci95"][0]:.6f}–{h82_score["ci95"][1]:.6f}) and 1.0 forward '
+        f'3-pixel overlap with a SHA-pinned continuous prior. Scientific/uniqueness gates FAIL; '
+        f'no organizer receipt and zero weekly slots used.</p>'
+        f'<a class="btn" download href="{e(h82["file"])}">Download H82 .tif — INSPECTION ONLY</a> '
+        f'<a class="btn alt" download href="{e(h82["zip"])}">One-TIFF ZIP</a> '
+        f'<a href="h82-executive-summary.html">H82 executive summary / submission guide</a>'
+        f'<p class="small">SHA-256 <code>{e(h82["sha256"])}</code>. '
+        f'This is byte-distinct from checked H33, but NOT unique under the required overlap gate.</p></section>')
     pz = Path(primary["file"]).with_suffix(".zip").as_posix()
     zip_btn = f'<a class="btn alt" href="{e(pz)}" download>Same file as one-TIFF .zip</a>' if (D / pz).exists() else ""
     size_kb = (D / primary["file"]).stat().st_size / 1024
@@ -254,8 +290,8 @@ gates and currently says <b>NOT OK TO SUBMIT — 0 authorized files</b>.</p>"""
 Δ = {d["delta"]:+.4f} (95% CI {d["ci95"][0]:+.4f} to {d["ci95"][1]:+.4f}).</li>
 <li><b>Verdict:</b> <b>{e(card["verdict"].upper())}</b> — {e(card["verdict_reason"])}</li>
 <li><a href="h78.html">Full H78 page: the hypotheses, the three experiments, uniqueness and the run card →</a></li></ul>"""
-    body = f"""<h1>Start here</h1>
-<p><strong>Current review: no new TIFF generated; NOT OK TO SUBMIT.</strong> <a href="review-904a24d3.html">Three-pass audit and corrected H33 analysis</a>. Existing downloads are for inspection only.</p>
+    body = f"""{h82_banner}<h1>Start here</h1>
+<p><strong>Earlier review #49 generated no new TIFF; H82 above is a later negative research download. NOT OK TO SUBMIT.</strong> <a href="review-904a24d3.html">Earlier audit and corrected H33 analysis</a>.</p>
 <p>This repository builds and audits fault-probability GeoTIFFs for the <a href="{COMP}">DOE GEMS Prize</a>
 (DrivenData competition 306). The first box distinguishes downloading a file from permission to upload it. The table
 lists the reviewed research candidates, not every historical archived/NaN-twin file; see <a href="audit.html">archive audit</a>.</p>
@@ -283,6 +319,9 @@ not proof that the specific file received that score or that another submission 
 
     # ---------------- general executive summary (how to submit)
     guide = f"""<h1>Executive summary: how to submit — only AFTER approval</h1>
+<p class="verdict"><b>NEW H82 file:</b> <a href="{e(h82['file'])}" download>Download the format-valid TIFF for inspection</a>;
+<b>NOT OK TO SUBMIT</b>. See <a href="h82-executive-summary.html">its test result and exact name/note</a>.
+This is a negative experiment, not a competition submission authorization.</p>
 <p class="verdict"><b>Today: NOT OK TO SUBMIT any file here.</b> The featured H80 file is explicitly
 <b>RESEARCH ONLY</b>. Download is for inspection, not permission to upload. Before spending one of the official
 <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">three weekly feedback slots</a>, the shared uniqueness policy must
@@ -644,11 +683,11 @@ def _inject_h77e_knick_hero():
     if not rc77e:
         return
     sub = rc77e["submission_artifact"]
-    hero = f"""<section class="card dl"><h2>⬇ Latest H77E-Knick Research Deliverable (0 / 816 Informative Firings · Dual-Seed Positive Holdout)</h2>
+    hero = f"""<section class="card dl"><h2>⬇ Earlier H77E-Knick Research Deliverable (0 / 816 Informative Firings · Dual-Seed Positive Holdout)</h2>
 <p class="verdict"><b>OK to download: YES</b> (15/15 <code>vendor/gems57</code> + 17/17 grid checks PASS, binary float32 in <code>[0, 1]</code>, <code>0</code> NaNs).<br>
 <b>Not OK to submit (NOT OK TO SUBMIT automatically — inspection only without human selector Policy I17 sign-off):</b>
 45 space-filling &ge;70%-halo archive heatmaps trigger literal overlap; across ALL <code>816</code> &lt;70%-halo portfolio rasters AND all <code>18</code> sparse GEMSDOE77 files, forward 3-px overlap has <b>0 firings</b> (<code>max = 0.66800 &le; 0.70</code>; local siblings <code>max = 0.42104 &le; 0.70</code>).<br>
-<b>Official HOLDOUT-DTI (<code>gems57-pooled-hide-v2</code>):</b> <code>0.126664</code> on Seed 20 (95% CI <code>0.111196–0.141749</code>; +0.0303 vs fold-fair H33) &amp; <code>0.124727</code> on Seed 30 (95% CI <code>0.109650–0.138262</code>; +0.0257 vs fold-fair H33); pure physics twin <code>0.155623</code> (Seed 20) / <code>0.154666</code> (Seed 30).</p>
+<b>Local HOLDOUT-DTI (<code>gems57-pooled-hide-v2</code>):</b> <code>0.126664</code> on Seed 20 (95% CI <code>0.111196–0.141749</code>; +0.0303 vs fold-fair H33) &amp; <code>0.124727</code> on Seed 30 (95% CI <code>0.109650–0.138262</code>; +0.0257 vs fold-fair H33); pure physics twin <code>0.155623</code> (Seed 20) / <code>0.154666</code> (Seed 30).</p>
 <a class="btn" href="downloads/{e(Path(sub["primary_geotiff"]).name)}" download>Download H77E-Knick .tif ({sub["file_bytes"]//1024} KB)</a>
 <a class="btn alt" href="downloads/{e(Path(sub["primary_zip"]).name)}" download>Single-TIFF .zip ({sub["zip_bytes"]//1024} KB)</a>
 <a class="btn alt" href="h77e-knick.html">Full H77E-Knick report &amp; figures →</a>
