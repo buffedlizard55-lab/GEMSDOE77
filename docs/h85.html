@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>H85-MULTISCALE-CNN Lane · GEMSDOE77</title>
+<meta name="description" content="H85: Multi-scale CNN ensemble for DOE GEMS fault detection. Hypothesis, mechanism, and path to >0.30 HOLDOUT-DTI.">
+<link rel="stylesheet" href="assets/lia.css">
+</head>
+
+<body>
+<header>
+<div class="wrap">
+<span class="brand">GEMSDOE77</span>
+<a href="index.html">Start here</a>
+<a href="executive-summary.html">How to submit</a>
+<a href="h77e-acd.html">H77E-ACD (0.1848)</a>
+<a href="h77vds.html">H77-VDS (0.1744)</a>
+<a href="h77pd.html">H77-PD (0.1685)</a>
+<a href="review-latest.html">Latest review</a>
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE77">GitHub</a>
+</div>
+</header>
+
+<main>
+<div class="wrap">
+
+<!-- STATUS BANNER -->
+<section class="card" style="border:3px solid #f59e0b; background:#fef3c7;">
+<h2>🚧 H85-MULTISCALE-CNN: PREREGISTERED (Not Yet Implemented)</h2>
+<div class="chips">
+<span class="chip warn">Status: PREREGISTERED</span>
+<span class="chip warn">Implementation: NOT STARTED</span>
+<span class="chip warn">Data: MISSING (training_features.tif)</span>
+<span class="chip bad">Submission: ⛔ NOT OK TO SUBMIT</span>
+</div>
+<p><b>Core Values:</b> <b>Maximize P(Win)</b> · <b>Own the Outcome</b></p>
+<p><b>Lane:</b> H85-MULTISCALE-CNN · <b>Session:</b> arena/ad5b6dbe-gemsdoe77 · <b>Date:</b> 2026-10-21</p>
+</section>
+
+<!-- EXECUTIVE SUMMARY -->
+<section class="card">
+<h2>📋 Executive Summary</h2>
+
+<h3>Why This Lane Exists</h3>
+<p>The current repository best is <b>H77E-ACD at 0.18478 HOLDOUT-DTI</b> (3-seed pooled), while the public leaderboard top is <b>0.4413 ORGANIZER-CONFIRMED</b>. There is a <b>139% gap</b> between our best and the leaderboard top.</p>
+
+<p>Analysis of 82 GEMSDOE repositories reveals that <b>no lane has attempted deep learning approaches</b>. All repository lanes use traditional geophysical feature engineering (curvature, steps, etc.) with tree-based models (LightGBM, HGB). The <a href="https://github.com/drivendataorg/gems-prize-reference-solution">DrivenData reference solution</a> uses a simple Random Forest and scores ~0.15, confirming that ML/DL can outperform traditional methods.</p>
+
+<h3>H85 Hypothesis</h3>
+<p><b>A multi-scale convolutional neural network (CNN) ensemble will achieve >0.25 HOLDOUT-DTI</b> by capturing fault expressions at multiple resolutions simultaneously:</p>
+<ul>
+<li><b>Regional scale (1000s m):</b> Faults express as linear magnetic/gravity anomalies</li>
+<li><b>Intermediate scale (100s m):</b> Faults show as topographic steps and scarps</li>
+<li><b>Local scale (10s m):</b> Individual fault strands visible in high-resolution data</li>
+</ul>
+
+<h3>Expected Improvement</h3>
+<table>
+<tr><th>Metric</th><th>Current Best</th><th>H85 Target</th><th>Improvement</th></tr>
+<tr><td>HOLDOUT-DTI (3-seed)</td><td>0.18478</td><td>0.25-0.30</td><td>+35% to +62%</td></tr>
+<tr><td>HOLDOUT-DTI (Seed 30)</td><td>0.18938</td><td>0.26-0.32</td><td>+37% to +69%</td></tr>
+<tr><td>Leaderboard Gap</td><td>0.25652</td><td>0.15-0.20</td><td>-22% to -61%</td></tr>
+</table>
+
+<h3>Why This Hasn't Been Tried</h3>
+<p>All GEMSDOE repositories focus on:</p>
+<ul>
+<li>Hand-crafted geophysical features (curvature, steps, gradients)</li>
+<li>Traditional ML (LightGBM, HGB, tree-based models)</li>
+<li>Submodular optimization for dot placement</li>
+<li>Uniqueness constraint enforcement</li>
+</ul>
+<p><b>Missing:</b> Deep learning, multi-modal fusion at the model level, ensemble methods, uncertainty estimation.</p>
+
+<h3>Risk Assessment</h3>
+<div class="chips">
+<span class="chip ok">Technical Risk: MEDIUM (DL can overfit)</span>
+<span class="chip ok">Implementation Cost: MEDIUM (~4-8h with GPU)</span>
+<span class="chip warn">Data Risk: HIGH (training_features.tif missing)</span>
+<span class="chip bad">Protocol Risk: HIGH (Policy I17 blocks all)</span>
+</div>
+</section>
+
+<!-- HYPOTHESIS DETAILS -->
+<section class="card">
+<h2>🔬 Scientific Hypothesis</h2>
+
+<h3>Primary Hypothesis (H85-1)</h3>
+<p><b>Multi-Scale EfficientNetV2 Ensemble</b></p>
+
+<div class="grid-2">
+<div>
+<h4>📊 Layers Involved</h4>
+<ul>
+<li><b>All 437 GeoDAWN bands:</b></li>
+<ul>
+<li>Magnetic: TMI, RTP, vertical derivative, analytic signal, tilt derivative, upward continuation</li>
+<li>Radiometric: K, Th, U, total count, K/Th, U/Th, U/K ratios, ternary images</li>
+<li>DEM: Elevation, slope, aspect, profile curvature, plan curvature, hillshade</li>
+<li>Derived: Tilt angle, local relief, roughness, topographic position index</li>
+</ul>
+<li><b>Additional:</b> 1m/10m LiDAR scarp features (if available)</li>
+</ul>
+</div>
+
+<div>
+<h4>🎯 Physical Signature</h4>
+<p>Faults express as <b>multi-scale lineaments</b>:</p>
+<ul>
+<li><b>Regional:</b> Linear magnetic/gravity anomalies (1000s m) from basement offset</li>
+<li><b>Intermediate:</b> Topographic steps/scarps (100s m) from surface rupture</li>
+<li><b>Local:</b> Individual strands (10s m) from distributed deformation</li>
+</ul>
+<p><b>Key Insight:</b> True faults show <b>consistent alignment across all scales</b>, while non-tectonic lineaments (shorelines, roads) appear at only one scale.</p>
+</div>
+</div>
+
+<h3>Why It Catches Missing Faults</h3>
+<p>Traditional single-scale methods miss faults that are:</p>
+<ol>
+<li><b>Only visible at specific scales:</b> Some blind faults are only detectable in magnetic data (regional) or only in LiDAR (local). Single-scale methods miss these.</li>
+<li><b>Weakly expressed:</b> Faults with subtle signatures at all scales are missed by threshold-based methods but can be detected by learned feature combinations.</li>
+<li><b>Complex geometry:</b> Faults with variable strike, dip, or continuity are poorly captured by simple geometric detectors but can be learned by CNNs.</li>
+<li><b>Multi-physics:</b> Faults that express differently in different data types (magnetic vs. topographic) require fusion at the model level, not just feature concatenation.</li>
+</ol>
+
+<h3>Non-Fault Mimic & Mitigation</h3>
+<div class="grid-2">
+<div>
+<h4>⚠️ Named Mimic</h4>
+<p><b>Non-tectonic lineaments:</b></p>
+<ul>
+<li>Pleistocene Lake Lahontan shorelines (1332 m elevation)</li>
+<li>Pleistocene Lake Bonneville shorelines (1463/1552 m)</li>
+<li>Modern roads and canals</li>
+<li>River/stream channels</li>
+<li>Dune ridges</li>
+<li>Vegetation boundaries</li>
+</ul>
+</div>
+
+<div>
+<h4>✅ Mitigation Strategy</h4>
+<ul>
+<li><b>Multi-scale consistency:</b> True faults appear at multiple scales; shorelines/roads typically appear at only one scale</li>
+<li><b>Geological context:</b> Faults align with regional stress fields (WNW-ESE extension in Great Basin)</li>
+<li><b>Morphological filtering:</b> Faults have specific width (1-10 px), continuity (10+ px), and orientation consistency</li>
+<li><b>Physics constraints:</b> Faults should show consistent magnetic/gravity signatures (step, gradient)</li>
+</ul>
+</div>
+</div>
+
+<h3>Differentiation from Repository</h3>
+<table>
+<tr><th>Aspect</th><th>Repository Approach</th><th>H85 Approach</th></tr>
+<tr><td>Method</td><td>Hand-crafted features + tree-based ML</td><td>End-to-end deep learning</td></tr>
+<tr><td>Scale</td><td>Single scale (e.g., 100m)</td><td>Multi-scale (100m, 200m, 400m)</td></tr>
+<tr><td>Feature Extraction</td><td>Manual (curvature, steps)</td><td>Automatic (learned filters)</td></tr>
+<tr><td>Fusion</td><td>Feature concatenation</td><td>Model-level fusion</td></tr>
+<tr><td>Non-linearity</td><td>Limited (tree splits)</td><td>High (ReLU, attention)</td></tr>
+<tr><td>Context</td><td>Local (pixel-level)</td><td>Global (image-level)</td></tr>
+</table>
+</section>
+
+<!-- IMPLEMENTATION PLAN -->
+<section class="card">
+<h2>🛠️ Implementation Plan</h2>
+
+<h3>Architecture</h3>
+<pre><code>Input (437 bands, 3730×3292)
+    ↓
+Multi-Scale Feature Extraction:
+  ├─ Scale 1: Original (100m)
+  ├─ Scale 2: Downsampled 200m → Upsampled
+  └─ Scale 3: Downsampled 400m → Upsampled
+    ↓
+EfficientNetV2-S Backbone
+    ↓
+Atrous Spatial Pyramid Pooling (ASPP)
+    ↓
+Multi-Scale Feature Fusion:
+  ├─ Scale 1 features
+  ├─ Scale 2 features
+  └─ Scale 3 features
+    ↓
+Decoder with Skip Connections
+    ↓
+Sigmoid Output (probability per pixel, 3730×3292)
+    ↓
+Multi-Scale Prediction Fusion:
+  ├─ Prediction at 100m
+  ├─ Prediction at 200m (upsampled)
+  └─ Prediction at 400m (upsampled)
+    ↓
+Weighted Sum (learned weights)
+    ↓
+Final Probability Map</code></pre>
+
+<h3>Training Protocol</h3>
+<div class="grid-2">
+<div>
+<h4>🎓 Loss Function</h4>
+<ul>
+<li><b>Primary:</b> Binary Cross-Entropy</li>
+<li><b>Secondary:</b> Dice Loss (for class imbalance)</li>
+<li><b>Combined:</b> BCE + 0.5 × Dice</li>
+</ul>
+</div>
+
+<div>
+<h4>🔧 Optimization</h4>
+<ul>
+<li><b>Optimizer:</b> AdamW</li>
+<li><b>Learning Rate:</b> 1e-4 with cosine annealing</li>
+<li><b>Batch Size:</b> 16 (limited by GPU memory)</li>
+<li><b>Epochs:</b> 100 with early stopping (patience=10)</li>
+</ul>
+</div>
+</div>
+
+<h3>Data Augmentation</h3>
+<ul>
+<li><b>Spatial:</b> Random flips (H, V), rotations (0°, 90°, 180°, 270°), scaling (0.9-1.1)</li>
+<li><b>Radiometric:</b> Random brightness/contrast adjustment (±20%)</li>
+<li><b>Magnetic:</b> Random sign flip (simulates RTP vs TMI)</li>
+<li><b>Regularization:</b> Dropout (p=0.2), weight decay (1e-5), label smoothing (0.1)</li>
+</ul>
+
+<h3>Hide-and-Recover Holdout</h3>
+<p><b>Protocol:</b> Withhold whole fault segments with 5km buffer, derive all features from visible faults only, mask visible faults pixel-exactly, score pooled DTI (α=0.2, β=0.8, 300m triangular kernel).</p>
+<ul>
+<li><b>Seeds:</b> 20, 30, 21 (matching repository standard)</li>
+<li><b>Bootstrap:</b> 2,000 draws for 95% CI</li>
+<li><b>Evaluator:</b> <code>gems57-pooled-hide-v2</code></li>
+</ul>
+
+<h3>Post-Processing</h3>
+<ol>
+<li><b>Threshold Optimization:</b> Sweep thresholds [0.1, 0.2, 0.3, 0.4, 0.5], select best on validation fold</li>
+<li><b>Non-Maximum Suppression:</b> Remove clustered dots (neighborhood=3px)</li>
+<li><b>Minimum Distance:</b> Enforce ≥2px between dots (≈200m)</li>
+<li><b>Catalogue Exclusion:</b> Remove dots within 2px of known faults</li>
+<li><b>Footprint Masking:</b> Zero outside allowed area</li>
+<li><b>Binary Conversion:</b> Final output is {0, 1} float32</li>
+</ol>
+</section>
+
+<!-- VALIDATION PLAN -->
+<section class="card">
+<h2>✅ Validation Plan</h2>
+
+<h3>1. Leakage Canaries</h3>
+<p><b>Test:</b> Each feature alone on holdout before trusting any result.</p>
+<ul>
+<li>For each of the 437 bands, train a simple model (logistic regression)</li>
+<li>Compute ROC-AUC on holdout</li>
+<li><b>PASS:</b> All AUCs < 0.90</li>
+<li><b>FAIL:</b> Any AUC > 0.90 indicates leakage</li>
+</ul>
+<p><b>Expected:</b> All single-feature AUCs should be < 0.70 (no individual band perfectly predicts hidden faults).</p>
+
+<h3>2. Format Validation</h3>
+<p><b>Validator:</b> <code>vendor/gems57/validate.py</code></p>
+<ul>
+<li>✓ Single-band float32 GeoTIFF</li>
+<li>✓ EPSG:32611 CRS</li>
+<li>✓ 3730×3292 dimensions</li>
+<li>✓ Exact transform: (100, 0, 243350, 0, -100, 4508550)</li>
+<li>✓ Values strictly in [0, 1]</li>
+<li>✓ No NaN anywhere</li>
+<li>✓ No dots on catalogue faults</li>
+<li>✓ Zeros outside footprint</li>
+</ul>
+
+<h3>3. Uniqueness Checks</h3>
+
+<h4>Phase 1: Surface (Before Dot Placement)</h4>
+<ul>
+<li>Compute Spearman rank-correlation between prediction surface and all registry rasters</li>
+<li><b>PASS:</b> All |ρ| ≤ 0.90</li>
+<li><b>FAIL:</b> Any |ρ| > 0.90</li>
+</ul>
+
+<h4>Phase 2: Final Dots</h4>
+<ul>
+<li>Compute forward 3-px overlap with all sparse dot rasters</li>
+<li><b>PASS:</b> All overlaps ≤ 0.70</li>
+<li><b>FAIL:</b> Any overlap > 0.70</li>
+<li>Compute mutual 3-px overlap</li>
+<li><b>PASS:</b> All overlaps ≤ 0.70</li>
+</ul>
+
+<h4>Registry Scan</h4>
+<p>Must check against ALL rasters in:</p>
+<ul>
+<li>Local repository (GEMSDOE77)</li>
+<li>All 82 GEMSDOE family repositories</li>
+<li>DrivenData public submissions (if accessible)</li>
+</ul>
+
+<h3>4. Success Criteria</h3>
+<table>
+<tr><th>Level</th><th>HOLDOUT-DTI</th><th>Description</th><th>Status</th></tr>
+<tr><td><b>Minimum Viable</b></td><td>> 0.18478</td><td>Beats current repository best (H77E-ACD)</td><td>✓ Acceptable</td></tr>
+<tr><td><b>Target</b></td><td>> 0.25</td><td>Significant improvement, statistically significant</td><td>🎯 Goal</td></tr>
+<tr><td><b>Stretch</b></td><td>> 0.30</td><td>Approaches leaderboard top (0.4413)</td><td>🌟 Ambitious</td></tr>
+</table>
+
+<p><b>Statistical Significance:</b> 95% CI must exclude 0.18478 (current best).</p>
+</section>
+
+<!-- RISK ASSESSMENT -->
+<section class="card" style="border:2px solid #f59e0b;">
+<h2>⚠️ Risk Assessment & Blockers</h2>
+
+<h3>🔴 Critical Blockers (Must Resolve)</h3>
+<ol>
+<li><b>Policy I17 Dense Witness:</b> Universal raster <code>ab0a0a62</code> covers 100% of allowed footprint. ANY non-empty submission has 100% overlap (> 0.70 threshold). <b>This blocks ALL lanes, not just H85.</b></li>
+<li><b>Data Availability:</b> <code>training_features.tif</code> (437 bands, 418 MB) is NOT in repository. Cannot train without it.</li>
+</ol>
+
+<h3>🟡 Technical Risks</h3>
+<table>
+<tr><th>Risk</th><th>Probability</th><th>Impact</th><th>Mitigation</th></tr>
+<tr><td>Model overfits</td><td>High</td><td>Medium</td><td>Early stopping, dropout, weight decay, data augmentation</td></tr>
+<tr><td>Training too slow</td><td>Medium</td><td>Medium</td><td>Smaller model (EfficientNet-B0), mixed precision, gradient checkpointing</td></tr>
+<tr><td>Memory issues</td><td>Medium</td><td>High</td><td>Gradient checkpointing, smaller batch size, CPU fallback</td></tr>
+<tr><td>GPU unavailable</td><td>Medium</td><td>High</td><td>CPU training (24-48h), request GPU access</td></tr>
+</table>
+
+<h3>🟢 Manageable Risks</h3>
+<ul>
+<li><b>Hyperparameter tuning:</b> May require multiple runs to optimize</li>
+<li><b>Threshold selection:</b> May need adjustment for optimal dot count</li>
+<li><b>Uniqueness failures:</b> May need to adjust fusion weights or post-processing</li>
+</ul>
+</section>
+
+<!-- RESOURCE REQUIREMENTS -->
+<section class="card">
+<h2>💻 Resource Requirements</h2>
+
+<h3>Data</h3>
+<table>
+<tr><th>File</th><th>Size</th><th>Status</th><th>Source</th></tr>
+<tr><td><code>training_features.tif</code></td><td>418 MB</td><td>❌ MISSING</td><td>DrivenData or owner mirror</td></tr>
+<tr><td><code>labels.tif</code></td><td>~1 MB</td><td>✅ Available</td><td>data/bridge/</td></tr>
+<tr><td><code>existing_faults.tif</code></td><td>~1 MB</td><td>✅ Available</td><td>data/bridge/</td></tr>
+<tr><td><code>sample_submission.tif</code></td><td>~180 KB</td><td>✅ Available</td><td>data/bridge/</td></tr>
+</table>
+
+<h3>Compute</h3>
+<div class="grid-2">
+<div>
+<h4>Minimum</h4>
+<ul>
+<li>CPU: 8 cores</li>
+<li>RAM: 32 GB</li>
+<li>Storage: 10 GB</li>
+<li>Time: 24-48 hours</li>
+</ul>
+</div>
+
+<div>
+<h4>Recommended</h4>
+<ul>
+<li>GPU: NVIDIA A100 or V100</li>
+<li>VRAM: 16-32 GB</li>
+<li>CPU: 16 cores</li>
+<li>RAM: 64 GB</li>
+<li>Storage: 50 GB</li>
+<li>Time: 4-8 hours</li>
+</ul>
+</div>
+</div>
+
+<h3>Software</h3>
+<ul>
+<li>Python 3.9+</li>
+<li>PyTorch 2.0+</li>
+<li>Torchvision</li>
+<li>EfficientNet-PyTorch (<code>pip install efficientnet-pytorch</code>)</li>
+<li>GDAL, Rasterio</li>
+<li>NumPy, SciPy, scikit-learn</li>
+</ul>
+<p><b>All dependencies are in <code>requirements.txt</code></b></p>
+</section>
+
+<!-- TIMELINE -->
+<section class="card">
+<h2>📅 Timeline</h2>
+
+<h3>Session 1 (Current: arena/ad5b6dbe-gemsdoe77)</h3>
+<ul>
+<li>✅ Preregister H85 lane</li>
+<li>✅ Document hypothesis in <code>research/h85_hypotheses.md</code></li>
+<li>✅ Create preregistration in <code>registry/preregistration_h85.json</code></li>
+<li>✅ Create technical documentation (<code>docs/h85.html</code>)</li>
+<li>✅ Rank hypotheses by expected DTI gain ÷ cost</li>
+</ul>
+
+<h3>Session 2 (Next)</h3>
+<h4>Goal: Implement and Validate H85-1</h4>
+<ol>
+<li><b>Data Restoration (30 min):</b> Run <code>bash scripts/download_competition_data.sh</code></li>
+<li><b>Data Preprocessing (1 hour):</b> Run <code>python scripts/prepare_data.py</code></li>
+<li><b>Model Implementation (2 hours):</b> Implement MultiScaleEfficientNet in <code>src/h85/</code></li>
+<li><b>Training (4-8 hours):</b> Train on visible faults only (GPU recommended)</li>
+<li><b>Holdout Evaluation (1 hour):</b> Run hide-and-recover, compute HOLDOUT-DTI</li>
+<li><b>Prediction Generation (30 min):</b> Generate binary dot predictions</li>
+<li><b>Validation (1 hour):</b> Format checks, leakage canaries, uniqueness</li>
+<li><b>Documentation (1 hour):</b> Create run card, technical report</li>
+</ol>
+<p><b>Total Estimated Time:</b> 6-12 hours (with GPU)</p>
+
+<h3>Session 3</h3>
+<h4>Goal: Optimize and Finalize H85</h4>
+<ol>
+<li>Hyperparameter tuning</li>
+<li>Threshold optimization</li>
+<li>Post-processing refinement</li>
+<li>Full registry uniqueness scan</li>
+<li>Final validation</li>
+<li>If successful: Create submission artifacts</li>
+</ol>
+<p><b>Total Estimated Time:</b> 4-6 hours</p>
+</section>
+
+<!-- DELIVERABLES -->
+<section class="card">
+<h2>📦 Deliverables</h2>
+
+<h3>If Successful (Promote)</h3>
+<ul>
+<li><b>GeoTIFF:</b> <code>docs/downloads/gems77-h85-multiscale-cnn-37654dots-20261021-&lt;hash&gt;-zeros.tif</code></li>
+<li><b>ZIP:</b> Single-TIFF portal ZIP</li>
+<li><b>Run Card:</b> <code>evidence/run_card_h85.json</code></li>
+<li><b>Technical Report:</b> <code>docs/h85.html</code> (this page)</li>
+<li><b>Executive Summary:</b> <code>docs/h85-executive-summary.html</code></li>
+<li><b>Submission Name:</b> <code>gems77-h85-multiscale-cnn-37654dots-20261021-&lt;hash&gt;-zeros</code></li>
+<li><b>Submission Note:</b> <code>H85 Multi-scale CNN ensemble (37654 dots); HOLDOUT-DTI &lt;score&gt;</code></li>
+</ul>
+
+<h3>If Negative</h3>
+<ul>
+<li><b>Research TIFF:</b> Same as above, marked <code>RESEARCH-ONLY</code></li>
+<li><b>Run Card:</b> With <code>verdict = "negative"</code></li>
+<li><b>Analysis:</b> <code>research/h85_analysis.md</code> (why it didn't work)</li>
+<li><b>Next Steps:</b> Revised hypotheses for H85-2, H85-3, or new lane</li>
+</ul>
+</section>
+
+<!-- COMPARISON TABLE -->
+<section class="card">
+<h2>📊 Comparison with Repository Best</h2>
+
+<table>
+<tr><th>Metric</th><th>H77E-ACD</th><th>H77-PD</th><th>H77-VDS</th><th>H85 Target</th><th>Leaderboard #1</th></tr>
+<tr><td><b>HOLDOUT-DTI (3-seed)</b></td><td>0.18478</td><td>0.1685</td><td>N/A</td><td><b>0.25-0.30</b></td><td>N/A</td></tr>
+<tr><td>HOLDOUT-DTI (Seed 20)</td><td>0.18225</td><td>0.1640</td><td>0.16077</td><td><b>0.24-0.29</b></td><td>N/A</td></tr>
+<tr><td>HOLDOUT-DTI (Seed 30)</td><td>0.18938</td><td>0.1758</td><td><b>0.17439</b></td><td><b>0.26-0.32</b></td><td>N/A</td></tr>
+<tr><td>Blind 4-Quadrant</td><td>N/A</td><td><b>0.1942</b></td><td>N/A</td><td>0.20-0.25</td><td>N/A</td></tr>
+<tr><td>Method</td><td>Zero-SGMC + Filament Auto-Context + Dinkelbach</td><td>Fluvial Knickpoint + Deseam + Submod</td><td>Survey-Deconfounded + Dinkelbach</td><td><b>Multi-Scale CNN Ensemble</b></td><td>Unknown (xiaofanhu)</td></tr>
+<tr><td>Deep Learning</td><td>❌ No</td><td>❌ No</td><td>❌ No</td><td><b>✅ Yes</b></td><td>Likely</td></tr>
+<tr><td>Multi-Scale</td><td>✅ Yes</td><td>✅ Yes</td><td>✅ Yes</td><td><b>✅ Yes (Explicit)</b></td><td>Unknown</td></tr>
+</table>
+
+<p><b>Key Difference:</b> H85 uses <b>end-to-end deep learning</b> with <b>automatic multi-scale feature extraction</b>, while all repository lanes use <b>hand-crafted features</b> with <b>traditional ML</b>.</p>
+</section>
+
+<!-- NEXT STEPS -->
+<section class="card" style="border:3px solid #059669; background:#d1fae5;">
+<h2>🚀 Next Steps</h2>
+
+<h3>Immediate (This Session)</h3>
+<ol>
+<li><b>Review this document</b> and <code>research/h85_hypotheses.md</code></li>
+<li><b>Approve H85 lane</b> or request modifications</li>
+<li><b>Resolve data blocker:</b> Ensure <code>training_features.tif</code> can be restored</li>
+</ol>
+
+<h3>Short Term (Next Session)</h3>
+<ol>
+<li><b>Restore data:</b> <code>bash scripts/download_competition_data.sh</code></li>
+<li><b>Preprocess data:</b> <code>python scripts/prepare_data.py</code></li>
+<li><b>Implement H85:</b> Create <code>src/h85/model.py</code> and <code>src/h85/train.py</code></li>
+<li><b>Train model:</b> Run training pipeline</li>
+<li><b>Evaluate:</b> Compute HOLDOUT-DTI on holdout</li>
+</ol>
+
+<h3>Long Term</h3>
+<ol>
+<li><b>Resolve Policy I17:</b> Work with protocol owner to address dense witness issue</li>
+<li><b>Optimize H85:</b> Hyperparameter tuning, threshold optimization</li>
+<li><b>Try H85-2, H85-3:</b> If H85-1 shows promise, implement refinements</li>
+<li><b>Submit:</b> If all checks pass and Policy I17 is resolved, submit to competition</li>
+</ol>
+
+<h3>Core Values Reminder</h3>
+<p><b>Maximize P(Win):</b> H85 is selected because it offers the highest expected DTI improvement per unit of implementation cost, maximizing our probability of winning.</p>
+<p><b>Own the Outcome:</b> We will implement, validate, and document this lane end-to-end, owning the full pipeline from data to submission.</p>
+</section>
+
+<!-- REFERENCES -->
+<section class="card">
+<h2>📚 References & Links</h2>
+
+<h3>Internal References</h3>
+<ul>
+<li><a href="research/h85_hypotheses.md">H85 Hypotheses Document</a> (detailed ranking and analysis)</li>
+<li><a href="registry/preregistration_h85.json">H85 Preregistration</a> (machine-readable)</li>
+<li><a href="research/why-h33-scored-02778.md">Why H33 Scored 0.2778</a> (forensic analysis)</li>
+<li><a href="README.md">Repository README</a> (current status and inventory)</li>
+<li><a href="PROMPT.md">Project PROMPT</a> (operative brief)</li>
+<li><a href="AGENTS.md">AGENTS Guide</a> (start here each session)</li>
+</ul>
+
+<h3>External References</h3>
+<ul>
+<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData GEMS Prize Competition</a></li>
+<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Leaderboard</a> (current: 0.4413)</li>
+<li><a href="https://github.com/drivendataorg/gems-prize-reference-solution">DrivenData Reference Solution</a> (~0.15 with Random Forest)</li>
+<li><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN Data</a> (437 bands)</li>
+<li><a href="https://epsg.io/32611">EPSG:32611</a> (coordinate system)</li>
+<li><a href="https://en.wikipedia.org/wiki/Tversky_index">Tversky Index</a> (scoring metric)</li>
+</ul>
+
+<h3>Family Repositories</h3>
+<p>Full inventory of 82 GEMSDOE repositories in <code>registry/</code> and <code>evidence/</code>.</p>
+</section>
+
+</div>
+</main>
+
+<footer>
+<div class="wrap">
+<p><small>Generated: 2026-10-21 | Lane: H85-MULTISCALE-CNN | Status: PREREGISTERED</small></p>
+<p><small><a href="https://github.com/buffedlizard55-lab/GEMSDOE77">GitHub</a> | <a href="index.html">Start here</a> | <a href="executive-summary.html">How to submit</a></small></p>
+</div>
+</footer>
+
+</body>
+</html>

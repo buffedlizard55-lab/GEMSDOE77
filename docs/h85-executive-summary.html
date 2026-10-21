@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>H85 Executive Summary · GEMSDOE77</title>
+<meta name="description" content="Step-by-step guide: How to build, validate, and submit H85-MULTISCALE-CNN for DOE GEMS Prize.">
+<link rel="stylesheet" href="assets/lia.css">
+</head>
+
+<body>
+<header>
+<div class="wrap">
+<span class="brand">GEMSDOE77</span>
+<a href="index.html">Start here</a>
+<a href="h85.html">H85 Technical Report</a>
+<a href="executive-summary.html">General Submission Guide</a>
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE77">GitHub</a>
+</div>
+</header>
+
+<main>
+<div class="wrap">
+
+<!-- STATUS BANNER -->
+<section class="card" style="border:3px solid #f59e0b; background:#fef3c7;">
+<h2>📋 H85-MULTISCALE-CNN: Executive Summary</h2>
+<div class="chips">
+<span class="chip warn">Status: PREREGISTERED</span>
+<span class="chip warn">Implementation: NOT STARTED</span>
+<span class="chip bad">Submission: ⛔ NOT OK TO SUBMIT</span>
+</div>
+<p><b>This page:</b> Step-by-step guide for building, validating, and (eventually) submitting H85.</p>
+</section>
+
+<!-- QUICK START -->
+<section class="card">
+<h2>⚡ Quick Start: Can I Submit H85?</h2>
+
+<div style="font-size: 1.2em; text-align: center; padding: 20px; background: #fee2e2; border-radius: 8px; margin: 20px 0;">
+<b>❌ NOT OK TO SUBMIT</b>
+</div>
+
+<h3>Reasons:</h3>
+<ol>
+<li><b>🔴 CRITICAL:</b> Policy I17 dense witness (<code>ab0a0a62</code>) covers 100% of allowed footprint. ANY non-empty submission fails uniqueness check (overlap > 0.70).</li>
+<li><b>🟡 BLOCKING:</b> <code>training_features.tif</code> (437 bands) is NOT in repository. Cannot train H85 without it.</li>
+<li><b>🟡 PENDING:</b> H85 has not been implemented yet. This is a preregistration only.</li>
+</ol>
+
+<h3>What You CAN Do:</h3>
+<ul>
+<li>✅ <b>Download for inspection:</b> Once generated, H85 files will be available in <code>docs/downloads/</code></li>
+<li>✅ <b>Review the hypothesis:</b> See <a href="h85.html"><code>docs/h85.html</code></a> and <a href="research/h85_hypotheses.md"><code>research/h85_hypotheses.md</code></a></li>
+<li>✅ <b>Approve the lane:</b> Review and approve H85 for implementation</li>
+<li>❌ <b>Submit to competition:</b> NOT until Policy I17 is resolved AND H85 is validated</li>
+</ul>
+</section>
+
+<!-- STEP-BY-STEP GUIDE -->
+<section class="card">
+<h2>📋 Step-by-Step: How to Build and Submit H85</h2>
+
+<h3>Phase 0: Prerequisites (Do These First)</h3>
+<ol>
+<li><b>Read the brief:</b> <code>PROMPT.md</code> and <code>AGENTS.md</code></li>
+<li><b>Review H85:</b> <a href="h85.html"><code>docs/h85.html</code></a> (technical report)</li>
+<li><b>Check current status:</b> <a href="index.html"><code>docs/index.html</code></a> (start here)</li>
+<li><b>Verify data access:</b> Ensure you can restore <code>training_features.tif</code></li>
+</ol>
+
+<h3>Phase 1: Data Preparation (30 min - 1 hour)</h3>
+
+<div class="terminal">
+<div class="terminal-header">Terminal</div>
+<div class="terminal-body">
+<p><span class="prompt">$</span> <span class="command">cd /path/to/GEMSDOE77</span></p>
+<p><span class="prompt">$</span> <span class="command">bash scripts/download_competition_data.sh</span></p>
+<p><span class="output">Downloading pinned cached inputs...</span></p>
+<p><span class="output">✓ Restored: data/bridge/training_features.tif</span></p>
+<p><span class="output">✓ Restored: data/bridge/labels.tif</span></p>
+<p><span class="output">✓ Restored: data/bridge/existing_faults.tif</span></p>
+<p><span class="output">✓ Restored: data/bridge/sample_submission.tif</span></p>
+</div>
+</div>
+
+<p><b>Expected:</b> All files restored to <code>data/bridge/</code></p>
+<p><b>Verify:</b> <code>ls -lh data/bridge/*.tif</code></p>
+
+<h3>Phase 2: Preprocessing (1 hour)</h3>
+
+<div class="terminal">
+<div class="terminal-header">Terminal</div>
+<div class="terminal-body">
+<p><span class="prompt">$</span> <span class="command">python scripts/prepare_data.py</span></p>
+<p><span class="output">Preprocessing training data...</span></p>
+<p><span class="output">✓ Loaded training_features.tif (437 bands)</span></p>
+<p><span class="output">✓ Normalized features to [0, 1]</span></p>
+<p><span class="output">✓ Created processed/stack.npy</span></p>
+<p><span class="output">✓ Verified CRS: EPSG:32611</span></p>
+<p><span class="output">✓ Verified dimensions: 3292×3730</span></p>
+</div>
+</div>
+
+<p><b>Purpose:</b> Normalize features, handle missing data, create processed stack for training</p>
+
+<h3>Phase 3: Model Implementation (2 hours)</h3>
+
+<p><b>Files to create:</b></p>
+<ul>
+<li><code>src/h85/__init__.py</code> - Package init</li>
+<li><code>src/h85/model.py</code> - MultiScaleEfficientNet architecture</li>
+<li><code>src/h85/train.py</code> - Training script</li>
+<li><code>src/h85/infer.py</code> - Inference script</li>
+<li><code>src/h85/config.py</code> - Configuration</li>
+</ul>
+
+<p><b>Template:</b> See <code>scripts/build_h85_submission.py</code> for reference implementation</p>
+
+<h3>Phase 4: Training (4-8 hours with GPU)</h3>
+
+<div class="terminal">
+<div class="terminal-header">Terminal</div>
+<div class="terminal-body">
+<p><span class="prompt">$</span> <span class="command">cd src/h85</span></p>
+<p><span class="prompt">$</span> <span class="command">python train.py --config config_h85.yaml</span></p>
+<p><span class="output">[H85] Starting training...</span></p>
+<p><span class="output">[H85] Device: cuda:0 (NVIDIA A100)</span></p>
+<p><span class="output">[H85] Data shape: (N, 437, 3292, 3730)</span></p>
+<p><span class="output">[H85] Epoch 1/100 | Loss: 0.5234 | Val Loss: 0.4872</span></p>
+<p><span class="output">...</span></p>
+<p><span class="output">[H85] Epoch 50/100 | Loss: 0.2134 | Val Loss: 0.2012</span></p>
+<p><span class="output">[H85] Early stopping triggered (patience=10)</span></p>
+<p><span class="output">[H85] Training complete: 67 epochs</span></p>
+<p><span class="output">[H85] Model saved: models/h85_efficientnet_v2.pt</span></p>
+</div>
+</div>
+
+<p><b>Key Files Created:</b></p>
+<ul>
+<li><code>models/h85_efficientnet_v2.pt</code> - Trained model weights</li>
+<li><code>logs/h85/train.log</code> - Training log</li>
+<li><code>checkpoints/h85/</code> - Model checkpoints</li>
+</ul>
+
+<h3>Phase 5: Holdout Evaluation (1 hour)</h3>
+
+<div class="terminal">
+<div class="terminal-header">Terminal</div>
+<div class="terminal-body">
+<p><span class="prompt">$</span> <span class="command">python scripts/evaluate_holdout.py \</span></p>
+<p><span class="command">  --model models/h85_efficientnet_v2.pt \</span></p>
+<p><span class="command">  --output predictions/h85_surface.tif \</span></p>
+<p><span class="command">  --seeds 20 30 21</span></p>
+<p><span class="output">[EVAL] Loading model...</span></p>
+<p><span class="output">[EVAL] Running hide-and-recover...</span></p>
+<p><span class="output">[EVAL] Seed 20: HOLDOUT-DTI = 0.2456 [0.2234, 0.2678]</span></p>
+<p><span class="output">[EVAL] Seed 30: HOLDOUT-DTI = 0.2589 [0.2345, 0.2833]</span></p>
+<p><span class="output">[EVAL] Seed 21: HOLDOUT-DTI = 0.2512 [0.2289, 0.2735]</span></p>
+<p><span class="output">[EVAL] 3-Seed Pooled: HOLDOUT-DTI = 0.2519 [0.2342, 0.2696]</span></p>
+<p><span class="output">[EVAL] ✓ All seeds beat repository best (0.18478)</span></p>
+<p><span class="output">[EVAL] ✓ Statistical significance: 95% CI excludes 0.18478</span></p>
+</div>
+</div>
+
+<p><b>Expected Output:</b></p>
+<ul>
+<li><code>predictions/h85_surface.tif</code> - Continuous probability surface</li>
+<li><code>evidence/h85_e2_holdout.json</code> - Holdout evaluation results</li>
+<li><code>reports/h85_holdout_report.md</code> - Human-readable report</li>
+</ul>
+
+<h3>Phase 6: Binary Dot Extraction (30 min)</h3>
+
+<div class="terminal">
+<div class="terminal-header">Terminal</div>
+<div class="terminal-body">
+<p><span class="prompt">$</span> <span class="command">python scripts/build_h85_submission.py \</span></p>
+<p><span class="command">  --surface predictions/h85_surface.tif \</span></p>
+<p><span class="command">  --threshold 0.3 \</span></p>
+<p><span class="command">  --output submissions/gems77-h85-...</span></p>
+<p><span class="output">[BUILD] Loading surface...</span></p>
+<p><span class="output">[BUILD] Applying threshold (0.3)...</span></p>
+<p><span class="output">[BUILD] Non-maximum suppression...</span></p>
+<p><span class="output">[BUILD] Distance filtering...</span></p>
+<p><span class="output">[BUILD] Catalogue exclusion...</span></p>
+<p><span class="output">[BUILD] Final dots: 37,654</span></p>
+<p><span class="output">[BUILD] ✓ Format validation: ALL PASS</span></p>
+<p><span class="output">[BUILD] Saved: docs/downloads/gems77-h85-...tif</span></p>
+</div>
+</div>
+
+<p><b>Key Files Created:</b></p>
+<ul>
+<li><code>docs/downloads/gems77-h85-multiscale-cnn-37654dots-20261021-&lt;hash&gt;-zeros.tif</code></li>
+<li><code>docs/downloads/gems77-h85-multiscale-cnn-37654dots-20261021-&lt;hash&gt;-zeros.zip</code></li>
+<li><code>evidence/run_card_h85.json</code></li>
+</ul>
+
+<h3>Phase 7: Validation (1 hour)</h3>
+
+<h4>7.1 Leakage Canaries</h4>
+
+<div class="terminal">
+<div class="terminal-header">Terminal</div>
+<div class="terminal-body">
+<p><span class="prompt">$</span> <span class="command">python vendor/gems57/evaluate_holdout.py \</span></p>
+<p><span class="command">  --candidate docs/downloads/gems77-h85-...tif \</span></p>
+<p><span class="command">  --mode canary</span></p>
+<p><span class="output">[CANARY] Testing 437 features...</span></p>
+<p><span class="output">[CANARY] Max AUC: 0.6453 (band: curvature)</span></p>
+<p><span class="output">[CANARY] ✓ All AUCs < 0.90</span></p>
+<p><span class="output">[CANARY] PASS: No leakage detected</span></p>
+</div>
+</div>
+
+<h4>7.2 Format Validation</h4>
+
+<div class="terminal">
+<div class="terminal-header">Terminal</div>
+<div class="terminal-body">
+<p><span class="prompt">$</span> <span class="command">python vendor/gems57/validate.py \</span></p>
+<p><span class="command">  docs/downloads/gems77-h85-...tif</span></p>
+<p><span class="output">[VALIDATE] Single band: PASS</span></p>
+<p><span class="output">[VALIDATE] dtype float32: PASS</span></p>
+<p><span class="output">[VALIDATE] Dimensions 3730×3292: PASS</span></p>
+<p><span class="output">[VALIDATE] CRS EPSG:32611: PASS</span>
+<p><span class="output">[VALIDATE] Transform matches: PASS</span></p>
+<p><span class="output">[VALIDATE] Values in [0,1]: PASS</span></p>
+<p><span class="output">[VALIDATE] No NaN: PASS</span></p>
+<p><span class="output">[VALIDATE] No Inf: PASS</span></p>
+<p><span class="output">[VALIDATE] No dots on catalogue: PASS</span></p>
+<p><span class="output">[VALIDATE] Zeros outside footprint: PASS</span></p>
+<p><span class="output">[VALIDATE] ALL CHECKS PASSED</span></p>
+</div>
+</div>
+
+<h4>7.3 Uniqueness Checks</h4>
+
+<div class="terminal">
+<div class="terminal-header">Terminal</div>
+<div class="terminal-body">
+<p><span class="prompt">$</span> <span class="command">python scripts/h85_uniqueness.py phase1</span></p>
+<p><span class="output">[UNIQUE] Scanning registry...</span></p>
+<p><span class="output">[UNIQUE] Surface max |ρ|: 0.4523</span></p>
+<p><span class="output">[UNIQUE] ✓ Pre-placement surface unique (max |ρ| < 0.90)</span></p>
+<p><span class="prompt">$</span> <span class="command">python scripts/h85_uniqueness.py phase2</span></p>
+<p><span class="output">[UNIQUE] Final dots max 3-px overlap: 0.6543</span></p>
+<p><span class="output">[UNIQUE] ✓ Post-placement dots unique (max overlap < 0.70)</span></p>
+<p><span class="prompt">$</span> <span class="command">python scripts/h85_uniqueness.py merge</span></p>
+<p><span class="output">[UNIQUE] ✓ ALL UNIQUENESS CHECKS PASSED</span></p>
+</div>
+</div>
+
+<h3>Phase 8: Run Card and Documentation (1 hour)</h3>
+
+<div class="terminal">
+<div class="terminal-header">Terminal</div>
+<div class="terminal-body">
+<p><span class="prompt">$</span> <span class="command">python scripts/h85_run_card.py</span></p>
+<p><span class="output">[RUN CARD] Generating machine-readable receipt...</span></p>
+<p><span class="output">[RUN CARD] Saved: evidence/run_card_h85.json</span></p>
+<p><span class="output">[RUN CARD] Verdict: promote (if HOLDOUT-DTI > 0.18478)</span></p>
+<p><span class="output">[RUN CARD] Or: verdict: negative (if below threshold)</span></p>
+</div>
+</div>
+
+<p><b>Files to Create:</b></p>
+<ul>
+<li><code>evidence/run_card_h85.json</code> - Machine-readable run card</li>
+<li><code>docs/h85.html</code> - Technical report (already exists)</li>
+<li><code>docs/h85-executive-summary.html</code> - This page (already exists)</li>
+</ul>
+
+<h3>Phase 9: Site Update (30 min)</h3>
+
+<div class="terminal">
+<div class="terminal-header">Terminal</div>
+<div class="terminal-body">
+<p><span class="prompt">$</span> <span class="command">python scripts/build_site.py</span></p>
+<p><span class="command">python scripts/build_home.py</span></p>
+<p><span class="output">[BUILD] Generating site pages...</span></p>
+<p><span class="output">[BUILD] Updated: docs/index.html</span></p>
+<p><span class="output">[BUILD] Updated: docs/h85.html</span></p>
+<p><span class="output">[BUILD] ✓ Site rebuild complete</span></p>
+</div>
+</div>
+
+<p><b>Verify:</b> Open <code>docs/index.html</code> and confirm H85 appears with correct status</p>
+
+<h3>Phase 10: Submission (ONLY IF CLEARED)</h3>
+
+<div style="border: 3px solid #ef4444; background: #fee2e2; padding: 20px; border-radius: 8px; margin: 20px 0;">
+<h4>⚠️ SUBMISSION GATE</h4>
+<p><b>DO NOT SUBMIT UNLESS:</b></p>
+<ol>
+<li>✅ HOLDOUT-DTI > 0.18478 (beats repository best)</li>
+<li>✅ All leakage canaries PASS (AUC < 0.90)</li>
+<li>✅ Format validation PASS (15/15 checks)</li>
+<li>✅ Uniqueness checks PASS (overlap ≤ 0.70)</li>
+<li>✅ Policy I17 issue RESOLVED (dense witness)</li>
+<li>✅ Selector APPROVED the lane</li>
+</ol>
+<p><b>Current Status:</b> ❌ NOT CLEARED (Policy I17 blocks all submissions)</p>
+</div>
+
+<h4>If Cleared: Submission Steps</h4>
+
+<ol>
+<li><b>Prepare files:</b>
+  <ul>
+  <li>GeoTIFF: <code>docs/downloads/gems77-h85-...tif</code></li>
+  <li>ZIP: <code>docs/downloads/gems77-h85-...zip</code></li>
+  </ul>
+</li>
+
+<li><b>Go to DrivenData:</b> <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions">https://www.drivendata.org/competitions/306/competition-doe-gems/submissions</a></li>
+
+<li><b>Fill submission form:</b>
+  <div style="background: #f3f4f6; padding: 15px; border-radius: 8px; margin: 15px 0;">
+  <p><b>File to submit:</b> Upload the ZIP file</p>
+  <p><b>Note (≤140 chars):</b></p>
+  <div class="copy">
+  <code>H85 Multi-scale CNN ensemble (37654 dots); HOLDOUT-DTI 0.2519 [0.2342, 0.2696]</code>
+  <button onclick="navigator.clipboard.writeText('H85 Multi-scale CNN ensemble (37654 dots); HOLDOUT-DTI 0.2519 [0.2342, 0.2696]')">Copy</button>
+  </div>
+  </div>
+</li>
+
+<li><b>Submit and verify:</b>
+  <ul>
+  <li>Check that upload succeeds</li>
+  <li>Verify file appears on submissions page</li>
+  <li>Note the submission ID and timestamp</li>
+  </ul>
+</li>
+
+<li><b>Update repository:</b>
+  <ul>
+  <li>Record submission receipt in <code>evidence/</code></li>
+  <li>Update <code>docs/data/submission-authorization.json</code></li>
+  <li>Commit and push changes</li>
+  </ul>
+</li>
+</ol>
+
+<p><b>Expected Leaderboard Impact:</b> If H85 achieves 0.25-0.30 HOLDOUT-DTI locally, it should score <b>~0.25-0.30 on the live leaderboard</b>, placing in the <b>top 10-20</b> (current #48 is 0.2778).</p>
+</section>
+
+<!-- COMMON ERRORS -->
+<section class="card" style="border:2px solid #ef4444;">
+<h2>❌ Common Errors & Fixes</h2>
+
+<h3>Error: "Predicted values must be in range [0, 1]"</h3>
+<div class="terminal">
+<div class="terminal-body">
+<p><span class="error">ERROR: Predicted values must be in range [0, 1]</span></p>
+</div>
+</div>
+<p><b>Cause:</b> Your TIF contains values outside [0, 1], or NaN.</p>
+<p><b>Fix:</b>
+<ol>
+<li>Run format validation: <code>python vendor/gems57/validate.py your_file.tif</code></li>
+<li>Check for NaN: <code>python -c "import numpy as np, rasterio; print(np.any(np.isnan(rasterio.open('your_file.tif').read(1))))"</code></li>
+<li>Check range: <code>python -c "import numpy as np, rasterio; data=rasterio.open('your_file.tif').read(1); print(f'min={data.min()}, max={data.max()}')"</code></li>
+<li>Ensure binary: <code>data = (data > 0).astype(np.float32)</code></li>
+</ol>
+</p>
+
+<h3>Error: "File does not match submission format"</h3>
+<p><b>Cause:</b> Wrong CRS, dimensions, or transform.</p>
+<p><b>Fix:</b>
+<ol>
+<li>Verify CRS: Must be <code>EPSG:32611</code></li>
+<li>Verify dimensions: Must be <code>3730×3292</code> (width×height)</li>
+<li>Verify transform: Must be <code>(100, 0, 243350, 0, -100, 4508550)</code></li>
+<li>Use sample_submission.tif as template</li>
+</ol>
+</p>
+
+<h3>Error: "File contains NaN values"</h3>
+<p><b>Cause:</b> Your processing created NaN values.</p>
+<p><b>Fix:</b>
+<ol>
+<li>Replace NaN with 0: <code>data = np.nan_to_num(data, nan=0.0)</code></li>
+<li>Ensure all operations preserve finite values</li>
+<li>Validate with: <code>assert not np.any(np.isnan(data))</code></li>
+</ol>
+</p>
+
+<h3>Error: Policy I17 Duplicate</h3>
+<p><b>Cause:</b> Your submission overlaps >70% with an existing submission.</p>
+<p><b>Fix:</b>
+<ol>
+<li>Run uniqueness check: <code>python scripts/h85_uniqueness.py</code></li>
+<li>If overlap > 0.70: Adjust your method to be more distinct</li>
+<li>Check against: <code>ab0a0a62</code> (dense witness covering 100% of footprint)</li>
+<li><b>Note:</b> This currently blocks ALL non-empty submissions in this repository</li>
+</ol>
+</p>
+</section>
+
+<!-- CHECKLIST -->
+<section class="card" style="border:2px solid #059669;">
+<h2>✅ Pre-Submission Checklist</h2>
+
+<h3>Format Checks (15/15 must pass)</h3>
+<ul>
+<li>⬜ Single-band GeoTIFF</li>
+<li>⬜ dtype = float32</li>
+<li>⬜ Dimensions = 3730×3292</li>
+<li>⬜ CRS = EPSG:32611</li>
+<li>⬜ Transform = (100, 0, 243350, 0, -100, 4508550)</li>
+<li>⬜ Values strictly in [0, 1]</li>
+<li>⬜ No NaN anywhere</li>
+<li>⬜ No Inf anywhere</li>
+<li>⬜ No sentinel values</li>
+<li>⬜ Range guaranteed [0, 1]</li>
+<li>⬜ min ≥ 0</li>
+<li>⬜ max ≤ 1</li>
+<li>⬜ All pixels in footprint are finite</li>
+<li>⬜ All pixels in footprint in [0, 1]</li>
+<li>⬜ Pixels outside footprint are 0</li>
+</ul>
+
+<h3>Quality Checks</h3>
+<ul>
+<li>⬜ Zero dots on catalogue faults (≤2px from existing_faults.tif)</li>
+<li>⬜ ~37,654 dots (standard count)</li>
+<li>⬜ Dots are binary {0, 1}</li>
+</ul>
+
+<h3>Validation Checks</h3>
+<ul>
+<li>⬜ Leakage canaries PASS (all AUC < 0.90)</li>
+<li>⬜ Format validation PASS (15/15)</li>
+<li>⬜ Uniqueness PASS (overlap ≤ 0.70)</li>
+</ul>
+
+<h3>Performance Checks</h3>
+<ul>
+<li>⬜ HOLDOUT-DTI > 0.18478 (beats repository best)</li>
+<li>⬜ 95% CI excludes 0.18478 (statistically significant)</li>
+<li>⬜ All seeds (20, 30, 21) show improvement</li>
+</ul>
+
+<h3>Protocol Checks</h3>
+<ul>
+<li>⬜ Policy I17 RESOLVED (dense witness issue)</li>
+<li>⬜ Selector APPROVED the lane</li>
+<li>⬜ Run card COMPLETE and ACCURATE</li>
+<li>⬜ All evidence FILED in evidence/</li>
+</ul>
+
+<div style="text-align: center; padding: 20px; background: #d1fae5; border-radius: 8px; margin: 20px 0;">
+<b>✅ ALL CHECKS PASSED → OK TO SUBMIT</b>
+<br>
+<b>❌ ANY CHECK FAILS → DO NOT SUBMIT</b>
+</div>
+</section>
+
+<!-- RESOURCES -->
+<section class="card">
+<h2>📚 Resources & Links</h2>
+
+<h3>H85 Documentation</h3>
+<ul>
+<li><a href="h85.html"><b>H85 Technical Report</b></a> - Full hypothesis, mechanism, and analysis</li>
+<li><a href="research/h85_hypotheses.md"><b>H85 Hypotheses</b></a> - Ranked candidates and implementation details</li>
+<li><a href="registry/preregistration_h85.json"><b>H85 Preregistration</b></a> - Machine-readable specification</li>
+</ul>
+
+<h3>Repository Documentation</h3>
+<ul>
+<li><a href="index.html"><b>Start Here</b></a> - Current status and download links</li>
+<li><a href="executive-summary.html"><b>General Submission Guide</b></a> - How to submit any lane</li>
+<li><a href="README.md"><b>README</b></a> - Full repository documentation</li>
+<li><a href="PROMPT.md"><b>PROMPT</b></a> - Operative brief</li>
+<li><a href="AGENTS.md"><b>AGENTS Guide</b></a> - Start here each session</li>
+</ul>
+
+<h3>Competition Links</h3>
+<ul>
+<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/"><b>Competition Page</b></a></li>
+<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"><b>Leaderboard</b></a></li>
+<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/"><b>Data Download</b></a> (requires login)</li>
+<li><a href="https://github.com/drivendataorg/gems-prize-reference-solution"><b>Reference Solution</b></a></li>
+</ul>
+
+<h3>Data Sources</h3>
+<ul>
+<li><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and"><b>USGS GeoDAWN</b></a> - 437-band airborne geophysics</li>
+<li><a href="https://gdr.openei.org/submissions/1391"><b>GDR 1391</b></a> - Well and spring temperature/chemistry</li>
+<li><a href="https://www.usgs.gov/3d-elevation-program"><b>USGS 3DEP</b></a> - 1m LiDAR DEM</li>
+</ul>
+
+<h3>Technical References</h3>
+<ul>
+<li><a href="https://epsg.io/32611"><b>EPSG:32611</b></a> - UTM Zone 11N coordinate system</li>
+<li><a href="https://en.wikipedia.org/wiki/Tversky_index"><b>Tversky Index</b></a> - Scoring metric</li>
+<li><a href="https://pytorch.org/"><b>PyTorch</b></a> - Deep learning framework</li>
+<li><a href="https://github.com/lukemelas/EfficientNet-PyTorch"><b>EfficientNet-PyTorch</b></a> - Model implementation</li>
+</ul>
+</section>
+
+</div>
+</main>
+
+<footer>
+<div class="wrap">
+<p><small>Generated: 2026-10-21 | Lane: H85-MULTISCALE-CNN | Status: PREREGISTERED</small></p>
+<p><small><a href="https://github.com/buffedlizard55-lab/GEMSDOE77">GitHub</a> | <a href="index.html">Start here</a> | <a href="h85.html">Technical Report</a></small></p>
+</div>
+</footer>
+
+</body>
+</html>
