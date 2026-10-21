@@ -25,7 +25,7 @@ def build(render):
     score = card["holdout_dti"]
     lo, hi = score["ci95"]
     box = f'''<section class="card dl research" id="h82-status"><h2>Archived H82-TEXTURE research TIFF — prior negative result</h2>
-<p class="verdict"><b>OK TO DOWNLOAD: YES, for inspection. NOT OK TO SUBMIT.</b>
+<p class="verdict"><b>OK TO DOWNLOAD: YES, for inspection only. NOT OK TO SUBMIT.</b>
 This artifact belongs to an earlier closed H82-TEXTURE lane; it was not generated in the current review. Format PASS does not mean competition approval.
 Literal registry overlap fails; stopped before dot placement. Selector not approved; no slot used.</p>
 <a class="btn" href="{esc(tif)}" download>Download H82 research .tif ({path.stat().st_size / 1e6:.1f} MB)</a>

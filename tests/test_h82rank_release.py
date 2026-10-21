@@ -25,7 +25,7 @@ def test_h82rank_manifest_upsert_is_idempotent_and_preserves_sibling_order():
     assert [r for r in without_h82r['lanes'] if not r['lane'].startswith('H82R:')] == sibling_order
     h82_index = next(i for i, r in enumerate(without_h82r['lanes']) if r['lane'].startswith('H82:'))
     assert without_h82r['lanes'][h82_index + 1]['lane'].startswith('H82R:')
-    assert len(without_h82r['lanes']) == 30
+    assert len(without_h82r['lanes']) == len(manifest['lanes'])
     assert 'H82R:' in without_h82r['note']
 
     duplicate = copy.deepcopy(manifest)

@@ -1,0 +1,54 @@
+{
+  "schema": "review-verification-v1",
+  "branch": "arena/05f9e6f8-gemsdoe77",
+  "checked_utc": "2026-10-21T18:04:46.033048+00:00",
+  "evidence_class": "SOFTWARE/BUILD CHECKS; NOT PERFORMANCE SCORES",
+  "all_commands_passed": true,
+  "commands": [
+    {
+      "command": ".venv/bin/python scripts/build_site.py",
+      "exit_code": 0,
+      "output_tail": "Built five static pages with explicit download/submission status.\n"
+    },
+    {
+      "command": ".venv/bin/python scripts/lia_build_site.py",
+      "exit_code": 0,
+      "output_tail": "site built: ['lia.html', 'lia-executive-summary.html', 'lia-analysis.html', 'lia-sources.html']\n"
+    },
+    {
+      "command": ".venv/bin/python scripts/build_h82rank_site.py",
+      "exit_code": 0,
+      "output_tail": ""
+    },
+    {
+      "command": ".venv/bin/python scripts/audit_downloads.py",
+      "exit_code": 0,
+      "output_tail": "{\n  \"schema\": \"gems-listed-download-readback-v1\",\n  \"evidence_class\": \"FORMAT-INTEGRITY-MEASUREMENT; NOT SCORE OR PORTAL ACCEPTANCE\",\n  \"scope\": \"Every primary TIFF in docs/data/lanes.json; no archive or NaN twins, no uniqueness certification\",\n  \"manifest_sha256\": \"9b3f6dd3aa6adede826447519ef34d1f799100e9890eeef2733c1592feafa493\",\n  \"reference_sha256\": \"2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc\",\n  \"listed_count\": 32,\n  \"all_format_pass\": true,\n  \"authorized_to_submit\": false\n}\n"
+    },
+    {
+      "command": ".venv/bin/python scripts/build_home.py",
+      "exit_code": 0,
+      "output_tail": "wrote docs/index.html, docs/executive-summary.html, docs/h77l.html, docs/h79-orient.html, docs/h78.html\nwrote docs/h83.html\n"
+    },
+    {
+      "command": ".venv/bin/python scripts/release_gate.py --verify-fail-closed",
+      "exit_code": 0,
+      "output_tail": "{\n  \"decision\": \"NOT OK TO SUBMIT\",\n  \"authorized_files\": 0,\n  \"receipt\": \"/home/user/GEMSDOE77/docs/data/submission-authorization.json\"\n}\n"
+    },
+    {
+      "command": ".venv/bin/python scripts/verify_all.py",
+      "exit_code": 0,
+      "output_tail": "{\n  \"file\": \"/home/user/GEMSDOE77/docs/downloads/gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif\",\n  \"checks\": {\n    \"crs_epsg\": 32611,\n    \"shape\": [\n      3730,\n      3292\n    ],\n    \"count\": 1,\n    \"dtype\": \"float32\",\n    \"transform\": [\n      100.0,\n      0.0,\n      243350.0,\n      0.0,\n      -100.0,\n      4508550.0\n    ],\n    \"nodata_is_none\": true,\n    \"transform_matches_sample\": true,\n    \"crs_matches_sample\": true,\n    \"n_cells\": 12279160,\n    \"n_nan\": 0,\n    \"n_inf\": 0,\n    \"min\": 0.0,\n    \"max\": 1.0,\n    \"n_below_0\": 0,\n    \"n_above_1\": 0,\n    \"n_sentinel_le_-1e30\": 0,\n    \"outside_footprint_nonzero\": 0,\n    \"dots_gt_0\": 44090,\n    \"dots_equal_1\": 44090,\n    \"unique_values\": [\n      0.0,\n      1.0\n    ],\n    \"dots_on_catalogue\": 0,\n    \"min_dot_distance_to_catalogue_px\": 3.1622776601683795,\n    \"dots_with_neighbour_within_2p8px\": 0,\n    \"sha256\": \"20be05cc671c85484e4cfc8ea40d2fced71d7ec70f20ab915f36fcc68fcc4851\",\n    \"sha256_matches_bundle\": true,\n    \"zip_members\": [\n      \"gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif\"\n    ],\n    \"zip_single_tif_identical\": true,\n    \"metric_exact_vs_bruteforce_max_err\": 7.105427357601002e-15,\n    \"official_worked_example_recomputed\": 0.6026516673362796,\n    \"alpha_beta_radius\": [\n      0.2,\n      0.8,\n      300.0\n    ]\n  },\n  \"failures\": [],\n  \"all_passed\": true\n}\n"
+    },
+    {
+      "command": ".venv/bin/python -m pytest -q",
+      "exit_code": 0,
+      "output_tail": "........................................................................ [ 28%]\n........................................................................ [ 57%]\n........................................................................ [ 86%]\n.................................                                        [100%]\n249 passed in 55.22s\n"
+    },
+    {
+      "command": ".venv/bin/python scripts/stage_pages.py",
+      "exit_code": 0,
+      "output_tail": "/home/user/GEMSDOE77/.cache/pages\n"
+    }
+  ]
+}

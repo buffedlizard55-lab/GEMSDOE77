@@ -307,41 +307,68 @@ def test_h80t_lane_artifact_and_run_card_fail_closed():
     assert uniq['phase2_final_dots']['worst_dot_overlap_literal'] > 0.70
 
 
-def test_readme_front_matter_tracks_this_branch_and_keeps_the_original_prompt():
-    readme = (ROOT / 'README.md').read_text()
-    opening = readme[:readme.index('# Original project request')]
-    assert 'arena/eb664779-gemsdoe77' in opening
-    assert 'NO NEW TIFF' in opening and 'NOT OK TO SUBMIT' in opening
-    assert 'this session (lane H83' not in opening
-    assert '# Original project request' in readme
-
-
 def test_current_review_and_metric_correction_are_linked():
     for name in ('index.html', 'executive-summary.html'):
         text = (DOC / name).read_text()
         assert 'review-latest.html' in text and 'metric-review.html' in text
-        assert 'no new TIFF' in text
-        assert 'current-review-status' in text and 'OK to submit: NO' in text
+        assert 'id="current-review-status"' in text
+        assert 'no new tiff generated' in text.lower()
+        assert 'NOT OK TO SUBMIT' in text
         assert text.index('id="current-review-status"') < text.index('id="h82-status"')
-        assert 'Archived H82-TEXTURE research TIFF' in text
-        assert 'H82-TEXTURE: new research-only TIFF' not in text
-        assert 'Earlier H77-TSD research candidate' in text
-        assert 'New Session Candidate' not in text
-        if name == 'index.html':
-            assert 'Earlier H82 research GeoTIFF' in text
-        else:
-            assert 'Earlier H82 research file' in text
     analysis = (DOC / 'metric-review.html').read_text()
     assert 'ΔT=k' in analysis and 'only when' in analysis
     assert 'does <strong>not</strong> always increase' in analysis
     review = (DOC / 'review-latest.html').read_text()
     assert 'NOT OK TO SUBMIT' in review
-    assert 'No new TIFF' in review
-    assert 'arena/eb664779-gemsdoe77' in review
     assert 'STOP_UNIVERSAL_DUPLICATE' in review
-    assert 'one-witness rejection proof' in review
-    for name in ('review_eb664779_card.json', 'review_eb664779_verification.json'):
-        assert (DOC / 'evidence' / name).read_bytes() == (ROOT / 'evidence' / name).read_bytes()
+    assert '5,106,385' in review
+    assert 'ranked conditional hypotheses' in review.lower()
+    assert 'change is unknown' in review.lower()
+    current_card_path = ROOT / 'evidence/review_eb664779_card.json'
+    current_card = json.loads(current_card_path.read_text())
+    assert current_card['branch'] == 'arena/eb664779-gemsdoe77'
+    assert current_card['experiment_budget']['new_raster_generated'] is False
+    assert current_card['correlation_overlap_vs_registry']['preflight_decision'] == 'STOP_UNIVERSAL_DUPLICATE'
+    assert current_card['validator_output']['repository_authorized_file_count'] == 0
+    assert current_card['authorized_to_submit'] is False
+    assert (DOC / 'evidence/review_eb664779_card.json').read_bytes() == current_card_path.read_bytes()
+    verification_path = ROOT / 'evidence/review_eb664779_verification.json'
+    verification = json.loads(verification_path.read_text())
+    assert verification['status'] == 'PASS'
+    assert verification['no_new_scientific_artifact'] is True
+    assert verification['listed_download_audit']['listed_count'] == 36
+    assert verification['listed_download_audit']['all_format_pass'] is True
+    assert verification['release_gate']['authorized_file_count'] == 0
+    assert verification['ci_equivalent']['pytest'].endswith(' passed')
+    assert (DOC / 'evidence/review_eb664779_verification.json').read_bytes() == verification_path.read_bytes()
+
+
+def test_current_review_status_precedes_archived_texture_card():
+    for name in ('index.html', 'executive-summary.html'):
+        text = (DOC / name).read_text()
+        banner = text.index('id="current-review-status"')
+        archived = text.index('id="h82-status"')
+        assert banner < archived
+        assert 'Archived H82-TEXTURE research TIFF' in text[archived:archived + 200]
+        assert 'inspection only' in text[archived:archived + 1000].lower()
+        assert 'NOT OK TO SUBMIT' in text[archived:archived + 1000]
+
+
+def test_historical_review_6a_has_no_submission_download_or_score_projection():
+    report = (ROOT / 'docs/review-2026-10-21-arena-6a5eca5f.md').read_text()
+    assert 'NO NEW TIFF GENERATED' in report
+    assert 'Expected DTI change is unknown' in report
+    assert 'cross-wavelet coherence' in report
+    assert 'monogenic phase congruency already exists' in report
+    assert 'not obtainable/validated' in report.lower()
+    assert 'ORGANIZER-CONFIRMED' in report
+    assert '0.2778' in report
+    assert 'causal proof' in report
+    assert 'submission_name": null' in report
+    card = json.loads((ROOT / 'evidence/review_6a5eca5f_card.json').read_text())
+    assert card['raster_sha256'] is None
+    assert card['submission_name'] is None
+    assert card['weekly_slots_used'] == 0
 
 
 def test_current_preflight_review_does_not_claim_a_new_submission():

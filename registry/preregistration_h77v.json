@@ -1,0 +1,65 @@
+{
+  "schema": "gems-preregistration-v1",
+  "lane_id": "H77V",
+  "lane_name": "Tufa-Deconfounded Siliceous Vent-Sinter & Multi-Depth Conductive Heat-Flow Strike-Conduit Coupling",
+  "repo": "buffedlizard55-lab/GEMSDOE77",
+  "branch": "arena/e9248aa6-gemsdoe77",
+  "registered_utc": "2026-10-21T16:48:00Z",
+  "budget": {
+    "max_experiments": 3,
+    "max_wall_hours": 2.0,
+    "weekly_submission_slots_authorized": 0
+  },
+  "inputs": {
+    "training_features_tif": {
+      "path": "data/raw/training_features.tif",
+      "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5"
+    },
+    "existing_faults_tif": {
+      "path": "data/bridge/existing_faults.tif",
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093"
+    },
+    "sample_submission_tif": {
+      "path": "data/bridge/sample_submission.tif",
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc"
+    },
+    "external_geothermal_and_terrain": [
+      "external/paleo_geothermal_regional.zip (DOE GDR 1391 Ayling et al. 2022 paleo-geothermal deposits; Deposit_type stratified to exclude lacustrine Tufa)",
+      "external/2m_temperature_probe_INGENIOUS_regional_data.zip (DOE GDR 1391 Coolbaugh et al. 2007 multi-depth T1m, T15m, T2m, F2mDAB shallow temperature probes)",
+      "external/gdr_wellspring_in_footprint.csv (DOE GDR 1391 well/spring temperature & quartz/chalcedony/cation geothermometers; dist_known_fault_px strictly forbidden)",
+      "external/gdr_volcanic_vents_in_footprint.csv (DOE GDR 1391 Quaternary volcanic vents; dist_known_fault_px strictly forbidden)",
+      "external/geodawn_rad_u8.tif & external/geodawn_extensions_u8.tif (USGS GeoDAWN DOI 10.5066/P93LGLVQ radiometric K, Th, U, U/K)",
+      "external/lidar_scarp_features_u8.tif (USGS 3DEP 1m LiDAR scarp derivatives; q==0 mapped strictly to NaN)",
+      "external/topo_10m_derived_100m_u8.tif & external/dem10_chi_100m_i16.tif (USGS 3DEP 10m seamless DEM slope, curvature, and elevation)"
+    ],
+    "forbidden_inputs": [
+      "sgmc_faults_100m.tif",
+      "derived_sgmc_faults_100m.tif",
+      "derived_sgmc_faults_100m_u8.tif",
+      "dist_known_fault_px",
+      "known_fault",
+      "label",
+      "any prior submission or registry prediction raster"
+    ]
+  },
+  "channels": [
+    "h77v_sinter_alter_vent_conduit",
+    "h77v_tufa_shoreline_deconf_contrast",
+    "h77v_probe_upward_heatflow_dtdz",
+    "h77v_geotherm_disequilibrium",
+    "h77v_fixed_spring_well_upflow",
+    "h77v_epithermal_k_th_alteration",
+    "h77v_demag_grav_step_conduit",
+    "h77v_seamfree_claycap_transtension",
+    "h77v_scarp_strike_vent_bridge",
+    "h77v_composite_surface"
+  ],
+  "gates": {
+    "leakage_canary_max_symmetric_auc": 0.90,
+    "surface_max_abs_spearman_rho": 0.90,
+    "final_dots_max_forward_overlap_3px": 0.70,
+    "evaluator": "vendor/gems57/evaluate_holdout.py (gems57-pooled-hide-v2)",
+    "incumbent_holdout_dti_seed20": 0.152718,
+    "fail_closed_under_policy_i17": true
+  }
+}

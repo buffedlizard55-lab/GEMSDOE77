@@ -54,8 +54,8 @@
   "raster_sha256": null,
   "validator_output": {
     "new_candidate_tiff": "not generated; not applicable",
-    "listed_primary_tiffs": 30,
-    "listed_primary_tiff_format_integrity_passes": 30,
+    "listed_primary_tiffs": 36,
+    "listed_primary_tiff_format_integrity_passes": 36,
     "listed_download_audit": "PASS; local format/readback only, not uniqueness or organizer acceptance",
     "repository_authorized_file_count": 0,
     "repository_decision": "NOT OK TO SUBMIT",
@@ -73,7 +73,7 @@
   "submission_note": "No TIFF generated; no currently listed file is approved for submission.",
   "verdict": "negative",
   "authorized_to_submit": false,
-  "generated_utc": "2026-10-21T18:15:24Z",
+  "generated_utc": "2026-10-21T18:39:15Z",
   "verification_receipt": "evidence/review_eb664779_verification.json",
   "pinned_preflight_inputs": {
     "sample_template_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
