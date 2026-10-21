@@ -1,0 +1,147 @@
+{
+  "schema": "gems-h85-run-card-v1",
+  "lane_repo": "buffedlizard55-lab/GEMSDOE77",
+  "branch": "arena/eedbff3b-gemsdoe77",
+  "lane": "H85-FTMR: far-field fault-network medial-ridge surface",
+  "hypothesis": "Unmapped blind faults may occupy far-field relay corridors where the mapped-fault distance field forms a multi-scale medial ridge; a distance-transform ridge can be tested without reusing a prior H19/H33 dot set.",
+  "mechanism": "The H85 surface combines an 0.8--3.5 km distance annulus, 7-pixel local maxima of Euclidean distance to the mapped-fault network, and absolute Gaussian-Laplacian curvature at sigma 2 and 4 px.",
+  "named_non_fault_process_that_could_mimic_it": "Pluvial shoreline benches, alluvial-fan toes, resistant lithologic boundaries, and the edge of a masked raster footprint can all create distance-transform medial ridges without a fault.",
+  "holdout_dti": {
+    "evidence_class": "NO HOLDOUT-DTI RESULT \u2014 stopped before experiment by the universal duplicate preflight",
+    "evaluator_version": "gems57-pooled-hide-v2 (not run)",
+    "protocol_if_authorized": {
+      "hidden_unit": "whole fault segments",
+      "buffer_px": 3,
+      "catalogue_features_from_visible_faults_only": true,
+      "visible_faults_masked_exactly": true,
+      "metric": "pooled DTI",
+      "alpha": 0.2,
+      "beta": 0.8,
+      "triangular_kernel_radius_m": 300
+    },
+    "withheld_positive_pixels": null,
+    "score": null,
+    "ci95": null
+  },
+  "leakage_canary": {
+    "evidence_class": "NOT RUN \u2014 no holdout experiment was authorized",
+    "features_tested": [],
+    "auc_max": null,
+    "threshold": 0.9
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "surface_preplacement_spearman_vs_h33": -0.00020118073253467872,
+    "surface_preplacement_forward_3px_overlap_vs_dense_witness": 1.0,
+    "rho_limit": 0.9,
+    "overlap_limit": 0.7,
+    "dense_witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "duplicate_stop": true,
+    "preplacement_uniqueness_check": {
+      "status": "MEASURED; FAILS PROMOTION GATE",
+      "surface_forward_overlap": 1.0,
+      "surface_rank_correlation_vs_h33": -0.00020118073253467872,
+      "evidence_class": "REGISTRY-MEASUREMENT; not a score"
+    },
+    "postplacement_final_dot_check": {
+      "status": "NOT RUN \u2014 no final dots were placed after the mandatory preplacement stop",
+      "required_before_weekly_slot": true,
+      "evidence_class": "NO FINAL-DOT MEASUREMENT"
+    },
+    "registry_scope": "two restored hash-pinned witnesses only; not a complete organizer registry",
+    "final_dots": "not placed after surface duplicate stop"
+  },
+  "raster": {
+    "file": "docs/downloads/gemsdoe77-h85-medial-ridge-03f7b8d5-RESEARCH-ONLY.tif",
+    "zip_file": "docs/downloads/gemsdoe77-h85-medial-ridge-03f7b8d5-RESEARCH-ONLY.zip",
+    "sha256": "223550109b55b02df00f43fad6003e19c91449df81ef59a26018409dd3210a5b",
+    "zip_sha256": "20167dd3ab0099502eb826eacd6df0c8242ca7a1bb7f149c596bebaf18a8b3b4",
+    "bytes": 74342,
+    "positive_surface_pixels": 1878
+  },
+  "raster_sha256": "223550109b55b02df00f43fad6003e19c91449df81ef59a26018409dd3210a5b",
+  "validator_output": {
+    "validator": "gems57.validate.validate + shared submission_writer readback",
+    "all_checks_passed": true,
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "crs_shape_transform_match": true,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    }
+  },
+  "surface_operator": {
+    "operator": "distance_transform + 7px medial maximum + abs Gaussian Laplacian sigma 2/4px",
+    "distance_annulus_px": [
+      8.0,
+      35.0
+    ],
+    "distance_peak_px": 18.0,
+    "positive_surface_pixels": 1878,
+    "surface_min": 0.0,
+    "surface_max": 1.0
+  },
+  "submission_name": "gemsdoe77-h85-medial-ridge-03f7b8d5-RESEARCH-ONLY",
+  "submission_note": "H85 far-field medial-ridge research surface; format PASS; Policy I17 dense-witness duplicate; DO NOT SUBMIT.",
+  "note_chars": 108,
+  "ok_to_download_for_inspection": true,
+  "ok_to_submit": false,
+  "selector_approved": false,
+  "selector_decision": "NOT REQUESTED \u2014 preflight stopped the lane; selector approval is separate from the weekly cap",
+  "weekly_slots_used": 0,
+  "weekly_slot_check": "NOT APPLICABLE \u2014 no selector-approved upload was requested",
+  "experiments_run": 0,
+  "verdict": "negative",
+  "verdict_reason": "The artifact is byte-distinct and format-valid, but the mandatory literal 3-pixel registry rule fires on the restored dense witness before final-dot placement. No holdout score exists and no selector approved a slot. Do not upload.",
+  "preflight": {
+    "schema": "gems-registry-preflight-v1",
+    "evidence_class": "REGISTRY-MEASUREMENT; NOT HOLDOUT-DTI OR ORGANIZER SCORE",
+    "decision": "STOP_UNIVERSAL_DUPLICATE",
+    "scope": "One hash-pinned rejection witness; not a complete registry scan",
+    "input_sha256": {
+      "sample": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "catalogue": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "witness": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be"
+    },
+    "witness_source": {
+      "repo": "buffedlizard55-lab/17GEMSDOE",
+      "ref": "6fc71d19d49dca4960d5434bd81b6dd06fcc030a",
+      "path": "docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif",
+      "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be"
+    },
+    "template_hashes_verified": true,
+    "grid_matches": true,
+    "proof": {
+      "allowed_pixels": 5106385,
+      "exact_witness_positive_allowed_pixels": 5106385,
+      "allowed_pixels_within_3px": 5106385,
+      "uncovered_allowed_pixels": 0,
+      "universal_overlap_blocker": true,
+      "nonempty_subset_forward_overlap_lower_bound": 1.0,
+      "overlap_stop_threshold_strictly_greater_than": 0.7
+    },
+    "argument": "If allowed domain A is contained in the witness's 3px dilation W, every nonempty candidate C subset A has |C intersect W|/|C| = 1 > 0.70. Applies to positive surface support and final dots alike.",
+    "rank_correlation": null,
+    "rank_correlation_reason": "No new candidate; overlap alone suffices for rejection",
+    "experiments_run": 0,
+    "new_raster_generated": false,
+    "weekly_slots_used": 0,
+    "authorized_to_submit": false,
+    "verdict": "negative",
+    "next_step": "Resolve support semantics in shared protocol/registry, then assign a lane. Do not silently exempt dense rasters or rerun closed lanes."
+  }
+}

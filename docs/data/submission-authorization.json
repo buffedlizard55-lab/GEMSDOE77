@@ -1,13 +1,13 @@
 {
   "schema": "gems-submission-authorization-v2",
-  "generated_utc": "2026-10-21T19:27:46+00:00",
+  "generated_utc": "2026-10-21T19:50:47+00:00",
   "policy": "Authorization requires artifact existence, matching SHA-256, a readable run card with a promote verdict, matching raster_sha256 and explicit positive uniqueness, registry completeness, valid/improved holdout and selector declarations; actual shared-validator format readback PASS, literal protocol uniqueness (including <=0.70 real-model forward 3-px overlap and complete registry), improvement over the accepted holdout best, a promote verdict, and explicit selector approval. Missing fields or historical run-card uniqueness/completeness failures fail closed.",
   "repository_authorized_file_count": 0,
   "repository_decision": "NOT OK TO SUBMIT",
   "historical_run_card_reconciliation": [
     {
-      "lane": "H77E-ACD: Covariate-Matched Zero-SGMC Multi-Modal Ensemble + Filament Auto-Context + Dinkelbach 1-Swap (ALL-TIME #1 RECORD: 0.18478 3-Seed Pooled / 0.18938 s30 / 0.18225 s20 / 0.18271 s21 HOLDOUT-DTI)",
-      "run_card": "evidence/run_card_h77e_acd.json",
+      "lane": "H85-FTMR: far-field fault-network medial-ridge surface (preflight-stopped; research only)",
+      "run_card": "evidence/h85_run_card.json",
       "recorded_verdict": "negative",
       "recorded_safe_to_submit": false,
       "historical_promotion_conflict": false,
@@ -17,6 +17,15 @@
     {
       "lane": "H82R: local ternary radiometric rank-mixture entropy (STOPPED; research only)",
       "run_card": "evidence/h82rank_run_card.json",
+      "recorded_verdict": "negative",
+      "recorded_safe_to_submit": false,
+      "historical_promotion_conflict": false,
+      "operative_decision": "NOT OK TO SUBMIT",
+      "reconciliation_note": "Historical run card and operative release gate both fail closed."
+    },
+    {
+      "lane": "H77E-ACD: Covariate-Matched Zero-SGMC Multi-Modal Ensemble + Filament Auto-Context + Dinkelbach 1-Swap (ALL-TIME #1 RECORD: 0.18478 3-Seed Pooled / 0.18938 s30 / 0.18225 s20 / 0.18271 s21 HOLDOUT-DTI)",
+      "run_card": "evidence/run_card_h77e_acd.json",
       "recorded_verdict": "negative",
       "recorded_safe_to_submit": false,
       "historical_promotion_conflict": false,
@@ -359,16 +368,16 @@
   ],
   "artifacts": [
     {
-      "lane": "H77E-ACD: Covariate-Matched Zero-SGMC Multi-Modal Ensemble + Filament Auto-Context + Dinkelbach 1-Swap (ALL-TIME #1 RECORD: 0.18478 3-Seed Pooled / 0.18938 s30 / 0.18225 s20 / 0.18271 s21 HOLDOUT-DTI)",
-      "file": "downloads/gems77-h77e-autoctx-dinkelbach-37654dots-20261021-5cd77ffc-zeros.tif",
-      "sha256": "566bfd0a4fe4486d7fae3fec0f3ac52329b1da98d409984e2c0187f557bfe8d4",
+      "lane": "H85-FTMR: far-field fault-network medial-ridge surface (preflight-stopped; research only)",
+      "file": "downloads/gemsdoe77-h85-medial-ridge-03f7b8d5-RESEARCH-ONLY.tif",
+      "sha256": "223550109b55b02df00f43fad6003e19c91449df81ef59a26018409dd3210a5b",
       "checks": {
         "artifact_exists": true,
         "run_card_present": true,
         "format_valid": true,
         "format_readback_passed": true,
         "literal_protocol_unique": false,
-        "beats_accepted_holdout_best": true,
+        "beats_accepted_holdout_best": false,
         "scientific_verdict_promote": false,
         "selector_approved": false,
         "explicit_run_card_promotion_evidence": false,
@@ -377,10 +386,10 @@
         "run_card_artifact_matches": true
       },
       "run_card_audit": {
-        "run_card": "evidence/run_card_h77e_acd.json",
+        "run_card": "evidence/h85_run_card.json",
         "present": true,
         "recorded_verdict": "negative",
-        "raster_sha256": "566bfd0a4fe4486d7fae3fec0f3ac52329b1da98d409984e2c0187f557bfe8d4",
+        "raster_sha256": "223550109b55b02df00f43fad6003e19c91449df81ef59a26018409dd3210a5b",
         "explicit_promotion_evidence": false,
         "recorded_safe_to_submit": false,
         "literal_duplicate_recorded": true,
@@ -412,12 +421,13 @@
           "outside_footprint_zero": true,
           "zero_dots_on_mapped_catalogue": true
         },
-        "sha256": "566bfd0a4fe4486d7fae3fec0f3ac52329b1da98d409984e2c0187f557bfe8d4"
+        "sha256": "223550109b55b02df00f43fad6003e19c91449df81ef59a26018409dd3210a5b"
       },
       "authorized_to_submit": false,
       "decision": "NOT OK TO SUBMIT",
       "failed_gates": [
         "literal_protocol_unique",
+        "beats_accepted_holdout_best",
         "scientific_verdict_promote",
         "selector_approved",
         "explicit_run_card_promotion_evidence"
@@ -484,6 +494,71 @@
       "failed_gates": [
         "literal_protocol_unique",
         "beats_accepted_holdout_best",
+        "scientific_verdict_promote",
+        "selector_approved",
+        "explicit_run_card_promotion_evidence"
+      ]
+    },
+    {
+      "lane": "H77E-ACD: Covariate-Matched Zero-SGMC Multi-Modal Ensemble + Filament Auto-Context + Dinkelbach 1-Swap (ALL-TIME #1 RECORD: 0.18478 3-Seed Pooled / 0.18938 s30 / 0.18225 s20 / 0.18271 s21 HOLDOUT-DTI)",
+      "file": "downloads/gems77-h77e-autoctx-dinkelbach-37654dots-20261021-5cd77ffc-zeros.tif",
+      "sha256": "566bfd0a4fe4486d7fae3fec0f3ac52329b1da98d409984e2c0187f557bfe8d4",
+      "checks": {
+        "artifact_exists": true,
+        "run_card_present": true,
+        "format_valid": true,
+        "format_readback_passed": true,
+        "literal_protocol_unique": false,
+        "beats_accepted_holdout_best": true,
+        "scientific_verdict_promote": false,
+        "selector_approved": false,
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": true
+      },
+      "run_card_audit": {
+        "run_card": "evidence/run_card_h77e_acd.json",
+        "present": true,
+        "recorded_verdict": "negative",
+        "raster_sha256": "566bfd0a4fe4486d7fae3fec0f3ac52329b1da98d409984e2c0187f557bfe8d4",
+        "explicit_promotion_evidence": false,
+        "recorded_safe_to_submit": false,
+        "literal_duplicate_recorded": true,
+        "real_model_forward_overlap_3px": null,
+        "real_model_forward_overlap_exceeds_070": false,
+        "registry_incomplete": false,
+        "holdout_invalid_for_promotion": false,
+        "historical_promotion_conflict": false,
+        "guardrail_clear": false
+      },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "566bfd0a4fe4486d7fae3fec0f3ac52329b1da98d409984e2c0187f557bfe8d4"
+      },
+      "authorized_to_submit": false,
+      "decision": "NOT OK TO SUBMIT",
+      "failed_gates": [
+        "literal_protocol_unique",
         "scientific_verdict_promote",
         "selector_approved",
         "explicit_run_card_promotion_evidence"

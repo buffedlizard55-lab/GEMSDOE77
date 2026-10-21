@@ -24,7 +24,7 @@ REPO = "https://github.com/buffedlizard55-lab/GEMSDOE77"
 LB = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
 PD = "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
-NAV = [("h77pd.html", "H77-PD · 0.1685 3-Seed #1"), ("h77pd-executive-summary.html", "H77-PD guide"), ("h77vldsa.html", "H77V-LDSA · 0.1444/0.1530"), ("h77vldsa-executive-summary.html", "H77V-LDSA guide"), ("h77h-meshsafe.html", "H77H-MeshSafe · 0/119 firings"), ("h77h-meshsafe-executive-summary.html", "H77H-MeshSafe guide"), ("h83netsib.html", "H83-NETSIB · negative"), ("h83netsib-executive-summary.html", "H83-NETSIB guide"), ("h77vds.html", "H77-VDS · 0.1744 #1"), ("h77vds-executive-summary.html", "H77-VDS guide"), ("review-latest.html", "Latest review"), ("review-arena-00397d44.html", "Arena branch review"), ("metric-review.html", "Corrected H33 analysis"), ("index.html", "Start here"), ("h77hdd.html", "H77H-DD · downdip-bridge"), ("h77hdd-executive-summary.html", "H77H-DD guide"), ("h77vc.html", "H77VC (Vent+ClayCap)"), ("h77vs.html", "H77VS · negative"), ("h77vs-executive-summary.html", "H77VS guide"), ("tsd.html", "H77-TSD · inspection"), ("h77v.html", "H77V (Vent-Advect)"), ("h82-texture.html", "H82-TEXTURE · negative"), ("h82rank.html", "H82R · radiometric negative"), ("preflight-review.html", "Current readiness review"), ("h82-executive-summary.html", "H82 · cool-outlet negative"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
+NAV = [("h77pd.html", "H77-PD · 0.1685 3-Seed #1"), ("h77pd-executive-summary.html", "H77-PD guide"), ("h77vldsa.html", "H77V-LDSA · 0.1444/0.1530"), ("h77vldsa-executive-summary.html", "H77V-LDSA guide"), ("h77h-meshsafe.html", "H77H-MeshSafe · 0/119 firings"), ("h77h-meshsafe-executive-summary.html", "H77H-MeshSafe guide"), ("h83netsib.html", "H83-NETSIB · negative"), ("h83netsib-executive-summary.html", "H83-NETSIB guide"), ("h77vds.html", "H77-VDS · 0.1744 #1"), ("h77vds-executive-summary.html", "H77-VDS guide"), ("review-latest.html", "Latest review"), ("review-arena-00397d44.html", "Arena branch review"), ("metric-review.html", "Corrected H33 analysis"), ("h85.html", "H85 · preflight stop"), ("h85-executive-summary.html", "H85 guide"), ("index.html", "Start here"), ("h77hdd.html", "H77H-DD · downdip-bridge"), ("h77hdd-executive-summary.html", "H77H-DD guide"), ("h77vc.html", "H77VC (Vent+ClayCap)"), ("h77vs.html", "H77VS · negative"), ("h77vs-executive-summary.html", "H77VS guide"), ("tsd.html", "H77-TSD · inspection"), ("h77v.html", "H77V (Vent-Advect)"), ("h82-texture.html", "H82-TEXTURE · negative"), ("h82rank.html", "H82R · radiometric negative"), ("preflight-review.html", "Current readiness review"), ("h82-executive-summary.html", "H82 · cool-outlet negative"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
        ("h77e-knick.html", "H77E-Knick · 0/816 firings"), ("release-review.html", "Release safety review"), ("executive-summary.html", "How to submit"),
        ("h81.html", "H81 · slip-cone"), ("h82.html", "H82 · fault collar"),
        ("h83.html", "H83 · fault collar"),
@@ -80,8 +80,14 @@ def main():
     # Publish the current review from its source, not a hand-edited landing page.
     (D / "evidence").mkdir(exist_ok=True)
     for name in ("registry_preflight.json", "listed_download_audit.json", "preflight_sources.json",
-                 "readiness_review_run_card.json"):
-        shutil.copyfile(ROOT / "evidence" / name, D / "evidence" / name)
+                 "readiness_review_run_card.json", "h85_run_card.json"):
+        source = ROOT / "evidence" / name
+        if source.exists():
+            shutil.copyfile(source, D / "evidence" / name)
+    h85_research = ROOT / "research" / "h85_hypotheses.md"
+    if h85_research.exists():
+        (D / "research").mkdir(exist_ok=True)
+        shutil.copyfile(h85_research, D / "research" / h85_research.name)
     review = (D / "preflight-review.md").read_text()
     (D / "preflight-review.html").write_text(page(
         "preflight-review.html", "Submission readiness review",
@@ -441,7 +447,23 @@ These are registry/format measurements, not scores or portal acceptance.</p>"""
 {copy("H77E-ACD Unique Submission Name (reference — DO NOT UPLOAD without human selector approval)", acd_sub["submission_name"])}
 {copy("H77E-ACD Short Note <= 140 chars (116 chars)", acd_sub["submission_note_le140"])}
 <p class="small">GeoTIFF SHA-256: <code>{e(acd_sub["primary_geotiff_sha256"])}</code> · ZIP SHA-256: <code>{e(acd_sub["primary_zip_sha256"])}</code> · <a href="evidence/run_card_h77e_acd.json">Machine-Readable Run Card (.json)</a></p></section>"""
-    body = f"""{acd_box}{vds_box}{h77vs_box}{tsd_box}{h82_banner}{rank_box}<h1>Start here</h1>
+    h85_card = jload("evidence/h85_run_card.json")
+    h85_box = ""
+    if h85_card:
+        h85_raster = h85_card["raster"]
+        h85_box = f"""<section class="hero" id="h85-latest">
+<div class="chips"><span class="chip ok">H85 NEW RESEARCH ARTIFACT: OK TO DOWNLOAD</span>
+<span class="chip bad">NOT OK TO SUBMIT · SURFACE DUPLICATE STOP</span>
+<span class="chip warn">0 weekly slots · no HOLDOUT-DTI</span></div>
+<h2>H85-FTMR: far-field fault-network medial-ridge surface</h2>
+<p class="verdict"><b>Download it for inspection; do not upload it.</b> The newly generated surface is format-valid and byte-distinct, but the restored Policy I17 dense witness gives pre-placement forward 3-px overlap <code>{h85_card["correlation_overlap_vs_registry"]["surface_preplacement_forward_3px_overlap_vs_dense_witness"]:.4f} &gt; 0.70</code>. The protocol requires a duplicate stop before final-dot placement and before holdout evaluation.</p>
+<p class="btns"><a class="btn" href="{e(h85_raster["file"].removeprefix("docs/"))}" download>Download H85 .tif ({h85_raster["bytes"] / 1024:.0f} KB)</a>
+<a class="btn alt" href="{e(h85_raster["zip_file"].removeprefix("docs/"))}" download>Download one-TIFF .zip ({(ROOT / h85_raster["zip_file"]).stat().st_size / 1024:.0f} KB)</a>
+<a class="btn alt" href="h85.html">H85 technical report →</a><a class="btn alt" href="h85-executive-summary.html">H85 submission guide →</a></p>
+{copy("H85 name (reference only — DO NOT UPLOAD)", h85_card["submission_name"])}
+{copy("H85 note (reference only — DO NOT UPLOAD)", h85_card["submission_note"])}
+<p class="small">GeoTIFF SHA-256: <code>{e(h85_raster["sha256"])}</code> · <a href="evidence/h85_run_card.json">Machine-readable H85 run card</a> · <a href="research/h85_hypotheses.md">ranked hypotheses and source ledger</a></p></section>"""
+    body = f"""{h85_box}{acd_box}{vds_box}{h77vs_box}{tsd_box}{h82_banner}{rank_box}<h1>Start here</h1>
 <p><strong>Earlier review #49 generated no new TIFF; H82 above is a later negative research download. NOT OK TO SUBMIT.</strong> <a href="review-904a24d3.html">Earlier audit and corrected H33 analysis</a>.</p>
 <p>This repository builds and audits fault-probability GeoTIFFs for the <a href="{COMP}">DOE GEMS Prize</a>
 (DrivenData competition 306). The first box distinguishes downloading a file from permission to upload it. The table
@@ -470,6 +492,7 @@ not proof that the specific file received that score or that another submission 
 
     # ---------------- general executive summary (how to submit)
     guide = f"""<h1>Executive summary: how to submit — only AFTER approval</h1>
+{h85_box}
 {acd_box}
 {h77vs_box}{tsd_box}
 <p class="verdict"><b>NEW H82 file:</b> <a href="{e(h82['file'])}" download>Download the format-valid TIFF for inspection</a>;
@@ -2028,6 +2051,35 @@ Min catalogue distance: <code>{sub['min_distance_to_catalogue_px']:.4f} px</code
             p.write_text(txt)
 
 
+def _ensure_h85_first():
+    """Keep the current session's download decision before historical hero cards.
+
+    Several legacy lane writers prepend their own featured card after ``main``.
+    H85 is the current session, so move its already-generated card to the
+    first position without changing any historical card or evidence.
+    """
+    marker = '<section class="hero" id="h85-latest">'
+    for pname in ("index.html", "executive-summary.html"):
+        path = D / pname
+        if not path.exists():
+            continue
+        text = path.read_text()
+        start = text.find(marker)
+        if start < 0:
+            continue
+        end = text.find("</section>", start)
+        if end < 0:
+            raise ValueError(f"H85 hero is not closed in {pname}")
+        end += len("</section>")
+        hero = text[start:end]
+        remainder = text[:start] + text[end:]
+        anchor = '<main><div class="wrap">'
+        if anchor not in remainder:
+            raise ValueError(f"missing page anchor in {pname}")
+        text = remainder.replace(anchor, anchor + hero, 1)
+        path.write_text(text)
+
+
 if __name__ == "__main__":
     main()
     _write_h77e_knick()
@@ -2058,3 +2110,4 @@ if __name__ == "__main__":
     build_h84ramp(page)
     import h77pd_build_pages
     h77pd_build_pages.main()
+    _ensure_h85_first()
