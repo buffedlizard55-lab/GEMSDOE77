@@ -22,7 +22,8 @@ REPO = "https://github.com/buffedlizard55-lab/GEMSDOE77"
 LB = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
 PD = "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
-NAV = [("index.html", "Start here"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
+NAV = [("index.html", "Start here"), ("h77h.html", "H77H · 0/119 firings"), ("h77h-executive-summary.html", "H77H guide"),
+       ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
        ("h77e-knick.html", "H77E-Knick · 0/816 firings"), ("release-review.html", "Release safety review"), ("executive-summary.html", "How to submit"),
        ("h81.html", "H81 · slip-cone"),
        ("h80t.html", "H80T · tilt-persist"), ("h80t-executive-summary.html", "H80T guide"),
@@ -737,8 +738,197 @@ Format-valid (15/15 checks, 0 NaN, values in [0,1], 37,654 binary dots) and info
     shutil.copyfile(ROOT / "research/h77g_hypotheses.md", D / "research/h77g_hypotheses.md")
 
 
+def _write_h77h():
+    rc77h = jload("evidence/h77h/run_card.json")
+    if not rc77h:
+        return
+    sub = rc77h["candidate_artifact"]
+    s20 = rc77h["holdout_evaluation"]["seed20"]["scores"]
+    s30 = rc77h["holdout_evaluation"]["seed30"]["scores"]
+    diffs20 = rc77h["holdout_evaluation"]["seed20"]["paired_delta_pure_vs_baselines"]
+    can20 = rc77h["leakage_canary_audit"]["seed20"]
+    can30 = rc77h["leakage_canary_audit"]["seed30"]
+    uq = rc77h["uniqueness_audit"]
+    p1 = uq["phase1_pre_placement_surface"]
+    p2_inf = uq["phase2_post_placement_final_dots"]["informative_reading_lt_0p70_bg"]
+    tif_name = Path(sub["tif_path"]).name
+    zip_name = Path(sub["zip_path"]).name
+
+    arm_order = [
+        ("ablation_base116_without_h77h_channels", "Base116 Mesh-Safe (purging 4 <35 px MT/Seismic mesh channels per IR-H77G-01)"),
+        ("h77h_pure_submodular", "H77H Unconstrained Submodular (128 mesh-safe static + 9 coupled SLOCO)"),
+        ("h77h_portfolio_unique_submodular", "H77H Portfolio-Unique Submodular (0/119 informative firings <= 0.70)"),
+        ("h77h_pure_physics_no_mechanics", "H77H Pure Physics Only (0 catalogue / 0 SLOCO features)"),
+        ("h77h_peak_nms_control", "H77H Greedy Peak-NMS Control (same OOF surface, no Dinkelbach cover)"),
+        ("h33_foldfair", "H33 Champion Construction (fold-fair hide-and-recover baseline)"),
+        ("random_uniform_dots", "Random Uniform Sparse Dots Control"),
+    ]
+    arm_rows = []
+    for key, label in arm_order:
+        a20 = s20.get(key)
+        a30 = s30.get(key)
+        c20 = (
+            f"<b>{a20['dti']:.5f}</b> ({a20['ci95'][0]:.4f}–{a20['ci95'][1]:.4f})"
+            if a20
+            else "<i>Seed 20 ablation only</i>"
+        )
+        c30 = (
+            f"<b>{a30['dti']:.5f}</b> ({a30['ci95'][0]:.4f}–{a30['ci95'][1]:.4f})"
+            if a30
+            else "<i>Seed 20 ablation only</i>"
+        )
+        arm_rows.append(
+            f"<tr><td>{e(label)}<br><span class='small muted'><code>{e(key)}</code></span></td>"
+            f"<td>{c20}</td><td>{c30}</td>"
+            f"<td><code>gems57-pooled-hide-v2</code> (11,321 / 11,342 withheld)</td></tr>"
+        )
+    arm_rows_html = "".join(arm_rows)
+
+    diff_rows_html = "".join(
+        f"<tr><td><code>h77h_pure_submodular vs {e(k)}</code></td><td><b>{v['delta']:+.5f}</b></td>"
+        f"<td><code>[{v['ci95'][0]:+.5f}, {v['ci95'][1]:+.5f}]</code></td></tr>"
+        for k, v in diffs20.items()
+    )
+
+    can30_rows = "".join(
+        f"<tr><td><code>{e(item['feature'])}</code></td><td><code>{item['symmetric_auc']:.4f}</code></td>"
+        f"<td><code>{e(item['group'])}</code></td></tr>"
+        for item in can30["top_15_features"]
+    )
+
+    top_ov_rows = "".join(
+        f"<tr><td><code>{e(item['tag'] + ':' + item['name'][:48])}</code></td><td><code>{item['halo3_bg_frac']:.4f}</code></td>"
+        f"<td><code>{item['forward_3px_overlap']:.5f}</code></td><td><code>{item['memmap_vs_vendor_abs_diff']:.1e}</code></td></tr>"
+        for item in uq["top_15_vendor_verified_matches"]
+    )
+
+    body = f"""<h1>H77H · Mesh-Deconfounded (σ ≥ 35 px) Hydrothermal Demagnetization Trough × Gravity-Basement Step × 3DEP Scarp/Knickpoint × Coupled SLOCO + 119-Raster Capped 300 m Submodular Cover</h1>
+<p class="verdict"><b>Verdict: NEGATIVE under literal Policy I17 — OK TO DOWNLOAD FOR INSPECTION; NOT OK TO SUBMIT WITHOUT SELECTOR APPROVAL.</b><br>
+1. <b>OK to download locally: YES</b> — Passes <code>15/15</code> <code>vendor/gems57/validate.py</code> checks (<code>float32</code>, <code>3730×3292</code>, <code>EPSG:32611</code>, exact transform, <code>nodata=None</code>, <code>0</code> NaN, <code>0</code> Inf, finite values strictly in <code>[0.0, 1.0]</code>, <code>36,800</code> binary dots inside the data footprint, <code>0</code> on mapped faults).<br>
+2. <b>OK to submit automatically: NO (Not approved)</b> — Under Policy I17, the unfiltered 127-raster audit includes <code>8</code> space-filling rasters (&ge;70% 3-px halo, including <code>dense_witness.tif</code> <code>ab0a0a62</code> covering 100.0% of Nevada). Selector status: <b>not approved</b> (<code>0</code> weekly slots spent).<br>
+3. <b>Informative uniqueness across ALL 119 non-space-filling (&lt;70% halo) portfolio rasters: PASS with ZERO firings</b> — Exact worst forward 3-px overlap = <code>{p2_inf['max_forward_3px_overlap']:.5f} &le; 0.70</code> (<code>0.0e+00</code> discrepancy vs <code>vendor/gems57/uniqueness.py</code>), max |Spearman &rho;| = <code>{p2_inf['max_abs_spearman']:.4f} &le; 0.90</code>, pre-placement surface max |&rho;| = <code>{p1['max_abs_spearman']:.4f} &le; 0.90</code>.<br>
+4. <b>Dual-seed official hide-and-recover benchmark (<code>gems57-pooled-hide-v2</code>):</b> Remediating <code>IR-H77G-01</code> (purging the 4 &lt;35 px MT/seismic mesh-derivative features) lifts <code>Base116</code> to <b>0.15664 HOLDOUT-DTI</b> on Seed 20 (+0.00102 over H77E-Knick). Remediating <code>IR-H77G-03</code> (coupling RTP demagnetization troughs and gravity-basement steps with 3DEP scarps/knickpoints and SLOCO mechanics) lifts unconstrained H77H to <b>0.15371</b> (Seed 20) / <b>0.15460</b> (Seed 30) (+148% over H77G 0.0619 and +59.6% over fold-fair H33 0.0963), and the 119-raster portfolio-unique arm to <b>0.12421</b> (Seed 20) / <b>0.12418</b> (Seed 30).</p>
+<section class="card dl research"><h2>⬇ Download H77H Inspection-Only GeoTIFF &amp; Single-TIFF ZIP (DO NOT SUBMIT)</h2>
+<a class="btn" href="downloads/{e(tif_name)}" download>Download H77H .tif ({sub['tif_bytes'] // 1024} KB)</a>
+<a class="btn alt" href="downloads/{e(zip_name)}" download>Download One-TIFF .zip ({sub['zip_bytes'] // 1024} KB)</a>
+<div class="chips"><span class="chip ok">OK to download: YES</span>
+<span class="chip ok">Portal format (15/15 checks, [0,1], 0 NaN): PASS</span>
+<span class="chip bad">OK to submit (Policy I17 literal rule): NO</span>
+<span class="chip ok">Unique, informative reading (0/119 firings, max 0.6650): PASS</span>
+<span class="chip ok">Beats fold-fair H33 (+59.6% pure / +29.0% unique): YES</span>
+<span class="chip warn">Selector: not approved (0 weekly slots used)</span></div>
+{copy('Submission name (for reference only — DO NOT UPLOAD)', sub['submission_name'])}
+{copy('Short note <= 140 chars (for reference only — DO NOT UPLOAD)', sub['submission_note'])}
+<p class="small">SHA-256 of .tif: <code>{e(sub['tif_sha256'])}</code> ·
+SHA-256 of .zip: <code>{e(sub['zip_sha256'])}</code> ·
+Decoded float32 SHA-256: <code>{e(sub['decoded_float32_sha256'])}</code> ·
+<a href="evidence/h77h/run_card.json">JSON run card</a> ·
+<a href="evidence/h77h/exp1_seed20_holdout.json">Exp 1 Seed 20 holdout</a> ·
+<a href="evidence/h77h/exp2_seed30_holdout.json">Exp 2 Seed 30 holdout</a> ·
+<a href="evidence/h77h/uniqueness_audit.json">Exp 3 uniqueness audit</a> ·
+<a href="evidence/h77h/canary_seed20.json">Seed 20 canaries</a> ·
+<a href="evidence/h77h/canary_seed30.json">Seed 30 canaries</a> ·
+<a href="evidence/preregistration_h77h.json">preregistration JSON</a> ·
+<a href="research/h77h_hypotheses.md">PhD forensic &amp; hypotheses report</a></p></section>
+
+<h2>Diagnostic figures: Dual-seed holdout benchmark, 119-raster uniqueness audit &amp; blind Central Nevada fault recovery</h2>
+<p><img src="assets/h77h/fig1_h77h_holdout_and_uniqueness.png" alt="H77H dual-seed HOLDOUT-DTI benchmark and 119-raster uniqueness audit" style="max-width:100%;height:auto;border:1px solid #cbd5e1;border-radius:6px"></p>
+<p><img src="assets/h77h/fig2_h77h_nevada_surface_and_zoom.png" alt="H77H cross-fitted Nevada propensity surface and 45x45 km Central Nevada Basin-and-Range blind fault recovery zoom" style="max-width:100%;height:auto;border:1px solid #cbd5e1;border-radius:6px"></p>
+
+<h2>1. Why GEMSDOE32 (<code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</code>) Scored 0.2778 — Forensic Breakdown</h2>
+<p>On the live DrivenData DOE GEMS leaderboard (verified 2026-10-21 at <a href="{LB}">drivendata.org/competitions/306/competition-doe-gems/leaderboard/</a>), #1 <code>xiaofanhu</code> holds <b>0.4413</b> (<code>ORGANIZER-CONFIRMED</code>, 26 submissions), #2 <code>cfld__</code> holds <b>0.3904</b>, #3 <code>Batik Shirt Brothers</code> holds <b>0.3894</b>, #4 <code>BrandenKMurray</code> holds <b>0.3713</b>, #5 <code>No Fault of Our Own</code> holds <b>0.3539</b>, and #48 <code>extradr19</code> holds <b>0.2778</b>. Under the exact Distance-Weighted Tversky Index (<a href="{PD}">problem description</a>, &alpha; = 0.2, &beta; = 0.8, 300 m triangular kernel):</p>
+<table>
+<tr><th>Causal Mechanism</th><th>What GEMSDOE32 (H33) Did Right</th><th>Why GEMSDOE32 Stopped at 0.2778 (vs 0.4413 #1)</th><th>How H77H Fixes It</th></tr>
+<tr><td><b>1. Asymmetric DTI (&alpha;=0.2, &beta;=0.8) &amp; 300 m Triangular Kernel</b></td><td>Replaced dense continuous probabilities with <code>37,654</code> binary <code>{{0,1}}</code> dots spaced ~600 m apart, cutting false-positive mass <code>0.2 FP_w</code> by ~10&times; while preserving ~65% of the 300 m halo coverage along ridges.</td><td>Used greedy peak-picking + fixed 6-px NMS instead of solving the fractional Dinkelbach submodular cover over the 25-pixel 300 m kernel.</td><td>Solves the exact 5-iteration Dinkelbach fractional-programming submodular cover (<b>+0.03628 HOLDOUT-DTI</b> over greedy NMS on the exact same propensity surface).</td></tr>
+<tr><td><b>2. SGMC Lithology Shortcut (Bands 18–20)</b></td><td>Trained 2-tree ensemble + logistic stacker on all 22 bands including SGMC mapped geology (<code>geol_maj1</code>, <code>geol_maj2</code>, <code>geol_min</code>), which correlate strongly with already-mapped faults.</td><td>Expert unmapped test faults cross concealed alluvial basins and intra-plutonic corridors where SGMC polygons are uniform (<code>Qal</code>), causing recall collapse outside mapped bedrock contacts.</td><td><b>Zero SGMC bands used</b> (bands 18, 19, 20 hard-excluded in code). Uses 10 m USGS 3DEP break-in-slope scarps, knickpoints, RTP demagnetization troughs, and CBA gravity steps.</td></tr>
+<tr><td><b>3. Coarse Interpolation Mesh Contamination (<code>IR-H77G-01</code>)</b></td><td>Included raw short-wavelength spatial gradients of surface MT conductivity (<code>cond_surf</code>, Band 17) and earthquake density (<code>earthquakes</code>, Band 21).</td><td>Band 17 has 30.5% zero steps and sharp 1-D FFT mesh peaks at <b>35.02 px (3.5 km) and 70.04 px (7.0 km)</b>; short-scale (&sigma; &lt; 35 px) gradients trace the USGS/NBMG interpolation grid rather than faults.</td><td>Purges the 4 &lt;35 px MT/seismic mesh-derivative channels and gates all MT/seismic context strictly to regional &sigma; &ge; 35 px (&ge; 3.5 km) regime envelopes (lifting Base116 to <b>0.15664 HOLDOUT-DTI</b>).</td></tr>
+<tr><td><b>4. Uncoupled vs Coupled Hydrothermal-Structural Physics (<code>IR-H77G-03</code>)</b></td><td>Used raw single-scale geophysical bands without cross-spectral coupling between RTP magnetics, CBA gravity, and 3DEP topography.</td><td>Standalone hydrothermal demagnetization troughs (<code>H77G</code>) without topographic/gravity-step coupling fire on benign volcanic margins (scoring <code>0.0619</code>).</td><td>Couples multi-scale RTP demagnetization troughs and horizontal gravity-step ridges directly with 3DEP scarps/knickpoints and SLOCO stepover mechanics (<code>h77h_scarp_x_gravstep_coupled</code> = <b>#1 static physics feature on Seed 30 at 0.6184 AUC</b>).</td></tr>
+</table>
+
+<h2>2. Four Untried Pre-Experiment Geological Hypotheses (Ranked by Expected DTI Gain / Cost)</h2>
+<table>
+<tr><th>Rank &amp; ID</th><th>Hypothesis &amp; Specific Layers</th><th>Physical Signature &amp; Why Catalogue Misses It</th><th>Named Non-Fault Mimic &amp; Countermeasure</th></tr>
+<tr><td><b>#1 · H77H-1 (Tested)</b></td><td><b>Mesh-Deconfounded (&sigma; &ge; 35 px) Hydrothermal-Structural Coupled Submodular Cover</b><br>Bands 0 (<code>dem</code>), 1 (<code>slope</code>), 15 (<code>magnetic</code>), 16 (<code>gravity</code>), 12 (<code>fault_sl_3</code>), 13 (<code>fault_di_3</code>), 14 (<code>heat_flow</code>), 17 (<code>cond_surf</code> at &sigma;&ge;35 px), 21 (<code>earthquakes</code> at &sigma;&ge;35 px), 10 m 3DEP scarps/knickpoints, <code>existing_faults.tif</code></td><td>Hydrothermal fluids circulating along active normal/transtensional fault damage zones alter magnetite to pyrite/hematite/clay (creating a narrow RTP magnetic trough along the positive Hessian ridge of horizontal CBA gravity gradient), while 10 m LiDAR records subtle range-front scarps and drainage knickpoints.</td><td><b>Mimics:</b> (a) 3.5 km / 7.0 km MT/seismic interpolation grid steps (<code>IR-H77G-01</code>); (b) non-tectonic volcanic flow edges; (c) TIGER roads/railroads/canals.<br><b>Countermeasures:</b> Purge &lt;35 px MT/seismic gradients; require positive across-strike gravity step + scarp/knickpoint coupling; apply TIGER cultural damping.</td></tr>
+<tr><td><b>#2 · H77H-2</b></td><td><b>Anisotropic Poisson Upward-Continuation Vertical Derivative Ratio &amp; Euler Structural Index</b><br>Bands 15 (<code>magnetic</code>), 16 (<code>gravity</code>), 0 (<code>dem</code>)</td><td>Sub-vertical basement-cutting fault contacts have Euler structural index N &approx; 0.5–1.0 and decay more slowly under FFT upward continuation (z = 200–1600 m) than shallow surficial basalt boulders or cultural noise (N &approx; 2.5–3.0).</td><td><b>Mimic:</b> Plutonic intrusive stock rings.<br><b>Countermeasure:</b> Weight by horizontal-gradient elongation aspect ratio (&lambda;<sub>2</sub>/&lambda;<sub>1</sub>) and slip/dilation tendency.</td></tr>
+<tr><td><b>#3 · H77H-3</b></td><td><b>Piedmont Playfair Tributary Junction Angular Anomaly &amp; Alluvial Fan Apex Alignment</b><br>Bands 0–8 (<code>dem</code>, <code>slope</code>, <code>aspect_sin/cos</code>, curvatures), 10 m 3DEP channels</td><td>Blind piedmont faults tilt alluvial fans and deflect ephemeral washes into fault-parallel trellised junctions before incised bedrock scarps form.</td><td><b>Mimic:</b> Pleistocene Lake Lahontan wave-cut shorelines.<br><b>Countermeasure:</b> Suppress horizontal contour-parallel benches where |&nabla;z &middot; t&#770;| &approx; 0.</td></tr>
+<tr><td><b>#4 · H77H-4</b></td><td><b>Radiometric K/Th Clay-Potassic Alteration Asymmetry Across Gravity-Tilt Zero Contours</b><br>Bands 9–11 (<code>rad_k</code>, <code>rad_u</code>, <code>rad_th</code>), Band 16 (<code>gravity</code>), Band 14 (<code>heat_flow</code>)</td><td>Ascendant geothermal brines deposit adularia/illite (high K/Th) along the permeable footwall damage zone adjacent to the gravity-tilt zero contour.</td><td><b>Mimic:</b> Felsic rhyolite tuff / granite outcrops and playa evaporite sinks.<br><b>Countermeasure:</b> Require across-fault dipole derivative aligned with the gravity-tilt zero contour outside flat playas.</td></tr>
+</table>
+
+<h2>3. Dual-Seed Official Holdout Evaluation (Exp 1 &amp; Exp 2 · <code>gems57-pooled-hide-v2</code>)</h2>
+<table><tr><th>Evaluation Arm</th><th>Seed 20 HOLDOUT-DTI (95% CI)</th><th>Seed 30 HOLDOUT-DTI (95% CI)</th><th>Evaluator &amp; Withheld Positives</th></tr>{arm_rows_html}</table>
+
+<h3>Paired Block-Bootstrap Differences on Seed 20 (<code>2,000</code> Replicates)</h3>
+<table><tr><th>Paired Comparison</th><th>&Delta; HOLDOUT-DTI</th><th>95% Bootstrap CI</th></tr>{diff_rows_html}</table>
+
+<h2>4. Single-Feature Leakage Canary Audit (<code>137 / 137</code> Passed &le; 0.90 Ceiling)</h2>
+<p>Every one of the 137 channels (128 mesh-safe static physics channels + 9 fold-recomputed SLOCO fracture-mechanics channels) was tested individually against the withheld holdout faults before model fitting. All 137 passed the <code>0.90</code> symmetric AUC ceiling on both Seed 20 (max overall <code>{can20['max_overall']['symmetric_auc']:.4f}</code>, max static physics <code>{can20['max_static_physics']['symmetric_auc']:.4f}</code>) and Seed 30 (max overall <code>{can30['max_overall']['symmetric_auc']:.4f}</code>, max static physics <b><code>{can30['max_static_physics']['symmetric_auc']:.4f}</code> for <code>{e(can30['max_static_physics']['feature'])}</code> — #1 static physics feature across all 128 channels</b>):</p>
+<table><tr><th>Top 15 Channels (Seed 30 Holdout)</th><th>Symmetric Holdout AUC</th><th>Feature Group</th></tr>{can30_rows}</table>
+
+<h2>5. Exact 127-Raster Portfolio Uniqueness Audit (Exp 3 · <code>0 / 119</code> Informative Firings)</h2>
+<p>Verified against <code>vendor/gems57/uniqueness.py:dot_overlap</code> with <code>0.0e+00</code> discrepancy across the top 15 closest rasters:</p>
+<table><tr><th>Closest Informative Raster (&lt;70% 3-px halo)</th><th>3-px Halo Fraction</th><th>Exact Forward 3-px Overlap</th><th>Abs Diff vs Vendor</th></tr>{top_ov_rows}</table>
+"""
+
+    exec_body = f"""<h1>H77H Executive Summary &amp; Submission Guide</h1>
+<p class="verdict"><b>Decision for <code>{e(sub['submission_name'])}</code>: OK TO DOWNLOAD FOR INSPECTION · NOT OK TO SUBMIT WITHOUT SELECTOR APPROVAL.</b><br>
+Format-valid (15/15 validator checks, <code>0</code> NaN, finite <code>float32</code> values in <code>[0, 1]</code>, <code>36,800</code> binary dots) and informative-unique across all <code>119</code> non-space-filling portfolio rasters (<code>0/119</code> firings, max overlap <code>{p2_inf['max_forward_3px_overlap']:.4f} &le; 0.70</code>), beating fold-fair H33 on both spatial holdout seeds (<b>0.15371</b> Seed 20 / <b>0.15460</b> Seed 30 unconstrained; <b>0.12421</b> Seed 20 / <b>0.12418</b> Seed 30 portfolio-unique; <code>Base116</code> mesh-deconfounded ablation <b>0.15664</b>). Under Policy I17, the literal unfiltered registry rule fails closed on 8 space-filling rasters (<code>1.0000</code> on <code>dense_witness.tif</code>). Selector status: <b>not approved</b> (<code>0</code> weekly slots spent).</p>
+<section class="card dl research"><h2>⬇ H77H Artifact &amp; Metadata</h2>
+<a class="btn" href="downloads/{e(tif_name)}" download>Download .tif ({sub['tif_bytes'] // 1024} KB)</a>
+<a class="btn alt" href="downloads/{e(zip_name)}" download>Download one-TIFF .zip ({sub['zip_bytes'] // 1024} KB)</a>
+{copy('Submission name (reference only — DO NOT SUBMIT)', sub['submission_name'])}
+{copy('Short note <= 140 chars (reference only — DO NOT SUBMIT)', sub['submission_note'])}
+<p class="small">TIFF SHA-256: <code>{e(sub['tif_sha256'])}</code> · ZIP SHA-256: <code>{e(sub['zip_sha256'])}</code> · <a href="h77h.html">Full H77H report &amp; figures →</a> · <a href="evidence/h77h/run_card.json">JSON run card →</a></p></section>"""
+
+    (D / "h77h.html").write_text(page("h77h.html", "H77H · 0/119 firings", body))
+    (D / "h77h-executive-summary.html").write_text(page("h77h-executive-summary.html", "H77H guide", exec_body))
+
+    (D / "evidence" / "h77h").mkdir(parents=True, exist_ok=True)
+    for fname in (
+        "run_card.json",
+        "exp1_seed20_holdout.json",
+        "exp2_seed30_holdout.json",
+        "uniqueness_audit.json",
+        "canary_seed20.json",
+        "canary_seed30.json",
+    ):
+        src = ROOT / "evidence" / "h77h" / fname
+        if src.exists():
+            shutil.copyfile(src, D / "evidence" / "h77h" / fname)
+    if (ROOT / "evidence" / "run_card_h77h.json").exists():
+        shutil.copyfile(ROOT / "evidence" / "run_card_h77h.json", D / "evidence" / "run_card_h77h.json")
+    if (ROOT / "registry" / "preregistration_h77h.json").exists():
+        shutil.copyfile(ROOT / "registry" / "preregistration_h77h.json", D / "evidence" / "preregistration_h77h.json")
+    if (ROOT / "research" / "h77h_hypotheses.md").exists():
+        (D / "research").mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(ROOT / "research" / "h77h_hypotheses.md", D / "research" / "h77h_hypotheses.md")
+
+
+def _inject_h77h_hero():
+    rc77h = jload("evidence/h77h/run_card.json")
+    if not rc77h:
+        return
+    sub = rc77h["candidate_artifact"]
+    tif_name = Path(sub["tif_path"]).name
+    zip_name = Path(sub["zip_path"]).name
+    hero = f"""<section class="card dl"><h2>⬇ Newest Lane H77H Deliverable (0 / 119 Informative Firings · Dual-Seed Positive Holdout · IR-H77G-01/03 Remediated)</h2>
+<p class="verdict"><b>OK to download: YES</b> (15/15 <code>vendor/gems57/validate.py</code> checks PASS, binary <code>float32</code> strictly in <code>[0, 1]</code>, <code>0</code> NaNs across all <code>12,279,160</code> cells, <code>36,800</code> positive dots).<br>
+<b>Not OK to submit (NOT OK TO SUBMIT automatically — inspection only without human selector Policy I17 sign-off):</b>
+8 space-filling &ge;70%-halo rasters (including <code>dense_witness.tif</code> <code>ab0a0a62</code>) trigger literal overlap; across ALL <code>119</code> &lt;70%-halo portfolio rasters, forward 3-px overlap has <b>0 firings</b> (<code>max = 0.66500 &le; 0.70</code>; pre-placement surface max |&rho;| = <code>0.7471 &le; 0.90</code>).<br>
+<b>Official HOLDOUT-DTI (<code>gems57-pooled-hide-v2</code>):</b> Mesh-safe <code>Base116</code> ablation reaches <code>0.15664</code> on Seed 20 (+0.00102 over H77E-Knick); unconstrained H77H reaches <code>0.15371</code> on Seed 20 / <code>0.15460</code> on Seed 30 (+148% over H77G 0.0619 and +59.6% over fold-fair H33); portfolio-unique H77H reaches <code>0.12421</code> (Seed 20) / <code>0.12418</code> (Seed 30).</p>
+<a class="btn" href="downloads/{e(tif_name)}" download>Download H77H .tif ({sub["tif_bytes"]//1024} KB)</a>
+<a class="btn alt" href="downloads/{e(zip_name)}" download>Single-TIFF .zip ({sub["zip_bytes"]//1024} KB)</a>
+<a class="btn alt" href="h77h.html">Full H77H report &amp; figures →</a>
+<p class="small">name: <code>{e(sub["submission_name"])}</code> · sha256: <code>{e(sub["tif_sha256"])}</code> · note: <code>{e(sub["submission_note"])}</code></p></section>"""
+    for pname in ("index.html", "executive-summary.html"):
+        ptxt = (D / pname).read_text()
+        ptxt = ptxt.replace("<h1>", hero + "<h1>", 1)
+        (D / pname).write_text(ptxt)
+
+
 if __name__ == "__main__":
     main()
     _write_h77e_knick()
     _inject_h77e_knick_hero()
+    _write_h77h()
+    _inject_h77h_hero()
     _write_h77g()

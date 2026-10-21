@@ -1,6 +1,35 @@
 {
- "note": "All 22 listed TIFF lanes are inspection downloads only; every file is NOT OK TO SUBMIT. H80 (Riedel) is featured because it has complete evidence from the pinned gems57 evaluator; the later AGO variants have only a different quick 4-quadrant proxy and are not comparable. H80-OTA (orphan thermal alignment, negative) was merged in parallel and is listed second. The literal uniqueness/selector gates remain fail-closed; see docs/data/submission-authorization.json. H81 (slip-cone, negative, research-only) and H77G (hydrothermal demagnetization trough, negative, research-only) are listed for inspection only.",
+ "note": "All 23 listed TIFF lanes are inspection downloads only; every file is NOT OK TO SUBMIT. H80 (Riedel) is featured because it has complete evidence from the pinned gems57 evaluator; the later AGO variants have only a different quick 4-quadrant proxy and are not comparable. H80-OTA (orphan thermal alignment, negative) was merged in parallel and is listed below. The literal uniqueness/selector gates remain fail-closed; see docs/data/submission-authorization.json. H77H (mesh-deconfounded hydrothermal-structural coupled submodular cover) is the newest lane and is listed for inspection only.",
  "lanes": [
+  {
+   "lane": "H77H (NEWEST): Mesh-Deconfounded (sigma>=35px) Hydrothermal Demagnetization Trough x Gravity-Basement Step x 3DEP Scarp/Knickpoint x Coupled SLOCO + 119-Raster Capped 300 m Submodular Cover",
+   "page": "h77h.html",
+   "summary": "h77h-executive-summary.html",
+   "file": "downloads/gems77-h77h-meshsafe-hydrostruct-submod-36800dots-20261021-5ef236e2-zeros.tif",
+   "zip": "downloads/gems77-h77h-meshsafe-hydrostruct-submod-36800dots-20261021-5ef236e2-zeros.zip",
+   "run_card": "evidence/h77h/run_card.json",
+   "format_valid": true,
+   "protocol_unique": false,
+   "informative_unique": true,
+   "beats_holdout_best": true,
+   "selector_approved": false,
+   "verdict": "negative",
+   "primary": false,
+   "name": "gems77-h77h-meshsafe-hydrostruct-submod-36800dots-20261021-5ef236e2",
+   "note": "H77H: sigma>=35px regime x RTP demag trough + grav step + 3DEP scarp/knick + SLOCO (36800 dots; S20=0.1242)",
+   "sha256": "34f8dea50ff0b2eeac843e1f3f76e8d9a7bb63368aab2de339ba046009162744",
+   "zip_sha256": "01d4681fd1f1e6c3ee874c3d0845a559e394674fb694ea54fd8260e45d3255c2",
+   "holdout_dti_hide_v2": 0.12421265031797642,
+   "holdout_evaluator_version": "gems57-pooled-hide-v2",
+   "holdout_positive_pixels": 11321,
+   "holdout_ci95": [
+    0.10903399416288766,
+    0.13853411590588022
+   ],
+   "upload": "Not OK to submit. OK to download for inspection only. Format-valid (15/15 validator checks, 0 NaN, values in [0,1], 36,800 binary dots) and informative-unique across all 119 non-space-filling (<70%-halo) portfolio rasters (0/119 firings; max 3-px forward overlap 0.6650 <= 0.70; max |Spearman rho| 0.0887 <= 0.90; pre-placement surface max |rho| 0.7471 <= 0.90; vs H33 overlap 0.4272, rho +0.0298). Literal registry rule fails closed under Policy I17 due to 8 space-filling >=70%-halo rasters (1.0000 on dense_witness ab0a0a62). Mesh-safe Base116 ablation reaches 0.15664 HOLDOUT-DTI on Seed 20 (+0.00102 over H77E-Knick); unconstrained H77H reaches 0.15371 (Seed 20) / 0.15460 (Seed 30) (+148% over H77G 0.0619 and +59.6% over fold-fair H33 0.0963); 119-raster portfolio-unique arm reaches 0.12421 (Seed 20) / 0.12418 (Seed 30). Selector: not approved.",
+   "why_primary": "Newest verified lane (H77H). Remediates IR-H77G-01 (purging <35 px MT/seismic mesh-derivative artifacts lifts Base116 holdout DTI to 0.15664) and IR-H77G-03 (coupling hydrothermal demagnetization troughs and gravity-basement steps with 3DEP scarps/knickpoints and SLOCO fracture mechanics lifts H77G from 0.0619 to 0.1537 Seed 20 / 0.1546 Seed 30; portfolio-unique 0.1242 Seed 20 / 0.1242 Seed 30 with 0/119 informative firings).",
+   "beat_02778_summary": "Beats fold-fair H33 champion construction significantly on BOTH spatial holdout seeds (+29.0% Seed 20 / +25.4% Seed 30 for portfolio-unique arm; +59.6% Seed 20 / +56.1% Seed 30 for unconstrained arm; +148% over H77G) with 0 SGMC channels and 137/137 leakage canaries passed."
+  },
   {
    "lane": "H77G: hydrothermal magnetite-destruction trough × gravity-basement step × MT clay-cap margin (HOLDOUT-DTI 0.0619 s20 / 0.0618 s30, pure 0.0392/0.0471; negative result)",
    "page": "h77g.html",
