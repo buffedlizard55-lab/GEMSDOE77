@@ -275,3 +275,17 @@ def test_h80t_lane_artifact_and_run_card_fail_closed():
     assert uniq['phase1_surface_before_placement']['worst_spearman_full_footprint'] <= 0.90
     assert uniq['phase2_final_dots']['worst_dot_overlap_informative_dot_fields'] <= 0.70
     assert uniq['phase2_final_dots']['worst_dot_overlap_literal'] > 0.70
+
+
+def test_current_preflight_review_does_not_claim_a_new_submission():
+    text = (DOC / "preflight-review.html").read_text()
+    assert "NOT OK TO SUBMIT" in text and "No new TIFF generated" in text
+    assert "5,106,385" in text and "REGISTRY MEASUREMENT" in text
+    assert "conditional" in text.lower() and "not viable" in text.lower()
+    for name in ("registry_preflight.json", "listed_download_audit.json", "preflight_sources.json", "readiness_review_run_card.json"):
+        assert (DOC / "evidence" / name).read_bytes() == (ROOT / "evidence" / name).read_bytes()
+    card = json.loads((ROOT / "evidence/readiness_review_run_card.json").read_text())
+    assert card["verdict"] == "negative" and not card["ok_to_submit"]
+    assert card["raster_sha256"] is None and card["submission_name"] is None
+    assert len(card["submission_note"]) <= 140
+    assert card["holdout_dti"]["value"] is None

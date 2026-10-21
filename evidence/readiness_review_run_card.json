@@ -1,0 +1,42 @@
+{
+  "hypothesis": "No new geological hypothesis tested; candidate-independent duplicate-stop preflight review.",
+  "mechanism": "Hash/grid-verify the registered dense witness, then use the unchanged shared finite-positive support and 3px dilation to prove rejection of every nonempty allowed candidate.",
+  "named_non_fault_process_that_could_mimic_it": "Not applicable to the preflight; intrusive contacts and survey seams remain mimics of the conditional potential-field proposals.",
+  "holdout_dti": {
+    "value": null,
+    "ci95": null,
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "status": "NOT RUN: universal overlap rejection precedes a new experiment. No historical score relabelled as new."
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT, NOT SCORE",
+    "rank_correlation": null,
+    "allowed_pixels": 5106385,
+    "nonempty_allowed_surface_forward_overlap_lower_bound_3px": 1.0,
+    "nonempty_allowed_final_dots_forward_overlap_lower_bound_3px": 1.0,
+    "stop_threshold": 0.7,
+    "complete_registry_scan": false,
+    "scope": "One pinned universal rejection witness suffices to reject, never to certify uniqueness.",
+    "receipt": "evidence/registry_preflight.json"
+  },
+  "raster_sha256": null,
+  "new_raster_generated": false,
+  "validator": {
+    "scope": "Existing 22 listed primary TIFFs only; no new candidate",
+    "all_22_format_pass": true,
+    "no_nan_inside_footprint": true,
+    "all_values_finite_in_0_1": true,
+    "crs_shape_transform_match": true,
+    "hashes_match_manifest": true,
+    "portal_acceptance": "NOT VERIFIED",
+    "receipt": "evidence/listed_download_audit.json"
+  },
+  "submission_name": null,
+  "submission_note": "Preflight review only; no new candidate, duplicate-stop; no weekly slot used.",
+  "experiments_run": 0,
+  "weekly_slots_used": 0,
+  "ok_to_download_existing_research_files": true,
+  "ok_to_submit": false,
+  "verdict": "negative"
+}
