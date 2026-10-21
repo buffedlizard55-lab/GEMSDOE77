@@ -1,0 +1,73 @@
+{
+  "schema": "gems77-focused-source-check-v1",
+  "checked_date_utc": "2026-10-21",
+  "scope": "Focused provenance/schema re-check for this branch. This does not replace the 82-repository GitHub inventory or access the DrivenData portal.",
+  "owner_page_check": {
+    "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/f62038b54dcb7767d4d997f80b033cdc3d42bef9/docs/index.html",
+    "repository": "buffedlizard55-lab/GEMSDOE32",
+    "commit": "f62038b54dcb7767d4d997f80b033cdc3d42bef9",
+    "retrieval": "GitHub Contents API via gh api; raw page bytes inspected",
+    "raw_page_bytes": 19571,
+    "raw_page_sha256": "d83dd1ace9e2338c312ba9d6775413ab0b5ed8e9ae22e73b4d8291fca30aa0ec",
+    "page_states_no_organizer_score_for_repository_artifacts": true,
+    "page_contains_claimed_0_2778": false,
+    "page_contains_0_3195_in_a_dated_2026_10_04_leaderboard_snapshot": true,
+    "page_contains_0_4413": false,
+    "dated_owner_page_leaderboard_excerpt": "verified 2026-10-04: #1 nchuzhoy 0.3262, #2 DARD 0.3195, #3 alexoktaba 0.3042",
+    "page_contains_organizer_confirmed_attribution": false,
+    "evidence_class": "OWNER-PAGE-MEASUREMENT; not an organizer receipt or score"
+  },
+  "geochemistry_mirror_schema_check": {
+    "url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/07345ea0604953d7efb858d9cfbc21e20c7aca0b/data/external/gdr_wellspring_in_footprint.csv",
+    "repository": "buffedlizard55-lab/GEMSDOE24",
+    "commit": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+    "path": "data/external/gdr_wellspring_in_footprint.csv",
+    "bytes": 2146771,
+    "sha256": "122718e65bdf55aab0ee12ad20d80062f0deb1de957225a61ad880dd5dc196ea",
+    "columns": [
+      "layer",
+      "name",
+      "thermalclass",
+      "row",
+      "col",
+      "utm_x",
+      "utm_y",
+      "dist_known_fault_px",
+      "temp_c",
+      "geothermquartz_c",
+      "geothermchalc_c",
+      "geothermcat_c"
+    ],
+    "isotope_named_columns_found": false,
+    "evidence_class": "OWNER-MIRROR SCHEMA MEASUREMENT; not a completeness or official-provenance claim"
+  },
+  "official_sources_not_fetched_in_this_review": [
+    {
+      "name": "DrivenData competition problem, leaderboard and submission/data portal",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/",
+      "status": "NOT FETCHED",
+      "reason": "Host is outside the sandbox outbound allow-list; no organizer receipt or current leaderboard was accessed."
+    },
+    {
+      "name": "USGS NWIS, USGS ComCat and USGS Landsat services",
+      "urls": [
+        "https://waterdata.usgs.gov/nwis",
+        "https://earthquake.usgs.gov/fdsnws/event/1/query",
+        "https://www.usgs.gov/landsat-missions/landsat-collection-2"
+      ],
+      "status": "NOT FETCHED",
+      "reason": "Official USGS hosts are outside the sandbox outbound allow-list; AOI data coverage was not checked."
+    },
+    {
+      "name": "DOE GDR and Copernicus Data Space",
+      "urls": [
+        "https://gdr.openei.org/submissions/1391",
+        "https://dataspace.copernicus.eu/"
+      ],
+      "status": "NOT FETCHED",
+      "reason": "Hosts are outside the sandbox outbound allow-list; current official records and Great Basin product coverage were not checked."
+    }
+  ],
+  "official_submission_receipt_accessed": false,
+  "current_leaderboard_verified": false
+}

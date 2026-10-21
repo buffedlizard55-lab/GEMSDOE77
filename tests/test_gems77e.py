@@ -191,7 +191,11 @@ def test_h77e_deliverables_run_card_geotiff_and_pages():
         for href in re.findall(r'(?:href|src)="([^"]+)"', txt):
             if href.startswith(("http://", "https://", "#", "mailto:")):
                 continue
-            assert (ROOT / "docs" / href).exists(), (page_name, href)
+            target, _, fragment = href.partition("#")
+            target_path = ROOT / "docs" / target if target else ROOT / "docs" / page_name
+            assert target_path.exists(), (page_name, href)
+            if fragment:
+                assert f'id="{fragment}"' in target_path.read_text(), (page_name, href, "missing fragment")
     readme_txt = (ROOT / "README.md").read_text()
     # The top banner is the current release status, not a permanently pinned
     # historical H77E/H81 summary. H81 remains traceable after newer parallel

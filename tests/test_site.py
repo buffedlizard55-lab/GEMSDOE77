@@ -131,7 +131,7 @@ def test_home_pages_put_download_and_per_file_status_first():
     """docs/index.html is the repository-wide entry page (scripts/build_home.py), not one lane's view."""
     lanes=json.loads((DOC/'data/lanes.json').read_text())['lanes']
     home=(DOC/'index.html').read_text()
-    head=home[:home.index('Reviewed downloadable candidates')]
+    head=home[:home.index('Existing reviewed downloads')]
     assert 'Download .tif' in head and 'Can I submit it?' in head and 'Will it beat 0.2778?' in head
     assert 'Not OK to submit' in head and 'OK to download' in head
     assert 'Can I submit it?</b> Yes' not in home and 'Can I upload it?</b> Yes' not in home
@@ -178,7 +178,7 @@ def test_new_research_raster_is_visible_but_never_called_a_submittable_entry():
     assert card['note_length']==len(card['submission_note'])<=140
     assert tif.name in home and tif.name in detail and 'RESEARCH ONLY' in guide
     assert 'NOT OK TO SUBMIT' in home and 'NOT OK TO SUBMIT' in detail
-    assert '0.0 or 1.0' not in home[:home.index('Reviewed downloadable candidates')]
+    assert '0.0 or 1.0' not in home[:home.index('Existing reviewed downloads')]
     assert 'unverified claims in this review' in home
     assert 'not submission-page receipts' in home
     assert 'row #48' not in home
@@ -311,25 +311,40 @@ def test_current_review_and_metric_correction_are_linked():
     for name in ('index.html', 'executive-summary.html'):
         text = (DOC / name).read_text()
         assert 'review-latest.html' in text and 'metric-review.html' in text
-        assert 'Current branch review:' in text or name == 'executive-summary.html'
-        assert 'no new TIFF' in text or 'NO NEW TIFF' in text
+        assert 'current-session-status' in text
+        assert 'NOT OK TO SUBMIT' in text
+        assert 'no new file to download' in text.lower()
+    index = (DOC / 'index.html').read_text()
+    assert index.index('current-session-status') < index.index('Historical H77V-LDSA research artifact')
+    assert 'reviewed-downloads' in index
     analysis = (DOC / 'metric-review.html').read_text()
     assert 'ΔT=k' in analysis and 'only when' in analysis
     assert 'does <strong>not</strong> always increase' in analysis
     review = (DOC / 'review-latest.html').read_text()
+    assert 'arena/f7b973cd-gemsdoe77' in review
     assert 'NOT OK TO SUBMIT' in review
     assert 'STOP_UNIVERSAL_DUPLICATE' in review
     assert '5,106,385' in review
-    assert 'Candidate screen' in review
+    assert 'Ranked candidate hypotheses' in review
     assert 'NOT RUN' in review
-    current_card = json.loads((DOC / 'evidence/review_6a5eca5f_card.json').read_text())
-    assert current_card['branch'] == 'arena/6a5eca5f-gemsdoe77'
+    current_card = json.loads((DOC / 'evidence/review_f7b973cd_card.json').read_text())
+    assert current_card['branch'] == 'arena/f7b973cd-gemsdoe77'
     assert current_card['new_tiff_generated'] is False
     assert current_card['holdout_dti']['evidence_class'] == 'NOT RUN'
     assert current_card['ok_to_submit'] is False
+    assert current_card['raster_sha256'] is None and current_card['submission_name'] is None
+    assert len(current_card['submission_note']) <= 140
+    source_check = json.loads((DOC / 'evidence/source_check_f7b973cd.json').read_text())
+    assert source_check['owner_page_check']['page_contains_claimed_0_2778'] is False
+    assert source_check['owner_page_check']['page_contains_0_3195_in_a_dated_2026_10_04_leaderboard_snapshot'] is True
+    assert source_check['official_submission_receipt_accessed'] is False
+    source_feed = (DOC / 'sources.html').read_text()
+    assert 'Latest focused source check' in source_feed
+    assert 'source_check_f7b973cd.json' in source_feed and 'review-latest.html' in source_feed
+    assert (DOC / 'review-6a5eca5f.html').is_file()
 
 
-def test_current_review_has_no_submission_download_or_score_projection():
+def test_previous_review_has_no_submission_download_or_score_projection():
     report = (ROOT / 'docs/review-2026-10-21-arena-6a5eca5f.md').read_text()
     assert 'NO NEW TIFF GENERATED' in report
     assert 'Expected DTI change is unknown' in report

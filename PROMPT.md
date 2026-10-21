@@ -1,5 +1,13 @@
 # Project prompt (operative brief — re-read at the start of every session)
 
+## Current branch review addendum — `arena/f7b973cd-gemsdoe77` (2026-10-21)
+
+No new method paragraph was assigned. The fresh candidate-independent preflight is `STOP_UNIVERSAL_DUPLICATE`: one hash-pinned witness covers all 5,106,385 allowed pixels after the 3-px dilation, implying a 1.0 forward-overlap lower bound for any nonempty candidate support against the strict >0.70 stop. This is one rejection witness, not a complete registry scan. No feature surface, candidate, holdout, leakage canary, final dots, TIFF, experiment, or weekly slot was produced. The current release receipt authorizes 0 files. Do not infer geological equivalence or silently exempt dense surfaces.
+
+The H33 owner page read at GitHub commit `f62038b54dcb7767d4d997f80b033cdc3d42bef9` states that no organizer score exists for its artifacts; the prompt's `0.2778` remains OWNER-REPORT / USER-REPORT. That page mentions `0.3195` only in a dated 2026-10-04 leaderboard snapshot and does not contain `0.4413`; neither is a current organizer-verified result. The live DrivenData page was not independently checked in this review. Current review and ranked conditional hypotheses: `docs/review-2026-10-21-arena-f7b973cd.md`; machine-readable card: `evidence/review_f7b973cd_card.json`; focused source check: `evidence/source_check_f7b973cd.json`; persistent preflight: `evidence/registry_preflight.json`.
+
+The README and generated homepage/executive summary now lead with this no-artifact, zero-authorization status; the former H77V-LDSA “newest” card is labelled historical. This addendum does not relax the standing request, reopen a lane, authorize a submission slot, or replace any official receipt requirement.
+
 *Stored 2026-10-21 per the project owner's instruction ("Put this prompt into
 the repo readme and read it every time we work on the project"). This file
 preserves the operative instructions; the owner's long family score list is

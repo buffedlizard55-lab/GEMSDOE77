@@ -1,5 +1,5 @@
 {
-  "checked_utc": "2026-10-21T18:53:09.636267+00:00",
+  "checked_utc": "2026-10-21T19:53:56.191894+00:00",
   "purpose": "Repository/page freshness and artifact inventory, NOT scores, scientific validation, or full raster uniqueness",
   "repos": [
     {
@@ -2768,11 +2768,11 @@
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE77",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
-      "commit": "8ee18b0e5453e145fd9df33a6c94ec53737777b5",
-      "tree_sha": "8ee18b0e5453e145fd9df33a6c94ec53737777b5",
+      "commit": "b0b26754d354dae6e797ea7d57f3b7c4a40fcdcb",
+      "tree_sha": "b0b26754d354dae6e797ea7d57f3b7c4a40fcdcb",
       "truncated": false,
-      "review_page": "https://github.com/buffedlizard55-lab/GEMSDOE77/blob/8ee18b0e5453e145fd9df33a6c94ec53737777b5/docs/index.html",
-      "review_page_blob_sha": "88fe6e24f493201078c406a877004dbfbbfb69f9",
+      "review_page": "https://github.com/buffedlizard55-lab/GEMSDOE77/blob/b0b26754d354dae6e797ea7d57f3b7c4a40fcdcb/docs/index.html",
+      "review_page_blob_sha": "faadeea18efcc1711546581e75f076d24129bf4e",
       "tif_paths": [
         "docs/downloads/gems77-ago-hybrid35-geophys-37654dots-dc66e42e-nan.tif",
         "docs/downloads/gems77-ago-hybrid35-geophys-37654dots-dc66e42e-zeros.tif",
@@ -2789,6 +2789,9 @@
         "docs/downloads/gems77-h77-urank-curvature-0d868dc271bb-research.tif",
         "docs/downloads/gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-nan.tif",
         "docs/downloads/gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.tif",
+        "docs/downloads/gems77-h77e-autoctx-dinkelbach-37654dots-20261021-5cd77ffc-nan.tif",
+        "docs/downloads/gems77-h77e-autoctx-dinkelbach-37654dots-20261021-5cd77ffc-zeros.tif",
+        "docs/downloads/gems77-h77e-fluvial-deseam-lagsubmod-37654-20261021-236fc1cb-zeros.tif",
         "docs/downloads/gems77-h77e-knick-deconf-submod-36500dots-20261021-101e200b-nan.tif",
         "docs/downloads/gems77-h77e-knick-deconf-submod-36500dots-20261021-101e200b-zeros.tif",
         "docs/downloads/gems77-h77e-pure-submod-36500dots-20261021-e106c72c-zeros.tif",
@@ -2824,19 +2827,24 @@
         "docs/downloads/gems77-h82-tcstep-37654dots-20261021-2c501fd1-zeros.tif",
         "docs/downloads/gems77-h82-ternaryentropy-20261021-RESEARCH-ONLY.tif",
         "docs/downloads/gems77-h82-texture-kt-bf0a3028b4fa-RESEARCH-ONLY.tif",
+        "docs/downloads/gems77-h82gmns-lagrangian-36500dots-20261021-1c9a641b-zeros.tif",
         "docs/downloads/gems77-h83-faultcollar-37553dots-20261021-a55f4c9c-zeros.tif",
         "docs/downloads/gems77-h83-netsib-37654dots-20261021-ed06b51d-zeros.tif",
         "docs/downloads/gems77-h84-orgate-collar-37654dots-20261021-2d0a731a-zeros.tif",
+        "docs/downloads/gems77-h84-ramp-relay-37654dots-20261021-1b76b4b7-zeros.tif",
         "docs/downloads/gems77-h84-tiplobe-37654dots-20261021-b57c52b3-zeros.tif",
         "docs/downloads/gems77-step-propensity-submod300.tif",
         "docs/downloads/gems77-tsd-transtens-swarm-submod-37654dots-20261021-zeros.tif",
         "docs/downloads/gems77-xsen-coincide-hgb-37654dots-20261021-zeros.tif",
         "docs/downloads/gems79-orient-persistence-37654dots-20261021-4abff47886.tif",
+        "docs/downloads/gems85-h85-edti-collar35-skel-r33-20261021-d97b248e-zeros.tif",
         "docs/downloads/gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-nan.tif",
-        "docs/downloads/gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-zeros.tif"
+        "docs/downloads/gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-zeros.tif",
+        "docs/downloads/gemsdoe77-h77v-dealiased-vent-demag-knick-ldsa-20261021.tif",
+        "docs/downloads/h83pcd-poisson-piedmont-loco-submod-20261021T183000Z-zeros.tif"
       ],
-      "download_tif_count": 60,
-      "page_content_sha256": "addaa808f743c36f5e45998758405fb9a2714f65938fd83f44b945c6fd7e91c1",
+      "download_tif_count": 68,
+      "page_content_sha256": "87f2afaae82c5402b411974b797cdb69fd191a8a426665889e6ab8baf67cbefe",
       "page_mentions": {
         "0.2778": true,
         "0.3195": true,
@@ -2971,59 +2979,59 @@
       "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
       "score_verified": false,
       "status": "not fetched by scheduled CI runner (restricted outbound hosts)",
-      "verification": "Automated feed has no official-page check. Dated manual web-fetch review: docs/review-2026-10-21-h77l.md. Do not infer current scores from that snapshot."
+      "verification": "Automated feed has no official-page check. Latest focused branch review: docs/review-2026-10-21-arena-f7b973cd.md and evidence/source_check_f7b973cd.json; neither is an organizer receipt. Do not infer current scores from owner mirrors."
     },
     {
       "name": "Leaderboard",
       "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
       "score_verified": false,
       "status": "not fetched by scheduled CI runner (restricted outbound hosts)",
-      "verification": "Automated feed has no official-page check. Dated manual web-fetch review: docs/review-2026-10-21-h77l.md. Do not infer current scores from that snapshot."
+      "verification": "Automated feed has no official-page check. Latest focused branch review: docs/review-2026-10-21-arena-f7b973cd.md and evidence/source_check_f7b973cd.json; neither is an organizer receipt. Do not infer current scores from owner mirrors."
     },
     {
       "name": "Submission/data portal",
       "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/data/",
       "score_verified": false,
       "status": "not fetched by scheduled CI runner (restricted outbound hosts)",
-      "verification": "Automated feed has no official-page check. Dated manual web-fetch review: docs/review-2026-10-21-h77l.md. Do not infer current scores from that snapshot."
+      "verification": "Automated feed has no official-page check. Latest focused branch review: docs/review-2026-10-21-arena-f7b973cd.md and evidence/source_check_f7b973cd.json; neither is an organizer receipt. Do not infer current scores from owner mirrors."
     },
     {
       "name": "GeoDAWN official release",
       "url": "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
       "score_verified": false,
       "status": "not fetched by scheduled CI runner (restricted outbound hosts)",
-      "verification": "Automated feed has no official-page check. Dated manual web-fetch review: docs/review-2026-10-21-h77l.md. Do not infer current scores from that snapshot."
+      "verification": "Automated feed has no official-page check. Latest focused branch review: docs/review-2026-10-21-arena-f7b973cd.md and evidence/source_check_f7b973cd.json; neither is an organizer receipt. Do not infer current scores from owner mirrors."
     },
     {
       "name": "INGENIOUS GDR",
       "url": "https://gdr.openei.org/submissions/1391",
       "score_verified": false,
       "status": "not fetched by scheduled CI runner (restricted outbound hosts)",
-      "verification": "Automated feed has no official-page check. Dated manual web-fetch review: docs/review-2026-10-21-h77l.md. Do not infer current scores from that snapshot."
+      "verification": "Automated feed has no official-page check. Latest focused branch review: docs/review-2026-10-21-arena-f7b973cd.md and evidence/source_check_f7b973cd.json; neither is an organizer receipt. Do not infer current scores from owner mirrors."
     },
     {
       "name": "Competition report",
       "url": "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
       "score_verified": false,
       "status": "not fetched by scheduled CI runner (restricted outbound hosts)",
-      "verification": "Automated feed has no official-page check. Dated manual web-fetch review: docs/review-2026-10-21-h77l.md. Do not infer current scores from that snapshot."
+      "verification": "Automated feed has no official-page check. Latest focused branch review: docs/review-2026-10-21-arena-f7b973cd.md and evidence/source_check_f7b973cd.json; neither is an organizer receipt. Do not infer current scores from owner mirrors."
     },
     {
       "name": "INGENIOUS project",
       "url": "https://gbcge.org/current-projects/ingenious/",
       "score_verified": false,
       "status": "not fetched by scheduled CI runner (restricted outbound hosts)",
-      "verification": "Automated feed has no official-page check. Dated manual web-fetch review: docs/review-2026-10-21-h77l.md. Do not infer current scores from that snapshot."
+      "verification": "Automated feed has no official-page check. Latest focused branch review: docs/review-2026-10-21-arena-f7b973cd.md and evidence/source_check_f7b973cd.json; neither is an organizer receipt. Do not infer current scores from owner mirrors."
     },
     {
       "name": "CRS reference",
       "url": "https://epsg.io/32611",
       "score_verified": false,
       "status": "not fetched by scheduled CI runner (restricted outbound hosts)",
-      "verification": "Automated feed has no official-page check. Dated manual web-fetch review: docs/review-2026-10-21-h77l.md. Do not infer current scores from that snapshot."
+      "verification": "Automated feed has no official-page check. Latest focused branch review: docs/review-2026-10-21-arena-f7b973cd.md and evidence/source_check_f7b973cd.json; neither is an organizer receipt. Do not infer current scores from owner mirrors."
     }
   ],
   "score_policy": "No organizer-confirmed receipt is available. Never treat webpage mentions as verified scores.",
   "weekly_cap": null,
-  "weekly_cap_status": "CI does not re-check official rules PDF. Dated manual review 2026-10-21 observed three feedback submissions/week; see docs/review-2026-10-21-h77l.md. Zero slots consumed by this pipeline."
+  "weekly_cap_status": "NOT RECHECKED by this refresh: the official submission page and rules hosts are outside the sandbox allow-list. An earlier dated review reported a three-per-week allowance, but this feed does not verify that it remains current. The current branch review used 0 slots; re-check the organizer page before promotion."
 }

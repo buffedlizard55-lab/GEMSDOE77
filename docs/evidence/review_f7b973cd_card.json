@@ -1,0 +1,56 @@
+{
+  "schema": "gems77-session-run-card-v1",
+  "review_date_utc": "2026-10-21",
+  "branch": "arena/f7b973cd-gemsdoe77",
+  "hypothesis": "No geological candidate was tested. Highest-priority unimplemented research proposal: multi-temporal Sentinel-1 InSAR deformation-gradient persistence, with ascending/descending line-of-sight uncertainty and coherence controls, as a possible marker of active blind structures.",
+  "mechanism": "No mechanism was implemented or evaluated. The proposed mechanism is a persistent, fault-normal surface-displacement gradient that may reflect aseismic slip or fluid-pressure-related deformation beneath cover; a static catalogue-recovery result would still be only a fault-mapping proxy, not proof of a geothermal vent.",
+  "named_non_fault_process_that_could_mimic_it": "Groundwater pumping or seasonal aquifer compaction; volcanic deformation; atmospheric phase delay and decorrelation artifacts.",
+  "holdout_dti": {
+    "evidence_class": "NOT RUN",
+    "evaluator_version": "gems57-pooled-hide-v2 (available, not invoked)",
+    "withheld_positive_count": null,
+    "value": null,
+    "ci95": null,
+    "reason": "Candidate-independent registry preflight stopped work before feature generation; no newly assigned lane and required cached feature stack absent."
+  },
+  "leakage_canary": {
+    "status": "NOT RUN",
+    "reason": "No feature or candidate surface was generated."
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "candidate_surface_rank_correlation": null,
+    "candidate_surface_rank_correlation_reason": "No candidate surface generated.",
+    "candidate_surface_support_check": "STOP_UNIVERSAL_DUPLICATE",
+    "universal_witness": {
+      "source_repository": "buffedlizard55-lab/17GEMSDOE",
+      "source_ref": "6fc71d19d49dca4960d5434bd81b6dd06fcc030a",
+      "source_path": "docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif",
+      "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+      "allowed_pixels": 5106385,
+      "exact_witness_positive_allowed_pixels": 5106385,
+      "allowed_pixels_within_3px": 5106385,
+      "nonempty_candidate_forward_overlap_lower_bound": 1.0,
+      "overlap_stop_threshold_strictly_greater_than": 0.7,
+      "scope": "One hash-pinned rejection witness; not a complete registry scan."
+    },
+    "final_dot_overlap": "NOT RUN; dots were not placed."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "candidate_tif_generated": false,
+    "no_nan_inside_footprint": "NOT RUN; no candidate artifact.",
+    "values_in_0_1": "NOT RUN; no candidate artifact.",
+    "crs_shape_transform_match": "NOT RUN for a candidate; the pinned preflight inputs matched the reference grid.",
+    "template_hashes_verified": true,
+    "candidate_portal_acceptance": "NOT CONFIRMED"
+  },
+  "new_tiff_generated": false,
+  "submission_name": null,
+  "submission_note": "No new TIFF generated; no artifact approved.",
+  "ok_to_submit": false,
+  "authorized_to_submit": false,
+  "experiments_run": 0,
+  "weekly_slots_used": 0,
+  "verdict": "negative"
+}

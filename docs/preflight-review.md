@@ -1,6 +1,8 @@
-# Submission readiness review — 2026-10-21
+# Previous submission-readiness review — 2026-10-21
 
-**OK TO DOWNLOAD FOR INSPECTION. NOT OK TO SUBMIT. No new TIFF generated in this review.**
+> Historical snapshot from an earlier review. The current branch status is in [the latest review](review-latest.html) and its [run card](evidence/review_f7b973cd_card.json); it supersedes this page's branch/session status. The shared preflight stop below remains relevant, but this page is not the live source feed.
+
+**For this earlier review: OK TO DOWNLOAD FOR INSPECTION. NOT OK TO SUBMIT. No new TIFF generated.**
 
 [Download an existing research TIFF](downloads/gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY.tif) ·
 [How submission works](executive-summary.html) ·

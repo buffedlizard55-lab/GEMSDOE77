@@ -24,7 +24,7 @@ REPO = "https://github.com/buffedlizard55-lab/GEMSDOE77"
 LB = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
 PD = "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
-NAV = [("h77pd.html", "H77-PD · 0.1685 3-Seed #1"), ("h77pd-executive-summary.html", "H77-PD guide"), ("h77vldsa.html", "H77V-LDSA · 0.1444/0.1530"), ("h77vldsa-executive-summary.html", "H77V-LDSA guide"), ("h77h-meshsafe.html", "H77H-MeshSafe · 0/119 firings"), ("h77h-meshsafe-executive-summary.html", "H77H-MeshSafe guide"), ("h83netsib.html", "H83-NETSIB · negative"), ("h83netsib-executive-summary.html", "H83-NETSIB guide"), ("h77vds.html", "H77-VDS · 0.1744 #1"), ("h77vds-executive-summary.html", "H77-VDS guide"), ("review-latest.html", "Latest review"), ("review-arena-00397d44.html", "Arena branch review"), ("metric-review.html", "Corrected H33 analysis"), ("index.html", "Start here"), ("h77hdd.html", "H77H-DD · downdip-bridge"), ("h77hdd-executive-summary.html", "H77H-DD guide"), ("h77vc.html", "H77VC (Vent+ClayCap)"), ("h77vs.html", "H77VS · negative"), ("h77vs-executive-summary.html", "H77VS guide"), ("tsd.html", "H77-TSD · inspection"), ("h77v.html", "H77V (Vent-Advect)"), ("h82-texture.html", "H82-TEXTURE · negative"), ("h82rank.html", "H82R · radiometric negative"), ("preflight-review.html", "Current readiness review"), ("h82-executive-summary.html", "H82 · cool-outlet negative"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
+NAV = [("h77pd.html", "H77-PD · 0.1685 3-Seed #1"), ("h77pd-executive-summary.html", "H77-PD guide"), ("h77vldsa.html", "H77V-LDSA · 0.1444/0.1530"), ("h77vldsa-executive-summary.html", "H77V-LDSA guide"), ("h77h-meshsafe.html", "H77H-MeshSafe · 0/119 firings"), ("h77h-meshsafe-executive-summary.html", "H77H-MeshSafe guide"), ("h83netsib.html", "H83-NETSIB · negative"), ("h83netsib-executive-summary.html", "H83-NETSIB guide"), ("h77vds.html", "H77-VDS · 0.1744 #1"), ("h77vds-executive-summary.html", "H77-VDS guide"), ("review-latest.html", "Current review"), ("review-6a5eca5f.html", "Previous review"), ("review-arena-00397d44.html", "Arena branch review"), ("metric-review.html", "Corrected H33 analysis"), ("index.html", "Start here"), ("h77hdd.html", "H77H-DD · downdip-bridge"), ("h77hdd-executive-summary.html", "H77H-DD guide"), ("h77vc.html", "H77VC (Vent+ClayCap)"), ("h77vs.html", "H77VS · negative"), ("h77vs-executive-summary.html", "H77VS guide"), ("tsd.html", "H77-TSD · inspection"), ("h77v.html", "H77V (Vent-Advect)"), ("h82-texture.html", "H82-TEXTURE · negative"), ("h82rank.html", "H82R · radiometric negative"), ("preflight-review.html", "Previous readiness review"), ("h82-executive-summary.html", "H82 · cool-outlet negative"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
        ("h77e-knick.html", "H77E-Knick · 0/816 firings"), ("release-review.html", "Release safety review"), ("executive-summary.html", "How to submit"),
        ("h81.html", "H81 · slip-cone"), ("h82.html", "H82 · fault collar"),
        ("h83.html", "H83 · fault collar"),
@@ -84,7 +84,7 @@ def main():
         shutil.copyfile(ROOT / "evidence" / name, D / "evidence" / name)
     review = (D / "preflight-review.md").read_text()
     (D / "preflight-review.html").write_text(page(
-        "preflight-review.html", "Submission readiness review",
+        "preflight-review.html", "Previous submission-readiness review",
         markdown.markdown(review, extensions=["tables", "fenced_code"])))
 
     review = markdown.markdown((D / "review-904a24d3.md").read_text(), extensions=["tables"])
@@ -450,7 +450,7 @@ lists the reviewed research candidates, not every historical archived/NaN-twin f
 {dl}
 <p><a href="review-latest.html">Current branch review: no new TIFF; ranked hypotheses and duplicate-stop evidence</a> · <a href="review-arena-00397d44.html">This Arena branch review and run card</a> · <a href="metric-review.html">Corrected H33 analysis</a></p>
 {orient_box}
-<h2>Reviewed downloadable candidates</h2>{table}
+<h2 id="reviewed-downloads">Existing reviewed downloads (inspection only; authorization is separate)</h2>{table}
 <div class="values"><b>Score provenance and slot limits.</b> The supplied 0.2778 attribution to H33,
 and leaderboard targets 0.3195 / 0.4413, are unverified claims in this review, not submission-page receipts.
 Earlier pages retain dated public-leaderboard observations; those do not identify TIFF bytes or establish current rank.
@@ -1022,13 +1022,14 @@ Format-valid (15/15 checks, 0 NaN, values in [0,1], 37,654 binary dots) and info
 
 def write_review_pages():
     for source, output, title in (
-        ("docs/review-2026-10-21-arena-6a5eca5f.md", "review-latest.html", "Latest repository review"),
+        ("docs/review-2026-10-21-arena-f7b973cd.md", "review-latest.html", "Current session review"),
+        ("docs/review-2026-10-21-arena-6a5eca5f.md", "review-6a5eca5f.html", "Previous repository review · 6a5eca5f"),
         ("docs/review-2026-10-21-arena-00397d44.md", "review-arena-00397d44.html", "Arena branch review"),
         ("research/why-h33-scored-02778.md", "metric-review.html", "Corrected H33 analysis"),
     ):
         body = markdown.markdown((ROOT / source).read_text(), extensions=["tables", "fenced_code"])
         (D / output).write_text(page(output, title, body))
-    for name in ("review_6a5eca5f_card.json", "review_60aafd45_card.json", "review_60aafd45_verification.json",
+    for name in ("review_f7b973cd_card.json", "source_check_f7b973cd.json", "review_6a5eca5f_card.json", "review_60aafd45_card.json", "review_60aafd45_verification.json",
                  "review_05f9e6f8_card.json", "review_05f9e6f8_preflight.json",
                  "review_05f9e6f8_verification.json", "review_00397d44_run_card.json"):
         shutil.copyfile(ROOT / "evidence" / name, D / "evidence" / name)
@@ -2011,7 +2012,30 @@ Min catalogue distance: <code>{sub['min_distance_to_catalogue_px']:.4f} px</code
     shutil.copyfile(ROOT / "registry/preregistration_h77vldsa.json", D / "evidence/preregistration_h77vldsa.json")
     shutil.copyfile(ROOT / "research/h77vldsa_hypotheses.md", D / "research/h77vldsa_hypotheses.md")
 
-    hero_vldsa = f"""<section class="card dl research" style="border:2px solid #0284c7;background:#f0f9ff;"><h2>⬇ NEWEST H77V-LDSA Deliverable (0 / 95 Informative Firings · 0.1444 / 0.1424 Unique &amp; 0.1530 / 0.1527 Pure HOLDOUT-DTI)</h2>
+    session_card = jload("evidence/review_f7b973cd_card.json")
+    current_preflight = jload("evidence/registry_preflight.json")
+    authorization = jload("docs/data/submission-authorization.json")
+    if not session_card or not current_preflight or not authorization:
+        raise ValueError("Current session status inputs missing; refuse to publish stale landing status")
+    if (session_card.get("branch") != "arena/f7b973cd-gemsdoe77"
+            or session_card.get("raster_sha256") is not None
+            or current_preflight.get("decision") != "STOP_UNIVERSAL_DUPLICATE"
+            or current_preflight.get("new_raster_generated") is not False
+            or current_preflight.get("weekly_slots_used") != 0):
+        raise ValueError("Current session card/preflight disagree; refuse to publish a contradictory landing status")
+    proof = current_preflight["proof"]
+    authorized_count = authorization.get("repository_authorized_file_count")
+    auth_decision = authorization.get("repository_decision", "authorization status not recorded")
+    if (not isinstance(authorized_count, int)
+            or session_card.get("validator_output", {}).get("candidate_tif_generated") is not False
+            or session_card.get("holdout_dti", {}).get("evidence_class") != "NOT RUN"):
+        raise ValueError("Current run card does not support a no-candidate status banner")
+    session_status_banner = f"""<section class="card" id="current-session-status" role="status" style="border:3px solid #b91c1c;background:#fef2f2;">
+<h2>Current session status · 2026-10-21</h2>
+<p class="verdict"><b>New candidate GeoTIFF generated in this review: NO.</b> There is no new file to download. Older repository TIFFs are for inspection only. <b>OK TO SUBMIT: NO</b> — the release receipt says <code>{e(auth_decision)}</code> and authorizes <code>{e(authorized_count)}</code> files.</p>
+<p><b>REGISTRY-MEASUREMENT (not a score):</b> one hash-pinned witness has positive support on <code>{proof['exact_witness_positive_allowed_pixels']:,}/{proof['allowed_pixels']:,}</code> allowed cells; its 3-px dilation covers <code>{proof['allowed_pixels_within_3px']:,}/{proof['allowed_pixels']:,}</code>. The resulting nonempty-support overlap lower bound is <code>{proof['nonempty_subset_forward_overlap_lower_bound']:.1f} &gt; {proof['overlap_stop_threshold_strictly_greater_than']:.2f}</code>, so preflight returns <code>{e(current_preflight['decision'])}</code>. This is one rejection witness, not a complete registry scan, and not a claim of geological equivalence.</p>
+<p>No candidate surface, holdout, leakage canary, final dots, or weekly slot was used. <a href="review-latest.html">Read the current review and ranked conditional hypotheses</a> · <a href="evidence/review_f7b973cd_card.json">JSON run card</a> · <a href="evidence/source_check_f7b973cd.json">Focused source check</a> · <a href="evidence/registry_preflight.json">Preflight receipt</a> · <a href="data/submission-authorization.json">Release authorization</a> · <a href="index.html#reviewed-downloads">Existing inspection-only downloads</a>.</p></section>"""
+    hero_vldsa = f"""<section class="card dl research" style="border:2px solid #0284c7;background:#f0f9ff;"><h2>⬇ Historical H77V-LDSA research artifact (0 / 95 Informative Firings · 0.1444 / 0.1424 Unique &amp; 0.1530 / 0.1527 Pure HOLDOUT-DTI)</h2>
 <p class="verdict"><b>OK TO DOWNLOAD FOR INSPECTION: YES</b> (15/15 <code>vendor/gems57</code> validator checks PASS, float32 values strictly in <code>[0, 1]</code>, <code>0</code> NaNs across all <code>12,279,160</code> cells, <code>36,500</code> binary dots).<br>
 <b>NOT OK TO SUBMIT AUTOMATICALLY (Inspection Only — Selector: not approved under Policy I17):</b>
 6 space-filling/lattice &ge;70%-halo archive witnesses trigger literal overlap; across ALL <code>95</code> &lt;70%-halo informative rasters, forward 3-px overlap has <b>0 firings</b> (<code>max = 0.65000 &le; 0.70</code>; surface max |Spearman &rho;| = <code>0.751885 &le; 0.90</code>).<br>
@@ -2024,7 +2048,7 @@ Min catalogue distance: <code>{sub['min_distance_to_catalogue_px']:.4f} px</code
     for pname in ("index.html", "executive-summary.html"):
         p = D / pname
         if p.exists():
-            txt = p.read_text().replace('<main><div class="wrap">', '<main><div class="wrap">' + hero_vldsa, 1)
+            txt = p.read_text().replace('<main><div class="wrap">', '<main><div class="wrap">' + session_status_banner + hero_vldsa, 1)
             p.write_text(txt)
 
 

@@ -74,8 +74,8 @@ def official_health(pair):
         except Exception as e: row.update(status='error',error=str(e))
     else:
         # Do not evade the sandbox allowlist or mislabel lack of access as source unavailability.
-        row.update(status='not fetched by scheduled CI runner (restricted outbound hosts)',
-                   verification='Automated feed has no official-page check. Dated manual web-fetch review: docs/review-2026-10-21-h77l.md. Do not infer current scores from that snapshot.')
+            row.update(status='not fetched by scheduled CI runner (restricted outbound hosts)',
+                   verification='Automated feed has no official-page check. Latest focused branch review: docs/review-2026-10-21-arena-f7b973cd.md and evidence/source_check_f7b973cd.json; neither is an organizer receipt. Do not infer current scores from owner mirrors.')
     return row
 
 
@@ -85,7 +85,7 @@ def main():
             'purpose':'Repository/page freshness and artifact inventory, NOT scores, scientific validation, or full raster uniqueness',
             'repos':rows,'official_sources':[official_health(p) for p in OFFICIAL],
             'score_policy':'No organizer-confirmed receipt is available. Never treat webpage mentions as verified scores.',
-            'weekly_cap':None,'weekly_cap_status':'CI does not re-check official rules PDF. Dated manual review 2026-10-21 observed three feedback submissions/week; see docs/review-2026-10-21-h77l.md. Zero slots consumed by this pipeline.'}
+            'weekly_cap':None,'weekly_cap_status':'NOT RECHECKED by this refresh: the official submission page and rules hosts are outside the sandbox allow-list. An earlier dated review reported a three-per-week allowance, but this feed does not verify that it remains current. The current branch review used 0 slots; re-check the organizer page before promotion.'}
     for path in [ROOT/'evidence/source_health.json',ROOT/'docs/source-health.json']:
         path.parent.mkdir(exist_ok=True,parents=True)
         path.write_text(json.dumps(report,indent=2)+'\n')
