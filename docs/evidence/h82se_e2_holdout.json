@@ -1,0 +1,325 @@
+{
+  "experiment": "H82-E2",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "seed20": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "holdout_seed": 20,
+    "withheld_positive_pixels": 11321,
+    "alpha": 0.2,
+    "beta": 0.8,
+    "triangular_radius_m": 300.0,
+    "summary": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "alpha": 0.2,
+      "beta": 0.8,
+      "triangular_radius_m": 300.0,
+      "pooled": true,
+      "scores": {
+        "H82_entropy": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.09760812255871772,
+          "ci95": [
+            0.07909325189825239,
+            0.11776287831431462
+          ],
+          "withheld_positive_pixels": 11321,
+          "tpw": 1567.9491416155056,
+          "fpw": 33466.62991271885,
+          "fnw": 9753.050858384497
+        },
+        "visible_distance_control": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.026879636840647887,
+          "ci95": [
+            0.021811445759194047,
+            0.0325767208483203
+          ],
+          "withheld_positive_pixels": 11321,
+          "tpw": 430.40583577306677,
+          "fpw": 34347.28516188934,
+          "fnw": 10890.594164226932
+        },
+        "random_control": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.04492736524312759,
+          "ci95": [
+            0.04000531551313878,
+            0.04990272101304699
+          ],
+          "withheld_positive_pixels": 11321,
+          "tpw": 731.4305977369703,
+          "fpw": 35386.02637384174,
+          "fnw": 10589.569402263025
+        }
+      },
+      "best_comparable_control": "random_control",
+      "paired_differences": {
+        "visible_distance_control": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "delta": 0.07072848571806983,
+          "ci95": [
+            0.054887431869124405,
+            0.08778782763797127
+          ],
+          "withheld_positive_pixels": 11321
+        },
+        "random_control": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "delta": 0.052680757315590125,
+          "ci95": [
+            0.03455675458405128,
+            0.0720309207598174
+          ],
+          "withheld_positive_pixels": 11321
+        }
+      },
+      "bootstrap": {
+        "method": "paired physical spatial-cluster percentile",
+        "clusters": 159,
+        "draws": 2000,
+        "seed": 82020,
+        "confidence": 0.95,
+        "caveat": "Conditional on fitted folds, catalogue labels and fixed budgets; not a leaderboard interval."
+      },
+      "implementation_sha256": {
+        "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+        "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+        "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+        "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+      }
+    },
+    "fold_receipts": [
+      {
+        "fold": "NW",
+        "seed": 20,
+        "held_components": 96,
+        "withheld_positive_pixels": 1923,
+        "eligible_components": 598,
+        "boundary_buffer_px": 12,
+        "feature_buffer_px": 3,
+        "nearest_visible_to_truth_px": 3.1622776601683795,
+        "split_version": "buffered-whole-components-loqo-v2",
+        "evaluation_region_label_blind": true,
+        "dots_per_arm_per_fold": 37654
+      },
+      {
+        "fold": "NE",
+        "seed": 20,
+        "held_components": 145,
+        "withheld_positive_pixels": 2367,
+        "eligible_components": 628,
+        "boundary_buffer_px": 12,
+        "feature_buffer_px": 3,
+        "nearest_visible_to_truth_px": 3.1622776601683795,
+        "split_version": "buffered-whole-components-loqo-v2",
+        "evaluation_region_label_blind": true,
+        "dots_per_arm_per_fold": 37654
+      },
+      {
+        "fold": "SW",
+        "seed": 20,
+        "held_components": 223,
+        "withheld_positive_pixels": 3781,
+        "eligible_components": 983,
+        "boundary_buffer_px": 12,
+        "feature_buffer_px": 3,
+        "nearest_visible_to_truth_px": 3.1622776601683795,
+        "split_version": "buffered-whole-components-loqo-v2",
+        "evaluation_region_label_blind": true,
+        "dots_per_arm_per_fold": 37654
+      },
+      {
+        "fold": "SE",
+        "seed": 20,
+        "held_components": 142,
+        "withheld_positive_pixels": 3250,
+        "eligible_components": 648,
+        "boundary_buffer_px": 12,
+        "feature_buffer_px": 3,
+        "nearest_visible_to_truth_px": 3.1622776601683795,
+        "split_version": "buffered-whole-components-loqo-v2",
+        "evaluation_region_label_blind": true,
+        "dots_per_arm_per_fold": 37654
+      }
+    ],
+    "implementation_sha256": {
+      "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+      "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+      "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+      "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+    }
+  },
+  "seed30": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "holdout_seed": 30,
+    "withheld_positive_pixels": 11342,
+    "alpha": 0.2,
+    "beta": 0.8,
+    "triangular_radius_m": 300.0,
+    "summary": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "alpha": 0.2,
+      "beta": 0.8,
+      "triangular_radius_m": 300.0,
+      "pooled": true,
+      "scores": {
+        "H82_entropy": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.1034156221559439,
+          "ci95": [
+            0.08168743879246239,
+            0.12551249690834065
+          ],
+          "withheld_positive_pixels": 11342,
+          "tpw": 1663.4197214075778,
+          "fpw": 33392.5861845498,
+          "fnw": 9678.58027859242
+        },
+        "visible_distance_control": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.02325405586963532,
+          "ci95": [
+            0.01925304813153043,
+            0.0272737794369574
+          ],
+          "withheld_positive_pixels": 11342,
+          "tpw": 372.55934677573725,
+          "fpw": 34365.75605565213,
+          "fnw": 10969.440653224263
+        },
+        "random_control": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.045518573084101316,
+          "ci95": [
+            0.04013657939691876,
+            0.05101354288209123
+          ],
+          "withheld_positive_pixels": 11342,
+          "tpw": 742.6240728454512,
+          "fpw": 35463.11852595695,
+          "fnw": 10599.375927154546
+        }
+      },
+      "best_comparable_control": "random_control",
+      "paired_differences": {
+        "visible_distance_control": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "delta": 0.08016156628630858,
+          "ci95": [
+            0.06060364484015564,
+            0.10085834316978033
+          ],
+          "withheld_positive_pixels": 11342
+        },
+        "random_control": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "delta": 0.05789704907184258,
+          "ci95": [
+            0.037744600963250344,
+            0.07939154332679448
+          ],
+          "withheld_positive_pixels": 11342
+        }
+      },
+      "bootstrap": {
+        "method": "paired physical spatial-cluster percentile",
+        "clusters": 159,
+        "draws": 2000,
+        "seed": 82030,
+        "confidence": 0.95,
+        "caveat": "Conditional on fitted folds, catalogue labels and fixed budgets; not a leaderboard interval."
+      },
+      "implementation_sha256": {
+        "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+        "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+        "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+        "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+      }
+    },
+    "fold_receipts": [
+      {
+        "fold": "NW",
+        "seed": 30,
+        "held_components": 138,
+        "withheld_positive_pixels": 1919,
+        "eligible_components": 598,
+        "boundary_buffer_px": 12,
+        "feature_buffer_px": 3,
+        "nearest_visible_to_truth_px": 3.1622776601683795,
+        "split_version": "buffered-whole-components-loqo-v2",
+        "evaluation_region_label_blind": true,
+        "dots_per_arm_per_fold": 37654
+      },
+      {
+        "fold": "NE",
+        "seed": 30,
+        "held_components": 131,
+        "withheld_positive_pixels": 2356,
+        "eligible_components": 628,
+        "boundary_buffer_px": 12,
+        "feature_buffer_px": 3,
+        "nearest_visible_to_truth_px": 3.1622776601683795,
+        "split_version": "buffered-whole-components-loqo-v2",
+        "evaluation_region_label_blind": true,
+        "dots_per_arm_per_fold": 37654
+      },
+      {
+        "fold": "SW",
+        "seed": 30,
+        "held_components": 203,
+        "withheld_positive_pixels": 3805,
+        "eligible_components": 983,
+        "boundary_buffer_px": 12,
+        "feature_buffer_px": 3,
+        "nearest_visible_to_truth_px": 3.1622776601683795,
+        "split_version": "buffered-whole-components-loqo-v2",
+        "evaluation_region_label_blind": true,
+        "dots_per_arm_per_fold": 37654
+      },
+      {
+        "fold": "SE",
+        "seed": 30,
+        "held_components": 145,
+        "withheld_positive_pixels": 3262,
+        "eligible_components": 648,
+        "boundary_buffer_px": 12,
+        "feature_buffer_px": 3,
+        "nearest_visible_to_truth_px": 3.1622776601683795,
+        "split_version": "buffered-whole-components-loqo-v2",
+        "evaluation_region_label_blind": true,
+        "dots_per_arm_per_fold": 37654
+      }
+    ],
+    "implementation_sha256": {
+      "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+      "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+      "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+      "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+    }
+  },
+  "incumbent_reference": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "score": 0.152718,
+    "withheld_positive_pixels": 11321,
+    "ci95": [
+      0.131548,
+      0.175185
+    ],
+    "source": "evidence/h77/run_card.json; same evaluator and primary holdout seed; not a paired cross-lane interval"
+  }
+}

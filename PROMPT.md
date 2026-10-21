@@ -8,6 +8,19 @@ summarised with provenance at the end rather than re-transcribed hash-by-hash
 `docs/score-ledger.csv`; later entries below are OWNER-REPORT as supplied in
 the 2026-10-21 brief — no organizer receipts).*
 
+## 2026-10-21 parallel H82-SE lane addendum — arena/21cc174e-gemsdoe77
+
+This branch's H82-SE strike-entropy method is distinct from the upstream H82
+cool-outlet/geothermometry, H82-TEXTURE, and H82R lanes. Its preregistration is
+`registry/preregistration_h82se.json`; ranked hypotheses are
+`research/h82se_hypotheses.md`; the run card is `evidence/h82se_run_card.json`.
+Result: negative; OK TO DOWNLOAD FOR INSPECTION, NOT OK TO SUBMIT. HOLDOUT-DTI
+is 0.097608 (`gems57-pooled-hide-v2`, seed 20, 11,321 withheld positives,
+95% CI [0.079093, 0.117763]) and 0.103416 (same evaluator, seed 30, 11,342
+withheld positives, 95% CI [0.081687, 0.125512]). The final-dot overlap gate
+failed; no selector approval or slot was used. H82-SE did not reuse or overwrite
+any upstream H82 artifacts.
+
 ## 2026-10-21 review addendum — arena/60aafd45-gemsdoe77
 
 No new method paragraph is assigned in this invocation. The freshly rechecked dense registry witness blocks every nonempty candidate under the binding literal rule. No new TIFF, model experiment or slot is authorized by this review. See `docs/review-2026-10-21-60aafd45.md` and the corrected H33 analysis. Superseded earlier leaderboard observations below are historical, not current submission-page receipts.
