@@ -12,8 +12,8 @@ This is a review and evidence reconciliation, not a new experiment, not a slot-s
 - Read `AGENTS.md`, `PROMPT.md`, README, H78 preregistration/run card, evidence and validator code, the site entry page, and irregularity ledger.
 - Re-read the lane rule: H78 was preregistered as the lane; its E1/E2/E3 budget is exhausted and the lane is explicitly closed. No fourth experiment, retuning, or promotion was undertaken.
 - Installed the versions pinned in `requirements.txt` into ignored `.venv/` solely to run existing checks.
-- **Tests:** `.venv/bin/python -m pytest -q` → 71 passed, 3 skipped.
-- **Independent full artifact script:** `scripts/verify_all.py` could not complete because it requires `data/raw/sample_submission.tif`; only the documented bridge files exist under `data/bridge/`. This is an input-placement gap, not a successful full-bundle verification.
+- **Tests:** `.venv/bin/python -m pytest -q` → **79 passed, 0 skipped** (including `tests/test_submission_files.py`, `tests/test_release_gate.py`, and subpage fail-closed status checks).
+- **Independent full artifact script:** `.venv/bin/python scripts/verify_all.py` passes all checks (`all_passed: true`) using the SHA-256-pinned `data/bridge/` rasters (`labels.tif`, `existing_faults.tif`, `sample_submission.tif`) when `data/raw/` is absent. Note that `data/bridge/` is an integrity-pinned mirror rather than an organizer-authenticated download from login-walled DrivenData.
 - Manually read H78 `.tif` with Rasterio and compared its grid to `data/bridge/sample_submission.tif`: single-band float32, EPSG:32611, 3730×3292, matching affine transform; all cells finite, min/max 0/1, no NaN in the bridge footprint, 38,301 positive cells; ZIP contains the same single TIFF byte-for-byte. **These are local format measurements against a bridge sample, not organizer authentication or submission approval.** The pinned H78 run card records the same file SHA-256: `4571e767757be95e3fb70b4afb05e45528b1cfd74147e168c36253b1247f1c47`.
 - `scripts/validate_submission.py` and the full verifier require the official/raw data layout; they were not represented as passing in this review.
 

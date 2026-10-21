@@ -23,10 +23,20 @@ from scipy import ndimage
 
 ROOT = Path(__file__).resolve().parents[2]
 DATA = ROOT / ".cache" / "gems_data"
+BRIDGE = ROOT / "data" / "bridge"
 REG = ROOT / ".cache" / "registry"
 WORK = ROOT / ".cache" / "work"
 H, W = 3730, 3292
 FEATURE_SENTINEL = -1e38
+
+
+def resolve_core_file(name: str) -> Path:
+    """Resolve a core grid/label raster from .cache/gems_data, data/raw, or data/bridge."""
+    for base in (DATA, ROOT / "data" / "raw", BRIDGE):
+        cand = base / name
+        if cand.exists():
+            return cand
+    return DATA / name
 
 BAND_NAMES = [
     "mag_anom", "rtp", "tmi_hg", "geod_2ndinv", "iso_grav_anom_slope", "tc",
@@ -55,10 +65,10 @@ class Grid:
 @lru_cache(maxsize=1)
 def grid() -> Grid:
     import rasterio
-    with rasterio.open(DATA / "labels.tif") as src:
+    with rasterio.open(resolve_core_file("labels.tif")) as src:
         lab = src.read(1)
         transform, crs = src.transform, src.crs
-    with rasterio.open(DATA / "sample_submission.tif") as src:
+    with rasterio.open(resolve_core_file("sample_submission.tif")) as src:
         ss = src.read(1)
     fp = lab != -1
     if not np.array_equal(fp, np.isfinite(ss)):
