@@ -14,6 +14,23 @@ The concurrent main history also contains an H85-EDTI experiment and its files. 
 *Status text below is historical and must not be read as current authorization. The binding receipt is
 `docs/data/submission-authorization.json`; the start page `docs/index.html` carries the same H85 card.*
 
+## 🚦 Negative lane this branch — `H86-LENHALO` (`arena/f9952b5d-gemsdoe77`, 2026-10-21): ✅ OK TO DOWNLOAD FOR INSPECTION: YES · ⛔ OK TO SUBMIT: NO
+
+> **This is a separate, distinct method lane from the promoted `H85-EDTI` above; it does not replace or modify that promotion.**
+>
+> | Question | Answer |
+> |---|---|
+> | Unique TIF generated | [`docs/downloads/gems77-h86-lenhalo-37654dots-20261021-zeros.tif`](docs/downloads/gems77-h86-lenhalo-37654dots-20261021-zeros.tif) (826,436 B, SHA-256 `86f1394516d05aa5d545b8be7103472ca7bd6fe8ad651c7870a3fefb87e65345`) · [one-TIFF `.zip`](docs/downloads/gems77-h86-lenhalo-37654dots-20261021-zeros.zip) (175,941 B, SHA-256 `c81be31a96d66719017eb6985556138c4b2c515f43bc0fed212eaa26031bee66`) · [validator receipt](docs/downloads/gems77-h86-lenhalo-37654dots-20261021-zeros.json) · [run card](evidence/run_card_h86.json) · [technical report](docs/h86.html) · [submission guide](docs/h86-executive-summary.html) · [5 ranked hypotheses](research/h86_hypotheses.md) |
+> | OK to download? | **YES — for inspection** (direct link, first screen of `docs/index.html` and `docs/h86.html`) |
+> | OK to submit? | **NO.** HOLDOUT-DTI **0.0208** [0.0180, 0.0235] seed 20 (11,321 withheld positives) / **0.0206** [0.0179, 0.0236] seed 30 (11,342 withheld) under `gems57-pooled-hide-v2`, versus random **0.0152** (Δ +0.0054) and versus the retained incumbent **0.152718**. Informative duplicate **0.8047 > 0.70** vs the H84 tip-lobe raster. Leakage canary PASS (max symmetric AUC **0.7958** ≤ 0.90). Verdict `negative`; **0 weekly slots used**; selector not approved. |
+> | Format | 15/15 `validator/gems57` checks PASS on the shipped bytes: single-band `float32`, EPSG:32611, 3730×3292, exact sample transform, **37,654** binary {0, 1} values in [0, 1], **0 NaN/Inf anywhere**, `nodata=None`, zeros outside the footprint, **0** positives on the mapped catalogue. Local format validity is **not** organizer acceptance. |
+> | Method | Fault-length–scaled anisotropic damage halo: per-component `R(L) = clamp(8 + 0.9·√L, 8, 32) px` (≈0.8–3.2 km), score `exp(−d/(R/2.2))·(1 + 0.25·cos²Δθ)` with PCA strike anisotropy, then greedy 2.8-px Poisson placement to 37,654 dots. Scaling rationale: W ∝ √L damage-zone width (Scholz 2002, https://doi.org/10.1016/S0191-8141(02)00010-3; Mitchell & Faulkner 2009, https://doi.org/10.1016/j.jsg.2009.04.006); geothermal structural control (Faulds et al., https://doi.org/10.1016/j.geothermics.2011.02.004). |
+> | Named non-fault mimic | Alluvial-fan apex distributary lobe boundaries and Pleistocene Lake Lahontan/Bonneville shoreline benches whose widths scale with catchment/fetch rather than tectonic length. |
+> | Irregularities | `IR-H86-01` EDT-with-indices costs ~86 s per field at this grid size; `IR-H86-02` geometry-only halos cannot extrapolate across the quadrant holdout (hidden faults are ~31 px from visible on average), which is why the score is near random; `IR-H86-03` 0.8047 overlap vs H84 tip-lobe at the same 2.8-px spacing; `IR-H86-04` a first canary that scored the full-catalogue (zeroed) field inverted to AUC 0.0 and was replaced by visible-only scoring. |
+
+*Status text below is historical and must not be read as current authorization. The binding receipt is
+`docs/data/submission-authorization.json`; the start page `docs/index.html` carries the H86 negative card.*
+
 
 <details><summary><b>Historical status banners (superseded 2026-10-21 by the H85-FTMR fail-closed review above)</b></summary>
 

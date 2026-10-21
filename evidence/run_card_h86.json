@@ -1,0 +1,160 @@
+{
+  "schema": "gems-parallel-run-card-v1",
+  "lane_repo": "buffedlizard55-lab/GEMSDOE77",
+  "branch": "arena/f9952b5d-gemsdoe77",
+  "lane": "H86-LENHALO (internal id H85 while running; renamed at merge to avoid collision with the promoted H85-EDTI lane)",
+  "hypothesis": "H86-1 Fault-length\u2013scaled anisotropic damage halo with hanging-wall bias (R(L)=8+0.9\u221aL, exp(-d/(R/2.2)), 1+0.25cos\u00b2\u0394\u03b8 anisotropy; Scholz 2002, Mitchell & Faulkner 2009; Faulds 2010 geothermal tip/stepover model)",
+  "mechanism": "Mature long faults have wider off-fault fracture halos (W\u221d\u221aL) and more blind splay potential; length-scaling prioritizes mature faults whose blind halo is widest while narrowing halos of short immature faults to cut FP.",
+  "named_non_fault_process_that_could_mimic_it": "Alluvial-fan apex distributary lobe boundaries and Pleistocene Lake Lahontan/Bonneville shoreline benches whose widths scale with catchment/fetch, not tectonic length \u2014 arcuate piedmont halos correlating with fault length via topography.",
+  "holdout_dti": {
+    "evidence_label": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "triangular_radius_m": 300,
+    "seeds": {
+      "20": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.02084229369493532,
+        "ci95": [
+          0.018027431966924936,
+          0.023532097894234938
+        ],
+        "withheld_positive_pixels": 11321,
+        "tpw": 2720.2998345071715,
+        "fpw": 604586.9826614795,
+        "fnw": 8600.700165492826,
+        "canary_auc": 0.7958318964755765,
+        "canary_sym": 0.7958318964755765,
+        "fold_dti": [
+          0.018399274541945097,
+          0.01594110628955871,
+          0.025772183379591404,
+          0.021029085153796118
+        ]
+      },
+      "30": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.020595286624556654,
+        "ci95": [
+          0.017913902862006205,
+          0.023591282306921642
+        ],
+        "withheld_positive_pixels": 11342,
+        "tpw": 2671.0799660981697,
+        "fpw": 600429.6728099193,
+        "fnw": 8670.92003390183,
+        "canary_auc": 0.7867559460412626,
+        "canary_sym": 0.7867559460412626,
+        "fold_dti": [
+          0.021429225944399912,
+          0.013605473376017098,
+          0.0219552720171203,
+          0.024500870063809306
+        ]
+      }
+    },
+    "pooled_across_seeds": {
+      "mean_dti": 0.020718790159745988,
+      "note": "Mean of two independent hides; not a 3-seed pool"
+    },
+    "delta_vs_random_seed30": 0.005409202000349408,
+    "matched_random_seed30": 0.015186084624207246
+  },
+  "leakage_canary": {
+    "features_tested": 1,
+    "max_single_feature_auc": 0.7958318964755765,
+    "ceiling": 0.9,
+    "pass": true,
+    "per_seed": {
+      "20": {
+        "auc": 0.7958318964755765,
+        "sym": 0.7958318964755765
+      },
+      "30": {
+        "auc": 0.7867559460412626,
+        "sym": 0.7867559460412626
+      }
+    }
+  },
+  "uniqueness_vs_registry": {
+    "pre_placement_surface_max_spearman": null,
+    "post_placement_dots_max_forward_3px_overlap": null,
+    "note": "Local uniqueness vs H84 tiplobe computed above; full 800+ registry scan deferred to preflight_registry.py (expected STOP_UNIVERSAL_DUPLICATE due to pinned dense witness ab0a0a62 covering 100% footprint; see evidence/registry_preflight.json). Literal gate FAILS CLOSED per Policy I17; informative sparse scan not claimed as clearance.",
+    "protocol_unique": false,
+    "literal_dense_witness": "ab0a0a62 covers 5,167,373 footprint cells (100.0%); every nonempty candidate has forward overlap 1.0 >0.70; see docs/preflight-review.md"
+  },
+  "submission_raster": {
+    "path": "docs/downloads/gems77-h86-lenhalo-37654dots-20261021-zeros.tif",
+    "zip_path": "docs/downloads/gems77-h86-lenhalo-37654dots-20261021-zeros.zip",
+    "sha256_tif": "86f1394516d05aa5d545b8be7103472ca7bd6fe8ad651c7870a3fefb87e65345",
+    "sha256_zip": "c81be31a96d66719017eb6985556138c4b2c515f43bc0fed212eaa26031bee66",
+    "bytes_tif": 826436,
+    "bytes_zip": 175941,
+    "all_checks_passed": true,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "min_value_entire_raster": 0.0,
+    "max_value_entire_raster": 1.0,
+    "nan_count_entire_raster": 0,
+    "emitted_dots": 37654,
+    "on_catalogue_positive_pixels": 0,
+    "footprint_fraction": 0.007286874781441169,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "sha256_tif_reverified_after_rename": true,
+    "zip_contents": [
+      "gems77-h86-lenhalo-37654dots-20261021-zeros.tif"
+    ]
+  },
+  "submission_name": "gems77-h86-lenhalo-37654dots-20261021-zeros",
+  "submission_note": "H86 lenhalo length-scaled damage halo R=8+0.9\u221aL + strike anisotropy; 37654 dots sep2.8; HOLDOUT-DTI 0.0208(s20)/0.0206(s30) vs random 0.0152",
+  "verdict": "negative",
+  "safe_to_download_and_submit": false,
+  "safe_to_download_for_inspection": true,
+  "ok_to_submit": false,
+  "selector_approval": false,
+  "weekly_slots_used": 0,
+  "budget": {
+    "max_experiments": 3,
+    "used_experiments": 3,
+    "max_hours": 2
+  },
+  "references": {
+    "scholz_2002_damage_scaling": "https://doi.org/10.1016/S0191-8141(02)00010-3",
+    "mitchell_faulkner_2009": "https://doi.org/10.1016/j.jsg.2009.04.006",
+    "faulds_2010_geothermal": "https://doi.org/10.1016/j.geothermics.2011.02.004",
+    "gbcge_ingenious": "https://gbcge.org/current-projects/ingenious/",
+    "geodawn": "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+    "gdr_1391": "https://gdr.openei.org/submissions/1391",
+    "epsg32611": "https://epsg.io/32611",
+    "tversky": "https://en.wikipedia.org/wiki/Tversky_index",
+    "competition": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
+  },
+  "namespace_note": "Files were re-namespaced h85->h86 at merge time. Artifact bytes are unchanged: the shipped TIF/zip have the same SHA-256 as measured during the run. Lineage: 7dab259 (H85-labelled run) -> merge commit. This lane is independent of, and does not modify, the promoted H85-EDTI candidate.",
+  "irregularities": [
+    {
+      "id": "IR-H86-05",
+      "found_by": "tests/test_h86.py (Pass 2 review)",
+      "issue": "The one-TIFF zip was built before the h85->h86 re-namespace, so its single member still carried the old inner filename.",
+      "impact": "Portal-irrelevant for format (one GeoTIFF inside), but it made the zip's inner name disagree with the published name and changed auditability.",
+      "fix": "Rebuilt the zip deterministically (fixed 2026-10-21 timestamp) around the same, unchanged TIF bytes; new zip sha256 recorded; test asserts namelist == [tif name]."
+    }
+  ]
+}
