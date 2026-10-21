@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Executive Summary — GEMSDOE77 Lane H83-PCD</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f8fafc;
+      color: #0f172a;
+      line-height: 1.55;
+      margin: 0;
+      padding: 0;
+    }
+    nav {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 12px 20px;
+      font-size: 0.92rem;
+    }
+    nav a {
+      color: #93c5fd;
+      text-decoration: none;
+      margin-right: 16px;
+      font-weight: 500;
+    }
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 24px 20px 64px;
+    }
+    .status-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 18px 0;
+    }
+    .box-ok {
+      background: #f0fdf4;
+      border: 2px solid #16a34a;
+      color: #166534;
+      border-radius: 10px;
+      padding: 16px 20px;
+    }
+    .box-no {
+      background: #fef2f2;
+      border: 3px solid #dc2626;
+      color: #991b1b;
+      border-radius: 10px;
+      padding: 16px 20px;
+    }
+    .card {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin: 18px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+      margin: 12px 0;
+    }
+    th, td {
+      border: 1px solid #cbd5e1;
+      padding: 8px 10px;
+      text-align: left;
+    }
+    th { background: #f1f5f9; }
+    .btn {
+      display: inline-block;
+      background: #1d4ed8;
+      color: #ffffff;
+      padding: 10px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      margin: 6px 8px 6px 0;
+    }
+    code, pre {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.88rem;
+    }
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 12px 14px;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html">&larr; All Lanes &amp; Repository Status</a>
+    <a href="executive-summary.html">Repo Executive Summary</a>
+    <a href="h83pcd.html">H83-PCD Full Technical Report</a>
+    <a href="evidence/run_card_h83pcd.json">Run Card (JSON)</a>
+  </nav>
+
+  <div class="container">
+    <h1>Executive Summary &mdash; Lane H83-PCD (Poisson Pseudogravity–Gravity Discordance &times; Piedmont Scarp-Toe Asymmetry &times; 12-Bit LOCO Relay)</h1>
+
+    <div class="status-grid">
+      <div class="box-ok">
+        <h2>IS IT OK TO DOWNLOAD? &mdash; YES (INSPECTION ONLY)</h2>
+        <p><strong>Local Format &amp; Range Gate: PASS (15/15 &amp; 17/17)</strong></p>
+        <ul>
+          <li>Single-band <code>float32</code> GeoTIFF, <code>3730 &times; 3292</code>, <code>EPSG:32611</code></li>
+          <li><strong>0 NaN</strong>, <strong>0 Inf</strong>, exact binary values in <code>{0.0, 1.0}</code> (strictly inside <code>[0, 1]</code>)</li>
+          <li><strong>37,654 positive dots</strong>, <code>0</code> within \(\le 3.0\text{ px}\) of mapped catalogue faults</li>
+          <li><strong>100% Sparse Uniqueness Pass:</strong> max 3-px overlap <code>0.6400 &le; 0.70</code> across all 32 sparse rasters (<code>0.3224</code> vs <code>H33</code>)</li>
+        </ul>
+        <p>
+          <a class="btn" href="downloads/h83pcd-poisson-piedmont-loco-submod-20261021T183000Z-zeros.tif" download>Download .tif (142 KB)</a>
+          <a class="btn" href="downloads/h83pcd-poisson-piedmont-loco-submod-20261021T183000Z-zeros.zip" download>Download .zip</a>
+        </p>
+      </div>
+
+      <div class="box-no">
+        <h2>IS IT OK TO SUBMIT? &mdash; NO (NOT OK TO SUBMIT)</h2>
+        <p><strong>Live Portal Upload Gate: NOT APPROVED (0 Weekly Slots Spent)</strong></p>
+        <ul>
+          <li><strong>Policy I17 Fail-Closed:</strong> Literal 3-px overlap against space-filling continuous witness <code>17GEMSDOE_E-proba-multiscale</code> (<code>ab0a0a62</code>, 100% footprint coverage) is <code>1.0000 &gt; 0.70</code>.</li>
+          <li><strong>Holdout Comparison:</strong> <code>HOLDOUT-DTI</code> is <code>0.132515</code> (Seed 30) / <code>0.123066</code> (Seed 20), which strongly beats the matched 41-ch standard control (<code>0.086239</code> / <code>0.087347</code>) but is below the retained <code>0.152718</code> <code>H77-Step</code> incumbent.</li>
+          <li><strong>Verdict:</strong> <code>negative</code> &mdash; Not approved for live portal upload.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Key Metrics &amp; Artifact Provenance (No Projections)</h2>
+      <table>
+        <tr><th>Metric / Property</th><th>Value &amp; Evidence Class</th></tr>
+        <tr><td>Primary Holdout Score (Seed 30)</td><td><strong><code>0.132515 HOLDOUT-DTI</code></strong> (<code>gems57-pooled-hide-v2</code>, <code>11,342</code> withheld positives, <code>95% CI [0.117209, 0.145631]</code>)</td></tr>
+        <tr><td>Secondary Holdout Score (Seed 20)</td><td><strong><code>0.123066 HOLDOUT-DTI</code></strong> (<code>gems57-pooled-hide-v2</code>, <code>11,321</code> withheld positives, <code>95% CI [0.108735, 0.138706]</code>)</td></tr>
+        <tr><td>Paired Gain vs. 41-Ch Standard Control</td><td><strong><code>+0.046276</code></strong> on Seed 30 (<code>95% CI [+0.029914, +0.063402]</code>) &middot; <strong><code>+0.035720</code></strong> on Seed 20 (<code>95% CI [+0.018482, +0.052269]</code>)</td></tr>
+        <tr><td>Retained Repo Holdout Ceiling (<code>H77-Step</code>)</td><td><code>0.152718 HOLDOUT-DTI</code> (Seed 20, <code>11,321</code> withheld positives, <code>95% CI [0.131548, 0.175185]</code>)</td></tr>
+        <tr><td>Single-Feature Leakage Canary</td><td><strong>PASS</strong> &mdash; max symmetric ROC-AUC = <code>0.812553 &le; 0.90</code> (<code>vis_pcd_transfer_relay@seed20</code>; 0 SGMC channels; 0 <code>dist_known_fault_px</code>)</td></tr>
+        <tr><td>Informative Sparse Uniqueness (32 Rasters)</td><td><strong>PASS</strong> &mdash; max 3-px forward overlap = <code>0.639985 &le; 0.70</code>; max \(|\text{Spearman }\rho| = 0.212026 \le 0.90\)</td></tr>
+        <tr><td>Literal Policy I17 All-Raster Gate</td><td><strong>FAIL CLOSED</strong> &mdash; <code>1.000000 &gt; 0.70</code> against continuous witness <code>17GEMSDOE_E-proba-multiscale</code> (<code>ab0a0a62</code>)</td></tr>
+        <tr><td>GeoTIFF SHA-256</td><td><code>1ff7bc32563b56a6b18beb0d4500afa9bad814396485aaba39b2b8cbc8a9fa59</code></td></tr>
+        <tr><td>Submission Note (118 / 140 chars)</td><td><code>H83-PCD: Poisson pseudogravity-gravity discord + 1m LiDAR piedmont toe + 12b LOCO relay + 300m submod 37654d (neg/I17)</code></td></tr>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

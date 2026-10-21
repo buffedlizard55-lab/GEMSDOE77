@@ -24,7 +24,7 @@
   },
   "raster_sha256": null,
   "validator": {
-    "existing_listed_tiffs": "44/44 local SHA/grid/finite-range checks passed against tracked bridge sample",
+    "existing_listed_tiffs": "46/46 local SHA/grid/finite-range checks passed against tracked bridge sample after mainline reconciliation",
     "new_candidate": "NOT GENERATED",
     "no_nan_inside_footprint": "No candidate; existing listed primary files pass local all-finite [0,1] audit",
     "values_in_0_1": "No candidate; existing listed primary files pass local all-finite [0,1] audit",
