@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Experiment E2 (2 of 3): Multi-Seed Hide-and-Recover, Detached & 4-Quadrant Holdout Benchmark.
 
-Pre-registered under `registry/preregistration_h77e.json` (`H77E-AUTOCTX-DINKELBACH`).
+Pre-registered under `registry/preregistration_h77e_acd.json` (`H77E-AUTOCTX-DINKELBACH`).
 Evaluates `H77E-1` and all pre-registered feature/stage/solver/covariate-matching ablations via
 unmodified `vendor/gems57/evaluate_holdout.py` (`gems57-pooled-hide-v2`, `alpha=0.2`, `beta=0.8`,
 `300 m` triangular kernel, `2,000` paired 20 km physical spatial-block bootstrap draws) across:
@@ -33,7 +33,7 @@ sys.path.insert(0, str(ROOT / "vendor"))
 from gems57 import evaluate_holdout as EH, grid as G, holdout as HO  # noqa: E402
 from gems77 import emit77  # noqa: E402
 from gems77lia import allocate as LIA_AL, core as LIA_CORE  # noqa: E402
-from gems77e.autoctx import (  # noqa: E402
+from gems77e_acd.autoctx import (  # noqa: E402
     _fit_fast_dual_lgb,
     _gather_f32,
     _safe_logit,
@@ -42,8 +42,8 @@ from gems77e.autoctx import (  # noqa: E402
     fit_h77e_twostage_oof,
     quantile_bridge_lidar_gap,
 )
-from gems77e.dinkelbach import allocate_dinkelbach_1swap, tip_gated_allowed_mask  # noqa: E402
-from gems77e.features import compute_visible_mechanics_pair, load_h77e_static_cache  # noqa: E402
+from gems77e_acd.dinkelbach import allocate_dinkelbach_1swap, tip_gated_allowed_mask  # noqa: E402
+from gems77e_acd.features import compute_visible_mechanics_pair, load_h77e_static_cache  # noqa: E402
 
 
 def log(*a) -> None:
@@ -586,7 +586,7 @@ def main() -> None:
         "blind_4quadrant_province_57448px": prov_boot,
         "prior_lane_published_benchmarks": prior_benchmarks,
     }
-    out_path = ROOT / "evidence" / "h77e_exp2_holdout.json"
+    out_path = ROOT / "evidence" / "h77e_acd_exp2_holdout.json"
     out_path.write_text(json.dumps(out, indent=2) + "\n")
     log(f"[E2] Saved complete holdout benchmark receipt -> {out_path} in {out['elapsed_seconds']}s.")
 

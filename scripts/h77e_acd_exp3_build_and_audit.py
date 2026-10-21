@@ -2,7 +2,7 @@
 """Experiment E3 (3 of 3): Full-Nevada OOF Submission Build, 880+ Raster Uniqueness Audit,
 17-Check GeoTIFF/ZIP Verification, Publication Diagnostic Figures & Formal JSON Run Card.
 
-Pre-registered under `registry/preregistration_h77e.json` (`H77E-AUTOCTX-DINKELBACH`).
+Pre-registered under `registry/preregistration_h77e_acd.json` (`H77E-AUTOCTX-DINKELBACH`).
   1. Builds the full-Nevada cross-fitted `H77E` surface (`compute_visible_mechanics_pair` +
      `fit_h77e_twostage_oof`) strictly out-of-fold across quadrants (`0` in-sample pixels,
      `0` SGMC channels, `0` prior submission rasters read during training or inference).
@@ -15,7 +15,7 @@ Pre-registered under `registry/preregistration_h77e.json` (`H77E-AUTOCTX-DINKELB
   4. Emits primary `-zeros.tif` + `.zip` + `.json` via unmodified `vendor/gems57/submission_writer.py`,
      copies to `submissions/`, emits `-nan.tif` diagnostic twin, runs `vendor/gems57/uniqueness.py`
      (`two_phase_summary`) + `vendor/gems57/validate.py` + 17 explicit format/CRS/range checks,
-     renders 3 publication figures in `docs/figures/`, and writes `evidence/run_card_h77e.json`.
+     renders 3 publication figures in `docs/figures/`, and writes `evidence/run_card_h77e_acd.json`.
 """
 from __future__ import annotations
 
@@ -42,9 +42,9 @@ sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT / "vendor"))
 
 from gems57 import evaluate_holdout as EH, grid as G, holdout as HO, submission_writer as SW, uniqueness as UQ, validate as VAL  # noqa: E402
-from gems77e.autoctx import fit_h77e_twostage_oof  # noqa: E402
-from gems77e.dinkelbach import allocate_dinkelbach_1swap  # noqa: E402
-from gems77e.features import compute_visible_mechanics_pair, load_h77e_static_cache  # noqa: E402
+from gems77e_acd.autoctx import fit_h77e_twostage_oof  # noqa: E402
+from gems77e_acd.dinkelbach import allocate_dinkelbach_1swap  # noqa: E402
+from gems77e_acd.features import compute_visible_mechanics_pair, load_h77e_static_cache  # noqa: E402
 
 TARGET_DOTS = 37_654
 EXCL_PX = 3.0
@@ -553,8 +553,8 @@ def main() -> int:
     zeros_path = DL_DIR / f"{stem_base}-zeros.tif"
     nan_path = DL_DIR / f"{stem_base}-nan.tif"
 
-    e1 = json.loads((ROOT / "evidence" / "h77e_exp1_canaries_and_live_inversion.json").read_text())
-    e2 = json.loads((ROOT / "evidence" / "h77e_exp2_holdout.json").read_text())
+    e1 = json.loads((ROOT / "evidence" / "h77e_acd_exp1_canaries_and_live_inversion.json").read_text())
+    e2 = json.loads((ROOT / "evidence" / "h77e_acd_exp2_holdout.json").read_text())
     p3_dti = e2["pooled_3seed_34235px"]["scores"]["H77E_full_B37654"]["dti"]
     s30_dti = e2["per_seed_results"]["seed_30"]["arm_details"]["H77E_full_B37654"]["pooled_holdout_dti"]
 
@@ -619,7 +619,7 @@ def main() -> int:
     # 4. Render publication diagnostic figures
     figs = _render_figures(e1, e2, p_full_2d, dots, foot, cat, top_dot_matches, uq_summary)
 
-    # 5. Emit complete, formal JSON Run Card (`evidence/run_card_h77e.json`)
+    # 5. Emit complete, formal JSON Run Card (`evidence/run_card_h77e_acd.json`)
     p3_sc = e2["pooled_3seed_34235px"]["scores"]["H77E_full_B37654"]
     p3_diff_a0 = e2["pooled_3seed_34235px"]["paired_differences"]["A0_h195_foldfair"]
     p3_diff_s1 = e2["pooled_3seed_34235px"]["paired_differences"]["H77E_stage1_only_B37654"]
@@ -750,10 +750,10 @@ def main() -> int:
         },
     }
 
-    rc_path = ROOT / "evidence" / "run_card_h77e.json"
+    rc_path = ROOT / "evidence" / "run_card_h77e_acd.json"
     rc_path.write_text(json.dumps(run_card, indent=2) + "\n")
-    shutil.copy2(rc_path, DL_DIR / "run_card_h77e.json")
-    for fn in ("h77e_exp1_canaries_and_live_inversion.json", "h77e_exp2_holdout.json", "run_card_h77e.json"):
+    shutil.copy2(rc_path, DL_DIR / "run_card_h77e_acd.json")
+    for fn in ("h77e_acd_exp1_canaries_and_live_inversion.json", "h77e_acd_exp2_holdout.json", "run_card_h77e_acd.json"):
         shutil.copy2(ROOT / "evidence" / fn, DOC_EV_DIR / fn)
 
     log(f"[E3] COMPLETE in {time.time() - t0:.1f}s -> {zeros_path.name}")

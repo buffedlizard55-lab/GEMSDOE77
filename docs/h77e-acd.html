@@ -2,7 +2,7 @@
 <title>Lane H77E Technical Monograph · 0.1848 3-Seed HOLDOUT-DTI · GEMS / 77</title>
 <meta name="description" content="PhD Technical Report for GEMSDOE77 Lane H77E: Covariate-Matched Zero-SGMC Multi-Modal Ensemble + Residual 2D Oriented Filament Auto-Context + Exact Dinkelbach Fractional Submodular Solver with Monotonic 1-Swap.">
 <link rel="stylesheet" href="assets/site.css"><script defer src="assets/site.js"></script></head><body>
-<header><div class="header"><a class="brand" href="index.html">GEMS / 77 <span>Structural discovery lab</span></a><nav aria-label="Main"><a href="index.html">Start here</a><a href="h77e.html" aria-current="page">H77E (0.1848 Record)</a><a href="h77e-executive-summary.html">H77E Submit Guide</a><a href="executive-summary.html">How to submit</a><a href="h77d.html">H77D (Zero-SGMC)</a><a href="h77-step.html">H77-Step</a><a href="h78.html">H78 lane</a><a href="lia-analysis.html">Why 0.2778</a><a href="lia-sources.html">Sources</a></nav></div></header>
+<header><div class="header"><a class="brand" href="index.html">GEMS / 77 <span>Structural discovery lab</span></a><nav aria-label="Main"><a href="index.html">Start here</a><a href="h77e-acd.html" aria-current="page">H77E (0.1848 Record)</a><a href="h77e-acd-executive-summary.html">H77E Submit Guide</a><a href="executive-summary.html">How to submit</a><a href="h77d.html">H77D (Zero-SGMC)</a><a href="h77-step.html">H77-Step</a><a href="h78.html">H78 lane</a><a href="lia-analysis.html">Why 0.2778</a><a href="lia-sources.html">Sources</a></nav></div></header>
 
 <main><div class="eyebrow">GEMSDOE77 Primary Technical Monograph · Pre-Registered Lane H77E-AUTOCTX-DINKELBACH</div>
 <h1>Breaking the Multi-Seed Holdout Ceiling:<br><code>0.18478</code> Pooled <code>HOLDOUT-DTI</code> Across <code>34,235</code> Withheld Fault Pixels</h1>
@@ -14,12 +14,12 @@
   <span class="badge good">SPARSE UNIQUENESS: MAX 0.6450 &lt; 0.70 (704 DOT RASTERS)</span>
   <span class="badge negative">Selector status: Not approved (human weekly-slot sign-off required)</span>
 </div>
-<p><strong>One-Glance Decision:</strong> <strong>YES — 100% SAFE TO DOWNLOAD &amp; INSPECT IMMEDIATELY</strong> (<a download href="downloads/gems77-h77e-autoctx-dinkelbach-37654dots-20261021-ddce37e9-zeros.zip"><code>-zeros.zip</code></a> / <a download href="downloads/gems77-h77e-autoctx-dinkelbach-37654dots-20261021-ddce37e9-zeros.tif"><code>-zeros.tif</code></a>, <code>float32</code>, <code>{0.0, 1.0} ⊂ [0, 1]</code>, <code>0 NaN</code>, <code>EPSG:32611</code>, <code>3730 × 3292</code>). <strong>DO NOT AUTO-UPLOAD WITHOUT HUMAN SELECTOR SIGN-OFF</strong> under repo Policy <code>I17</code> (dense whole-state continuous archive surfaces cover up to 100% of Nevada; see <a href="h77e-executive-summary.html">Step-by-Step DrivenData Submission Guide</a>).</p>
+<p><strong>One-Glance Decision:</strong> <strong>YES — 100% SAFE TO DOWNLOAD &amp; INSPECT IMMEDIATELY</strong> (<a download href="downloads/gems77-h77e-autoctx-dinkelbach-37654dots-20261021-ddce37e9-zeros.zip"><code>-zeros.zip</code></a> / <a download href="downloads/gems77-h77e-autoctx-dinkelbach-37654dots-20261021-ddce37e9-zeros.tif"><code>-zeros.tif</code></a>, <code>float32</code>, <code>{0.0, 1.0} ⊂ [0, 1]</code>, <code>0 NaN</code>, <code>EPSG:32611</code>, <code>3730 × 3292</code>). <strong>DO NOT AUTO-UPLOAD WITHOUT HUMAN SELECTOR SIGN-OFF</strong> under repo Policy <code>I17</code> (dense whole-state continuous archive surfaces cover up to 100% of Nevada; see <a href="h77e-acd-executive-summary.html">Step-by-Step DrivenData Submission Guide</a>).</p>
 <div class="buttons">
   <a class="button" download href="downloads/gems77-h77e-autoctx-dinkelbach-37654dots-20261021-ddce37e9-zeros.tif">⬇ Download Primary GeoTIFF (-zeros.tif · 138.4 KB)</a>
   <a class="button secondary" download href="downloads/gems77-h77e-autoctx-dinkelbach-37654dots-20261021-ddce37e9-zeros.zip">⬇ Single-TIFF Portal ZIP (104.6 KB)</a>
   <a class="button secondary" download href="downloads/gems77-h77e-autoctx-dinkelbach-37654dots-20261021-ddce37e9-nan.tif">⬇ Twin NaN-Outside GeoTIFF (328.0 KB)</a>
-  <a class="button secondary" download href="evidence/run_card_h77e.json">⬇ Run Card JSON</a>
+  <a class="button secondary" download href="evidence/run_card_h77e_acd.json">⬇ Run Card JSON</a>
 </div>
 <div class="file-label">SHA-256 (<code>gems77-h77e-autoctx-dinkelbach-37654dots-20261021-ddce37e9-zeros.tif</code>) · <code>37,654</code> Binary Dots · <code>0</code> SGMC Channels · <code>3/3</code> Experiments Used</div>
 <div class="hash">f01a259a90dfc8653188eb663925fc44ae8d712c4cb62f4ffd33435bcc1e0a62</div>
@@ -40,7 +40,7 @@
   <figcaption class="fine"><strong>Figure 1 (Experiment E1):</strong> Left: Non-negative algebraic DTI inversion across <code>95</code> live-scored DrivenData rasters (<code>INSTRUMENT</code>), identifying <code>28.25×</code> live fault enrichment on off-catalogue 1-m LiDAR scarps. Right: Exact proof and elimination of the <code>10.85% vs 0.00%</code> near-fault training-vs-test covariate shift (<code>+371.9 bps</code> controlled gain).</figcaption>
 </figure>
 
-<h2>2. Five Pre-Registered Physical &amp; Algorithmic Hypotheses (Locked Before Experiments in <code>research/h77e_hypotheses.md</code>)</h2>
+<h2>2. Five Pre-Registered Physical &amp; Algorithmic Hypotheses (Locked Before Experiments in <code>research/h77e_acd_hypotheses.md</code>)</h2>
 <div class="table-wrap"><table>
 <thead><tr><th>Rank / ID</th><th>Hypothesis &amp; Exact Layers</th><th>Physical Mechanism &amp; Transform</th><th>Named Non-Fault Mimic Rejected</th><th>Measured Result</th></tr></thead>
 <tbody>
@@ -85,7 +85,7 @@
   <li><strong>Full 860-Raster Uniqueness Audit (Both Readings Reported Side by Side):</strong>
     <ul>
       <li><strong>Like-for-Like Sparse Dot Submissions (<code>704</code> rasters across all 78 repos):</strong> <strong><code>100% PASS</code></strong> — max 3-px forward dot overlap = <strong><code>0.64495 &lt; 0.70</code></strong>; pre-placement continuous surface max $|\rho|$ = <strong><code>0.72786 &lt; 0.90</code></strong>; binary dot max $|\rho|$ = <strong><code>0.10354 &lt; 0.90</code></strong>; head-to-head overlap vs <code>H33</code> (<code>0.2778</code> live) = <strong><code>0.4097</code></strong>, vs <code>H77D</code> = <strong><code>0.3758</code></strong>, vs <code>H77-Step</code> = <strong><code>0.4660</code></strong>, vs open PR #11 <code>H77-HSL</code> = <strong><code>0.6168</code></strong>. Fold-blind zero-leakage Seed 30 sensitivity under the identical <code>≤ 0.645</code> cap scores <strong><code>0.18938</code></strong> (<code>0.0 bps</code> degradation).</li>
-      <li><strong>Literal Unfiltered Policy <code>I17</code> Reading (<code>156</code> dense whole-state continuous surfaces):</strong> Reported transparently in <a href="evidence/run_card_h77e.json"><code>run_card_h77e.json</code></a>: archive continuous surfaces such as <code>0c42fc03…</code> and <code>ab0a0a62…</code> have positive values on <code>5,167,373 / 5,167,373 = 100.0%</code> of active Nevada cells, where by Pigeonhole Principle every non-empty raster has unfiltered overlap <code>1.000</code>. Hence automatic slot consumption stays gated behind human portfolio selector sign-off.</li>
+      <li><strong>Literal Unfiltered Policy <code>I17</code> Reading (<code>156</code> dense whole-state continuous surfaces):</strong> Reported transparently in <a href="evidence/run_card_h77e_acd.json"><code>run_card_h77e_acd.json</code></a>: archive continuous surfaces such as <code>0c42fc03…</code> and <code>ab0a0a62…</code> have positive values on <code>5,167,373 / 5,167,373 = 100.0%</code> of active Nevada cells, where by Pigeonhole Principle every non-empty raster has unfiltered overlap <code>1.000</code>. Hence automatic slot consumption stays gated behind human portfolio selector sign-off.</li>
     </ul>
   </li>
 </ul>
@@ -111,5 +111,5 @@
     <a href="https://www.usgs.gov/programs/earthquake-hazards/faults">USGS Quaternary Fault and Fold Database of the United States</a>.</li>
 </ul>
 </section></main>
-<footer><div class="footer">GEMSDOE77 · Lane H77E Technical Monograph · <a href="h77e-executive-summary.html">Step-by-Step DrivenData Submission Guide</a> · <a href="evidence/run_card_h77e.json">Run Card JSON</a> · <a href="index.html">Start Here</a></div></footer>
+<footer><div class="footer">GEMSDOE77 · Lane H77E Technical Monograph · <a href="h77e-acd-executive-summary.html">Step-by-Step DrivenData Submission Guide</a> · <a href="evidence/run_card_h77e_acd.json">Run Card JSON</a> · <a href="index.html">Start Here</a></div></footer>
 </body></html>

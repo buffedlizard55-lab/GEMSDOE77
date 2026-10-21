@@ -17,9 +17,9 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT / "src") not in sys.path:
     sys.path.insert(0, str(ROOT / "src"))
 
-from gems77e.autoctx import compute_filament_autocontext
-from gems77e.dinkelbach import allocate_dinkelbach_1swap
-from gems77e.features import compute_visible_mechanics_pair
+from gems77e_acd.autoctx import compute_filament_autocontext
+from gems77e_acd.dinkelbach import allocate_dinkelbach_1swap
+from gems77e_acd.features import compute_visible_mechanics_pair
 
 KERNEL_29 = [
     (dy, dx, float(1.0 - np.hypot(dy, dx) / 3.0))
@@ -54,12 +54,12 @@ def _fractional_dti(dots: np.ndarray, weights: np.ndarray, k_tot: float = 50.0) 
 def test_h77e_zero_sgmc_and_zero_label_leakage_source_audit():
     """Verify no H77E source file or experiment script reads SGMC channels or GDR dist_known_fault_px."""
     checked = [
-        ROOT / "src" / "gems77e" / "features.py",
-        ROOT / "src" / "gems77e" / "autoctx.py",
-        ROOT / "src" / "gems77e" / "dinkelbach.py",
-        ROOT / "scripts" / "h77e_exp1_canaries_and_live_inversion.py",
-        ROOT / "scripts" / "h77e_exp2_holdout.py",
-        ROOT / "scripts" / "h77e_exp3_build_and_audit.py",
+        ROOT / "src" / "gems77e_acd" / "features.py",
+        ROOT / "src" / "gems77e_acd" / "autoctx.py",
+        ROOT / "src" / "gems77e_acd" / "dinkelbach.py",
+        ROOT / "scripts" / "h77e_acd_exp1_canaries_and_live_inversion.py",
+        ROOT / "scripts" / "h77e_acd_exp2_holdout.py",
+        ROOT / "scripts" / "h77e_acd_exp3_build_and_audit.py",
     ]
     for path in checked:
         assert path.is_file(), f"Missing file: {path}"
@@ -128,9 +128,9 @@ def test_h77e_filament_context_and_dinkelbach_overlap_cap_invariants():
 
 def test_h77e_experiments_run_card_geotiff_and_pages_integrity():
     """Verify all 3 H77E experiments, CIs, canaries, uniqueness, 17 GeoTIFF checks, and 0 broken Pages links."""
-    e1 = json.loads((ROOT / "evidence" / "h77e_exp1_canaries_and_live_inversion.json").read_text())
-    e2 = json.loads((ROOT / "evidence" / "h77e_exp2_holdout.json").read_text())
-    rc = json.loads((ROOT / "evidence" / "run_card_h77e.json").read_text())
+    e1 = json.loads((ROOT / "evidence" / "h77e_acd_exp1_canaries_and_live_inversion.json").read_text())
+    e2 = json.loads((ROOT / "evidence" / "h77e_acd_exp2_holdout.json").read_text())
+    rc = json.loads((ROOT / "evidence" / "run_card_h77e_acd.json").read_text())
 
     # E1: 99 leakage canaries <= 0.90 across all 3 seeds & covariate-shift proof
     assert e1["leakage_canary_gate_0p90"]["status"] == "ALL_SEEDS_PASS"
@@ -191,7 +191,7 @@ def test_h77e_experiments_run_card_geotiff_and_pages_integrity():
         assert int((arr > 0).sum()) == 37654
 
     # Site pages + zero broken relative links check
-    for page_name in ["index.html", "executive-summary.html", "h77e.html", "h77e-executive-summary.html"]:
+    for page_name in ["index.html", "executive-summary.html", "h77e-acd.html", "h77e-acd-executive-summary.html"]:
         p_html = ROOT / "docs" / page_name
         assert p_html.is_file()
         txt = p_html.read_text()

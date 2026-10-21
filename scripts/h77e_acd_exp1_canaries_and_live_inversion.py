@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Experiment E1 (1 of 3): Static Feature Build, Multi-Seed Leakage Canaries & Algebraic Live Inversion.
 
-Pre-registered under `registry/preregistration_h77e.json` (`H77E-AUTOCTX-DINKELBACH`).
+Pre-registered under `registry/preregistration_h77e_acd.json` (`H77E-AUTOCTX-DINKELBACH`).
   1. Builds `.cache/work/h77e_static_f16.npy` (`91` zero-SGMC physical channels across `4,234,347` active pixels).
   2. Executes single-feature symmetric ROC-AUC leakage canaries across ALL `99` channels (`91` static +
      `8` mechanics) across Seeds `30`, `20`, and `21` (`34,235` pooled withheld positives). Hard abort if
@@ -31,7 +31,7 @@ sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT / "vendor"))
 
 from gems57 import evaluate_holdout as eh, grid as G, holdout as HO, metric  # noqa: E402
-from gems77e.features import (  # noqa: E402
+from gems77e_acd.features import (  # noqa: E402
     MECH_NAMES,
     compute_visible_mechanics_pair,
     load_h77e_static_cache,
@@ -437,7 +437,7 @@ def main() -> None:
         "covariate_shift_root_cause_audit": cov_audit,
         "algebraic_live_score_inversion_instrument": inv_res,
     }
-    out_path = ROOT / "evidence" / "h77e_exp1_canaries_and_live_inversion.json"
+    out_path = ROOT / "evidence" / "h77e_acd_exp1_canaries_and_live_inversion.json"
     out_path.write_text(json.dumps(out, indent=2) + "\n")
     print(f"[E1] Saved complete evidence -> {out_path} in {out['elapsed_seconds']}s.")
 

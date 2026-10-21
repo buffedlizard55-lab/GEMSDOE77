@@ -1,27 +1,6 @@
 {
- "note": "Status of every submission file in this repository, copied from each lane's own run card. Under Policy I17 (unfiltered literal registry check where dense witness ab0a0a62... has positive values on 100.0% of allowed Nevada pixels), automatic literal clearance fails closed ('Not OK to submit' automatically without selector policy sign-off). H77E (0.18478 3-seed pooled [0.1681, 0.1999] over 34,235 withheld positives; 0.18938 [s30] / 0.18225 [s20] / 0.18271 [s21] HOLDOUT-DTI — ALL-TIME REPO RECORD, 100% zero-SGMC), H77D (0.15011 [s30] / 0.14030 [s20], only 0.3758 3-px overlap with H77E), and H77-Step (0.15272 [s20], only 0.4660 overlap with H77E) give the human selector three genuinely unique breakthrough candidates.",
+ "note": "Status of every submission file in this repository, copied from each lane's own run card. Under Policy I17 (unfiltered literal registry check where dense witness ab0a0a62... has positive values on 100.0% of allowed Nevada pixels), automatic literal clearance fails closed ('Not OK to submit' automatically without selector policy sign-off). H77D (0.15011 [s30] / 0.14030 [s20] HOLDOUT-DTI, 100% zero-SGMC) and H77-Step (0.15272 HOLDOUT-DTI) are orthogonal (only 0.4068 3-px dot overlap) top candidates for human selector review.",
  "lanes": [
-  {
-   "lane": "H77E: Covariate-Matched Zero-SGMC Multi-Modal Ensemble + Filament Auto-Context + Dinkelbach 1-Swap (0.18478 3-Seed Pooled / 0.18938 Seed 30 HOLDOUT-DTI — ALL-TIME RECORD)",
-   "page": "h77e.html",
-   "summary": "h77e-executive-summary.html",
-   "file": "downloads/gems77-h77e-autoctx-dinkelbach-37654dots-20261021-ddce37e9-zeros.tif",
-   "nan_file": "downloads/gems77-h77e-autoctx-dinkelbach-37654dots-20261021-ddce37e9-nan.tif",
-   "run_card": "evidence/run_card_h77e.json",
-   "format_valid": true,
-   "protocol_unique": false,
-   "beats_holdout_best": true,
-   "verdict": "negative",
-   "scientific_holdout_verdict": "promote",
-   "name": "gems77-h77e-autoctx-dinkelbach-37654dots-20261021-ddce37e9-zeros",
-   "note": "H77E zero-SGMC 99ch + filament auto-ctx + Dinkelbach 1-swap (37654 dots); HOLDOUT-DTI 0.1848 (3-seed) / 0.1894 (s30)",
-   "sha256": "f01a259a90dfc8653188eb663925fc44ae8d712c4cb62f4ffd33435bcc1e0a62",
-   "informative_unique": true,
-   "upload": "Not OK to submit automatically under Policy I17 unfiltered dense-witness gate (dense surfaces like 0c42fc03 / ab0a0a62 cover 100% of Nevada > 0); SAFE TO DOWNLOAD (17/17 checks, 0 NaN, {0,1} float32) & #1 ALL-TIME CHAMPION CANDIDATE FOR HUMAN SELECTOR SIGN-OFF: 100% zero-SGMC, 3-seed pooled HOLDOUT-DTI = 0.18478 [0.1681, 0.1999] over 34,235 withheld px (0.18938 s30 / 0.18225 s20 / 0.18271 s21; +395.7 bps over H77D, +374.8 bps over emitted H77-HSL, +295.3 bps over H77-Step), unique across all 704 sparse dot-field rasters (max 3-px overlap = 0.6450 < 0.70; surf |rho| = 0.7279 < 0.90; dot |rho| = 0.1035 < 0.90; vs H33 = 0.4097; vs H77D = 0.3758; vs H77-Step = 0.4660). Selector: not approved.",
-   "primary": true,
-   "why_primary": "Newest session & All-Time Holdout Record (Lane H77E, 100% zero-SGMC, 99 channels). Solves the hidden near-fault LOCO sampling gap (+371.9 bps), fuses 1-m LiDAR horst-graben scarps (+103.3 bps), 10-m tectonic fluvial chi knickpoints (+42.4 bps), and N=0 Euler + GDR 1391 hydrothermal conduits (+41.1 bps) with residual 8-azimuth filament auto-context (+71.7 bps) and exact Dinkelbach fractional cover + monotonic 1-swap (+140.9 bps over greedy NMS).",
-   "beat_02778_summary": "#1 highest-upside candidate in repository history once human selector signs off: 3-seed pooled HOLDOUT-DTI = 0.18478 (+0.08312 [95% CI +0.06810, +0.09794] over fold-fair H33 champion construction; +27.3% over H77D), directly targeting the 28.25x live-enriched 1-m LiDAR scarp crest domain discovered via 95-raster algebraic score inversion with 0 SGMC contamination."
-  },
   {
    "lane": "H77D: Coupled Zero-SGMC Tectono-Hydrothermal Conduits + 12-Bit LOCO + 300 m Submodular Cover (0.15011 / 0.14030 HOLDOUT-DTI)",
    "page": "h77d.html",
@@ -36,8 +15,10 @@
    "note": "H77D zero-SGMC scarp+hydro+LOCO mechanics OOF + 300m submodular (37654 dots); HOLDOUT-DTI 0.1501 (s30) / 0.1403 (s20) vs 0.1093 prior best",
    "sha256": "110e7c77ec7e7d201de0ae04ffd2bf3b9db786b4063d800cacb8ab1ded4fd1b9",
    "informative_unique": true,
-   "upload": "Not OK to submit automatically under Policy I17 unfiltered dense-witness gate (ab0a0a62 covers 100% of footprint); SAFE TO DOWNLOAD (17/17 checks, 0 NaN) & ORTHOGONAL BACKUP CANDIDATE FOR HUMAN SELECTOR SIGN-OFF: 100% zero-SGMC, HOLDOUT-DTI 0.15011 (s30) / 0.14030 (s20), orthogonal to H77E (0.3758 overlap) and H77-Step (0.4068 overlap). Selector: not approved.",
-   "primary": false
+   "upload": "Not OK to submit automatically under Policy I17 unfiltered dense-witness gate (ab0a0a62 covers 100% of footprint); SAFE TO DOWNLOAD (17/17 checks, 0 NaN) & RECOMMENDED FOR HUMAN SELECTOR SIGN-OFF: 100% zero-SGMC, HOLDOUT-DTI 0.15011 (s30) / 0.14030 (s20) (+54.5% / +46.5% vs fold-fair H33; +38.8% / +28.4% vs prior best), unique vs all 709 sparse rasters (max 0.6883 <= 0.70; vs H77-Step = 0.4068; vs H78 = 0.3517). Selector: not approved.",
+   "primary": true,
+   "why_primary": "Newest session (Lane H77D, 100% zero-SGMC). Eliminates Paleozoic/Mesozoic SGMC bedrock false positives (0.036-0.051 live), fixes q==0 missing-LiDAR across 24.6% of Nevada, and beats fold-fair H33 on both spatial seeds (0.15011 vs 0.09715 on Seed 30; 0.14030 vs 0.09574 on Seed 20) while overlapping H77-Step by only 40.7%.",
+   "beat_02778_summary": "Strong candidate once human selector grants dense-witness policy sign-off: beats fold-fair H33 champion construction on BOTH spatial seeds (+0.0530 [95% CI +0.0378, +0.0680] on Seed 30; +0.0446 [+0.0303, +0.0586] on Seed 20) with 0 SGMC channels and unweighted DTI live-inversion support (12.1x bar on scarps)."
   },
   {
    "lane": "H77-Step: HW/FW dip-slip step tensor + V-LBCO crack-tip mechanics + Radon + flank-zeroed 300m submod (0.1527 HOLDOUT-DTI)",
@@ -52,8 +33,8 @@
    "holdout_dti_hide_v2": 0.152718,
    "holdout_dti_blind_4quad": 0.185834,
    "verdict": "negative",
-   "selector_recommendation": "ORTHOGONAL PORTFOLIO CANDIDATE FOR HUMAN SELECTOR SIGN-OFF (0.4660 overlap with H77E; 0.4068 with H77D; 0.1527 HOLDOUT-DTI)",
-   "upload": "Not OK to submit automatically under unfiltered dense-witness literal gate (ab0a0a62 covers 100% of footprint); PASSES gems57 symmetric gate (max mutual 0.493 <= 0.70, max |rho| 0.403 <= 0.90) & all discrete model checks (H33 fwd 0.586, H77E fwd 0.466, H77D fwd 0.394) — orthogonal secondary portfolio candidate (selector: not approved)."
+   "selector_recommendation": "CO-PRIMARY CANDIDATE FOR HUMAN SELECTOR SIGN-OFF (orthogonal to zero-SGMC H77D with only 0.4068 dot overlap; 0.1527 HOLDOUT-DTI)",
+   "upload": "Not OK to submit automatically under unfiltered dense-witness literal gate (ab0a0a62 covers 100% of footprint); PASSES gems57 symmetric gate (max mutual 0.493 <= 0.70, max |rho| 0.403 <= 0.90) & all discrete model checks (H33 fwd 0.586, GEMSDOE70 fwd 0.438, H77D fwd 0.394) — recommended co-primary file once human selector confirms non-submission dense-witness exemption (selector: not approved)."
   },
   {
    "lane": "H78: lidar scarp consensus, uniqueness-capped allocation",
