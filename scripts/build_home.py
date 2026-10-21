@@ -22,7 +22,7 @@ PD = "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
 NAV = [("index.html", "Start here"), ("executive-summary.html", "How to submit"),
        ("h77d.html", "H77D (Zero-SGMC)"), ("h77d-executive-summary.html", "H77D guide"),
-       ("h77-step.html", "H77-Step"), ("h78.html", "H78 lane"),
+       ("h77-step.html", "H77-Step"), ("h79.html", "H79-BB negative"), ("h79-radhalo.html", "H79-RH negative"), ("h78.html", "H78 lane"),
        ("lia.html", "LIA lane"), ("contactphys.html", "Contact-physics lane"), ("urank.html", "Selective-U lane"),
        ("lia-analysis.html", "Why 0.2778"), ("lia-sources.html", "Sources")]
 
@@ -79,7 +79,8 @@ def main():
         if x.get("beats_holdout_best") is not None:
             return yn(x["beats_holdout_best"], "YES", "NO")
         if x.get("holdout_dti_hide_v2") is not None:
-            return '<span class="chip warn">HOLDOUT-DTI recorded by its lane; details in run card, not organizer score</span>'
+            return (f'<span class="chip warn">reported {x["holdout_dti_hide_v2"]:.4f} HOLDOUT-DTI by its lane; '
+                    f'not re-verified here</span>')
         return yn(None)
 
     def info_cell(x):
@@ -116,11 +117,11 @@ The machine-readable <a href="data/submission-authorization.json">submission aut
 combines all required release gates and currently reports <b>NOT OK TO SUBMIT — 0 authorized files</b>.</p>"""
     beat_txt = primary.get(
         "beat_02778_summary",
-        "No leaderboard score or projection is established by this local artifact; see the lane's HOLDOUT-DTI receipt. This file is not cleared to submit.",
+        "No leaderboard score or projection is established by this local artifact; see the lane HOLDOUT-DTI receipt. This file is not cleared to submit.",
     )
     dl = f"""<section class="card dl"><h2>⬇ Highlighted download (not approved to submit)</h2>
 <p class="small muted"><b>{e(primary["lane"])}.</b> {e(primary.get("why_primary", ""))}</p>
-<p class="small muted"><b>Freshness:</b> H79 is the latest completed research lane. It is negative, inspection-only, and not approved for submission; this highlighted file is shown for audit and download only.</p>
+<p class="small muted"><b>Freshness:</b> H79-RH is the latest completed research lane. Its HOLDOUT-DTI result is negative, literal uniqueness fails, and it is highlighted only for audit/download—not selected or approved to submit.</p>
 <a class="btn" href="{e(primary["file"])}" download>Download .tif ({size_kb:.0f} KB)</a>{zip_btn}
 <div class="chips"><span class="chip ok">OK to download: YES</span>
 <span class="chip {'ok' if primary.get('format_valid') else 'bad'}">Portal format (local checks): {'PASS' if primary.get('format_valid') else 'FAIL'}</span>
@@ -149,8 +150,9 @@ encoding of the GEMSDOE32 file that the owner reports scored 0.2778. Local check
 <li><b>Verdict:</b> <b>{e(card["verdict"].upper())}</b> — {e(card["verdict_reason"])}</li>
 <li><a href="h78.html">Full H78 page: the hypotheses, the three experiments, uniqueness and the run card →</a></li></ul>"""
     body = f"""<h1>Start here</h1>
-<p>This repository hosts auditable GeoTIFF research artifacts for the <a href="{COMP}">DOE GEMS Prize fault-detection challenge</a>
-(DrivenData competition 306). The first box states that files may be downloaded for inspection but none is currently cleared to submit. The table lists every artifact and its local checks separately from submission approval. <a href="research/next-lane-candidates.md">Review the untested candidate slate and access limits</a>.</p>
+<p>This repository builds GeoTIFF submissions for the <a href="{COMP}">DOE GEMS Prize fault-detection challenge</a>
+(DrivenData competition 306). The first box says plainly what may be downloaded and what may be submitted. The table lists every file
+in the repository with the same checks.</p>
 {glance}
 {dl}
 <h2>Every file in this repository</h2>{table}
@@ -158,18 +160,26 @@ encoding of the GEMSDOE32 file that the owner reports scored 0.2778. Local check
 row 47, team extradr19 (ORGANIZER-CONFIRMED as a leaderboard value). The leader then had 0.4413 and second place 0.3904. The
 owner reports that 0.2778 came from <code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</code> (GEMSDOE32); that link
 between file and score is OWNER-REPORTED.
-No file here has an organizer score. H79 used 0 competition slots; no artifact has selector authorization.</div>
+No file here has an organizer score. H79-BB and H79-RH used 0 competition slots; no artifact has selector authorization.</div>
 {facts}
-<h2>H79: latest negative research lane</h2><p>H79-BB (basement potential-field step × topographic curvature ridge) scored 0.032328 HOLDOUT-DTI (evaluator gems57-pooled-hide-v2; 22,633 withheld positives; 95% CI [0.028377, 0.036450]) versus random control 0.035293 HOLDOUT-DTI (same evaluator and withheld count; 95% CI [0.032556, 0.038005]). The paired difference is -0.002965 (95% CI [-0.007344, 0.001463]), so the result is negative. Literal uniqueness fails under I17; selector approval is absent. The [H79 report](h79.html) and [run card](../evidence/h79_run_card.json) provide methods and limitations. This is not a leaderboard score or submission clearance.</p>
-<h2>How the repository interprets the reported 0.2778</h2>
-<p>The association between the reported score and <code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</code> is <strong>OWNER-REPORTED</strong>, not copied from an organizer receipt for that file. The repository's hash-checked forensic copy is described as 37,654 single-pixel dots aligned with the H19-5 lineament set and outside the mapped catalogue. Under the published DTI metric (<a href="{PD}">problem description</a>), the 300 m triangular kernel gives partial credit near hidden faults while false-positive predictions and missed fault length are penalized. A sparse lineament-aligned construction is therefore a plausible explanation for its reported result, but the file-to-score linkage and causal explanation are not organizer-confirmed. The current uniqueness gate is broader than H19-5 alone and is blocked by a space-filling registry witness. See <a href="lia-analysis.html">the forensic analysis and its provenance limits</a>.</p>"""
+<h2>H79-RH: latest negative research lane</h2><p>H79-RH lagged radiometric halo pairing: 0.047733 HOLDOUT-DTI (evaluator gems57-pooled-hide-v2; 11,321 withheld positives; 95% CI [0.039583, 0.055576]) versus random, paired Δ +0.000310 (95% CI [-0.008368, 0.008958]), which is not distinguishable from random and is below the local best 0.152718. Literal uniqueness fails; no selector approval or slot use. The [H79-RH report](h79-radhalo.html) and [run card](../evidence/h79_radhalo_run_card.json) contain the methods and limitations. Not a leaderboard score or clearance.</p>
+<h2>Earlier H79-BB lane</h2><p>H79-BB: 0.032328 HOLDOUT-DTI (evaluator gems57-pooled-hide-v2; 22,633 withheld positives; 95% CI [0.028377, 0.036450]), a negative result below its random control; it also fails literal I17 uniqueness. See the [H79-BB report](h79.html) and [run card](../evidence/h79_run_card.json). Neither H79 TIFF is approved to submit.</p>
+<h2>Why 0.2778, in one paragraph</h2>
+<p>The 0.2778 file is 37,654 single-pixel dots spaced 3 px apart, all on the H19-5 lineament line set, and none on the
+mapped catalogue. The metric (<a href="{PD}">problem description</a>) credits a hidden fault if any predicted pixel lies
+within 300 m (3 px), with linearly decaying weight. It charges 0.2 × every predicted pixel that is not near a fault, and
+0.8 × every missed fault pixel. Sparse dots on a line set that runs alongside unmapped faults therefore collect most of the
+achievable credit at a fraction of the false-positive cost. The binding constraint for every newer file is uniqueness:
+to be a different submission, at least 30% of the dots must sit more than 3 px from H19-5. No measured field yet earns
+credit there (H78 E1/E2 and the LIA lane). The full analysis is on <a href="lia-analysis.html">Why 0.2778</a>.</p>"""
     (D / "index.html").write_text(page("index.html", "Start here", body))
 
     # ---------------- general executive summary (how to submit)
     guide = f"""<h1>Executive summary: how to submit a file from this repository</h1>
 <p class="verdict"><b>Bottom line.</b> <b>No file in this repository is cleared to submit today</b> (Not OK to submit).
 Every file is OK to download for inspection. The steps below are how to submit once a file is cleared: it must pass the
-literal uniqueness rule (or an explicit shared protocol-owner amendment resolves the dense-witness conflict), and the selector must approve it. No local holdout result establishes that a candidate will beat 0.2778 on the leaderboard; no leaderboard projection is made.</p>
+literal uniqueness rule (or a protocol-owner policy replaces that rule), and the selector must approve it. None is expected
+to beat 0.2778.</p>
 {glance}
 {dl}
 <h2>What the submission form asks for</h2>
@@ -185,7 +195,7 @@ competition grid: EPSG:32611, 3730 rows × 3292 columns, 100 m pixels, origin (2
 <li>Sign in at <a href="{COMP}">the competition page</a> and open its submission form (the menu wording may differ).</li>
 <li>Choose the file, paste the note and submit. Check the weekly submission allowance first.</li>
 <li>Record the score and timestamp the portal reports. Only that number may be labelled ORGANIZER-CONFIRMED.</li></ol>
-<h2>Range-error prevention in the local writer (not a guarantee of portal acceptance)</h2>
+<h2>Why the "Predicted values must be in range [0, 1]" error will not recur</h2>
 <p>The problem description asks for one float32 band with values in [0, 1] inside the study area. The earlier rejected
 files most likely had NaN or nodata-tagged cells inside the scored area, which the portal reports as out of range. This
 cause is our reading of the evidence and has not been confirmed by the organizer (irregularity I09). The <code>-zeros</code>
@@ -193,7 +203,8 @@ files avoid this: every one of the 12,279,160 cells is finite and exactly 0.0 or
 copied from <code>sample_submission.tif</code>. This is the encoding of the GEMSDOE32 file that the owner reports scored 0.2778.
 Each file is read back and passes 17 checks against the official footprint (<code>src/gems77lia/validate.py</code>). The
 shared template validator is also run. It reports only its known mismatch: it derives the footprint from a feature band,
-which differs from <code>sample_submission.tif</code> by 4,601 cells. The <code>-nan</code> twins (NaN outside the study area) are kept for reference only. Although the <code>-zeros</code> artifacts avoid that encoding risk, none is currently cleared to submit; do not upload any repository TIFF unless a later policy resolution and selector decision explicitly clear that exact file.</p>
+which differs from <code>sample_submission.tif</code> by 4,601 cells. The <code>-nan</code> twins (NaN outside the study area) are kept for reference only; upload the
+<code>-zeros</code> file.</p>
 <h2>Where each number comes from</h2><ul>
 <li>Format rules and metric: the <a href="{PD}">official problem description</a> (α = 0.2, β = 0.8, 300 m triangular kernel).</li>
 <li>Scores of other submissions: the <a href="{LB}">public leaderboard</a> (ORGANIZER-CONFIRMED).</li>

@@ -2,11 +2,12 @@
 <meta name="viewport" content="width=device-width,initial-scale=1"><title>How to submit · GEMSDOE77</title>
 <meta name="description" content="GEMSDOE77 (DOE GEMS Prize): download the submission GeoTIFFs and see, per file, whether it is OK to upload.">
 <link rel="stylesheet" href="assets/lia.css"></head><body>
-<header><div class="wrap"><span class="brand">GEMSDOE77 · DOE GEMS Prize</span><a href="index.html">Start here</a> <a href="executive-summary.html" class=here>How to submit</a> <a href="h77d.html">H77D (Zero-SGMC)</a> <a href="h77d-executive-summary.html">H77D guide</a> <a href="h77-step.html">H77-Step</a> <a href="h78.html">H78 lane</a> <a href="lia.html">LIA lane</a> <a href="contactphys.html">Contact-physics lane</a> <a href="urank.html">Selective-U lane</a> <a href="lia-analysis.html">Why 0.2778</a> <a href="lia-sources.html">Sources</a>
+<header><div class="wrap"><span class="brand">GEMSDOE77 · DOE GEMS Prize</span><a href="index.html">Start here</a> <a href="executive-summary.html" class=here>How to submit</a> <a href="h77d.html">H77D (Zero-SGMC)</a> <a href="h77d-executive-summary.html">H77D guide</a> <a href="h77-step.html">H77-Step</a> <a href="h79.html">H79-BB negative</a> <a href="h79-radhalo.html">H79-RH negative</a> <a href="h78.html">H78 lane</a> <a href="lia.html">LIA lane</a> <a href="contactphys.html">Contact-physics lane</a> <a href="urank.html">Selective-U lane</a> <a href="lia-analysis.html">Why 0.2778</a> <a href="lia-sources.html">Sources</a>
 <a href="https://github.com/buffedlizard55-lab/GEMSDOE77">GitHub</a></div></header><main><div class="wrap"><h1>Executive summary: how to submit a file from this repository</h1>
 <p class="verdict"><b>Bottom line.</b> <b>No file in this repository is cleared to submit today</b> (Not OK to submit).
 Every file is OK to download for inspection. The steps below are how to submit once a file is cleared: it must pass the
-literal uniqueness rule (or an explicit shared protocol-owner amendment resolves the dense-witness conflict), and the selector must approve it. No local holdout result establishes that a candidate will beat 0.2778 on the leaderboard; no leaderboard projection is made.</p>
+literal uniqueness rule (or a protocol-owner policy replaces that rule), and the selector must approve it. None is expected
+to beat 0.2778.</p>
 <p class="verdict"><b>Status at a glance.</b> <b>OK to download:</b> every file below.
 <b>Not OK to submit:</b> none of them is cleared. The repository fails closed on the brief's literal uniqueness rule
 (irregularity I17). The rule says a file duplicates <i>any</i> registry raster when more than 70% of its dots lie within
@@ -16,23 +17,23 @@ this, with one shared registry policy. Until then, spending a slot is a selector
 The machine-readable <a href="data/submission-authorization.json">submission authorization receipt</a> independently
 combines all required release gates and currently reports <b>NOT OK TO SUBMIT — 0 authorized files</b>.</p>
 <section class="card dl"><h2>⬇ Highlighted download (not approved to submit)</h2>
-<p class="small muted"><b>H79-BB: Basement potential-field step × topographic curvature ridge (research artifact; not cleared).</b> Newest research artifact in this lane, not selected or approved. It is distinct under the informative sibling diagnostic but fails the literal dense-witness rule; no leaderboard projection is made.</p>
-<p class="small muted"><b>Freshness:</b> H79 is the latest completed research lane. It is negative, inspection-only, and not approved for submission; this highlighted file is shown for audit and download only.</p>
-<a class="btn" href="downloads/gems77-h79-crossgrad-ridge-37654dots-20261021-dd0dbf9c-zeros.tif" download>Download .tif (145 KB)</a><a class="btn alt" href="downloads/gems77-h79-crossgrad-ridge-37654dots-20261021-dd0dbf9c-zeros.zip" download>Same file as one-TIFF .zip</a>
+<p class="small muted"><b>H79-RH: lagged radiometric U-halo pairing (parallel negative).</b> Newest completed research artifact, highlighted for audit/download only. It is negative on HOLDOUT-DTI and fails literal uniqueness; not selected or approved for submission.</p>
+<p class="small muted"><b>Freshness:</b> H79-RH is the latest completed research lane. Its HOLDOUT-DTI result is negative, literal uniqueness fails, and it is highlighted only for audit/download—not selected or approved to submit.</p>
+<a class="btn" href="downloads/gems77-h79-radhalo-lag3-37654-20261021-zeros.tif" download>Download .tif (147 KB)</a><a class="btn alt" href="downloads/gems77-h79-radhalo-lag3-37654-20261021-zeros.zip" download>Same file as one-TIFF .zip</a>
 <div class="chips"><span class="chip ok">OK to download: YES</span>
 <span class="chip ok">Portal format (local checks): PASS</span>
 <span class="chip bad">Unique, literal rule: FAIL</span>
-<span class="chip ok">Unique, informative reading: PASS</span>
+<span class="chip bad">Unique, informative reading: FAIL</span>
 <span class="chip bad">Beat the champion construction on the holdout: NO</span>
 <span class="chip warn">Selector: not approved</span></div>
-<p class="verdict"><b>Can I submit it?</b> <b>No.</b> Not OK to submit. Local format checks pass, but current Policy I17 literal uniqueness fails on the dense witness; the negative HOLDOUT-DTI is fully labeled in the table and run card. Inspection only; no selector approval.<br>
+<p class="verdict"><b>Can I submit it?</b> <b>No.</b> Not OK to submit. HOLDOUT-DTI does not beat the accepted local comparison; final literal registry overlap fails. Safe to download for inspection only; selector not approved and no slot used.<br>
 <b>Would the portal accept the format?</b> Probably. It passes 17 local checks against the official grid and footprint:
 every cell finite, values exactly 0 or 1, no nodata tag, EPSG:32611, 3730×3292, the official transform. That is the
 encoding of the GEMSDOE32 file that the owner reports scored 0.2778. Local checks are not an organizer receipt.<br>
-<b>Will it beat 0.2778?</b> No leaderboard projection is established. The H79 HOLDOUT-DTI result is negative, and literal uniqueness fails; do not submit. (See the <a href="h79.html">lane technical report</a> &amp; <a href="executive-summary.html">submission guide</a>.)</p>
-<p class="small muted">Submission name (for reference) (60 characters)</p><div class="copy"><code>gems77-h79-crossgrad-ridge-37654dots-20261021-dd0dbf9c-zeros</code><button data-copy="gems77-h79-crossgrad-ridge-37654dots-20261021-dd0dbf9c-zeros">Copy</button></div>
-<p class="small muted">Note (for reference) (121 characters)</p><div class="copy"><code>H79 cross-gradient confluence x ridge (mag+grav tile zero x Hessian ridge) 37654dots; zero-SGMC, no lidar, no H19-5 reuse</code><button data-copy="H79 cross-gradient confluence x ridge (mag+grav tile zero x Hessian ridge) 37654dots; zero-SGMC, no lidar, no H19-5 reuse">Copy</button></div>
-<p class="small">sha256 of the .tif: <code>67aafffc50637a6df9c4275bc2735a0a865ac73904f02667b05f4f257d97587c</code> · <a href="executive-summary.html">How submission works, step by step →</a></p></section>
+<b>Will it beat 0.2778?</b> No leaderboard score or projection is established by this local HOLDOUT-DTI; this negative artifact is not cleared to submit. (See the <a href="h79-radhalo.html">lane technical report</a> &amp; <a href="executive-summary.html">submission guide</a>.)</p>
+<p class="small muted">Submission name (for reference) (44 characters)</p><div class="copy"><code>gems77-h79-radhalo-lag3-37654-20261021-zeros</code><button data-copy="gems77-h79-radhalo-lag3-37654-20261021-zeros">Copy</button></div>
+<p class="small muted">Note (for reference) (113 characters)</p><div class="copy"><code>H79 lag-3px U-residual halo paired to K-Th edge; 37654 spaced dots; HOLDOUT negative—research only, do not submit</code><button data-copy="H79 lag-3px U-residual halo paired to K-Th edge; 37654 spaced dots; HOLDOUT negative—research only, do not submit">Copy</button></div>
+<p class="small">sha256 of the .tif: <code>c272025ee653187d09489d941613a86bfe4b88110fb455847a2256cf5699014b</code> · <a href="executive-summary.html">How submission works, step by step →</a></p></section>
 <h2>What the submission form asks for</h2>
 <table><tr><th>Field</th><th>What to give it</th></tr>
 <tr><td>File</td><td>The <code>…-zeros.tif</code> file, or the <code>…-zeros.zip</code> that contains only that one GeoTIFF.
@@ -46,7 +47,7 @@ competition grid: EPSG:32611, 3730 rows × 3292 columns, 100 m pixels, origin (2
 <li>Sign in at <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">the competition page</a> and open its submission form (the menu wording may differ).</li>
 <li>Choose the file, paste the note and submit. Check the weekly submission allowance first.</li>
 <li>Record the score and timestamp the portal reports. Only that number may be labelled ORGANIZER-CONFIRMED.</li></ol>
-<h2>Range-error prevention in the local writer (not a guarantee of portal acceptance)</h2>
+<h2>Why the "Predicted values must be in range [0, 1]" error will not recur</h2>
 <p>The problem description asks for one float32 band with values in [0, 1] inside the study area. The earlier rejected
 files most likely had NaN or nodata-tagged cells inside the scored area, which the portal reports as out of range. This
 cause is our reading of the evidence and has not been confirmed by the organizer (irregularity I09). The <code>-zeros</code>
@@ -54,7 +55,8 @@ files avoid this: every one of the 12,279,160 cells is finite and exactly 0.0 or
 copied from <code>sample_submission.tif</code>. This is the encoding of the GEMSDOE32 file that the owner reports scored 0.2778.
 Each file is read back and passes 17 checks against the official footprint (<code>src/gems77lia/validate.py</code>). The
 shared template validator is also run. It reports only its known mismatch: it derives the footprint from a feature band,
-which differs from <code>sample_submission.tif</code> by 4,601 cells. The <code>-nan</code> twins (NaN outside the study area) are kept for reference only. Although the <code>-zeros</code> artifacts avoid that encoding risk, none is currently cleared to submit; do not upload any repository TIFF unless a later policy resolution and selector decision explicitly clear that exact file.</p>
+which differs from <code>sample_submission.tif</code> by 4,601 cells. The <code>-nan</code> twins (NaN outside the study area) are kept for reference only; upload the
+<code>-zeros</code> file.</p>
 <h2>Where each number comes from</h2><ul>
 <li>Format rules and metric: the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">official problem description</a> (α = 0.2, β = 0.8, 300 m triangular kernel).</li>
 <li>Scores of other submissions: the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">public leaderboard</a> (ORGANIZER-CONFIRMED).</li>

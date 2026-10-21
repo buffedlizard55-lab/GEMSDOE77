@@ -1,8 +1,8 @@
 {
- "note": "This is a fail-closed inventory, not a promotion list. Every TIFF is available for inspection only and is NOT OK TO SUBMIT. The literal registry rule rejects each nonempty candidate because the pinned dense witness has positive support over the full allowed footprint. Pairwise uniqueness among sparse rasters and positive HOLDOUT-DTI measurements do not override the rule or confer selector approval. H79's negative HOLDOUT-DTI and complete evaluator/count/CI are shown on its lane page and run card; it is inspection-only.",
+ "note": "This is a fail-closed inventory, not a promotion list. Every TIFF is available for inspection only and is NOT OK TO SUBMIT. The literal registry rule rejects every nonempty candidate because the pinned dense witness has positive support over the full allowed footprint. Pairwise uniqueness diagnostics and positive HOLDOUT-DTI measurements do not override the rule or confer selector approval. H79-BB and H79-RH are separate negative research artifacts. H79-RH is the newest lane; both are inspection-only and used zero competition slots.",
  "lanes": [
   {
-   "lane": "H79-BB: Basement potential-field step × topographic curvature ridge (research artifact; not cleared)",
+   "lane": "H79-BB: Basement potential-field step × topographic curvature ridge (negative; inspection-only research artifact)",
    "page": "h79.html",
    "summary": "executive-summary.html",
    "file": "downloads/gems77-h79-crossgrad-ridge-37654dots-20261021-dd0dbf9c-zeros.tif",
@@ -20,16 +20,42 @@
     0.028377191340547874,
     0.03645024878150852
    ],
-   "upload": "Not OK to submit. Local format checks pass, but current Policy I17 literal uniqueness fails on the dense witness; the negative HOLDOUT-DTI is fully labeled in the table and run card. Inspection only; no selector approval.",
-   "primary": true,
-   "why_primary": "Newest research artifact in this lane, not selected or approved. It is distinct under the informative sibling diagnostic but fails the literal dense-witness rule; no leaderboard projection is made.",
+   "upload": "Not OK to submit. HOLDOUT-DTI is negative; literal I17 uniqueness fails on the dense witness. Inspection only; no selector approval and no competition slot used.",
+   "primary": false,
+   "why_primary": "Earlier H79 research artifact retained for audit and comparison only; not selected or approved for submission.",
    "holdout_evidence_class": "HOLDOUT-DTI",
    "holdout_evaluator_version": "gems57-pooled-hide-v2",
    "holdout_withheld_positive_pixels": 22633,
-   "beat_02778_summary": "No leaderboard projection is established. The H79 HOLDOUT-DTI result is negative, and literal uniqueness fails; do not submit."
+   "beat_02778_summary": "No leaderboard score or projection is established by this local HOLDOUT-DTI; literal uniqueness fails and this file is not cleared to submit."
   },
   {
-   "lane": "H77D: Zero-SGMC tectono-hydrothermal conduits + LOCO + submodular allocation (research artifact; not cleared)",
+   "lane": "H79-RH: lagged radiometric U-halo pairing (parallel negative)",
+   "page": "h79-radhalo.html",
+   "summary": "executive-summary.html",
+   "file": "downloads/gems77-h79-radhalo-lag3-37654-20261021-zeros.tif",
+   "format_valid": true,
+   "protocol_unique": false,
+   "informative_unique": false,
+   "beats_holdout_best": false,
+   "verdict": "negative",
+   "name": "gems77-h79-radhalo-lag3-37654-20261021-zeros",
+   "note": "H79 lag-3px U-residual halo paired to K-Th edge; 37654 spaced dots; HOLDOUT negative—research only, do not submit",
+   "sha256": "c272025ee653187d09489d941613a86bfe4b88110fb455847a2256cf5699014b",
+   "holdout_dti": 0.04773265734715734,
+   "holdout_ci95": [
+    0.03958335878724709,
+    0.05557557296791166
+   ],
+   "upload": "Not OK to submit. HOLDOUT-DTI does not beat the accepted local comparison; final literal registry overlap fails. Safe to download for inspection only; selector not approved and no slot used.",
+   "primary": true,
+   "why_primary": "Newest completed research artifact, highlighted for audit/download only. It is negative on HOLDOUT-DTI and fails literal uniqueness; not selected or approved for submission.",
+   "holdout_evidence_class": "HOLDOUT-DTI",
+   "holdout_evaluator_version": "gems57-pooled-hide-v2",
+   "holdout_withheld_positive_pixels": 11321,
+   "beat_02778_summary": "No leaderboard score or projection is established by this local HOLDOUT-DTI; this negative artifact is not cleared to submit."
+  },
+  {
+   "lane": "H77D: Coupled Zero-SGMC Tectono-Hydrothermal Conduits + 12-Bit LOCO + 300 m Submodular Cover (0.15011 / 0.14030 HOLDOUT-DTI)",
    "page": "h77d.html",
    "summary": "h77d-executive-summary.html",
    "file": "downloads/gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.tif",
@@ -48,7 +74,7 @@
    "beat_02778_summary": "No conclusion that this file beats the organizer-reported 0.2778 can be drawn from holdout measurements; the candidate is not cleared to submit."
   },
   {
-   "lane": "H77-Step: Dip-slip step tensor + crack-tip mechanics + Radon + submodular allocation (research artifact; not cleared)",
+   "lane": "H77-Step: HW/FW dip-slip step tensor + V-LBCO crack-tip mechanics + Radon + flank-zeroed 300m submod (0.1527 HOLDOUT-DTI)",
    "page": "h77-step.html",
    "summary": "h77-step-executive-summary.html",
    "file": "downloads/gems77-step-propensity-submod300.tif",
@@ -79,7 +105,7 @@
    "sha256": "4571e767757be95e3fb70b4afb05e45528b1cfd74147e168c36253b1247f1c47",
    "s0_projection": 0.24497394668268976,
    "informative_unique": true,
-   "upload": "Not OK to submit. Literal registry gate fails and the HOLDOUT-DTI comparison is negative; see its run card for evaluator, withheld-positive count and 95% CI. Inspection only; no selector approval.",
+   "upload": "Not OK to submit. OK to download for inspection only. Literal uniqueness gate fails and the holdout experiment is negative; no selector approval.",
    "primary": false
   },
   {
@@ -90,7 +116,7 @@
    "format_valid": true,
    "protocol_unique": false,
    "verdict": "negative",
-   "upload": "Not OK to submit. Literal registry gate fails and the HOLDOUT-DTI result is below its comparison construction; see the lane run card for evaluator, withheld-positive count and 95% CI. Inspection only; no selector approval.",
+   "upload": "Not OK to submit. OK to download for inspection only. Literal uniqueness fails, and the recorded HOLDOUT-DTI is below its comparison construction; no selector approval.",
    "informative_unique": true,
    "beats_holdout_best": false,
    "sha256": "a8bfb844ab44b5d4157f75ec914a51655c27ae54727f7b4a088eca9d6f396898",

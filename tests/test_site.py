@@ -149,3 +149,33 @@ def test_negative_lanes_are_not_recommended_or_promoted_on_entry_page():
         assert 'top candidates for human selector review' not in page
         assert 'recommended for human selector sign-off' not in page
         assert 'recommended co-primary file' not in page
+
+
+def test_h79_holdout_metadata_and_download_vs_submit_status_are_explicit():
+    """Both completed H79 lanes stay fully labeled as local HOLDOUT-DTI and inspection-only."""
+    lanes = json.loads((DOC / "data/lanes.json").read_text())["lanes"]
+    expected = {
+        "H79-BB": (0.03232838588730809, 22633, [0.028377191340547874, 0.03645024878150852]),
+        "H79-RH": (0.04773265734715734, 11321, [0.03958335878724709, 0.05557557296791166]),
+    }
+    home = (DOC / "index.html").read_text()
+    for prefix, (score, withheld, ci) in expected.items():
+        row = next(x for x in lanes if x["lane"].startswith(prefix))
+        assert row["holdout_evidence_class"] == "HOLDOUT-DTI"
+        assert row["holdout_evaluator_version"] == "gems57-pooled-hide-v2"
+        assert row["holdout_withheld_positive_pixels"] == withheld
+        assert row["holdout_dti"] == score
+        assert row["holdout_ci95"] == ci
+        assert "not ok to submit" in row["upload"].lower()
+        assert "inspection only" in row["upload"].lower()
+        assert f"HOLDOUT-DTI {score:.6f}" in home
+        assert f"{withheld:,} withheld positives" in home
+        assert f"95% CI [{ci[0]:.6f}, {ci[1]:.6f}]" in home
+    receipt = json.loads((DOC / "data/submission-authorization.json").read_text())
+    assert receipt["repository_decision"] == "NOT OK TO SUBMIT"
+    assert receipt["repository_authorized_file_count"] == 0
+    assert all(not a["authorized_to_submit"] for a in receipt["artifacts"])
+    bb = (DOC / "h79.html").read_text().lower()
+    rh = (DOC / "h79-radhalo.html").read_text().lower()
+    assert "unique tif submission" not in bb and "submission file" not in bb
+    assert "not ok to submit" in rh and "do not spend a weekly slot" in rh
