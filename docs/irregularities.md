@@ -170,3 +170,18 @@ GitHub authenticated operations work. CPU scientific transforms, local validatio
 - IR-904-04: The requested single method paragraph is absent. No lane invented,
   no stopped experiment rerun. Dense registry rejection witness reproduced;
   new compliant TIFF not delivered. Historical downloads are inspection-only.
+
+## H82R updates — 2026-10-21 (local radiometric rank-mixture entropy deficit)
+
+| ID | Verified observation | Consequence |
+|---|---|---|
+| IR-H82-01 | The user provided no identifiable single-method lane paragraph. | Self-declared narrow lane preregistered in `registry/preregistration_h82rank.json` before one experiment; not represented as an assigned lane. |
+| IR-H82-02 | SHA-pinned USGS-derived K/Th/U mirror is independently uint8-quantized, with nodata=0; USGS does not endorse this entropy transform. | Treat rank-share as exploratory intensity only, exclude cells where any band=0, never claim calibrated chemistry. |
+| IR-H82-03 | Literal 3 px overlap vs pinned full-footprint raster = 1.0 on stopped H82 surface; rho max abs 0.01063 on two witnesses. | Mandatory duplicate stop before placement, no final-dot audit; research-only TIFF, zero authorized slots. Two witnesses suffice to reject, not to clear the complete registry. |
+| IR-H82-04 | One-ID mirror restore temporarily overwrote historical 23-file receipt with a one-file receipt. | Restored historical receipt unchanged; H82 directly checks the current mirror SHA against `registry/data_manifest.json`. Do not interpret historical receipt as proof 23 files are present in this checkout. |
+| IR-H82-05 | First regenerated aggregate note omitted the test-required phrase 'NOT OK TO SUBMIT'. | Fixed site builder note, rebuilt pages, re-ran 126 tests and fail-closed release gate. |
+| IR-H82-06 | After this lane began, main advanced via PR #47 and overwrote LIA's `docs/data/submission.json` with an H28 record missing its ZIP and pointing `twin_nan` to an AGO file. `scripts/lia_build_site.py` raised `KeyError: 'zip'` and CI would fail. | Preserved the H28 record as `docs/data/h28-submission.json` for audit; restored LIA's generated `docs/data/submission.json` from pre-PR main (commit `2b22987`), which is what the shared LIA site builder, tests, and validators require. Re-ran full CI sequence: 127 tests pass including a receipt-collision regression. H28 is NOT cleared or promoted; do not use the incomplete H28 metadata as a validator. Future lanes must namespace their output receipts and test the aggregate CI build. |
+
+- IR-H82-07: Concurrent review PR #49 corrected an unsupported universal marginal-DTI condition in the older H33 analysis (see `research/why-h33-scored-02778.md` and `tests/test_marginal_dti_review.py`). H82's scientific result does not rely on that condition; the README now links the corrected analysis. Do not reinstate the old per-dot 283m threshold or claim near-catalogue dots are always false positives.
+
+- IR-H82R-08: A separate parallel session independently preregistered H82 cool-outlet chemistry and merged before this radiometric lane. | The radiometric lane's *display/file-path alias* is H82R (`registry/h82rank_alias.json`); its frozen preregistration, run card and raster were not recomputed or re-scored. Keep both H82 (cool-outlet) and H82R (radiometric) negative lanes visible; neither is a cleared competition submission.

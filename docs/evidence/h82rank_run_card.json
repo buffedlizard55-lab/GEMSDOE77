@@ -1,0 +1,498 @@
+{
+  "hypothesis": "H82 local ternary radiometric rank-mixture entropy deficit",
+  "mechanism": "K,Th,U quantized intensities /255; rank-share q=(v+0.02)/(sum(v)+0.06); normalized entropy H=-sum(q log q)/log(3); deficit=max(0,gaussian(H,sigma=2.5px)-H); divide by 99th percentile over valid domain and clip to [0,1]; do not fill invalid radiometric cells from neighbors; keep footprint/valid support and zero exact catalogue pixels only on output.",
+  "named_non_fault_process_that_could_mimic_it": "Lithologic contacts, soil provenance/transport and airborne flight-line seams",
+  "evidence_class": "RESEARCH-ONLY; NOT ORGANIZER-CONFIRMED",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "dti": 0.02306730094194416,
+    "ci95": [
+      0.01960137840210941,
+      0.026766420136480014
+    ],
+    "withheld_positive_pixels": 11321,
+    "tpw": 1598.918422468239,
+    "fpw": 299693.9148386924,
+    "fnw": 9722.081577531755
+  },
+  "holdout_paired_vs_spatial_random": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "delta": -0.009925208888666506,
+    "ci95": [
+      -0.012668035472018972,
+      -0.007256393557960678
+    ],
+    "withheld_positive_pixels": 11321
+  },
+  "holdout_details": {
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "folds": [
+      {
+        "fold": "NW",
+        "receipt": {
+          "fold": "NW",
+          "seed": 20,
+          "held_components": 96,
+          "withheld_positive_pixels": 1923,
+          "eligible_components": 598,
+          "boundary_buffer_px": 12,
+          "feature_buffer_px": 3,
+          "nearest_visible_to_truth_px": 3.1622776601683795,
+          "split_version": "buffered-whole-components-loqo-v2",
+          "evaluation_region_label_blind": true
+        },
+        "scores": {
+          "candidate": {
+            "dti": 0.016536617276002856,
+            "n_truth": 1923,
+            "n_emitted": 398249
+          },
+          "permuted_control": {
+            "dti": 0.02603164152566776,
+            "n_truth": 1923,
+            "n_emitted": 400347
+          }
+        }
+      },
+      {
+        "fold": "NE",
+        "receipt": {
+          "fold": "NE",
+          "seed": 20,
+          "held_components": 145,
+          "withheld_positive_pixels": 2367,
+          "eligible_components": 628,
+          "boundary_buffer_px": 12,
+          "feature_buffer_px": 3,
+          "nearest_visible_to_truth_px": 3.1622776601683795,
+          "split_version": "buffered-whole-components-loqo-v2",
+          "evaluation_region_label_blind": true
+        },
+        "scores": {
+          "candidate": {
+            "dti": 0.020151319756808134,
+            "n_truth": 2367,
+            "n_emitted": 504538
+          },
+          "permuted_control": {
+            "dti": 0.025674010375267804,
+            "n_truth": 2367,
+            "n_emitted": 497613
+          }
+        }
+      },
+      {
+        "fold": "SW",
+        "receipt": {
+          "fold": "SW",
+          "seed": 20,
+          "held_components": 223,
+          "withheld_positive_pixels": 3781,
+          "eligible_components": 983,
+          "boundary_buffer_px": 12,
+          "feature_buffer_px": 3,
+          "nearest_visible_to_truth_px": 3.1622776601683795,
+          "split_version": "buffered-whole-components-loqo-v2",
+          "evaluation_region_label_blind": true
+        },
+        "scores": {
+          "candidate": {
+            "dti": 0.026422566555522418,
+            "n_truth": 3781,
+            "n_emitted": 479172
+          },
+          "permuted_control": {
+            "dti": 0.03885233738015898,
+            "n_truth": 3781,
+            "n_emitted": 487554
+          }
+        }
+      },
+      {
+        "fold": "SE",
+        "receipt": {
+          "fold": "SE",
+          "seed": 20,
+          "held_components": 142,
+          "withheld_positive_pixels": 3250,
+          "eligible_components": 648,
+          "boundary_buffer_px": 12,
+          "feature_buffer_px": 3,
+          "nearest_visible_to_truth_px": 3.1622776601683795,
+          "split_version": "buffered-whole-components-loqo-v2",
+          "evaluation_region_label_blind": true
+        },
+        "scores": {
+          "candidate": {
+            "dti": 0.029577567192511377,
+            "n_truth": 3250,
+            "n_emitted": 393756
+          },
+          "permuted_control": {
+            "dti": 0.040994283755493785,
+            "n_truth": 3250,
+            "n_emitted": 392856
+          }
+        }
+      }
+    ],
+    "canaries": {
+      "K": {
+        "folds": [
+          {
+            "fold": "NW",
+            "n_pos": 1923,
+            "n_neg": 200000,
+            "auc": 0.4834420098803952,
+            "symmetric_auc": 0.5165579901196048
+          },
+          {
+            "fold": "NE",
+            "n_pos": 2367,
+            "n_neg": 200000,
+            "auc": 0.42997905048584706,
+            "symmetric_auc": 0.5700209495141529
+          },
+          {
+            "fold": "SW",
+            "n_pos": 3781,
+            "n_neg": 200000,
+            "auc": 0.4285051765405977,
+            "symmetric_auc": 0.5714948234594023
+          },
+          {
+            "fold": "SE",
+            "n_pos": 3250,
+            "n_neg": 200000,
+            "auc": 0.4491838476923077,
+            "symmetric_auc": 0.5508161523076923
+          }
+        ],
+        "max_symmetric_auc": 0.5714948234594023
+      },
+      "Th": {
+        "folds": [
+          {
+            "fold": "NW",
+            "n_pos": 1923,
+            "n_neg": 200000,
+            "auc": 0.5292491419656786,
+            "symmetric_auc": 0.5292491419656786
+          },
+          {
+            "fold": "NE",
+            "n_pos": 2367,
+            "n_neg": 200000,
+            "auc": 0.4433917596113223,
+            "symmetric_auc": 0.5566082403886776
+          },
+          {
+            "fold": "SW",
+            "n_pos": 3781,
+            "n_neg": 200000,
+            "auc": 0.48255008661729704,
+            "symmetric_auc": 0.517449913382703
+          },
+          {
+            "fold": "SE",
+            "n_pos": 3250,
+            "n_neg": 200000,
+            "auc": 0.4463597515384615,
+            "symmetric_auc": 0.5536402484615385
+          }
+        ],
+        "max_symmetric_auc": 0.5566082403886776
+      },
+      "U": {
+        "folds": [
+          {
+            "fold": "NW",
+            "n_pos": 1923,
+            "n_neg": 200000,
+            "auc": 0.5232193798751951,
+            "symmetric_auc": 0.5232193798751951
+          },
+          {
+            "fold": "NE",
+            "n_pos": 2367,
+            "n_neg": 200000,
+            "auc": 0.4558127091254753,
+            "symmetric_auc": 0.5441872908745247
+          },
+          {
+            "fold": "SW",
+            "n_pos": 3781,
+            "n_neg": 200000,
+            "auc": 0.4906239460460196,
+            "symmetric_auc": 0.5093760539539804
+          },
+          {
+            "fold": "SE",
+            "n_pos": 3250,
+            "n_neg": 200000,
+            "auc": 0.44151261,
+            "symmetric_auc": 0.55848739
+          }
+        ],
+        "max_symmetric_auc": 0.55848739
+      },
+      "entropy": {
+        "folds": [
+          {
+            "fold": "NW",
+            "n_pos": 1923,
+            "n_neg": 200000,
+            "auc": 0.5199686466458658,
+            "symmetric_auc": 0.5199686466458658
+          },
+          {
+            "fold": "NE",
+            "n_pos": 2367,
+            "n_neg": 200000,
+            "auc": 0.4639543155893536,
+            "symmetric_auc": 0.5360456844106464
+          },
+          {
+            "fold": "SW",
+            "n_pos": 3781,
+            "n_neg": 200000,
+            "auc": 0.5456788131446707,
+            "symmetric_auc": 0.5456788131446707
+          },
+          {
+            "fold": "SE",
+            "n_pos": 3250,
+            "n_neg": 200000,
+            "auc": 0.4967342746153846,
+            "symmetric_auc": 0.5032657253846153
+          }
+        ],
+        "max_symmetric_auc": 0.5456788131446707
+      },
+      "background_entropy": {
+        "folds": [
+          {
+            "fold": "NW",
+            "n_pos": 1923,
+            "n_neg": 200000,
+            "auc": 0.5243641848673947,
+            "symmetric_auc": 0.5243641848673947
+          },
+          {
+            "fold": "NE",
+            "n_pos": 2367,
+            "n_neg": 200000,
+            "auc": 0.4528955471060414,
+            "symmetric_auc": 0.5471044528939586
+          },
+          {
+            "fold": "SW",
+            "n_pos": 3781,
+            "n_neg": 200000,
+            "auc": 0.5497656625231421,
+            "symmetric_auc": 0.5497656625231421
+          },
+          {
+            "fold": "SE",
+            "n_pos": 3250,
+            "n_neg": 200000,
+            "auc": 0.4803977292307692,
+            "symmetric_auc": 0.5196022707692308
+          }
+        ],
+        "max_symmetric_auc": 0.5497656625231421
+      },
+      "candidate": {
+        "folds": [
+          {
+            "fold": "NW",
+            "n_pos": 1923,
+            "n_neg": 200000,
+            "auc": 0.31788,
+            "symmetric_auc": 0.6821200000000001
+          },
+          {
+            "fold": "NE",
+            "n_pos": 2367,
+            "n_neg": 200000,
+            "auc": 0.31308,
+            "symmetric_auc": 0.68692
+          },
+          {
+            "fold": "SW",
+            "n_pos": 3781,
+            "n_neg": 200000,
+            "auc": 0.3197,
+            "symmetric_auc": 0.6803
+          },
+          {
+            "fold": "SE",
+            "n_pos": 3250,
+            "n_neg": 200000,
+            "auc": 0.3152075,
+            "symmetric_auc": 0.6847925
+          }
+        ],
+        "max_symmetric_auc": 0.68692
+      }
+    },
+    "control": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.03299250983061067,
+      "ci95": [
+        0.028136764289130416,
+        0.03793852798808347
+      ],
+      "withheld_positive_pixels": 11321,
+      "tpw": 2303.4814351309105,
+      "fpw": 301504.09222164575,
+      "fnw": 9017.518564869084
+    },
+    "bootstrap": {
+      "method": "paired physical spatial-cluster percentile",
+      "clusters": 159,
+      "draws": 1000,
+      "seed": 820,
+      "confidence": 0.95,
+      "caveat": "Conditional on fitted folds, catalogue labels and fixed budgets; not a leaderboard interval."
+    }
+  },
+  "surface_correlation_overlap_vs_registry": {
+    "max_abs_rho": 0.010628215068722845,
+    "worst_forward_3px_overlap": 1.0,
+    "worst_overlap_submission": "docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif",
+    "raster_count_checked": 2,
+    "complete_registry": false,
+    "duplicate_stop": true,
+    "witness": {
+      "evidence_class": "REGISTRY-MEASUREMENT",
+      "witness_file": "/home/user/GEMSDOE77/.cache/registry/dense_witness.tif",
+      "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+      "positive_pixels": 5167373,
+      "allowed_pixels": 5106385,
+      "uncovered_allowed_pixels": 0,
+      "covered_allowed_fraction": 1.0,
+      "universal_overlap_blocker": true,
+      "overlap_limit": 0.7,
+      "support_definition": "finite prediction > 0 (inherited literal support rule)",
+      "implication": "Every nonempty candidate dot set in the allowed domain has forward overlap 1.0 with this prior; therefore it cannot pass the 0.70 gate."
+    },
+    "two_pinned_rows": [
+      {
+        "repo": "buffedlizard55-lab/17GEMSDOE",
+        "submission": "docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif",
+        "file": "/home/user/GEMSDOE77/.cache/registry/dense_witness.tif",
+        "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+        "decoded_sha256": "11cb7dffcc88926fee8260f61df01d7712d3a7bb34fcc1bb333fb6b47f77ec05",
+        "their_dots": 5167373,
+        "my_dots_within_3px_of_theirs": 1.0,
+        "their_dots_within_3px_of_mine": 0.0,
+        "spearman_full_footprint": -0.010628215068722845,
+        "jaccard_dot_sets": 0.3637966525737546,
+        "identical_bytes": false,
+        "identical_decoded_predictions": false,
+        "duplicate_by_rho": false,
+        "duplicate_by_overlap": true,
+        "duplicate_by_jaccard": false
+      },
+      {
+        "repo": "buffedlizard55-lab/60GEMSDOE",
+        "submission": "registry/rasters/GEMSDOE32__h33-2-b2-zeros.tif",
+        "file": "/home/user/GEMSDOE77/.cache/registry/h33.tif",
+        "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "decoded_sha256": "aec92fc3ff1e95f0b7a84d48294683199f2a3b25d9cdce2a95329aeccbfd839e",
+        "their_dots": 37654,
+        "my_dots_within_3px_of_theirs": 0.15236561193229542,
+        "their_dots_within_3px_of_mine": 0.0,
+        "spearman_full_footprint": 0.0026180537651051454,
+        "jaccard_dot_sets": 0.0073404799653700396,
+        "identical_bytes": false,
+        "identical_decoded_predictions": false,
+        "duplicate_by_rho": false,
+        "duplicate_by_overlap": false,
+        "duplicate_by_jaccard": false
+      }
+    ]
+  },
+  "final_dots": {
+    "count": 0,
+    "correlation_overlap_vs_registry": null,
+    "reason": "No placement after surface duplicate stop"
+  },
+  "raster_sha256": "56debe682505bf2649f30d914c7b552dcf669bce4b902ce91eb3e5363031f115",
+  "validator_output": {
+    "file": "/home/user/GEMSDOE77/docs/downloads/gems77-h82-ternaryentropy-20261021-RESEARCH-ONLY.tif",
+    "bytes": 11428966,
+    "sha256": "56debe682505bf2649f30d914c7b552dcf669bce4b902ce91eb3e5363031f115",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.02609892003238201,
+    "emitted_positive_pixels": 1879873,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 1879873,
+    "footprint_fraction": 0.3637966525737546
+  },
+  "submission_name": "gems77-h82-ternaryentropy-20261021-RESEARCH-ONLY",
+  "submission_note": "H82 radiometric ternary rank-mixture entropy deficit; research only; NOT APPROVED for submission",
+  "ok_to_download_for_inspection": true,
+  "ok_to_submit": false,
+  "weekly_slots_used": 0,
+  "verdict": "negative",
+  "irregularities": [
+    "Quantized channel ranks are not elemental concentrations",
+    "Dense witness makes literal gate unsatisfiable for any nonempty candidate",
+    "Two pinned rasters only: not full registry uniqueness clearance"
+  ],
+  "protocol_unique": false,
+  "registry": {
+    "complete": false,
+    "surface_max_forward_overlap_3px": 1.0
+  }
+}
