@@ -1,0 +1,36 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>H80T Executive Summary — How to Download &amp; Submit — GEMSDOE77</title><link rel="stylesheet" href="assets/lia.css"></head><body>
+<header><div class="wrap"><span class="brand">GEMSDOE77 · DOE GEMS Prize</span><a href="index.html">Start here</a> <a href="h80t.html">H80T · tilt-persist</a> <a href="h80t-executive-summary.html" class=here>H80T guide</a> <a href="executive-summary.html">General guide</a> <a href="https://github.com/buffedlizard55-lab/GEMSDOE77">GitHub</a></div></header>
+<main><div class="wrap">
+<div class="notice"><strong>CURRENT VERDICT: NEGATIVE — Not OK to submit. OK to download for inspection only.</strong> The H80T research TIF below is format-valid (17/17 local checks + 15/15 shared validator checks) and informative-unique against dot-field models (max overlap 0.4468 &le; 0.70, surface |&rho;| 0.1332 &le; 0.90), but its holdout (0.0060 HOLDOUT-DTI) is below the repository incumbent (0.152718) and the literal uniqueness gate fails on the dense witness. Selector: not approved. Zero weekly slots spent. Do not submit this file.</div>
+
+<h1>Download is easy.<br>Approval is separate.</h1>
+
+<section class="card dl research"><h2>&#11015; H80T research file — download for inspection only</h2>
+<p><code>gems77-h80t-tilt-persist-37654dots-20261021-7d5f7b11-zeros.tif</code> &middot; SHA-256 <code>19e92e4db42b0de59c558e95a52ee419fc81f4c187c4fd22e35f252e16a4446a</code> &middot; 116 KB</p>
+<a class="btn" href="downloads/gems77-h80t-tilt-persist-37654dots-20261021-7d5f7b11-zeros.tif" download>Download .tif</a>
+<a class="btn alt" href="downloads/gems77-h80t-tilt-persist-37654dots-20261021-7d5f7b11-zeros.zip" download>Download .zip (one-TIFF)</a>
+<div class="chips"><span class="chip ok">OK to download: YES</span><span class="chip ok">Portal format (local 17/17): PASS</span><span class="chip bad">Unique, literal rule: FAIL (dense witness)</span><span class="chip ok">Informative overlap 0.447: PASS</span><span class="chip warn">Selector: not approved</span></div>
+<p><b>Can I submit it?</b> <b>No. Not OK to submit.</b> HOLDOUT-DTI 0.0060 [0.0048,0.0073] (<code>gems57-pooled-hide-v2</code>, 22,893 withheld positives) is far below the repository best 0.152718. Format PASS &ne; organizer approval.</p>
+<p><b>Would the portal accept the format?</b> Probably, but do not upload. Local read-back 17/17 PASS: single float32 band, EPSG:32611, 3730&times;3292, sample transform, no NaN inside footprint or anywhere else, all values in [0,1], 0 outside (mode=zeros, nodata=None) — this prevents the earlier &ldquo;Predicted values must be in range [0, 1]&rdquo; error. No organizer receipt exists for this file.</p>
+<p><b>Submission name (for reference):</b> <code>gems77-h80t-tilt-persist-37654dots-20261021-7d5f7b11-zeros</code> <button data-copy="gems77-h80t-tilt-persist-37654dots-20261021-7d5f7b11-zeros">Copy</button></p>
+<p><b>Note (for reference, 108 chars &le; 140):</b> <code>H80T dual-scale tilt persistence x basement throw, 37654 dots; HOLDOUT-DTI 0.0060 [0.0048,0.0073]; NEGATIVE</code> <button data-copy="H80T dual-scale tilt persistence x basement throw, 37654 dots; HOLDOUT-DTI 0.0060 [0.0048,0.0073]; NEGATIVE">Copy</button></p>
+<p class="small muted">Validator: 17/17 PASS &middot; Dots 37,654 &middot; Values {0,1} &middot; EPSG:32611 &middot; <a href="h80t.html">Full H80T report &rarr;</a> &middot; <a href="evidence/h80t_run_card.json">JSON run card</a></p>
+</section>
+
+<h2>How to submit a future approved candidate (only when selector says OK)</h2>
+<ol class="steps">
+<li><strong>Wait for explicit selector approval.</strong> Require: format PASS, leakage PASS (max AUC &le; 0.90), pooled HOLDOUT-DTI beats incumbent and random with paired CI &gt; 0, informative uniqueness PASS (&rho; &le; 0.90, overlap &le; 0.70 vs real models), literal gate cleared by protocol owner, and <b>selector approval</b> with weekly slot available. This H80T file is negative — do not use it.</li>
+<li><strong>Download the approved .tif or its single-TIFF .zip.</strong> Do not submit a webpage, JSON, or preview PNG. The ZIP must contain exactly one .tif with identical bytes.</li>
+<li><strong>Verify bytes.</strong> <code>sha256sum gems77-&hellip;-zeros.tif</code> must match the run card SHA. Check <code>gdalinfo</code>: 1 band, Float32, EPSG:32611, Size 3292x3730, no nodata inside footprint.</li>
+<li><strong>Open the official competition portal:</strong> <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData GEMS Prize</a> &rarr; Submit &rarr; &ldquo;New submission&rdquo; &rarr; choose file, paste Name and Note (&le;140 chars). Check current weekly cap shown on submission page (see PDF <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">96647.pdf</a> &sect;3.2).</li>
+<li><strong>Keep the organizer receipt.</strong> Record the submission name, note, UTC time, and portal-reported score. Only an organizer receipt is <b>ORGANIZER-CONFIRMED</b>; local HOLDOUT-DTI is not a leaderboard score.</li>
+</ol>
+
+<h2>Why the portal range error happened and why it won't recur here</h2>
+<p>The earlier &ldquo;Predicted values must be in range [0, 1]&rdquo; error came from NaN/Inf inside the footprint, values outside [0,1], or a footprint mismatch leaving NaN inside the scored region. Our writer fails closed: it derives the footprint from <code>sample_submission.tif</code> (official 5,167,373 cells), writes <code>0.0</code> outside (<code>nodata=None</code>) so all 12,279,160 cells are finite and in [0,1], single-band float32 EPSG:32611, and reads back to verify. Local PASS still does not prove portal acceptance — only an upload receipt does.</p>
+
+<p><a href="h80t.html">Full H80T technical page &rarr;</a> &middot; <a href="index.html">Back to Start here &rarr;</a></p>
+</div></main>
+<footer><div class="wrap">Selector status: <b>not approved</b>. GEMSDOE77 &middot; H80T &middot; 2026-10-21 &middot; <a href="https://github.com/buffedlizard55-lab/GEMSDOE77">GitHub</a></div></footer>
+<script>document.querySelectorAll('button[data-copy]').forEach(b=>b.onclick=()=>{navigator.clipboard.writeText(b.dataset.copy);b.textContent='Copied';setTimeout(()=>b.textContent='Copy',1200)})</script>
+</body></html>

@@ -1,0 +1,112 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Release safety review · GEMSDOE77</title><link rel="stylesheet" href="assets/lia.css"></head><body><header><div class="wrap"><a href="index.html">Start here</a> · <a href="executive-summary.html">How to submit</a></div></header><main><div class="wrap"><h1>Release safety review — 2026-10-21</h1>
+<h2>Download versus submit</h2>
+<p><strong>OK to download for inspection; NOT OK TO SUBMIT.</strong></p>
+<p><a href="downloads/gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY.tif">Download the existing H77L research TIFF</a>,
+<a href="downloads/gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY.zip">one-TIFF ZIP</a>,
+<a href="executive-summary.html">submission instructions</a>,
+<a href="data/submission-authorization.json">current authorization receipt</a>.
+This review did <strong>not</strong> generate a new TIFF, rename a prior submission as new, run an experiment, or spend a competition slot.
+The request to generate a new submission cannot currently be satisfied together with the mandatory duplicate-stop rule.</p>
+<h2>Three passes</h2>
+<h3>Pass 1 — inspection and implementation</h3>
+<p>Read the standing README/prompt, agent instructions, irregularities, preregistration, frozen run cards and prior reviews.
+The baseline test suite passed (95 tests; software checks, not performance scores).
+Found a concrete authorization defect: a manifest with every flag true could pass without any run card;
+a negative card with no recognized duplicate field could also be overridden by the manifest's promote flag.
+Fixed the repository release gate (not the shared scientific evaluator): require a readable JSON-object card and matching promote verdict.
+Unreadable/invalid-JSON/non-object cards fail closed. Added missing-card, negative/missing/mistyped verdict,
+malformed-card and consistent-promotion/selector regression tests. This decision aggregator still trusts recorded format,
+holdout and selector evidence; it is not an independent scientific-certification system.</p>
+<h3>Pass 2 — independent artifact and blocker verification</h3>
+<p>Restored the two pinned registry witnesses over GitHub and checked SHA-256. Re-ran <code>scripts/verify_h77l.py</code>:
+all 23 checks pass, including exact grid, finite/range readback, one-TIFF ZIP equality, pinned shared-template hashes,
+and pixel distinction from 19 other local TIFFs. See <a href="evidence/h77l_independent_audit.json">the updated audit</a>.
+Those are format/integrity measurements, <strong>not</strong> holdout re-evaluation or complete-registry clearance.</p>
+<p>The dense witness has positive values at every allowed footprint pixel. The nonempty H77L surface has measured
+forward overlap 1.0, exceeding the protocol's 0.70 limit. This is an independent rejection witness;
+a full registry scan is unnecessary to prove failure, though it would be necessary for a pass.
+For any nonempty allowed dot set A and witness support W containing the allowed domain,
+A is a subset of W, hence also of its 3-pixel dilation: overlap is exactly |A|/|A|.
+Changing geological features, dot count, model or file name cannot resolve that literal gate.
+No final-dot placement or fresh lane was attempted. The shared evaluator/writer were not changed.</p>
+<h3>Pass 3 — end-to-end release requirements</h3>
+<p>The expanded suite passes (99 tests; software checks). The regenerated authorization receipt authorizes zero files.
+Entry and executive-summary pages retain direct downloads and explicit NOT OK TO SUBMIT status.
+No TIFF bytes were changed. The featured file hash remains
+<code>9d199f9fad93e234397a7a19a05eabf12fd77285be3007e6afe22d12a36dcbd1</code>.
+The review preserves frozen scientific run cards rather than rebranding historical results as new experiments.</p>
+<h2>What explains the reported H33 result?</h2>
+<p><a href="evidence/prior_forensics.json">Prior byte forensics</a> and the retained analysis support a plausible explanation:
+sparse predictions reduce redundant mass, and pruning predictions near known faults avoids spending mass on
+catalogue-excluded locations. H33 retains 37,654 positive pixels and removes near-catalogue dots from an earlier backbone.
+This is not causal proof from a controlled organizer experiment. The supplied <strong>0.2778 is OWNER-REPORT for the named file</strong>;
+this review obtained no submission-page receipt tying that score to those bytes. The supplied leaderboard targets
+also conflict. No current leaderboard score, improvement forecast, or likelihood of winning is certified here.
+Hiding catalogue segments is a useful proxy but not identical to discovering truly unmapped faults or geothermal vents.</p>
+<h2>Ranked hypothesis backlog — conditional, not newly validated</h2>
+<p>Expected DTI improvement is <strong>unknown</strong> for every item. Ranking is qualitative scientific priority/cost, not a score projection.
+These are retained proposals from the <a href="SESSION_REVIEW.md">earlier audit</a>, not claims of global novelty:</p>
+<table>
+<thead>
+<tr>
+<th>Rank</th>
+<th>Layers and physical signature</th>
+<th>Why potentially uncatalogued / difference</th>
+<th>Non-fault mimic</th>
+<th>Cost and viability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Magnetic/gravity derivatives plus basement depth; multiscale phase/contact persistence with compatible depth step</td>
+<td>Buried basin-fill offsets; source-depth consistency rather than a single contact ridge. Existing H77E continuation work makes novelty review essential.</td>
+<td>Intrusive/lithologic contacts; flight-line seams</td>
+<td>Medium; competition/cached inputs in principle; blocked by assignment and duplicate gate</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Conditioned USGS 3DEP DEM; coherent drainage deflection and knickzones across adjacent channels</td>
+<td>Network-scale deformation rather than pixelwise scarp magnitude</td>
+<td>Fan incision, resistant strata, engineered drainage</td>
+<td>High; no new DEM obtained; official availability for the AOI not checked, therefore not viable yet</td>
+</tr>
+<tr>
+<td>3</td>
+<td>USGS ComCat locations/depth/uncertainties; robust seismic event-plane alignment</td>
+<td>Blind active structures rather than existing coarse seismic aggregates</td>
+<td>Quarry blasts, volcanic swarms, aftershock sequences</td>
+<td>High; event service not reachable through this sandbox's allowed hosts; not viable yet</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Sentinel-1 time-series gradients and coherence</td>
+<td>Present-day strain rather than static terrain/geophysical edges</td>
+<td>Pumping, mining, atmosphere and seasonal hydrology</td>
+<td>Very high; AOI products/access not verified; not viable yet</td>
+</tr>
+</tbody>
+</table>
+<p>No new-data proposal above is presented as obtainable or submission-ready. Do not rerun closed lanes or interpret this table
+as authorization. A protocol-owner decision and explicit lane assignment must precede fresh preregistration and validation.</p>
+<h2>Sources and access boundaries</h2>
+<ul>
+<li><a href="https://github.com/drivendataorg/gems-prize-reference-solution/tree/aebe92f7c8a990f0e3443451b7a825d9afd6336b">Organizer reference solution</a>: README freshly retrieved via GitHub API. It explicitly supports CPU-only as well as GPU environments; GPU is helpful, not an absolute requirement of that reference. This does not validate our model or input provenance.</li>
+<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Competition problem</a>, <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">data</a>, <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">leaderboard</a>, <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">NLR submission document</a>: manual-review links, not freshly verified in this review. No DrivenData authentication/receipt is available here.</li>
+<li><a href="https://www.usgs.gov/3d-elevation-program">USGS 3DEP</a>, <a href="https://earthquake.usgs.gov/fdsnws/event/1/query">ComCat</a>, <a href="https://dataspace.copernicus.eu/">Copernicus</a>: specific official routes for the conditional proposals; no obtainability claim.</li>
+<li><a href="https://github.com/buffedlizard55-lab/GEMSDOE77/blob/arena/49d64450-gemsdoe77/registry/witness_sources.json">Registry witness pins</a>: owner-repository mirror provenance, not organizer authentication.</li>
+</ul>
+<p>Outbound research in this review was limited to GitHub and allowed package registries. No claim of fresh deep literature
+verification, complete cross-repository novelty, or live portal acceptance is made. Existing numerical HOLDOUT-DTI records
+retain their evaluator version, withheld-positive count and confidence intervals in their original run cards.</p>
+<h2>Next work, in order</h2>
+<ol>
+<li>Protocol owner resolves dense-versus-sparse overlap semantics in the shared template/registry; no local exemption.</li>
+<li>Assign one genuinely distinct method lane; confirm inputs and full current registry provenance.</li>
+<li>Preregister at most three experiments, run single-feature leakage canaries and matched buffered segment holdout;
+   require improvement over the comparable incumbent before any slot selection.</li>
+<li>Generate through the shared writer; validate exact grid/finite [0,1], scan surface and final dots, then seek separate selector approval.</li>
+<li>Keep an authenticated organizer receipt tied to the exact artifact hash if a slot is eventually used.</li>
+</ol>
+<h2>Parallel-session reconciliation</h2>
+<p>PR #29 merged H79-ORIENT while this review PR was open. Merged main into this session branch, preserved its files and regenerated the site from combined sources. Repeated the CI build, verification, all 99 tests, and independent artifact audit; no new experiment was run. The local comparison inventory now contains 19 other TIFFs.</p><p>Selector: not approved. All downloads remain research-only.</p></div></main></body></html>

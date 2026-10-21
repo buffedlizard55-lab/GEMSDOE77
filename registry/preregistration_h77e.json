@@ -1,34 +1,17 @@
 {
-  "schema_version": 1,
-  "lane_id": "H77E-KNICK-DECONF-SUBMOD",
-  "session_branch": "arena/66740483-gemsdoe77",
-  "preregistered_date_utc": "2026-10-21",
-  "status_at_preregistration": "LOCKED_BEFORE_EXPERIMENTS",
-  "lane_declaration": "Self-declared preregistered lane H77E following AGENTS.md, PROMPT.md, and PR #13 review findings (docs/review-2026-10-21.md). Tests untouched USGS 3DEP 10 m fluvial knickpoint & drainage-divide physics (dem10_chi_100m_u8.tif + dem10_chi_100m_sig_i32.tif), TIGER road-deconfounded square-root de-quantized 1 m LiDAR & HW/FW dip-slip step purity, 4.5 km updip hanging-wall seismogenic fault projection, exact deterministic 12-bit LOCO multi-scale fracture mechanics, and Dinkelbach fractional-DTI crest-centered 300 m submodular dot allocation.",
-  "hard_invariants": {
-    "zero_sgmc_channels": true,
-    "forbidden_csv_columns": ["dist_known_fault_px", "known_fault", "label"],
-    "zero_prior_submission_rasters_in_features_or_training": true,
-    "single_feature_symmetric_auc_ceiling": 0.90,
-    "surface_spearman_abs_ceiling": 0.90,
-    "final_dots_informative_forward_3px_overlap_ceiling": 0.70,
-    "final_dots_mutual_3px_overlap_ceiling": 0.70,
-    "max_experiments": 3,
-    "max_wall_hours": 2.0,
-    "vendor_gems57_unmodified": true
-  },
-  "experiments": [
-    {
-      "id": "E1",
-      "description": "Build zero-SGMC 125-channel physical + 12-bit LOCO feature stack, run 125 single-feature leakage canaries (<=0.90), and evaluate H77E + ablations on official gems57-pooled-hide-v2 Seed 20 (11,321 withheld positive pixels)."
-    },
-    {
-      "id": "E2",
-      "description": "Independent zero-retuning replication of locked H77E pipeline on official gems57-pooled-hide-v2 Seed 30 (11,342 withheld positive pixels) with 2,000-draw 20 km paired block bootstrap."
-    },
-    {
-      "id": "E3",
-      "description": "Strictly out-of-fold full-Nevada surface build, pre-placement Spearman surface audit + post-placement 3-px dot overlap audit across all valid archive + GEMSDOE65/73/74/75/76/77 rasters, official submission_writer packaging, and 17-check validation."
-    }
-  ]
+  "registered_utc": "2026-10-21",
+  "lane": "H77E upward-continuation persistence + Euler depth coherence (potential fields)",
+  "assignment_irregularity": "No single method paragraph identifiable in supplied prompt (same as IR-77-06); autonomous narrow lane declared before Exp 1, not a claimed assigned lane.",
+  "hypothesis": "Deep basement source edges that persist under Fourier upward continuation (200/400/800 m) in BOTH magnetics and gravity, with depth-coherent Euler (SI=0) solutions, mark buried intrabasin faults missing from the surface catalogue.",
+  "mimic": "Intrusive/lithologic basement contacts and caldera margins (deep, persistent, Euler-coherent); GeoDAWN survey-block seams; thick uniform alluvium for the texture block",
+  "inputs": ["data/raw/training_features.tif bands 2,3,9,13,14 (+ all 19 for the standard control arm)", "data/bridge/existing_faults.tif only for split/mask/exclusion", "data/bridge/sample_submission.tif only for footprint/grid", "data/raw/scored/gems19-h19-5-...-nan.tif only as fold-fair champion-construction control, never as a feature"],
+  "signature": "exp(-|k|h) upward continuation h=200/400/800m; per-height percentile-normalised analytic-signal edge; persistence=mean across heights; deep=800m edge; crossfield=min(mag persistence, grav persistence); Euler SI=0 windowed solutions (7px window, stride 2, depth 50-1500m) rasterised as density + depth coherence; texture block: 5/11px RTP roughness ratio anisotropy",
+  "candidate_parameters": {"continuation_heights_m": [0, 200, 400, 800], "euler_window_px": 7, "euler_stride_px": 2, "euler_structural_index": 0, "budget_dots": 37654, "catalogue_exclusion_px": 3.0, "submodular_min_sep_px": 2.2},
+  "controls": ["standard raw-19-band HGB (same folds/training protocol)", "fold-fair H19-5 champion construction", "matched random surface"],
+  "canaries": "every new field alone, symmetric ROC-AUC vs withheld positives; >0.90 = leakage stop",
+  "validation": "vendor/gems57 evaluate_holdout gems57-pooled-hide-v2: buffered_component_draw whole components, buffer 3px, boundary 12px, visible faults masked pixel-exactly, pooled DTI alpha 0.2 beta 0.8 300m triangular kernel, paired 20km-block bootstrap 1000 draws. Seeds 20 (primary) and 30 (candidate-vs-standard replication).",
+  "promotion": "No weekly slot spent here. Require canaries <=0.90, paired HOLDOUT-DTI beating current repo best 0.15272, informative uniqueness (rho<=0.90, forward 3px overlap<=0.70 vs sparse registry rasters), shared-writer on-disk validation. Literal Policy-I17 dense-witness reading reported separately and fails closed for every lane in this repo.",
+  "registry_policy": "Literal vendor/gems57/uniqueness thresholds on surface before placement AND on final dots; dense space-filling witnesses reported as Policy-I17 blockers, sparse-raster informative reading reported as diagnostic. Stop and log duplicate if either stage exceeds thresholds on sparse model rasters.",
+  "budget": {"maximum_experiments": 3, "maximum_hours": 2, "planned_experiments": 3},
+  "expected_improvement": "Unknown; hypotheses are ordinal priorities, never projected scores."
 }

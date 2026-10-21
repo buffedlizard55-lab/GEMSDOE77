@@ -1608,5 +1608,12 @@
   "verdict_literal_unfiltered_policy_I17": "negative (Not OK to upload without human selector Policy I17 sign-off on the 45 space-filling >=70%-halo archive heatmaps)",
   "ok_to_download_locally": true,
   "ok_to_submit_directly_without_selector_signoff": false,
-  "submission_slots_spent": 0
+  "submission_slots_spent": 0,
+  "verdict": "negative",
+  "policy_i17_literal_verdict": "negative",
+  "protocol_unique": false,
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "weekly_slots_used": 0
 }

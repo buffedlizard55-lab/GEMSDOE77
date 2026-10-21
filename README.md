@@ -1,62 +1,310 @@
-# GEMSDOE77 — DOE GEMS Prize Fault Detection (`H77E` Breakthrough + Full Repository Audit)
-
-> ## 🚦 IMMEDIATE DOWNLOAD & SUBMISSION STATUS AT A GLANCE
+<!-- H77E-KNICK PRIMARY STATUS BANNER -->
+> ## 🚦 IMMEDIATE DOWNLOAD & SUBMISSION STATUS AT A GLANCE (`H77E-Knick` Newest Primary Deliverable)
 >
-> | Gate / Question | Verified Status | Exact Evidence |
-> |---|---|---|
-> | **1. OK TO DOWNLOAD LOCALLY?** | **✅ YES — READY TO DOWNLOAD** | [`docs/downloads/gems77-h77e-knick-deconf-submod-36500dots-20261021-101e200b-zeros.tif`](docs/downloads/gems77-h77e-knick-deconf-submod-36500dots-20261021-101e200b-zeros.tif) (`147,214 B`, single-TIFF [`.zip`](docs/downloads/gems77-h77e-knick-deconf-submod-36500dots-20261021-101e200b-zeros.zip) `114,972 B`) |
-> | **2. PORTAL FORMAT & RANGE `[0, 1]` VALID?** | **✅ PASS (`15/15` `gems57` + `17/17` Grid Checks)** | Single-band `float32`, `EPSG:32611`, `3730 × 3292`, exact values `{0.0, 1.0}` strictly in `[0, 1]`, **`0` NaN anywhere in all `12,279,160` cells**, `0` pixels on mapped faults |
-> | **3. INFORMATIVE PORTFOLIO UNIQUENESS (`816` `<70%`-Halo Rasters)?** | **✅ PASS — `0 / 816` DUPLICATE FIRINGS** | Exact `vendor/gems57/uniqueness.py:dot_overlap` across ALL `816` informative rasters in the `861`-raster portfolio: **`max_ov = 0.66800 <= 0.70`**, surface `max |ρ| = 0.7653 <= 0.90`, dots `max |ρ| = 0.0771 <= 0.90` |
-> | **4. OK TO SUBMIT AUTOMATICALLY WITHOUT SELECTOR SIGN-OFF?** | **⚠️ NO (`Not OK to submit` automatically — Policy `I17` Selector Sign-Off Required)** | Under repository Policy `I17`, `45` space-filling archive heatmaps have 3-px halos covering `>= 70%` of Nevada (`ab0a0a62` covers `100.0%`), so literal unfiltered overlap fires on every non-empty file. **For a human selector applying the standard dense-heatmap exemption, `H77E` is the `#1` recommended candidate in `GEMSDOE77` (`0` weekly slots spent so far).** |
-> | **5. BEATS FOLD-FAIR `H33` (`0.2778` Construction) ON BOTH SEEDS?** | **✅ YES (`p < 0.001` on BOTH Spatial Seeds)** | Zero-firing deliverable: **`0.126664`** (`Seed 20`, `+31.5%` vs `H33`) & **`0.124727`** (`Seed 30`, `+25.9%` vs `H33`). Pure unconstrained twin: **`0.155623`** (`Seed 20`, `+61.6%`) & **`0.154666`** (`Seed 30`, `+56.1%`) — **#1 `HOLDOUT-DTI` in `GEMSDOE77` on BOTH seeds!** |
+> - **✅ OK TO DOWNLOAD LOCALLY: YES** — [`docs/downloads/gems77-h77e-knick-deconf-submod-36500dots-20261021-101e200b-zeros.tif`](docs/downloads/gems77-h77e-knick-deconf-submod-36500dots-20261021-101e200b-zeros.tif) (`147,214 B`, `SHA-256 = db0dd67da44b83bc47f05289c05e2e917118d04b03e4958076f64661b726fb6b`; single-TIFF [`.zip`](docs/downloads/gems77-h77e-knick-deconf-submod-36500dots-20261021-101e200b-zeros.zip) `SHA-256 = 6f7baf02caf03f080cc2e3c3ba9c84209ea85c927d63e08420de90d04df12420`; pure unconstrained companion [`docs/downloads/gems77-h77e-pure-submod-36500dots-20261021-e106c72c-zeros.tif`](docs/downloads/gems77-h77e-pure-submod-36500dots-20261021-e106c72c-zeros.tif) `SHA-256 = abb0cb1349c9745a27156ebd95b435dec6086d38d9be3ec637400001d9fa33a0`). Passes `15/15` `vendor/gems57` + `17/17` portal checks (`EPSG:32611`, `3730 × 3292`, exact `{0.0, 1.0}` float32 values strictly in `[0, 1]`, **`0` NaN anywhere**, `36,500` dots, `0` pixels on mapped faults).
+> - **⚠️ OK TO SUBMIT AUTOMATICALLY WITHOUT SELECTOR SIGN-OFF: NO (`Not OK to submit` automatically under Policy `I17` — `#1` Human Selector Review Candidate)** — Literal unfiltered overlap fires on `45` space-filling `>=70%`-halo archive heatmaps (`ab0a0a62` covers `100.0%` of Nevada). **Across ALL `816` informative (`<70%`-halo) rasters in the `861`-raster portfolio AND all `18` sparse `GEMSDOE77` sibling submissions, `gems77-h77e-knick-deconf-submod-36500dots-20261021-101e200b` achieves `ZERO` duplicate firings (`max_ov = 0.66800 <= 0.70` vs portfolio; `max_ov = 0.42104 <= 0.70` vs all 18 sparse `GEMSDOE77` files) while beating fold-fair `H33` significantly on BOTH spatial seeds (`0.126664` vs `0.096320` on `Seed 20`; `0.124727` vs `0.099056` on `Seed 30`; unconstrained twin `0.155623` / `0.154666` = `#1` in `GEMSDOE77`, `127/127` leakage canaries passed)!**
+> - **📖 Full PhD Analysis, Figures & Run Card:** [`knowledge/02_h77e_audit_and_breakthrough.md`](knowledge/02_h77e_audit_and_breakthrough.md) · [`docs/h77e-knick.html`](docs/h77e-knick.html) · [`docs/executive-summary.html`](docs/executive-summary.html) · [`evidence/h77e/run_card.json`](evidence/h77e/run_card.json)
 
-### 📦 Primary Verified Submission Package (`H77E`)
-- **Primary Competition GeoTIFF (`-zeros.tif`):** [`docs/downloads/gems77-h77e-knick-deconf-submod-36500dots-20261021-101e200b-zeros.tif`](docs/downloads/gems77-h77e-knick-deconf-submod-36500dots-20261021-101e200b-zeros.tif)
-  - **SHA-256 (`.tif`):** `db0dd67da44b83bc47f05289c05e2e917118d04b03e4958076f64661b726fb6b`
-  - **Single-GeoTIFF `.zip`:** [`docs/downloads/gems77-h77e-knick-deconf-submod-36500dots-20261021-101e200b-zeros.zip`](docs/downloads/gems77-h77e-knick-deconf-submod-36500dots-20261021-101e200b-zeros.zip) (`SHA-256 = 6f7baf02caf03f080cc2e3c3ba9c84209ea85c927d63e08420de90d04df12420`)
-  - **Submission Name:** `gems77-h77e-knick-deconf-submod-36500dots-20261021-101e200b`
-  - **Submission Note (`114 <= 140` chars):** `H77E: 3DEP 10m knickpoints + TIGER-damped step + updip seism + SLOCO + 300m submod (36500 binary dots; S20=0.1267)`
-- **Unconstrained Pure Physics Companion (`0.155623` / `0.154666` `HOLDOUT-DTI`):** [`docs/downloads/gems77-h77e-pure-submod-36500dots-20261021-e106c72c-zeros.tif`](docs/downloads/gems77-h77e-pure-submod-36500dots-20261021-e106c72c-zeros.tif) (`SHA-256 = abb0cb1349c9745a27156ebd95b435dec6086d38d9be3ec637400001d9fa33a0`)
-- **Live GitHub Pages Entry & Guides:** [Start Here (`docs/index.html`)](docs/index.html) · [Executive Summary & Submit Guide (`docs/executive-summary.html`)](docs/executive-summary.html) · [Full `H77E` Technical Report (`docs/h77e.html`)](docs/h77e.html) · [JSON Run Card (`evidence/h77e/run_card.json`)](evidence/h77e/run_card.json)
+# GEMSDOE77: DOE GEMS Geothermal Fault Detection — Audited Research Portfolio
+
+> **H80T (2026-10-21) Multi-Scale Tilt-Angle Persistence GeoTIFF — OK TO DOWNLOAD FOR INSPECTION; NOT OK TO SUBMIT:**
+> [Download `.tif`](docs/downloads/gems77-h80t-tilt-persist-37654dots-20261021-7d5f7b11-zeros.tif) · [one-TIFF `.zip`](docs/downloads/gems77-h80t-tilt-persist-37654dots-20261021-7d5f7b11-zeros.zip) · ``-nan.tif` twin` (diagnostic reference only; no download link) · [validator receipt](docs/downloads/gems77-h80t-tilt-persist-37654dots-20261021-7d5f7b11-zeros.json) · [technical page](docs/h80t.html) · [submission guide](docs/h80t-executive-summary.html) · [run card](evidence/h80t_run_card.json).
+> Format PASS (17/17 local + 15/15 shared validator): single-band `float32`, `EPSG:32611`, `3730×3292`, values in `{0.0, 1.0}`, `0 NaN`, `37,654` dots (`0` on catalogue), SHA-256 `19e92e4db42b0de59c558e95a52ee419fc81f4c187c4fd22e35f252e16a4446a`.
+> **0.006030 HOLDOUT-DTI** (`gems57-pooled-hide-v2`, 22,893 withheld positives, 95% CI `[0.004811, 0.007345]`) vs random `0.002216` (paired Δ `+0.003814`, CI `[+0.002482, +0.005179]`). In E3, adding the 2 derived tilt-Z channels to a 19-band HGB gave a significant paired lift (`+0.000264 HOLDOUT-DTI`, CI `[+0.000061, +0.000481]`, `0.016605` vs `0.016341`), but that 21-ch HGB surface logged a Rule 1 surface rank-correlation duplicate (`ρ = 0.9088 > 0.90` vs `17GEMSDOE`) and was stopped; the published H80T TIF uses the pure tilt-persistence surface (Phase 1 max `|ρ| = 0.1332 ≤ 0.90`, Phase 2 dot-field max overlap `0.4468 ≤ 0.70`, vs H33 `0.2109`), which remains below the `0.152718` incumbent and fails the literal dense-witness gate (`1.0 > 0.70`, Policy I17). Verdict **negative**. Zero weekly slots spent; selector: not approved.
+
+> **H80 (2026-10-21) Riedel wing-crack research GeoTIFF — OK TO DOWNLOAD, NOT OK TO SUBMIT (registry overlap FAIL):**
+> [Download `.tif`](docs/downloads/gems77-h80-riedel-wingcrack-tips-20261021-zeros.tif) · [`.zip`](docs/downloads/gems77-h80-riedel-wingcrack-tips-20261021-zeros.zip) · [lane](docs/h80.html) · [how to submit *after* approval](docs/executive-summary.html).
+> Format PASS: float32, EPSG:32611, 3730×3292, values in [0,1], 0 NaN, 12,000 dots. SHA-256 `bab170ed60ab7e1a8afbfad69386a8266191fa4864ac3abac5b6290b7d25bc57`.
+> **0.09580 HOLDOUT-DTI** (`gems57-pooled-hide-v2`, 11,319 withheld positives, 95% CI `[0.08818, 0.10325]`) vs random 0.0149; **does not beat** incumbent 0.15272. Local 3-px overlap 0.982 vs dense U-rank. Verdict **negative**. Selector unused. Session prompt: [PROMPT.md](PROMPT.md) (also archived at the end of this README).
+
+> **Release safety review (2026-10-21):** [review and next steps](docs/release-review.html). Existing files are inspection-only; no slot was used.
+>
+> **AGO upstream variants (added after the H80 lane):** [inspection-only report](docs/ago.html) links three additional format-checked TIFF variants. Their recorded quick 4-quadrant diagnostics are not reportable HOLDOUT-DTI scores: they use a different evaluator and do not record an exact withheld-positive count or 95% CI. The universal literal uniqueness gate still fails; **NOT OK TO SUBMIT**. This review did not run or independently reproduce those experiments.
+
+> **Earlier H77L independent research GeoTIFF (2026-10-21):** [Download the RESEARCH-ONLY `.tif`](docs/downloads/gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY.tif) · [one-TIFF `.zip`](docs/downloads/gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY.zip) · [format receipt](docs/downloads/gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY.json) · [technical page and source table](docs/h77l.html). **OK TO DOWNLOAD FOR INSPECTION; NOT OK TO SUBMIT.** Format: single-band float32, EPSG:32611, 3730×3292, sample transform, all pixels finite and in [0,1]; SHA-256 `9d199f9fad93e234397a7a19a05eabf12fd77285be3007e6afe22d12a36dcbd1`. The scientific test produced **0.031168 HOLDOUT-DTI** (`gems57-pooled-hide-v2`, 41,732 withheld positives, 95% CI `[0.025970, 0.036921]`), **not directly comparable** to the repository incumbent evaluated on different folds and positives. A literal registered dense raster covers every allowed pixel (forward overlap 1.0 > 0.70): the experiment stopped before dot placement. It differs in pixels from both pinned witnesses and 14 other local TIFFs (including the concurrently merged H79-BB twins and H79-RH raster), **not a complete-registry uniqueness certificate**. No slot was spent. [Frozen JSON run card](evidence/h77l_run_card.json) · [independent readback audit](evidence/h77l_independent_audit.json) · [preregistered hypotheses](research/h77l_pre_experiment_hypotheses.md) · [three-pass H77L review](docs/review-2026-10-21-h77l.md) · [how submission would work after approval](docs/executive-summary.html).
+
+**Current review (2026-10-21): no GeoTIFF in this repository is approved to submit.** Files can be downloaded for inspection, but the literal registry-uniqueness gate is not cleared and no selector has approved a weekly slot. The machine-readable [submission authorization receipt](docs/data/submission-authorization.json) currently says **`NOT OK TO SUBMIT` (0 authorized files)** and fails closed if any required gate is missing. The best retained result is `H77-Step` at **0.152718 HOLDOUT-DTI** (evaluator `gems57-pooled-hide-v2`, 11,321 withheld positive pixels, 95% CI `[0.131548, 0.175185]`); this is a local spatial holdout result, **not** a leaderboard score. The site start page is the authoritative current per-file download/submit status: [docs/index.html](docs/index.html). See the [H77L three-pass review](docs/review-2026-10-21-h77l.md) and [earlier repository review](docs/review-2026-10-21.md) for verified issues, contradictions and next steps. See the [H80-era release safety review](docs/release-review.md) for that lane's findings and next steps, and the [branch audit](docs/review-2026-10-21-arena-audit.md) for current review details, including the later AGO quick-evaluation caveat and direct H79 file checks. The [supplemental audit and ranked follow-up hypotheses](docs/review-2026-10-21-repo-audit.md) retain this review's H80/AGO receipt checks and research backlog. The [current-checkout three-pass review](docs/review-2026-10-21-current-checkout.md) records the expanded TIFF inventory and strict all-pixel validator correction. `docs/SESSION_REVIEW.md` is an older snapshot retained for historical context. Do not infer promotion or organizer acceptance from older run cards or historical report wording.
+
+## Earlier H79-ORIENT artifact (negative, inspection-only)
+
+- **[Download the single-band float32 GeoTIFF](docs/downloads/gems79-orient-persistence-37654dots-20261021-4abff47886.tif)** · [one-TIFF ZIP](docs/downloads/gems79-orient-persistence-37654dots-20261021-4abff47886.zip)
+- **Status:** **OK TO DOWNLOAD: YES** · **OK TO SUBMIT: NO** · weekly slots used: `0` · verdict: `negative`
+- **SHA-256:** `745dbaa427bc1edaf477b3d0b4847b8be8d30d396106a61b1318a8726599be8e`
+- **Format:** local preflight PASS — one `float32` band, `3730 × 3292`, `EPSG:32611`, matching transform, finite values in `[0,1]`, no nodata, 37,654 emitted dots, zero mapped-catalogue dots.
+- **Primary score label:** `HOLDOUT-DTI 0.094507` (seed 30; 95% CI `[0.076558, 0.112844]`; evaluator `gems57-pooled-hide-v2`; 11,342 withheld positives). Seed 20: `HOLDOUT-DTI 0.089063` (95% CI `[0.072384, 0.105355]`; 11,321 withheld positives). These are not organizer-confirmed scores.
+- **Why not submit:** the result is below the retained `0.152718 HOLDOUT-DTI` incumbent, the registry uniqueness audit is incomplete (`13/812` local rasters), and the dense witness makes the literal overlap gate fail. The file is byte/pixel-distinct from checked files but is **not protocol-cleared**.
+- **Technical report:** [H79-ORIENT lane](docs/h79-orient.html) · **submission mechanics:** [H79-ORIENT guide](docs/h79-orient-executive-summary.html) · **machine-readable receipt:** [evidence/h79_orient_run_card.json](evidence/h79_orient_run_card.json) · [preregistration](registry/preregistration_h79_orient.json).
+
+> **Earlier H78 review (2026-10-21; retained as historical evidence):** H78 is closed/negative. Its TIFF is inspection-download only, scored `0.0708` **HOLDOUT-DTI** (`gems57-pooled-hide-v2`, 11,321 withheld positives, 95% CI `[0.0600, 0.0816]`) versus its matched `0.0958` control, and fails the binding literal registry-uniqueness gate. No H78 competition slot was spent. See [the H78-era audit](docs/SESSION_REVIEW.md); the H80 block above is the current featured file.
+
+**XSEN session update (2026-10-21, branch `arena/f054d26e-gemsdoe77`): a new unique TIF was generated and is NOT OK to submit.** `submissions/gems77-xsen-coincide-hgb-37654dots-20261021-zeros.tif` (sha256 `e7c81754420b9a6b4126ad1d7239870ae680eaa61e97a6d3f16f644a620d1c6a`; also under `docs/downloads/`) is format-valid — finite, values exactly {0,1}, no nodata, EPSG:32611, 3730×3292, pinned transform, so the portal "Predicted values must be in range [0, 1]" error cannot recur with it — but its lane verdict is **negative**: **0.0994 HOLDOUT-DTI** (evaluator `gems57-pooled-hide-v2`, 11,342 withheld positives, 95% CI `[0.0824, 0.1179]`) vs 0.0971 for the standard-stack control (paired Δ +0.0023, CI includes 0), below the 0.152718 incumbent, its coincidence surface alone scores at the random-control level (0.0480 vs 0.0500), and 93.4% of its dots fall within 3 px of GEMSDOE37's sparse dotted raster (duplicate under the 70% rule). Download it for inspection only; do not upload it. Full card: `evidence/run_card_xsen.json`; lane page: `docs/xsen.html`. The best retained candidate remains H77-Step/H77D (see below), still awaiting a selector/policy decision — no slot was spent by the XSEN session.
+
+**Read this README, including the original request at the end of this file, at the beginning of every session.**
+
+## Reviewed download inventory (17 fail-closed lanes; H77C additionally quarantined)
+
+> ### Core values
+> **Maximize P(Win).** "Maximize the Probability of Winning" is our decision-making framework. In every
+> decision we weigh tradeoffs, assess risk, and choose the path that maximizes the probability that we
+> win this prize. We set aside our emotions and make tough decisions in order to maximize P(Win).
+>
+> **Own the Outcome.** We own results end to end, not just our individual slice of the work. When problems
+> arise and we have the means to act, we act without waiting for permission or assignment. We treat
+> failure and success as signals and use them to improve. We stay accountable to the final outcome.
+>
+> *Evidence summary:* H77D and H77-Step report promising **HOLDOUT-DTI** measurements, but both overall lane verdicts are **negative** under the literal registry-uniqueness rule (a full-footprint dense witness forces overlap). Their holdout results and pairwise dissimilarity are not submission approval. Files are available **for inspection only**; no selector has approved a slot. Historical run cards retain their original scientific fields; see [the repository review](docs/review-2026-10-21.md) for conflicts and interpretation.
+
+| Lane | File | Format checks | Recorded HOLDOUT-DTI (local; not leaderboard) | Informative subset checks (not clearance) | Literal gate (`I17`) | Upload status |
+| :--- | :--- | :---: | :---: | :---: | :---: | :--- |
+| **H80 Riedel wing-crack tips** ([lane](docs/h80.html)) | [`gems77-h80-riedel-wingcrack-tips-20261021-zeros.tif`](docs/downloads/gems77-h80-riedel-wingcrack-tips-20261021-zeros.tif) · [`.zip`](docs/downloads/gems77-h80-riedel-wingcrack-tips-20261021-zeros.zip) | **PASS** (float32, finite `[0,1]`, EPSG:32611) | **0.09580 HOLDOUT-DTI** (`gems57-pooled-hide-v2`, 11,319 withheld positives, 95% CI `[0.08818, 0.10325]`); below 0.15272 incumbent | Local 3-px overlap `0.982` vs H77-Urank; diagnostic only | **FAIL** (`0.982 > 0.70`; incomplete local scan) | **NOT OK TO SUBMIT — inspection only** (negative, no slot used) |
+| **AGO-Hybrid35** ([negative report](docs/ago.html) · [run card](evidence/ago_run_card.json)) | [`gems77-ago-hybrid35-geophys-37654dots-dc66e42e-zeros.tif`](docs/downloads/gems77-ago-hybrid35-geophys-37654dots-dc66e42e-zeros.tif) · [ZIP](docs/downloads/gems77-ago-hybrid35-geophys-37654dots-dc66e42e-zeros.zip) | **PASS** (local; float32, finite `[0,1]`, exact grid) | Exploratory quick metric `0.103445`; `quick-4quadrant-spatial (30px buffer)`; withheld-positive count and 95% CI absent; **not a qualified score** | Backbone-only overlap `0.650`; full-support witness still fails | **FAIL** (literal I17; selector not approved) | **OK TO DOWNLOAD for inspection only; NOT OK TO SUBMIT.** |
+| **AGO-Hybrid50** ([negative report](docs/ago.html) · [run card](evidence/ago_run_card.json)) | [`gems77-ago-hybrid50-geophys-37654dots-11b45670-zeros.tif`](docs/downloads/gems77-ago-hybrid50-geophys-37654dots-11b45670-zeros.tif) · [ZIP](docs/downloads/gems77-ago-hybrid50-geophys-37654dots-11b45670-zeros.zip) | **PASS** (local; float32, finite `[0,1]`, exact grid) | Exploratory quick metric `0.089401`; `quick-4quadrant-spatial (30px buffer)`; withheld-positive count and 95% CI absent; **not a qualified score** | Backbone-only overlap `0.500`; full-support witness still fails | **FAIL** (literal I17; selector not approved) | **OK TO DOWNLOAD for inspection only; NOT OK TO SUBMIT.** |
+| **AGO-Select** ([negative report](docs/ago.html) · [run card](evidence/ago_run_card.json)) | [`gems77-ago-select-geophys-37654dots-909053c9-zeros.tif`](docs/downloads/gems77-ago-select-geophys-37654dots-909053c9-zeros.tif) · [ZIP](docs/downloads/gems77-ago-select-geophys-37654dots-909053c9-zeros.zip) | **PASS** (local; float32, finite `[0,1]`, exact grid) | Exploratory quick metric `0.144364`; `quick-4quadrant-spatial (30px buffer)`; withheld-positive count and 95% CI absent; **not a qualified score** | Backbone overlap `1.000`; duplicate stop | **FAIL** (literal I17; selector not approved) | **OK TO DOWNLOAD for inspection only; NOT OK TO SUBMIT.** |
+| **H77-XSEN** ([report](docs/xsen.html) · [run card](evidence/run_card_xsen.json)) | [`gems77-xsen-coincide-hgb-37654dots-20261021-zeros.tif`](docs/downloads/gems77-xsen-coincide-hgb-37654dots-20261021-zeros.tif) | **PASS** (local format checks) | **0.0994 HOLDOUT-DTI** (`gems57-pooled-hide-v2`, 11,342 withheld positives, 95% CI `[0.0824, 0.1179]`); below local best | 93.4% of final dots within 3 px of GEMSDOE37 candidate | **FAIL** (duplicate stop; selector not approved) | **NOT OK TO SUBMIT — inspection only**; no slot used. |
+| **H77L (new; [research page](docs/h77l.html))** | [`RESEARCH-ONLY.tif`](docs/downloads/gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY.tif) · [one-TIFF ZIP](docs/downloads/gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY.zip) | **Yes** (`float32`, finite `[0,1]`, EPSG:32611; SHA `9d199f9f…`) | **0.031168 HOLDOUT-DTI** (`gems57-pooled-hide-v2`, 41,732 withheld positives; 95% CI `[0.025970, 0.036921]`; unmatched support) | Pixel-distinct from 14 local TIFFs + H33; not a complete registry certificate | **No** (dense witness forward overlap `1.0` > `0.70`); no final dots | **OK TO DOWNLOAD FOR INSPECTION; NOT OK TO SUBMIT.** One negative experiment; no selector approval or slot. |
+| **`H79-RH` lagged radiometric halo ([report](docs/h79-radhalo.html) · [run card](evidence/h79_radhalo_run_card.json))** | **[`gems77-h79-radhalo-lag3-37654-20261021-zeros.tif`](docs/downloads/gems77-h79-radhalo-lag3-37654-20261021-zeros.tif)** · [`.zip`](docs/downloads/gems77-h79-radhalo-lag3-37654-20261021-zeros.zip) | **Yes (`{0,1}`, `0 NaN`)** | **`0.04773` `[0.03958, 0.05558]`** (`gems57-pooled-hide-v2`; `11,321` withheld px) | Surface max `\|ρ\|=0.1203`; final max `\|ρ\|=0.0173` | **FAIL (`1.000 > 0.70`; universal dense witness)** | **NOT OK TO SUBMIT — inspection download only** *(negative holdout; literal duplicate stop; no slot used)* |
+| **H79-ORIENT cross-sensor scale-space orientation persistence** ([report](docs/h79-orient.html) · [run card](evidence/h79_orient_run_card.json)) | [`gems79-orient-persistence-37654dots-20261021-4abff47886.tif`](docs/downloads/gems79-orient-persistence-37654dots-20261021-4abff47886.tif) · [`.zip`](docs/downloads/gems79-orient-persistence-37654dots-20261021-4abff47886.zip) | **Yes** (`15/15`, float32, finite `[0,1]`) | **0.094507 HOLDOUT-DTI** (seed 30; `gems57-pooled-hide-v2`; 11,342 withheld positives; 95% CI `[0.076558, 0.112844]`); seed 20 **0.089063 HOLDOUT-DTI** (`gems57-pooled-hide-v2`; 11,321 withheld positives; 95% CI `[0.072384, 0.105355]`) | Surface max `\|ρ\|=0.0798`; final max `\|ρ\|=0.0039`; only 13/812 rasters checked | **FAIL** (`1.000 > 0.70`; full-support dense witness) | **NOT OK TO SUBMIT — inspection download only** *(negative holdout; incomplete registry; no slot used)* |
+| **H79-BB (concurrent [research page](docs/h79.html))** | [`gems77-h79-crossgrad-ridge-37654dots-20261021-dd0dbf9c-zeros.tif`](docs/downloads/gems77-h79-crossgrad-ridge-37654dots-20261021-dd0dbf9c-zeros.tif) | Yes (local 17/17, range [0,1]) | **0.032328 HOLDOUT-DTI** (`gems57-pooled-hide-v2`, 22,633 withheld positives, 95% CI `[0.028377, 0.036450]`); below same-support random control | Informative subset overlap 0.1365, NOT clearance | No; full-support dense witness | **NOT OK TO SUBMIT — inspection only** (negative holdout, no selector approval) |
+| **`H77D` (Zero-SGMC candidate — [Technical Report](docs/h77d.html) · [Submit Guide](docs/h77d-executive-summary.html) · [Run Card](evidence/run_card_h77d.json))** | **[`gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.tif`](docs/downloads/gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.tif)** · [`.zip`](docs/downloads/gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.zip) · ``-nan.tif`` (diagnostic reference only; no download link) | **Yes (`17/17`, `{0,1}`, `0 NaN`)** | Two recorded HOLDOUT-DTI seeds; evaluator, withheld-positive counts and 95% CIs are in the linked run card; not an organizer score | **YES (`0` sparse dupes across `869` rasters; max `0.6883`, `H77-Step=0.4068`, `mut<=0.497`)** | Blocked only by dense non-dot witness `ab0a0a62` | **NOT OK TO SUBMIT — inspection download only** *(literal uniqueness fails; selector not approved; historical run card retains a conflicting scientific `promote` field)* |
+| **`H77-Step` (step-purity candidate — [Full Portal](docs/h77-step.html) · [Exec Brief](docs/h77-step-executive-summary.html))** | **[`gems77-step-propensity-submod300.tif`](docs/downloads/gems77-step-propensity-submod300.tif)** | **Yes (`15/15`, `{0,1}`, `0 NaN`)** | HOLDOUT-DTI measurement detailed above; run-card evidence only, not an organizer score | **YES (`0` model dupes; `H33=0.586`, `H77D=0.394`, `mut<=0.493`)** | Blocked only by `100%`-coverage witness `ab0a0a62` | **NOT OK TO SUBMIT — inspection download only** *(literal uniqueness fails; overall lane verdict negative; selector not approved)* |
+| **H78** ([page](docs/h78.html), [section below](#-h78-lane-newest-2026-10-21-lidar-scarp-consensus-uniqueness-capped-allocation)) | [`gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros.tif`](docs/downloads/gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros.tif) | Yes (`17/17`, `{0,1}`, `0 NaN`) | Negative HOLDOUT-DTI; evaluator, withheld-positive count and 95% CIs are in the linked card | Yes (informative: overlap `0.660`, ρ `0.639`) | No (44 firings, all space-filling) | **Not OK to submit** (holdout negative; selector: not approved) |
+| **LIA**: Live-score inversion ([page](docs/lia.html)) | [`gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif`](docs/downloads/gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif) | Yes (`17/17`) | Negative HOLDOUT-DTI; full evidence in the linked lane card | Yes (`0.660`) | No (35 dense firings) | **Not OK to submit** (below `0.0958` incumbent; selector: not approved) |
+| **Contact-physics** ([page](docs/contactphys.html)) | [`gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif`](docs/downloads/gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif) | Yes | HOLDOUT-DTI did not pass the preregistered scientific gate; full evidence in linked card | Yes (`0.497` vs H77D) | No (`0.979` dense surface) | **Not OK to submit** (selector: not approved) |
+| **Selective-U curvature** ([page](docs/urank.html)) | [`gems77-h77-urank-curvature-0d868dc271bb-research.tif`](docs/downloads/gems77-h77-urank-curvature-0d868dc271bb-research.tif) | Yes | Confounded HOLDOUT-DTI; do not use as a valid performance estimate | Continuous surface | No | **Not OK TO SUBMIT** (research TIFF) |
+| **D77 blind-distance band** (new lane; [run card](evidence/run_card_d77.json)) | [`gems77-d77-blind-band-35106dots-20261021-926076f7-zeros.tif`](docs/downloads/gems77-d77-blind-band-35106dots-20261021-926076f7-zeros.tif) · [`.zip`](docs/downloads/gems77-d77-blind-band-35106dots-20261021-926076f7-zeros.zip) | **Yes (`17/17`, `{0,1}`, `0 NaN`)** | `0.0000` `HOLDOUT-DTI` (`[0.0000, 0.0000]`, 45,260 withheld px); **negative result** | vs binary dot rasters: worst overlap `0.531` `<= 0.70`, surface max `\|ρ\|` `0.112` `<= 0.90`; vs continuous selective-U surface `0.989` logged as degenerate broad-support dilation | **No** (Policy `I17` fails closed; logged lane drift) | **Not OK TO SUBMIT** (format-valid research TIFF; no organizer score; selector: not approved) |
+| **H77C claycap** (quarantined) | [`gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-zeros.tif`](docs/downloads/gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-zeros.tif) | — | Private evaluator | — | No | **Not approved** |
+| **H77E** (UCP-Euler — [Lane Page](docs/h77e.html) · [Submit Guide](docs/h77e-executive-summary.html) · [Run Card](evidence/run_card_h77e.json)) | [`gems77-h77e-ucpeuler-ctx-37654dots-20261021-22873551-zeros.tif`](docs/downloads/gems77-h77e-ucpeuler-ctx-37654dots-20261021-22873551-zeros.tif) · [`.zip`](docs/downloads/gems77-h77e-ucpeuler-ctx-37654dots-20261021-22873551-zeros.zip) | Yes (`15/15`, `{0,1}`, `0 NaN`) | `0.1305` (Seed 20) / `0.1342` (Seed 30) `HOLDOUT-DTI`; new block alone `0.0396` | **No — duplicate logged** (`0.835` vs GEMSDOE67 ml-cover; vs H33 `0.279`, `ρ=0.010`) | No | **Not OK to submit** (holdout below `0.15272` best + duplicate + selector: not approved; SAFE TO DOWNLOAD for research) |
+
+Site entry pages: [Start here](https://buffedlizard55-lab.github.io/GEMSDOE77/docs/index.html) (reviewed files, direct downloads and binding clearance status) · [How to submit](https://buffedlizard55-lab.github.io/GEMSDOE77/docs/executive-summary.html) · [H77D Technical Report](https://buffedlizard55-lab.github.io/GEMSDOE77/docs/h77d.html) · [H77D Submission Guide](https://buffedlizard55-lab.github.io/GEMSDOE77/docs/h77d-executive-summary.html).
+
+### Lane `H77E` (newest, 2026-10-21): Upward-continuation persistence + Euler depth coherence — `NEGATIVE`
+
+- **⬇ Download (research only):** [`docs/downloads/gems77-h77e-ucpeuler-ctx-37654dots-20261021-22873551-zeros.tif`](docs/downloads/gems77-h77e-ucpeuler-ctx-37654dots-20261021-22873551-zeros.tif) — SHA-256 `2269b714c78262a8d45dbd5eb02290a27ec9b99afe02340e343f5cb1ac7c58f3` · **Not OK to submit** (see table).
+- **Result in one line:** the preregistered new physics (Fourier upward-continuation persistence at 200/400/800 m in magnetics+gravity, Euler SI=0 depth coherence, texture suppression) alone scores `0.0396` `HOLDOUT-DTI` — below random allocation (`0.0476`) — and dilutes the standard block; the candidate's `0.1305`/`0.1342` comes from LOCO catalogue-context continuation, still below the `0.15272` bar, and its final dots log a protocol duplicate (`0.835` within 3 px of GEMSDOE67's ml-cover). Full report: [`research/h77e_results.md`](research/h77e_results.md) · [lane page](docs/h77e.html) · [run card](evidence/run_card_h77e.json). No weekly slot used; selector: not approved.
 
 ---
 
-## 📋 All-Lane Repository Ledger (`GEMSDOE77`)
+## Lane `H79-RH`: Lagged Radiometric Alteration-Halo Pairing — Negative Deliverable
 
-| Lane | Submission Name & SHA-256 | Format `[0, 1]` | Literal Rule (`861` Rasters) | Informative Uniqueness (`816` `<70%`-Halo Rasters) | Official `HOLDOUT-DTI` (`gems57-pooled-hide-v2`) | Status |
-|---|---|---|---|---|---:|---|
-| **`H77E` (Newest Primary)** | `gems77-h77e-knick-deconf-submod-36500dots-20261021-101e200b`<br>`db0dd67da44b83bc47f05289c05e2e917118d04b03e4958076f64661b726fb6b` | **PASS** (`36,500` dots, `0` NaN) | FAIL (`45` dense heatmaps) | **PASS (`0 / 816` firings; max `0.66800`)** | **`0.126664`** (`S20`) / **`0.124727`** (`S30`)<br>*(Pure twin: **`0.155623`** / **`0.154666`**)* | **OK to download** · `Not OK to submit` without selector Policy I17 sign-off (**#1 Selector Candidate**) |
-| **`H77D`** (PR #12) | `gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros`<br>`110e7c77ec7e7d201de0ae04ffd2bf3b9db786b4063d800cacb8ab1ded4fd1b9` | PASS (`37,654` dots) | FAIL | FAIL (`18 / 816` firings up to `0.8949`; `IR-77E-03`) | `0.14030` (`S20`) / `0.15011` (`S30`) | Inspection download (`Not OK to submit`) |
-| **`H77-Step`** (PR #9) | `gems77-step-propensity-submod300`<br>`f55105a091281be14957fff2f5aad9a85fa5b1acc31558e9fcd2aae9fdd588b0` | PASS (`34,625` dots) | FAIL | FAIL (`49 / 816` firings up to `0.9573`; `IR-77E-02`) | `0.15272` (`S20` OOF) | Inspection download (`Not OK to submit`) |
-| **`H78`** (PR #10) | `gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros`<br>`4571e767757be95e3fb70b4afb05e45528b1cfd74147e168c36253b1247f1c47` | PASS (`38,301` dots) | FAIL (`44` dense heatmaps) | PASS (`0 / 816` firings; max `0.6601`) | `0.07080` (`S20`, `< 0.0958` `H33`) | Negative holdout baseline (`Not OK to submit`) |
-| **`LIA`** (PR #6) | `gems77-h77-lia-38323dots-20261021-aa5c9331-zeros` | PASS (`38,323` dots) | FAIL | PASS | `0.07060` (`< 0.0958` `H33`) | Negative holdout baseline (`Not OK to submit`) |
-| **`contactphys`** (PR #5) | `gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros` | PASS (`44,090` dots) | FAIL (`0.979`) | FAIL | Negative | Stopped (`Not OK to submit`) |
-| **`urank`** (PR #4) | `gems77-h77-urank-curvature-0d868dc271bb-research` | PASS | FAIL | FAIL | Confounded (`I15`) | Research diagnostic (`Not OK to submit`) |
+- **Download:** [`gems77-h79-radhalo-lag3-37654-20261021-zeros.tif`](docs/downloads/gems77-h79-radhalo-lag3-37654-20261021-zeros.tif) (`SHA-256 c272025ee653187d09489d941613a86bfe4b88110fb455847a2256cf5699014b`).
+- **Status:** **OK to download for inspection; NOT OK to submit.** This is a newly generated, byte-unique, locally format-valid GeoTIFF. Scientific and literal-uniqueness gates fail; no weekly slot was used.
+- **HOLDOUT-DTI:** `0.04773` (95% CI `[0.03958, 0.05558]`; `gems57-pooled-hide-v2`; `11,321` withheld positives). The recorded repository incumbent has `0.152718 HOLDOUT-DTI` (`gems57-pooled-hide-v2`; 11,321 withheld positives; 95% CI `[0.131548, 0.175185]`), but no matched paired cross-lane interval is shown here. Same-run delta versus random is `+0.00031` (95% CI `[-0.00837, +0.00896]`).
+- **Leakage canary:** maximum symmetric feature-only AUC `0.5084 <= 0.90`.
+- **Uniqueness:** surface max `|Spearman ρ| = 0.1203 <= 0.90`; final max `|ρ| = 0.0173`, but literal final-dot overlap reaches `1.000 > 0.70` against a registry raster positive over the entire footprint. Rule 1 therefore requires a duplicate stop. Four of 812 indexed rasters were malformed or grid-mismatched; 808 were measured.
+- **Method:** pair a K–Th common-mode edge with a selective-U residual edge shifted by 300 m, while penalizing same-pixel coincidence. The named mimic is hillslope transport across a soil/sediment boundary.
+- **Evidence:** [technical page](docs/h79-radhalo.html) · [five preregistered hypotheses](research/h79_radhalo_hypotheses.md) · [run card](evidence/h79_radhalo_run_card.json) · [holdout](evidence/h79_radhalo_e2_holdout.json) · [uniqueness](evidence/h79_radhalo_e3_uniqueness.json).
 
 ---
 
-## 🔬 PhD Synthesis: Why `GEMSDOE32` Scored `0.2778` — And How `H77E` Bridges Toward `0.4413`
+## Archived Lane `H77D` (not approved to submit): Coupled Zero-SGMC Tectono-Hydrothermal Conduits + 300 m Submodular Cover (`0.15011` / `0.14030` `HOLDOUT-DTI`)
 
-Full mathematical derivation and forensic lane audit: **[`knowledge/02_h77e_audit_and_breakthrough.md`](knowledge/02_h77e_audit_and_breakthrough.md)**.
+> **NOT OK TO SUBMIT. OK to download for inspection.** Local format checks pass (`17/17`) and local spatial holdout beats the fold-rebuilt H33 baseline on both seeds, but the binding literal registry-uniqueness gate fails on the full-footprint dense witness (`ab0a0a62`) and no selector has approved a weekly slot. See [`docs/data/submission-authorization.json`](docs/data/submission-authorization.json).
 
-1. **Why `GEMSDOE32` (`h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros`) reached `0.2778` (`ORGANIZER-CONFIRMED` row `#48` on `2026-10-21` leaderboard; `#1 = 0.4413`, `#2 = 0.3904`, `#5 = 0.3539`):**
-   - Under exact pooled `DTI` (`alpha = 0.2`, `beta = 0.8`, `300 m = 3 px` triangular dilation kernel `K_3`), continuous background probabilities `P in (0.01, 0.35)` accumulate catastrophic false-positive penalties across `5.17M` Nevada pixels (`0.0107–0.0343` in `GEMSDOE9`/`11GEMSDOE`/`6GEMSDOE`/`GEMSDOE4`), while wide contiguous ridge masks pay `3x–7x` redundant FP penalties inside the `300 m` supremum kernel (`0.1461` in `7GEMSDOE`).
-   - `H33` placed **`37,654` isolated binary `1.0` pixels spaced `300 m` apart** off known mapped faults (`d_vis > 2 px`) along the `H19-5` multi-layer lineament skeleton — earning up to **`2.33` hidden-fault pixels of credit per dot for only `0.20` false-positive cost** (`11.7x` kernel leverage).
-2. **Why `H33` stalled at `0.2778` (`0.0963` / `0.0991` blind `HOLDOUT-DTI`) — and what `H77E` solves:**
-   - **Eliminates `H19-5` support ceiling & `24.6%` missing-LiDAR blind spot:** `24.6%` of Nevada (`1,272,913` cells) has `q == 0` missing 1 m LiDAR coverage. `H77E` builds **statewide 100%-coverage 10 m 3DEP drainage knickpoints, hypsometric integral & range-front facet curvature (`H77E-H1`)**, **real TIGER highway/rail embankment damping (`H77E-H2`)**, **up-dip `55°` seismogenic-to-surface projection + basement tilt transverse gradient (`H77E-H3`)**, and **4-scale length-stratified Leave-Own-Component-Out (`SLOCO`, `H77E-H4`)** with **`0` `SGMC` bedrock channels** (`127 / 127` single-feature leakage canaries passed `<= 0.90`).
-   - **Replaces greedy NMS with exact Dinkelbach 300 m fractional Tversky optimization + exact `816`-raster uniqueness capacity:** Delivers **`+0.039279` (`95% CI [+0.033448, +0.045009]`)** pure allocator gain over `Peak-NMS` on the exact same OOF propensity map while guaranteeing **`0 / 816` duplicate firings (`max_ov = 0.66800 <= 0.70`)** across the entire portfolio!
+- **⬇ Download Primary GeoTIFF (`-zeros.tif`, `140,823 B`):** [`docs/downloads/gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.tif`](docs/downloads/gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.tif)
+  - SHA-256: `110e7c77ec7e7d201de0ae04ffd2bf3b9db786b4063d800cacb8ab1ded4fd1b9`
+- **⬇ Download Single-TIFF Portal ZIP (`-zeros.zip`, `105,724 B`):** [`docs/downloads/gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.zip`](docs/downloads/gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.zip)
+  - SHA-256: `512ab1fcf850485c006324d6620a474ca35fe2180cf0615461b44cadc4a6c9b2`
+- **⬇ Download Twin NaN-Outside GeoTIFF (`-nan.tif`, `336,646 B`):** ``docs/downloads/gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-nan.tif`` (diagnostic reference only; no download link)
+  - SHA-256: `0cf731f58b4450c5407bff6a0585b9151d95dc1703414775031b526960260bb2`
+- **Reference DrivenData Name (not cleared):** `gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros`
+- **Reference DrivenData Note (`138 / 140` chars, not cleared):** `H77D zero-SGMC scarp+hydro+LOCO mechanics OOF + 300m submodular (37654 dots); HOLDOUT-DTI 0.1501 (s30) / 0.1403 (s20) vs 0.1093 prior best`
 
-![H77E Dual-Seed Holdout and 816-Raster Uniqueness Benchmark](docs/assets/h77e/fig1_h77e_holdout_and_uniqueness.png)
+### Hypothesis for the owner-reported H33 0.2778, and how H77D avoids SGMC inputs
 
-![H77E Cross-Fitted Nevada Propensity Surface and Blind Central Nevada Fault Recovery](docs/assets/h77e/fig2_h77e_nevada_surface_and_zoom.png)
+1. **Metric algebra (owner-reported family file scores vs a public leaderboard row are different evidence classes):**
+   Under the template's `DTI = T / (0.2·(T + S − M) + 0.8·K)` (`α = 0.2`, `β = 0.8`, `300 m = 3 px` triangular kernel), a dot pays for itself in this simplified model when marginal kernel credit exceeds `α·DTI ≈ 0.0556`, assuming a score of 0.2778. Raster inspection confirms H33 has 37,654 dots and prunes those ≤2 px from the mapped catalogue; *whether that caused 0.2778 for those bytes has no organizer receipt*. Numbers such as `K ≈ 10,366` and `~0.125` credit/dot are **INSTRUMENT** model estimates, not observed hidden-label counts.
+2. **Why `H77D` Uses `0` SGMC Channels + Fixes Missing LiDAR + Adds 12-Bit `LOCO` & 300 m Submodular Cover (`IR-77D-01`–`04`):**
+   - **Zero SGMC Contamination:** Pure SGMC lithologic/fault contact submissions scored **`0.0360–0.0512` live (`OWNER-REPORTED`)** because Paleozoic/Mesozoic thrust and intrusive contacts are inactive non-targets; mixing 50% SGMC contacts dragged `GEMSDOE70` down to `0.2478` despite real off-support fault discovery (`+0.13` residual). `H77D` removes **100% of SGMC inputs**, making it completely orthogonal to SGMC-using ensembles (`0.4068` forward overlap vs `H77-Step`, `surf |ρ| = 0.0930`).
+   - **`IR-77D-01` (`q == 0 -> NaN` Missing-LiDAR Fix):** `raw_lidar_derivs.tif` encodes missing 1 m LiDAR survey coverage across **24.6% of Nevada (`1,272,913` cells)** as `uint8 == 0` instead of `NaN`. Fixing `q == 0 -> NaN` + seamless 10 m 3DEP scarp-toe bridging adds **`+0.01479` `[+0.00780, +0.02194]`** causal `HOLDOUT-DTI`.
+   - **`IR-77D-02` (Unweighted DTI Live Inversion, `INSTRUMENT`):** Removing PR #6's `(0.2·T + ...)` row weighting uncovers **12.1× above-bar off-support density on road-deconfounded scarps (`max_h = 0.0594`)**, **5.5× on potential-field cross-gradients (`ΔMSE CI95 [-1.7e-5, -1.0e-6]`)**, and **4.0× on DOE GDR 1391 hydrothermal conduits (`max_h = 0.0197`)**.
+   - **`IR-77D-03` (12-Bit `LOCO` + Submodular Cover):** Deterministic 12-bit color-coding Leave-Own-Component-Out (`LOCO`) eliminates self-component `d == 0` training collapse (`0.0884 -> 0.15011`), while exact 300 m submodular cover adds **`+0.02070` `[+0.01174, +0.02969]`** over greedy disk thinning on the identical surface (`88` static + `4` `LOCO` = `92` channels; all `92` canaries `≤ 0.8137 ≤ 0.90`).
 
-![H77E Top 15 Closest Informative Rasters Across the 861-Raster Portfolio](docs/assets/h77e/fig3_h77e_top15_informative_overlaps.png)
+### Dual-Seed Whole-Component Spatial Holdout Benchmark (`HOLDOUT-DTI`, `gems57-pooled-hide-v2`, `B = 37,654`)
+
+| Arm | Seed 30 DTI `[95% CI]` (`11,342` withheld px) | Paired `Δ` vs Arm (`Seed 30`) | Seed 20 DTI `[95% CI]` (`11,321` withheld px) | Paired `Δ` vs Arm (`Seed 20`) |
+|---|---|---|---|---|
+| **`H77D_full` (Zero-SGMC + LOCO + Submodular)** | **`0.15011` `[0.1328, 0.1669]`** | — | **`0.14030` `[0.1231, 0.1577]`** | — |
+| `H77D_greedy_alloc` (Same Surface + Greedy Disk) | `0.12941` `[0.1112, 0.1466]` | **`+0.02070` `[+0.0117, +0.0297]`** | `0.12654` `[0.1095, 0.1436]` | **`+0.01376` `[+0.0050, +0.0223]`** |
+| `H77D_mech_only` (LOCO Mechanics View Only) | `0.12809` `[0.1149, 0.1411]` | **`+0.02201` `[+0.0091, +0.0352]`** | `0.12287` `[0.1086, 0.1370]` | **`+0.01743` `[+0.0057, +0.0294]`** |
+| `H77D_no_vismech` (Pure Zero-SGMC Static Physics Only) | `0.11612` `[0.0956, 0.1379]` | **`+0.03398` `[+0.0211, +0.0472]`** | `0.11138` `[0.0906, 0.1321]` | **`+0.02892` `[+0.0169, +0.0410]`** |
+| **`A5_primary_lidar` (Prior Repo Control — PR #5)** | `0.10812` `[0.0913, 0.1257]` | **`+0.04198` `[+0.0238, +0.0594]` (`+38.8%`)** | `0.10930` `[0.0910, 0.1281]` | **`+0.03100` `[+0.0151, +0.0476]` (`+28.4%`)** |
+| `A4_primary` (PR #4 ContactPhys) | `0.11044` `[0.0917, 0.1304]` | **`+0.03967` `[+0.0220, +0.0574]`** | `0.10720` `[0.0884, 0.1266]` | **`+0.03310` `[+0.0174, +0.0497]`** |
+| `A2_standard` (19-Band GeoDAWN + Terrain + Rad) | `0.10392` `[0.0859, 0.1222]` | **`+0.04619` `[+0.0273, +0.0648]`** | `0.10002` `[0.0819, 0.1187]` | **`+0.04028` `[+0.0243, +0.0568]`** |
+| **`A0_h195_foldfair` (Fold-Fair `H33` `0.2778` Champion)** | `0.09715` `[0.0844, 0.1100]` | **`+0.05296` `[+0.0378, +0.0680]` (`+54.5%`)** | `0.09574` `[0.0825, 0.1090]` | **`+0.04455` `[+0.0303, +0.0586]` (`+46.5%`)** |
+| `A0_random` (Uniform Random Allowed Dots) | `0.04963` `[0.0442, 0.0554]` | **`+0.10048` `[+0.0837, +0.1169]` (`3.02×`)** | `0.05109` `[0.0454, 0.0568]` | **`+0.08921` `[+0.0725, +0.1066]` (`2.75×`)** |
 
 ---
 
-# Original project request — standing instructions
+## Archived Candidate — `H77-Step` (`0.1527` `HOLDOUT-DTI`, PR #9 Summary; Not Approved to Submit)
 
-Read this request and `registry/preregistration.json` at the beginning of every project session. The text below preserves the user's project request (not the Arena branch-status wrapper). It is context, not evidence that any scientific or leaderboard claim has been verified.
+> **NOT OK TO SUBMIT. OK to download for inspection.** Fails the binding literal registry-uniqueness gate (`1.000` overlap on full-footprint witness `ab0a0a62` plus `post_placement_dots_max_forward_3px_overlap_real_models = 0.734989 > 0.70` in `evidence/h77/run_card.json`) and has no selector approval.
+
+- **File:** [`docs/downloads/gems77-step-propensity-submod300.tif`](docs/downloads/gems77-step-propensity-submod300.tif) (`SHA-256: f55105a091281be14957fff2f5aad9a85fa5b1acc31558e9fcd2aae9fdd588b0`, `34,625` discrete dots, `15/15` validator checks `PASS`, [Full Portal](docs/h77-step.html), [Exec Brief](docs/h77-step-executive-summary.html)).
+- **Comparison with `H77D`:** `H77-Step` recorded `0.1527` `HOLDOUT-DTI` (`[0.1315, 0.1752]`, 11,321 withheld positives) using anisotropic Radon step purity + LightGBM/HGB ensemble, while `H77D` recorded `0.1501` (`Seed 30`) / `0.1403` (`Seed 20`) with `0` SGMC channels; their pairwise 3-px forward overlap is `0.4068` (`mutual = 0.3938`), but neither file is cleared for competition upload.
+
+---
+
+## ⬇ H78 lane (newest, 2026-10-21): lidar scarp consensus, uniqueness-capped allocation
+
+> **NOT OK TO SUBMIT. OK to download for inspection.** The file is format-valid and unique under the informative reading. It fails the binding literal uniqueness rule, but only on space-filling rasters (repository policy I17). Its holdout is negative.
+
+**[Download `gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros.tif`](docs/downloads/gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros.tif)** (151,428 B)
+
+- sha256 `4571e767757be95e3fb70b4afb05e45528b1cfd74147e168c36253b1247f1c47`
+- The same file as a one-TIFF zip: [`…-zeros.zip`](docs/downloads/gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros.zip)
+- A NaN-outside twin, bit-identical inside the footprint (reference only): ``…-nan.tif`` (diagnostic reference only; no download link)
+
+| Question | Answer |
+|---|---|
+| OK to download? | **Yes, for inspection.** |
+| Would the portal accept the format? | **Probably, but do not upload it.** It passes 17/17 local checks against the official grid and footprint: every cell finite, binary {0, 1}, no nodata tag, EPSG:32611, 3730×3292 with the official transform. This is the encoding of the GEMSDOE32 file that the owner reports scored 0.2778. Local checks are not an organizer receipt. The shared template validator flags only its known footprint mismatch: it derives the footprint from a feature band, not from `sample_submission.tif`. This is the same result as the LIA file; see `src/gems77lia/validate.py`. |
+| Unique? | **No under the binding literal rule:** 44 final-dot firings, every one on a space-filling raster (I17). **Yes under the informative reading** (diagnostic only) of the shared template tool, against 839 rasters: the 812-raster registry, plus GEMSDOE73–76 at clone time, plus this repository). Worst Spearman ρ is 0.369 on the placement surface and 0.639 on the final dots (limit 0.90; the 0.639 is against the LIA file, which shares the on-support construction). Worst dot overlap is 0.660 (limit 0.70), against `19GEMSDOE__h19-5-powerlaw-budget-multiline`. Jaccard firings: 0. Identical decoded rasters: 0. Every literal-reading firing (44) is one of the 44 space-filling rasters: their 3 px halo covers ≥ 70% of allowed cells, so even random dots exceed 0.70 against them. Six registry files were unreadable or off-grid. |
+| Will it beat 0.2778? | **Not expected. Run verdict: NEGATIVE** (pre-registered rule). The INSTRUMENT S0 projection is 0.2450, against 0.2881 for the 0.2778 champion. On HOLDOUT-DTI (gems57-pooled-hide-v2, 11,321 withheld positive pixels) it scores **0.0708** [0.0600, 0.0816], against **0.0958** [0.0830, 0.1084] for the champion construction rebuilt per fold. The difference is Δ −0.0250, 95% CI [−0.0301, −0.0202]. **Do not spend a slot on it.** |
+
+**Form fields** (for reference only; the file is not cleared)
+
+- **Name:** `gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros`
+- **Note** (110/140): `GEMSDOE77 H78: 66% H19-5 support (S0 credit) + 34% 1m-lidar scarp-consensus dots, 38301 binary, 0 on catalogue`
+
+**Links:** [Start here (site)](https://buffedlizard55-lab.github.io/GEMSDOE77/docs/index.html) ·
+[How to submit (general)](https://buffedlizard55-lab.github.io/GEMSDOE77/docs/executive-summary.html) ·
+[H78 lane page](https://buffedlizard55-lab.github.io/GEMSDOE77/docs/h78.html) ·
+[run card](evidence/h78_run_card.json)
+
+### H78: what was tried and what it showed
+
+**Hypotheses.** The hypotheses were written before any experiment, in `registry/preregistration_h78.json` (commit edf23b9), and ranked by expected DTI gain ÷ cost:
+
+1. **H78-1: lidar scarp consensus.** Uses 7 operators of `lidar_scarp_features_u8`, derived from [USGS 3DEP](https://www.usgs.gov/3d-elevation-program) 1 m DEM tiles (free, no use restrictions). A young normal-fault scarp is a linear slope break with a free face, a convex crest and a concave toe. Scarps below the mapping scale of the Quaternary fault catalogue are visible at 1 m: INGENIOUS used UAV lidar for exactly this ([Hardwick et al. 2025](https://pangea.stanford.edu/ERE/db/GeoConf/papers/SGW/2025/Hardwick.pdf)). Earlier lanes used single lidar operators as dense surfaces. H78 uses the consensus only to rank the off-support dots inside a uniqueness-capped allocation.
+2. **H78-2: geothermal manifestation proximity.** Distance to hot or warm wells and springs. The data is the "Well and Spring Temperature and Chemistry" resource of [GDR 1391, the INGENIOUS Great Basin Regional Dataset Compilation](https://gdr.openei.org/submissions/1391) (DOI 10.15121/1881483, CC BY 4.0). Upflow marks blind faults that have no scarp.
+3. **H78-3: regional mapping heterogeneity.** 3×3 region blocks.
+4. **H78-4: single lidar operators,** as sensitivity rows.
+
+**Experiments** (budget: 3).
+
+| Exp | Test | Result |
+|---|---|---|
+| E1 | Split the off-support bins of the S0 live-score model by each field (LOO over 95 organizer-scored rasters) | **Negative.** No field is live-supported: the lidar consensus has LOO ΔMSE < 0, and the thermal and region fields get zero weight. |
+| E2 | The same, within the support. A post-hoc amendment, committed before it ran. | **Negative.** No field is live-supported. |
+| E3 | Pre-registered build, then a 4-fold hide-and-recover holdout, a leakage canary and the uniqueness audit | **Negative.** C 0.0708 vs champion construction 0.0958. C beats lidar-alone (0.0597; Δ +0.011, CI includes 0) and random dots (0.0480; Δ +0.023, CI > 0). Canary: max AUC 0.755 (visible-catalogue proximity), so no leakage. |
+
+**Why it ties the LIA file.** The uniqueness rule forces ≥ 30% of the dots more than 3 px from H19-5. Neither the live scores nor the holdout show credit there for any field measured so far. As a result, every uniqueness-capped build converges to S0 ≈ 0.245, whatever field orders its off-support dots: LIA's straight edges give 0.2450, and H78's lidar consensus also gives 0.2450.
+
+**Mimic.** Non-fault features with the same lidar profile can light the consensus:
+- pluvial Lake Lahontan shoreline benches;
+- fluvial terrace risers and fan-incision banks;
+- road cuts and canal banks.
+
+**Reproduce** (after `scripts/lia_restore_data.py`, `scripts/fetch_registry.py`, `scripts/build_cache.py`):
+
+```
+.venv/bin/python scripts/h78_e1_screen.py
+.venv/bin/python scripts/h78_e2_within_support.py
+.venv/bin/python scripts/h78_e3_build_and_holdout.py     # ~12 min, 2 CPUs
+.venv/bin/python scripts/h78_build_submission.py
+.venv/bin/python scripts/h78_uniqueness.py phase1 & .venv/bin/python scripts/h78_uniqueness.py phase2; wait
+.venv/bin/python scripts/h78_uniqueness.py merge && .venv/bin/python scripts/h78_run_card.py
+.venv/bin/python scripts/build_site.py && .venv/bin/python scripts/build_home.py
+```
+
+The irregularities are IR-78-01 to IR-78-06 in [`docs/irregularities.md`](docs/irregularities.md).
+
+**Site layout (since H78).** `docs/index.html` (Start here) and `docs/executive-summary.html` (how to submit) are generated
+by `scripts/build_home.py` from `docs/data/lanes.json`. They show every file with the same checks: format, literal and
+informative uniqueness, holdout, selector. The selective-U pages moved to `docs/urank*.html`. CI runs `build_site.py`,
+then `lia_build_site.py`, then `build_home.py`, so one lane's page no longer overwrites the entry page (IR-78-06).
+
+**Next (H78 finding).** Every uniqueness-capped build sits at S0 ≈ 0.245, whichever field orders its ≥ 30% off-support
+dots (straight edges in LIA, lidar consensus in H78). No measured field yet earns credit off the H19-5 support. Do not
+re-tune H78 or LIA. The literal-rule contradiction (space-filling registry rasters) needs one shared protocol-owner
+decision before any file in this repository can be cleared.
+
+---
+
+
+## 1. Archived family-model forensic hypotheses for owner-reported 0.2778 and 0.2478; H77-Step local HOLDOUT-DTI evidence
+
+> The archived numerical family score differences below are **OWNER-REPORT**, not file-specific organizer receipts. Correlation of raster construction and those numbers does not establish a causal response or locate a true hidden fault. For the newly measured H77L result and verified-source conclusions, see [the current three-pass review](docs/review-2026-10-21-h77l.md).
+
+1. **Why the `GEMSDOE32` H33 bytes are a plausible explanation if the owner's `0.2778` OWNER-REPORT file-to-score attribution is correct:** The public leaderboard lists `0.2778 ORGANIZER-CONFIRMED` for *extradr19* at **row #48**, but does not identify the underlying GeoTIFF; GEMSDOE32's public page says it lacks a receipt for that file. The mechanism below is raster/metric analysis, not verified causal score attribution.
+   - **2D Spatial Backbone + 4-Line Multi-Physics Ridge (`5GEMSDOE` `0.1563` → `16GEMSDOE` `0.1855` → `19GEMSDOE H19-5` `0.1922`):** Combined 4-fold OOF `ResNet34` U-Net spatial encoders with 48 multi-sensor scarp/geophysical channels and 4-line multi-physics corroboration (`L1` crack tips, `L2` geothermal wells/springs, `L3` openness, `L4` strike worms) thinned to 1-px ridges.
+   - **Discrete `D2.8` kernel spacing + ≤200 m mapped-fault-collar pruning (OWNER-REPORT family figures: `GEMSDOE25` `0.2600`, `GEMSDOE28` `0.2708`, `GEMSDOE32` `0.2778`, `GEMSDOE33` `0.2647`):** About 300 m between isolated dots can reduce false-positive mass while still crediting nearby hidden truth under the 300 m triangular kernel. Exact removal of 6,436 near-catalogue dots is confirmed from archived raster bytes (`evidence/prior_forensics.json`), **not** the purported +0.0178 leaderboard change. These unmatched owner-reported differences cannot prove a particular fault distance is optimal or that catalogue-adjacent dots are pure false positives.
+
+2. **Four proposed failure mechanisms for prior pure-ML (GEMSDOE70 P8 `0.2478` OWNER-REPORT), with local H77-Step interventions — not an authenticated leaderboard causal attribution:**
+   - **Purged Falsified `SGMC` Bedrock Targets (`IRR-04`):** The owner's `GEMSDOE72` (`0.0492` OWNER-REPORT) is consistent with SGMC bedrock contacts being unhelpful proxies in that construction, not proof that all contacts are ancient or inactive. `H77-Step` enforces **`0.0%` `SGMC` weight**.
+   - **Solved the Spatial PU Self-Distance Tautology via 5-Bucket `V-LBCO` (`IRR-03`):** Computing distance features directly from `V` sets `d(x, V) ≡ 0` on 100% of training positives, collapsing tree splits (`0.1122` vs **`0.1527`** `HOLDOUT-DTI`). **Voronoi Leave-Bucket-of-Components-Out (`V-LBCO`)** holds out `20%` of connected fault strands per basin during training so trees learn genuine **Pollard & Segall (1987) directional crack-tip cones** and **orphan hydrothermal upflow conduits**.
+   - **Anisotropic Hanging-Wall/Footwall Step Purity (`H77-1`) & Multi-Azimuth Radon Worms (`H77-3`):** Distinguishes one-sided normal-fault steps backed by `+400 m` downdip gravity/basement drop from horizontal Pleistocene Lake Lahontan (`1332 m`) / Bonneville (`1463/1552 m`) wave-cut terrace risers and symmetric desert washes, fused across `HGB + colsample LightGBM`.
+   - **Flank-Zeroed Crest-Centered `300 m` Submodular Packing (`H77-4`):** Zeroing `q_pad` strictly outside `allowed_mask` reduces wasted `<= 2.5 px` collar dots **`15×`** (`6,415` → **`431`**) and restores full `5,167,373`-pixel survey coverage (`3.19%` edge dots vs `0.00%` in `P8`).
+
+![Live Leaderboard Forensics and Preregistered Holdout Ablation](docs/assets/fig1_forensics_and_ablation.png)
+
+![Spatial Posterior Field and Structural Step Zoom](docs/assets/fig3_spatial_posterior_and_zoom.png)
+
+---
+
+## 2. Local-template `H77-Step` Parallel-Run Card (`evidence/h77/run_card.json`; not an organizer receipt — Superseded by `submission-authorization.json`)
+
+> **Audit Reconciliation Note:** The JSON excerpt below accurately reflects the frozen historical fields in `evidence/h77/run_card.json` (including `"post_placement_dots_max_forward_3px_overlap_real_models": 0.734989`, `"verdict": "promote"`, and `"safe_to_download_and_submit": true`). Per [`docs/review-2026-10-21.md`](docs/review-2026-10-21.md) and [`docs/data/submission-authorization.json`](docs/data/submission-authorization.json), those historical promotion booleans are **superseded** (`"decision": "NOT OK TO SUBMIT"`, `"historical_promotion_conflict": true`) because literal uniqueness fails and no selector approval exists.
+
+```json
+{
+  "schema": "gems-parallel-run-card-v1",
+  "lane_repo": "buffedlizard55-lab/GEMSDOE77",
+  "branch": "arena/cbecbf6a-gemsdoe77",
+  "hypothesis": "H77: Anisotropic Hanging-Wall/Footwall Dip-Slip Monotone Step Purity & Dip-Shifted Subsurface Concordance + Voronoi Leave-Bucket-of-Components-Out (V-LBCO) Crack-Tip Self-Supervision + SAR-PU Piedmont Reweighting + Multi-Azimuth Radon Continuity + Flank-Zeroed 300 m Submodular Packing",
+  "named_non_fault_mimicking_process": "Pleistocene Lake Lahontan (1332 m) & Lake Bonneville (1463/1552 m) wave-cut terrace risers and symmetric V-shaped ephemeral desert washes/arroyos",
+  "holdout_dti": {
+    "evidence_label": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "pooled_hide_v2": {
+      "withheld_positive_pixels": 11321,
+      "score": 0.152718,
+      "ci_95": [0.131548, 0.175185],
+      "matched_37654_dots_score": 0.151581,
+      "h33_fold_fair_score": 0.096086,
+      "delta_vs_h33_fold_fair": 0.056632,
+      "delta_vs_h33_fold_fair_ci_95": [0.042846, 0.07204]
+    },
+    "blind_4_quadrant_province": {
+      "withheld_positive_pixels": 57448,
+      "score": 0.185834,
+      "ci_95": [0.161898, 0.209307],
+      "h19_5_score": 0.163942,
+      "delta_vs_h19_5": 0.021891,
+      "delta_vs_h19_5_ci_95": [0.004028, 0.039154]
+    }
+  },
+  "leakage_canary": { "features_tested": 99, "max_single_feature_auc": 0.79343, "ceiling": 0.90, "pass": true },
+  "uniqueness_vs_registry": {
+    "canonical_62_rasters_unique": true,
+    "portfolio_rasters_scanned": 326,
+    "pre_placement_surface_unique": true,
+    "pre_placement_surface_max_spearman": 0.402716,
+    "post_placement_dots_unique": true,
+    "post_placement_dots_max_spearman": 0.106775,
+    "post_placement_dots_max_mutual_3px_overlap": 0.49331,
+    "post_placement_dots_max_forward_3px_overlap_real_models": 0.734989,
+    "post_placement_dots_max_jaccard": 0.037516
+  },
+  "submission_raster": {
+    "path": "submissions/gems77-step-propensity-submod300.tif",
+    "pages_download": "docs/downloads/gems77-step-propensity-submod300.tif",
+    "sha256": "f55105a091281be14957fff2f5aad9a85fa5b1acc31558e9fcd2aae9fdd588b0",
+    "bytes": 134925,
+    "all_checks_passed": true,
+    "min_value_entire_raster": 0.0,
+    "max_value_entire_raster": 1.0,
+    "nan_count_entire_raster": 0,
+    "emitted_dots": 34625
+  },
+  "submission_name": "gems77-step-propensity-submod300",
+  "submission_note": "GEMSDOE77: HW/FW dip-slip step tensor + V-LBCO crack-tip mechanics + Radon multi-scale ensemble + flank-zeroed 300m submod",
+  "verdict": "promote",
+  "safe_to_download_and_submit": true
+}
+```
+
+Full treatise: [`knowledge/01_why_02778_and_path_to_04413.md`](knowledge/01_why_02778_and_path_to_04413.md) · Full audit & irregularity log: [`evidence/irregularities.json`](evidence/irregularities.json) · Prior lane reports: [`docs/lia.html`](docs/lia.html), [`docs/contactphys.html`](docs/contactphys.html), [`docs/audit.html`](docs/audit.html).
 
 ---
 

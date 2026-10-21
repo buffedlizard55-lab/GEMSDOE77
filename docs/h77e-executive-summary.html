@@ -1,0 +1,56 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>H77E submission guide · GEMSDOE77</title>
+<meta name="description" content="Exactly how a promoted GEMSDOE77 file would be submitted — and why the H77E file must not be.">
+<link rel="stylesheet" href="assets/lia.css"></head><body>
+<header><div class="wrap"><span class="brand">GEMSDOE77 · DOE GEMS Prize</span><a href="index.html">Start here</a> <a href="executive-summary.html">How to submit</a> <a href="h77e.html">H77E lane</a> <a href="h77e-executive-summary.html" class=here>H77E guide</a>
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE77">GitHub</a></div></header><main><div class="wrap"><h1>H77E executive summary: how submission works (and why this file must not be submitted)</h1>
+<p class="verdict"><b>Can I submit the H77E file? No. Do not upload it.</b> Selector: not approved.
+It is holdout-negative (0.1305/0.1342 HOLDOUT-DTI vs the repo best 0.15272), a final-dot duplicate
+is logged against the checked registry, and protocol uniqueness is false. <b>Can I download it?
+Yes</b> — for inspection and research: <a href="downloads/gems77-h77e-ucpeuler-ctx-37654dots-20261021-22873551-zeros.tif" download>download the .tif</a>
+(sha256 <code>2269b714c78262a8d45dbd5eb02290a27ec9b99afe02340e343f5cb1ac7c58f3</code>) or the
+<a href="downloads/gems77-h77e-ucpeuler-ctx-37654dots-20261021-22873551-zeros.zip" download>one-TIFF .zip</a>.
+The steps below explain exactly how a <i>future promoted</i> file from this repository would be
+entered into the contest, so the process is unambiguous when the selector approves one.</p>
+
+<h2>How to submit a promoted file (only when the selector says so)</h2>
+<ol>
+<li>On the repository start page, confirm the file's row says <b>OK to submit</b> and the selector
+chip says approved. (No current file does; every file today says Not OK to submit.)</li>
+<li>Download the <code>-zeros.tif</code> file (or its one-TIFF <code>.zip</code>) from its lane page.
+Do not use a <code>-nan.tif</code> twin — those are diagnostics.</li>
+<li>Check the sha256 on the lane page matches your download, and note the exact
+<b>submission name</b> and ≤140-character <b>Note</b> text given there.</li>
+<li>Go to the DrivenData competition's <b>New submission</b> page
+(<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">competition home</a> →
+Submissions → New submission). The form accepts a single-band GeoTIFF (<code>.tif</code>) or a
+<code>.zip</code> containing a single GeoTIFF, matching the submission format's CRS, shape and
+geotransform.</li>
+<li>Choose the downloaded file under <b>File to submit</b>. Paste the Note text into the
+<b>Note</b> field (a short comment to tell submissions apart later). Keep the downloaded file name
+as-is so it matches the recorded name.</li>
+<li>Click <b>Create submission</b>. If the portal returns
+<i>"Predicted values must be in range [0, 1]"</i>, stop: that file is not the all-finite
+<code>-zeros.tif</code> (this repo's writer guarantees finite values in [0,1], nodata=None, and
+re-validates on disk; report the file name and hash instead of trying another variant).</li>
+<li>Record the organizer score from the submission page/leaderboard as
+<b>ORGANIZER-CONFIRMED</b> with its receipt. A local HOLDOUT-DTI or a projection is never a score.</li>
+</ol>
+
+<h2>What was generated in this lane, in one screen</h2>
+<ul>
+<li><b>Unique TIF:</b> <code>gems77-h77e-ucpeuler-ctx-37654dots-20261021-22873551-zeros.tif</code> —
+37,654 binary dots, single-band float32, EPSG:32611, 3730×3292, values {0,1}, 0 NaN, 0 on catalogue.
+Local validator: PASS (see the <a href="h77e.html">H77E lane page</a>).</li>
+<li><b>Unique vs H33?</b> Yes by bytes and pixels (overlap 0.279, |ρ| 0.010 vs H33), but
+<b>not protocol-unique overall</b>: 0.835 of dots within 3 px of GEMSDOE67's ml-cover raster
+(&gt; 0.70 limit) → duplicate logged, lane stopped.</li>
+<li><b>Expected score?</b> None claimed. HOLDOUT-DTI 0.1305/0.1342 is a local hide-and-recover
+number, not a leaderboard projection, and it is below the bar set by earlier lanes.</li>
+</ul>
+</div></main>
+<footer><div class="wrap">Selector status for every file on this site: <b>not approved</b>. Whether to spend a
+weekly slot is a separate selector decision, not this repository's. Number labels: <b>ORGANIZER-CONFIRMED</b>,
+<b>HOLDOUT-DTI</b>, <b>INSTRUMENT</b> (projection, never a score).</div></footer>
+<script>document.querySelectorAll('button[data-copy]').forEach(b=>b.onclick=()=>{navigator.clipboard.writeText(b.dataset.copy);b.textContent='Copied';setTimeout(()=>b.textContent='Copy',1200)})</script>
+</body></html>

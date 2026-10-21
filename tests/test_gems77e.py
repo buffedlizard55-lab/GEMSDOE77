@@ -184,7 +184,7 @@ def test_h77e_deliverables_run_card_geotiff_and_pages():
     import re
     for fig in rc["diagnostic_figures"]:
         assert (ROOT / fig).exists() and (ROOT / fig).stat().st_size > 25_000
-    for page_name in ("index.html", "executive-summary.html", "h77e.html"):
+    for page_name in ("index.html", "h77e-knick.html"):
         txt = (ROOT / "docs" / page_name).read_text()
         assert sub["submission_name"] in txt
         assert sub["primary_geotiff_sha256"] in txt

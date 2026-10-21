@@ -1,44 +1,113 @@
-# Candidate Geological Hypotheses for `GEMSDOE77` — Session `H77E` (2026-10-21)
+# GEMSDOE77 Lane H77E — candidate geological hypotheses (ranked BEFORE experiments)
 
-**Status:** Locked prior to running any `H77E` model, holdout evaluation, or dot allocation (`registry/preregistration_h77e.json`).
-**Protocol constraints:** Parallel-Run Protocol Rules 1–6 (`<= 3` experiments, `<= 2` hours, single-feature leakage canary `<= 0.90` symmetric ROC-AUC before trusting any holdout result, unmodified `vendor/gems57` evaluator `gems57-pooled-hide-v2` and `submission_writer.py`, fail-closed uniqueness checks before AND after dot placement, and zero `SGMC` bedrock channels).
+*Written 2026-10-21 before Exp 1 of lane H77E. This session's brief contained no
+identifiable single method paragraph (same irregularity as IR-77-06), so the lane
+is self-declared here and in `registry/preregistration_h77e.json` BEFORE any
+experiment. Evidence classes: **[OFFICIAL]** organizer/USGS/peer-reviewed source ·
+**[MEASURED]** computed in this repo from SHA-pinned bytes · **[OWNER-REPORT]**
+family ledger without organizer receipt.*
 
----
+Competition anchors (unchanged): predict faults **not** in the USGS/INGENIOUS
+catalogue; metric = distance-weighted Tversky (DTI), α=0.2, β=0.8, triangular
+kernel R=300 m; grid EPSG:32611, 100 m, 3730×3292 **[OFFICIAL]**
+(https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/).
+Family best `h33-h33-2-b2…-zeros` = 0.2778 **[OWNER-REPORT]**; public leader
+0.4413 **[OFFICIAL leaderboard snapshot in README]**. Current holdout best in
+this repo: H77-Step 0.15272 HOLDOUT-DTI (gems57-pooled-hide-v2, seed 20) and
+H77D 0.15011 (seed 30) / 0.14030 (seed 20) — promotion bar for this lane.
 
-## 1. Forensic Synthesis: Why `GEMSDOE32` Scored `0.2778` and Why Both `H77-Step` and `H77D` Left Real Signal on the Table
+## Ranked candidates
 
-1. **Metric & Live Leaderboard Forensics (`95` owner-reported family submissions; `2026-10-21` DrivenData public leaderboard snapshot `#1` `0.4413` `xiaofanhu` `ORGANIZER-CONFIRMED`, `#5` prize cutoff `0.3539` `ORGANIZER-CONFIRMED`, row `#48` `0.2778` `extradr19` `ORGANIZER-CONFIRMED`; attribution of `0.2778` to `GEMSDOE32` `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros` is `OWNER-REPORTED`):**
-   - Under the official **Distance-Weighted Tversky Index (`DTI`)** (`α = 0.2`, `β = 0.8`, `R = 300 m = 3.0 px` triangular kernel $K(r) = \max(0, 1 - r/3)$):
-     $$\mathrm{DTI}(D, H) = \frac{T(D, H)}{T(D, H) + 0.2\,\mathrm{FP}_w(D, H) + 0.8\,(|H| - T(D, H))} = \frac{T(D, H)}{0.2\,T(D, H) + 0.2\,\mathrm{FP}_w(D, H) + 0.8\,|H|}.$$
-   - A continuous 1-px ridge trace (`19GEMSDOE` `H19-5`, `121,131` px, `0.1922` `OWNER-REPORTED`) pays full false-positive weight for three adjacent pixels that redundantly cover the same `300 m` neighborhood. Discretizing to isolated dots spaced `~2.8–3.0 px` (`GEMSDOE25`: `0.2600`, `+0.0678`) retains `~78%` of true-positive triangular kernel overlap at `1/3` the false-positive mass (`~2.33×` kernel efficiency).
-   - Pruning dots within `d_cat <= 2.0 px` (`200 m`) of mapped faults (`GEMSDOE32`: `0.2778` vs `GEMSDOE28` `<= 100 m`: `0.2708` vs over-clipped `GEMSDOE33` `<= 300 m`: `0.2632`/`0.2647`) removed mapped-scarp flank jitter without losing real unmapped splay/bench strands starting immediately beyond `200 m` (`d_cat > 2.0 px`).
+### H77E-1 (rank 1 — PRIMARY LANE) — Upward-continuation persistence + Euler depth coherence of potential-field source edges
+- **Layers:** `training_features.tif` band 2 (`rtp`), band 14 (`tmi`), band 13
+  (`iso_grav_anom`), band 3/9 (`tmi_hg`/`tmi_vg`, measured/derived gradients).
+  Band 6 is **not** used as "tilt": it is radiometric total count **[MEASURED,
+  evidence/band6_resolution.json]**.
+- **Physical signature:** Fourier upward continuation of RTP and isostatic
+  gravity to h = 200/400/800 m (`exp(-|k|h)` — continuation suppresses shallow
+  short-wavelength sources and retains deep sources [1](https://wiki.seg.org/wiki/Dictionary:Upward_continuation));
+  at each height, analytic-signal / horizontal-gradient edge strength,
+  percentile-normalised per height; **persistence** = mean edge strength across
+  heights and **deep edge** = 800 m edge strength. Euler deconvolution
+  (structural index 0, contact) on RTP gradients (Reid et al. 1990,
+  *Geophysics* 55, 80–91, DOI 10.1190/1.1442774 [2](https://chooser.crossref.org/?doi=10.1190%2F1.1442774)):
+  windowed least-squares source locations with depth 50–1500 m, rasterised as
+  solution density and depth coherence (local depth agreement). Cross-field
+  term = elementwise minimum of magnetic and gravity persistence (an edge must
+  survive in **both** fields).
+- **Why a catalogue-missing fault:** an intrabasin normal fault buried under
+  100–1500 m of alluvium has no scarp for surface/Qfaults mapping, but it offsets
+  magnetic, dense basement; that offset is a **deep** source, so its edge
+  persists under upward continuation while shallow lithologic/cultural edges
+  fade. An expert mapping from GeoDAWN aeromagnetics can draw it; the legacy
+  surface catalogue cannot contain it.
+- **Named non-fault mimic:** intrusive/lithologic basement contacts and caldera
+  margins (also deep, persistent, Euler-coherent — indistinguishable by this
+  signature alone); GeoDAWN survey-block seams (straight, acquisition-parallel,
+  also persistent). These cap the achievable precision and are stated, not hidden.
+- **Difference vs implemented work in this repo:** contact-physics/H77D used
+  native-resolution tilt zero-crossings, analytic signal and cross-gradients as
+  channels inside a broad 88–92-channel HGB; H77-Step "worms" are unsharp-mask
+  high-passes of scarp/gravity/magnetic gradient at native resolution. **No**
+  in-repo lane computes Fourier upward-continued fields at multiple heights,
+  persistence across heights, or an Euler solution-density/depth field.
+  (Family sites outside this repo reported Euler/tilt-worm variants at low
+  live scores — GEMSDOE40 0.0355–0.0984, GEMSDOE42 0.0581 **[OWNER-REPORT]** —
+  which lowers the prior; the registry correlation/overlap gate below is the
+  binding uniqueness test, and a duplicate reading stops this lane.)
+- **Cost:** low–medium (FFT filter bank + vectorised windowed Euler on cached
+  bands; no new data). Validatable locally: yes (hide-and-recover).
 
-2. **Three Exact Forensics Findings Across `H77-Step` (`PR #9`), `H77D` (`PR #12`), and Audit `PR #13` (`docs/review-2026-10-21.md`):**
-   - **Finding A (`PR #13` Real-Model Overlap Violation in `H77-Step`):** `docs/review-2026-10-21.md` documented that `evidence/h77/run_card.json` (`H77-Step`, `0.152718` `HOLDOUT-DTI` on Seed 20) reported `post_placement_dots_max_forward_3px_overlap_real_models = 0.734989 > 0.70`, exceeding the `0.70` sparse-model uniqueness threshold, and was evaluated on Seed 20 without Seed 30 replication.
-   - **Finding B (`H77-Step` Anthropogenic Road & Nonlinear LiDAR Quantization Bugs):** `src/gems77_step/features.py` never loaded `tiger_road_distance_m.tif` (leaving Interstate 80, US-50/95, and railroad embankments un-damped across flat playas) and read `lidar_scarp_features_u8.tif` linearly as `float32(q)` rather than inverting the square-root physical meter scale `xmax * ((q - 1)/254)^2` specified in `lidar_scarp_features.json`.
-   - **Finding C (`H77D` `d > 3.0 px` Over-Exclusion & Untapped 10 m Fluvial Knickpoint + Updip Seismogenic Physics):** Conversely, `H77D` (`0.15011` Seed 30 / `0.14030` Seed 20) excluded `2.0 < d_vis <= 3.0 px` (`200–300 m` splay zone proven valuable by `GEMSDOE32` vs `GEMSDOE33`), omitted anisotropic HW/FW dip-slip step purity + multi-azimuth Radon worms + cross-family `LightGBM` ensembling, and **neither `H77-Step` nor `H77D` ever opened `dem10_chi_100m_u8.tif` (`chan_n`, `knick_n`, `raised_n`, `valid_n`), `dem10_chi_100m_sig_i32.tif` (`branch_signature_global_index_100m`), or projected `55°`-dipping seismogenic hanging-wall microearthquakes (`4–5 km` updip) to the surface fault trace!**
+### H77E-2 (rank 2 — tested as an added block inside Exp 2, not a separate lane) — Fault damage-zone magnetic texture suppression
+- **Layers:** band 2 (`rtp`), band 14 (`tmi`).
+- **Signature:** local roughness (5×5 and 11×11 std of RTP) **suppressed** in an
+  elongated corridor (structure-tensor anisotropy of the roughness field):
+  hydrothermal/magnetite destruction + fractured damage zone smooths the
+  magnetic texture over a 200–500 m wide zone rather than producing a line edge.
+- **Why missing:** a blind fault with no basement offset step can still host a
+  fractured, altered damage zone; surface mapping sees neither scarp nor contact.
+- **Mimic:** thick uniform alluvial cover (also smooths magnetics — the main
+  confounder; basin-wide smoothness must be normalised out by the 11×11/51×51
+  roughness ratio), sedimentary lithologic units.
+- **Difference:** H77D used a single `TMI_up150 − RTP` demagnetisation channel;
+  no in-repo lane uses multi-scale roughness-ratio anisotropy as a block.
+- **Cost:** low. Validatable: yes.
 
----
+### H77E-3 (rank 3 — not implemented unless Exp 2 leaves budget) — Antisymmetric basement-step matched filter
+- **Layers:** band 15 (`depth_to_base_surf`), band 13 (`iso_grav_anom`).
+- **Signature:** for 8 azimuths, the normalised mean difference of basement
+  depth across a 1 km line (hanging-wall minus footwall side), i.e. a matched
+  template for a buried fault step, gated by gravity-step agreement.
+- **Why missing / mimic / difference:** buried step with no surface expression /
+  unfaulted basement palaeo-topography and intrusive margins / H77-Step's step
+  tensor operates on DEM elevation and lidar scarps, contact-physics on tilt
+  coincidence — neither matched-filters the basement-depth field itself.
+- **Cost:** medium (8 azimuth convolutions × 2 fields). Validatable: yes.
 
-## 2. Five Candidate Untried Geological Hypotheses Ranked by Expected DTI Gain ÷ Cost
+### H77E-4 (considered, REJECTED as not new) — Drainage χ / knickpoint lineaments
+Already implemented inside this repo (`CHI_BAND_NAMES` in
+`src/gems77_step/features.py`: chi_step, ksn, log-area). Re-using it would be a
+re-run of the H77-Step lane, which AGENTS.md forbids tuning/re-running.
 
-| Rank | ID | Candidate Hypothesis & Layers Used | Physical Signature Targeted | Why Missing from USGS/INGENIOUS Catalogue & How Distinct in Repo | Named Non-Fault Mimics & Explicit Controls | Expected DTI Gain / Cost |
-| :---: | :--- | :--- | :--- | :--- | :--- | :--- |
-| **1 (Selected)** | **`H77E-1`** | **Coupled Fluvial Knickpoint Wavefronts + De-Quantized Road-Damped HW/FW Dip-Slip Step Tensor + Updip Seismogenic Projection + Exact 12-Bit `LOCO` Multi-Scale Fracture Mechanics + Dinkelbach Submodular Cover**<br>*Official sources (all cached & SHA-verified):* USGS 3DEP 10 m `dem10_chi_100m_u8.tif` (`chan_n, knick_n, raised_n, valid_n`), `dem10_chi_100m_i16.tif`, `dem10_chi_100m_sig_i32.tif`, `topo_10m_derived_100m_u8.tif`; USGS 3DEP 1 m `lidar_scarp_features_u8.tif` + `.json` + `dem1m_high_prior_openness_lrm.npz`; US Census `tiger_road_distance_m.tif`; `training_features.tif` (19 bands) + USGS GeoDAWN `geodawn_rad_u8.tif` / `geodawn_extensions_u8.tif`; DOE GDR 1391 `gdr_wellspring_in_footprint.csv` (`dist_known_fault_px` forbidden), `2m_temperature_probe_INGENIOUS_regional_data.zip`, `paleo_geothermal_regional.zip`, `gdr_volcanic_vents_in_footprint.csv`; fold-strict `visible` mask (`0` `SGMC`). | **(1)** Strike-collinear ephemeral wash knickpoint concentration `knick_n / (chan_n + 1)` (`Radon_6az`) + drainage branch signature jumps + upthrown/impounded cell contrast `raised_n / (valid_n + 1)`; **(2)** square-root de-quantized, `TIGER`-road-damped 1 m LiDAR scarp height/dipole fused with cross-strike elevation step purity and `+400 m` hanging-wall basement/gravity throw; **(3)** `4.5 km` (`45 px`) updip surface projection of `55°`-dipping hanging-wall microseismicity (`ieq_n100a15`, `exp(-deq/6)`); **(4)** exact deterministic 12-bit `LOCO` multi-scale Pollard crack-tip cones (`1.4 km` & `3.8 km`), `d1 × d2` en-échelon relay step-overs, and strain deficit; **(5)** Dinkelbach marginal-DTI crest-centered `300 m` submodular cover on `d_vis > 2.0 px`. | Unconsolidated alluvial scarps diffuse within `5–15 kyr` (missed in 1:250k photo mapping), whereas transient fluvial knickpoints across parallel washes persist `10^4–10^5 yr`, blind intrabasin step-overs (`~39%` of Great Basin geothermal systems; Faulds & Hinz 2015) concentrate `LOCO` relay lobes + geothermometer disequilibrium, and `6–8 km` deep normal-fault microearthquakes sit `4–5 km` downdip in the hanging wall rather than overhead. Fixes `H77-Step`'s `0.7350 > 0.70` sparse overlap, linear-u8 LiDAR bug, and road false positives AND fixes `H77D`'s `2–3 px` splay clipping and missing `chi_u8`/Radon/step physics. | **(a)** Highway/railroad embankments on playas (`TIGER` road distance damping); **(b)** Pleistocene Lake Lahontan (`1332 m`) & Bonneville (`1463/1552 m`) shorelines (equipotential elevation + 1.6 km along-strike variance); **(c)** resistant caprock canyon ledges (downdip basement/gravity step check). | **Highest expected gain (`+0.008` to `+0.020` `HOLDOUT-DTI` over all prior lanes on both Seed 20 & Seed 30)** · Medium CPU cost (`~18 min` total across dual seeds + full map + `840+`-raster audit). |
-| **2** | **`H77E-2`** | **Standalone 10 m Fluvial Tectonic Geomorphology: Knickpoint Wavefronts, Raised Graben Impoundment & Drainage-Branch Divide Discontinuities**<br>*Official source:* USGS 3DEP 1/3 arc-sec DEM (`dem10_chi_100m_u8.tif`, `dem10_chi_100m_i16.tif`, `dem10_chi_100m_sig_i32.tif`). | Per-channel knickpoint density `knick_n / (chan_n + 1)`, signed $\Delta\chi$ step asymmetry `step_max - |step_min|`, $3\times 3$ topological drainage-branch transitions (`sig_i32`), and Radon strike-alignment across adjacent washes. | Seamless `100.0%` Nevada coverage including the `24.6%` 1 m LiDAR gap; catches degraded range-front/piedmont fault strands where surface slope scarps have diffused below photo threshold. Never opened in `GEMSDOE77`; tested directly in Experiment 1 (`E1`) ablation. | Non-tectonic stream capture across drainage divides and differential lithologic erodibility contacts (basalt flows over tuffaceous sediments). | **Moderate standalone gain, strong orthogonal additive gain inside `H77E-1`** · Low cost (`~60 s`). |
-| **3** | **`H77E-3`** | **Shallow Fault-Breccia Magnetite Destruction Wavefield Differential (`RTP_HP - TMI_up150_HP`) × Clay-Cap Margin Conductivity Gradient**<br>*Official sources:* USGS GeoDAWN (`DOI:10.5066/P93LGLVQ`) + `training_features.tif` (`rtp, tmi_hg, tmi_vg, cond_surf`) + DOE GDR 1391 chemical geothermometry. | Laplace upward-continuation depth filter isolating `0–250 m` fault-core oxidation/pyritization troughs co-located with lateral `|\nabla \log \text{cond\_surf}|` clay-cap margins and silica geothermometer excess (`T_SiO2 - T_surf`). | Blind hydrothermal conduits under playa clay/sinter destroy shallow magnetite and alter fault gouge to smectite without preserving a sharp topographic scarp. Distinct from `H77C` (which emitted raw broad conductivity blobs, `0.020` holdout) by targeting narrow cross-gradient edges. Tested in `E1`/`E2`. | Saline evaporite playa brines and reversely magnetized Miocene ash-flow cooling units. | **Moderate gain in geothermal basins** · Low cost (`~45 s`). |
-| **4** | **`H77E-4`** | **Full 3D Relocated Hypocenter Planar RANSAC Fault-Plane Inversion & Surface Trace Projection**<br>*Official free source required:* [USGS ANSS ComCat API](https://earthquake.usgs.gov/fdsnws/event/1/) (`public domain`) or UNR Nevada Seismological Laboratory catalog (`(lat, lon, depth_km, mag)`). | 3D RANSAC plane fitting ($n \cdot x + d = 0$) on $M \ge 1.0$ swarms at `2–12 km` depth extrapolated updip to `z = 0` elevation. | Blind seismogenic faults in the Walker Lane and Central Nevada Seismic Belt rupture at depth with zero mapped surface trace. Competition Bands 10 & 16 discard focal depth; `H77E-1` implements the exact `4.5 km` hanging-wall updip projection achievable from Bands 10 & 16 today while documenting raw 3D hypocenter ingestion (`earthquake.usgs.gov` blocked by sandbox egress allowlist `I08`). | Magmatic/geothermal injection swarms and unaligned diffuse aftershock clouds. | **Moderate regional gain where seismic networks are dense** · Medium cost (requires external pre-fetch of event table). |
-| **5** | **`H77E-5`** | **OPERA Sentinel-1 InSAR Vertical Deformation Steps × EarthScope USArray/INGENIOUS 3D Magnetotelluric Deep Conductor Roots**<br>*Official free sources required:* [NASA/ASF OPERA `DISP-S1`](https://search.asf.alaska.edu/) (`open access`) + [IRIS/EarthScope SPUD EMTF](https://ds.iris.edu/spud/emtf) (`open access`). | Sub-millimeter/yr vertical range-front creep/poroelastic step paired with subvertical `2–15 km` crustal conductivity roots separating true deep geothermal upflow from `0–300 m` shallow playa salt pans. | Directly images active aseismic strain and crustal fluid roots under Holocene cover where all surface geomorphology is flat. Distinct from surface `cond_surf` (Band 17). Hosts outside sandbox egress allowlist (`I08`); logged cleanly for unrestricted external staging. | Agricultural groundwater pumping subsidence bowls (`InSAR`) and graphitic Paleozoic shales (`MT`). | **Potentially high gain (`+0.02+`) if externally staged** · High data-staging cost outside sandbox. |
+### H77E-5 (considered, BLOCKED here) — Sub-km seismicity lineaments
+Needs USGS ComCat/FDSN (`earthquake.usgs.gov`), outside this sandbox's egress
+allow-list (measured HTTP 000 in `research/hypotheses.md`, H77-5); shipped
+bands 10/16 are 100 km-radius aggregates and cannot localise a fault at 300 m.
+Named, not proposed as viable in this session; no seismicity surface fabricated.
 
----
-
-## 3. Strict 3-Experiment Pre-Registered Budget (`Protocol Rule 6`)
-
-1. **Experiment 1 (`E1` — Zero-Leakage Feature Stack + Single-Feature Leakage Canary Audit + Domain Ablation on Official Shared Evaluator `gems57-pooled-hide-v2`, Seed 20):**
-   - Build the unified `118`-channel zero-`SGMC` static physical memmap + `7`-channel exact deterministic `12-bit LOCO` structural fracture-mechanics view (`125` total channels, `< 750 MB` RAM).
-   - Run symmetric ROC-AUC single-feature leakage canaries on **every single feature** (`125 / 125`) before trusting any model output; **hard stop** if `max(AUC, 1 - AUC) > 0.90`.
-   - Evaluate strictly fold-blind multi-view spatial cross-fitted `H77E` and domain ablations (`H77E` full vs no new `H77E` channels vs no `LOCO` mechanics vs `Peak-NMS` vs `Dinkelbach Submodular` vs `H33` fold-fair & `Random` controls) on `gems57-pooled-hide-v2` (`Seed 20`, `11,321` withheld positive pixels).
-2. **Experiment 2 (`E2` — Independent Out-of-Sample Confirmation on `Seed 30`, `11,342` Withheld Positive Pixels, Zero Hyperparameter Changes):**
-   - Run the **exact locked `E1` model & Dinkelbach submodular emitter** unchanged on `gems57-pooled-hide-v2` `Seed 30` (`11,342` withheld positive pixels) plus `2,000`-draw paired `20 km` spatial-block bootstrap intervals against both `H77D` (`0.15011` Seed 30 / `0.14030` Seed 20) and `H77-Step` (`0.15272` Seed 20).
-3. **Experiment 3 (`E3` — Full-Map Out-of-Fold Surface Build, Pre- & Post-Placement Portfolio Uniqueness Audit Across All `840+` Valid Rasters, Official Writer Packaging & 17-Check Validation):**
-   - Fit the strictly out-of-fold (`0` in-sample pixels) full-Nevada `H77E` surface, audit continuous surface rank-correlation (`max |ρ| <= 0.90`) BEFORE dot placement, emit binary dots in `{0.0, 1.0}` via Dinkelbach `300 m` submodular cover, audit final binary dots across ALL valid archive + sibling (`GEMSDOE65`, `73`, `74`, `75`, `76`, `77` PRs `#1`–`#13`) rasters (`max informative 3-px forward overlap <= 0.70`, `max mutual overlap <= 0.70`, `max |ρ| <= 0.90`), write `-zeros.tif` + `.zip` + `-nan.tif`, and record both scientific and binding Policy `I17` statuses transparently.
+## Decision rule (frozen in `registry/preregistration_h77e.json`)
+Exp 1 builds the H77E-1 (+H77E-2 block) fields label-free and runs single-feature
+leakage canaries (symmetric AUC > 0.90 = leakage, stop). Exp 2 is a dual-seed
+hide-and-recover holdout (gems57-pooled-hide-v2, whole-component buffered draw,
+visible faults masked pixel-exactly, catalogue-based features derived only from
+visible faults) comparing: standard raw-band HGB, H77E-only HGB, combined,
+combined+catalogue-context (LOCO-style distance/tip distance from visible
+faults only), plus fold-fair H19-5 champion construction and random controls,
+all emitted at B=37,654 dots, >3 px from visible catalogue, via the shared
+300 m submodular allocator. Exp 3 builds the full-map cross-fitted candidate,
+checks surface (before placement) and final-dot uniqueness against the registry
+(ρ ≤ 0.90, forward 3-px overlap ≤ 0.70; literal dense-witness reading reported
+separately per Policy I17), and packages it with the shared fail-closed writer.
+Promotion requires beating the current holdout best (0.15272) with paired CIs —
+otherwise the verdict is **negative**, the TIFF is download-only research, and
+no weekly slot is claimed. Selector approval is a separate human step regardless.
