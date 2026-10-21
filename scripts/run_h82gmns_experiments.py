@@ -38,7 +38,7 @@ from gems57 import holdout as HO  # noqa: E402
 from gems57 import submission_writer as SW  # noqa: E402
 from gems57 import uniqueness as UNIQ  # noqa: E402
 from gems57 import validate as VAL  # noqa: E402
-from gems77_h82.features import (  # noqa: E402
+from gems77_h82gmns.features import (  # noqa: E402
     H82_NET_NAMES,
     H82_STATIC_NAMES,
     H82Context,
@@ -46,8 +46,8 @@ from gems77_h82.features import (  # noqa: E402
     build_h82_context,
     compute_h82_network_mechanics,
 )
-from gems77_h82.lagrangian_solver import solve_dti_allocation  # noqa: E402
-from gems77_h82.models import (  # noqa: E402
+from gems77_h82gmns.lagrangian_solver import solve_dti_allocation  # noqa: E402
+from gems77_h82gmns.models import (  # noqa: E402
     PRIOR_R_TARGET,
     fit_h82_fold_ensemble,
     predict_region_posterior,
@@ -56,7 +56,7 @@ from gems77_h82.models import (  # noqa: E402
 CACHE = ROOT / ".cache"
 DATA_DIR = CACHE / "data"
 EXT_DIR = DATA_DIR / "data" / "external"
-EVID_DIR = ROOT / "evidence" / "h82"
+EVID_DIR = ROOT / "evidence" / "h82gmns"
 DOCS_DL = ROOT / "docs" / "downloads"
 SUBM_DIR = ROOT / "submissions"
 
@@ -729,7 +729,7 @@ def run_exp3_full_oof_and_package(grid: grid_mod.Grid, ctx: H82Context) -> dict[
 
     # --- Package Deliverable GeoTIFF + Single-TIFF ZIP via UNMODIFIED `vendor/gems57/submission_writer.py` ---
     raw_bytes_hash8 = hashlib.sha256(np.ascontiguousarray(dots_live, dtype=np.float32).tobytes()).hexdigest()[:8]
-    stem = f"gems77-h82-gmns-lagrangian-{n_dots_final}dots-20261021-{raw_bytes_hash8}"
+    stem = f"gems77-h82gmns-lagrangian-{n_dots_final}dots-20261021-{raw_bytes_hash8}"
     DOCS_DL.mkdir(parents=True, exist_ok=True)
     SUBM_DIR.mkdir(parents=True, exist_ok=True)
 

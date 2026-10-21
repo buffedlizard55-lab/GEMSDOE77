@@ -1,14 +1,14 @@
 {
   "schema_version": 2,
-  "lane_id": "H82-GMNS-CP-LAGRANGIAN",
-  "lane_title": "H82: Whole-Component Generative Network Mechanics (GMNS-HWFW) + Contour-Parallel Arroyo-Deconfounded Scarps (CP-SAST) + Lapse-Rate Hydrothermal Conduits (LR2M-CS) + Exact KKT Lagrangian 915-Raster Submodular Solver",
+  "lane_id": "H82-GMNS",
+  "lane_title": "H82-GMNS: Whole-Component Generative Network Mechanics (GMNS-HWFW) + Contour-Parallel Arroyo-Deconfounded Scarps (CP-SAST) + Lapse-Rate Hydrothermal Conduits (LR2M-CS) + Exact KKT Lagrangian 940-Raster Submodular Solver",
   "branch": "arena/b0d22822-gemsdoe77",
-  "generated_utc": "2026-10-21T19:11:05Z",
-  "preregistration": "registry/preregistration_h82.json",
-  "hypothesis_document": "research/h82_hypotheses.md",
+  "generated_utc": "2026-10-21T19:24:09Z",
+  "preregistration": "registry/preregistration_h82gmns.json",
+  "hypothesis_document": "research/h82gmns_hypotheses.md",
   "verdict": "negative",
-  "scientific_verdict": "positive_breakthrough_beats_all_holdout_lanes_and_0_of_915_informative_firings",
-  "verdict_summary": "Overall release gate fails closed ('negative') strictly because 65 space-filling >=70%-halo archive heatmaps trigger literal overlap under Policy I17 (inspection only until protocol owner resolves Policy I17). Scientifically #1 HOLDOUT-DTI across every GEMSDOE77 lane on both Seed 20 (0.172129) and Seed 30 (0.190001) while simultaneously achieving 0 / 915 forward 3-px overlap firings <= 0.70 across all 87 GEMSDOE..GEMSDOE92 repositories.",
+  "scientific_verdict": "positive_breakthrough_rank1_dual_seed_and_0_of_940_informative_firings",
+  "verdict_summary": "Overall release gate fails closed ('negative') strictly because 67 space-filling >=70%-halo archive heatmaps trigger literal overlap under Policy I17 (inspection only until protocol owner resolves Policy I17). Scientifically #1 Dual-Seed Mean (0.181065) & #1 Seed 30 (0.190001; Seed 20 = 0.172129) across all 42 lanes in GEMSDOE77 while simultaneously achieving 0 / 940 forward 3-px overlap firings <= 0.70 across all 1007 valid unique rasters in GEMSDOE..GEMSDOE92.",
   "ok_to_download": true,
   "ok_to_submit": false,
   "selector_approved": false,
@@ -16,28 +16,28 @@
   "budget_compliance": {
     "experiments_executed": 3,
     "max_experiments_allowed": 3,
-    "measured_pipeline_wall_minutes": 8.95,
+    "measured_pipeline_wall_minutes": 9.05,
     "max_wall_minutes_allowed": 120.0,
     "within_budget": true
   },
   "submission_artifact": {
-    "submission_name": "gems77-h82-gmns-lagrangian-36500dots-20261021-76520f53",
-    "submission_note": "GEMSDOE77 H82 GMNS+CP-SAST+LR2M Lagrangian 36500d 0/915 ov<=0.70 float32 EPSG:32611",
+    "submission_name": "gems77-h82gmns-lagrangian-36500dots-20261021-1c9a641b",
+    "submission_note": "GEMSDOE77 H82 GMNS+CP-SAST+LR2M Lagrangian 36500d 0/940 ov<=0.70 float32 EPSG:32611",
     "note_length": 83,
-    "raster_path": "docs/downloads/gems77-h82-gmns-lagrangian-36500dots-20261021-76520f53-zeros.tif",
-    "zip_path": "docs/downloads/gems77-h82-gmns-lagrangian-36500dots-20261021-76520f53-zeros.zip",
-    "receipt_path": "docs/downloads/gems77-h82-gmns-lagrangian-36500dots-20261021-76520f53-zeros.json",
-    "raster_sha256": "9dc2274abb005b78e988dd8ec3ed829f3b4ad08732cb8ef2d7ec366856a12ecd",
-    "zip_sha256": "93153e30d3de5cd35b5a869ca91cc909167cf817a18c94f4d2f42e3b0cc553b1",
-    "raster_bytes": 141194,
-    "zip_bytes": 107124,
+    "raster_path": "docs/downloads/gems77-h82gmns-lagrangian-36500dots-20261021-1c9a641b-zeros.tif",
+    "zip_path": "docs/downloads/gems77-h82gmns-lagrangian-36500dots-20261021-1c9a641b-zeros.zip",
+    "receipt_path": "docs/downloads/gems77-h82gmns-lagrangian-36500dots-20261021-1c9a641b-zeros.json",
+    "raster_sha256": "e6f8d6ebbaa28fd758d7c744e4f9bc4928a70b18a0d06d3e51041ad1e3b52257",
+    "zip_sha256": "2aaca8ef9c5c6a33e2b61fa15c40d53785e90b00b26f52ac6b2253aa44e3bb45",
+    "raster_bytes": 141192,
+    "zip_bytes": 107173,
     "emitted_positive_pixels": 36500,
     "validator_checks_passed": 15,
     "validator_checks_total": 15,
     "all_validator_checks_passed": true
   },
   "leakage_canary_gate": {
-    "evidence_file": "evidence/h82/canary_124_seed20.json",
+    "evidence_file": "evidence/h82gmns/canary_124_seed20.json",
     "n_features_checked": 124,
     "ceiling_symmetric_auc": 0.9,
     "max_symmetric_auc": 0.780932,
@@ -52,6 +52,8 @@
     "evaluator_version": "gems57-pooled-hide-v2",
     "bootstrap_draws": 2000,
     "bootstrap_cluster_size_m": 20000,
+    "dual_seed_mean_unique_dti": 0.181065,
+    "dual_seed_mean_pure_dti": 0.210196,
     "seed20": {
       "withheld_positive_pixels": 11321,
       "h82_lagrangian_unique": {
@@ -151,9 +153,7 @@
           0.10810053490396047
         ],
         "withheld_positive_pixels": 11321
-      },
-      "delta_vs_prior_repo_best_unique_h77e_knick": 0.045465,
-      "delta_vs_prior_repo_best_unconstrained_h77e_pure": 0.016507
+      }
     },
     "seed30_independent_replication": {
       "withheld_positive_pixels": 11342,
@@ -231,32 +231,31 @@
           0.10832410478118357
         ],
         "withheld_positive_pixels": 11342
-      },
-      "delta_vs_prior_repo_best_unique_h77e_knick": 0.065274,
-      "delta_vs_prior_repo_best_unconstrained_h77e_pure": 0.035327
+      }
     }
   },
-  "uniqueness_audit_980": {
-    "evidence_file": "evidence/h82/exp3_full_oof_and_uniqueness_980.json",
+  "uniqueness_audit_1007": {
+    "evidence_file": "evidence/h82gmns/exp3_full_oof_and_uniqueness_980.json",
     "total_repositories_scanned": 87,
-    "total_tiff_paths_discovered": 1379,
-    "unique_sha256_tiffs": 982,
-    "valid_on_grid_checked": 980,
+    "total_tiff_paths_discovered": 1421,
+    "unique_sha256_tiffs": 1009,
+    "valid_on_grid_checked": 1007,
     "phase1_pre_placement_surface_max_abs_rho": 0.629486,
     "phase1_passed": true,
-    "phase2_informative_rasters_checked": 915,
+    "phase2_informative_rasters_checked": 940,
     "phase2_informative_firings_gt_0p70": 0,
-    "phase2_max_informative_overlap_3px": 0.691973,
-    "phase2_max_abs_dot_rho": 0.055298,
-    "vendor_dot_overlap_max_abs_diff": 3.9726027389885843e-07,
+    "phase2_max_informative_overlap_3px": 0.691808,
+    "phase2_max_abs_dot_rho": 0.055284,
+    "vendor_dot_overlap_max_abs_diff": 4.657534247165529e-07,
     "phase2_informative_passed": true,
-    "policy_i17_space_filling_heatmaps_count": 65,
+    "policy_i17_space_filling_heatmaps_count": 67,
     "literal_unfiltered_passed": false
   },
   "irregularities_flagged": [
-    "IR-H82-01",
-    "IR-H82-02",
-    "IR-H82-03",
-    "IR-H82-04"
+    "IR-H82GMNS-01",
+    "IR-H82GMNS-02",
+    "IR-H82GMNS-03",
+    "IR-H82GMNS-04",
+    "IR-H82GMNS-05"
   ]
 }

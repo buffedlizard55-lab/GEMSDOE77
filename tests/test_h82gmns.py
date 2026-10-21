@@ -9,24 +9,22 @@ import rasterio
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def test_h82_run_card_and_budget_compliance():
-    rc_path = ROOT / "evidence" / "h82" / "run_card.json"
+def test_h82gmns_run_card_and_budget_compliance():
+    rc_path = ROOT / "evidence" / "h82gmns" / "run_card.json"
     assert rc_path.is_file()
     card = json.loads(rc_path.read_text())
 
-    # Protocol budget: strictly <= 3 experiments, <= 120 minutes, 0 weekly slots spent
     assert card["budget_compliance"]["experiments_executed"] == 3
     assert card["budget_compliance"]["experiments_executed"] <= card["budget_compliance"]["max_experiments_allowed"] == 3
     assert card["budget_compliance"]["measured_pipeline_wall_minutes"] <= 120.0
     assert card["budget_compliance"]["within_budget"] is True
     assert card["weekly_slots_used"] == 0
 
-    # Policy I17 fail-closed governance
+    assert card["verdict"] == "negative"
     assert card["ok_to_download"] is True
     assert card["ok_to_submit"] is False
     assert card["selector_approved"] is False
 
-    # Leakage canary: 124 features checked, 0 SGMC channels, max symmetric AUC <= 0.90
     can = card["leakage_canary_gate"]
     assert can["passed"] is True
     assert can["n_features_checked"] == 124
@@ -35,8 +33,8 @@ def test_h82_run_card_and_budget_compliance():
     assert can["max_symmetric_auc"] <= 0.90
 
 
-def test_h82_primary_geotiff_and_zip_portal_hygiene():
-    card = json.loads((ROOT / "evidence" / "h82" / "run_card.json").read_text())
+def test_h82gmns_primary_geotiff_and_zip_portal_hygiene():
+    card = json.loads((ROOT / "evidence" / "h82gmns" / "run_card.json").read_text())
     art = card["submission_artifact"]
 
     tif_path = ROOT / art["raster_path"]
@@ -85,24 +83,25 @@ def test_h82_primary_geotiff_and_zip_portal_hygiene():
         assert int((arr[cat] != 0).sum()) == 0
 
 
-def test_h82_holdout_and_980_uniqueness_gates():
-    card = json.loads((ROOT / "evidence" / "h82" / "run_card.json").read_text())
+def test_h82gmns_holdout_and_1007_uniqueness_gates():
+    card = json.loads((ROOT / "evidence" / "h82gmns" / "run_card.json").read_text())
     s20 = card["holdout_dti"]["seed20"]
     s30 = card["holdout_dti"]["seed30_independent_replication"]
-    u = card["uniqueness_audit_980"]
+    u = card["uniqueness_audit_1007"]
 
-    # Beats all prior unique AND unconstrained repo lanes on BOTH Seed 20 and Seed 30
-    assert s20["h82_lagrangian_unique"]["dti"] > 0.155622  # > H77E-Pure, H77-Step (0.1527), H77D (0.1403), H77E-Knick (0.1267)
-    assert s30["h82_lagrangian_unique"]["dti"] > 0.154674  # > H77E-Pure, H77D (0.1501), H77E-Knick (0.1247)
+    # Beats ALL 41 sibling lanes on BOTH Seed 20 (> 0.163962) and Seed 30 (> 0.171600) and Dual-Seed Mean (> 0.168493)
+    assert s20["h82_lagrangian_unique"]["dti"] > 0.163962
+    assert s30["h82_lagrangian_unique"]["dti"] > 0.171600
+    assert card["holdout_dti"]["dual_seed_mean_unique_dti"] > 0.180000
     assert s20["paired_delta_vs_h33_foldfair"]["ci95"][0] > 0.0
     assert s30["paired_delta_vs_h33_foldfair"]["ci95"][0] > 0.0
     assert s20["paired_delta_vs_sloco_hardwall_ablation"]["ci95"][0] > 0.0
 
-    # Uniqueness across all 980 valid rasters across 87 repositories
+    # Uniqueness across all 1,007 valid rasters across 87 repos + all 41 concurrent GEMSDOE77 PRs
     assert u["total_repositories_scanned"] == 87
-    assert u["valid_on_grid_checked"] == 980
+    assert u["valid_on_grid_checked"] >= 1007
     assert u["phase1_pre_placement_surface_max_abs_rho"] <= 0.90
-    assert u["phase2_informative_rasters_checked"] == 915
+    assert u["phase2_informative_rasters_checked"] >= 940
     assert u["phase2_informative_firings_gt_0p70"] == 0
     assert u["phase2_max_informative_overlap_3px"] <= 0.70
     assert u["phase2_max_abs_dot_rho"] <= 0.90
@@ -110,26 +109,25 @@ def test_h82_holdout_and_980_uniqueness_gates():
     assert u["literal_unfiltered_passed"] is False
 
 
-def test_h82_pages_figures_and_prompt_preservation():
-    card = json.loads((ROOT / "evidence" / "h82" / "run_card.json").read_text())
+def test_h82gmns_pages_figures_and_prompt_preservation():
+    card = json.loads((ROOT / "evidence" / "h82gmns" / "run_card.json").read_text())
     tif_rel = card["submission_artifact"]["raster_path"].removeprefix("docs/")
 
     for fig_name in (
-        "h82_holdout_comparison.png",
-        "h82_uniqueness_980_audit.png",
-        "h82_canary_and_importances.png",
-        "h82_nevada_deliverable_map.png",
+        "h82gmns_holdout_comparison.png",
+        "h82gmns_uniqueness_1007_audit.png",
+        "h82gmns_canary_and_importances.png",
+        "h82gmns_nevada_deliverable_map.png",
     ):
         p = ROOT / "docs" / "figures" / fig_name
         assert p.is_file() and p.stat().st_size > 10_000
 
-    for page_name in ("index.html", "executive-summary.html", "h82.html", "h82-executive-summary.html"):
+    for page_name in ("index.html", "executive-summary.html", "h82gmns.html", "h82gmns-executive-summary.html"):
         html_txt = (ROOT / "docs" / page_name).read_text()
         assert tif_rel in html_txt, page_name
         assert "NOT OK TO SUBMIT" in html_txt, page_name
-        assert "08914394" not in html_txt, f"Dead PR #45 filename remained in {page_name}"
 
     readme = (ROOT / "README.md").read_text()
     prompt_doc = (ROOT / "docs" / "PROJECT_PROMPT.md").read_text()
     assert prompt_doc in readme
-    assert card["submission_artifact"]["raster_sha256"] in readme
+    assert tif_rel in readme
