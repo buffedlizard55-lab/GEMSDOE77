@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "lane_id": "H82-FMD",
+  "lane": "H82 fault mapping-deficit (censored catalogue-intensity residual) budget allocation",
+  "session_branch": "arena/ff72e371-gemsdoe77",
+  "written_utc": "2026-10-21T17:10:00Z",
+  "written_before": ["E1 canary", "E2 holdout", "E3 build"],
+  "lane_declaration_reason": "The 2026-10-21 brief again contains no single assigned method paragraph (same condition as IR-77-06 and IR-78-01), so the lane is self-declared here before any model was fitted in this session.",
+  "hypothesis": "The DOE GEMS scored truth set is faults ABSENT from the USGS/INGENIOUS catalogue. Modelling the catalogue as a spatially censored point process and allocating the dot budget by the positive residual intensity (predicted fault-pixel count per 2 km block minus the visible count) recovers withheld fault segments better, at equal dot budget, than allocating by the per-pixel fault-likelihood surface alone.",
+  "mechanism": "A Poisson-loss gradient-boosted regressor predicts mapped fault-pixel density per 20x20 px (2 km) block from block-aggregated physics (19 competition bands + 8 derived channels). Deficit D(b) = max(0, lambda_hat(b) - n_visible(b)) estimates how many fault pixels the tectonic/geophysical setting implies but the catalogue does not contain. D is smoothed to pixels, normalised to [0,1] and multiplies the per-pixel physics surface before the shared 300 m submodular allocator places dots.",
+  "named_non_fault_process_that_could_mimic_it": [
+    "Eroded volcanic tableland edges, pluvial Lake Lahontan shoreline terraces and Tertiary tuff lithologic contacts can raise predicted intensity in blocks that contain no faults at all.",
+    "Procedural mimic: the hide-and-recover design manufactures exactly the local mapping deficit this lane detects, so the holdout estimate is expected to be optimistic relative to a live organizer score."
+  ],
+  "nearest_prior_art_in_portfolio": "registry/preregistration_h78.json lists 'H78-3 regional mapping-campaign heterogeneity: 3x3 region blocks' as a rank-3 candidate inside a live-score inversion model; it was NOT selected there (H78 ran the lidar scarp consensus) and was never a learned intensity model nor used to steer allocation. No other preregistration in registry/ models catalogue completeness.",
+  "arms": {
+    "A_std": "per-pixel HGB classifier on 27 channels, LOQO over 4 spatial quadrants, dots allocated on S_phys (control)",
+    "A_fmd": "same S_phys multiplied by the mapping-deficit weight (candidate)",
+    "A_def": "deficit weight alone (leakage / attribution canary)",
+    "A0_random": "uniform random surface, same allocator and budget (floor)"
+  },
+  "fixed_before_running": {
+    "evaluator": "vendor/gems57 evaluate_holdout.evaluate, version gems57-pooled-hide-v2, alpha 0.2, beta 0.8, 300 m triangular kernel",
+    "holdout": "gems57.holdout.buffered_component_draw, hide_frac 0.20, buffer_px 3, boundary erosion 12 px, seeds 20 (primary) and 30 (replication)",
+    "budget_dots": 37654,
+    "holdout_exclusion_px": 3.0,
+    "final_build_exclusion_px": 2.0,
+    "final_build_exclusion_reason": "GEMSDOE28 -> GEMSDOE32 -> GEMSDOE33 organizer receipts show dots at 0-200 m from the catalogue are pure waste while dots at 200-300 m are productive (pruning them cost -0.0131 live). The holdout uses 3.0 px for all arms because the hide buffer places withheld truth at >= 3.16 px, so the two numbers are not interchangeable and both are declared here.",
+    "allocator": "src/gems77d/submodular.allocate_submodular_300m, support_quantile 0.968, gamma 3.5, min_sep_px 2.20 (identical for every arm)",
+    "block_side_px": 20,
+    "deficit_floor": 0.10,
+    "promotion_rule": "A_fmd is promoted only if (a) its pooled HOLDOUT-DTI exceeds A_std on BOTH seeds, (b) the paired bootstrap 95% CI of the difference excludes 0 on the primary seed, (c) no single channel exceeds AUC 0.90 alone, and (d) the final dots pass the informative-uniqueness gate (Spearman rho <= 0.90 on surfaces, <= 70% 3 px dot overlap vs every non-space-filling registry raster).",
+    "stop_rule": "3 experiments maximum; a Rule 1 duplicate (rho > 0.90 or > 70% dot overlap vs an informative registry raster) stops the lane and is logged as a duplicate."
+  },
+  "data_sources": {
+    "training_features.tif": "owner-supplied GitHub mirror, sha256 4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5, integrity-pinned, NOT organizer-authenticated",
+    "existing_faults.tif / labels.tif": "sha256 7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+    "sample_submission.tif": "sha256 2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "external layers used": "none beyond the 19 competition bands (no SGMC, no lidar, no radiometric, no GDR points) - this lane is deliberately self-contained so the deficit model cannot inherit another lane's confounds"
+  },
+  "evidence_class_policy": "Every number produced by this lane is HOLDOUT-DTI (with evaluator version, withheld-positive count and 95% CI) or a format/canary diagnostic. No projection is ever written as a score. ORGANIZER-CONFIRMED is reserved for submission-page receipts."
+}
