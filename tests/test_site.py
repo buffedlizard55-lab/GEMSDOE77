@@ -1,5 +1,8 @@
+import hashlib
 import json
 import re
+import subprocess
+import sys
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlparse, unquote
@@ -363,6 +366,13 @@ def test_urank_generated_pages_include_the_h82r_lane_row():
         assert 'generated_utc' not in text
 
 
+def test_h82rank_page_build_is_idempotent_for_the_current_manifest():
+    manifest = DOC / 'data/lanes.json'
+    before = hashlib.sha256(manifest.read_bytes()).hexdigest()
+    subprocess.run([sys.executable, str(ROOT / 'scripts/build_h82rank_site.py')], check=True)
+    assert hashlib.sha256(manifest.read_bytes()).hexdigest() == before
+
+
 def test_active_branch_review_records_stop_and_no_submission():
     source = (DOC / "review-2026-10-21-arena-00397d44.md").read_text()
     card = json.loads((ROOT / "evidence/review_00397d44_run_card.json").read_text())
@@ -395,7 +405,7 @@ def test_current_preflight_review_does_not_claim_a_new_submission():
     assert card["raster_sha256"] is None and card["submission_name"] is None
     assert len(card["submission_note"]) <= 140
     assert card["holdout_dti"]["value"] is None
-    assert card["validator"]["listed_count"] == 41
+    assert card["validator"]["listed_count"] == 43
     assert card["branch"] == "arena/d40f78d1-gemsdoe77"
 
 

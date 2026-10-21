@@ -23,7 +23,7 @@ def main():
 <h2>Mandatory gates</h2><ul><li>Six single-feature leakage canaries: maximum symmetric AUC {max(v['max_symmetric_auc'] for v in card['holdout_details']['canaries'].values()):.4f} ≤0.90.</li><li>Surface Spearman maximum |rho| {cov['max_abs_rho']:.5f} vs two SHA-pinned witnesses; forward 3 px overlap {cov['worst_forward_3px_overlap']:.3f} &gt;0.70 vs pinned dense witness. <b>Duplicate stop. No final dots exist.</b> Two witnesses are a rejection proof, not a complete registry scan.</li><li>Local writer readback: one float32 band, EPSG:32611, 3730 × 3292; exact template transform; no NaN inside or outside footprint, values in [0,1], no nodata tag. Local format validity is NOT portal acceptance.</li><li>Verdict negative; weekly feedback slots used: 0; selector not approved.</li></ul>
 <h2>Sources and replication</h2><p><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Organizer problem, metric and format</a> · <a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN data release</a>. Derived data are SHA-pinned owner mirrors, not organizer-authenticated downloads. <a href="https://github.com/buffedlizard55-lab/GEMSDOE77/blob/main/research/h82rank_hypotheses.md">Ranked pre-experiment hypotheses</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE77/blob/main/registry/preregistration_h82rank.json">Preregistration</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE77/blob/main/evidence/h82rank_run_card.json">Run card</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE77/blob/main/scripts/h82rank_research.py">Reproduce experiment</a>.</p><p><a href="executive-summary.html">How to submit a future cleared file (not this one) →</a></p></div></main></body></html>'''
     (D/'h82rank.html').write_text(page)
-    lanespath=D/'data'/'lanes.json'; lanes=json.loads(lanespath.read_text())
+    lanespath=D/'data'/'lanes.json'; lanes_text=lanespath.read_text(); lanes=json.loads(lanes_text); original_lanes=json.loads(lanes_text)
     lanes['lanes']=[r for r in lanes['lanes'] if not r['lane'].startswith('H82R:')]
     lanes['lanes'].insert(1 if any(r['lane'].startswith('H82:') for r in lanes['lanes']) else 0,{
         'lane':'H82R: local ternary radiometric rank-mixture entropy (STOPPED; research only)',
@@ -39,6 +39,9 @@ def main():
         note += (' ' if note else '') + 'H82R: radiometric negative research file; NOT OK TO SUBMIT.'
     import re
     lanes['note'] = re.sub(r'All \d+ listed TIFF lanes', f'All {len(lanes["lanes"])} listed TIFF lanes', note)
-    lanespath.write_text(json.dumps(lanes,indent=1,ensure_ascii=False)+'\n')
+    # Preserve the pinned manifest bytes when the H82R lane and note are already current.
+    # This keeps repeated page builds from producing a formatting-only manifest diff.
+    if lanes != original_lanes:
+        lanespath.write_text(json.dumps(lanes,indent=1,ensure_ascii=False)+'\n')
 
 if __name__=='__main__':main()

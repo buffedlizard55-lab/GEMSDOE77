@@ -42,7 +42,7 @@
     "portal_acceptance": "NOT VERIFIED",
     "existing_listed_primary_tiff_audit": {
       "evidence_class": "FORMAT-INTEGRITY-MEASUREMENT; NOT UNIQUENESS, SCORE, OR PORTAL ACCEPTANCE",
-      "listed_count": 41,
+      "listed_count": 43,
       "all_format_pass": true,
       "authorized_to_submit": false,
       "receipt": "evidence/listed_download_audit.json"

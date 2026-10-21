@@ -22,4 +22,6 @@ scipy==1.17.1
 threadpoolctl==3.7.0
 lightgbm
 matplotlib
+pandas
+pyproj
 

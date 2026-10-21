@@ -24,7 +24,7 @@ REPO = "https://github.com/buffedlizard55-lab/GEMSDOE77"
 LB = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
 PD = "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
-NAV = [("h77vldsa.html", "H77V-LDSA · 0.1444/0.1530"), ("h77vldsa-executive-summary.html", "H77V-LDSA guide"), ("h77h-meshsafe.html", "H77H-MeshSafe · 0/119 firings"), ("h77h-meshsafe-executive-summary.html", "H77H-MeshSafe guide"), ("h83netsib.html", "H83-NETSIB · negative"), ("h83netsib-executive-summary.html", "H83-NETSIB guide"), ("h77vds.html", "H77-VDS · 0.1744 #1"), ("h77vds-executive-summary.html", "H77-VDS guide"), ("review-latest.html", "Latest review"), ("review-arena-00397d44.html", "Arena branch review"), ("metric-review.html", "Corrected H33 analysis"), ("index.html", "Start here"), ("h77hdd.html", "H77H-DD · downdip-bridge"), ("h77hdd-executive-summary.html", "H77H-DD guide"), ("h77vc.html", "H77VC (Vent+ClayCap)"), ("h77vs.html", "H77VS · negative"), ("h77vs-executive-summary.html", "H77VS guide"), ("tsd.html", "H77-TSD · inspection"), ("h77v.html", "H77V (Vent-Advect)"), ("h82-texture.html", "H82-TEXTURE · negative"), ("h82rank.html", "H82R · radiometric negative"), ("preflight-review.html", "Current readiness review"), ("h82-executive-summary.html", "H82 · cool-outlet negative"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
+NAV = [("h77pd.html", "H77-PD · 0.1685 3-Seed #1"), ("h77pd-executive-summary.html", "H77-PD guide"), ("h77vldsa.html", "H77V-LDSA · 0.1444/0.1530"), ("h77vldsa-executive-summary.html", "H77V-LDSA guide"), ("h77h-meshsafe.html", "H77H-MeshSafe · 0/119 firings"), ("h77h-meshsafe-executive-summary.html", "H77H-MeshSafe guide"), ("h83netsib.html", "H83-NETSIB · negative"), ("h83netsib-executive-summary.html", "H83-NETSIB guide"), ("h77vds.html", "H77-VDS · 0.1744 #1"), ("h77vds-executive-summary.html", "H77-VDS guide"), ("review-latest.html", "Latest review"), ("review-arena-00397d44.html", "Arena branch review"), ("metric-review.html", "Corrected H33 analysis"), ("index.html", "Start here"), ("h77hdd.html", "H77H-DD · downdip-bridge"), ("h77hdd-executive-summary.html", "H77H-DD guide"), ("h77vc.html", "H77VC (Vent+ClayCap)"), ("h77vs.html", "H77VS · negative"), ("h77vs-executive-summary.html", "H77VS guide"), ("tsd.html", "H77-TSD · inspection"), ("h77v.html", "H77V (Vent-Advect)"), ("h82-texture.html", "H82-TEXTURE · negative"), ("h82rank.html", "H82R · radiometric negative"), ("preflight-review.html", "Current readiness review"), ("h82-executive-summary.html", "H82 · cool-outlet negative"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
        ("h77e-knick.html", "H77E-Knick · 0/816 firings"), ("release-review.html", "Release safety review"), ("executive-summary.html", "How to submit"),
        ("h81.html", "H81 · slip-cone"), ("h82.html", "H82 · fault collar"),
        ("h83.html", "H83 · fault collar"),
@@ -1993,18 +1993,31 @@ Min catalogue distance: <code>{sub['min_distance_to_catalogue_px']:.4f} px</code
 <a class="btn alt" href="h77vldsa.html">Full H77V-LDSA Report &amp; Figures →</a>
 <a class="btn alt" href="h77vldsa-executive-summary.html">H77V-LDSA Executive Summary →</a>
 <p class="small">name: <code>{e(Path(sub['submission_name']).stem)}</code> · sha256: <code>{e(sub['tif_sha256'])}</code> · note (132 chars): <code>{e(sub['submission_note'])}</code></p></section>"""
-    current_status = '''<section class="card" style="border:2px solid #b91c1c;background:#fef2f2;">
+    for pname in ("index.html", "executive-summary.html"):
+        p = D / pname
+        if p.exists():
+            txt = p.read_text().replace('<main><div class="wrap">', '<main><div class="wrap">' + hero_vldsa, 1)
+            p.write_text(txt)
+
+
+def _inject_d40_current_status():
+    banner = """<section class="card" style="border:2px solid #b91c1c;background:#fef2f2;">
 <span class="badge negative">ACTIVE D40 REVIEW · NOT OK TO SUBMIT</span>
 <h2>No new TIFF from this review</h2>
 <p>No new d40 artifact is available to download. Existing lane files linked below are for inspection only; the release receipt authorizes <b>0 files</b>. The pinned preflight is <code>STOP_UNIVERSAL_DUPLICATE</code>, so no candidate was generated or tested. Format/integrity PASS is not uniqueness or upload approval.</p>
 <p><a href="review-latest.html">Current three-pass review</a> · <a href="data/submission-authorization.json">Release authorization receipt</a> · <a href="evidence/listed_download_audit.json">Listed-file format audit</a></p>
-</section>'''
-    for pname in ("index.html", "executive-summary.html"):
-        p = D / pname
-        if p.exists():
+</section>"""
+    for name in ("index.html", "executive-summary.html"):
+        path = D / name
+        if not path.exists():
+            continue
+        text = path.read_text()
+        if "ACTIVE D40 REVIEW · NOT OK TO SUBMIT" not in text:
             opening = '<main><div class="wrap">'
-            txt = p.read_text().replace(opening, opening + current_status + hero_vldsa, 1)
-            p.write_text(txt)
+            if opening not in text:
+                raise ValueError(f"cannot place current d40 status banner in {name}")
+            text = text.replace(opening, opening + banner, 1)
+            path.write_text(text)
 
 
 if __name__ == "__main__":
@@ -2032,3 +2045,9 @@ if __name__ == "__main__":
     build_h83netsib(page)
 
     _write_h77vldsa()
+
+    from build_h84ramp_site import build as build_h84ramp
+    build_h84ramp(page)
+    import h77pd_build_pages
+    h77pd_build_pages.main()
+    _inject_d40_current_status()
