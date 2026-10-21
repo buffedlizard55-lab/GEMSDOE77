@@ -168,7 +168,7 @@
     }
   },
   "uniqueness_audit": {
-    "prior_rasters_checked": 905,
+    "prior_rasters_checked": 909,
     "dot_field_rasters_checked": 747,
     "continuous_surface_rasters_noted": 158,
     "surface_max_spearman_abs": 0.727856,
@@ -798,7 +798,10 @@
         "jaccard_dot_sets": 0.009273,
         "halo_footprint_fraction": 0.410776
       }
-    ]
+    ],
+    "sparse_dot_rasters_checked": 745,
+    "sibling_h77pd_236fc1cb_forward_overlap_3px": 0.57606,
+    "sibling_h84ramp_1b76b4b7_forward_overlap_3px": 0.59701
   },
   "submission_artifacts": {
     "submission_name": "gems77-h77e-autoctx-dinkelbach-37654dots-20261021-5cd77ffc-zeros",

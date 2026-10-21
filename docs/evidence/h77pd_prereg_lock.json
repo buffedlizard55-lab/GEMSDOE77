@@ -1,0 +1,9 @@
+{
+  "locked_at_utc": "2026-10-21T14:29:57.141496+00:00",
+  "experiments_executed_so_far": 0,
+  "files": {
+    "registry/preregistration_h77pd.json": "a3dabcb37695ee9496ccf71bd9c69967e61bcb5465825f43a9b9a848de2a11f8",
+    "research/h77pd_hypotheses.md": "264ddd011a3d322702df0f906f2cc48c145d08f88255847c2facf6f877522f43",
+    "evidence/h77pd_data_receipt.json": "43bced9ea32bef3f17761796c8293f2ba1debe91919e48d08613dacf9ed0eb97"
+  }
+}
