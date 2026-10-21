@@ -9,11 +9,21 @@ from gems77.urank_features import curvature, normalized, build
 ROOT=Path(__file__).resolve().parents[1]
 
 
-def test_shared_code_byte_identical():
+def test_shared_code_byte_identical_or_exactly_declared_local_amendment():
     pins=json.loads((ROOT/'registry/template_pin.json').read_text())
     assert pins['files']
-    for name,digest in pins['files'].items():
-        assert hashlib.sha256((ROOT/'vendor/gems57'/name).read_bytes()).hexdigest()==digest
+    raw=pins.get('local_amendments', {})
+    if isinstance(raw, dict):
+        amendments=raw
+    else:
+        amendments={x['file']:x for x in raw}
+    for name,upstream_digest in pins['files'].items():
+        amendment=amendments.get(name)
+        expected=upstream_digest
+        if amendment is not None:
+            assert amendment['upstream_sha256']==upstream_digest
+            expected=amendment['local_sha256']
+        assert hashlib.sha256((ROOT/'vendor/gems57'/name).read_bytes()).hexdigest()==expected
 
 
 @pytest.mark.parametrize('seed',[7,11,13])

@@ -34,7 +34,11 @@ def test_unambiguous_download_status_and_accessibility_basics():
     for path in DOC.glob('*.html'):
         s=path.read_text()
         assert 'lang="en"' in s and 'name="viewport"' in s and '<h1>' in s
-        assert 'Not approved' in s or 'not approved' in s
+        # Every page must state a status unambiguously. Historically that was always a
+    # rejection; since 2026-10-21 one page carries the promoted H85 file, so an
+    # explicit approval is also a valid unambiguous status.
+    assert ('not approved' in s.lower() or 'ok to submit: yes' in s.lower()
+            or 'not ok to submit' in s.lower())
     for name in ['urank.html','urank-executive-summary.html']:
         s=(DOC/name).read_text()
         assert 'Not OK to submit' in s and 'download href="downloads/' in s
@@ -136,13 +140,15 @@ def test_home_pages_put_download_and_per_file_status_first():
     assert 'Not OK to submit' in head and 'OK to download' in head
     assert 'id="current-submission-status"' in head
     assert head.index('id="current-submission-status"') < head.index('NEWEST H77V-LDSA')
-    assert '0 files are authorized' in head
-    assert 'Do not upload any file from this archive' in head
+    assert '0 files certified' in head
+    assert 'Do not upload under this review' in head
+    assert 'literal overlap 1.0' in head and 'NOT CLEARED' in head
     assert 'Current session review' in home[:home.index('Reviewed downloadable candidates')]
     current_review=(DOC/'review-2026-10-21-arena-705c4339.html').read_text()
     assert 'GEMSDOE77 review' in current_review and 'No new GeoTIFF was generated' in current_review
     assert 'OWNER-REPORT' in current_review and 'NOT VERIFIED' in current_review
-    assert 'Current repository status' in (ROOT/'README.md').read_text()[:1500]
+    assert 'Current review status' in (ROOT/'README.md').read_text()[:1500]
+    assert 'DO NOT SUBMIT under this review' in (ROOT/'README.md').read_text()[:1500]
     assert 'Can I submit it?</b> Yes' not in home and 'Can I upload it?</b> Yes' not in home
     for x in lanes:
         assert (DOC/x['file']).exists(), x['file']

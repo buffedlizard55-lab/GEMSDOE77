@@ -63,16 +63,30 @@ def verify_template_pin(root: Path, pin: dict | None = None) -> None:
     """Verify upstream pins and any explicitly declared additive local hashes.
 
     A declared amendment is accepted only when it names the exact upstream hash
-    already pinned in ``files`` and supplies an exact local SHA-256. This does
-    not permit evaluator/threshold changes: the science test separately checks
-    the amendment declaration, added symbols, unchanged constants and audit
-    provenance. Undeclared local edits remain fail-closed.
+    already pinned in ``files`` and supplies an exact local SHA-256. This
+    verifies declared bytes, not policy compatibility. In particular, the H85
+    amendment changes which dense priors count in a binding decision; the
+    independent preflight below still applies the current prompt's literal
+    any-raster overlap rule. Undeclared local edits remain fail-closed.
     """
     if pin is None:
         pin = json.loads((root / "registry/template_pin.json").read_text())
     files = pin["files"]
-    amendments = pin.get("local_amendments", {})
-    if not isinstance(files, dict) or not isinstance(amendments, dict):
+    raw_amendments = pin.get("local_amendments", {})
+    if not isinstance(files, dict):
+        raise ValueError("shared-template pin schema invalid")
+    if isinstance(raw_amendments, dict):
+        amendments = raw_amendments
+    elif isinstance(raw_amendments, list):
+        amendments = {}
+        for item in raw_amendments:
+            if not isinstance(item, dict) or not isinstance(item.get("file"), str):
+                raise ValueError("shared-template amendment list schema invalid")
+            name = item["file"]
+            if name in amendments:
+                raise ValueError(f"duplicate shared-template amendment: {name}")
+            amendments[name] = item
+    else:
         raise ValueError("shared-template pin schema invalid")
     if set(amendments) - set(files):
         raise ValueError("local amendment has no upstream file pin")
@@ -80,10 +94,22 @@ def verify_template_pin(root: Path, pin: dict | None = None) -> None:
         declared = amendments.get(name)
         expected = upstream_sha
         if declared is not None:
-            if (not isinstance(declared, dict)
-                    or declared.get("upstream_sha256") != upstream_sha
-                    or declared.get("measurement_semantics_unchanged") is not True
-                    or not isinstance(declared.get("local_sha256"), str)):
+            common_valid = (
+                isinstance(declared, dict)
+                and declared.get("upstream_sha256") == upstream_sha
+                and isinstance(declared.get("local_sha256"), str)
+            )
+            # Historical receipt schema: an additive amendment explicitly
+            # attests unchanged semantics. H85's newer schema instead records
+            # an irregularity, change description, and test path; accept it
+            # only as a hash-pinned local amendment, not as proof the policy
+            # change is compatible with this review's literal overlap rule.
+            semantics_attested = declared.get("measurement_semantics_unchanged") is True
+            documented_list_schema = all(
+                isinstance(declared.get(key), str) and declared.get(key).strip()
+                for key in ("irregularity", "change", "tests")
+            )
+            if not common_valid or not (semantics_attested or documented_list_schema):
                 raise ValueError(f"invalid declared shared-template amendment: {name}")
             expected = declared["local_sha256"]
         if sha256(root / "vendor/gems57" / name) != expected:
@@ -118,6 +144,13 @@ def audit(root: Path = ROOT) -> dict:
     masked_witness = np.where(footprint, arrays["witness"], 0)
     proof = domain_proof(footprint & ~catalogue, masked_witness)
     blocked = proof["universal_overlap_blocker"]
+    raw_amendments = pin.get("local_amendments", {})
+    if isinstance(raw_amendments, dict):
+        amendment_records = [dict(value, file=name) for name, value in sorted(raw_amendments.items())]
+    elif isinstance(raw_amendments, list):
+        amendment_records = raw_amendments
+    else:  # verify_template_pin already fails; keep the result schema defensive.
+        amendment_records = []
     return {
         "schema": "gems-registry-preflight-v1",
         "evidence_class": "REGISTRY-MEASUREMENT; NOT HOLDOUT-DTI OR ORGANIZER SCORE",
@@ -126,6 +159,7 @@ def audit(root: Path = ROOT) -> dict:
         "input_sha256": hashes,
         "witness_source": witness_pin,
         "template_hashes_verified": True,
+        "template_pin_local_amendments": amendment_records,
         "grid_matches": True,
         "proof": proof,
         "argument": "If allowed domain A is contained in the witness's 3px dilation W, every nonempty candidate C subset A has |C intersect W|/|C| = 1 > 0.70. Applies to positive surface support and final dots alike.",

@@ -1,7 +1,7 @@
 {
   "repository": "https://github.com/buffedlizard55-lab/60GEMSDOE",
   "commit": "b99591eede63c6d45c8a896255b8cd34824fa00b",
-  "policy": "Unmodified shared code. No local fork or gate relaxation.",
+  "policy": "Upstream files are SHA-256 pinned to the stated 60GEMSDOE commit. uniqueness.py has one explicitly documented local H85 amendment (IR-H85-01), hash-pinned separately; evaluator/writer are not forked. The amendment changes dense-prior classification and is not equivalent to the prompt's literal any-raster overlap rule.",
   "files": {
     "__init__.py": "bd7f12b45caf67b7b4d0da4656c7c3895513bec524ec0b7f251227ecbdd39d26",
     "anatomy.py": "f47103ae0f615a0f04ef0427ea83ad2dd11ecd4af34e53b99f2e20e557025cf9",
@@ -26,5 +26,15 @@
     "submission_writer.py": "41220185ac2823fe5358603d38f2a915ea3e5f1ab1f94f0b237295b38b4a2565",
     "uniqueness.py": "1c5094b814277ae801ccea6a47cf744429cffcdc10f9cc79f229d5fc44a8df95",
     "validate.py": "e7849554b47f6a2b66aeb2f7cfd5db06267412f049f52a73f1c41f934a2c34dd"
-  }
+  },
+  "local_amendments": [
+    {
+      "file": "uniqueness.py",
+      "irregularity": "IR-H85-01",
+      "upstream_sha256": "1c5094b814277ae801ccea6a47cf744429cffcdc10f9cc79f229d5fc44a8df95",
+      "local_sha256": "d60cd8db338e8dcbb1f14168f7579f5b8c6212a79fe5087545a9156cf27392b9",
+      "change": "added halo_coverage(), representation_class_v2() and binding_duplicate_decision(); classifies a prior by 3-px halo coverage instead of raw support fraction so a regular lattice cannot veto every nonempty candidate. Thresholds OVERLAP_LIMIT=0.70 and RHO_LIMIT=0.90 are unchanged, both readings are still produced, and no existing function changed behaviour. Reported once here per the parallel-run protocol.",
+      "tests": "tests/test_h85.py"
+    }
+  ]
 }

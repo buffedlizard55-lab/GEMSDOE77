@@ -200,8 +200,10 @@ def test_h77e_deliverables_run_card_geotiff_and_pages():
     h81_name = h81["submission_name"]
     assert h81_name in readme_txt
     assert h81["raster_sha256"] in readme_txt
-    assert "OK TO DOWNLOAD FOR INSPECTION: YES" in readme_txt[:6000]
-    assert "OK TO SUBMIT: NO" in readme_txt[:6000]
+    assert "Current review status" in readme_txt[:1500]
+    assert "DO NOT SUBMIT under this review" in readme_txt[:1500]
+    assert "literal 3-px forward overlap" in readme_txt[:1500]
+    assert "certified_by_gate: false" in readme_txt[:1500]
     head_md = readme_txt.split("# Original project request")[0]
     for target in re.findall(r'\]\(([^)]+)\)', head_md):
         if target.startswith(("http://", "https://", "#")):

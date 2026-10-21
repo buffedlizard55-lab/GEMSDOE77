@@ -23,8 +23,11 @@ def test_h82_frozen_artifact_and_zip():
     with zipfile.ZipFile(p.with_suffix('.zip')) as z:
         assert z.namelist() == [p.name] and z.read(p.name) == p.read_bytes()
     readme = (ROOT/'README.md').read_text()
-    # Current status is intentionally first; archived lane checksums can move as this README grows.
-    assert c['raster_sha256'] in readme and 'NOT OK TO SUBMIT' in readme[:2000]
+    # The README head carries the current promoted file (H85 since 2026-10-21); the
+    # H82-TEXTURE negative evidence lives in the historical section, so the status
+    # check must search the document rather than a fixed 2000-character window.
+    assert c['raster_sha256'] in readme
+    assert 'NOT OK TO SUBMIT' in readme or 'OK TO SUBMIT: NO' in readme
     assert len(c['submission_note']) <= 140
     assert c['verdict'] == 'negative' and c['experiment_count'] == 1
     assert c['registry']['final_dots'].startswith('NOT PLACED')

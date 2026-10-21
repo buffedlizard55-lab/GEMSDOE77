@@ -2073,16 +2073,20 @@ def publish_current_review_and_status():
 
     preflight = jload("evidence/registry_preflight.json")
     authorization = jload("docs/data/submission-authorization.json")
+    h85_card = jload("evidence/h85_run_card.json")
+    promoted = (authorization or {}).get("promoted_candidate")
     if (not preflight or preflight.get("decision") != "STOP_UNIVERSAL_DUPLICATE"
             or not authorization or authorization.get("repository_decision") != "NOT OK TO SUBMIT"
-            or authorization.get("repository_authorized_file_count") != 0):
-        raise ValueError("Landing-page status must fail closed on current preflight and authorization receipts")
+            or authorization.get("repository_authorized_file_count") != 0
+            or not h85_card or not promoted or promoted.get("certified_by_gate") is not False):
+        raise ValueError("Landing-page status must fail closed on the literal preflight and expose the uncertified H85 conflict")
     proof = preflight["proof"]
     allowed = proof["allowed_pixels"]
+    h85file = "downloads/gems85-h85-edti-collar35-skel-r33-20261021-d97b248e-zeros.tif"
     banner = f"""<section id="current-submission-status" class="card dl research" style="border:4px solid #991b1b;background:#fff1f2;">
-<h1>Competition upload status: <strong>NOT OK TO SUBMIT</strong></h1>
-<p class="verdict"><strong>{authorization['repository_authorized_file_count']} files are authorized.</strong> All existing TIFF downloads on this site are inspection-only. A fresh, hash-pinned universal duplicate-stop proof shows {allowed:,} of {allowed:,} allowed pixels within 3 px of one registry witness, so every nonempty candidate has overlap {proof['nonempty_subset_forward_overlap_lower_bound']:.1f} (stop threshold {proof['overlap_stop_threshold_strictly_greater_than']:.2f}). No new TIFF or experiment was made in this review; no weekly slot was used.</p>
-<p>Do not upload any file from this archive. Downloading a locally format-valid TIFF is not competition clearance, and portal acceptance has not been verified. <a class="btn alt" href="review-2026-10-21-arena-705c4339.html">Current branch review &amp; evidence →</a> <a class="btn alt" href="executive-summary.html">Submission guide (for a future cleared file) →</a> <a class="btn alt" href="data/submission-authorization.json">Authorization receipt →</a></p>
+<h1>Current prompt decision: <strong>DO NOT SUBMIT</strong> — repository status is conflicted</h1>
+<p class="verdict"><strong>Aggregate release gate: {authorization['repository_decision']}; {authorization['repository_authorized_file_count']} files certified.</strong> Mainline README/H85 records an operator-level “OK TO SUBMIT” / “PROMOTE” claim, but its candidate receipt says <code>certified_by_gate: false</code>, the full registry is incomplete, and no weekly slot was spent. This review follows the explicit prompt rule: a fresh pinned witness covers {allowed:,} of {allowed:,} allowed pixels within 3 px, so every nonempty candidate has literal overlap {proof['nonempty_subset_forward_overlap_lower_bound']:.1f} (limit {proof['overlap_stop_threshold_strictly_greater_than']:.2f}).</p>
+<p><strong>Do not upload under this review.</strong> H85's raster is a parallel-lane artifact, not generated here; it is locally format-valid but fails the literal overlap rule against that witness. <a class="btn" href="{h85file}" download>Download H85 TIFF for audit — NOT CLEARED</a> <a class="btn alt" href="h85.html">H85's separate operator claim and evidence →</a> <a class="btn alt" href="review-2026-10-21-arena-705c4339.html">Current branch review &amp; irregularity →</a> <a class="btn alt" href="data/submission-authorization.json">Aggregate authorization receipt →</a></p>
 </section>"""
     for filename in ("index.html", "executive-summary.html"):
         path = D / filename

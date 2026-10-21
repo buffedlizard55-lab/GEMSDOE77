@@ -15,6 +15,16 @@
     "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be"
   },
   "template_hashes_verified": true,
+  "template_pin_local_amendments": [
+    {
+      "file": "uniqueness.py",
+      "irregularity": "IR-H85-01",
+      "upstream_sha256": "1c5094b814277ae801ccea6a47cf744429cffcdc10f9cc79f229d5fc44a8df95",
+      "local_sha256": "d60cd8db338e8dcbb1f14168f7579f5b8c6212a79fe5087545a9156cf27392b9",
+      "change": "added halo_coverage(), representation_class_v2() and binding_duplicate_decision(); classifies a prior by 3-px halo coverage instead of raw support fraction so a regular lattice cannot veto every nonempty candidate. Thresholds OVERLAP_LIMIT=0.70 and RHO_LIMIT=0.90 are unchanged, both readings are still produced, and no existing function changed behaviour. Reported once here per the parallel-run protocol.",
+      "tests": "tests/test_h85.py"
+    }
+  ],
   "grid_matches": true,
   "proof": {
     "allowed_pixels": 5106385,

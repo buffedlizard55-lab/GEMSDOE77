@@ -32,6 +32,8 @@ jobs:
       - name: Independently re-read every listed primary TIFF (no model or slot)
         run: python scripts/audit_downloads.py
       - run: python scripts/build_home.py
+      - name: Put the promoted H85 file on the first screen (idempotent)
+        run: python scripts/build_h85_site.py
       - run: python scripts/release_gate.py --verify-fail-closed
       - run: python -m pytest -q
       - run: python scripts/stage_pages.py

@@ -30,12 +30,28 @@
     "values_in_0_1": "No candidate; existing listed primary files pass local all-finite [0,1] audit",
     "crs_shape_transform_match": "No candidate; existing listed primary files match local bridge sample",
     "release_gate": "NOT OK TO SUBMIT; 0 authorized files",
-    "portal_acceptance": "NOT VERIFIED"
+    "portal_acceptance": "NOT VERIFIED",
+    "listed_tiff_audit_count": 46,
+    "unlisted_h85_tiff_audited_separately": true
   },
   "submission_name": null,
   "submission_note": "Review only; no candidate generated, no slot used.",
   "experiments_run": 0,
   "weekly_slots_used": 0,
   "authorized_to_submit": false,
-  "verdict": "negative"
+  "verdict": "negative",
+  "submission_status_irregularity": {
+    "evidence_class": "CROSS-RECEIPT / REGISTRY-MEASUREMENT, NOT ORGANIZER SCORE",
+    "artifact": "docs/downloads/gems85-h85-edti-collar35-skel-r33-20261021-d97b248e-zeros.tif",
+    "sha256": "47caaca53d2906f797459abf1194fb81ee1181e05cf5c9a6e74e6f57b0999b98",
+    "local_grid_and_range": "PASS against tracked bridge sample; single-band float32, finite, [0,1]",
+    "literal_3px_forward_overlap_vs_pinned_witness": 1.0,
+    "operator_record": "H85 run card says verdict=promote and selector decision=PROMOTE this one file; weekly_slots_used=0",
+    "aggregate_release_gate": "NOT OK TO SUBMIT; 0 certified files",
+    "operator_candidate_certified_by_gate": false,
+    "complete_registry_scan": false,
+    "organizer_submission_receipt": null,
+    "review_decision": "DO NOT SUBMIT under the current prompt because literal overlap exceeds 0.70; surface the conflicting upstream operator claim for protocol-owner review"
+  },
+  "shared_template_pin_note": "H85 uses a documented local uniqueness amendment (IR-H85-01). This review corrected the preflight hash-pin schema and independently verifies the upstream and local hashes; it does not adopt H85 dense-prior exclusions as the user prompt requires the literal any-raster overlap rule."
 }
