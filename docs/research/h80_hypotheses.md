@@ -30,3 +30,7 @@ Same data dependency. Deferred.
 Needs hydrology DEM; not in bridge. **[BLOCKED]** without 3DEP hydro.
 
 Rank for this session: **H80-1 only** (budget: 3 experiments).
+
+## Post-run clarification (2026-10-21)
+
+The preceding H33 mechanism and H80 target rationales are hypotheses, not causal or label-proven results. The 0.2778 file-to-score attribution remains **OWNER-REPORT**: the official leaderboard lists a 0.2778 result for `extradr19` at #48 but does not identify a TIFF or hash, and no organizer receipt links those bytes to the H33 artifact. Sparse spacing and near-catalogue pruning could reduce redundant false-positive mass under the distance-weighted metric, but no controlled experiment here establishes that they caused the reported score. H80 itself is negative: **0.09580 HOLDOUT-DTI** (`gems57-pooled-hide-v2`, 11,319 withheld positives, 95% CI `[0.08818, 0.10325]`). Do not interpret the pre-run rationale as confirmation that the proposed wing-crack geometry is present in the final expert-labeled targets.
