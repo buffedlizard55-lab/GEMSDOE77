@@ -14,15 +14,14 @@
   <span class="badge good">SPARSE UNIQUENESS: MAX 0.6450 &lt; 0.70 (704 DOT RASTERS)</span>
   <span class="badge negative">Selector status: Not approved (human weekly-slot sign-off required)</span>
 </div>
-<p><strong>One-Glance Decision:</strong> <strong>YES — 100% SAFE TO DOWNLOAD &amp; INSPECT IMMEDIATELY</strong> (<a download href="downloads/gems77-h77e-autoctx-dinkelbach-37654dots-20261021-ddce37e9-zeros.zip"><code>-zeros.zip</code></a> / <a download href="downloads/gems77-h77e-autoctx-dinkelbach-37654dots-20261021-ddce37e9-zeros.tif"><code>-zeros.tif</code></a>, <code>float32</code>, <code>{0.0, 1.0} ⊂ [0, 1]</code>, <code>0 NaN</code>, <code>EPSG:32611</code>, <code>3730 × 3292</code>). <strong>DO NOT AUTO-UPLOAD WITHOUT HUMAN SELECTOR SIGN-OFF</strong> under repo Policy <code>I17</code> (dense whole-state continuous archive surfaces cover up to 100% of Nevada; see <a href="h77e-acd-executive-summary.html">Step-by-Step DrivenData Submission Guide</a>).</p>
+<p><strong>One-Glance Decision:</strong> <strong>YES — 100% SAFE TO DOWNLOAD &amp; INSPECT IMMEDIATELY</strong> (<a download href="downloads/gems77-h77e-autoctx-dinkelbach-37654dots-20261021-5cd77ffc-zeros.zip"><code>-zeros.zip</code></a> / <a download href="downloads/gems77-h77e-autoctx-dinkelbach-37654dots-20261021-5cd77ffc-zeros.tif"><code>-zeros.tif</code></a>, <code>float32</code>, <code>{0.0, 1.0} ⊂ [0, 1]</code>, <code>0 NaN</code>, <code>EPSG:32611</code>, <code>3730 × 3292</code>). <strong>DO NOT AUTO-UPLOAD WITHOUT HUMAN SELECTOR SIGN-OFF</strong> under repo Policy <code>I17</code> (dense whole-state continuous archive surfaces cover up to 100% of Nevada; see <a href="h77e-acd-executive-summary.html">Step-by-Step DrivenData Submission Guide</a>).</p>
 <div class="buttons">
-  <a class="button" download href="downloads/gems77-h77e-autoctx-dinkelbach-37654dots-20261021-ddce37e9-zeros.tif">⬇ Download Primary GeoTIFF (-zeros.tif · 138.4 KB)</a>
-  <a class="button secondary" download href="downloads/gems77-h77e-autoctx-dinkelbach-37654dots-20261021-ddce37e9-zeros.zip">⬇ Single-TIFF Portal ZIP (104.6 KB)</a>
-  <a class="button secondary" download href="downloads/gems77-h77e-autoctx-dinkelbach-37654dots-20261021-ddce37e9-nan.tif">⬇ Twin NaN-Outside GeoTIFF (328.0 KB)</a>
+  <a class="button" download href="downloads/gems77-h77e-autoctx-dinkelbach-37654dots-20261021-5cd77ffc-zeros.tif">⬇ Download Primary GeoTIFF (-zeros.tif · 138.4 KB)</a>
+  <a class="button secondary" download href="downloads/gems77-h77e-autoctx-dinkelbach-37654dots-20261021-5cd77ffc-zeros.zip">⬇ Single-TIFF Portal ZIP (104.6 KB)</a>
   <a class="button secondary" download href="evidence/run_card_h77e_acd.json">⬇ Run Card JSON</a>
 </div>
-<div class="file-label">SHA-256 (<code>gems77-h77e-autoctx-dinkelbach-37654dots-20261021-ddce37e9-zeros.tif</code>) · <code>37,654</code> Binary Dots · <code>0</code> SGMC Channels · <code>3/3</code> Experiments Used</div>
-<div class="hash">f01a259a90dfc8653188eb663925fc44ae8d712c4cb62f4ffd33435bcc1e0a62</div>
+<div class="file-label">SHA-256 (<code>gems77-h77e-autoctx-dinkelbach-37654dots-20261021-5cd77ffc-zeros.tif</code>) · <code>37,654</code> Binary Dots · <code>0</code> SGMC Channels · <code>3/3</code> Experiments Used</div>
+<div class="hash">566bfd0a4fe4486d7fae3fec0f3ac52329b1da98d409984e2c0187f557bfe8d4</div>
 </div>
 
 <section class="prose">
@@ -78,20 +77,20 @@
   <figcaption class="fine"><strong>Figure 2 (Experiment E2):</strong> Left: 12-fold, 3-seed pooled <code>HOLDOUT-DTI</code> across <code>34,235</code> withheld fault pixels with 2,000-draw paired cluster bootstrap 95% confidence intervals. Right: Controlled Seed 30 ablation ladder demonstrating strict positive contribution of every physical block and optimization stage.</figcaption>
 </figure>
 
-<h2>4. Leakage Canary Audit, Blind 4-Quadrant Province Holdout &amp; 860-Raster Uniqueness Verification (<code>E3</code>)</h2>
+<h2>4. Leakage Canary Audit, Blind 4-Quadrant Province Holdout &amp; 905-Raster Uniqueness Verification (<code>E3</code>)</h2>
 <ul>
   <li><strong>Single-Feature Leakage Canary Gate (<code>AUC ≤ 0.90</code> across all <code>99</code> channels):</strong> <strong><code>100% PASS</code></strong> — max symmetric ROC-AUC across all 99 static + buffered-mechanics channels is <strong><code>0.76895</code></strong> (Seed 30), <strong><code>0.77153</code></strong> (Seed 20), and <strong><code>0.74204</code></strong> (Seed 21), with <code>leakage_flags = []</code>, <code>0</code> SGMC channels, <code>gdr_dist_known_fault_px_accessed = false</code>, and <code>0</code> in-sample pixels.</li>
   <li><strong>Blind Whole-Quadrant Province Generalization (<code>60,988</code> withheld fault pixels across NW/NE/SW/SE Nevada) &amp; Detached Faults (<code>≥ 800 m</code>):</strong> Even when an entire quarter of Nevada has zero visible training faults inside its interior, <code>H77E</code> achieves <strong><code>0.17843</code></strong> (<code>95% CI [0.15878, 0.19799]</code>, $B=44{,}090$) and <strong><code>0.16768</code></strong> ($B=37{,}654$) vs random <code>0.06712</code> (<code>2.66×</code> lift); on completely detached faults $\ge 800\text{ m}$ from any visible fault, pure zero-catalogue physics scores up to <strong><code>0.08498</code></strong> vs random <code>0.03687</code> (<code>2.30×</code> lift).</li>
-  <li><strong>Full 860-Raster Uniqueness Audit (Both Readings Reported Side by Side):</strong>
+  <li><strong>Full 905-Raster Uniqueness Audit (Both Readings Reported Side by Side):</strong>
     <ul>
-      <li><strong>Like-for-Like Sparse Dot Submissions (<code>704</code> rasters across all 78 repos):</strong> <strong><code>100% PASS</code></strong> — max 3-px forward dot overlap = <strong><code>0.64495 &lt; 0.70</code></strong>; pre-placement continuous surface max $|\rho|$ = <strong><code>0.72786 &lt; 0.90</code></strong>; binary dot max $|\rho|$ = <strong><code>0.10354 &lt; 0.90</code></strong>; head-to-head overlap vs <code>H33</code> (<code>0.2778</code> live) = <strong><code>0.4097</code></strong>, vs <code>H77D</code> = <strong><code>0.3758</code></strong>, vs <code>H77-Step</code> = <strong><code>0.4660</code></strong>, vs open PR #11 <code>H77-HSL</code> = <strong><code>0.6168</code></strong>. Fold-blind zero-leakage Seed 30 sensitivity under the identical <code>≤ 0.645</code> cap scores <strong><code>0.18938</code></strong> (<code>0.0 bps</code> degradation).</li>
+      <li><strong>Like-for-Like Sparse Dot Submissions (<code>747</code> rasters across all 78 repos):</strong> <strong><code>100% PASS</code></strong> — max 3-px forward dot overlap = <strong><code>0.64495 &lt; 0.70</code></strong>; pre-placement continuous surface max $|\rho|$ = <strong><code>0.72786 &lt; 0.90</code></strong>; binary dot max $|\rho|$ = <strong><code>0.10354 &lt; 0.90</code></strong>; head-to-head overlap vs <code>H33</code> (<code>0.2778</code> live) = <strong><code>0.4097</code></strong>, vs <code>H77D</code> = <strong><code>0.3758</code></strong>, vs <code>H77-Step</code> = <strong><code>0.4660</code></strong>, vs open PR #11 <code>H77-HSL</code> = <strong><code>0.6168</code></strong>. Fold-blind zero-leakage Seed 30 sensitivity under the identical <code>≤ 0.645</code> cap scores <strong><code>0.18938</code></strong> (<code>0.0 bps</code> degradation).</li>
       <li><strong>Literal Unfiltered Policy <code>I17</code> Reading (<code>156</code> dense whole-state continuous surfaces):</strong> Reported transparently in <a href="evidence/run_card_h77e_acd.json"><code>run_card_h77e_acd.json</code></a>: archive continuous surfaces such as <code>0c42fc03…</code> and <code>ab0a0a62…</code> have positive values on <code>5,167,373 / 5,167,373 = 100.0%</code> of active Nevada cells, where by Pigeonhole Principle every non-empty raster has unfiltered overlap <code>1.000</code>. Hence automatic slot consumption stays gated behind human portfolio selector sign-off.</li>
     </ul>
   </li>
 </ul>
 
 <figure style="margin:1.5rem 0;">
-  <img src="figures/h77e_nevada_surface_and_dots.png" alt="Full-Nevada Cross-Fitted Posterior, Emitted 37,654 Binary Dots, and 860-Raster Uniqueness Audit" style="width:100%; border-radius:8px; border:1px solid #cbd5e1;">
+  <img src="figures/h77e_nevada_surface_and_dots.png" alt="Full-Nevada Cross-Fitted Posterior, Emitted 37,654 Binary Dots, and 905-Raster Uniqueness Audit" style="width:100%; border-radius:8px; border:1px solid #cbd5e1;">
   <figcaption class="fine"><strong>Figure 3 (Experiment E3):</strong> Panel A: Strictly out-of-fold full-Nevada <code>log10</code> fault posterior across all <code>5,167,373</code> footprint pixels. Panel B: Emitted <code>37,654</code> binary dots (<code>EPSG:32611</code>, <code>{0.0, 1.0}</code>, <code>0</code> on mapped faults). Panel C: Complete uniqueness spectrum across all sparse dot-field rasters showing zero violations of either <code>0.70</code> 3-px overlap or <code>0.90</code> Spearman <code>|ρ|</code>.</figcaption>
 </figure>
 

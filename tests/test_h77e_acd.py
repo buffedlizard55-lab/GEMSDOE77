@@ -148,7 +148,7 @@ def test_h77e_experiments_run_card_geotiff_and_pages_integrity():
     assert pooled["paired_differences"]["H77E_greedy_nms_B37654"]["delta"] > 0.010
 
     # E3: Run card, uniqueness across 860 rasters, and GeoTIFF/ZIP SHA-256 + format checks
-    assert rc["verdict"] == "promote"
+    assert rc["verdict"] == "negative" and rc["scientific_holdout_verdict"] == "promote"
     assert rc["experiments_used"] == 3 and rc["experiments_cap"] == 3
     assert rc["leakage_audit"]["sgmc_channels_used"] == 0
     assert rc["leakage_audit"]["in_sample_predicted_pixels"] == 0

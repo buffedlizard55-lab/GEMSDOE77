@@ -5,6 +5,9 @@
 
 > **OK TO DOWNLOAD FOR INSPECTION: YES · OK TO SUBMIT: NO.** Historical H82-TEXTURE (`c571af22cb08db9cb8cfd6edf0108364d95b0c3bec8316d09d3dfd116531790e`) and H77VS (`gems77-h77v-ventsinter-heatflow-37654dots-20261021-cc5e4cd9-zeros`) are inspection-only.
 
+> **NEW ALL-TIME #1 HOLDOUT RECORD — Lane `H77E-ACD` (`0.18478` 3-Seed Pooled / `0.18938` s30 / `0.18225` s20 / `0.18271` s21 `HOLDOUT-DTI` across `34,235` withheld positives):** **SAFE TO DOWNLOAD (`17/17` PASS, `0 NaN`, `{0,1}`)** -> [`.zip`](docs/downloads/gems77-h77e-autoctx-dinkelbach-37654dots-20261021-5cd77ffc-zeros.zip) · [`.tif`](docs/downloads/gems77-h77e-autoctx-dinkelbach-37654dots-20261021-5cd77ffc-zeros.tif) (`SHA-256: 566bfd0a4fe4486d7fae3fec0f3ac52329b1da98d409984e2c0187f557bfe8d4`) · [Monograph](docs/h77e-acd.html) · [Submit Guide](docs/h77e-acd-executive-summary.html) · [`run_card_h77e_acd.json`](evidence/run_card_h77e_acd.json) | **NOT OK TO SUBMIT AUTOMATICALLY** under Policy `I17` (`max sparse overlap = 0.6450 < 0.70` across `743` dot rasters; `0` slots used; Name: `gems77-h77e-autoctx-dinkelbach-37654dots-20261021-5cd77ffc-zeros`, Note: `H77E zero-SGMC 99ch + filament auto-ctx + Dinkelbach 1-swap (37654 dots); HOLDOUT-DTI 0.1848 (3-seed) / 0.1894 (s30)`).
+
+
 > **🚦 H83-NETSIB (newest, 2026-10-21): ✅ OK TO DOWNLOAD FOR INSPECTION · ⛔ NOT OK TO SUBMIT** — HOLDOUT-DTI 0.1538/0.1637 beat the preregistered 0.152718 incumbent by point estimate but not the concurrently merged H77-VDS, and the final-dot duplicate rule fired. [Details](#h83-netsib-status) · [lane page](docs/h83netsib.html) · [how to submit](docs/h83netsib-executive-summary.html)
 
 <!-- H77H-MESHSAFE PRIMARY STATUS BANNER -->

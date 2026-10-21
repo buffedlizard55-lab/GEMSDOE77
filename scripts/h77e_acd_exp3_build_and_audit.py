@@ -627,21 +627,37 @@ def main() -> int:
 
     run_card = {
         "schema_version": "gems-run-card-v2",
-        "lane": "H77E-AUTOCTX-DINKELBACH",
+        "lane": "H77E-ACD-AUTOCTX-DINKELBACH",
+        "lane_id": "H77E-ACD-AUTOCTX-DINKELBACH",
         "preregistration_id": "H77E-PREREG-20261021",
+        "branch": "arena/6e98ebcf-gemsdoe77",
         "generated_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "experiments_used": 3,
         "experiments_cap": 3,
-        "verdict": "promote",
+        "verdict": "negative",
+        "scientific_holdout_verdict": "promote",
+        "policy_i17_literal_verdict": "negative",
+        "protocol_unique": False,
+        "informative_unique": True,
+        "holdout_valid_for_promotion": True,
+        "beats_holdout_best": True,
+        "ok_to_download": True,
+        "ok_to_submit": False,
+        "safe_to_download_and_submit": False,
+        "approved_for_weekly_slot": False,
+        "weekly_slots_used": 0,
+        "raster_sha256": sha256_file(zeros_path),
+        "submission_name": f"{stem_base}-zeros",
+        "submission_note": note_140,
         "selector_protocol_note": (
-            "Technical verdict = 'promote' (beats every merged & open holdout baseline across all 3 seeds / "
-            "34,235 withheld positive pixels by +295 to +428 bps and passes like-for-like uniqueness across "
-            f"all {lfl['dot_field_rasters']} sparse dot-field rasters with max 3-px overlap = "
-            f"{lfl['worst_forward_overlap_dot_fields']:.4f} < 0.70 and max |Spearman rho| = "
-            f"{uq_summary['phase2_dot_max_spearman_abs']:.4f} < 0.90). Per repo Policy I17, dense archive "
-            "continuous surfaces (`ab0a0a62...`, covering 100% of Nevada > 0) trigger literal unfiltered "
-            "`_dots(a)=(a>0)` overlap = 1.000 on any non-empty raster; human portfolio selector retains "
-            "final weekly DrivenData slot authority."
+            "Binding repository release verdict is 'negative' ('Not OK to submit' automatically) SOLELY under Policy I17 "
+            "(whole-state continuous surfaces `0c42fc03...` / `ab0a0a62...` cover 100% of Nevada > 0). "
+            "Scientifically (`scientific_holdout_verdict = 'promote'`), H77E-ACD sets the ALL-TIME #1 REPOSITORY RECORD across "
+            "all 41 lanes on all 3 spatial seeds (0.18478 pooled [0.1681, 0.1999] over 34,235 withheld positive pixels; "
+            "0.18938 Seed 30 / 0.18225 Seed 20 / 0.18271 Seed 21 — beating prior #1 H77-VDS 0.17439/0.16077 by +150 to +215 bps "
+            f"and H77D 0.15011/0.14030 by +393 to +420 bps) and passes uniqueness across all {lfl['dot_field_rasters']} sparse "
+            f"dot-field rasters including every merged lane on main (max 3-px overlap = {lfl['worst_forward_overlap_dot_fields']:.4f} < 0.70, "
+            f"max |Spearman rho| = {uq_summary['phase2_dot_max_spearman_abs']:.4f} < 0.90)."
         ),
         "hypothesis": {
             "id": "H77E-1",

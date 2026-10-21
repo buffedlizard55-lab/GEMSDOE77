@@ -24,7 +24,7 @@ REPO = "https://github.com/buffedlizard55-lab/GEMSDOE77"
 LB = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
 PD = "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
-NAV = [("h77vldsa.html", "H77V-LDSA · 0.1444/0.1530"), ("h77vldsa-executive-summary.html", "H77V-LDSA guide"), ("h77h-meshsafe.html", "H77H-MeshSafe · 0/119 firings"), ("h77h-meshsafe-executive-summary.html", "H77H-MeshSafe guide"), ("h83netsib.html", "H83-NETSIB · negative"), ("h83netsib-executive-summary.html", "H83-NETSIB guide"), ("h77vds.html", "H77-VDS · 0.1744 #1"), ("h77vds-executive-summary.html", "H77-VDS guide"), ("review-latest.html", "Latest review"), ("review-arena-00397d44.html", "Arena branch review"), ("metric-review.html", "Corrected H33 analysis"), ("index.html", "Start here"), ("h77hdd.html", "H77H-DD · downdip-bridge"), ("h77hdd-executive-summary.html", "H77H-DD guide"), ("h77vc.html", "H77VC (Vent+ClayCap)"), ("h77vs.html", "H77VS · negative"), ("h77vs-executive-summary.html", "H77VS guide"), ("tsd.html", "H77-TSD · inspection"), ("h77v.html", "H77V (Vent-Advect)"), ("h82-texture.html", "H82-TEXTURE · negative"), ("h82rank.html", "H82R · radiometric negative"), ("preflight-review.html", "Current readiness review"), ("h82-executive-summary.html", "H82 · cool-outlet negative"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
+NAV = [("h77e-acd.html", "H77E-ACD · 0.1848 #1 Record"), ("h77e-acd-executive-summary.html", "H77E-ACD guide"), ("h77vldsa.html", "H77V-LDSA · 0.1444/0.1530"), ("h77vldsa-executive-summary.html", "H77V-LDSA guide"), ("h77h-meshsafe.html", "H77H-MeshSafe · 0/119 firings"), ("h77h-meshsafe-executive-summary.html", "H77H-MeshSafe guide"), ("h83netsib.html", "H83-NETSIB · negative"), ("h83netsib-executive-summary.html", "H83-NETSIB guide"), ("h77vds.html", "H77-VDS · 0.1744 #1"), ("h77vds-executive-summary.html", "H77-VDS guide"), ("review-latest.html", "Latest review"), ("review-arena-00397d44.html", "Arena branch review"), ("metric-review.html", "Corrected H33 analysis"), ("index.html", "Start here"), ("h77hdd.html", "H77H-DD · downdip-bridge"), ("h77hdd-executive-summary.html", "H77H-DD guide"), ("h77vc.html", "H77VC (Vent+ClayCap)"), ("h77vs.html", "H77VS · negative"), ("h77vs-executive-summary.html", "H77VS guide"), ("tsd.html", "H77-TSD · inspection"), ("h77v.html", "H77V (Vent-Advect)"), ("h82-texture.html", "H82-TEXTURE · negative"), ("h82rank.html", "H82R · radiometric negative"), ("preflight-review.html", "Current readiness review"), ("h82-executive-summary.html", "H82 · cool-outlet negative"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
        ("h77e-knick.html", "H77E-Knick · 0/816 firings"), ("release-review.html", "Release safety review"), ("executive-summary.html", "How to submit"),
        ("h81.html", "H81 · slip-cone"), ("h82.html", "H82 · fault collar"),
        ("h83.html", "H83 · fault collar"),
@@ -419,7 +419,42 @@ These are registry/format measurements, not scores or portal acceptance.</p>"""
 {copy("H77-VDS Unique Reference Name (inspection reference — DO NOT UPLOAD)", rc_vds["submission_name"])}
 {copy("H77-VDS Short Note <= 140 chars (inspection reference — DO NOT UPLOAD)", rc_vds["submission_note"])}
 <p class="small">GeoTIFF SHA-256: <code>{e(rc_vds["raster_sha256"])}</code> · ZIP SHA-256: <code>{e(vsub["primary_zip_sha256"])}</code> · <a href="evidence/run_card_h77vds.json">Machine-readable Run Card (.json)</a></p></section>"""
-    body = f"""{vds_box}{h77vs_box}{tsd_box}{h82_banner}{rank_box}<h1>Start here</h1>
+    rc_acd = jload("evidence/run_card_h77e_acd.json")
+    acd_box = ""
+    if rc_acd:
+        shutil.copyfile(ROOT / "evidence/run_card_h77e_acd.json", D / "evidence/run_card_h77e_acd.json")
+        asub = rc_acd["submission_artifacts"]
+        auq = rc_acd["uniqueness_audit"]
+        ap3 = rc_acd["holdout_evaluation"]["pooled_3seed_primary_B37654"]
+        as30 = rc_acd["holdout_evaluation"]["per_seed_B37654"]["seed_30_11342px"]
+        as20 = rc_acd["holdout_evaluation"]["per_seed_B37654"]["seed_20_11321px"]
+        as21 = rc_acd["holdout_evaluation"]["per_seed_B37654"]["seed_21_11572px"]
+        acd_tif_rel = asub["primary_geotiff"].removeprefix("docs/")
+        acd_zip_rel = asub["primary_zip"].removeprefix("docs/")
+        acd_nan_rel = asub["nan_twin_geotiff"].removeprefix("docs/")
+        acd_kb = asub["primary_geotiff_bytes"] / 1024
+        acd_zkb = asub["primary_zip_bytes"] / 1024
+        acd_box = f"""<section class="card dl"><h2>⬇ NEW ALL-TIME #1 RECORD CANDIDATE (H77E-ACD · 0.1848 3-Seed Pooled / 0.1894 s30 HOLDOUT-DTI)</h2>
+<p class="small muted"><b>Lane H77E-ACD (Zero-SGMC 99-Channel Multi-Modal Ensemble + Residual 8-Azimuth Filament Auto-Context + Exact Dinkelbach Fractional Cover &amp; Monotonic 1-Swap).</b>
+Sets a new all-time holdout record across all 41 repository lanes on every single seed across <b>34,235 withheld fault pixels</b>, and is capped below <b>0.645 &lt; 0.70</b> across all <b>{auq["dot_field_rasters_checked"]}</b> sparse dot-field rasters (including H77-VDS, H77V-LDSA, H77H-MeshSafe, H77D, H77-Step, and H33).</p>
+<a class="btn" href="{e(acd_tif_rel)}" download>Download Primary GeoTIFF ({acd_kb:.1f} KB)</a>
+<a class="btn alt" href="{e(acd_zip_rel)}" download>Download Single-TIFF .zip ({acd_zkb:.1f} KB)</a>
+<a class="btn alt" href="h77e-acd.html">Full PhD Technical Monograph &amp; Figures →</a>
+<a class="btn alt" href="h77e-acd-executive-summary.html">Step-by-Step DrivenData Guide →</a>
+<div class="chips"><span class="chip ok">OK to download: YES</span>
+<span class="chip ok">Portal format: PASS (17/17 checks, 0 NaN, float32 in [0,1])</span>
+<span class="chip ok">Sparse uniqueness ({auq["dot_field_rasters_checked"]} dot rasters): PASS (max {auq["dot_max_forward_overlap_3px_informative"]:.4f} &lt; 0.70)</span>
+<span class="chip bad">Unique, literal rule (Policy I17): FAIL (1.000 vs dense witness 0c42fc03/ab0a0a62)</span>
+<span class="chip ok">All-Time #1 Across All 3 Seeds: YES (0.1848 pooled)</span>
+<span class="chip warn">Selector: Not approved (human weekly-slot sign-off required)</span></div>
+<p class="verdict"><b>Can I submit it?</b> <b>No. NOT OK TO SUBMIT automatically (inspection download until Policy I17 dense-witness policy sign-off by human portfolio selector).</b><br>
+<b>3-Seed Holdout Evidence (<code>gems57-pooled-hide-v2</code>, 34,235 withheld positive pixels):</b>
+<b>{ap3["dti"]:.5f} HOLDOUT-DTI</b> pooled (95% CI {ap3["ci95"][0]:.5f}–{ap3["ci95"][1]:.5f}) ·
+Seed 30 = <b>{as30["dti"]:.5f}</b> · Seed 20 = <b>{as20["dti"]:.5f}</b> · Seed 21 = <b>{as21["dti"]:.5f}</b> (+150 to +215 bps above prior #1 H77-VDS).</p>
+{copy("H77E-ACD Submission Name (for human selector upload after approval)", asub["submission_name"])}
+{copy("H77E-ACD DrivenData Note <= 140 chars (116 chars)", asub["submission_note_le140"])}
+<p class="small">GeoTIFF SHA-256: <code>{e(asub["primary_geotiff_sha256"])}</code> · ZIP SHA-256: <code>{e(asub["primary_zip_sha256"])}</code> · <a href="evidence/run_card_h77e_acd.json" download>Machine Run Card (.json)</a></p></section>"""
+    body = f"""{acd_box}{vds_box}{acd_box}{h77vs_box}{tsd_box}{h82_banner}{rank_box}<h1>Start here</h1>
 <p><strong>Earlier review #49 generated no new TIFF; H82 above is a later negative research download. NOT OK TO SUBMIT.</strong> <a href="review-904a24d3.html">Earlier audit and corrected H33 analysis</a>.</p>
 <p>This repository builds and audits fault-probability GeoTIFFs for the <a href="{COMP}">DOE GEMS Prize</a>
 (DrivenData competition 306). The first box distinguishes downloading a file from permission to upload it. The table
@@ -448,7 +483,7 @@ not proof that the specific file received that score or that another submission 
 
     # ---------------- general executive summary (how to submit)
     guide = f"""<h1>Executive summary: how to submit — only AFTER approval</h1>
-{h77vs_box}{tsd_box}
+{acd_box}{h77vs_box}{tsd_box}
 <p class="verdict"><b>NEW H82 file:</b> <a href="{e(h82['file'])}" download>Download the format-valid TIFF for inspection</a>;
 <b>NOT OK TO SUBMIT</b>. See <a href="h82-executive-summary.html">its test result and exact name/note</a>.
 This is a negative experiment, not a competition submission authorization.</p>
