@@ -1,5 +1,5 @@
 {
- "note": "This is a fail-closed inventory, not a promotion list. Every listed TIFF is available for inspection only and is Not OK to submit. The literal registry rule rejects every nonempty candidate because the pinned dense witness has positive support over the full allowed footprint. Pairwise uniqueness among sparse rasters and positive holdout measurements do not override the rule or confer selector approval. H79 (NEWEST UNIQUE TIF, 17/17 PASS, informative unique 0.14, HOLDOUT-DTI 0.0323 negative) is the newest lane of this parallel branch, also inspection-only.",
+ "note": "This is a fail-closed inventory, not a promotion list. Every listed TIFF is available for inspection only and is Not OK to submit. The literal registry rule rejects every nonempty candidate because the pinned dense witness has positive support over the full allowed footprint. Pairwise uniqueness among sparse rasters and positive holdout measurements do not override the rule or confer selector approval. H79 (NEWEST UNIQUE TIF, 17/17 PASS, informative unique 0.14, HOLDOUT-DTI 0.0323 negative) is the newest lane of this parallel branch, also inspection-only. H79-RH independently generated a second byte-unique format-valid TIFF; it is also negative and Not OK to submit.",
  "lanes": [
   {
    "lane": "H79-BB: Basement potential-field step \u00d7 topographic curvature ridge (NEWEST, UNIQUE TIF \u2014 17/17 PASS)",
@@ -20,9 +20,31 @@
     0.028377191340547874,
     0.03645024878150852
    ],
-   "upload": "Not OK to submit automatically under Policy I17 dense-witness gate (ab0a0a62 covers 100% footprint); SAFE TO DOWNLOAD (17/17 PASS, 0 NaN, 37654 dots) \u2014 INFORMATIVE unique 0.14 overlap, HOLDOUT-DTI 0.0323 negative vs random 0.0353; inspection download only, selector: not approved.",
+   "upload": "Not OK to submit automatically under Policy I17 dense-witness gate (ab0a0a62 covers 100% footprint); SAFE TO DOWNLOAD (17/17 PASS, 0 NaN, 37654 dots) \u2014 INFORMATIVE unique 0.14 overlap, HOLDOUT-DTI 0.0323 negative vs random 0.0353; inspection only, selector: not approved.",
    "primary": true,
    "why_primary": "Newest unique TIF of this parallel lane (2026-10-21): distinct physics (mag-grav cross-gradient confluence \u00d7 Hessian ridge coherence) vs H77D (0.1501) & H77-Step (0.1527); byte-unique (overlap 0.11\u20130.14 vs siblings, |\u03c1| 0.004), 0 SGMC, 0 H19-5 reuse, all-finite zeros encoding that fixes 'Predicted values must be in range [0,1]' (17/17 PASS)."
+  },
+  {
+   "lane": "H79-RH: lagged radiometric U-halo pairing (parallel negative)",
+   "page": "h79-radhalo.html",
+   "summary": "executive-summary.html",
+   "file": "downloads/gems77-h79-radhalo-lag3-37654-20261021-zeros.tif",
+   "format_valid": true,
+   "protocol_unique": false,
+   "informative_unique": false,
+   "beats_holdout_best": false,
+   "verdict": "negative",
+   "name": "gems77-h79-radhalo-lag3-37654-20261021-zeros",
+   "note": "H79 lag-3px U-residual halo paired to K-Th edge; 37654 spaced dots; HOLDOUT negative\u2014research only, do not submit",
+   "sha256": "c272025ee653187d09489d941613a86bfe4b88110fb455847a2256cf5699014b",
+   "holdout_dti": 0.04773265734715734,
+   "holdout_ci95": [
+    0.03958335878724709,
+    0.05557557296791166
+   ],
+   "upload": "Not OK to submit: HOLDOUT-DTI 0.04773 [0.03958, 0.05558] does not beat 0.152718; final literal registry overlap is 1.000 > 0.70. Inspection only; negative artifact; selector not approved.",
+   "primary": false,
+   "why_primary": "Parallel H79-RH unique-byte research artifact; explicitly rejected for competition upload."
   },
   {
    "lane": "H77D: Coupled Zero-SGMC Tectono-Hydrothermal Conduits + 12-Bit LOCO + 300 m Submodular Cover (0.15011 / 0.14030 HOLDOUT-DTI)",

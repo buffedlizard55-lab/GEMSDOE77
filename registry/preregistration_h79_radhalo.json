@@ -1,0 +1,22 @@
+{
+  "lane": "H79 radiometric phase-offset alteration-halo pairing",
+  "registered_utc": "2026-10-21T12:00:00Z",
+  "assignment_irregularity": "The supplied prompt again refers to a single method paragraph but contains no delimited method paragraph; this is a narrow autonomous lane and not a claimed assigned lane.",
+  "hypothesis": "A concealed permeable fault may place a selectively mobile uranium residual halo 300 m to either side of a K-Th common-mode lithologic edge; a lagged edge-pair response should recover the structural center while rejecting same-pixel lithologic contacts.",
+  "named_non_fault_mimic": "Hillslope transport across a sediment or soil boundary can spatially displace uranium-bearing material without fault permeability.",
+  "inputs": [
+    "SHA-256-pinned cached GeoDAWN radiometric K, Th and U uint8 rank-intensity bands",
+    "sample_submission.tif only for footprint/grid",
+    "visible fault catalogue only for pixel-exact placement masking in each holdout fold"
+  ],
+  "fixed_transform": "Gaussian sigma=1.5 px; K-Th common mode=(K+Th)/2; selective residual=U-common; Sobel gradient magnitudes; max selective-gradient response shifted +/-3 px over four normals; geometric mean with common-mode edge; multiply by shifted/(shifted+coincident+epsilon). Robust percentile ranks are computed only on valid radiometric footprint cells.",
+  "fixed_placement": "Greedy 3.0 px Poisson spacing in descending surface order, 37,654 binary dots, no positive values on the visible catalogue. Final full-map file masks the full mapped catalogue pixel-exactly.",
+  "experiments": [
+    "E1: each-feature leakage canary plus pre-placement surface uniqueness",
+    "E2: four-quadrant whole-segment buffered hide-and-recover HOLDOUT-DTI against common-mode edge and random controls",
+    "E3: only if E1 is nonduplicate; place, write and validate a unique research TIFF; promotion still requires E2 to beat 0.152718 HOLDOUT-DTI and final-dot uniqueness"
+  ],
+  "promotion_gate": "Canary AUC <=0.90; surface Spearman <=0.90; final dot forward 3 px overlap <=0.70; format valid; HOLDOUT-DTI lower confidence comparison is not negative versus current 0.152718 incumbent. The selector alone may spend a weekly slot.",
+  "budget": {"maximum_experiments": 3, "maximum_hours": 2},
+  "score_policy": "Only evaluator output is HOLDOUT-DTI. No projection is a score. Organizer values require a submission-page receipt."
+}
