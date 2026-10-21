@@ -118,6 +118,8 @@ def audit_run_card(run_card_rel: str | None, root: Path = ROOT) -> dict:
         or rcmp.get("template_literal_reading_duplicate") is True
         or lit_read.get("duplicate") is True
         or cov.get("duplicate_stop") is True
+        or cov.get("duplicate") is True
+        or (cov.get("final_max_forward_3px_overlap") or 0) > 0.70
         or (cov.get("final_dots_max_forward_overlap_3px") or 0) > 0.70
         or (reg.get("surface_max_forward_overlap_3px") or 0) > 0.70
         or "fails closed" in str(uvr.get("unfiltered_dense_witness_note") or "").lower()
@@ -136,6 +138,7 @@ def audit_run_card(run_card_rel: str | None, root: Path = ROOT) -> dict:
     )
     reg_incomplete = bool(
         reg.get("complete") is False
+        or cov.get("registry_complete") is False
         or reg.get("full_registry_certified") is False
         or cov_incomplete
         or (rcmp.get("unreadable_registry_files") or 0) > 0
