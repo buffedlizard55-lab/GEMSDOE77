@@ -51,11 +51,23 @@ support), K=|G|:
 DTI = T / (0.2·(T + S − M) + 0.8·K)         (★)
 ```
 
-**[CONDITIONAL, exact algebra]** Adding one unit of mass with realised kernel
-weight k raises DTI iff **k > 0.2·DTI** — because the denominator always rises
-by exactly α=0.2 (ΔT=k, ΔFP=1−k) regardless of placement. At DTI≈0.27 the bar
-is k>0.054, i.e. a dot must lie within ~283 m of a hidden-truth pixel (and not
-duplicate better cover) to pay for itself.
+**[CONDITIONAL, exact algebra; corrected in the repository review]** For a
+new binary dot let `q = max_g k(d(x,g))` be its self-credit and `ΔT` the
+increase in the **sum over all truth pixels** after max-pooling. Then
+
+```
+ΔD = 0.2 (ΔT + 1 − q)
+DTI increases iff ΔT (1 − 0.2 DTI) > 0.2 DTI (1 − q).
+```
+
+Only in the special case `ΔT = q` does this reduce to `q > 0.2 DTI`.
+A dot may improve several truth pixels, or none if previous dots already
+cover them better. Thus `ΔT` is neither generally equal to nor bounded above
+by `q`. A universal ~283 m inclusion rule cannot be inferred from a current
+DTI near 0.27. These are metric identities, **not projected scores**. See
+`tests/test_h33_marginal_review.py` for executable counterexamples using the
+unchanged pinned evaluator. The shared implementation computes the correct
+components; this correction concerns explanatory prose, not evaluator code.
 
 Three consequences, each matching the lineage:
 
@@ -63,16 +75,17 @@ Three consequences, each matching the lineage:
    gives max-credit ≈1 to itself and triangular credit to neighbours within
    3 px; adjacent solid pixels add denominator (0.2 each) with ΔT≈0. Spacing
    dots at ≈2.8 px keeps kernel coverage while cutting S by 2.75×
-   (121,131→44,090): the observed +0.068.
+   (121,131→44,090): the owner-reported increase of about 0.068 (no receipt).
 2. **Near-catalogue dots are near-pure false positives live.** The hidden
    truth is defined as faults *not* in the catalogue, and known faults are
    masked from scoring (problem page: test faults are "not contained within
    the current public USGS database"; sibling metric docs cite organizer
    forum thread 11516 for pixel masking). A dot ≤200 m from a mapped trace
-   most plausibly covers that mapped structure's halo/shoulder — credit ≈0
-   against *new* truth, cost 0.2 guaranteed. Deleting 6,436 such dots
+   most plausibly covers that mapped structure's halo/shoulder — credit may be low
+   against *new* truth, but neither zero credit nor a fixed denominator cost
+   is guaranteed; nearby unmapped branches can exist. Deleting 6,436 such dots
    (44,090→37,654 across the two prunes) raises mean realised credit per dot:
-   the observed +0.018 over d2.8.
+   the owner-reported increase of about 0.018 over d2.8 (no receipt).
 3. **The gains are emission-side and exhaustible.** Each prune can only remove
    tax; it cannot move a dot onto a real unmapped fault. Solve (★) at fixed
    S=37,654 for the leader's 0.4413 vs 0.2778 (same hidden K): required T —

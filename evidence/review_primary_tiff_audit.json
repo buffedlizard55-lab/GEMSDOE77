@@ -1,0 +1,214 @@
+{
+  "schema": "gems77-primary-tiff-audit-v1",
+  "evidence_class": "LOCAL-FORMAT-AND-INTEGRITY",
+  "reference": "data/bridge/sample_submission.tif",
+  "template_pin_checks": {
+    "__init__.py": true,
+    "anatomy.py": true,
+    "damagezone_envelope.py": true,
+    "emit.py": true,
+    "evaluate_holdout.py": true,
+    "evaluator_provenance.py": true,
+    "faultzone.py": true,
+    "fit.py": true,
+    "fitting.py": true,
+    "gates.py": true,
+    "geo.py": true,
+    "grid.py": true,
+    "holdout.py": true,
+    "metric.py": true,
+    "network.py": true,
+    "offcatalogue.py": true,
+    "relay_bend_anatomy.py": true,
+    "spatial.py": true,
+    "strand_orientation.py": true,
+    "strike_zone.py": true,
+    "submission_writer.py": true,
+    "uniqueness.py": true,
+    "validate.py": true
+  },
+  "artifacts": [
+    {
+      "file": "downloads/gems77-d77-blind-band-35106dots-20261021-926076f7-zeros.tif",
+      "checks": {
+        "sha256_matches_manifest": true,
+        "single_band": true,
+        "shape_matches": true,
+        "crs_matches": true,
+        "transform_matches": true,
+        "nodata_none": true,
+        "all_finite": true,
+        "all_values_in_0_1": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY.tif",
+      "checks": {
+        "sha256_matches_manifest": true,
+        "single_band": true,
+        "shape_matches": true,
+        "crs_matches": true,
+        "transform_matches": true,
+        "nodata_none": true,
+        "all_finite": true,
+        "all_values_in_0_1": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-h79-crossgrad-ridge-37654dots-20261021-dd0dbf9c-zeros.tif",
+      "checks": {
+        "sha256_matches_manifest": true,
+        "single_band": true,
+        "shape_matches": true,
+        "crs_matches": true,
+        "transform_matches": true,
+        "nodata_none": true,
+        "all_finite": true,
+        "all_values_in_0_1": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-h79-radhalo-lag3-37654-20261021-zeros.tif",
+      "checks": {
+        "sha256_matches_manifest": true,
+        "single_band": true,
+        "shape_matches": true,
+        "crs_matches": true,
+        "transform_matches": true,
+        "nodata_none": true,
+        "all_finite": true,
+        "all_values_in_0_1": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.tif",
+      "checks": {
+        "sha256_matches_manifest": true,
+        "single_band": true,
+        "shape_matches": true,
+        "crs_matches": true,
+        "transform_matches": true,
+        "nodata_none": true,
+        "all_finite": true,
+        "all_values_in_0_1": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-step-propensity-submod300.tif",
+      "checks": {
+        "sha256_matches_manifest": true,
+        "single_band": true,
+        "shape_matches": true,
+        "crs_matches": true,
+        "transform_matches": true,
+        "nodata_none": true,
+        "all_finite": true,
+        "all_values_in_0_1": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros.tif",
+      "checks": {
+        "sha256_matches_manifest": true,
+        "single_band": true,
+        "shape_matches": true,
+        "crs_matches": true,
+        "transform_matches": true,
+        "nodata_none": true,
+        "all_finite": true,
+        "all_values_in_0_1": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif",
+      "checks": {
+        "sha256_matches_manifest": true,
+        "single_band": true,
+        "shape_matches": true,
+        "crs_matches": true,
+        "transform_matches": true,
+        "nodata_none": true,
+        "all_finite": true,
+        "all_values_in_0_1": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif",
+      "checks": {
+        "sha256_matches_manifest": true,
+        "single_band": true,
+        "shape_matches": true,
+        "crs_matches": true,
+        "transform_matches": true,
+        "nodata_none": true,
+        "all_finite": true,
+        "all_values_in_0_1": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-h77-urank-curvature-0d868dc271bb-research.tif",
+      "checks": {
+        "sha256_matches_manifest": true,
+        "single_band": true,
+        "shape_matches": true,
+        "crs_matches": true,
+        "transform_matches": true,
+        "nodata_none": true,
+        "all_finite": true,
+        "all_values_in_0_1": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-h77e-ucpeuler-ctx-37654dots-20261021-22873551-zeros.tif",
+      "checks": {
+        "sha256_matches_manifest": true,
+        "single_band": true,
+        "shape_matches": true,
+        "crs_matches": true,
+        "transform_matches": true,
+        "nodata_none": true,
+        "all_finite": true,
+        "all_values_in_0_1": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-xsen-coincide-hgb-37654dots-20261021-zeros.tif",
+      "checks": {
+        "sha256_matches_manifest": true,
+        "single_band": true,
+        "shape_matches": true,
+        "crs_matches": true,
+        "transform_matches": true,
+        "nodata_none": true,
+        "all_finite": true,
+        "all_values_in_0_1": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    }
+  ],
+  "all_passed": true,
+  "caveat": "No new model experiment, holdout estimate, uniqueness clearance, or organizer acceptance."
+}

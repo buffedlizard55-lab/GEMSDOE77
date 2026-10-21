@@ -87,3 +87,25 @@ def test_run_card_schema_guardrail_blocks_false_promotion(tmp_path):
         assert result["authorized_to_submit"] is False, rc_rel
         assert result["decision"] == "NOT OK TO SUBMIT", rc_rel
         assert result["run_card_audit"]["guardrail_clear"] is False, rc_rel
+
+
+def test_manifest_cannot_replace_missing_or_negative_run_card(tmp_path):
+    artifact = tmp_path / 'candidate.tif'
+    artifact.write_bytes(b'not-a-real-tiff-but-all-manifest-flags-claim-pass')
+    row = dict(lane='test', file=artifact.name, format_valid=True,
+               protocol_unique=True, beats_holdout_best=True, verdict='promote',
+               selector_approved=True, sha256=hashlib.sha256(artifact.read_bytes()).hexdigest())
+    for content in (None, '{broken', '[]', '{}', '{"verdict":"negative"}'):
+        if content is not None:
+            (tmp_path / 'card.json').write_text(content)
+            row['run_card'] = 'card.json'
+        result = assess(row, tmp_path, root=tmp_path)
+        assert not result['authorized_to_submit']
+        assert not result['checks']['scientific_verdict_promote']
+
+
+def test_independent_primary_tiff_audit():
+    from audit_published_tiffs import audit
+    result = audit()
+    assert result['all_passed']
+    assert all(not row['authorized_to_submit'] for row in result['artifacts'])
