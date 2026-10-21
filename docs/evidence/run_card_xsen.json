@@ -1,0 +1,97 @@
+{
+  "lane": "H77-XSEN cross-sensor edge coincidence (magnetic analytic-signal ridge x radiometric Th/K+U/K boundary)",
+  "hypothesis": "A concealed catalogue-missing fault juxtaposes radiometric domains AND offsets magnetic basement, so the product of multi-scale magnetic analytic-signal ridge persistence and radiometric Th/K+U/K compositional-boundary strength is high on unmapped faults but low on single-sensor mimics.",
+  "mechanism": "8 rank channels from training_features bands 3/9 (analytic-signal Hessian ridge sigma 1.5/3 px, persistence) and geodawn_extensions ThK/UK (|grad| sigma 1.5 px), combined as sqrt-rank product / min coincidence; HGB (raw+terrain+rad cached stack +/- XSEN channels); dotted emission 37,654 dots, min_sep 2.8 px, catalogue dist>2 px, visible faults masked pixel-exactly in scoring.",
+  "named_non_fault_mimic": "Non-fault lithologic contacts (radiometric boundary without displacement), magnetic dikes/intrusives, and GeoDAWN flight-line/levelling seams (magnetic edge without a fault).",
+  "experiments": {
+    "exp1_canaries_and_surface_screen": "evidence/xsen_exp1.json",
+    "exp2_hgb_holdout": "evidence/xsen_exp2.json",
+    "exp2_first_attempt_invalid": "evidence/xsen_exp2_INVALID_combined_memmap.json (all-zero combined memmap after OOM kill; identical prior-only arms 0.0414; discarded, bug fixed by gathering from source memmaps)",
+    "exp3_fullmap_build_uniqueness_writer": "evidence/xsen_exp3_build.json"
+  },
+  "leakage_canary": {
+    "features_tested": 8,
+    "max_single_feature_symmetric_auc": 0.5286981907952742,
+    "worst_feature": "xsen_as_ridge_s3",
+    "ceiling": 0.90,
+    "pass": true
+  },
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "triangular_kernel_radius_m": 300,
+    "seed": 30,
+    "withheld_positive_pixels": 11342,
+    "candidate_A_xsen": {"dti": 0.0993808459798562, "ci95": [0.08242763932879783, 0.11790928083246796]},
+    "control_A_std": {"dti": 0.09710031111653451, "ci95": [0.07949376169108141, 0.11560555085797006]},
+    "paired_delta_candidate_minus_std": {"delta": 0.0022805348633216926, "ci95": [-0.004690144727672155, 0.009345227804325465]},
+    "surface_alone_S_xsen_coincide": {"dti": 0.04803526673171067, "ci95": [0.04128831141465615, 0.054758455194727565]},
+    "random_control_A0": {"dti": 0.049951140624894634, "ci95": [0.04385289824279625, 0.05607740740106246]},
+    "repo_incumbent_cross_draw": {"value": 0.152718, "label": "HOLDOUT-DTI H77-Step, same evaluator, seed-20 draw, 11321 withheld px; cross-draw comparison, not paired"},
+    "promotion_bar_met": false,
+    "promotion_bar_failures": ["paired delta vs A_std 95% CI includes 0", "0.0994 does not exceed 0.152718 incumbent"]
+  },
+  "uniqueness_vs_registry": {
+    "registry": "registry/registry_index.json fetched to .cache/registry (812 rasters; 808 compared, 4 registry-side errors: 2 CRS/transform mismatch, 1 grid/band mismatch, 1 corrupt TIFF - scan therefore also incomplete, fail-closed)",
+    "phase1_surface_before_placement": {
+      "worst_spearman_full_footprint": 0.560883205617684,
+      "worst_rho_submission": "7GEMSDOE:downloads/gems7-halo15-gbt-v1-90fb7dc0fc1f.tif",
+      "rho_limit": 0.90,
+      "rho_gate_pass": true,
+      "note": "Dot-overlap is not defined for a continuous surface (support = 100% of footprint by construction); vendor literal reading reported in evidence/xsen_exp3_build.json"
+    },
+    "phase2_final_dots": {
+      "worst_spearman_full_footprint": 0.13684236552752482,
+      "rho_gate_pass": true,
+      "worst_dot_overlap_all_rasters": 1.0,
+      "worst_dot_overlap_sparse_rasters_le_100k_dots": 0.9344292771020343,
+      "worst_sparse_overlap_submission": "GEMSDOE37:docs/downloads/gemsdoe37-h6-physics-dotted-80k-20261005T055000Z-0bef9211631c.tif",
+      "overlap_limit": 0.70,
+      "overlap_gate_pass": false,
+      "duplicate_by_overlap_firings": 109,
+      "verdict": "DUPLICATE under protocol rule 1 (>70% of dots within 3 px of GEMSDOE37's dotted raster, a sparse like-for-like raster - not only dense witnesses). Lane stopped; no re-placement attempted."
+    }
+  },
+  "submission_raster": {
+    "path": "submissions/gems77-xsen-coincide-hgb-37654dots-20261021-zeros.tif",
+    "pages_download": "docs/downloads/gems77-xsen-coincide-hgb-37654dots-20261021-zeros.tif",
+    "zip": "submissions/gems77-xsen-coincide-hgb-37654dots-20261021-zeros.zip",
+    "sha256": "e7c81754420b9a6b4126ad1d7239870ae680eaa61e97a6d3f16f644a620d1c6a",
+    "bytes": 136909,
+    "dots": 37654,
+    "dots_on_catalogue": 0,
+    "min_catalogue_distance_px": 2.2360680103302
+  },
+  "validator": {
+    "tool": "vendor gems57.validate via scripts/validate_submission.py (grid-path bug fixed in this session, IR-XSEN-05) + writer on-disk revalidation",
+    "evidence": "evidence/xsen_validator.json",
+    "all_checks_passed": true,
+    "no_nan_inside_footprint": true,
+    "nan_count_entire_raster": 0,
+    "values_in_0_1": true,
+    "min": 0.0,
+    "max": 1.0,
+    "crs": "EPSG:32611",
+    "shape": [3730, 3292],
+    "transform": [100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0],
+    "match_sample_submission": true,
+    "ok_to_submit": false
+  },
+  "submission_name": "gems77-xsen-coincide-hgb-37654dots-20261021-zeros",
+  "submission_note": "XSEN mag analytic-signal x ThK/UK boundary HGB, 37654 dots; HOLDOUT-DTI 0.0994, below 0.1527 repo best: NEGATIVE, do not submit",
+  "submission_note_chars": 127,
+  "verdict": "negative",
+  "verdict_reasons": [
+    "Holdout: XSEN channels add +0.0023 HOLDOUT-DTI over the standard-stack control, paired 95% CI [-0.0047, +0.0093] includes 0 (Exp 2).",
+    "Holdout: 0.0994 is below the repo incumbent 0.152718 HOLDOUT-DTI (cross-draw).",
+    "Surface alone scores 0.0480, indistinguishable from the random control 0.0500: the coincidence mechanism is falsified as a standalone driver.",
+    "Uniqueness: 93.4% of final dots lie within 3 px of GEMSDOE37's sparse dotted raster (> 0.70 limit): duplicate under protocol rule 1.",
+    "Format is valid ([0,1], finite, pinned grid) - the portal range error cannot recur with this file - but format validity is not approval."
+  ],
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "submission_slots_used": 0,
+  "organizer_confirmed_scores": "none for this file; no slot spent"
+}

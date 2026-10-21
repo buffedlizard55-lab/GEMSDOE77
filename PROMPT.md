@@ -8,6 +8,15 @@ summarised with provenance at the end rather than re-transcribed hash-by-hash
 `docs/score-ledger.csv`; later entries below are OWNER-REPORT as supplied in
 the 2026-10-21 brief — no organizer receipts).*
 
+## 2026-10-21 H79 execution addendum (current session)
+
+This session's registered lane is **H79-ORIENT**, not the historical contact-physics
+lane mentioned in older repository notes. The operative preregistration is
+`registry/preregistration_h79_orient.json`; the measured artifact and stop decision are
+in `evidence/h79_orient_run_card.json`. The full request below remains preserved as the
+standing brief. H79's result is negative, safe to download for inspection, not
+approved to submit, and no weekly slot was selected.
+
 ## Highest urgency
 
 MUST GENERATE A UNIQUE TIF SUBMISSION FOR THE COMPETITION. DO NOT COPY A
