@@ -41,3 +41,12 @@ def test_h82_pages_and_manifest_fail_closed():
     for p in ('index.html','h82.html','executive-summary.html'):
         text = (ROOT/'docs'/p).read_text()
         assert 'NOT OK TO SUBMIT' in text and card['submission_name'] in text
+
+
+def test_parallel_lane_receipts_do_not_overwrite_lia():
+    lia = json.loads((ROOT/'docs/data/submission.json').read_text())
+    h28 = json.loads((ROOT/'docs/data/h28_submission.json').read_text())
+    assert lia['name'].startswith('gems77-h77-lia-')
+    assert 'zip' in lia and lia['zip']['passed']
+    assert h28['name'].startswith('gems77-h28-')
+    assert 'zip' not in h28  # incomplete inherited stub, never presented as cleared
