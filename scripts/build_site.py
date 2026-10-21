@@ -17,7 +17,7 @@ def md(name):
 
 def shell(title,active,body):
     nav=''.join(f'<a href="{file}"'+(' aria-current="page"' if key==active else '')+f'>{label}</a>'
-       for file,key,label in [('index.html','overview','Overview'),('executive-summary.html','submit','Submission guide'),
+       for file,key,label in [('index.html','home','Start here'),('urank.html','overview','Selective-U lane'),('urank-executive-summary.html','submit','Selective-U guide'),
                               ('research.html','research','Research'),('sources.html','sources','Source feed'),('audit.html','audit','Audit trail')])
     return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{esc(title)} · GEMS / 77</title><meta name="description" content="Auditable fault-detection research. Download the locally validated research GeoTIFF. Not approved for competition submission.">
@@ -44,7 +44,7 @@ def main():
 <div class="buttons"><a class="button" download href="downloads/{file}">↓ Download research TIFF</a><a class="button secondary" download href="downloads/{Path(file).with_suffix('.zip')}">Single-TIFF ZIP</a></div>
 <p class="fine">{receipt['bytes']/1e6:.1f} MB · float32 · single band · values in [0, 1]<br>Safe to download for inspection. <strong>Do not upload to the competition.</strong></p>
 <div class="file-label">SHA-256 / actual TIFF bytes</div><div class="hash">{esc(card['raster_sha256'])}</div>
-<p class="fine"><a href="downloads/{Path(file).with_suffix('.json')}">Writer receipt</a> · <a href="evidence/run_card.json">JSON run card</a> · <a href="executive-summary.html">Submission instructions</a></p></div>'''
+<p class="fine"><a href="downloads/{Path(file).with_suffix('.json')}">Writer receipt</a> · <a href="evidence/run_card.json">JSON run card</a> · <a href="urank-executive-summary.html">Submission instructions</a></p></div>'''
     overview=f'''<div class="eyebrow">DOE GEMS research · H77 · 21 October 2026</div><h1>Find structure.<br>Keep the evidence honest.</h1>
 <p class="intro">A reproducible, independently generated fault-detection pilot. Download its GeoTIFF below—and see exactly why it is <strong>not approved for submission</strong>.</p>
 <div class="hero-grid">{download}<div class="panel"><span class="eyebrow">Experiment 01 / stopped</span><h2>Selective-U curvature</h2><p>Subtract the K/Th common mode from U rank-intensity, then emphasize narrow, directional curvature. A test of concealed structure—not a claimed geothermal-vent discovery.</p>
@@ -103,7 +103,9 @@ bash scripts/download_competition_data.sh
         rows=''.join(f'<tr><td><a href="{esc(x["page"])}">{esc(x["lane"])}</a></td><td><a download href="{esc(x["file"])}">{esc(Path(x["file"]).name)}</a></td><td>{esc(x["verdict"])}</td><td>{esc(x["upload"])}</td></tr>' for x in L['lanes'])
         lanes_box=f'<div class="panel"><span class="eyebrow">All lanes in this repository</span><div class="table-wrap"><table><tr><th>Lane</th><th>File</th><th>Verdict</th><th>Upload status</th></tr>{rows}</table></div><p class="fine">{esc(L["note"])}</p></div>'
     overview=lanes_box+overview; guide=lanes_box+guide
-    for filename,title,active,body in [('index.html','Overview','overview',overview),('executive-summary.html','Submission guide','submit',guide),
+    # Pages restructure (H78 lane): index.html / executive-summary.html are now the repository-wide
+    # "Start here" pages written by scripts/build_home.py; this lane's pages moved to urank*.html.
+    for filename,title,active,body in [('urank.html','Selective-U lane','overview',overview),('urank-executive-summary.html','Selective-U submission guide','submit',guide),
            ('research.html','Scientific assessment','research',research),('audit.html','Audit trail','audit',audithtml),('sources.html','Source feed','sources',sourcehtml)]:
         (DOC/filename).write_text(shell(title,active,body))
     shutil.copyfile(E/'experiment.log',DOC/'evidence/experiment.log')

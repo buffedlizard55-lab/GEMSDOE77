@@ -9,7 +9,8 @@ Both the literal reading and the like-for-like reading (gems57.uniqueness.two_ph
 are reported; space-filling rasters (3 px halo >= 70 % of allowed cells, listed in
 evidence/h78_e3_registry.json) are reported separately because uniformly random dots exceed the
 0.70 overlap limit against them.
-Writes evidence/h78_uniqueness.json.
+Usage: h78_uniqueness.py phase1 | phase2 | merge   (the two phases run in parallel processes;
+`merge` combines .cache/work/h78_uniq_phase*.json into evidence/h78_uniqueness.json).
 """
 from __future__ import annotations
 
@@ -43,9 +44,21 @@ def main():
     surf[~g.footprint] = 0
     sf = {x["id"] for x in json.loads((ROOT / "evidence" / "h78_e3_registry.json").read_text())["space_filling"]}
     out = {"registry_files": len(files), "space_filling_ids": sorted(sf)}
-    for phase, arr in (("phase1_surface_before_placement", surf), ("phase2_final_dots", final)):
+    which = sys.argv[1] if len(sys.argv) > 1 else "merge"
+    if which == "merge":
+        for ph in ("phase1_surface_before_placement", "phase2_final_dots"):
+            out[ph] = json.loads((core.WORK / f"h78_uniq_{ph}.json").read_text())
+        return finish(out, sub, t0)
+
+    def prog(i, n, row):
+        if i % 50 == 0 or i == n:
+            print(f"  {which} {i}/{n} ({time.time() - t0:.0f}s)", flush=True)
+
+    todo = {"phase1": [("phase1_surface_before_placement", surf)], "phase2": [("phase2_final_dots", final)]}[which]
+    for phase, arr in todo:
         r = U.compare_array_to_registry(arr, reg, g.footprint, include_reverse=phase.startswith("phase2"),
-                                        file_sha256=sub["primary"]["sha256"] if phase.startswith("phase2") else None)
+                                        file_sha256=sub["primary"]["sha256"] if phase.startswith("phase2") else None,
+                                        progress=prog)
         rows = r.get("rows") or r.get("comparisons") or []
         ok_rows = [x for x in rows if "error" not in x]
         summ = U.two_phase_summary(rows, int(g.footprint.sum()), expected_rasters=len(files)) if ok_rows else None
@@ -72,6 +85,10 @@ def main():
             "errors": [x for x in rows if "error" in x]}
         print(phase, json.dumps(out[phase]["informative_reading"]), "worst rho", out[phase]["worst_rho"],
               f"({time.time() - t0:.0f}s)", flush=True)
+        (core.WORK / f"h78_uniq_{phase}.json").write_text(json.dumps(out[phase], indent=1, default=str))
+
+
+def finish(out, sub, t0):
     p2 = out["phase2_final_dots"]
     p1 = out["phase1_surface_before_placement"]
     out["candidate"] = {"name": sub["name"], "primary_sha256": sub["primary"]["sha256"], "dots": sub["dots"]}

@@ -2,6 +2,23 @@
  "note": "Status of every submission file in this repository, copied from each lane's own run card. Selector approval is a separate step; no file below is selector-approved.",
  "lanes": [
   {
+   "lane": "H78: lidar scarp consensus, uniqueness-capped allocation",
+   "page": "h78.html",
+   "summary": "executive-summary.html",
+   "file": "downloads/gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros.tif",
+   "format_valid": true,
+   "protocol_unique": true,
+   "beats_holdout_best": false,
+   "verdict": "negative",
+   "name": "gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros",
+   "note": "GEMSDOE77 H78: 66% H19-5 support (S0 credit) + 34% 1m-lidar scarp-consensus dots, 38301 binary, 0 on catalogue",
+   "sha256": "4571e767757be95e3fb70b4afb05e45528b1cfd74147e168c36253b1247f1c47",
+   "s0_projection": 0.24497394668268976,
+   "upload": "Safe to upload (portal-valid, unique). Not expected to beat 0.2778; selector: not approved.",
+   "primary": true,
+   "why_primary": "Generated in this session; portal-valid and unique. It ties the LIA file: INSTRUMENT S0 projection 0.2450 vs 0.2450, HOLDOUT-DTI 0.0708 vs 0.0706 (same evaluator and split). Showing it here is not a selection; the selector decides."
+  },
+  {
    "lane": "LIA: live-score inversion and allocation",
    "page": "lia.html",
    "summary": "lia-executive-summary.html",
@@ -9,7 +26,12 @@
    "format_valid": true,
    "protocol_unique": true,
    "verdict": "negative",
-   "upload": "Safe to upload (portal-valid, unique). Not recommended for a slot; selector: not approved."
+   "upload": "Safe to upload (portal-valid, unique). Not recommended for a slot; selector: not approved.",
+   "name": "gems77-h77-lia-38323dots-20261021-aa5c9331-zeros",
+   "note": "GEMSDOE77 H77 live-inversion allocation: 66% H19-5 support + 34% straight-edge dots, 38323 binary, 0 on catalogue",
+   "sha256": "a8bfb844ab44b5d4157f75ec914a51655c27ae54727f7b4a088eca9d6f396898",
+   "beats_holdout_best": false,
+   "s0_projection": 0.2449870367645919
   },
   {
    "lane": "Contact-physics + front-base",
@@ -19,17 +41,19 @@
    "format_valid": true,
    "protocol_unique": null,
    "verdict": "negative",
-   "upload": "Selector: not approved (see its run card)."
+   "upload": "Selector: not approved (see its run card).",
+   "beats_holdout_best": false
   },
   {
    "lane": "Selective-U curvature (research TIFF)",
-   "page": "index.html",
-   "summary": "executive-summary.html",
+   "page": "urank.html",
+   "summary": "urank-executive-summary.html",
    "file": "downloads/gems77-h77-urank-curvature-0d868dc271bb-research.tif",
    "format_valid": true,
    "protocol_unique": false,
    "verdict": "negative",
-   "upload": "Not OK to submit: research TIFF, literal gate failed."
+   "upload": "Not OK to submit: research TIFF, literal gate failed.",
+   "beats_holdout_best": false
   }
  ]
 }

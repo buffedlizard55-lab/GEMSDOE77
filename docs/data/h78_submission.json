@@ -1,0 +1,407 @@
+{
+ "name": "gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros",
+ "note": "GEMSDOE77 H78: 66% H19-5 support (S0 credit) + 34% 1m-lidar scarp-consensus dots, 38301 binary, 0 on catalogue",
+ "note_chars": 110,
+ "decoded_sha256": "429a7a1296a407336f028e95df394ee725e63b3ba0ba942ce47412562936d4cb",
+ "dots": 38301,
+ "on_support_pct": 66,
+ "primary": {
+  "file": "gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros.tif",
+  "sha256": "4571e767757be95e3fb70b4afb05e45528b1cfd74147e168c36253b1247f1c47",
+  "bytes": 151428,
+  "mode": "zeros",
+  "dots": 38301,
+  "checks": [
+   {
+    "check": "GeoTIFF driver",
+    "status": "PASS",
+    "detail": "GTiff"
+   },
+   {
+    "check": "single band",
+    "status": "PASS",
+    "detail": "count=1"
+   },
+   {
+    "check": "dtype float32",
+    "status": "PASS",
+    "detail": "float32"
+   },
+   {
+    "check": "CRS EPSG:32611",
+    "status": "PASS",
+    "detail": "32611"
+   },
+   {
+    "check": "CRS equals sample_submission",
+    "status": "PASS",
+    "detail": ""
+   },
+   {
+    "check": "shape 3730x3292 equals sample_submission",
+    "status": "PASS",
+    "detail": "(3730, 3292)"
+   },
+   {
+    "check": "transform equals sample_submission",
+    "status": "PASS",
+    "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)"
+   },
+   {
+    "check": "resolution 100 m",
+    "status": "PASS",
+    "detail": "(100.0, 100.0)"
+   },
+   {
+    "check": "nodata tag none (zeros) or NaN (nan)",
+    "status": "PASS",
+    "detail": "None"
+   },
+   {
+    "check": "no NaN/inf inside official footprint",
+    "status": "PASS",
+    "detail": "nonfinite_inside=0"
+   },
+   {
+    "check": "all 12,279,160 cells finite (no NaN anywhere)",
+    "status": "PASS",
+    "detail": "nonfinite=0"
+   },
+   {
+    "check": "zeros outside footprint",
+    "status": "PASS",
+    "detail": ""
+   },
+   {
+    "check": "values within [0, 1]",
+    "status": "PASS",
+    "detail": "min=0.0 max=1.0"
+   },
+   {
+    "check": "binary values {0,1} inside footprint",
+    "status": "PASS",
+    "detail": ""
+   },
+   {
+    "check": "0 dots on masked catalogue pixels",
+    "status": "PASS",
+    "detail": "on_catalogue=0"
+   },
+   {
+    "check": "name non-empty, <= 120 chars",
+    "status": "PASS",
+    "detail": "61 chars"
+   },
+   {
+    "check": "note <= 140 chars",
+    "status": "PASS",
+    "detail": "110 chars"
+   }
+  ],
+  "n_checks": 17,
+  "n_pass": 17,
+  "passed": true
+ },
+ "twin_nan": {
+  "file": "gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-nan.tif",
+  "sha256": "55ad78e51317d1b072fa096966977d8dbc45ef20a0d4916552f0d55ee60b21c0",
+  "bytes": 370873,
+  "mode": "nan",
+  "dots": 38301,
+  "checks": [
+   {
+    "check": "GeoTIFF driver",
+    "status": "PASS",
+    "detail": "GTiff"
+   },
+   {
+    "check": "single band",
+    "status": "PASS",
+    "detail": "count=1"
+   },
+   {
+    "check": "dtype float32",
+    "status": "PASS",
+    "detail": "float32"
+   },
+   {
+    "check": "CRS EPSG:32611",
+    "status": "PASS",
+    "detail": "32611"
+   },
+   {
+    "check": "CRS equals sample_submission",
+    "status": "PASS",
+    "detail": ""
+   },
+   {
+    "check": "shape 3730x3292 equals sample_submission",
+    "status": "PASS",
+    "detail": "(3730, 3292)"
+   },
+   {
+    "check": "transform equals sample_submission",
+    "status": "PASS",
+    "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)"
+   },
+   {
+    "check": "resolution 100 m",
+    "status": "PASS",
+    "detail": "(100.0, 100.0)"
+   },
+   {
+    "check": "nodata tag none (zeros) or NaN (nan)",
+    "status": "PASS",
+    "detail": "None"
+   },
+   {
+    "check": "no NaN/inf inside official footprint",
+    "status": "PASS",
+    "detail": "nonfinite_inside=0"
+   },
+   {
+    "check": "NaN exactly outside footprint",
+    "status": "PASS",
+    "detail": "finite_outside=0"
+   },
+   {
+    "check": "values within [0, 1]",
+    "status": "PASS",
+    "detail": "min=0.0 max=1.0"
+   },
+   {
+    "check": "binary values {0,1} inside footprint",
+    "status": "PASS",
+    "detail": ""
+   },
+   {
+    "check": "0 dots on masked catalogue pixels",
+    "status": "PASS",
+    "detail": "on_catalogue=0"
+   },
+   {
+    "check": "name non-empty, <= 120 chars",
+    "status": "PASS",
+    "detail": "59 chars"
+   },
+   {
+    "check": "note <= 140 chars",
+    "status": "PASS",
+    "detail": "110 chars"
+   }
+  ],
+  "n_checks": 16,
+  "n_pass": 16,
+  "passed": true
+ },
+ "zip": {
+  "zip": "gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros.zip",
+  "members": [
+   "gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros.tif"
+  ],
+  "exactly_one_geotiff": true,
+  "member_bytes_identical_to_tif": true,
+  "sha256": "ddad4a33f2a9e2f9456da2981ad0ff337f67ce2602a3b2254f29efc65d2e0529",
+  "bytes": 119905,
+  "passed": true
+ },
+ "template_validator_primary": {
+  "file": "/home/user/GEMSDOE77/docs/downloads/gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros.tif",
+  "passed": false,
+  "has_failures": true,
+  "checks": [
+   {
+    "check": "single band",
+    "status": "PASS",
+    "detail": "count=1"
+   },
+   {
+    "check": "dtype float32",
+    "status": "PASS",
+    "detail": "dtype=float32"
+   },
+   {
+    "check": "CRS EPSG:32611",
+    "status": "PASS",
+    "detail": "crs=EPSG:32611"
+   },
+   {
+    "check": "shape matches",
+    "status": "PASS",
+    "detail": "file=(3730, 3292) expected=(3730, 3292)"
+   },
+   {
+    "check": "resolution 100 m",
+    "status": "PASS",
+    "detail": "res=(100.0, 100.0)"
+   },
+   {
+    "check": "transform matches reference",
+    "status": "PASS",
+    "detail": "file=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0) ref=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)"
+   },
+   {
+    "check": "CRS matches reference",
+    "status": "PASS",
+    "detail": "file=EPSG:32611 ref=EPSG:32611"
+   },
+   {
+    "check": "nodata tag is none or NaN",
+    "status": "PASS",
+    "detail": "nodata=None (finite nodata tags are rejected conservatively)"
+   },
+   {
+    "check": "no infinities",
+    "status": "PASS",
+    "detail": "inf_count=0"
+   },
+   {
+    "check": "values within [0, 1]",
+    "status": "PASS",
+    "detail": "min=0.0 max=1.0 finite_cells=12279160"
+   },
+   {
+    "check": "features grid shape matches",
+    "status": "PASS",
+    "detail": "features=(3730, 3292) reference=(3730, 3292)"
+   },
+   {
+    "check": "features transform matches reference grid",
+    "status": "PASS",
+    "detail": "features=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0) reference=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)"
+   },
+   {
+    "check": "features CRS matches reference grid",
+    "status": "PASS",
+    "detail": "features=EPSG:32611 reference=EPSG:32611"
+   },
+   {
+    "check": "no NaN inside footprint",
+    "status": "PASS",
+    "detail": "nan_inside=0 footprint_cells=5165852"
+   },
+   {
+    "check": "NaN-only outside footprint",
+    "status": "FAIL",
+    "detail": "finite_outside=7113308; only NaN is allowed outside"
+   },
+   {
+    "check": "info: emitted cells (value > 0)",
+    "status": "INFO",
+    "detail": "emitted=38301"
+   }
+  ],
+  "skipped_checks_mean_unverified": false
+ },
+ "template_validator_twin": {
+  "file": "/home/user/GEMSDOE77/docs/downloads/gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-nan.tif",
+  "passed": false,
+  "has_failures": true,
+  "checks": [
+   {
+    "check": "single band",
+    "status": "PASS",
+    "detail": "count=1"
+   },
+   {
+    "check": "dtype float32",
+    "status": "PASS",
+    "detail": "dtype=float32"
+   },
+   {
+    "check": "CRS EPSG:32611",
+    "status": "PASS",
+    "detail": "crs=EPSG:32611"
+   },
+   {
+    "check": "shape matches",
+    "status": "PASS",
+    "detail": "file=(3730, 3292) expected=(3730, 3292)"
+   },
+   {
+    "check": "resolution 100 m",
+    "status": "PASS",
+    "detail": "res=(100.0, 100.0)"
+   },
+   {
+    "check": "transform matches reference",
+    "status": "PASS",
+    "detail": "file=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0) ref=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)"
+   },
+   {
+    "check": "CRS matches reference",
+    "status": "PASS",
+    "detail": "file=EPSG:32611 ref=EPSG:32611"
+   },
+   {
+    "check": "nodata tag is none or NaN",
+    "status": "PASS",
+    "detail": "nodata=None (finite nodata tags are rejected conservatively)"
+   },
+   {
+    "check": "no infinities",
+    "status": "PASS",
+    "detail": "inf_count=0"
+   },
+   {
+    "check": "values within [0, 1]",
+    "status": "PASS",
+    "detail": "min=0.0 max=1.0 finite_cells=5167373"
+   },
+   {
+    "check": "features grid shape matches",
+    "status": "PASS",
+    "detail": "features=(3730, 3292) reference=(3730, 3292)"
+   },
+   {
+    "check": "features transform matches reference grid",
+    "status": "PASS",
+    "detail": "features=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0) reference=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)"
+   },
+   {
+    "check": "features CRS matches reference grid",
+    "status": "PASS",
+    "detail": "features=EPSG:32611 reference=EPSG:32611"
+   },
+   {
+    "check": "no NaN inside footprint",
+    "status": "FAIL",
+    "detail": "nan_inside=1540 footprint_cells=5165852"
+   },
+   {
+    "check": "NaN-only outside footprint",
+    "status": "FAIL",
+    "detail": "finite_outside=3061; only NaN is allowed outside"
+   },
+   {
+    "check": "info: emitted cells (value > 0)",
+    "status": "INFO",
+    "detail": "emitted=38301"
+   }
+  ],
+  "skipped_checks_mean_unverified": false
+ },
+ "template_writer_receipt": {
+  "file": "gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-nan.tif",
+  "sha256": "55ad78e51317d1b072fa096966977d8dbc45ef20a0d4916552f0d55ee60b21c0",
+  "shape_hw": [
+   3730,
+   3292
+  ],
+  "crs": "EPSG:32611",
+  "footprint_cells": 5167373,
+  "emitted_cells_gt0": 38301,
+  "min_inside": 0.0,
+  "max_inside": 1.0,
+  "nan_inside": 0,
+  "nan_outside_count": 7111787,
+  "name": "gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-nan",
+  "note": "GEMSDOE77 H78: 66% H19-5 support (S0 credit) + 34% 1m-lidar scarp-consensus dots, 38301 binary, 0 on catalogue",
+  "note_chars": 110,
+  "reference": "sample_submission.tif",
+  "receipt_kind": "local receipt written by submission_writer; NOT an organiser receipt"
+ },
+ "in_footprint_bit_identical": true,
+ "readback_equals_dots": true,
+ "download_ok_format_valid": true
+}

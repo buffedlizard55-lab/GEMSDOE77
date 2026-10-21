@@ -39,7 +39,7 @@ def main():
     verdict = "promote" if (beats and unique and fmt and not any(v > 0.9 for v in canary.values()) and s0 >= s0c) else "negative"
     reasons = []
     if not beats:
-        reasons.append(f"holdout delta vs champion construction {dA0['delta']:+.4f} (95% CI {dA0['ci95'][0]:+.4f} to {dA0['ci95'][1]:+.4f}) does not exclude/beat 0")
+        reasons.append(f"holdout delta vs champion construction {dA0['delta']:+.4f} (95% CI {dA0['ci95'][0]:+.4f} to {dA0['ci95'][1]:+.4f}) " + ("is entirely below 0" if dA0["ci95"][1] < 0 else "includes 0"))
     if s0 < s0c:
         reasons.append(f"INSTRUMENT S0 projection {s0:.4f} < champion {s0c:.4f}")
     reasons.append("E1 and E2 found no live-supported field")
@@ -53,7 +53,7 @@ def main():
              "signature": "Linear slope break with free face, convex crest, concave toe", "why_uncatalogued": "Young, small-offset scarps below the mapping scale of the USGS Qfault database are visible at 1 m (INGENIOUS Lund North UAV lidar)",
              "differs_from_repo": "Earlier lidar lanes (GEMSDOE7/64/66) used single operators as dense surfaces; H78 uses a 7-operator consensus only to rank OFF-support dots inside a uniqueness-capped allocation",
              "gain_over_cost": "highest (+0.01 to +0.02 hoped / 1 field, cached data)", "outcome": "E1 negative (LOO dMSE < 0), E2 negative, E3 holdout below champion construction"},
-            {"id": "H78-2", "name": "Geothermal manifestation proximity", "layers": "GDR 1391 well/spring temperatures (DOI 10.15121/1881483, CC BY 4.0)",
+            {"id": "H78-2", "name": "Geothermal manifestation proximity", "layers": "GDR 1391 (INGENIOUS regional compilation, DOI 10.15121/1881483, CC BY 4.0): well and spring temperatures",
              "signature": "Hot/warm wells and springs sit on permeable fault intersections and step-overs", "why_uncatalogued": "Fluid upflow marks blind faults that have no scarp",
              "differs_from_repo": "No family repo used thermal-manifestation distance to place dots", "gain_over_cost": "second (sparse points, cheap)", "outcome": "E1: zero weight; E2: unordered, not live-supported"},
             {"id": "H78-3", "name": "Regional mapping-campaign heterogeneity", "layers": "3x3 region blocks of the footprint",
@@ -89,7 +89,12 @@ def main():
                                 "phase2_overlap_firings_informative": p2["informative_reading"]["overlap_firings"],
                                 "phase2_jaccard_firings_informative": p2["informative_reading"]["jaccard_firings"],
                                 "identical_decoded": p2["informative_reading"]["identical_decoded"],
-                                "literal_reading": (p2.get("summary") or {}).get("literal_reading")},
+                                "literal_reading": (p2.get("summary") or {}).get("literal_reading"),
+                                "literal_firings_all_space_filling": all(
+                                    x["submission"] in set(un["space_filling_ids"])
+                                    for ph in (p1, p2) for x in (ph.get("summary") or {}).get("literal_firings", [])),
+                                "unreadable_registry_files": len(p2["errors"]),
+                                "scope": "812-raster registry index + GEMSDOE73-76 TIFFs at clone time (~04:10 UTC) + this repo's TIFFs; later files unchecked (IR-78-05)"},
         "raster_sha256": sub["primary"]["sha256"], "file": "docs/downloads/" + sub["primary"]["file"],
         "validator": {"portal_equivalence": {c_["check"]: c_["status"] for c_ in sub["primary"]["checks"]},
                       "template_validator_passed": sub["template_validator_primary"]["passed"],
@@ -107,7 +112,8 @@ def main():
             {"title": "Hart-Wagoner et al., GRC (INGENIOUS Quaternary fault database)", "url": "https://publications.mygeoenergynow.org/grc/1034813.pdf", "used_for": "catalogue provenance"},
             {"title": "Faulds & Richards, GRC (INGENIOUS favorable structural settings)", "url": "https://publications.mygeoenergynow.org/grc/1034745.pdf", "used_for": "H78-2 rationale"},
             {"title": "GBCGE INGENIOUS project page", "url": "https://gbcge.org/current-projects/ingenious/", "used_for": "project scope and dates"},
-            {"title": "GDR 1391 well/spring temperature and chemistry (DOI 10.15121/1881483)", "url": "https://doi.org/10.15121/1881483", "used_for": "H78-2 field"}],
+            {"title": "GDR submission 1391, INGENIOUS Great Basin Regional Dataset Compilation (DOI 10.15121/1881483, CC BY 4.0)", "url": "https://gdr.openei.org/submissions/1391", "used_for": "H78-2 field (its 'Well and Spring Temperature and Chemistry' resource); the INGENIOUS Quaternary fault compilation is in the same submission"},
+            {"title": "USGS 3D Elevation Program (3DEP; free, no use restrictions)", "url": "https://www.usgs.gov/3d-elevation-program", "used_for": "source of the 1 m DEM tiles behind lidar_scarp_features_u8 (H78-1)"}],
     }
     assert len(card["note"]) <= 140
     (ROOT / "evidence" / "h78_run_card.json").write_text(json.dumps(card, indent=1, default=float))

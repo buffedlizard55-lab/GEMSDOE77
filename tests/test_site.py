@@ -26,7 +26,7 @@ def test_unambiguous_download_status_and_accessibility_basics():
         s=path.read_text()
         assert 'lang="en"' in s and 'name="viewport"' in s and '<h1>' in s
         assert 'Not approved' in s or 'not approved' in s
-    for name in ['index.html','executive-summary.html']:
+    for name in ['urank.html','urank-executive-summary.html']:
         s=(DOC/name).read_text()
         assert 'Not OK to submit' in s and 'download href="downloads/' in s
         assert 'Do not' in s and 'research TIFF' in s
@@ -50,7 +50,7 @@ def test_all_published_scores_have_version_count_ci():
 
 def test_original_prompt_preserved_and_postrun_caveat_visible():
     assert (ROOT/'README.md').read_text().endswith((DOC/'PROJECT_PROMPT.md').read_text())
-    for name in ['index.html','research.html']:
+    for name in ['urank.html','research.html']:
         s=(DOC/name).read_text()
         assert 'confound' in s and ('not valid for promotion' in s or 'not valid promotion' in s)
     card=json.loads((ROOT/'evidence/run_card.json').read_text())
@@ -66,3 +66,20 @@ def test_pages_staging_preserves_legacy_docs_urls_and_excludes_secrets(tmp_path)
     assert set(p.name for p in out.iterdir())=={'.generated-public-pages','.nojekyll','index.html','docs'}
     # Re-running replaces only a marked generated directory.
     assert stage(out)==out
+
+
+def test_home_pages_put_download_and_per_file_status_first():
+    """docs/index.html is the repository-wide entry page (scripts/build_home.py), not one lane's view."""
+    lanes=json.loads((DOC/'data/lanes.json').read_text())['lanes']
+    home=(DOC/'index.html').read_text()
+    head=home[:home.index('Every file in this repository')]
+    assert 'Download .tif' in head and 'Can I upload it?' in head and 'Will it beat 0.2778?' in head
+    for x in lanes:
+        assert (DOC/x['file']).exists(), x['file']
+        assert Path(x['file']).name in home
+        assert (DOC/x['page']).exists(), x['page']
+    guide=(DOC/'executive-summary.html').read_text()
+    assert 'single GeoTIFF' in guide and 'Note' in guide and 'EPSG:32611' in guide and '[0, 1]' in guide
+    prim=[x for x in lanes if x.get('primary')]
+    assert len(prim)==1 and prim[0]['format_valid'] and prim[0]['protocol_unique']
+    assert prim[0]['name'] in home and prim[0]['note'] in home and len(prim[0]['note'])<=140

@@ -4,13 +4,17 @@
 
 ## ⬇ Submission files in this repository (all lanes)
 
-Each row's status is copied from that lane's own run card; links are local.
+Each row's status is copied from that lane's own run card; links are local. **No file below is expected
+to beat 0.2778, and none is selector-approved.** The site's [Start here](https://buffedlizard55-lab.github.io/GEMSDOE77/docs/index.html)
+page shows the same table, and [How to submit](https://buffedlizard55-lab.github.io/GEMSDOE77/docs/executive-summary.html)
+explains the upload form.
 
 | Lane | File | Format valid | Protocol-unique | Verdict | Upload status |
 |---|---|---|---|---|---|
+| **H78** (newest): lidar scarp consensus, uniqueness-capped ([section below](#-h78-lane-newest-2026-10-21-lidar-scarp-consensus-uniqueness-capped-allocation), [page](docs/h78.html)) | [`gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros.tif`](docs/downloads/gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros.tif) | Yes, 17/17 | **Yes**, informative reading (worst overlap 0.660, ρ 0.639) | negative | **Safe to upload.** Not expected to beat 0.2778; selector: not approved |
 | **LIA**: live-score inversion and allocation (this README's next section) | [`gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif`](docs/downloads/gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif) | Yes, 17/17 | **Yes**, informative reading (worst overlap 0.660, ρ 0.377) | negative | **Safe to upload.** Not recommended for a slot; selector: not approved |
 | Contact-physics ([page](docs/contactphys.html)) | [`gems77-contactphys-44090dots-…-zeros.tif`](docs/downloads/gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif) | Yes (`download_ok_format_valid`) | see its run card | negative | Selector: not approved (`submit_ok_selector_promoted: false`) |
-| Selective-U curvature ([page](docs/index.html)) | [`gems77-h77-urank-curvature-…-research.tif`](docs/downloads/gems77-h77-urank-curvature-0d868dc271bb-research.tif) | Yes | No (literal gate failed) | negative | **Not OK to submit** (research TIFF) |
+| Selective-U curvature ([page](docs/urank.html)) | [`gems77-h77-urank-curvature-…-research.tif`](docs/downloads/gems77-h77-urank-curvature-0d868dc271bb-research.tif) | Yes | No (literal gate failed) | negative | **Not OK to submit** (research TIFF) |
 | H77C claycap (inherited, quarantined) | [`gemsdoe77-h77c-claycap-breach-…-zeros.tif`](docs/downloads/gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-zeros.tif) | – | rejected by the shared recheck | – | Not approved |
 
 > ### Core values
@@ -27,7 +31,72 @@ Each row's status is copied from that lane's own run card; links are local.
 
 ---
 
-## ⬇ LIA lane (live-score inversion and allocation): download first
+## ⬇ H78 lane (newest, 2026-10-21): lidar scarp consensus, uniqueness-capped allocation
+
+**[Download `gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros.tif`](docs/downloads/gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros.tif)** (151,428 B)
+
+- sha256 `4571e767757be95e3fb70b4afb05e45528b1cfd74147e168c36253b1247f1c47`
+- The same file as a one-TIFF zip: [`…-zeros.zip`](docs/downloads/gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros.zip)
+- A NaN-outside twin, bit-identical inside the footprint (reference only): [`…-nan.tif`](docs/downloads/gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-nan.tif)
+
+| Question | Answer |
+|---|---|
+| OK to download? | **Yes** |
+| Will the portal accept it? | **Yes.** It passes 17/17 checks against the official grid and footprint, and uses the same encoding as the 0.2778 file the portal accepted and scored: every cell finite, binary {0, 1}, no nodata tag, EPSG:32611, 3730×3292 with the official transform. The shared template validator flags only its known footprint mismatch: it derives the footprint from a feature band, not from `sample_submission.tif`. This is the same result as the LIA file; see `src/gems77lia/validate.py`. |
+| Unique? | **Yes** (informative reading of the shared template tool, against 839 rasters: the 812-raster registry, plus GEMSDOE73–76 at clone time, plus this repository). Worst Spearman ρ is 0.369 on the placement surface and 0.639 on the final dots (limit 0.90; the 0.639 is against the LIA file, which shares the on-support construction). Worst dot overlap is 0.660 (limit 0.70), against `19GEMSDOE__h19-5-powerlaw-budget-multiline`. Jaccard firings: 0. Identical decoded rasters: 0. Every literal-reading firing (44) is one of the 44 space-filling rasters: their 3 px halo covers ≥ 70% of allowed cells, so even random dots exceed 0.70 against them. Six registry files were unreadable or off-grid. |
+| Will it beat 0.2778? | **Not expected. Run verdict: NEGATIVE** (pre-registered rule). The INSTRUMENT S0 projection is 0.2450, against 0.2881 for the 0.2778 champion. On HOLDOUT-DTI (gems57-pooled-hide-v2, 11,321 withheld positive pixels) it scores **0.0708** [0.0600, 0.0816], against **0.0958** [0.0830, 0.1084] for the champion construction rebuilt per fold. The difference is Δ −0.0250, 95% CI [−0.0301, −0.0202]. **The selector decides on any slot; the evidence does not support spending one.** |
+
+**Form fields**
+
+- **Name:** `gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros`
+- **Note** (110/140): `GEMSDOE77 H78: 66% H19-5 support (S0 credit) + 34% 1m-lidar scarp-consensus dots, 38301 binary, 0 on catalogue`
+
+**Links:** [Start here (site)](https://buffedlizard55-lab.github.io/GEMSDOE77/docs/index.html) ·
+[How to submit](https://buffedlizard55-lab.github.io/GEMSDOE77/docs/executive-summary.html) ·
+[H78 lane page](https://buffedlizard55-lab.github.io/GEMSDOE77/docs/h78.html) ·
+[run card](evidence/h78_run_card.json)
+
+### H78: what was tried and what it showed
+
+**Hypotheses.** The hypotheses were written before any experiment, in `registry/preregistration_h78.json` (commit edf23b9), and ranked by expected DTI gain ÷ cost:
+
+1. **H78-1: lidar scarp consensus.** Uses 7 operators of `lidar_scarp_features_u8`, derived from [USGS 3DEP](https://www.usgs.gov/3d-elevation-program) 1 m DEM tiles (free, no use restrictions). A young normal-fault scarp is a linear slope break with a free face, a convex crest and a concave toe. Scarps below the mapping scale of the Quaternary fault catalogue are visible at 1 m: INGENIOUS used UAV lidar for exactly this ([Hardwick et al. 2025](https://pangea.stanford.edu/ERE/db/GeoConf/papers/SGW/2025/Hardwick.pdf)). Earlier lanes used single lidar operators as dense surfaces. H78 uses the consensus only to rank the off-support dots inside a uniqueness-capped allocation.
+2. **H78-2: geothermal manifestation proximity.** Distance to hot or warm wells and springs. The data is the "Well and Spring Temperature and Chemistry" resource of [GDR 1391, the INGENIOUS Great Basin Regional Dataset Compilation](https://gdr.openei.org/submissions/1391) (DOI 10.15121/1881483, CC BY 4.0). Upflow marks blind faults that have no scarp.
+3. **H78-3: regional mapping heterogeneity.** 3×3 region blocks.
+4. **H78-4: single lidar operators,** as sensitivity rows.
+
+**Experiments** (budget: 3).
+
+| Exp | Test | Result |
+|---|---|---|
+| E1 | Split the off-support bins of the S0 live-score model by each field (LOO over 95 organizer-scored rasters) | **Negative.** No field is live-supported: the lidar consensus has LOO ΔMSE < 0, and the thermal and region fields get zero weight. |
+| E2 | The same, within the support. A post-hoc amendment, committed before it ran. | **Negative.** No field is live-supported. |
+| E3 | Pre-registered build, then a 4-fold hide-and-recover holdout, a leakage canary and the uniqueness audit | **Negative.** C 0.0708 vs champion construction 0.0958. C beats lidar-alone (0.0597; Δ +0.011, CI includes 0) and random dots (0.0480; Δ +0.023, CI > 0). Canary: max AUC 0.755 (visible-catalogue proximity), so no leakage. |
+
+**Why it ties the LIA file.** The uniqueness rule forces ≥ 30% of the dots more than 3 px from H19-5. Neither the live scores nor the holdout show credit there for any field measured so far. As a result, every uniqueness-capped build converges to S0 ≈ 0.245, whatever field orders its off-support dots: LIA's straight edges give 0.2450, and H78's lidar consensus also gives 0.2450.
+
+**Mimic.** Non-fault features with the same lidar profile can light the consensus:
+- pluvial Lake Lahontan shoreline benches;
+- fluvial terrace risers and fan-incision banks;
+- road cuts and canal banks.
+
+**Reproduce** (after `scripts/lia_restore_data.py`, `scripts/fetch_registry.py`, `scripts/build_cache.py`):
+
+```
+.venv/bin/python scripts/h78_e1_screen.py
+.venv/bin/python scripts/h78_e2_within_support.py
+.venv/bin/python scripts/h78_e3_build_and_holdout.py     # ~12 min, 2 CPUs
+.venv/bin/python scripts/h78_build_submission.py
+.venv/bin/python scripts/h78_uniqueness.py phase1 & .venv/bin/python scripts/h78_uniqueness.py phase2; wait
+.venv/bin/python scripts/h78_uniqueness.py merge && .venv/bin/python scripts/h78_run_card.py
+.venv/bin/python scripts/build_site.py && .venv/bin/python scripts/build_home.py
+```
+
+The irregularities are IR-78-01 to IR-78-06 in [`docs/irregularities.md`](docs/irregularities.md).
+
+---
+
+## ⬇ LIA lane (live-score inversion and allocation)
 
 **[Download `gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif`](docs/downloads/gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif)** (151,009 B)
 
@@ -210,7 +279,13 @@ The optional `scripts/audit_prior.py PATH_TO_PINNED_TEMPLATE/registry/rasters` r
 
 ## Site and current feed
 
-Five lightweight static pages expose the download and approval status, executive submission guide, scientific analysis, source feed and audit trail. Pages hosts a precomputed artifact; it does not train a model, authenticate to DrivenData or submit a file from the browser. `python scripts/refresh_sources.py` inventories all 78 supplied family repository pages using pinned GitHub page blobs. It records exact page/commit hashes, download paths, timestamps and errors, **not verified scores**. The scheduled Pages workflow refreshes this metadata every six hours when Actions runs; it never trains, promotes or consumes a slot. Delays/failures are possible and the visible timestamp is authoritative, not a promise of real-time updates.
+**Site layout (since the H78 lane).** `docs/index.html` (Start here) and `docs/executive-summary.html` (how to submit) are
+generated by `scripts/build_home.py` from `docs/data/lanes.json`. They list every file with four checks: portal format,
+uniqueness, holdout, and selector. Each lane has its own pages: `h78.html`, `lia*.html`, `contactphys*.html`, and
+`urank*.html` (selective-U, formerly the index). CI runs `build_site.py` and then `build_home.py`, so the entry page is no
+longer overwritten by one lane's view (IR-78-06).
+
+The selective-U lane's five lightweight static pages expose the download and approval status, executive submission guide, scientific analysis, source feed and audit trail. Pages hosts a precomputed artifact; it does not train a model, authenticate to DrivenData or submit a file from the browser. `python scripts/refresh_sources.py` inventories all 78 supplied family repository pages using pinned GitHub page blobs. It records exact page/commit hashes, download paths, timestamps and errors, **not verified scores**. The scheduled Pages workflow refreshes this metadata every six hours when Actions runs; it never trains, promotes or consumes a slot. Delays/failures are possible and the visible timestamp is authoritative, not a promise of real-time updates.
 
 ## Official sources and limitations
 
@@ -228,6 +303,12 @@ While PR #3 was awaiting merge, PRs #1/#2 landed on main. Their H77C code, TIFF 
 
 ## Next session — highest priority
 
+0. **H78 (2026-10-21) result:** every uniqueness-capped build sits at S0 ≈ 0.245, whichever field (straight edges or
+   lidar consensus) orders its ≥ 30% off-support dots. Neither the live scores nor the holdout yet show credit off the
+   H19-5 support. The way above 0.2778 for a unique file is therefore a *measured* off-support credit ≥ 0.06 per dot.
+   Do not re-tune H78 or LIA. A new lane should bring a new, independent off-support signal, for example the positive
+   residuals of the GEMSDOE49 gate_ortho and GEMSDOE70 p5-dual rasters (+0.12 to +0.13 under every model; their
+   construction is not yet understood). A single organizer score for an off-support-heavy file would also pin S0 vs S1.
 1. Resolve the dense-support contradiction upstream with the protocol owner/selector. As written, **every nonempty allowed candidate fails** against the measured dense witness. No private workaround.
 2. Obtain an explicit lane and independently authenticated competition inputs/specifications, external-data rules, receipts and weekly allowance through authorized access. Never share credentials in chat.
 3. Build a visible-fault-only, fold-recomputed incumbent with identical spatial validation and paired intervals. Do not score the fixed fully catalogue-masked H33 TIFF as a holdout model.
