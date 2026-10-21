@@ -1,0 +1,60 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>H77-XSEN lane · GEMSDOE77</title>
+<meta name="description" content="GEMSDOE77 XSEN lane: magnetic analytic-signal x radiometric boundary coincidence. Verdict negative. Not OK to submit.">
+<link rel="stylesheet" href="assets/lia.css"></head><body>
+<header><div class="wrap"><span class="brand">GEMSDOE77 · DOE GEMS Prize</span><a href="index.html">Start here</a> <a href="executive-summary.html">How to submit</a> <a href="h77d.html">H77D (Zero-SGMC)</a> <a href="h77-step.html">H77-Step</a> <a href="lia-analysis.html">Why 0.2778</a> <a href="lia-sources.html">Sources</a>
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE77">GitHub</a></div></header><main><div class="wrap"><h1>H77-XSEN lane: cross-sensor edge coincidence</h1>
+<p class="verdict"><b>Verdict: NEGATIVE. Not OK to submit; OK to download for inspection.</b>
+Selector: not approved. No submission slot was used. This file must not be uploaded.</p>
+<section class="card dl"><h2>⬇ XSEN file (inspection download only)</h2>
+<a class="btn" href="downloads/gems77-xsen-coincide-hgb-37654dots-20261021-zeros.tif" download>Download .tif (134 KB)</a><a class="btn alt" href="downloads/gems77-xsen-coincide-hgb-37654dots-20261021-zeros.zip" download>Same file as one-TIFF .zip</a>
+<div class="chips"><span class="chip ok">OK to download: YES</span>
+<span class="chip ok">Portal format (local checks): PASS</span>
+<span class="chip bad">Unique, literal rule: FAIL</span>
+<span class="chip bad">Unique, informative reading: FAIL</span>
+<span class="chip bad">Beat the champion construction on the holdout: NO</span>
+<span class="chip warn">Selector: not approved</span></div>
+<p class="verdict"><b>Can I submit it?</b> <b>No.</b> Not OK to submit: HOLDOUT-DTI 0.0994 (below the 0.1527 repo best),
+the coincidence gain over the standard stack is not significant, and 93.4% of its dots lie within 3 px of
+GEMSDOE37's sparse dotted raster (limit 70%) — a duplicate under protocol rule 1. Selector: not approved.<br>
+<b>Would the portal accept the format?</b> Probably. Every cell is finite and exactly 0 or 1, no nodata tag,
+EPSG:32611, 3730×3292, the pinned transform — the “Predicted values must be in range [0, 1]” error cannot
+recur with this encoding. Local checks are not an organizer receipt.</p>
+<p class="small muted">Submission name (for reference only) (49 characters)</p><div class="copy"><code>gems77-xsen-coincide-hgb-37654dots-20261021-zeros</code><button data-copy="gems77-xsen-coincide-hgb-37654dots-20261021-zeros">Copy</button></div>
+<p class="small muted">Note (for reference only) (127 characters)</p><div class="copy"><code>XSEN mag analytic-signal x ThK/UK boundary HGB, 37654 dots; HOLDOUT-DTI 0.0994, below 0.1527 repo best: NEGATIVE, do not submit</code><button data-copy="XSEN mag analytic-signal x ThK/UK boundary HGB, 37654 dots; HOLDOUT-DTI 0.0994, below 0.1527 repo best: NEGATIVE, do not submit">Copy</button></div>
+<p class="small">sha256 of the .tif: <code>e7c81754420b9a6b4126ad1d7239870ae680eaa61e97a6d3f16f644a620d1c6a</code></p></section>
+<h2>Hypothesis and mechanism</h2>
+<p><b>Hypothesis.</b> A concealed, catalogue-missing fault juxtaposes radiometric domains and offsets magnetic
+basement, so the product of (a) multi-scale magnetic analytic-signal ridge persistence
+(training_features bands 3/9, Hessian ridge σ = 1.5/3 px) and (b) radiometric Th/K and U/K compositional-boundary
+strength (GeoDAWN extensions, |∇| σ = 1.5 px) is high on unmapped faults but low on single-sensor mimics.
+<b>Named non-fault mimic:</b> non-fault lithologic contacts, magnetic dikes, and GeoDAWN flight-line seams.
+The 3–5 candidate hypotheses, ranked, are in <code>research/hypotheses-xsen-2026-10-21.md</code>;
+the lane was preregistered in <code>registry/preregistration_xsen.json</code> before Experiment 1.
+Layers: <a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN</a> (DOI 10.5066/P93LGLVQ);
+competition/metric: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DrivenData 306 problem description</a>.</p>
+<h2>Experiments (budget: 3)</h2>
+<table><tr><th>Exp</th><th>What</th><th>Result (all HOLDOUT-DTI, gems57-pooled-hide-v2, 11,342 withheld px, seed 30)</th><th>Verdict</th></tr>
+<tr><td>1</td><td>Leakage canaries (8 features alone) + coincidence surface alone vs single-sensor and random surfaces</td><td>Max single-feature symmetric AUC 0.529 (≤ 0.90, no leakage). Surface alone 0.0480 [0.0413, 0.0548] vs random 0.0500 [0.0439, 0.0561] — indistinguishable from random.</td><td>Mechanism falsified as a standalone driver</td></tr>
+<tr><td>2</td><td>HGB with XSEN channels vs standard-stack HGB (same folds/budget/emitter)</td><td>A_xsen 0.0994 [0.0824, 0.1179] vs A_std 0.0971 [0.0795, 0.1156]; paired Δ +0.0023 [−0.0047, +0.0093] — includes 0; below the 0.1527 repo incumbent (cross-draw).</td><td>Promotion bar failed</td></tr>
+<tr><td>3</td><td>Full-map build, two-phase uniqueness vs 812-raster registry, fail-closed writer</td><td>Surface worst Spearman ρ 0.561 (limit 0.90, pass). Dots worst ρ 0.137 (pass) but 93.4% of dots within 3 px of GEMSDOE37's sparse dotted raster (limit 0.70) — duplicate; 4 registry rasters unreadable, scan also incomplete.</td><td>Duplicate — lane stopped</td></tr></table>
+<p>An earlier Exp-2 attempt produced identical prior-only arms (0.0414) because a combined memmap was
+OOM-killed mid-write and mistaken for built; that attempt is preserved as
+<code>evidence/xsen_exp2_INVALID_combined_memmap.json</code> and was discarded, not scored.</p>
+<h2>Why 0.2778 (family champion) — and why this lane does not beat it</h2>
+<p>The 0.2778 file (GEMSDOE32, OWNER-REPORTED link between file and score) is 37,654 dots spaced ~3 px on the
+H19-5 lineament set, none within 200 m of the mapped catalogue: sparse dots collect most of the 300 m-kernel
+credit at a fraction of the false-positive cost (<code>evidence/why_02778.json</code>). XSEN's coincidence
+surface carries no measurable signal beyond random on withheld faults, and its trained dots converge onto the
+same high-propensity cells as an earlier dotted raster — so it is neither stronger nor unique. No number here
+is a leaderboard score; the public leaderboard leader was 0.4413 (ORGANIZER-CONFIRMED, 2026-10-21).</p>
+<h2>Run card</h2>
+<p>Full JSON: <code>evidence/run_card_xsen.json</code> · Validator: <code>evidence/xsen_validator.json</code>
+(all checks pass; <code>ok_to_submit: false</code>) · Experiments: <code>evidence/xsen_exp1.json</code>,
+<code>evidence/xsen_exp2.json</code>, <code>evidence/xsen_exp3_build.json</code>.</p>
+</div></main>
+<footer><div class="wrap">Selector status for every file on this site: <b>not approved</b>. Number labels:
+<b>ORGANIZER-CONFIRMED</b> (public leaderboard / submission page), <b>HOLDOUT-DTI</b> (local hide-and-recover;
+evaluator version, withheld positives, 95% CI), <b>OWNER-REPORT</b> (owner-supplied, no organizer receipt).</div></footer>
+<script>document.querySelectorAll('button[data-copy]').forEach(b=>b.onclick=()=>{navigator.clipboard.writeText(b.dataset.copy);b.textContent='Copied';setTimeout(()=>b.textContent='Copy',1200)})</script>
+</body></html>
