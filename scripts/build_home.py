@@ -15,6 +15,7 @@ import html
 import json
 import markdown
 import shutil
+
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -23,7 +24,7 @@ REPO = "https://github.com/buffedlizard55-lab/GEMSDOE77"
 LB = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
 PD = "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
-NAV = [("index.html", "Start here"), ("h82-executive-summary.html", "H82 · cool-outlet negative"), ("h82rank.html", "H82R · radiometric negative"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
+NAV = [("index.html", "Start here"), ("preflight-review.html", "Current readiness review"), ("h82-executive-summary.html", "H82 · cool-outlet negative"), ("h82rank.html", "H82R · radiometric negative"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
        ("h77e-knick.html", "H77E-Knick · 0/816 firings"), ("release-review.html", "Release safety review"), ("executive-summary.html", "How to submit"),
        ("h81.html", "H81 · slip-cone"),
        ("h80t.html", "H80T · tilt-persist"), ("h80t-executive-summary.html", "H80T guide"),
@@ -75,6 +76,16 @@ def copy(label, text):
 
 
 def main():
+    # Publish the current review from its source, not a hand-edited landing page.
+    (D / "evidence").mkdir(exist_ok=True)
+    for name in ("registry_preflight.json", "listed_download_audit.json", "preflight_sources.json",
+                 "readiness_review_run_card.json"):
+        shutil.copyfile(ROOT / "evidence" / name, D / "evidence" / name)
+    review = (D / "preflight-review.md").read_text()
+    (D / "preflight-review.html").write_text(page(
+        "preflight-review.html", "Submission readiness review",
+        markdown.markdown(review, extensions=["tables", "fenced_code"])))
+
     review = markdown.markdown((D / "review-904a24d3.md").read_text(), extensions=["tables"])
     (D / "review-904a24d3.html").write_text(page("review-904a24d3.html", "Current repository review", review))
     lanes = jload("docs/data/lanes.json")
@@ -269,7 +280,12 @@ representation-policy contradiction, not proof that every geological hypothesis 
 applied; the protocol owner must change the shared policy before any raster can pass. Format validation alone does not
 authorize an upload; the separate weekly-slot selector has approved none. The independent
 <a href="data/submission-authorization.json">machine-readable authorization receipt</a> combines all required release
-gates and currently says <b>NOT OK TO SUBMIT — 0 authorized files</b>.</p>"""
+gates and currently says <b>NOT OK TO SUBMIT — 0 authorized files</b>.</p>
+<p><b>Current review: no new TIFF generated.</b> A fresh hash-checked, candidate-independent proof confirms the universal
+blocker before any new experiment. <a href="preflight-review.html">Three-pass review, conditional hypotheses and next steps</a> ·
+<a href="evidence/registry_preflight.json">Reproducible blocker receipt</a> ·
+<a href="evidence/listed_download_audit.json">Independent format readback of every listed primary TIFF</a>.
+These are registry/format measurements, not scores or portal acceptance.</p>"""
     beat_txt = primary.get(
         "beat_02778_summary",
         "No organizer-confirmed evidence of a gain and no clearance for a competition slot.",
@@ -328,7 +344,8 @@ lists the reviewed research candidates, not every historical archived/NaN-twin f
 {dl}
 {orient_box}
 <h2>Reviewed downloadable candidates</h2>{table}
-<div class="values"><b>The target, labelled.</b> On 2026-10-21 the <a href="{LB}">public leaderboard</a> showed
+<div class="values"><b>Historical target snapshot — not freshly verified in the current readiness review.</b>
+An earlier 2026-10-21 review reported that the <a href="{LB}">public leaderboard</a> showed
 <b>0.4413 ORGANIZER-CONFIRMED</b> for first place and <b>0.2778 ORGANIZER-CONFIRMED</b> for participant extradr19
 (at row #48 in this read). Neither public row identifies the underlying raster. The owner's claim that the specific
 <code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</code> file achieved 0.2778 is <b>OWNER-REPORT, not a submission

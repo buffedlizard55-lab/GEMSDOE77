@@ -8,7 +8,15 @@ summarised with provenance at the end rather than re-transcribed hash-by-hash
 `docs/score-ledger.csv`; later entries below are OWNER-REPORT as supplied in
 the 2026-10-21 brief — no organizer receipts).*
 
-## 2026-10-21 H79 execution addendum (current session)
+## Current review addendum — 2026-10-21
+
+The latest readiness review (`docs/preflight-review.md`) generated no new TIFF and ran no geological experiment.
+A freshly pinned universal witness (`evidence/registry_preflight.json`) blocks every nonempty allowed candidate
+under the mandatory literal overlap rule. Run the preflight before any new experiment, preserve closed lanes,
+and do not treat older execution addenda as a new lane assignment. The original complete user request remains
+embedded in README.md. This addendum does not relax its gates or authorize a slot.
+
+## Historical 2026-10-21 H79 execution addendum
 
 This session's registered lane is **H79-ORIENT**, not the historical contact-physics
 lane mentioned in older repository notes. The operative preregistration is
