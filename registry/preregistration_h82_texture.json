@@ -1,0 +1,18 @@
+{
+  "lane": "H82-TEXTURE",
+  "registered_utc": "2026-10-21",
+  "hypothesis_file": "research/h82_texture_hypotheses.md",
+  "assignment_irregularity": "No single method paragraph identifiable; autonomously declared narrow feasibility lane, not an assigned lane.",
+  "hypothesis": "Concordant local second-moment boundaries of K and Th rank-intensity can reveal covered structural margins missed by mean-intensity edge detectors.",
+  "mimic": "Depositional fan-to-lake sediment boundary without faulting; flight-line noise",
+  "inputs": ["pinned cached GeoDAWN K", "pinned cached GeoDAWN Th"],
+  "catalogue_use": "Whole-component splitting and pixel-exact visible masking only; never a feature or normalization input",
+  "parameters": {"moment_window_px": 9, "support_window_px": 11, "normalization_percentile": 99, "continuous_amplitude": 0.02},
+  "validation": {"split": "gems57.spatial.folds", "buffer_px": 80, "evaluator": "gems57-pooled-hide-v2", "bootstrap_draws": 1000, "bootstrap_seed": 82077, "block_side_px": 200},
+  "canary": "Every input and derived field separately; symmetric AUC >0.90 rejects",
+  "surface_gate": "Unchanged pinned gems57 checker; two verified witnesses suffice to reject, never to pass. Stop before placement on failure.",
+  "retention": "Retain exactly the checked bounded continuous surface as RESEARCH-ONLY TIF and ZIP via shared writer; no dots on failed gate; postwrite verify unchanged values.",
+  "promotion": "Requires complete literal uniqueness, matched holdout improvement and separate selector approval. No weekly slot used in this experiment.",
+  "budget": {"maximum_experiments": 3, "maximum_hours": 2, "planned_experiments": 1},
+  "expected_dti_improvement": "Unknown; qualitative rank only"
+}

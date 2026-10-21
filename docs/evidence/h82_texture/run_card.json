@@ -1,0 +1,146 @@
+{
+  "schema": "gems-parallel-run-card-v1",
+  "lane": "H82-TEXTURE",
+  "experiment_count": 1,
+  "preregistration_sha256": "67508fb3246e2b690e07a6992585d6c753584c027cadac1747cced85500022a0",
+  "inputs": [
+    {
+      "file": "data/sample_submission.tif",
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc"
+    },
+    {
+      "file": "data/existing_faults.tif",
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093"
+    },
+    {
+      "file": "data/geodawn_rad_u8.tif",
+      "sha256": "c22420f75999030d7cc65c9e31e50d232ea6158423bca051613a18a8b20ba682"
+    }
+  ],
+  "organizer_authenticated_inputs": false,
+  "hypothesis": "Concordant local second-moment boundaries of K and Th rank-intensity can reveal covered structural margins missed by mean-intensity edge detectors.",
+  "mechanism": "9x9 K/Th local SD, central-difference magnitude, geometric mean, label-free p99 normalization, fixed amplitude 0.02",
+  "named_non_fault_process": "Depositional fan-to-lake sediment boundary without faulting; flight-line noise",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "dti": 0.005969454280967691,
+    "ci95": [
+      0.005734958762710372,
+      0.006191659209208822
+    ],
+    "withheld_positive_pixels": 59484,
+    "tpw": 313.00103189602083,
+    "fpw": 23919.88172004715,
+    "fnw": 59170.998968103995
+  },
+  "paired_vs_constant": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "delta": -0.011706018610272999,
+    "ci95": [
+      -0.01223680215836746,
+      -0.011116821843571711
+    ],
+    "withheld_positive_pixels": 59484
+  },
+  "holdout_comparability": "Fixed-quadrant eligible-support continuous-output feasibility test; no matched incumbent rerun, not a leaderboard score",
+  "leakage_canary": {
+    "tests": 32,
+    "max_symmetric_auc": 0.6183626538888158,
+    "flagged": false
+  },
+  "registry": {
+    "scope": "two SHA-pinned rejection witnesses only",
+    "full_registry_certified": false,
+    "surface_max_spearman": 0.010780345431939798,
+    "surface_max_forward_overlap_3px": 1.0,
+    "duplicate_rasters_in_checked_subset": 1,
+    "postwrite_max_forward_overlap_3px": 1.0,
+    "final_dots": "NOT PLACED: failed surface gate; postwrite checks same continuous surface",
+    "saturation_certificate": {
+      "evidence_class": "REGISTRY-MEASUREMENT",
+      "witness_file": "/home/user/GEMSDOE77/.cache/registry/dense_witness.tif",
+      "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+      "positive_pixels": 5167373,
+      "allowed_pixels": 5106385,
+      "uncovered_allowed_pixels": 0,
+      "covered_allowed_fraction": 1.0,
+      "universal_overlap_blocker": true,
+      "overlap_limit": 0.7,
+      "support_definition": "finite prediction > 0 (inherited literal support rule)",
+      "implication": "Every nonempty candidate dot set in the allowed domain has forward overlap 1.0 with this prior; therefore it cannot pass the 0.70 gate."
+    }
+  },
+  "raster_sha256": "c571af22cb08db9cb8cfd6edf0108364d95b0c3bec8316d09d3dfd116531790e",
+  "raster_path": "docs/downloads/gems77-h82-texture-kt-bf0a3028b4fa-RESEARCH-ONLY.tif",
+  "validator": {
+    "file": "/home/user/GEMSDOE77/docs/downloads/gems77-h82-texture-kt-bf0a3028b4fa-RESEARCH-ONLY.tif",
+    "bytes": 18014757,
+    "sha256": "c571af22cb08db9cb8cfd6edf0108364d95b0c3bec8316d09d3dfd116531790e",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 0.019999999552965164,
+    "mean": 0.002006781753152609,
+    "emitted_positive_pixels": 5007344,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 5007344,
+    "footprint_fraction": 0.9690308789398404
+  },
+  "unchanged_surface_readback": true,
+  "local_inventory_compared": 36,
+  "pixel_distinct_from_checked_local_downloads": true,
+  "submission_name": "gems77-h82-texture-kt-bf0a3028b4fa-RESEARCH-ONLY",
+  "submission_note": "H82 K-Th local-variance boundary; fixed continuous surface, duplicate-stop before dots; research only DO NOT SUBMIT",
+  "verdict": "negative",
+  "protocol_unique": false,
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "selector_approved": false,
+  "weekly_slots_used": 0,
+  "organizer_confirmed_score": null,
+  "reason": "Literal overlap exceeds 0.70; stop before placement. No matched-current-best win or selector approval."
+}

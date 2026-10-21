@@ -1,0 +1,122 @@
+{
+  "file": "gems77-h82-ternaryentropy-20261021-RESEARCH-ONLY.tif",
+  "sha256": "56debe682505bf2649f30d914c7b552dcf669bce4b902ce91eb3e5363031f115",
+  "bytes": 11428966,
+  "submission_name": "gems77-h82-ternaryentropy-20261021-RESEARCH-ONLY",
+  "note": "H82 radiometric ternary rank-mixture entropy deficit; research only; NOT APPROVED for submission",
+  "note_chars": 96,
+  "validator": {
+    "file": "/home/user/GEMSDOE77/docs/downloads/gems77-h82-ternaryentropy-20261021-RESEARCH-ONLY.tif",
+    "bytes": 11428966,
+    "sha256": "56debe682505bf2649f30d914c7b552dcf669bce4b902ce91eb3e5363031f115",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.02609892003238201,
+    "emitted_positive_pixels": 1879873,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 1879873,
+    "footprint_fraction": 0.3637966525737546
+  },
+  "template_report": {
+    "path": "/home/user/GEMSDOE77/docs/downloads/gems77-h82-ternaryentropy-20261021-RESEARCH-ONLY.tif",
+    "bytes": 11428966,
+    "sha256": "56debe682505bf2649f30d914c7b552dcf669bce4b902ce91eb3e5363031f115",
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "width": 3292,
+    "height": 3730,
+    "bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "ref_bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": null,
+    "blocksize": [
+      256,
+      256
+    ],
+    "fixture_grid": false,
+    "has_validity_mask": false,
+    "nan_pixels": 0,
+    "infinity_pixels": 0,
+    "n_nan": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.02609892003238201,
+    "n_nonzero": 1879873,
+    "mass": 320472.79898910935,
+    "mass_outside_footprint": 0,
+    "problems": [],
+    "ok": true,
+    "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+  },
+  "zip_file": "gems77-h82-ternaryentropy-20261021-RESEARCH-ONLY.zip",
+  "zip_sha256": "2eef765a0eb0406f169a79822acd9eb61598ef1ca415e4e52605bf757dae618b",
+  "approved_for_weekly_slot": false,
+  "promoted": false,
+  "submission_slots_used": 0,
+  "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+  "metadata": {
+    "warning": "Research only; literal surface duplicate, no dots placed, NOT OK TO SUBMIT"
+  }
+}

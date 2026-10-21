@@ -194,12 +194,12 @@ def test_h77e_deliverables_run_card_geotiff_and_pages():
             assert (ROOT / "docs" / href).exists(), (page_name, href)
     readme_txt = (ROOT / "README.md").read_text()
     # The top banner is the current release status, not a permanently pinned
-    # historical H77E promotion-style summary. Keep this safety-critical banner
-    # synchronized with the latest H81 artifact and authorization decision.
+    # historical H77E/H81 summary. H81 remains traceable after newer parallel
+    # lanes are added; current authorization status must still be above the fold.
     h81 = json.loads((ROOT / "evidence/h81_run_card.json").read_text())
     h81_name = h81["submission_name"]
-    assert h81_name in readme_txt[:6000]
-    assert h81["raster_sha256"] in readme_txt[:6000]
+    assert h81_name in readme_txt
+    assert h81["raster_sha256"] in readme_txt
     assert "OK TO DOWNLOAD FOR INSPECTION: YES" in readme_txt[:6000]
     assert "OK TO SUBMIT: NO" in readme_txt[:6000]
     head_md = readme_txt.split("# Original project request")[0]

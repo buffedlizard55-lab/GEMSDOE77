@@ -24,7 +24,7 @@ REPO = "https://github.com/buffedlizard55-lab/GEMSDOE77"
 LB = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
 PD = "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
-NAV = [("index.html", "Start here"), ("preflight-review.html", "Current readiness review"), ("h82-executive-summary.html", "H82 · newest negative"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
+NAV = [("index.html", "Start here"), ("h82-texture.html", "H82-TEXTURE · negative"), ("h82rank.html", "H82R · radiometric negative"), ("preflight-review.html", "Current readiness review"), ("h82-executive-summary.html", "H82 · cool-outlet negative"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
        ("h77e-knick.html", "H77E-Knick · 0/816 firings"), ("release-review.html", "Release safety review"), ("executive-summary.html", "How to submit"),
        ("h81.html", "H81 · slip-cone"),
        ("h80t.html", "H80T · tilt-persist"), ("h80t-executive-summary.html", "H80T guide"),
@@ -160,6 +160,12 @@ def main():
     primary = next(x for x in lanes["lanes"] if x.get("primary"))
     # ---------------- status table (every file in the repository)
     def holdout_cell(x):
+        if x["lane"].startswith("H82R:"):
+            h = jload("evidence/h82rank_run_card.json")["holdout_dti"]
+            return (f'<span class="chip bad">HOLDOUT-DTI {h["dti"]:.6f} '
+                    f'(95% CI {h["ci95"][0]:.6f}–{h["ci95"][1]:.6f}; '
+                    f'{e(h["evaluator_version"])}; {h["withheld_positive_pixels"]:,} withheld); '
+                    'NO</span>')
         if x["lane"].startswith("H82:"):
             h = h82_card["holdout_dti"]
             return (f'<span class="chip bad">HOLDOUT-DTI {h["dti"]:.6f} '
@@ -241,6 +247,29 @@ def main():
         f'<a href="h82-executive-summary.html">H82 executive summary / submission guide</a>'
         f'<p class="small">SHA-256 <code>{e(h82["sha256"])}</code>. '
         f'This is byte-distinct from checked H33, but NOT unique under the required overlap gate.</p></section>')
+    # Independent radiometric H82 (now post-run alias H82R) is a second negative
+    # method. Preserve both archived cards; never conflate the two holdouts.
+    rank_card = jload("evidence/h82rank_run_card.json")
+    rank_rows = [x for x in lanes["lanes"] if x["lane"].startswith("H82R:")]
+    if len(rank_rows) != 1 or not rank_card or rank_card["verdict"] != "negative" or rank_card["ok_to_submit"] is not False:
+        raise ValueError("H82R research lane missing or incorrectly authorized")
+    rank_row = rank_rows[0]
+    rank_file = D / rank_row["file"]
+    if (not rank_file.is_file() or hashlib.sha256(rank_file.read_bytes()).hexdigest() != rank_card["raster_sha256"]
+            or rank_row["sha256"] != rank_card["raster_sha256"]
+            or rank_row["protocol_unique"] is not False
+            or rank_card["surface_correlation_overlap_vs_registry"]["worst_forward_3px_overlap"] <= .70):
+        raise ValueError("H82R stopped surface / manifest / file disagree")
+    rh = rank_card["holdout_dti"]
+    rank_box = f'''<section class="card dl research"><h2>⬇ Separate H82R radiometric research TIFF — INSPECTION ONLY</h2>
+<p class="verdict"><b>OK TO DOWNLOAD: YES. NOT OK TO SUBMIT.</b> Separate preregistered rank-mixture method,
+post-run aliased H82R after the concurrent cool-outlet H82 merge. Literal surface overlap 1.0: no dots placed.</p>
+<a class="btn" download href="{e(rank_row['file'])}">Download H82R research .tif</a>
+<a class="btn alt" download href="{e(Path(rank_row['file']).with_suffix('.zip').as_posix())}">One-TIFF ZIP</a>
+<p><b>HOLDOUT-DTI {rh['dti']:.5f}</b> (95% CI [{rh['ci95'][0]:.5f}, {rh['ci95'][1]:.5f}];
+{e(rh['evaluator_version'])}; {rh['withheld_positive_pixels']:,} withheld positives), below shuffled control.
+Format PASS, not organizer acceptance. <a href="h82rank.html">H82R sources and stop evidence →</a></p>
+<p class="small">SHA-256 <code>{rank_card['raster_sha256']}</code> · Both H82 lanes negative; no slot used.</p></section>'''
     pz = Path(primary["file"]).with_suffix(".zip").as_posix()
     zip_btn = f'<a class="btn alt" href="{e(pz)}" download>Same file as one-TIFF .zip</a>' if (D / pz).exists() else ""
     size_kb = (D / primary["file"]).stat().st_size / 1024
@@ -306,7 +335,7 @@ These are registry/format measurements, not scores or portal acceptance.</p>"""
 Δ = {d["delta"]:+.4f} (95% CI {d["ci95"][0]:+.4f} to {d["ci95"][1]:+.4f}).</li>
 <li><b>Verdict:</b> <b>{e(card["verdict"].upper())}</b> — {e(card["verdict_reason"])}</li>
 <li><a href="h78.html">Full H78 page: the hypotheses, the three experiments, uniqueness and the run card →</a></li></ul>"""
-    body = f"""{h82_banner}<h1>Start here</h1>
+    body = f"""{h82_banner}{rank_box}<h1>Start here</h1>
 <p><strong>Earlier review #49 generated no new TIFF; H82 above is a later negative research download. NOT OK TO SUBMIT.</strong> <a href="review-904a24d3.html">Earlier audit and corrected H33 analysis</a>.</p>
 <p>This repository builds and audits fault-probability GeoTIFFs for the <a href="{COMP}">DOE GEMS Prize</a>
 (DrivenData competition 306). The first box distinguishes downloading a file from permission to upload it. The table
@@ -345,6 +374,7 @@ This is a negative experiment, not a competition submission authorization.</p>
 be resolved, a candidate must beat a <em>matched</em> holdout incumbent, and a separate selector must approve it. No
 condition is met merely by passing a format check.</p>
 {glance}
+{rank_box}
 {dl}
 {orient_box}
 <h2>What the DrivenData submission form asks for</h2>
@@ -802,3 +832,6 @@ if __name__ == "__main__":
     _write_h77e_knick()
     _inject_h77e_knick_hero()
     _write_h77g()
+
+    from build_h82_site import build as build_h82_texture
+    build_h82_texture(page)
