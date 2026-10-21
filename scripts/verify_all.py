@@ -17,7 +17,11 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "vendor"))
 from gems57 import metric as M  # noqa: E402
 
-RAW = ROOT / "data" / "raw"
+RAW = (
+    ROOT / "data" / "raw"
+    if (ROOT / "data" / "raw" / "sample_submission.tif").exists()
+    else ROOT / "data" / "bridge"
+)
 bundle = json.loads((ROOT / "evidence" / "final_bundle.json").read_text())
 TIF = ROOT / "docs" / "downloads" / bundle["submission_file"]
 out = {"file": str(TIF), "checks": {}}

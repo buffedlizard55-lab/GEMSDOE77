@@ -22,7 +22,7 @@ def validate(path: str | Path, *, mode: str, name: str, note: str) -> dict:
     import rasterio
     path = Path(path)
     g = core.grid()
-    with rasterio.open(core.DATA / "sample_submission.tif") as ref:
+    with rasterio.open(core.resolve_core_file("sample_submission.tif")) as ref:
         ref_t, ref_crs, ref_shape = ref.transform, ref.crs, (ref.height, ref.width)
     checks = []
 

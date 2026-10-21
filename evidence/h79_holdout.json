@@ -1,0 +1,75 @@
+{
+  "all_terms_shapes": {
+    "h79_canvas": [
+      2584,
+      4
+    ],
+    "random": [
+      2584,
+      4
+    ]
+  },
+  "pooled_summary": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "triangular_radius_m": 300.0,
+    "pooled": true,
+    "scores": {
+      "h79_canvas": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.03232838588730809,
+        "ci95": [
+          0.028377191340547874,
+          0.03645024878150852
+        ],
+        "withheld_positive_pixels": 22633,
+        "tpw": 1035.3601261335778,
+        "fpw": 68564.37823882657,
+        "fnw": 21597.639873866425
+      },
+      "random": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.03529333419237003,
+        "ci95": [
+          0.03255638047181945,
+          0.03800532876751667
+        ],
+        "withheld_positive_pixels": 22633,
+        "tpw": 1146.3481365038733,
+        "fpw": 70724.57620263372,
+        "fnw": 21486.651863496107
+      }
+    },
+    "best_comparable_control": "random",
+    "paired_differences": {
+      "random": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": -0.002964948305061943,
+        "ci95": [
+          -0.007343921815655609,
+          0.0014631314184677874
+        ],
+        "withheld_positive_pixels": 22633
+      }
+    },
+    "bootstrap": {
+      "method": "paired physical spatial-cluster percentile",
+      "clusters": 368,
+      "draws": 1000,
+      "seed": 520810,
+      "confidence": 0.95,
+      "caveat": "Conditional on fitted folds, catalogue labels and fixed budgets; not a leaderboard interval."
+    },
+    "implementation_sha256": {
+      "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+      "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+      "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+      "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+    }
+  }
+}
