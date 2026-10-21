@@ -5,6 +5,8 @@
 > **Historical H82-TEXTURE frozen artifact SHA-256 (retained for regression audit):** `c571af22cb08db9cb8cfd6edf0108364d95b0c3bec8316d09d3dfd116531790e`. Historical inspection-only; no submit authorization.
 >
 > **Submission decision:** no file is selected or authorized by this review. `OK TO DOWNLOAD FOR INSPECTION` is not permission to submit. Before any candidate is generated, resolve the universal overlap semantics in the shared protocol, assign a method lane, restore dependencies and hash-pinned inputs, run the prescribed canaries and buffered holdout, clear uniqueness, then obtain separate selector approval.
+>
+> Mainline review context from the concurrent merge: [three-pass audit](docs/review-2026-10-21-arena-826a741c.md). That is a separate review and does not replace this branch's explicit status or clear any file for submission. Read [`PROMPT.md`](PROMPT.md) before further project work.
 
 <!-- H77V-LDSA PRIMARY STATUS BANNER -->
 > **🚦 Current session — branch `arena/65c05dc9-gemsdoe77` (`H77V-LDSA`, 2026-10-21): ✅ OK TO DOWNLOAD FOR INSPECTION: YES · ⛔ OK TO SUBMIT: NO (`verdict: "negative"` under Policy `I17` dense witness; `0` weekly slots spent).**
