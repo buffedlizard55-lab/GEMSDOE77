@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.venv/
+data/training_features.tif
+/tmp/
+.DS_Store
