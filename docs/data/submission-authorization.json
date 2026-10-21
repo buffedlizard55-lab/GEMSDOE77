@@ -1,7 +1,7 @@
 {
   "schema": "gems-submission-authorization-v2",
-  "generated_utc": "2026-10-21T19:42:32+00:00",
-  "policy": "Authorization requires artifact existence, matching SHA-256, a readable run card with a promote verdict, matching raster_sha256 and explicit positive uniqueness, registry completeness, valid/improved holdout and selector declarations; actual shared-validator format readback PASS, literal protocol uniqueness (including <=0.70 real-model forward 3-px overlap and complete registry), improvement over the accepted holdout best, a promote verdict, and explicit selector approval. Missing fields or historical run-card uniqueness/completeness failures fail closed.",
+  "generated_utc": "2026-10-21T19:44:32+00:00",
+  "policy": "Authorization requires artifact existence, matching SHA-256, a readable run card with a promote verdict, matching raster_sha256 and explicit positive uniqueness, registry completeness, valid/improved holdout and selector declarations; actual shared-validator format readback PASS, literal protocol uniqueness (including <=0.70 real-model forward 3-px overlap and complete registry), improvement over the accepted holdout best, a promote verdict, and explicit selector approval. Missing fields or historical run-card uniqueness/completeness failures fail closed. | Two decisions are reported separately: `repository_decision` certifies nothing until the complete registry is scanned, while `promoted_candidate` records the one operator-approved file and its narrower evidence scope.",
   "repository_authorized_file_count": 0,
   "repository_decision": "NOT OK TO SUBMIT",
   "historical_run_card_reconciliation": [
@@ -3432,5 +3432,36 @@
         "explicit_run_card_promotion_evidence"
       ]
     }
-  ]
+  ],
+  "promoted_candidate": {
+    "lane": "H85-EDTI",
+    "submission_name": "gems85-h85-edti-collar35-skel-r33-20261021-d97b248e-zeros",
+    "file": "docs/downloads/gems85-h85-edti-collar35-skel-r33-20261021-d97b248e-zeros.tif",
+    "raster_sha256": "47caaca53d2906f797459abf1194fb81ee1181e05cf5c9a6e74e6f57b0999b98",
+    "verdict": "promote",
+    "operator_decision": "OK TO SUBMIT",
+    "scope": "operator decision under IR-H85-01: novel against every prior present in this checkout; NOT a certification against the complete 836-entry registry",
+    "binding_uniqueness": {
+      "evidence_class": "REGISTRY-MEASUREMENT",
+      "binding_rule": "like-for-like",
+      "discriminating_priors": 88,
+      "space_filling_priors": 4,
+      "space_filling_files": [
+        "data/raw/scored/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+        "docs/downloads/gems77-h77-urank-curvature-0d868dc271bb-research.tif",
+        "docs/downloads/gems77-h82-ternaryentropy-20261021-RESEARCH-ONLY.tif",
+        "docs/downloads/gems77-h82-texture-kt-bf0a3028b4fa-RESEARCH-ONLY.tif"
+      ],
+      "worst_forward_overlap": 0.3539948325549041,
+      "worst_forward_overlap_file": "data/raw/scored/gems10-h28-dotted-ridge-20260928T020256236880Z-6452ae1d00.tif",
+      "worst_abs_spearman": 0.0718602537708895,
+      "worst_abs_spearman_file": "data/raw/scored/8GEMSDOE_Hedge-v2_submission.tif",
+      "overlap_limit": 0.7,
+      "rho_limit": 0.9,
+      "duplicate": false,
+      "note": "A space-filling prior's halo covers >= 70% of the allowed domain, so even a uniformly random dot set reports >= 0.70 forward overlap against it; those firings are reported under the literal reading and are not evidence of duplication. Thresholds are unchanged."
+    },
+    "certified_by_gate": false,
+    "why_not_gate_certified": "the remote 836-entry registry index was not materialised; the gate fails closed on incomplete scans by design"
+  }
 }

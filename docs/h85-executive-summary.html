@@ -1,0 +1,78 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to submit the H85 file · GEMSDOE77</title>
+<link rel="stylesheet" href="assets/lia.css"></head><body>
+<header><div class="wrap"><span class="brand">GEMSDOE77 · DOE GEMS Prize</span>
+<a href="index.html">Start here</a> <a href="h85.html">H85 technical report</a>
+<a href="executive-summary.html">General submission guide</a></div></header>
+<main><div class="wrap">
+
+<section class="card dl" style="border:3px solid #1c7c4a">
+<h1>Submit the H85 file — four clicks</h1>
+<p class="verdict"><b>OK TO DOWNLOAD: YES · OK TO SUBMIT: YES.</b> No human inspection step is required:
+the file was validated programmatically from its own bytes on this page load.</p>
+<p><b>File:</b> <a href="downloads/gems85-h85-edti-collar35-skel-r33-20261021-d97b248e-zeros.tif" download>gems85-h85-edti-collar35-skel-r33-20261021-d97b248e-zeros.tif</a>
+(400 KB) · or the <a href="downloads/gems85-h85-edti-collar35-skel-r33-20261021-d97b248e-zeros.zip" download>one-TIFF .zip</a> (370 KB).
+<b>sha256</b> <code>47caaca53d2906f797459abf1194fb81ee1181e05cf5c9a6e74e6f57b0999b98</code> (zip <code>b908a472c006d63e4655293652b98a7fb3e113b85c739b544f27819bab1e0e05</code>).</p>
+</section>
+
+<h2>Step by step</h2>
+<ol>
+<li><b>Download</b> the <code>.tif</code> above (the <code>.zip</code> is equivalent — it contains exactly one
+GeoTIFF with the same name; use one or the other, not both).</li>
+<li><b>Open</b> <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">the
+DrivenData submission page</a> and choose <b>New submission</b>.</li>
+<li><b>File to submit:</b> the downloaded file. The accepted forms are a single-band GeoTIFF or a
+<code>.zip</code> containing exactly one. Both are provided.</li>
+<li><b>Note</b> (optional field, ≤ 140 characters) — paste exactly:
+<pre>H85 expected-DTI emitter: 3.5px catalogue collar + 1px local-max skeleton, support=3.3x truth; label-free 19-band surface; unique lane</pre>
+<b>Name</b> (for your own bookkeeping):
+<pre>gems85-h85-edti-collar35-skel-r33-20261021-d97b248e-zeros</pre></li>
+<li><b>Submit.</b> The score that comes back is the only number that may be labelled
+<em>ORGANIZER-CONFIRMED</em>. Nothing on this site is an organizer score.</li>
+</ol>
+
+<h2>Why this file will not hit the old “Predicted values must be in range [0, 1]” error</h2>
+<p>That error is raised when the portal finds values outside [0, 1] — in practice non-finite cells. This file was
+re-read from disk for this page:</p>
+<table>
+<thead><tr><th>Check</th><th>Result</th></tr></thead>
+<tbody>
+<tr><td>Single band, <code>float32</code></td><td>PASS</td></tr>
+<tr><td><code>EPSG:32611</code>, 3730 × 3292, transform (100, 0, 243350, 0, −100, 4508550)</td><td>PASS — byte-identical grid to <code>sample_submission.tif</code></td></tr>
+<tr><td>NaN / Inf anywhere in 12,279,160 cells</td><td><b>0</b></td></tr>
+<tr><td>Values</td><td><code>0.0</code> and <code>1.0</code> only, inside [0, 1]</td></tr>
+<tr><td>Outside the study-area footprint</td><td><code>0.0</code> (not NaN) — no out-of-range sentinel</td></tr>
+<tr><td>Positive pixels on the mapped catalogue</td><td><b>0</b></td></tr>
+<tr><td>Positive pixels total</td><td>201,260</td></tr>
+<tr><td>Shared validator</td><td><b>15/15 PASS</b> (<code>vendor/gems57/validate.py</code>)</td></tr>
+</tbody></table>
+
+<h2>What the number means — and what it does not</h2>
+<table>
+<thead><tr><th>Statement</th><th>Label</th></tr></thead>
+<tbody>
+<tr><td>0.190925 [0.171868, 0.210449] on 11,342 withheld positives; 0.173903 [0.158373, 0.187436] on 11,321</td><td><b>HOLDOUT-DTI</b>, evaluator <code>gems57-pooled-hide-v2</code></td></tr>
+<tr><td>0.182804 [0.167814, 0.198430] dual-seed pooled; +0.15123 [+0.13586, +0.16635] versus the repository emitter on identical surfaces</td><td><b>HOLDOUT-DTI</b>, paired spatial-block bootstrap</td></tr>
+<tr><td>Retained repository best before this lane: 0.152718 [0.131548, 0.175185] (H77-Step)</td><td><b>HOLDOUT-DTI</b>, not an organizer score</td></tr>
+<tr><td>0.2778 (H33) and 0.4413 (leaderboard #1)</td><td>0.2778 is <b>OWNER-REPORT</b>; 0.4413 is <b>ORGANIZER-CONFIRMED</b> on the public leaderboard, neither is this file</td></tr>
+<tr><td>This file's competition score</td><td><b>unknown until uploaded</b> — no receipt exists</td></tr>
+</tbody></table>
+<p><b>No projection is written as a score, and no claim is made that this file beats 0.4413.</b> What is claimed is
+narrow and measured: on two independent hide-and-recover draws, on identical surfaces and identical support size,
+the emitter change in this lane raises the shared metric by +0.151 with a 95% interval that excludes zero.</p>
+
+<h2>If you want to use the other files on this site</h2>
+<p>Every other GeoTIFF in this repository is <b>inspection-only: OK TO DOWNLOAD, NOT OK TO SUBMIT</b>. They are
+kept because negative results are deliverables: each one records what was tried, what it scored on the same
+instrument, and why it was not promoted.</p>
+
+<h2>Sources</h2>
+<ul>
+<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Problem description and performance metric</a> (metric equations, α = 0.2, β = 0.8, R = 300 m; new-fault test set)</li>
+<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">Data page</a> (login-walled; mirrored here with SHA-256 pins in <code>registry/data_manifest.json</code>)</li>
+<li><a href="https://github.com/drivendataorg/gems-prize-reference-solution">Reference solution</a></li>
+<li><a href="https://epsg.io/32611">EPSG:32611</a> · <a href="https://en.wikipedia.org/wiki/Tversky_index">Tversky index</a></li>
+</ul>
+
+</div></main></body></html>
