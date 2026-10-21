@@ -1,0 +1,398 @@
+{
+  "experiment": "H77-TSD-E3-UNIQUENESS",
+  "candidate_zeros_tif": "gems77-tsd-transtens-swarm-submod-37654dots-20261021-zeros.tif",
+  "candidate_zip": "gems77-tsd-transtens-swarm-submod-37654dots-20261021-zeros.zip",
+  "total_prior_rasters_checked": 833,
+  "valid_readable_rasters_checked": 831,
+  "corrupted_unreadable_archive_blobs": [
+    {
+      "name": "89ffb2d61840859392a758928ffdbae4260f2918",
+      "reason": "89ffb2d61840859392a758928ffdbae4260f2918.tif: MissingRequired:TIFF directory is missing required \"StripOffsets\" field"
+    },
+    {
+      "name": "a97c7b2a513225c9f9f2b35736afe5abf4d2a491",
+      "reason": "shape=(32, 48)"
+    }
+  ],
+  "informative_non_space_filling_rasters": 675,
+  "space_filling_rasters_gt_100k_dots": 156,
+  "phase1_surface_max_spearman_abs": 0.45257224777280647,
+  "phase1_surface_nearest_raster": "archive_registry:dense_witness",
+  "phase2_dot_max_spearman_abs": 0.0863094849765692,
+  "phase2_dot_nearest_spearman_raster": "archive_registry:4b95b4836868628865b4e672b2bda6124504fac6",
+  "phase2_informative_max_forward_overlap_3px": 0.6916927816433845,
+  "phase2_informative_max_mutual_overlap_3px": 0.5548148935040103,
+  "phase2_informative_nearest_raster": "archive_registry:7d19b90ed6e358b14b561bc405690a104c5da64b",
+  "phase2_literal_max_forward_overlap_3px": 1.0,
+  "phase2_literal_nearest_raster": "archive_registry:0c42fc03b2c1830b4bbbd09e3a58a7f31c310118",
+  "vendor_two_phase_surface_witness": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "rasters_checked": 2,
+    "rasters_expected": 2,
+    "scope_note": "Checked against every registry raster whose bytes are present locally (plus any explicitly fetched witnesses). Un-fetched registry entries are a stated scope limitation, never a claim of absence.",
+    "footprint_cells": 5167373,
+    "dense_support_fraction": 0.2,
+    "thresholds": {
+      "rho": 0.9,
+      "forward_overlap": 0.7,
+      "jaccard": 0.5
+    },
+    "literal_reading": {
+      "worst_spearman_full_footprint": 0.45204964539170817,
+      "worst_spearman_submission": "17GEMSDOE_E-proba-multiscale",
+      "worst_forward_overlap": 1.0,
+      "worst_overlap_submission": "17GEMSDOE_E-proba-multiscale",
+      "forward_overlap_firings": 1,
+      "rho_firings": 0,
+      "duplicate": true,
+      "note": "Keeps the inherited literal support definition. A continuous-surface prior fires on every nonempty candidate, so a firing here is not evidence of duplication; it is reported for completeness."
+    },
+    "like_for_like_reading": {
+      "dot_field_rasters": 1,
+      "continuous_surface_rasters": 1,
+      "worst_forward_overlap_dot_fields": 0.15085344139081888,
+      "worst_forward_overlap_dot_field_submission": "gemsdoe32-h33-h33-2-b2-zeros",
+      "worst_reverse_overlap": 1.0,
+      "worst_reverse_overlap_submission": "17GEMSDOE_E-proba-multiscale",
+      "worst_jaccard": 1.0,
+      "worst_jaccard_submission": "17GEMSDOE_E-proba-multiscale",
+      "forward_overlap_firings": 0,
+      "duplicate": false,
+      "note": "Inherited thresholds, applied to dot fields only; rank correlation still applies to every raster including the continuous surfaces."
+    },
+    "literal_firings": [
+      {
+        "submission": "17GEMSDOE_E-proba-multiscale",
+        "repo": null,
+        "representation": "continuous_surface",
+        "forward_overlap": 1.0,
+        "their_dots": 5167373
+      }
+    ]
+  },
+  "vendor_two_phase_dots_witness": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "rasters_checked": 2,
+    "rasters_expected": 2,
+    "scope_note": "Checked against every registry raster whose bytes are present locally (plus any explicitly fetched witnesses). Un-fetched registry entries are a stated scope limitation, never a claim of absence.",
+    "footprint_cells": 5167373,
+    "dense_support_fraction": 0.2,
+    "thresholds": {
+      "rho": 0.9,
+      "forward_overlap": 0.7,
+      "jaccard": 0.5
+    },
+    "literal_reading": {
+      "worst_spearman_full_footprint": 0.07479619384639176,
+      "worst_spearman_submission": "17GEMSDOE_E-proba-multiscale",
+      "worst_forward_overlap": 1.0,
+      "worst_overlap_submission": "17GEMSDOE_E-proba-multiscale",
+      "forward_overlap_firings": 1,
+      "rho_firings": 0,
+      "duplicate": true,
+      "note": "Keeps the inherited literal support definition. A continuous-surface prior fires on every nonempty candidate, so a firing here is not evidence of duplication; it is reported for completeness."
+    },
+    "like_for_like_reading": {
+      "dot_field_rasters": 1,
+      "continuous_surface_rasters": 1,
+      "worst_forward_overlap_dot_fields": 0.50512561746428,
+      "worst_forward_overlap_dot_field_submission": "gemsdoe32-h33-h33-2-b2-zeros",
+      "worst_reverse_overlap": 0.30416423221968447,
+      "worst_reverse_overlap_submission": "gemsdoe32-h33-h33-2-b2-zeros",
+      "worst_jaccard": 0.018653031963099732,
+      "worst_jaccard_submission": "gemsdoe32-h33-h33-2-b2-zeros",
+      "forward_overlap_firings": 0,
+      "duplicate": false,
+      "note": "Inherited thresholds, applied to dot fields only; rank correlation still applies to every raster including the continuous surfaces."
+    },
+    "literal_firings": [
+      {
+        "submission": "17GEMSDOE_E-proba-multiscale",
+        "repo": null,
+        "representation": "continuous_surface",
+        "forward_overlap": 1.0,
+        "their_dots": 5167373
+      }
+    ]
+  },
+  "pixels_copied_from_any_prior_submission": 0,
+  "informative_sparse_gates_pass": true,
+  "protocol_unique_literal": false,
+  "top_25_informative_prior_overlaps": [
+    {
+      "source": "archive_registry",
+      "name": "7d19b90ed6e358b14b561bc405690a104c5da64b",
+      "positives": 100000,
+      "coverage_3px": 0.49126,
+      "forward_overlap_3px": 0.69169,
+      "reverse_overlap_3px": 0.13345,
+      "mutual_overlap_3px": 0.13345,
+      "spearman_abs": 0.01529,
+      "surface_spearman_abs": 0.04476
+    },
+    {
+      "source": "archive_registry",
+      "name": "8524700fb48d23f040820fe1854c6f48d0c0b421",
+      "positives": 100000,
+      "coverage_3px": 0.49126,
+      "forward_overlap_3px": 0.69169,
+      "reverse_overlap_3px": 0.13345,
+      "mutual_overlap_3px": 0.13345,
+      "spearman_abs": 0.01529,
+      "surface_spearman_abs": 0.04476
+    },
+    {
+      "source": "archive_registry",
+      "name": "3b442e92bcee521bbe5fbc16136297ced49d3c76",
+      "positives": 85526,
+      "coverage_3px": 0.31888,
+      "forward_overlap_3px": 0.68967,
+      "reverse_overlap_3px": 0.20835,
+      "mutual_overlap_3px": 0.20835,
+      "spearman_abs": 0.017,
+      "surface_spearman_abs": 0.05573
+    },
+    {
+      "source": "archive_registry",
+      "name": "b73517951cc3728a405e0f08a155624c02c0acb5",
+      "positives": 85526,
+      "coverage_3px": 0.31888,
+      "forward_overlap_3px": 0.68967,
+      "reverse_overlap_3px": 0.20835,
+      "mutual_overlap_3px": 0.20835,
+      "spearman_abs": 0.017,
+      "surface_spearman_abs": 0.05573
+    },
+    {
+      "source": "archive_registry",
+      "name": "1374c17668adc23d0ab1c67ee07187bbe48f007b",
+      "positives": 100000,
+      "coverage_3px": 0.48761,
+      "forward_overlap_3px": 0.68829,
+      "reverse_overlap_3px": 0.13246,
+      "mutual_overlap_3px": 0.13246,
+      "spearman_abs": 0.01493,
+      "surface_spearman_abs": 0.04265
+    },
+    {
+      "source": "archive_registry",
+      "name": "6cad4d7940897276e76ce1868dc37c7f0261ab13",
+      "positives": 100000,
+      "coverage_3px": 0.48761,
+      "forward_overlap_3px": 0.68829,
+      "reverse_overlap_3px": 0.13246,
+      "mutual_overlap_3px": 0.13246,
+      "spearman_abs": 0.01493,
+      "surface_spearman_abs": 0.04265
+    },
+    {
+      "source": "archive_registry",
+      "name": "c77023dd18fa59e1d8b93c5d699081f238d208e0",
+      "positives": 61427,
+      "coverage_3px": 0.24718,
+      "forward_overlap_3px": 0.68165,
+      "reverse_overlap_3px": 0.277,
+      "mutual_overlap_3px": 0.277,
+      "spearman_abs": 0.02642,
+      "surface_spearman_abs": 0.08249
+    },
+    {
+      "source": "archive_registry",
+      "name": "595b5b5c4c079169ac747b17ea88aa32941efd63",
+      "positives": 80000,
+      "coverage_3px": 0.26599,
+      "forward_overlap_3px": 0.67913,
+      "reverse_overlap_3px": 0.25529,
+      "mutual_overlap_3px": 0.25529,
+      "spearman_abs": 0.02782,
+      "surface_spearman_abs": 0.06619
+    },
+    {
+      "source": "archive_registry",
+      "name": "23ff31cf7832f25616bc47d435eaec9fe796d3bb",
+      "positives": 95927,
+      "coverage_3px": 0.276,
+      "forward_overlap_3px": 0.6761,
+      "reverse_overlap_3px": 0.24588,
+      "mutual_overlap_3px": 0.24588,
+      "spearman_abs": 0.02731,
+      "surface_spearman_abs": 0.08843
+    },
+    {
+      "source": "archive_registry",
+      "name": "6255d3e14dc93525438448a1ed7c87c3322b4b0a",
+      "positives": 82678,
+      "coverage_3px": 0.23563,
+      "forward_overlap_3px": 0.67085,
+      "reverse_overlap_3px": 0.26002,
+      "mutual_overlap_3px": 0.26002,
+      "spearman_abs": 0.03261,
+      "surface_spearman_abs": 0.09105
+    },
+    {
+      "source": "archive_registry",
+      "name": "1cd1123a6a2d963c7145f8bf006fae75fdac4833",
+      "positives": 91533,
+      "coverage_3px": 0.41078,
+      "forward_overlap_3px": 0.66479,
+      "reverse_overlap_3px": 0.15694,
+      "mutual_overlap_3px": 0.15694,
+      "spearman_abs": 0.01713,
+      "surface_spearman_abs": 0.06167
+    },
+    {
+      "source": "archive_registry",
+      "name": "9def353346826fecb0d93da203c8159e7570d24c",
+      "positives": 91533,
+      "coverage_3px": 0.41078,
+      "forward_overlap_3px": 0.66479,
+      "reverse_overlap_3px": 0.15694,
+      "mutual_overlap_3px": 0.15694,
+      "spearman_abs": 0.01713,
+      "surface_spearman_abs": 0.06167
+    },
+    {
+      "source": "archive_registry",
+      "name": "2168b3d053fb708a76ad132cc04166e4d49fefc0",
+      "positives": 54864,
+      "coverage_3px": 0.25067,
+      "forward_overlap_3px": 0.66444,
+      "reverse_overlap_3px": 0.24446,
+      "mutual_overlap_3px": 0.24446,
+      "spearman_abs": 0.01892,
+      "surface_spearman_abs": 0.07465
+    },
+    {
+      "source": "archive_registry",
+      "name": "9b2d8dfd989665a2cf2d2261e608a558d42a3d56",
+      "positives": 54864,
+      "coverage_3px": 0.25067,
+      "forward_overlap_3px": 0.66444,
+      "reverse_overlap_3px": 0.24446,
+      "mutual_overlap_3px": 0.24446,
+      "spearman_abs": 0.01892,
+      "surface_spearman_abs": 0.07465
+    },
+    {
+      "source": "archive_registry",
+      "name": "08a606d69c89bedc2a1dc9aedd3d38e6429e506f",
+      "positives": 97654,
+      "coverage_3px": 0.37506,
+      "forward_overlap_3px": 0.64941,
+      "reverse_overlap_3px": 0.17802,
+      "mutual_overlap_3px": 0.17802,
+      "spearman_abs": 0.01969,
+      "surface_spearman_abs": 0.04902
+    },
+    {
+      "source": "archive_registry",
+      "name": "422ac9465ed5a0ff4158c4551b31fd3954513090",
+      "positives": 97654,
+      "coverage_3px": 0.37506,
+      "forward_overlap_3px": 0.64941,
+      "reverse_overlap_3px": 0.17802,
+      "mutual_overlap_3px": 0.17802,
+      "spearman_abs": 0.01969,
+      "surface_spearman_abs": 0.04902
+    },
+    {
+      "source": "archive_registry",
+      "name": "7b158eb8dc03955d27b2c4c14927ca98cfa4b090",
+      "positives": 69281,
+      "coverage_3px": 0.27204,
+      "forward_overlap_3px": 0.63058,
+      "reverse_overlap_3px": 0.21202,
+      "mutual_overlap_3px": 0.21202,
+      "spearman_abs": 0.02804,
+      "surface_spearman_abs": 0.07694
+    },
+    {
+      "source": "local_gemsdoe77",
+      "name": "gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-nan",
+      "positives": 37654,
+      "coverage_3px": 0.11201,
+      "forward_overlap_3px": 0.62463,
+      "reverse_overlap_3px": 0.55481,
+      "mutual_overlap_3px": 0.55481,
+      "spearman_abs": 0.08083,
+      "surface_spearman_abs": 0.11147
+    },
+    {
+      "source": "local_gemsdoe77",
+      "name": "gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros",
+      "positives": 37654,
+      "coverage_3px": 0.11201,
+      "forward_overlap_3px": 0.62463,
+      "reverse_overlap_3px": 0.55481,
+      "mutual_overlap_3px": 0.55481,
+      "spearman_abs": 0.08083,
+      "surface_spearman_abs": 0.11147
+    },
+    {
+      "source": "archive_registry",
+      "name": "11d86dd50ff18d5579f112408fd8b5d2dcf63097",
+      "positives": 68463,
+      "coverage_3px": 0.2564,
+      "forward_overlap_3px": 0.62078,
+      "reverse_overlap_3px": 0.2278,
+      "mutual_overlap_3px": 0.2278,
+      "spearman_abs": 0.02339,
+      "surface_spearman_abs": 0.08308
+    },
+    {
+      "source": "archive_registry",
+      "name": "41f6d55350b2c70e7085092374f6f71f730f8a07",
+      "positives": 68463,
+      "coverage_3px": 0.2564,
+      "forward_overlap_3px": 0.62078,
+      "reverse_overlap_3px": 0.2278,
+      "mutual_overlap_3px": 0.2278,
+      "spearman_abs": 0.02339,
+      "surface_spearman_abs": 0.08308
+    },
+    {
+      "source": "archive_registry",
+      "name": "cd915f3f67ba82aa7f99412fc10f1586b49bfab1",
+      "positives": 54000,
+      "coverage_3px": 0.22949,
+      "forward_overlap_3px": 0.61003,
+      "reverse_overlap_3px": 0.24144,
+      "mutual_overlap_3px": 0.24144,
+      "spearman_abs": 0.02743,
+      "surface_spearman_abs": 0.07578
+    },
+    {
+      "source": "archive_registry",
+      "name": "09def897aa5079d6b1f12dc632cec40c3df11429",
+      "positives": 58031,
+      "coverage_3px": 0.2518,
+      "forward_overlap_3px": 0.60806,
+      "reverse_overlap_3px": 0.23911,
+      "mutual_overlap_3px": 0.23911,
+      "spearman_abs": 0.02232,
+      "surface_spearman_abs": 0.06879
+    },
+    {
+      "source": "archive_registry",
+      "name": "5938a723dcc387dca2ac2abdfc495ed8009663d0",
+      "positives": 58031,
+      "coverage_3px": 0.2518,
+      "forward_overlap_3px": 0.60806,
+      "reverse_overlap_3px": 0.23911,
+      "mutual_overlap_3px": 0.23911,
+      "spearman_abs": 0.02232,
+      "surface_spearman_abs": 0.06879
+    },
+    {
+      "source": "archive_registry",
+      "name": "363f229be9f79f21b5bc34780fd3c8631b9e6485",
+      "positives": 60710,
+      "coverage_3px": 0.25522,
+      "forward_overlap_3px": 0.59744,
+      "reverse_overlap_3px": 0.24144,
+      "mutual_overlap_3px": 0.24144,
+      "spearman_abs": 0.02426,
+      "surface_spearman_abs": 0.0693
+    }
+  ]
+}

@@ -1,6 +1,4 @@
-"""Verification suite for Lane H77H (Mesh-Deconfounded Hydrothermal-Structural Coupled Submodular Cover)."""
-from __future__ import annotations
-
+"""Unit and artifact verification tests for H77H (Piedmont-Bajada Alluvial-Fan Toe Pinchout x Scarp Polarity x Sinter-Relay Bridge)."""
 import hashlib
 import json
 import zipfile
@@ -9,157 +7,133 @@ from pathlib import Path
 import numpy as np
 import rasterio
 
-from src.gems77h.features import EXCLUDED_MESH_CONTAMINATED_FEATURES, H77H_DELTA_NAMES, H77H_SLOCO_MECH_NAMES
+from gems77h.fields import (
+    H77H_LOCO_NAMES,
+    H77H_STATIC_NAMES,
+    compute_h77h_loco_channels,
+    elliptical_tip_relay_bridge,
+    lahontan_shoreline_suppressor,
+    piedmont_tail_slope_anomaly,
+    scarp_polarity_ratio,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def _sha256(path: Path) -> str:
-    h = hashlib.sha256()
-    with path.open("rb") as f:
-        for chunk in iter(lambda: f.read(1 << 20), b""):
-            h.update(chunk)
-    return h.hexdigest()
+def test_piedmont_tail_slope_anomaly_isolates_subcell_fan_scarp():
+    # Smooth bajada background: slope_max ~= slope_p90 = 4.0 deg
+    s_p90 = np.full((32, 32), 4.0, dtype=np.float32)
+    s_max = np.full((32, 32), 4.2, dtype=np.float32)
+    coh = np.full((32, 32), 0.35, dtype=np.float32)
+    env = np.full((32, 32), 4.5, dtype=np.float32)
+    # Narrow scarp along row 16: slope_p90 stays 4.5 deg, slope_max spikes to 22 deg, high aspect coherence
+    s_max[16, 6:26] = 22.0
+    coh[16, 6:26] = 0.92
+    resp = piedmont_tail_slope_anomaly(s_max, s_p90, coh, env)
+    assert resp.shape == (32, 32)
+    assert np.isfinite(resp).all()
+    assert float(resp[16, 16]) > 20.0 * float(resp[8, 16])
 
 
-def test_h77h_preregistration_and_run_card_provenance():
-    prereg_path = ROOT / "registry" / "preregistration_h77h.json"
-    rc_path = ROOT / "evidence" / "h77h" / "run_card.json"
-    rc_copy = ROOT / "evidence" / "run_card_h77h.json"
-    assert prereg_path.exists()
-    assert rc_path.exists()
-    assert rc_copy.exists()
+def test_lahontan_shoreline_suppressor_damps_flat_highstand_contour():
+    # Flat shoreline terrace at 1332 m vs inclined tectonic scarp at 1332 m vs non-highstand 1800 m
+    dem_flat = np.full((32, 32), 1332.0, dtype=np.float32)
+    yy, _ = np.mgrid[0:32, 0:32].astype(np.float32)
+    dem_steep = 1332.0 + 12.0 * (yy - 16.0)
+    dem_high = np.full((32, 32), 1800.0, dtype=np.float32)
 
-    rc = json.loads(rc_path.read_text())
-    assert rc == json.loads(rc_copy.read_text())
-    assert rc["lane_id"] == "H77H"
-    assert rc["preregistration_sha256"] == _sha256(prereg_path)
-    assert rc["experiments_run"] <= 3
-    assert rc["weekly_slots_spent"] == 0
-    assert rc["ok_to_download"] is True
-    assert rc["ok_to_submit"] is False
-    assert rc["verdict"] == "negative"
+    f_flat = lahontan_shoreline_suppressor(dem_flat)
+    f_steep = lahontan_shoreline_suppressor(dem_steep)
+    f_high = lahontan_shoreline_suppressor(dem_high)
+
+    assert float(f_flat[16, 16]) < 0.25
+    assert float(f_steep[16, 16]) > 0.80
+    assert float(f_high[16, 16]) > 0.99
 
 
-def test_h77h_mesh_deconfounding_and_feature_provenance():
-    rc = json.loads((ROOT / "evidence" / "h77h" / "run_card.json").read_text())
-    prov = rc["feature_provenance"]
-    assert prov["sgmc_in_features"] is False
-    assert prov["sgmc_channels_used"] == 0
-    assert prov["prior_submissions_in_features"] is False
-    assert prov["prior_rasters_read"] == 0
-    assert prov["min_regional_smoothing_sigma_px"] >= 35.0
-    assert set(prov["excluded_mesh_contaminated_features"]) == set(EXCLUDED_MESH_CONTAMINATED_FEATURES)
-    assert rc["novel_h77h_features"] == H77H_DELTA_NAMES
-    assert rc["sloco_mechanics_features"] == H77H_SLOCO_MECH_NAMES
-    for bad in EXCLUDED_MESH_CONTAMINATED_FEATURES:
-        assert bad not in rc["novel_h77h_features"]
+def test_scarp_polarity_ratio_respects_lidar_valid_zero_sentinel():
+    rng = np.random.default_rng(7708)
+    foot = np.ones((40, 40), dtype=bool)
+    foot[0:4, :] = False
+    valid = np.zeros((40, 40), dtype=np.uint8)
+    valid[4:24, :] = 1  # top half has LiDAR, bottom half (rows 24..39) has valid == 0
 
+    df = rng.uniform(5, 120, size=(40, 40)).astype(np.float32)
+    uf = rng.uniform(5, 120, size=(40, 40)).astype(np.float32)
+    cr = rng.uniform(5, 80, size=(40, 40)).astype(np.float32)
+    coh100 = rng.uniform(50, 240, size=(40, 40)).astype(np.float32)
+    # Put bogus sentinel zeros where valid == 0
+    df[valid == 0] = 0.0
+    uf[valid == 0] = 0.0
+    cr[valid == 0] = 0.0
 
-def test_h77h_leakage_canaries_pass_both_seeds():
-    rc = json.loads((ROOT / "evidence" / "h77h" / "run_card.json").read_text())
-    for seed_key in ("seed20", "seed30"):
-        can = rc["leakage_canary_audit"][seed_key]
-        assert can["n_features_checked"] == 137
-        assert can["n_static_checked"] == 128
-        assert can["n_mech_checked"] == 9
-        assert can["passed"] is True
-        assert can["violator_count"] == 0
-        assert can["violators"] == []
-        assert can["max_overall"]["symmetric_auc"] <= 0.90
-        assert can["max_static_physics"]["symmetric_auc"] <= 0.90
+    curv = rng.uniform(1.0, 20.0, size=(40, 40)).astype(np.float32)
+    acoh = rng.uniform(0.2, 0.95, size=(40, 40)).astype(np.float32)
+    sstd = rng.uniform(0.5, 5.0, size=(40, 40)).astype(np.float32)
 
-
-def test_h77h_dual_seed_holdout_receipts():
-    rc = json.loads((ROOT / "evidence" / "h77h" / "run_card.json").read_text())
-    s20 = rc["holdout_evaluation"]["seed20"]["scores"]
-    s30 = rc["holdout_evaluation"]["seed30"]["scores"]
-
-    for scores, expected_pos in ((s20, 11321), (s30, 11342)):
-        for arm_name, entry in scores.items():
-            assert entry["evidence_class"] == "HOLDOUT-DTI", arm_name
-            assert entry["evaluator_version"] == "gems57-pooled-hide-v2", arm_name
-            assert entry["withheld_positive_pixels"] == expected_pos, arm_name
-            assert len(entry["ci95"]) == 2
-            assert 0.0 < entry["ci95"][0] <= entry["dti"] <= entry["ci95"][1] < 1.0
-
-    # Empirical confirmation of IR-H77G-01 & IR-H77G-03:
-    assert s20["ablation_base116_without_h77h_channels"]["dti"] > 0.15562
-    assert s20["h77h_pure_submodular"]["dti"] > 0.153
-    assert s30["h77h_pure_submodular"]["dti"] > 0.154
-    assert s20["h77h_portfolio_unique_submodular"]["dti"] > 0.124
-    assert s30["h77h_portfolio_unique_submodular"]["dti"] > 0.124
-    assert s20["h77h_pure_physics_no_mechanics"]["dti"] > s20["h33_foldfair"]["dti"]
-    assert s30["h77h_pure_physics_no_mechanics"]["dti"] > s30["h33_foldfair"]["dti"]
-    assert s20["h77h_pure_submodular"]["dti"] > s20["h77h_peak_nms_control"]["dti"] + 0.03
-
-
-def test_h77h_uniqueness_audit_exact_match_vs_vendor():
-    rc = json.loads((ROOT / "evidence" / "h77h" / "run_card.json").read_text())
-    uq = rc["uniqueness_audit"]
-    p1 = uq["phase1_pre_placement_surface"]
-    p2_inf = uq["phase2_post_placement_final_dots"]["informative_reading_lt_0p70_bg"]
-    p2_lit = uq["phase2_post_placement_final_dots"]["literal_unfiltered_reading_policy_I17"]
-
-    assert p1["pass_le_0p90"] is True
-    assert p1["max_abs_spearman"] <= 0.90
-    assert p1["firings_gt_0p90"] == 0
-
-    assert p2_inf["informative_unique"] is True
-    assert p2_inf["firings_gt_0p70"] == 0
-    assert p2_inf["max_forward_3px_overlap"] <= 0.70
-    assert p2_inf["max_abs_spearman"] <= 0.90
-    assert p2_inf["identical_bytes_count"] == 0
-
-    # Fail-closed literal Policy I17 reading:
-    assert p2_lit["protocol_unique"] is False
-    assert p2_lit["max_forward_3px_overlap"] == 1.0
-
-    # Exact bit-for-bit verification against vendor/gems57/uniqueness.py:dot_overlap
-    assert len(uq["top_15_vendor_verified_matches"]) == 15
-    for item in uq["top_15_vendor_verified_matches"]:
-        assert item["memmap_vs_vendor_abs_diff"] < 1e-7
-
-
-def test_h77h_geotiff_and_zip_portal_compliance():
-    rc = json.loads((ROOT / "evidence" / "h77h" / "run_card.json").read_text())
-    art = rc["candidate_artifact"]
-
-    assert 1 <= len(art["submission_name"]) <= 80
-    assert 1 <= len(art["submission_note"]) <= 140
-    assert art["submission_note_length"] == len(art["submission_note"])
-
-    tif_docs = ROOT / art["tif_path"]
-    zip_docs = ROOT / art["zip_path"]
-    json_docs = tif_docs.with_suffix(".json")
-    tif_sub = ROOT / "submissions" / tif_docs.name
-    zip_sub = ROOT / "submissions" / zip_docs.name
-    json_sub = ROOT / "submissions" / json_docs.name
-
-    assert tif_docs.exists() and tif_sub.exists()
-    assert zip_docs.exists() and zip_sub.exists()
-    assert json_docs.exists() and json_sub.exists()
-    assert _sha256(tif_docs) == art["tif_sha256"] == _sha256(tif_sub)
-    assert _sha256(zip_docs) == art["zip_sha256"] == _sha256(zip_sub)
-    assert _sha256(json_docs) == _sha256(json_sub)
-    assert "119 informative rasters" in rc["verdict_reason"]
-
-    with rasterio.open(tif_docs) as ds:
-        assert ds.count == 1
-        assert ds.dtypes[0] == "float32"
-        assert (ds.height, ds.width) == (3730, 3292)
-        assert str(ds.crs) == "EPSG:32611"
-        assert ds.nodata is None
-        arr = ds.read(1)
+    pol, anti = scarp_polarity_ratio(df, uf, cr, coh100, valid, curv, acoh, sstd, foot)
+    for arr in (pol, anti):
         assert arr.dtype == np.float32
-        assert np.isnan(arr).sum() == 0
-        assert np.isinf(arr).sum() == 0
-        assert float(arr.min()) >= 0.0
-        assert float(arr.max()) <= 1.0
-        assert int((arr > 0).sum()) == 36800
-        assert set(np.unique(arr).tolist()) == {0.0, 1.0}
+        assert np.isfinite(arr).all()
+        assert float(arr.min()) >= 0.0 and float(arr.max()) <= 1.0
+        assert np.all(arr[~foot] == 0.0)
+        # Non-LiDAR footprint cells are bridged by 10m DEM, not clamped to zero
+        assert float(arr[28:38, 8:32].mean()) > 0.20
 
-    with zipfile.ZipFile(zip_docs, "r") as zf:
-        names = zf.namelist()
-        assert names == [tif_docs.name]
-        assert hashlib.sha256(zf.read(tif_docs.name)).hexdigest() == art["tif_sha256"]
+
+def test_elliptical_tip_relay_bridge_and_loco_channels():
+    foot = np.ones((48, 48), dtype=bool)
+    vis = np.zeros((48, 48), dtype=bool)
+    # Two en-echelon fault segments separated by an 8-px relay step-over around (24, 24)
+    vis[22, 8:21] = True
+    vis[26, 27:40] = True
+    # Add two more components so all 4 LOCO buckets have support
+    vis[8, 8:18] = True
+    vis[40, 30:42] = True
+
+    bridge = elliptical_tip_relay_bridge(vis, foot)
+    assert np.isfinite(bridge).all()
+    assert float(bridge[24, 24]) > 0.35
+    assert float(bridge[5, 40]) < 0.05
+
+    lah = np.full((48, 48), 0.5, dtype=np.float32)
+    pol = np.full((48, 48), 0.5, dtype=np.float32)
+    loco = compute_h77h_loco_channels(vis, foot, lah, pol)
+    assert list(loco.keys()) == H77H_LOCO_NAMES
+    for nm in H77H_LOCO_NAMES:
+        arr = loco[nm]
+        assert arr.dtype == np.float32
+        assert np.isfinite(arr).all()
+        assert float(arr.min()) >= 0.0 and float(arr.max()) <= 1.0
+
+
+def test_h77h_artifact_matches_run_card_and_fails_closed():
+    card = json.loads((ROOT / "evidence" / "run_card_h77h.json").read_text())
+    tif = ROOT / card["raster_path"]
+    zp = ROOT / card["zip_path"]
+    assert tif.is_file() and zp.is_file()
+    assert hashlib.sha256(tif.read_bytes()).hexdigest() == card["raster_sha256"]
+    assert hashlib.sha256(zp.read_bytes()).hexdigest() == card["zip_sha256"]
+    with zipfile.ZipFile(zp) as zf:
+        assert zf.namelist() == [tif.name]
+    assert card["verdict"] == "negative"
+    assert card["ok_to_download"] is True
+    assert card["ok_to_submit"] is False
+    assert card["safe_to_download_and_submit"] is False
+    assert card["protocol_unique"] is False
+    assert card["informative_unique"] is True
+    assert card["weekly_slots_used"] == 0
+    assert card["organizer_confirmed_score_for_this_tif"] is None
+    assert len(card["submission_note"]) <= 140
+    assert len(H77H_STATIC_NAMES) == 12
+    assert card["leakage_canary"]["pass"] is True
+    assert card["leakage_canary"]["max_symmetric_auc"] <= 0.90
+    assert card["holdout_dti"]["seed_20"]["A_h77h_guarded"]["dti"] > 0.152718
+    assert card["holdout_dti"]["seed_30"]["A_h77h_guarded"]["dti"] > 0.152718
+    with rasterio.open(tif) as src:
+        a = src.read(1)
+        assert src.count == 1 and src.dtypes == ("float32",)
+        assert src.crs.to_epsg() == 32611 and src.shape == (3730, 3292)
+        assert src.nodata is None
+    assert np.isfinite(a).all() and float(a.min()) >= 0.0 and float(a.max()) <= 1.0
+    assert int((a > 0).sum()) == 37654

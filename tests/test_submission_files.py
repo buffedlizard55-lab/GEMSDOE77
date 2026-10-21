@@ -18,7 +18,7 @@ pytestmark = pytest.mark.skipif(not (DATA / "sample_submission.tif").exists(), r
 
 
 def _sub():
-    return json.loads((ROOT / "docs" / "data" / "submission.json").read_text())
+    return json.loads((ROOT / "docs" / "data" / "lia_submission.json").read_text())
 
 
 def test_primary_passes_but_nan_outside_twin_is_not_submittable():
@@ -91,3 +91,16 @@ def test_feature_sentinel_is_rejected(tmp_path):
     r, c = np.argwhere(core.grid().footprint)[0]
     a[r, c] = -3.4028235e38
     assert not v.validate(_write(tmp_path, a), mode="zeros", name="t", note="")["passed"]
+
+
+def test_lia_receipt_cannot_borrow_another_lanes_manifest(tmp_path):
+    from lia_build_site import verified_lia_receipt
+    card = json.loads((ROOT / "docs/data/run-card.json").read_text())
+    receipt = verified_lia_receipt(card, output=tmp_path / "lia.json")
+    generic = json.loads((ROOT / "docs/data/h28-submission.json").read_text())
+    assert receipt["primary"]["file"] == card["raster"]["file"]
+    assert receipt["primary"]["sha256"] == card["raster"]["sha256"]
+    assert receipt["zip"]["sha256"] == card["raster"]["zip_sha256"]
+    assert receipt["primary"]["file"] != generic["primary"]["file"]
+    assert receipt == _sub()
+    assert not receipt["ok_to_submit"]

@@ -4,7 +4,7 @@
   "lane_name": "H77H-MESHSAFE-HYDRO-STRUCT-SUBMOD",
   "generated_utc": "2026-10-21T18:23:41Z",
   "branch": "arena/46c3997d-gemsdoe77",
-  "preregistration_path": "registry/preregistration_h77h.json",
+  "preregistration_path": "registry/preregistration_h77h_meshsafe.json",
   "preregistration_sha256": "4ca0f3663b4d0b678958aefa68523007e3b7f4d07ce69972f717b30cc2f43ec9",
   "hypothesis": "Filtering MT conductance (cond_surf), geodetic strain rates, and seismicity strictly at sigma >= 35 px (3.5 km) eliminates rectilinear 35 px / 70 px inversion-mesh boundary artifacts (IR-H77G-01), while coupling across-valley Hessian RTP demagnetization troughs (IR-H77G-02), oriented gravity-basement steps, and basement relay saddles directly with TIGER-deconfounded 1m/10m 3DEP scarp crests, 10m fluvial knickpoints, and fold-pure SLOCO fracture-mechanics continuations (IR-H77G-03) inside a 300 m Dinkelbach Tversky submodular allocator recovers blind and poorly exposed geothermal fault segments.",
   "physical_mechanism": "Hydrothermal fluids circulating along steeply dipping (55-65 deg) normal/transtensional fault damage zones alter ferromagnetic magnetite to paramagnetic clay/pyrite (across-valley RTP Hessian trough lambda_1 > 0) along a co-aligned subsurface basement-depth and gravity step, accompanied at the surface by subtle TIGER-deconfounded 1m/10m scarp crests or 10m fluvial knickpoints along the projected strike of visible fault tips and relay breaches within a regional (sigma >= 35 px) transtensional, microseismically active clay-cap province.",

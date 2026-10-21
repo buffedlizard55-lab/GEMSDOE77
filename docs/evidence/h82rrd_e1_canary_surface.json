@@ -1,0 +1,89 @@
+{
+  "experiment": 1,
+  "lane": "H82-RRD",
+  "seed": 20,
+  "withheld_positives": 11321,
+  "band_identities": {
+    "spearman_band3_tmi_hg_vs_gradmag_tmi": 0.9971854277778321,
+    "spearman_rtp_vs_tmi_raw": 0.6892020580596259,
+    "n_sample": 200000
+  },
+  "canaries": {
+    "rrd_resid_rms": {
+      "auc": 0.5333672643759385,
+      "sym_auc": 0.5333672643759385
+    },
+    "rrd_corr": {
+      "auc": 0.5107679829520361,
+      "sym_auc": 0.5107679829520361
+    },
+    "rrd_corr_break": {
+      "auc": 0.4860797537761682,
+      "sym_auc": 0.5139202462238318
+    },
+    "rrd_slope": {
+      "auc": 0.5129936666372229,
+      "sym_auc": 0.5129936666372229
+    },
+    "rrd_slope_break": {
+      "auc": 0.48065352861937993,
+      "sym_auc": 0.5193464713806201
+    },
+    "rrd_disc_abs": {
+      "auc": 0.5284381174366222,
+      "sym_auc": 0.5284381174366222
+    },
+    "rrd_disc_grad": {
+      "auc": 0.5270629496069251,
+      "sym_auc": 0.5270629496069251
+    },
+    "rrd_mag_resid": {
+      "auc": 0.5241271429202368,
+      "sym_auc": 0.5241271429202368
+    },
+    "S_rrd": {
+      "auc": 0.5212702230368342,
+      "sym_auc": 0.5212702230368342
+    }
+  },
+  "canary_worst_sym_auc": 0.5333672643759385,
+  "canary_pass_lt_090": true,
+  "surface_uniqueness": {
+    "scope": "local docs/downloads + submissions (sha-deduped) + fetched H33 champion; sampled Spearman n=200k seed82; NOT complete family registry",
+    "n_compared": 37,
+    "max_abs_rho": 0.04716653233337247,
+    "top5": [
+      {
+        "file": "docs/downloads/gems77-ago-hybrid50-geophys-37654dots-11b45670-nan.tif",
+        "sha256": "5a08bfa0cf69935a65c4a2cbab15d884e4de0e853b3a92e99d1973a16f81e737",
+        "dots": 37654,
+        "spearman_sampled_surface": 0.04716653233337247
+      },
+      {
+        "file": "docs/downloads/gems77-ago-hybrid50-geophys-37654dots-11b45670-zeros.tif",
+        "sha256": "c027f571a45566a8cf10b081f7d00fa48242bc4dfbc7f832ba98c06a5aca194e",
+        "dots": 37654,
+        "spearman_sampled_surface": 0.04716653233337247
+      },
+      {
+        "file": "docs/downloads/gems77-ago-hybrid35-geophys-37654dots-dc66e42e-nan.tif",
+        "sha256": "7b97ea874f70e4effc3c8e92c98c92fc650a366273c385f3bf70c0400e6dff7c",
+        "dots": 37654,
+        "spearman_sampled_surface": 0.04226039255064229
+      },
+      {
+        "file": "docs/downloads/gems77-ago-hybrid35-geophys-37654dots-dc66e42e-zeros.tif",
+        "sha256": "fd7c75df77cd653e9fbd97b436bd304e0c1fd6b7283a4f513cdf6a2041136de0",
+        "dots": 37654,
+        "spearman_sampled_surface": 0.04226039255064229
+      },
+      {
+        "file": "docs/downloads/gems77-h80t-tilt-persist-37654dots-20261021-7d5f7b11-nan.tif",
+        "sha256": "d9f63db37c2ddfd8a403a02beecf9e89409c83e18a18dc19aca3e7940121b563",
+        "dots": 37654,
+        "spearman_sampled_surface": 0.030394856653797767
+      }
+    ]
+  },
+  "seconds": 143.8
+}

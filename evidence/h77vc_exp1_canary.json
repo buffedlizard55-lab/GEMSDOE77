@@ -1,0 +1,684 @@
+{
+  "experiment": "H77V-Exp1",
+  "evidence_class": "LEAKAGE-CANARY",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "elapsed_seconds": 103.95,
+  "n_total_features": 114,
+  "n_base_static_features": 96,
+  "n_h77v_static_features": 12,
+  "n_vlbco_mechanics_features": 6,
+  "sgmc_channels_used": 0,
+  "gdr_dist_known_fault_px_accessed": false,
+  "in_sample_predicted_pixels": 0,
+  "pixels_copied_from_prior_rasters": 0,
+  "gate_ceiling": 0.9,
+  "all_114_features_passed_both_seeds": true,
+  "seed20_max_symmetric_auc": 0.79315,
+  "seed30_max_symmetric_auc": 0.80362,
+  "seed20_max_novel_h77v_auc": 0.79315,
+  "seed30_max_novel_h77v_auc": 0.80362,
+  "h77v_static_channel_stats": {
+    "h77v_claycap_hessian_ridge": {
+      "min": 0.0,
+      "p50": 0.0,
+      "p95": 0.0013,
+      "max": 0.01556
+    },
+    "h77v_claycap_lat_grad": {
+      "min": 0.0,
+      "p50": 9e-05,
+      "p95": 0.01154,
+      "max": 0.18196
+    },
+    "h77v_mag_destruction_trough": {
+      "min": 0.0,
+      "p50": 4.02161,
+      "p95": 107.04079,
+      "max": 1650.56494
+    },
+    "h77v_clay_mag_destr_coupling": {
+      "min": 0.0,
+      "p50": 0.0,
+      "p95": 1.0579,
+      "max": 75.62132
+    },
+    "h77v_strike_steered_2m_temp_plume": {
+      "min": 0.0,
+      "p50": 0.0,
+      "p95": 0.0018,
+      "max": 0.28374
+    },
+    "h77v_strike_steered_geochem_plume": {
+      "min": 0.0,
+      "p50": 1e-05,
+      "p95": 0.00858,
+      "max": 1.0148
+    },
+    "h77v_piezo_sinter_spillover": {
+      "min": 0.0,
+      "p50": 0.0,
+      "p95": 0.12466,
+      "max": 9.05923
+    },
+    "h77v_swarm_dilation_overpressure": {
+      "min": 0.0,
+      "p50": 0.0,
+      "p95": 1.55959,
+      "max": 14.99635
+    },
+    "h77v_transtensional_crit_stress": {
+      "min": 0.0,
+      "p50": 0.0,
+      "p95": 0.79655,
+      "max": 7.96552
+    },
+    "h77v_piedmont_blind_conduit_index": {
+      "min": 0.0,
+      "p50": 0.02225,
+      "p95": 0.44826,
+      "max": 12.9981
+    },
+    "h77v_upflow_scarp_coincidence": {
+      "min": 0.0,
+      "p50": 0.00016,
+      "p95": 0.82113,
+      "max": 7.86995
+    },
+    "h77v_master_vent_potential": {
+      "min": 0.02057,
+      "p50": 0.50035,
+      "p95": 0.94994,
+      "max": 1.0
+    }
+  },
+  "seed20": {
+    "seed": 20,
+    "withheld_positive_pixels": 11321,
+    "n_features_tested": 114,
+    "n_novel_h77v_features": 15,
+    "max_symmetric_auc": 0.79315,
+    "top_feature": "vis_vent_tip_propagation_2p5km",
+    "max_novel_h77v_symmetric_auc": 0.79315,
+    "top_novel_h77v_feature": "vis_vent_tip_propagation_2p5km",
+    "all_pass_le_0p90": true,
+    "novel_h77v_features": [
+      {
+        "feature": "vis_vent_tip_propagation_2p5km",
+        "is_novel_h77v": true,
+        "roc_auc": 0.79315,
+        "symmetric_auc": 0.79315,
+        "leakage_pass": true
+      },
+      {
+        "feature": "vis_blind_stepover_vent_band",
+        "is_novel_h77v": true,
+        "roc_auc": 0.74056,
+        "symmetric_auc": 0.74056,
+        "leakage_pass": true
+      },
+      {
+        "feature": "vis_vent_bridged_relay_corridor",
+        "is_novel_h77v": true,
+        "roc_auc": 0.72312,
+        "symmetric_auc": 0.72312,
+        "leakage_pass": true
+      },
+      {
+        "feature": "h77v_piedmont_blind_conduit_index",
+        "is_novel_h77v": true,
+        "roc_auc": 0.59404,
+        "symmetric_auc": 0.59404,
+        "leakage_pass": true
+      },
+      {
+        "feature": "h77v_master_vent_potential",
+        "is_novel_h77v": true,
+        "roc_auc": 0.58411,
+        "symmetric_auc": 0.58411,
+        "leakage_pass": true
+      },
+      {
+        "feature": "h77v_transtensional_crit_stress",
+        "is_novel_h77v": true,
+        "roc_auc": 0.56342,
+        "symmetric_auc": 0.56342,
+        "leakage_pass": true
+      },
+      {
+        "feature": "h77v_upflow_scarp_coincidence",
+        "is_novel_h77v": true,
+        "roc_auc": 0.5517,
+        "symmetric_auc": 0.5517,
+        "leakage_pass": true
+      },
+      {
+        "feature": "h77v_swarm_dilation_overpressure",
+        "is_novel_h77v": true,
+        "roc_auc": 0.53468,
+        "symmetric_auc": 0.53468,
+        "leakage_pass": true
+      },
+      {
+        "feature": "h77v_piezo_sinter_spillover",
+        "is_novel_h77v": true,
+        "roc_auc": 0.52861,
+        "symmetric_auc": 0.52861,
+        "leakage_pass": true
+      },
+      {
+        "feature": "h77v_strike_steered_2m_temp_plume",
+        "is_novel_h77v": true,
+        "roc_auc": 0.51932,
+        "symmetric_auc": 0.51932,
+        "leakage_pass": true
+      },
+      {
+        "feature": "h77v_claycap_hessian_ridge",
+        "is_novel_h77v": true,
+        "roc_auc": 0.51888,
+        "symmetric_auc": 0.51888,
+        "leakage_pass": true
+      },
+      {
+        "feature": "h77v_claycap_lat_grad",
+        "is_novel_h77v": true,
+        "roc_auc": 0.51449,
+        "symmetric_auc": 0.51449,
+        "leakage_pass": true
+      },
+      {
+        "feature": "h77v_clay_mag_destr_coupling",
+        "is_novel_h77v": true,
+        "roc_auc": 0.51289,
+        "symmetric_auc": 0.51289,
+        "leakage_pass": true
+      },
+      {
+        "feature": "h77v_strike_steered_geochem_plume",
+        "is_novel_h77v": true,
+        "roc_auc": 0.51159,
+        "symmetric_auc": 0.51159,
+        "leakage_pass": true
+      },
+      {
+        "feature": "h77v_mag_destruction_trough",
+        "is_novel_h77v": true,
+        "roc_auc": 0.49719,
+        "symmetric_auc": 0.50281,
+        "leakage_pass": true
+      }
+    ],
+    "top_25_all_features": [
+      {
+        "feature": "vis_vent_tip_propagation_2p5km",
+        "is_novel_h77v": true,
+        "roc_auc": 0.79315,
+        "symmetric_auc": 0.79315,
+        "leakage_pass": true
+      },
+      {
+        "feature": "vis_pollard_tip_cone_2p5km",
+        "is_novel_h77v": false,
+        "roc_auc": 0.79313,
+        "symmetric_auc": 0.79313,
+        "leakage_pass": true
+      },
+      {
+        "feature": "vis_pollard_tip_cone_1km",
+        "is_novel_h77v": false,
+        "roc_auc": 0.78533,
+        "symmetric_auc": 0.78533,
+        "leakage_pass": true
+      },
+      {
+        "feature": "vis_blind_stepover_vent_band",
+        "is_novel_h77v": true,
+        "roc_auc": 0.74056,
+        "symmetric_auc": 0.74056,
+        "leakage_pass": true
+      },
+      {
+        "feature": "vis_vent_bridged_relay_corridor",
+        "is_novel_h77v": true,
+        "roc_auc": 0.72312,
+        "symmetric_auc": 0.72312,
+        "leakage_pass": true
+      },
+      {
+        "feature": "lidar_upface_max",
+        "is_novel_h77v": false,
+        "roc_auc": 0.60594,
+        "symmetric_auc": 0.60594,
+        "leakage_pass": true
+      },
+      {
+        "feature": "lidar_downface_max",
+        "is_novel_h77v": false,
+        "roc_auc": 0.59821,
+        "symmetric_auc": 0.59821,
+        "leakage_pass": true
+      },
+      {
+        "feature": "lidar_cross_max",
+        "is_novel_h77v": false,
+        "roc_auc": 0.59795,
+        "symmetric_auc": 0.59795,
+        "leakage_pass": true
+      },
+      {
+        "feature": "lidar_lappos_max",
+        "is_novel_h77v": false,
+        "roc_auc": 0.59599,
+        "symmetric_auc": 0.59599,
+        "leakage_pass": true
+      },
+      {
+        "feature": "h77v_piedmont_blind_conduit_index",
+        "is_novel_h77v": true,
+        "roc_auc": 0.59404,
+        "symmetric_auc": 0.59404,
+        "leakage_pass": true
+      },
+      {
+        "feature": "lidar_crest_toe_dipole",
+        "is_novel_h77v": false,
+        "roc_auc": 0.59403,
+        "symmetric_auc": 0.59403,
+        "leakage_pass": true
+      },
+      {
+        "feature": "lidar_relief",
+        "is_novel_h77v": false,
+        "roc_auc": 0.59399,
+        "symmetric_auc": 0.59399,
+        "leakage_pass": true
+      },
+      {
+        "feature": "topo10_slope_std",
+        "is_novel_h77v": false,
+        "roc_auc": 0.59049,
+        "symmetric_auc": 0.59049,
+        "leakage_pass": true
+      },
+      {
+        "feature": "lidar_lapneg_max",
+        "is_novel_h77v": false,
+        "roc_auc": 0.58965,
+        "symmetric_auc": 0.58965,
+        "leakage_pass": true
+      },
+      {
+        "feature": "lidar_step_max",
+        "is_novel_h77v": false,
+        "roc_auc": 0.5875,
+        "symmetric_auc": 0.5875,
+        "leakage_pass": true
+      },
+      {
+        "feature": "topo10_curv_prof_absmax",
+        "is_novel_h77v": false,
+        "roc_auc": 0.58726,
+        "symmetric_auc": 0.58726,
+        "leakage_pass": true
+      },
+      {
+        "feature": "lidar_ex_max",
+        "is_novel_h77v": false,
+        "roc_auc": 0.58428,
+        "symmetric_auc": 0.58428,
+        "leakage_pass": true
+      },
+      {
+        "feature": "h77v_master_vent_potential",
+        "is_novel_h77v": true,
+        "roc_auc": 0.58411,
+        "symmetric_auc": 0.58411,
+        "leakage_pass": true
+      },
+      {
+        "feature": "ctx2d_scarp_mean_1km",
+        "is_novel_h77v": false,
+        "roc_auc": 0.58354,
+        "symmetric_auc": 0.58354,
+        "leakage_pass": true
+      },
+      {
+        "feature": "ctx2d_scarp_mean_300m",
+        "is_novel_h77v": false,
+        "roc_auc": 0.58326,
+        "symmetric_auc": 0.58326,
+        "leakage_pass": true
+      },
+      {
+        "feature": "hwfw_signed_relief_step_500m",
+        "is_novel_h77v": false,
+        "roc_auc": 0.58277,
+        "symmetric_auc": 0.58277,
+        "leakage_pass": true
+      },
+      {
+        "feature": "zmean_lrm_400m",
+        "is_novel_h77v": false,
+        "roc_auc": 0.4206,
+        "symmetric_auc": 0.5794,
+        "leakage_pass": true
+      },
+      {
+        "feature": "topo10_hs_lineament",
+        "is_novel_h77v": false,
+        "roc_auc": 0.57884,
+        "symmetric_auc": 0.57884,
+        "leakage_pass": true
+      },
+      {
+        "feature": "det_elev_lrm",
+        "is_novel_h77v": false,
+        "roc_auc": 0.42136,
+        "symmetric_auc": 0.57864,
+        "leakage_pass": true
+      },
+      {
+        "feature": "hwfw_anderson_fav",
+        "is_novel_h77v": false,
+        "roc_auc": 0.57489,
+        "symmetric_auc": 0.57489,
+        "leakage_pass": true
+      }
+    ]
+  },
+  "seed30": {
+    "seed": 30,
+    "withheld_positive_pixels": 11342,
+    "n_features_tested": 114,
+    "n_novel_h77v_features": 15,
+    "max_symmetric_auc": 0.80362,
+    "top_feature": "vis_vent_tip_propagation_2p5km",
+    "max_novel_h77v_symmetric_auc": 0.80362,
+    "top_novel_h77v_feature": "vis_vent_tip_propagation_2p5km",
+    "all_pass_le_0p90": true,
+    "novel_h77v_features": [
+      {
+        "feature": "vis_vent_tip_propagation_2p5km",
+        "is_novel_h77v": true,
+        "roc_auc": 0.80362,
+        "symmetric_auc": 0.80362,
+        "leakage_pass": true
+      },
+      {
+        "feature": "vis_blind_stepover_vent_band",
+        "is_novel_h77v": true,
+        "roc_auc": 0.74636,
+        "symmetric_auc": 0.74636,
+        "leakage_pass": true
+      },
+      {
+        "feature": "vis_vent_bridged_relay_corridor",
+        "is_novel_h77v": true,
+        "roc_auc": 0.72899,
+        "symmetric_auc": 0.72899,
+        "leakage_pass": true
+      },
+      {
+        "feature": "h77v_master_vent_potential",
+        "is_novel_h77v": true,
+        "roc_auc": 0.59859,
+        "symmetric_auc": 0.59859,
+        "leakage_pass": true
+      },
+      {
+        "feature": "h77v_piedmont_blind_conduit_index",
+        "is_novel_h77v": true,
+        "roc_auc": 0.58662,
+        "symmetric_auc": 0.58662,
+        "leakage_pass": true
+      },
+      {
+        "feature": "h77v_upflow_scarp_coincidence",
+        "is_novel_h77v": true,
+        "roc_auc": 0.5846,
+        "symmetric_auc": 0.5846,
+        "leakage_pass": true
+      },
+      {
+        "feature": "h77v_transtensional_crit_stress",
+        "is_novel_h77v": true,
+        "roc_auc": 0.56356,
+        "symmetric_auc": 0.56356,
+        "leakage_pass": true
+      },
+      {
+        "feature": "h77v_swarm_dilation_overpressure",
+        "is_novel_h77v": true,
+        "roc_auc": 0.55388,
+        "symmetric_auc": 0.55388,
+        "leakage_pass": true
+      },
+      {
+        "feature": "h77v_strike_steered_2m_temp_plume",
+        "is_novel_h77v": true,
+        "roc_auc": 0.5453,
+        "symmetric_auc": 0.5453,
+        "leakage_pass": true
+      },
+      {
+        "feature": "h77v_strike_steered_geochem_plume",
+        "is_novel_h77v": true,
+        "roc_auc": 0.54359,
+        "symmetric_auc": 0.54359,
+        "leakage_pass": true
+      },
+      {
+        "feature": "h77v_piezo_sinter_spillover",
+        "is_novel_h77v": true,
+        "roc_auc": 0.5287,
+        "symmetric_auc": 0.5287,
+        "leakage_pass": true
+      },
+      {
+        "feature": "h77v_claycap_lat_grad",
+        "is_novel_h77v": true,
+        "roc_auc": 0.48463,
+        "symmetric_auc": 0.51537,
+        "leakage_pass": true
+      },
+      {
+        "feature": "h77v_claycap_hessian_ridge",
+        "is_novel_h77v": true,
+        "roc_auc": 0.50602,
+        "symmetric_auc": 0.50602,
+        "leakage_pass": true
+      },
+      {
+        "feature": "h77v_mag_destruction_trough",
+        "is_novel_h77v": true,
+        "roc_auc": 0.50236,
+        "symmetric_auc": 0.50236,
+        "leakage_pass": true
+      },
+      {
+        "feature": "h77v_clay_mag_destr_coupling",
+        "is_novel_h77v": true,
+        "roc_auc": 0.49912,
+        "symmetric_auc": 0.50088,
+        "leakage_pass": true
+      }
+    ],
+    "top_25_all_features": [
+      {
+        "feature": "vis_vent_tip_propagation_2p5km",
+        "is_novel_h77v": true,
+        "roc_auc": 0.80362,
+        "symmetric_auc": 0.80362,
+        "leakage_pass": true
+      },
+      {
+        "feature": "vis_pollard_tip_cone_2p5km",
+        "is_novel_h77v": false,
+        "roc_auc": 0.8033,
+        "symmetric_auc": 0.8033,
+        "leakage_pass": true
+      },
+      {
+        "feature": "vis_pollard_tip_cone_1km",
+        "is_novel_h77v": false,
+        "roc_auc": 0.79757,
+        "symmetric_auc": 0.79757,
+        "leakage_pass": true
+      },
+      {
+        "feature": "vis_blind_stepover_vent_band",
+        "is_novel_h77v": true,
+        "roc_auc": 0.74636,
+        "symmetric_auc": 0.74636,
+        "leakage_pass": true
+      },
+      {
+        "feature": "vis_vent_bridged_relay_corridor",
+        "is_novel_h77v": true,
+        "roc_auc": 0.72899,
+        "symmetric_auc": 0.72899,
+        "leakage_pass": true
+      },
+      {
+        "feature": "h77v_master_vent_potential",
+        "is_novel_h77v": true,
+        "roc_auc": 0.59859,
+        "symmetric_auc": 0.59859,
+        "leakage_pass": true
+      },
+      {
+        "feature": "pluvial_shoreline_elev_dist_m",
+        "is_novel_h77v": false,
+        "roc_auc": 0.40706,
+        "symmetric_auc": 0.59294,
+        "leakage_pass": true
+      },
+      {
+        "feature": "det_elev_lrm",
+        "is_novel_h77v": false,
+        "roc_auc": 0.4106,
+        "symmetric_auc": 0.5894,
+        "leakage_pass": true
+      },
+      {
+        "feature": "hwfw_strike_coh",
+        "is_novel_h77v": false,
+        "roc_auc": 0.58741,
+        "symmetric_auc": 0.58741,
+        "leakage_pass": true
+      },
+      {
+        "feature": "h77v_piedmont_blind_conduit_index",
+        "is_novel_h77v": true,
+        "roc_auc": 0.58662,
+        "symmetric_auc": 0.58662,
+        "leakage_pass": true
+      },
+      {
+        "feature": "h77v_upflow_scarp_coincidence",
+        "is_novel_h77v": true,
+        "roc_auc": 0.5846,
+        "symmetric_auc": 0.5846,
+        "leakage_pass": true
+      },
+      {
+        "feature": "hwfw_anderson_fav",
+        "is_novel_h77v": false,
+        "roc_auc": 0.58367,
+        "symmetric_auc": 0.58367,
+        "leakage_pass": true
+      },
+      {
+        "feature": "zmean_lrm_400m",
+        "is_novel_h77v": false,
+        "roc_auc": 0.41679,
+        "symmetric_auc": 0.58321,
+        "leakage_pass": true
+      },
+      {
+        "feature": "geod_shearrate",
+        "is_novel_h77v": false,
+        "roc_auc": 0.57498,
+        "symmetric_auc": 0.57498,
+        "leakage_pass": true
+      },
+      {
+        "feature": "lidar_upface_max",
+        "is_novel_h77v": false,
+        "roc_auc": 0.57422,
+        "symmetric_auc": 0.57422,
+        "leakage_pass": true
+      },
+      {
+        "feature": "hwfw_signed_relief_step_500m",
+        "is_novel_h77v": false,
+        "roc_auc": 0.57284,
+        "symmetric_auc": 0.57284,
+        "leakage_pass": true
+      },
+      {
+        "feature": "hwfw_dip_grav_concord",
+        "is_novel_h77v": false,
+        "roc_auc": 0.57095,
+        "symmetric_auc": 0.57095,
+        "leakage_pass": true
+      },
+      {
+        "feature": "iso_grav_anom_slope",
+        "is_novel_h77v": false,
+        "roc_auc": 0.57094,
+        "symmetric_auc": 0.57094,
+        "leakage_pass": true
+      },
+      {
+        "feature": "geod_2ndinv",
+        "is_novel_h77v": false,
+        "roc_auc": 0.56868,
+        "symmetric_auc": 0.56868,
+        "leakage_pass": true
+      },
+      {
+        "feature": "hessian_scarp_ridge_260m",
+        "is_novel_h77v": false,
+        "roc_auc": 0.56799,
+        "symmetric_auc": 0.56799,
+        "leakage_pass": true
+      },
+      {
+        "feature": "ieq_n100a15",
+        "is_novel_h77v": false,
+        "roc_auc": 0.56764,
+        "symmetric_auc": 0.56764,
+        "leakage_pass": true
+      },
+      {
+        "feature": "rad_K_alteration_halo",
+        "is_novel_h77v": false,
+        "roc_auc": 0.43333,
+        "symmetric_auc": 0.56667,
+        "leakage_pass": true
+      },
+      {
+        "feature": "hwfw_chi_ksn_concord",
+        "is_novel_h77v": false,
+        "roc_auc": 0.56468,
+        "symmetric_auc": 0.56468,
+        "leakage_pass": true
+      },
+      {
+        "feature": "lidar_cross_max",
+        "is_novel_h77v": false,
+        "roc_auc": 0.56401,
+        "symmetric_auc": 0.56401,
+        "leakage_pass": true
+      },
+      {
+        "feature": "h77v_transtensional_crit_stress",
+        "is_novel_h77v": true,
+        "roc_auc": 0.56356,
+        "symmetric_auc": 0.56356,
+        "leakage_pass": true
+      }
+    ]
+  }
+}

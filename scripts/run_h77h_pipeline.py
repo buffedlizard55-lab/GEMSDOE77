@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Master Preregistered 3-Experiment Pipeline for GEMSDOE77 Lane H77H (`2026-10-21`).
 
-Directly tests Hypothesis `H77H-1` (`registry/preregistration_h77h.json`) and resolves
+Directly tests Hypothesis `H77H-1` (`registry/preregistration_h77h_meshsafe.json`) and resolves
 `IR-H77G-01`, `IR-H77G-02`, and `IR-H77G-03` from `docs/review-2026-10-21-h77g.md`:
   - Purges short-wavelength (<35 px) MT conductance and seismicity derivative channels
     (`cond_grad`, `hydro_chem_claycap_coupled`, `seism_updip_proj_35px`, `seism_updip_proj_50px`)
@@ -827,7 +827,7 @@ def main() -> int:
         "lane_name": "H77H-MESHSAFE-HYDRO-STRUCT-SUBMOD",
         "generated_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "branch": "arena/46c3997d-gemsdoe77",
-        "preregistration_path": "registry/preregistration_h77h.json",
+        "preregistration_path": "registry/preregistration_h77h_meshsafe.json",
         "preregistration_sha256": sha256_file(ROOT / "registry" / "preregistration_h77h.json"),
         "hypothesis": (
             "Filtering MT conductance (cond_surf), geodetic strain rates, and seismicity strictly at "

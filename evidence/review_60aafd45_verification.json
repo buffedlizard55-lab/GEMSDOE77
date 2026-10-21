@@ -1,0 +1,38 @@
+{
+  "status": "PASS",
+  "checked_utc": "2026-10-21T17:04:31.319599+00:00",
+  "branch": "arena/60aafd45-gemsdoe77",
+  "baseline_tests_passed": 124,
+  "final_tests_passed": 189,
+  "software_checks_not_performance_scores": true,
+  "commands_passed": [
+    "python scripts/build_site.py",
+    "python scripts/lia_build_site.py",
+    "python scripts/build_home.py",
+    "python scripts/build_site_contactphys.py",
+    "python scripts/release_gate.py --verify-fail-closed",
+    "python scripts/verify_all.py",
+    "python scripts/verify_h77l.py",
+    "python -m pytest -q",
+    "git diff --check",
+    "python scripts/audit_downloads.py",
+    "python scripts/preflight_registry.py (expected rejection exit 2)",
+    "python scripts/stage_pages.py"
+  ],
+  "release_authorized_files": 0,
+  "scientific_experiments_run": 0,
+  "new_tiffs_generated": 0,
+  "weekly_slots_used": 0,
+  "shared_template_modified": false,
+  "source_feed_repositories": 82,
+  "source_feed_retrieved": 81,
+  "source_feed_errors": {
+    "62GEMSDOE": "HTTP 504"
+  },
+  "scope": "Local tests/builds and byte readback only. No new holdout, complete registry certification, portal acceptance or organizer score receipt.",
+  "premerge_tests_passed": 146,
+  "reconciled_main": "f7845f9",
+  "listed_primary_tiffs": 25,
+  "independent_local_other_tiffs": 39,
+  "universal_preflight_exit": 2
+}

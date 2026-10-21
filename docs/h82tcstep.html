@@ -1,0 +1,73 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>H82-TCSTEP · GEMSDOE77</title>
+<link rel="stylesheet" href="assets/lia.css"></head><body>
+<header><div class="wrap"><span class="brand">GEMSDOE77 · DOE GEMS Prize</span><a href="index.html">Start here</a> <a href="executive-summary.html">How to submit</a> <a href="h82tcstep.html" class=here>H82 · TCSTEP (negative)</a> <a href="h82tcstep-executive-summary.html">H82 guide</a>
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE77">GitHub</a></div></header>
+<main><div class="wrap"><h1>H82-TCSTEP: radiometric total-count lithologic-offset step lineaments</h1>
+<p class="verdict"><b>OK to download for inspection: YES. — NOT OK TO SUBMIT.</b>
+This is a <b>negative</b> result. HOLDOUT-DTI 0.0688 (seed 20) / 0.0700 (seed 30) is far below the
+0.152718 repository incumbent, the paired gain over the identical-band control is null, the literal
+registry gate fails by construction (dense witness), and the selector status is: not approved (no file is approved).
+<b>Zero weekly submission slots were used.</b> There is currently <b>no file anywhere in this
+repository that is OK to submit</b> (see <a href="data/submission-authorization.json">submission-authorization.json</a>).</p>
+
+<section class="card dl"><h2>⬇ The H82 file (inspection only — DO NOT SUBMIT)</h2>
+<p><a download href="downloads/gems77-h82-tcstep-37654dots-20261021-2c501fd1-zeros.tif"><b>gems77-h82-tcstep-37654dots-20261021-2c501fd1-zeros.tif</b></a>
+(134,535 bytes) · <a download href="downloads/gems77-h82-tcstep-37654dots-20261021-2c501fd1-zeros.zip">single-TIFF .zip</a></p>
+<ul>
+<li>sha256: <code>2cc14ba3ec8a6ea114c821445ff0ee90f84c7a8e62720e80c533c05475f76860</code></li>
+<li>Format (local validator, all checks PASS): single-band float32, EPSG:32611, 3730 × 3292, transform
+identical to <code>sample_submission.tif</code>, values exactly {0.0, 1.0} in [0, 1], <b>0 NaN anywhere</b>,
+nodata = none, 37,654 dots, 0 dots on mapped catalogue faults, min dot-to-catalogue distance 2.24 px.
+The earlier portal error “Predicted values must be in range [0, 1]” cannot come from value range on
+this file — but a local format PASS is <b>not</b> organizer acceptance and <b>not</b> permission to submit.</li>
+<li>Submission name: <code>gems77-h82-tcstep-37654dots-20261021-2c501fd1-zeros</code></li>
+<li>Note-field text (106 chars): <code>H82-TCSTEP band6 TC step x coherence x low-slope + std19 HGB LOQO; 37654 dots sep2.8px &gt;2px from catalogue</code></li>
+</ul></section>
+
+<h2>What was tested (pre-registered, 3 experiments)</h2>
+<p>Hypothesis, ranked candidates, and stop rules were written <i>before</i> Experiment 1:
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE77/blob/main/registry/preregistration_h82tcstep.json">registry/preregistration_h82tcstep.json</a> ·
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE77/blob/main/research/hypotheses-h82-2026-10-21.md">research/hypotheses-h82-2026-10-21.md</a>.</p>
+<p><b>Hypothesis.</b> A concealed normal fault under basin fill offsets radiometrically distinct
+lithologies, leaving a sharp, strike-persistent step in airborne gamma total count
+(<code>training_features</code> band 6 — measured in-repo to be radiometric TC, Spearman 0.99995 vs
+the external GeoDAWN TC grid) where no scarp exists (low <code>det_elev_slope</code>).
+<b>Named mimics:</b> alluvial-fan / Lake Lahontan shoreline lithologic boundaries, volcanic unit
+contacts, survey line-levelling seams.</p>
+<table><tr><th>Experiment</th><th>Result (all numbers labelled)</th></tr>
+<tr><td>E1 leakage canaries + surface uniqueness</td><td>Max single-channel symmetric AUC 0.518 (s20) / 0.503 (s30), ceiling 0.90 → no leakage. Pre-placement surface max |Spearman ρ| = 0.063 (tc_blind) and 0.073 (candidate OOF surface) vs 33 locally present rasters → no lane drift in checked scope. <a href="evidence/h82_e1_canary_surface.json">evidence</a></td></tr>
+<tr><td>E2 hide-and-recover <b>HOLDOUT-DTI</b> (gems57-pooled-hide-v2; α=0.2, β=0.8, 300 m triangular kernel)</td>
+<td>Seed 20 (11,321 withheld positives): candidate <b>0.0688</b> [0.0540, 0.0862]; paired control 0.0697; physics surface 0.0242; random 0.0445; paired Δ vs control −0.0009 [−0.0069, +0.0054].<br>
+Seed 30 (11,342 withheld): candidate <b>0.0700</b> [0.0550, 0.0862]; control 0.0696; physics 0.0261; random 0.0469; Δ +0.0004 [−0.0074, +0.0081]. <a href="evidence/h82_e2_holdout.json">evidence</a></td></tr>
+<tr><td>E3 build + final-dot uniqueness + validator</td><td>Worst 3-px forward overlap vs 36 checked sparse local rasters = 0.391 (≤ 0.70) after correcting a self-copy scan artefact (IR-H82-01); literal gate still FAILS by construction vs dense-support rasters; complete registry not scanned. <a href="evidence/h82_e3_build.json">evidence</a> · <a href="evidence/run_card_h82.json">run card</a></td></tr></table>
+<p><b>Reading.</b> The deterministic TC-step surface scores <i>below random</i> on both seeds:
+blind TC steps at 100 m are dominated by fan/shoreline lithology boundaries, not concealed faults.
+Adding the channels to a 19-band HGB changes nothing (the control already sees TC amplitude).
+H82 is therefore <b>closed — do not re-tune it</b>. A negative result is a deliverable: it removes
+band-6 step geometry from the search space for every later lane.</p>
+<p><img src="figures/h82_surface_and_dots.png" alt="H82 tc_blind surface, candidate OOF surface, and emitted dot density" style="max-width:100%"></p>
+
+<h2>Why did the family champion score 0.2778, and what would beat it?</h2>
+<p>Verified lineage in <a href="evidence/why_02778.json">evidence/why_02778.json</a>: on one fixed
+H19-5 ridge surface, dotting at 2.8 px and deleting dots within 2 px of the catalogue raised the
+reported score 0.1922 → 0.2778 purely by emission geometry (credit/dot 0.053 → 0.125 under the S0
+instrument; the 0.2778 itself is OWNER-REPORT — this repo holds no organizer receipt for that file,
+and the public leaderboard top read 0.4413 ORGANIZER-CONFIRMED on 2026-10-21). Geometry is already
+near-optimal at 37,654 dots; only a surface with materially higher covered-truth credit per dot can
+beat it. H82's surface does not have it.</p>
+
+<h2>Sources for manual review</h2>
+<ul>
+<li>Competition overview / metric: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">drivendata.org/.../page/967</a></li>
+<li>Leaderboard: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">drivendata.org/.../leaderboard</a></li>
+<li>Reference solution: <a href="https://github.com/drivendataorg/gems-prize-reference-solution">github.com/drivendataorg/gems-prize-reference-solution</a></li>
+<li>Rules PDF: <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">docs.nlr.gov/docs/fy26osti/96647.pdf</a></li>
+<li>GeoDAWN (USGS): <a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">usgs.gov GeoDAWN data release</a></li>
+<li>INGENIOUS: <a href="https://gbcge.org/current-projects/ingenious/">gbcge.org/current-projects/ingenious</a> · EPSG:32611: <a href="https://epsg.io/32611">epsg.io/32611</a> · Tversky index: <a href="https://en.wikipedia.org/wiki/Tversky_index">en.wikipedia.org/wiki/Tversky_index</a></li>
+</ul>
+<p class="small muted">Limitations: DrivenData files are login-walled, so <code>training_features.tif</code>
+was restored from the owner's SHA-pinned GitHub mirror (sha256 4371c82e…, verified this session;
+integrity-pinned, not organizer-authenticated). No GPU, no organizer account, and no complete
+registry scan were available in this sandbox. Nothing on this page is a leaderboard projection.</p>
+</div></main></body></html>

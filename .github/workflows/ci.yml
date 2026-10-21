@@ -20,20 +20,58 @@ jobs:
       - run: pip install -r requirements.txt
       - run: python scripts/build_site.py
       - run: python scripts/lia_build_site.py
+      - run: python scripts/build_h82rank_site.py
+      - name: Independently re-read every listed primary TIFF (no model or slot)
+        run: python scripts/audit_downloads.py
       - run: python scripts/build_home.py
       - run: python scripts/release_gate.py --verify-fail-closed
       - run: python scripts/verify_all.py
       - run: python -m pytest -q
-      - name: Ensure model experiment stays stopped
+      - name: Clearance text must match the measured gates
         run: |
           python - <<'PY'
           import json
-          c=json.load(open('evidence/run_card.json'))
-          assert c['verdict']=='negative'
+          # The model experiment that was stopped stays stopped.
+          c = json.load(open('evidence/run_card.json'))
+          assert c['verdict'] == 'negative'
           assert c['ok_to_download'] and not c['ok_to_submit']
-          assert not c['protocol_unique'] and c['weekly_slots_used']==0
-          lanes=json.load(open('docs/data/lanes.json'))['lanes']
-          assert all(x['verdict']=='negative' for x in lanes)
-          assert all(x['protocol_unique'] is False for x in lanes)
-          assert all('Not OK to submit' in x['upload'] for x in lanes)
+          assert not c['protocol_unique'] and c['weekly_slots_used'] == 0
+
+          # Every published lane row must SAY what its own gate booleans MEASURE.
+          # A lane is cleared for upload only when the portal format is valid, the
+          # registry uniqueness rule passes in BOTH readings (Policy I17: the literal
+          # rule fails closed), and the holdout beats the retained repository best.
+          # This is a consistency check, not a blanket ban: a future lane that
+          # genuinely passes all four may advertise itself as OK to submit, and a
+          # lane that does not must keep saying so.
+          lanes = json.load(open('docs/data/lanes.json'))['lanes']
+          assert lanes, 'no lanes published'
+          for x in lanes:
+              uniq = x.get('informative_unique',
+                           x.get('gems57_symmetric_and_discrete_models_unique'))
+              cleared = bool(x.get('format_valid') and x.get('protocol_unique') and uniq
+                             and x.get('beats_holdout_best'))
+              says_no = 'Not OK to submit' in x['upload']
+              assert cleared != says_no, (
+                  f"{x['lane']}: upload text and gate booleans disagree "
+                  f"(format_valid={x.get('format_valid')}, protocol_unique={x.get('protocol_unique')}, unique={uniq}, "
+                  f"beats_holdout_best={x.get('beats_holdout_best')}, says_no={says_no})")
+              assert x['verdict'] in ('negative', 'promote'), x['lane']
+              if cleared:
+                  assert x['verdict'] == 'promote', f"{x['lane']}: cleared row must be a promote verdict"
+              else:
+                  assert x['verdict'] == 'negative', f"{x['lane']}: uncleared row must be a negative verdict"
+
+          # The H82-FMD lane card and its published row must agree byte-for-byte.
+          import hashlib, os
+          card = json.load(open('evidence/h82fmd_run_card.json'))
+          row = [x for x in lanes if x['lane'].startswith('H82-FMD')]
+          assert len(row) == 1, 'H82-FMD lane row missing or duplicated'
+          row = row[0]
+          assert row['sha256'] == card['raster_sha256']
+          assert row['name'] == card['submission_name']
+          assert row['note'] == card['submission_note'] and len(row['note']) <= 140
+          assert card['verdict'] == 'negative' and card['weekly_slots_used'] == 0
+          tif = os.path.join('docs', row['file'])
+          assert hashlib.sha256(open(tif, 'rb').read()).hexdigest() == card['raster_sha256']
           PY

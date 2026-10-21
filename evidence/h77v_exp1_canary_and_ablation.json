@@ -1,0 +1,689 @@
+{
+  "lane": "H77V-VENT-ADVECT-CONDUIT",
+  "experiment": "exp1_canary_and_ablation",
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "implementation_sha256": {
+    "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+    "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+    "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+    "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+  },
+  "seed": 30,
+  "withheld_positives": 11342,
+  "leakage_canary": {
+    "auc_gate_limit": 0.9,
+    "total_features_tested": 56,
+    "h77v_new_features_tested": 16,
+    "all_passed": true,
+    "max_symmetric_auc_h77v": 0.62081,
+    "max_symmetric_auc_h77v_feature": "h77v_14_piedmont_toe_concavity_grav_lock",
+    "max_symmetric_auc_all": 0.8098,
+    "max_symmetric_auc_all_feature": "loco_stepover_ramp",
+    "features": [
+      {
+        "index": 0,
+        "feature": "h77v_00_advect_backtrack_plume",
+        "group": "h77v_new",
+        "raw_auc": 0.51685,
+        "symmetric_auc": 0.51685,
+        "valid_fraction": 1.0,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 1,
+        "feature": "h77v_01_advect_vs_iso_shift",
+        "group": "h77v_new",
+        "raw_auc": 0.49958,
+        "symmetric_auc": 0.50042,
+        "valid_fraction": 1.0,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 2,
+        "feature": "h77v_02_cation_silica_kinetic_backtrack",
+        "group": "h77v_new",
+        "raw_auc": 0.48326,
+        "symmetric_auc": 0.51674,
+        "valid_fraction": 1.0,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 3,
+        "feature": "h77v_03_orifice_spring_sinter_pin",
+        "group": "h77v_new",
+        "raw_auc": 0.50776,
+        "symmetric_auc": 0.50776,
+        "valid_fraction": 1.0,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 4,
+        "feature": "h77v_04_probe2m_upgradient_plume",
+        "group": "h77v_new",
+        "raw_auc": 0.5,
+        "symmetric_auc": 0.5,
+        "valid_fraction": 1.0,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 5,
+        "feature": "h77v_05_backtrack_step_convergence",
+        "group": "h77v_new",
+        "raw_auc": 0.59138,
+        "symmetric_auc": 0.59138,
+        "valid_fraction": 1.0,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 6,
+        "feature": "h77v_06_transtensional_dilation_ratio",
+        "group": "h77v_new",
+        "raw_auc": 0.45995,
+        "symmetric_auc": 0.54005,
+        "valid_fraction": 1.0,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 7,
+        "feature": "h77v_07_crit_stress_dilation_tendency",
+        "group": "h77v_new",
+        "raw_auc": 0.49389,
+        "symmetric_auc": 0.50611,
+        "valid_fraction": 0.9856,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 8,
+        "feature": "h77v_08_crit_stress_slip_tendency",
+        "group": "h77v_new",
+        "raw_auc": 0.56639,
+        "symmetric_auc": 0.56639,
+        "valid_fraction": 0.9856,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 9,
+        "feature": "h77v_09_stepover_strain_curvature_gate",
+        "group": "h77v_new",
+        "raw_auc": 0.5535,
+        "symmetric_auc": 0.5535,
+        "valid_fraction": 0.93758,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 10,
+        "feature": "h77v_10_claycap_breach_annulus",
+        "group": "h77v_new",
+        "raw_auc": 0.49403,
+        "symmetric_auc": 0.50597,
+        "valid_fraction": 1.0,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 11,
+        "feature": "h77v_11_demag_trough_clay_coupling",
+        "group": "h77v_new",
+        "raw_auc": 0.52502,
+        "symmetric_auc": 0.52502,
+        "valid_fraction": 1.0,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 12,
+        "feature": "h77v_12_hydrothermal_tripole_index",
+        "group": "h77v_new",
+        "raw_auc": 0.54112,
+        "symmetric_auc": 0.54112,
+        "valid_fraction": 1.0,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 13,
+        "feature": "h77v_13_upslope_realigned_grav_base_crest",
+        "group": "h77v_new",
+        "raw_auc": 0.5674,
+        "symmetric_auc": 0.5674,
+        "valid_fraction": 1.0,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 14,
+        "feature": "h77v_14_piedmont_toe_concavity_grav_lock",
+        "group": "h77v_new",
+        "raw_auc": 0.62081,
+        "symmetric_auc": 0.62081,
+        "valid_fraction": 1.0,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 15,
+        "feature": "h77v_15_lidar_scarp_polarity_vent_lock",
+        "group": "h77v_new",
+        "raw_auc": 0.54149,
+        "symmetric_auc": 0.54149,
+        "valid_fraction": 1.0,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 16,
+        "feature": "raw_mag_anom_hp",
+        "group": "base_static",
+        "raw_auc": 0.50749,
+        "symmetric_auc": 0.50749,
+        "valid_fraction": 1.0,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 17,
+        "feature": "raw_rtp",
+        "group": "base_static",
+        "raw_auc": 0.49426,
+        "symmetric_auc": 0.50574,
+        "valid_fraction": 1.0,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 18,
+        "feature": "raw_rtp_hp",
+        "group": "base_static",
+        "raw_auc": 0.49718,
+        "symmetric_auc": 0.50282,
+        "valid_fraction": 1.0,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 19,
+        "feature": "raw_tmi_hg_log",
+        "group": "base_static",
+        "raw_auc": 0.50824,
+        "symmetric_auc": 0.50824,
+        "valid_fraction": 1.0,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 20,
+        "feature": "raw_geod_2ndinv",
+        "group": "base_static",
+        "raw_auc": 0.56961,
+        "symmetric_auc": 0.56961,
+        "valid_fraction": 1.0,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 21,
+        "feature": "raw_grav_slope_log",
+        "group": "base_static",
+        "raw_auc": 0.57186,
+        "symmetric_auc": 0.57186,
+        "valid_fraction": 1.0,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 22,
+        "feature": "raw_tc_rad",
+        "group": "base_static",
+        "raw_auc": 0.44909,
+        "symmetric_auc": 0.55091,
+        "valid_fraction": 1.0,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 23,
+        "feature": "raw_geod_shear",
+        "group": "base_static",
+        "raw_auc": 0.57547,
+        "symmetric_auc": 0.57547,
+        "valid_fraction": 1.0,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 24,
+        "feature": "raw_geod_dilat",
+        "group": "base_static",
+        "raw_auc": 0.51908,
+        "symmetric_auc": 0.51908,
+        "valid_fraction": 1.0,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 25,
+        "feature": "raw_tmi_vg",
+        "group": "base_static",
+        "raw_auc": 0.49986,
+        "symmetric_auc": 0.50014,
+        "valid_fraction": 1.0,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 26,
+        "feature": "raw_deq",
+        "group": "base_static",
+        "raw_auc": 0.55217,
+        "symmetric_auc": 0.55217,
+        "valid_fraction": 1.0,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 27,
+        "feature": "raw_grav_vg",
+        "group": "base_static",
+        "raw_auc": 0.54554,
+        "symmetric_auc": 0.54554,
+        "valid_fraction": 1.0,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 28,
+        "feature": "raw_det_elev",
+        "group": "base_static",
+        "raw_auc": 0.47395,
+        "symmetric_auc": 0.52605,
+        "valid_fraction": 1.0,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 29,
+        "feature": "raw_det_elev_hp",
+        "group": "base_static",
+        "raw_auc": 0.40742,
+        "symmetric_auc": 0.59258,
+        "valid_fraction": 1.0,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 30,
+        "feature": "raw_iso_grav_hp",
+        "group": "base_static",
+        "raw_auc": 0.53517,
+        "symmetric_auc": 0.53517,
+        "valid_fraction": 1.0,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 31,
+        "feature": "raw_depth_base",
+        "group": "base_static",
+        "raw_auc": 0.53238,
+        "symmetric_auc": 0.53238,
+        "valid_fraction": 1.0,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 32,
+        "feature": "raw_ieq",
+        "group": "base_static",
+        "raw_auc": 0.56903,
+        "symmetric_auc": 0.56903,
+        "valid_fraction": 1.0,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 33,
+        "feature": "raw_cond_surf_log",
+        "group": "base_static",
+        "raw_auc": 0.51908,
+        "symmetric_auc": 0.51908,
+        "valid_fraction": 1.0,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 34,
+        "feature": "raw_det_elev_slope_log",
+        "group": "base_static",
+        "raw_auc": 0.54196,
+        "symmetric_auc": 0.54196,
+        "valid_fraction": 1.0,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 35,
+        "feature": "pot_mag_tilt_zero",
+        "group": "base_static",
+        "raw_auc": 0.49938,
+        "symmetric_auc": 0.50062,
+        "valid_fraction": 1.0,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 36,
+        "feature": "pot_mag_as_log",
+        "group": "base_static",
+        "raw_auc": 0.50824,
+        "symmetric_auc": 0.50824,
+        "valid_fraction": 1.0,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 37,
+        "feature": "pot_grav_thdr_log",
+        "group": "base_static",
+        "raw_auc": 0.57025,
+        "symmetric_auc": 0.57025,
+        "valid_fraction": 1.0,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 38,
+        "feature": "pot_grav_tilt_zero",
+        "group": "base_static",
+        "raw_auc": 0.51309,
+        "symmetric_auc": 0.51309,
+        "valid_fraction": 1.0,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 39,
+        "feature": "pot_cg_align_s3p0",
+        "group": "base_static",
+        "raw_auc": 0.51776,
+        "symmetric_auc": 0.51776,
+        "valid_fraction": 1.0,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 40,
+        "feature": "pot_cg_ortho_conf",
+        "group": "base_static",
+        "raw_auc": 0.52208,
+        "symmetric_auc": 0.52208,
+        "valid_fraction": 1.0,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 41,
+        "feature": "pot_base_grad_log",
+        "group": "base_static",
+        "raw_auc": 0.55686,
+        "symmetric_auc": 0.55686,
+        "valid_fraction": 1.0,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 42,
+        "feature": "pot_base_grav_align",
+        "group": "base_static",
+        "raw_auc": 0.55371,
+        "symmetric_auc": 0.55371,
+        "valid_fraction": 1.0,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 43,
+        "feature": "pied_relief_asym_1k",
+        "group": "base_static",
+        "raw_auc": 0.5639,
+        "symmetric_auc": 0.5639,
+        "valid_fraction": 1.0,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 44,
+        "feature": "tiger_road_dist_log",
+        "group": "base_static",
+        "raw_auc": 0.459,
+        "symmetric_auc": 0.541,
+        "valid_fraction": 1.0,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 45,
+        "feature": "lidar_ex_max",
+        "group": "base_static",
+        "raw_auc": 0.55294,
+        "symmetric_auc": 0.55294,
+        "valid_fraction": 0.75312,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 46,
+        "feature": "lidar_step_deconf",
+        "group": "base_static",
+        "raw_auc": 0.55066,
+        "symmetric_auc": 0.55066,
+        "valid_fraction": 0.75312,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 47,
+        "feature": "lidar_dipole_deconf",
+        "group": "base_static",
+        "raw_auc": 0.55764,
+        "symmetric_auc": 0.55764,
+        "valid_fraction": 0.75312,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 48,
+        "feature": "lidar_strike_cont",
+        "group": "base_static",
+        "raw_auc": 0.5865,
+        "symmetric_auc": 0.5865,
+        "valid_fraction": 0.75312,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 49,
+        "feature": "dem10_slope_p90_deconf",
+        "group": "base_static",
+        "raw_auc": 0.53653,
+        "symmetric_auc": 0.53653,
+        "valid_fraction": 1.0,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 50,
+        "feature": "dem10_curv_prof_deconf",
+        "group": "base_static",
+        "raw_auc": 0.55244,
+        "symmetric_auc": 0.55244,
+        "valid_fraction": 1.0,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 51,
+        "feature": "dem10_st_ridge_deconf",
+        "group": "base_static",
+        "raw_auc": 0.54202,
+        "symmetric_auc": 0.54202,
+        "valid_fraction": 1.0,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 52,
+        "feature": "loco_vis_dist_clipped",
+        "group": "fold_visible_loco",
+        "raw_auc": 0.19823,
+        "symmetric_auc": 0.80177,
+        "valid_fraction": 1.0,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 53,
+        "feature": "loco_crack_tip_lobe",
+        "group": "fold_visible_loco",
+        "raw_auc": 0.70377,
+        "symmetric_auc": 0.70377,
+        "valid_fraction": 1.0,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 54,
+        "feature": "loco_stepover_ramp",
+        "group": "fold_visible_loco",
+        "raw_auc": 0.8098,
+        "symmetric_auc": 0.8098,
+        "valid_fraction": 1.0,
+        "passes_gate_le_0p90": true
+      },
+      {
+        "index": 55,
+        "feature": "loco_strain_deficit",
+        "group": "fold_visible_loco",
+        "raw_auc": 0.39263,
+        "symmetric_auc": 0.60737,
+        "valid_fraction": 1.0,
+        "passes_gate_le_0p90": true
+      }
+    ]
+  },
+  "label_free_surface_ablation": {
+    "target_dots": 37654,
+    "excl_px": 3.0,
+    "per_fold": {
+      "S_h77v_advect": {
+        "NW": {
+          "dti": 0.114046,
+          "n_truth": 1919,
+          "emitted": 8584
+        },
+        "NE": {
+          "dti": 0.064202,
+          "n_truth": 2356,
+          "emitted": 10645
+        },
+        "SW": {
+          "dti": 0.139837,
+          "n_truth": 3805,
+          "emitted": 10198
+        },
+        "SE": {
+          "dti": 0.144638,
+          "n_truth": 3262,
+          "emitted": 8208
+        }
+      },
+      "S_hydro_isotropic": {
+        "NW": {
+          "dti": 0.094034,
+          "n_truth": 1919,
+          "emitted": 8585
+        },
+        "NE": {
+          "dti": 0.064159,
+          "n_truth": 2356,
+          "emitted": 10648
+        },
+        "SW": {
+          "dti": 0.135573,
+          "n_truth": 3805,
+          "emitted": 10198
+        },
+        "SE": {
+          "dti": 0.139703,
+          "n_truth": 3262,
+          "emitted": 8207
+        }
+      },
+      "A0_random": {
+        "NW": {
+          "dti": 0.032017,
+          "n_truth": 1919,
+          "emitted": 8586
+        },
+        "NE": {
+          "dti": 0.03182,
+          "n_truth": 2356,
+          "emitted": 10650
+        },
+        "SW": {
+          "dti": 0.055922,
+          "n_truth": 3805,
+          "emitted": 10201
+        },
+        "SE": {
+          "dti": 0.05165,
+          "n_truth": 3262,
+          "emitted": 8215
+        }
+      }
+    },
+    "pooled_summary": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "alpha": 0.2,
+      "beta": 0.8,
+      "triangular_radius_m": 300.0,
+      "pooled": true,
+      "scores": {
+        "S_h77v_advect": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.11781466495263612,
+          "ci95": [
+            0.09976074852344667,
+            0.1371117983220586
+          ],
+          "withheld_positive_pixels": 11342,
+          "tpw": 1972.9013116165822,
+          "fpw": 36388.119706680605,
+          "fnw": 9369.098688383416
+        },
+        "S_hydro_isotropic": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.11130769444235843,
+          "ci95": [
+            0.09113630481166678,
+            0.13297026483116453
+          ],
+          "withheld_positive_pixels": 11342,
+          "tpw": 1863.3924513563277,
+          "fpw": 36473.17355783812,
+          "fnw": 9478.607548643673
+        },
+        "A0_random": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.04433302681012306,
+          "ci95": [
+            0.0393267675256859,
+            0.04998771606934001
+          ],
+          "withheld_positive_pixels": 11342,
+          "tpw": 739.9959346115301,
+          "fpw": 37350.76921816148,
+          "fnw": 10602.004065388468
+        }
+      },
+      "best_comparable_control": "S_hydro_isotropic",
+      "paired_differences": {
+        "S_hydro_isotropic": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "delta": 0.006506970510277696,
+          "ci95": [
+            -0.004148108092664714,
+            0.017476179546658234
+          ],
+          "withheld_positive_pixels": 11342
+        },
+        "A0_random": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "delta": 0.07348163814251306,
+          "ci95": [
+            0.05726209704510241,
+            0.09064369749107781
+          ],
+          "withheld_positive_pixels": 11342
+        }
+      },
+      "bootstrap": {
+        "method": "paired physical spatial-cluster percentile",
+        "clusters": 159,
+        "draws": 1000,
+        "seed": 520810,
+        "confidence": 0.95,
+        "caveat": "Conditional on fitted folds, catalogue labels and fixed budgets; not a leaderboard interval."
+      },
+      "implementation_sha256": {
+        "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+        "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+        "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+        "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+      }
+    }
+  },
+  "elapsed_seconds": 72.16
+}

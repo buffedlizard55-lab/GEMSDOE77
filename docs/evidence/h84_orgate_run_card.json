@@ -1,0 +1,39 @@
+{
+  "run_id": "GEMSDOE77-H84-ORGATE-COLLAR",
+  "hypothesis": "Uncatalogued sub-parallel splays lie at kernel scale (peak 300 m, cutoff 1.2 km) from visible mapped faults AND offset basement, so coincident GeoDAWN magnetic (training_features band 3) + gravity (band 13 gradient) rank maxima gate the H83 collar.",
+  "mechanism": "score = collar(dist_to_visible) * gate; Exp1 gate=sqrt(rank(magHG)*rank(gravHG)), Exp2 gate=0.5+0.5*max(rank(magHG),rank(gravHG)) (shipped surface), Exp3 = wide collar (peak 600 m/cutoff 2 km, no gate). 37,654 dots, min_sep 2.8 px, catalogue-masked.",
+  "named_non_fault_mimicking_process": "Lithologic contacts parallel to range fronts; airborne survey seams; Lake Lahontan terrace risers in the collar band",
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": 11342,
+    "seed": 30,
+    "experiments": {
+      "Exp1_AND_gate": {"dti": 0.10858900749717218, "ci95": [0.09396680354758506, 0.12334783965949403], "evidence": "evidence/h84_holdout.json"},
+      "Exp2_OR_gate_SHIPPED": {"dti": 0.12148954698767672, "ci95": [0.10706251690747319, 0.13550906533658974], "evidence": "evidence/h84_exp2_holdout.json"},
+      "Exp3_wide_collar": {"dti": 0.11454159467432438, "ci95": [0.10178442929762366, 0.12892925069589], "evidence": "evidence/h84_exp3_holdout.json"},
+      "control_H83_collar_same_folds": {"dti": 0.1226552189170721, "ci95": [0.10799672421127436, 0.1372130738097347]},
+      "control_A0_random": {"dti": 0.04354439539374768, "ci95": [0.03848814649647956, 0.048275828859465915]},
+      "repository_incumbent_H77_Step": {"dti": 0.152718, "source": "evidence/h77/run_card.json"}
+    },
+    "leakage_canary_max_symmetric_auc": 0.7638,
+    "leakage_flag_gt_0p90": false,
+    "canary_note": "Exp3 gated_score canary 0.7638; Exp1/Exp2 gated canaries 0.7252/0.7256; all <=0.90"
+  },
+  "registry_comparison": {
+    "scope": "48 locally present docs/downloads rasters only; full registry not accessible locally - not a complete-registry clearance",
+    "worst_spearman_sample": {"file": "gems77-h83-faultcollar-37553dots-20261021-a55f4c9c-zeros.tif", "rho": 0.3176},
+    "worst_sparse_dot_overlap_3px": {"file": "gems77-h83-faultcollar-37553dots-20261021-a55f4c9c-zeros.tif", "frac_my_dots_within_3px": 0.7863, "limit": 0.70, "status": "FAIL - duplicate drift into H83 collar lane"},
+    "evidence": "evidence/h84_uniqueness_local.json"
+  },
+  "raster_sha256": "9a5f5433cbfed4a1a8ac2587678aaa930c8ed93e948b9e94874c8febc549fd57",
+  "validator_output": "PASS all local checks: single-band float32, EPSG:32611, 3730x3292, transform (100,0,243350,0,-100,4508550), no NaN/Inf anywhere, values {0,1} in [0,1], zeros outside footprint, 0 dots on catalogue, 37,654 dots (docs/downloads/gems77-h84-orgate-collar-37654dots-20261021-2d0a731a-zeros.json). Local format PASS is not organizer acceptance.",
+  "submission_name": "gems77-h84-orgate-collar-37654dots-20261021-2d0a731a-zeros",
+  "submission_note": "H84 OR-gated second-strand collar 37654 dots; HOLDOUT-DTI 0.1215 vs incumbent 0.1527: NEGATIVE do not upload",
+  "submission_note_chars": 108,
+  "irregularities": ["IR-H84-01: first Exp2/Exp3 runs overwrote evidence/h84_* filenames (sed-derived scripts); fixed to exp-specific names and deterministically re-run - identical HOLDOUT-DTI reproduced (0.12148954698767672 / 0.11454159467432438).", "IR-H84-02: 78.6% of final dots within 3 px of H83 collar dots exceeds the 0.70 duplicate limit vs that sparse raster; dense continuous research rasters trivially cover the footprint and are excluded from the sparse reading per LIA precedent, but the sparse H83 firing alone blocks promotion."],
+  "verdict": "negative",
+  "ok_to_download": "YES - inspection only",
+  "ok_to_submit": "NO - NOT OK TO SUBMIT (holdout below incumbent and below its own collar control; duplicate overlap vs H83; selector not approved; 0 weekly slots used)",
+  "why_h33_reported_02778": "OWNER-REPORT only (no organizer receipt in this repo). Retained forensics: H33 is a 37,654-dot sparse dotted field pruned 6,436 near-catalogue dots from a 44,090-dot predecessor, 0 dots on catalogue - sparse mass reduces FP_w while the 300 m max-kernel preserves truth coverage (research/why-h33-scored-02778.md). No method in this repo has beaten it on an organizer receipt; H84 does not claim to."
+}
