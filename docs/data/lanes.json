@@ -34,7 +34,8 @@
       "holdout_dti_blind_4quad": 0.185834,
       "verdict": "negative",
       "selector_recommendation": "NOT APPROVED; no selector recommendation. Literal registry uniqueness fails and the overall lane verdict is negative.",
-      "upload": "Not OK to submit. OK to download for inspection only. Literal uniqueness fails on the full-footprint dense witness; selector has not approved a slot. The HOLDOUT-DTI measurement and informative pairwise uniqueness checks do not override the literal gate or establish an organizer score."
+      "upload": "Not OK to submit. OK to download for inspection only. Literal uniqueness fails on the full-footprint dense witness; selector has not approved a slot. The HOLDOUT-DTI measurement and informative pairwise uniqueness checks do not override the literal gate or establish an organizer score.",
+      "sha256": "f55105a091281be14957fff2f5aad9a85fa5b1acc31558e9fcd2aae9fdd588b0"
     },
     {
       "lane": "H78: lidar scarp consensus, uniqueness-capped allocation",
@@ -62,7 +63,8 @@
       "verdict": "negative",
       "upload": "Not OK to submit. OK to download for inspection only. Literal uniqueness fails, and the recorded HOLDOUT-DTI is below its comparison construction; no selector approval.",
       "informative_unique": true,
-      "beats_holdout_best": false
+      "beats_holdout_best": false,
+      "sha256": "a8bfb844ab44b5d4157f75ec914a51655c27ae54727f7b4a088eca9d6f396898"
     },
     {
       "lane": "Contact-physics + front-base",
@@ -72,7 +74,8 @@
       "format_valid": true,
       "protocol_unique": false,
       "verdict": "negative",
-      "upload": "Not OK to submit. OK to download for inspection only. Literal uniqueness and scientific promotion gates fail; no selector approval."
+      "upload": "Not OK to submit. OK to download for inspection only. Literal uniqueness and scientific promotion gates fail; no selector approval.",
+      "sha256": "20be05cc671c85484e4cfc8ea40d2fced71d7ec70f20ab915f36fcc68fcc4851"
     },
     {
       "lane": "Selective-U curvature (research TIFF)",
@@ -82,7 +85,8 @@
       "format_valid": true,
       "protocol_unique": false,
       "verdict": "negative",
-      "upload": "Not OK to submit. OK to download for inspection only. Research artifact; literal uniqueness gate fails."
+      "upload": "Not OK to submit. OK to download for inspection only. Research artifact; literal uniqueness gate fails.",
+      "sha256": "9489af2b7e1b06a249203d3c9d6dfe4ed469647f59ebe3a5ffe9c50c67e46b42"
     }
   ]
 }
