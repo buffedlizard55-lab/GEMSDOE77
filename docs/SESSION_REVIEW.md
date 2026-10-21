@@ -1,122 +1,84 @@
-# GEMSDOE77 independent repository review — 2026-10-21
+# GEMSDOE77 repository review — 2026-10-21
 
-## Decision at a glance
+## Executive disposition
 
-**No new competition submission was created in this review. Do not submit any file from this repository automatically.** The active H78 lane is already closed after its preregistered three-experiment budget and a negative holdout. Its existing GeoTIFF is downloadable for inspection, but it is not cleared for competition submission. The repository's literal uniqueness rule also flags overlap against dense registry rasters; do not bypass that rule or invent a private exception.
+**No new competition TIFF was generated, and none of the repository's current TIFFs is cleared for submission.** The checked-in/downloadable rasters are historical lane artifacts: they may be downloaded for inspection, but the current repository policy and run cards say **NOT OK TO SUBMIT**. Do not upload a file from this repository or spend a weekly slot based on this review.
 
-This is a review and evidence reconciliation, not a new experiment, not a slot-selection action, and not an organizer submission receipt.
+The current branch is `arena/ddc5ca10-gemsdoe77`, based on `80dce02` (the repository snapshot at review start). The prior contents of this file described the first, nearly empty pilot checkout and a different branch; that is historical context and is superseded by this review. The complete user brief is retained in `PROMPT.md` and its core rules are summarized in `AGENTS.md`.
 
-## Scope and reproducibility
+This is a local repository and artifact review, not an assertion that official competition pages, the organizer's private submission registry, or the portal were available in this session. Relevant manual-review links are maintained in `PROMPT.md`, `research/hypotheses.md`, `research/h77d_hypotheses.md`, and the run cards.
 
-- **Branch:** `arena/914310ca-gemsdoe77`; starting worktree clean at `80dce02`.
-- Read `AGENTS.md`, `PROMPT.md`, README, H78 preregistration/run card, evidence and validator code, the site entry page, and irregularity ledger.
-- Re-read the lane rule: H78 was preregistered as the lane; its E1/E2/E3 budget is exhausted and the lane is explicitly closed. No fourth experiment, retuning, or promotion was undertaken.
-- Installed the versions pinned in `requirements.txt` into ignored `.venv/` solely to run existing checks.
-- **Tests:** `.venv/bin/python -m pytest -q` → 71 passed, 3 skipped.
-- **Independent full artifact script:** `scripts/verify_all.py` could not complete because it requires `data/raw/sample_submission.tif`; only the documented bridge files exist under `data/bridge/`. This is an input-placement gap, not a successful full-bundle verification.
-- Manually read H78 `.tif` with Rasterio and compared its grid to `data/bridge/sample_submission.tif`: single-band float32, EPSG:32611, 3730×3292, matching affine transform; all cells finite, min/max 0/1, no NaN in the bridge footprint, 38,301 positive cells; ZIP contains the same single TIFF byte-for-byte. **These are local format measurements against a bridge sample, not organizer authentication or submission approval.** The pinned H78 run card records the same file SHA-256: `4571e767757be95e3fb70b4afb05e45528b1cfd74147e168c36253b1247f1c47`.
-- `scripts/validate_submission.py` and the full verifier require the official/raw data layout; they were not represented as passing in this review.
+## Three-pass review
 
-## The historical H33 `0.2778` question
+### Pass 1 — inventory and evidence map
 
-The `0.2778` value for `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros` is an **OWNER-REPORT** in the supplied family score ledger, not an organizer receipt verified in this checkout. The repository's H33 forensic note describes a plausible mechanism: spacing predictions to reduce false-positive mass under distance-weighted Tversky, then removing dots close to already mapped catalogue traces. This is a sound *metric-level explanation* for why that construction could improve over its denser ancestors; it is not proof that the exact H33 file received that organizer score or that the proposed pruning caused the reported difference.
+- Read `README.md`, `PROMPT.md`, `AGENTS.md`, `docs/irregularities.md`, registrations, run cards, the submission pages/build scripts, vendored evaluator references, and test configuration.
+- Found multiple completed, separately named historical lanes and an explicit stop on H78 after its registered budget. No new method paragraph was assigned in this request. The present branch must not choose another lane, restart a negative lane, or exceed its three-experiment/two-hour protocol budget.
+- Confirmed the repository's fail-closed landing page says the artifacts are downloadable for inspection but are **not cleared to submit** under the current literal uniqueness policy and selector status.
+- Confirmed the data manifest calls the owner-hosted GitHub mirrors integrity-pinned but **not organizer-authenticated**. The competition data page is described by the repository as login-walled; this review did not authenticate or bypass it.
 
-The practical lesson is conservative: with alpha 0.2, beta 0.8 and a 300 m triangular kernel (as recorded by the project's evaluator), compact dots near hidden traces can improve the score relative to redundant dense output. Further thinning alone cannot discover new fault evidence. An improved field is needed. Whether an entirely new candidate can exceed `0.2778` is **unknown**; no leaderboard outcome can be inferred from the holdout or a projection.
+### Pass 2 — independent checks and irregularities
 
-Official sources supplied for manual review (not independently fetched from their non-allowlisted hosts in this session):
+- Installed the pinned project dependencies in an ignored local virtual environment, then ran tests: **75 passed, 3 skipped**. The skipped tests explicitly require restored raw competition data. The first test attempt failed only because the base Python environment had no pytest; no system packages were changed.
+- Ran the three static-site builders (`build_site.py`, `lia_build_site.py`, `build_home.py`). They completed and left the tracked worktree unchanged.
+- Independently opened each of the **13 TIFF files** under `docs/downloads/`, `docs/submissions/`, and `submissions/` with Rasterio and compared it to `data/bridge/sample_submission.tif`. All 13 were single-band float32 on the local template grid (3730×3292, EPSG:32611, matching affine transform), with finite values in [0,1] inside its finite footprint. This is a **local format check against an owner-supplied bridge file**, not proof of official provenance, protocol uniqueness, portal acceptance, or permission to submit. The two NaN-outside variants have no NaN inside the template footprint. The claycap TIFF is quarantined by the repo policy; format validity does not clear it.
+- The repository contains byte-identical copies of the H77-Step raster at `docs/downloads/`, `docs/submissions/`, and `submissions/` (same SHA-256 in the local audit). They are copies of one old artifact, not three new candidates; none was presented as a newly generated unique submission.
+- The H77D run card's scientific `verdict: promote` is not the same as submission authorization: the same card records a literal dense-witness duplicate, and `selector_status` is not approved. The generated home page correctly says **No** to submission. Keep that distinction prominent; never translate format PASS or an informative-registry diagnostic into approval.
+- H77D's statement that it beats a “champion construction” refers to its specified fold-fair holdout comparator. It does not establish that H77D is the best current lane, a leaderboard score, or a submission receipt. All such metric values must be read with their run-card evidence class, evaluator, withheld-positive count, and confidence interval.
+- `gh pr list` showed PR #11 open from another branch. Its title/body make holdout claims, but those are not independently re-run in this review and its branch is outside this session's authorized branch/lane. It is not merged evidence here and was not used to select or change a candidate.
+- Network/source limitation: only the repository's GitHub material was available through the configured outbound hosts. This review did not freshly fetch DrivenData, USGS, DOE GDR, NLR PDF, or other non-allowlisted endpoints. Their links remain for manual review; no live official-source availability, rule, leaderboard, license, or score claim is newly certified here.
 
-- [DrivenData problem description / metric](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/)
-- [DrivenData competition rules](https://www.drivendata.org/competitions/306/competition-doe-gems/)
-- [DrivenData leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/)
-- [DrivenData data page](https://www.drivendata.org/competitions/306/competition-doe-gems/data/)
-- [Official reference solution repository](https://github.com/drivendataorg/gems-prize-reference-solution)
-- [USGS GeoDAWN data listing](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and)
-- [USGS 3DEP](https://www.usgs.gov/3d-elevation-program)
-- [GDR INGENIOUS regional compilation, submission 1391](https://gdr.openei.org/submissions/1391)
-- [GEMS report PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf)
+### Pass 3 — requirements and safety re-check
 
-## H78 pre-registered candidate hypotheses and outcomes
+- The main request is preserved in `PROMPT.md`; the README instructs contributors to read it each session. The download and submission distinction is explicit on the generated entry and executive-summary pages.
+- The local GeoTIFF gate is not the scientific/uniqueness gate. The current evidence reports negative/blocked candidates, and the protocol demands duplicate checks on both surface and final dots against the full applicable registry. A dense witness currently makes literal uniqueness clearance fail closed.
+- No experiment was run in this review, no TIFF bytes were changed, no holdout number was recalculated or relabelled, and no competition slot was used. This is deliberate: the H78 allocation has consumed its registered experiment budget, the request contains no newly assigned lane paragraph, and the instructed promotion threshold was not met for a currently authorized new candidate.
+- The supplied GEMSDOE32 `0.2778` and family history remain **OWNER-REPORT** unless backed by an organizer receipt. The public competition leader value in old files is a dated observation, not a current score statement. A predicted/holdout metric is not an organizer-confirmed competition score.
 
-The ranking below is copied from `evidence/h78_run_card.json`; these are the previously investigated H78 options, not a new experiment proposal. H78's target was the lidar scarp-consensus allocation. Three experiments were run; the lane is closed.
+## Research backlog for a separately authorized lane
 
-| Rank | Hypothesis and layers | Target signature / rationale | Difference recorded from prior repo work | Outcome in recorded evidence |
-|---|---|---|---|---|
-| 1 | **Lidar scarp consensus:** `lidar_scarp_features_u8` (seven cached 1 m DEM derivatives: extrema/step, Laplacian curvature, face and cross-slope channels) | Linear scarp with a slope break, free face, crest/toe curvature; potential small young traces absent from catalogue | Combines seven operators to rank off-support dots under a capped allocation rather than emitting a dense, single-operator raster | Negative. `HOLDOUT-DTI` `gems57-pooled-hide-v2`, 11,321 withheld positive pixels: 0.070803, 95% CI [0.060045, 0.081588], below its rebuilt champion construction at 0.095829 [0.082964, 0.108400]. Paired difference −0.025026 [−0.030103, −0.020154]. See `evidence/h78_e3_holdout.json`. |
-| 2 | **Thermal manifestations:** proximity to warm/hot wells and springs from the GDR 1391 INGENIOUS compilation | Manifestations can mark blind permeable upflow structures without a surface scarp | Repository H78 preregistration says this temperature-distance layer had not been used in earlier family lanes | E1/E2 did not support it in the recorded live-score screening; the canary AUC is 0.492. GDR availability/license claims are not independently reverified in this runtime. |
-| 3 | **Regional mapping heterogeneity:** 3×3 footprint blocks | Under-mapped regions might have lower catalogue completeness | Adds a spatial completeness prior instead of a local geomorphic/geophysical detector | E1 recorded zero live-supported weight. This is not evidence that a specific map campaign actually missed faults. |
-| 4 | **Single lidar-operator sensitivity rows:** selected individual cached derivatives | Checks whether a single surface-break operator outperforms the seven-channel consensus | Sensitivity rows, not a separate submission lane | E1 recorded no live-supported single operator. |
+The hypotheses below are research proposals, not validated results or permission to run them. They are ranked by qualitative expected signal per engineering cost. Their expected DTI gain is **unknown**; no projection is supplied. Candidate 1 is the only proposal that could be assessed without introducing a new scientific data source, but still needs a valid assignment, restored inputs, and a fresh preregistration. **Do not run it under this review or spend a submission slot.**
 
-Named mimic for H78-1 (from its run card): pluvial Lake Lahontan shorelines/wave-cut risers; fluvial terraces and fan-incision banks; road cuts and canal banks. These can produce linear slope breaks unlike tectonic scarps. A lidar shape is not diagnostic of fault origin by itself.
+| Rank | Hypothesis and required layers | Target signature and rationale for a catalogue-missing fault | Named non-fault mimic | Difference from implemented lanes | Cost / status |
+|---:|---|---|---|---|---|
+| 1 | **Scale-space magnetic–gravity source-depth concordance** — competition bands for RTP/TMI, magnetic and gravity vertical/horizontal derivatives, and depth-to-basement. | Compare contact-ridge persistence and phase/gradient concordance across fixed wavelength bands, then require a spatially compatible basement-depth step. Persistent buried offsets could signal faults under basin fill without a surface scarp. | Lithologic contacts, pluton margins, and survey-line seams. | Existing contact-physics uses derived contact transforms/confluence and signed basement step; this proposal's differentiator is pre-registered multi-scale source-depth consistency, not a new feature label or a re-tuned version of that lane. A code/history grep and preregistration review would be required to prove it is truly unimplemented before use. | **Medium expected signal / medium engineering cost; conditional.** It uses competition-provided geophysics in principle, but this clone has only bridge rasters, and the full inputs are owner mirrors rather than organizer-authenticated. Restore/authorize data and assign a lane before any holdout. |
+| 2 | **Fault-controlled drainage deflection and channel-profile knickzones** — detrended elevation and a hydrologically conditioned DEM/derived drainage network. | Jointly rank abrupt channel deflection, aligned tributary asymmetry, and knickzone persistence across adjacent channels; a fault can perturb several neighboring channels even where its scarp is degraded or buried. | Resistant lithologic boundaries, fan incision, and human drainage/road infrastructure. | Prior lanes emphasize scarp/edge morphology, potential fields, LiDAR, and hydrothermal proximity; drainage topology is a network-scale geomorphic test rather than a pixelwise scarp detector. Repository search found no clear implementation, but absence from grep is not a proof of novelty. | **Medium expected signal / high data-processing cost; not currently viable.** Specific free official source: USGS 3DEP elevation data (`https://www.usgs.gov/3d-elevation-program`). The source host could not be checked from this sandbox; no new DEM was downloaded, and raw DEM coverage is absent from this clone. |
+| 3 | **Shallow seismicity lineament / fault-plane alignment** — event locations and, where available, moment tensors from USGS ComCat FDSN; competition geophysics only as a context/control layer. | Test whether a robust, depth- and magnitude-filtered event-plane/lineament cluster aligns with a geophysical boundary or geothermal setting, potentially exposing active blind structures not in a surface fault catalogue. | Volcanic swarms, aftershock sequences, quarry blasts, and spatially varying network detection. | Existing shipped seismic bands are coarse aggregates; no sub-kilometre event catalog is in the tracked data. This requires external event data and a distinct uncertainty-aware point-process test. | **Medium signal / high processing cost; blocked.** Specific free official source: USGS ComCat FDSN event service (`https://earthquake.usgs.gov/fdsnws/event/1/query`). This sandbox could not reach that non-allowlisted host; obtainability is therefore unverified and the idea is not viable until access is checked. |
+| 4 | **InSAR deformation-gradient coherence around geothermal systems** — Sentinel-1 interferometric time series from the official Copernicus Data Space ecosystem, co-registered to the study grid and screened for coherence/seasonality. | Recurrent linear strain gradients or localized subsidence/uplift may reveal permeable active fault zones not expressed as a mapped scarp. | Groundwater withdrawal, mining, seasonal hydrology, and atmospheric phase delay. | This would test present-day deformation dynamics, rather than static terrain/potential-field or catalogue proximity. It is a substantial new-data and processing lane, not a small feature tweak. | **Potentially high information / very high cost; blocked.** Official-source route: Copernicus Data Space Ecosystem (`https://dataspace.copernicus.eu/`). The host and AOI product availability were not checked here; no InSAR product is present in this clone. Do not describe as obtainable until verified. |
 
-**Leakage canary:** all listed feature-only AUCs in the H78 evidence are below the protocol's 0.90 threshold; maximum recorded is visible-catalogue proximity AUC 0.7553. This says no canary crossed the preset leakage threshold; it does not establish absence of all leakage.
+### Gate for the next session
 
-## Registry-uniqueness stop and artifact status
+1. Read `README.md`, `PROMPT.md`, `AGENTS.md`, this review, and the current preregistration/run cards.
+2. Get an explicit single-method lane assignment and protocol-owner resolution of the dense-raster uniqueness contradiction. Do not create a private exception.
+3. Authenticate the official competition inputs/specification and obtain the full current registry. Reconcile the open PR #11 independently before naming an incumbent; do not import its claims as facts.
+4. Select one backlog hypothesis, check prior implementation and data source availability, and preregister within a fresh three-experiment/two-hour budget. Use the unchanged pinned shared cached-feature/evaluator/writer path. Run feature-alone leakage canaries first.
+5. Generate a new candidate only after holdout improvement over the selected incumbent, both surface/final-dot uniqueness checks, exact-grid/range validation, and a valid SHA receipt. Make the download status say **OK TO SUBMIT** only after uniqueness and selector clearance; otherwise explicitly say **NOT OK TO SUBMIT**.
+6. Record any real portal receipt as ORGANIZER-CONFIRMED. A holdout result, projection, raster validation, or score listed on a sibling website is not that receipt.
 
-The H78 registry audit reports 839 indexed rasters, 833 locally checked and six unreadable/off-grid, so its comparison is not exhaustive of all historical/private files. Informative dot-field comparison: maximum rank correlation 0.6392 and maximum overlap 0.6600. However, the binding literal reading reports 44 overlap firings, all against space-filling rasters; its own run card sets `protocol_unique: false`, `ok_to_download: true`, `ok_to_submit: false`, and verdict `negative`. Do not relabel the TIFF “unique” or “ready to submit” based only on its SHA or its informative-comparison subset.
-
-The website's first screen currently says the global dense-witness rule makes every non-empty candidate fail and labels H78 as inspection-only. That prominent distinction is important: **download for inspection is not permission to upload**. Existing H77D/H77-Step table descriptions also say selector approval is pending and literal uniqueness fails; language such as “co-primary” or “recommended” in older narrative sections must not be read as authorization.
-
-## Review passes
-
-### Pass 1 — implementation/evidence inventory
-
-Confirmed the repository already includes the cached feature pipeline, vendored `gems57` holdout/evaluator/writer, preregistration, H78 evidence, candidate TIFF/ZIP, website, and tests. Thus the prior-session pipeline is materially different from the stale “empty repository/no TIFF” account previously recorded in this same file.
-
-### Pass 2 — adversarial checks
-
-- Ran 71 tests successfully (3 skipped).
-- Re-read the H78 run card rather than assuming the downloadable artifact is promotable.
-- Independently checked the TIFF's range, finite values, bridge grid, footprint, SHA and ZIP membership.
-- Identified the missing `data/raw/sample_submission.tif` requirement preventing the full independent bundle script from running.
-- Identified scope limits: 6 registry rasters unreadable/off-grid; 6 of 839 registry entries not checked locally; later sibling updates after the recorded registry snapshot are not covered; official/competition sites could not be fetched in this environment.
-- Confirmed no competition slot was used and no organizer score was created.
-
-### Pass 3 — requirements and risk re-check
-
-The requested unique, submit-ready artifact cannot be produced responsibly in the closed lane because the actual candidate failed both the scientific holdout comparison and the binding literal uniqueness gate. Bypassing either would violate the user's own protocol. The existing H78 TIF is a unique file bytewise, but that fact is not “competition-unique” clearance. No new file or score was fabricated; no candidate was selected.
-
-## Next actions — ordered by risk reduction
-
-1. **Resolve the common dense-witness rule upstream.** Establish one shared rule that is meaningful for dot fields versus continuous/space-filling surfaces, with protocol-owner approval. Do not privately mask registry rasters or change the 70% threshold.
-2. **Restore the official/raw competition pack to `data/raw/`** via the authorized download path; verify checksums and provenance, then rerun `scripts/verify_all.py` and the official-grid validator. Current `data/bridge/` is not a substitute for organizer-authenticated data.
-3. **Resolve concurrent work before the next lane.** PR #11 (H77-HSL) was open at review time; inspect its final merge state and reconcile any shared artifacts/registry additions before selecting another lane.
-4. **Get an unambiguous, separately assigned method paragraph.** Do not reuse closed H78 or another stopped lane. Preregister any new hypothesis with a 3-experiment cap, controls, feature-only canary, fold/rebuild rules and stopping criterion before execution.
-5. **Verify official access and current contest state.** Authenticate the competition data/rules/leaderboard, submission cap and any organizer receipts. The cited numbers `0.3195`, `0.4413`, and family site scores are not all verified in this run; don't write them as current organizer truth without an official receipt or fresh accessible source.
-6. **Only consider a real slot after evidence clears all gates:** candidate beats the current holdout best with a paired spatial CI, passes per-feature leakage canaries, matches the official grid and [0,1] format, passes the shared registry protocol on both surface and final dots, and receives separate selector approval.
-
-## Run card (this review; no new experiment)
+## Review run-card summary
 
 ```json
 {
-  "hypothesis": "H78 lidar scarp consensus and uniqueness-capped off-support allocation (closed, negative lane)",
-  "mechanism": "Seven cached 1 m DEM derivatives rank candidates with a linear scarp morphology: slope break, free face, and crest/toe curvature.",
-  "named_non_fault_process_that_could_mimic_it": "Lake Lahontan shoreline benches/wave-cut risers, fluvial terraces and fan-incision banks, road cuts and canal banks.",
+  "hypothesis": "Repository audit only; no new candidate hypothesis was experimentally tested.",
+  "mechanism": "Reviewed historical scientific hypotheses, protocol gates, generated pages, local artifacts, tests, and the shared-template references without changing model or raster bytes.",
+  "named_non_fault_process_that_could_mimic_it": "Not applicable to an audit; the research backlog lists mimics for each untested hypothesis.",
   "holdout_dti": {
-    "label": "HOLDOUT-DTI",
-    "evaluator_version": "gems57-pooled-hide-v2",
-    "withheld_positive_count": 11321,
-    "value": 0.07080326116269187,
-    "95_percent_ci": [0.06004507090448665, 0.08158776425472165],
-    "paired_delta_vs_champion_construction": -0.025025971293106353,
-    "paired_delta_95_percent_ci": [-0.030103195617506226, -0.020153739950290638]
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "NOT RUN in this review",
+    "withheld_positive_count": "NOT RUN",
+    "value": "NOT RUN",
+    "95_percent_ci": "NOT RUN"
   },
-  "correlation_overlap_vs_registry": {
-    "comparison": "H78 run-card registry snapshot; 833 locally compared rasters of 839 indexed; 6 unreadable/off-grid",
-    "informative_dot_field_max_rank_correlation": 0.639212732620308,
-    "informative_dot_field_max_forward_overlap": 0.6599827680739406,
-    "literal_overlap_firings": 44,
-    "literal_firings_all_space_filling": true,
-    "binding_protocol_unique": false
-  },
-  "raster_sha256": "4571e767757be95e3fb70b4afb05e45528b1cfd74147e168c36253b1247f1c47",
+  "correlation_overlap_vs_registry": "NOT RUN in this review; inherited lane run cards report literal uniqueness failure/selector block. No new uniqueness certificate.",
+  "raster_sha256": "No new raster generated. Existing artifacts' hashes are recorded in their respective run cards; the local format audit does not approve them.",
   "validator": {
-    "independent_local_bridge_check": "single-band float32, EPSG:32611, shape 3730x3292 and affine match data/bridge/sample_submission.tif; finite all cells; range [0,1]; zero NaN inside bridge footprint; one-TIFF ZIP byte-identical",
-    "official_raw_grid_validation": "NOT RUN — data/raw/sample_submission.tif absent",
-    "format_result": "local format checks pass; not organizer-authenticated",
-    "submission_approval": "NO — negative holdout and literal uniqueness failure"
+    "local_artifact_audit": "13 TIFF paths checked against data/bridge/sample_submission.tif; single-band float32, matching local CRS/shape/transform, finite and [0,1] in finite footprint.",
+    "official_grid_provenance": "Not independently authenticated in this review.",
+    "portal_acceptance": "NOT CONFIRMED",
+    "submission_clearance": "FAIL CLOSED: no artifact approved to submit"
   },
-  "submission_name": "gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros",
-  "submission_note": "H78 lidar scarp consensus, 38301 binary dots; inspection only, NOT APPROVED for competition upload",
+  "submission_name": "NONE — no new TIFF and no authorized lane",
+  "submission_note": "No new candidate generated; existing downloads are inspection-only, not cleared for submission.",
   "verdict": "negative"
 }
 ```
