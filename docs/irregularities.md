@@ -147,6 +147,16 @@ GitHub authenticated operations work. CPU scientific transforms, local validatio
 | IR-H77G-03 | **Cold-structural vs hydrothermal fault dichotomy on catalogue holdouts:** Standalone `S_h77g_physics` (`0.0392` / `0.0471`) scores below uniform random (`0.0476` / `0.0481`) on the pooled 4-quadrant catalogue holdout except in the hydrothermally active SE quadrant (`0.0804` vs `0.0515`). | Most of the 59,661 mapped USGS/INGENIOUS Quaternary fault pixels are cold structural normal faults without hydrothermal demagnetization. Hydrothermal alteration channels must be used as a local sub-regime interaction modifier inside a structural/topographic/catalogue-continuation backbone. |
 
 
+## Candidate-independent readiness review — 2026-10-21
+
+- **IR-PREFLIGHT-01:** No identifiable new single-method assignment; all stored stopped lanes preserved. No new geological experiment.
+- **IR-PREFLIGHT-02:** Fresh SHA-pinned dense witness positive at every allowed pixel. Literal overlap rule rejects every nonempty surface/dot subset (1.0 > 0.70). Added reproducible rejection-only preflight; no density exemption or private gate.
+- **IR-PREFLIGHT-03:** Historical H33 analysis asserted constant denominator increment per dot and guaranteed near-catalogue false positives. Corrected the local research prose and added algebra counterexamples; runtime shared template unchanged. Its metric.py docstring also incorrectly bounds dT <= k, though the runtime metric does not rely on that bound. Shared-source documentation repair belongs upstream; no private fork introduced.
+- **IR-PREFLIGHT-04:** README XSEN paragraph promised a portal range error could not recur from local checks. Replaced with finite/range readback evidence and explicit unknown portal acceptance.
+- **IR-PREFLIGHT-05:** Current live leaderboard, weekly cap and official external data cannot be freshly verified from this restricted-host sandbox. Family score mentions are not file-to-score receipts. Official reference README checked via GitHub supports CPU-only environments.
+
+- **IR-PREFLIGHT-06 (parallel merge):** PR #47 replaced LIA `docs/data/submission.json` with H28's incompatible schema, breaking the Pages build (`KeyError: zip`). Restored LIA metadata and retained unchanged H28 metadata as `docs/data/h28-submission.json`; added identity/hash regression protection. Neither TIFF was regenerated.
+
 ## Review 904a24d3 — 2026-10-21
 
 - IR-904-01: H33 analysis incorrectly assumed every added dot has deltaT=q and
