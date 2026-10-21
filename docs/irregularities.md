@@ -21,6 +21,13 @@
 
 | I16 | Concurrent PRs #1/#2 merged into main while this lane was running; inherited H77C had unverified registry PASS/fallback values and a different evaluator. | Preserved sources/TIFFs/tests, namespaced the U lane, independently measured literal rejection for inherited TIFF, disabled unsafe legacy generator and marked it quarantined. No new model experiment. |
 
+| IR-78-01 | The 2026-10-21 brief again contained no single method paragraph for this session. | H78 lane self-assigned and pre-registered before E1 (`registry/preregistration_h78.json`, commit edf23b9). |
+| IR-78-02 | E1: the selection rule picked a field ("selected") even though every row tied at h = 0 / dMSE ≤ 0. | Reported as an artifact: `selected_live_supported = false` is the binding field; nothing was promoted from E1. |
+| IR-78-03 | E2 (on-support split) was a post-hoc amendment after E1 failed. E3 then needed two implementation fixes: (a) the LIA `budgeted_selection` admitted 1 off-support cell, because 366 informative rasters cover > 30% of the support and their halos leave 7,334 free lidar cells; (b) a top-half-consensus pool shortcut ran out of admissible cells (worst overlap 0.75). The 0.69 budget in the first E3 draft also contradicted the pre-registered 0.66. | Amendment committed before E2 ran (`preregistration_h78_amendment_e2.json`). E3 fixed to the pre-registered rule: full off-support pool, cap 0.66, capacity-constrained greedy. These are bug fixes; nothing was re-tuned on holdout numbers (the grid is chosen on the full-map S0 projection before the holdout). |
+| IR-78-04 | The GitHub REST API was rate-limited (403, reset 04:27:29 UTC) while refreshing GEMSDOE73–78. | Siblings were shallow-cloned over https instead; their heads were recorded. |
+| IR-78-05 | Sibling repositories were changing during the run. | The uniqueness registry is a snapshot: the 812 indexed rasters, GEMSDOE73–76 at clone time (~04:10 UTC; heads 3b9b857 / 0b06df9 / a9413e4 / af679d0) and this repo's TIFFs. Files published later are unchecked, a stated scope limit. |
+| IR-78-06 | The Pages CI (`build_site.py`) rewrote `docs/index.html` and `docs/executive-summary.html` with one lane's view, so hand edits were overwritten. | The selective-U pages moved to `urank*.html`. The new `scripts/build_home.py`, run in CI after `build_site.py`, now generates the repository-wide entry pages. |
+
 ## Next session — ordered by risk reduction
 
 1. Read README original request, preregistration, run card and this ledger. Keep H77 stopped; do not re-tune its failed lane.
