@@ -226,3 +226,9 @@ GitHub authenticated operations work. CPU scientific transforms, local validatio
 | IR-BGB-04 | On `gems57-pooled-hide-v2` (Seed 30, 11,342 withheld positives), `H77-BGB` passes all 10 single-feature leakage canaries (max symmetric AUC `0.6378 <= 0.90`), passes Phase 1 surface Spearman (`0.2087 <= 0.90`), passes Phase 2 dot Spearman (`0.0462 <= 0.90`), passes sparse (`<=100k` dots) 3-px forward overlap (`0.5722 <= 0.70`), and beats `A0_random` (`0.058406` vs `0.048611`) and lifts `A_std` (`0.101142` static / `0.102390` LOCO vs `0.099208`), but does not beat the repository holdout best (`H77-Step` at `0.152718 HOLDOUT-DTI`) and triggers the universal dense-witness overlap (`1.000 > 0.70`) under Policy `I17`. | Verdict recorded as `"negative"`, `protocol_unique: false`, `ok_to_download: true`, `ok_to_submit: false`, `weekly_slots_spent: 0` (`evidence/run_card_bgb.json`, `docs/data/lanes.json`, `docs/data/submission-authorization.json`). |
 
 
+
+## H84 update (2026-10-21; branch `arena/c90f977a-gemsdoe77`)
+| ID | Verified irregularity | Consequence |
+|---|---|---|
+| IR-H84-01 | First Exp2/Exp3 runs (sed-derived scripts) overwrote `evidence/h84_holdout.json`/`h84_surface.npy`; fixed to exp-specific filenames and deterministically re-run — identical HOLDOUT-DTI reproduced (Exp2 0.12148954698767672, Exp3 0.11454159467432438). | Evidence files now distinct per experiment; no result changed. |
+| IR-H84-02 | 78.6% of H84 final dots fall within 3 px of the sparse H83 collar raster (>0.70 protocol limit); Spearman 0.318 passes. | Logged as duplicate drift into the H83 lane; verdict negative, NOT OK TO SUBMIT, lane closed. |
