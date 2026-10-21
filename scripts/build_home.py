@@ -24,7 +24,7 @@ REPO = "https://github.com/buffedlizard55-lab/GEMSDOE77"
 LB = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
 PD = "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
-NAV = [("review-latest.html", "Latest review"), ("review-arena-00397d44.html", "Arena branch review"), ("metric-review.html", "Corrected H33 analysis"), ("index.html", "Start here"), ("h77vs.html", "H77VS · negative"), ("h77vs-executive-summary.html", "H77VS guide"), ("tsd.html", "H77-TSD · inspection"), ("h77v.html", "H77V (Vent-Advect)"), ("h82-texture.html", "H82-TEXTURE · negative"), ("h82rank.html", "H82R · radiometric negative"), ("preflight-review.html", "Current readiness review"), ("h82-executive-summary.html", "H82 · cool-outlet negative"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
+NAV = [("review-latest.html", "Latest review"), ("review-arena-00397d44.html", "Arena branch review"), ("metric-review.html", "Corrected H33 analysis"), ("index.html", "Start here"), ("h77vc.html", "H77VC (Vent+ClayCap)"), ("h77vs.html", "H77VS · negative"), ("h77vs-executive-summary.html", "H77VS guide"), ("tsd.html", "H77-TSD · inspection"), ("h77v.html", "H77V (Vent-Advect)"), ("h82-texture.html", "H82-TEXTURE · negative"), ("h82rank.html", "H82R · radiometric negative"), ("preflight-review.html", "Current readiness review"), ("h82-executive-summary.html", "H82 · cool-outlet negative"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
        ("h77e-knick.html", "H77E-Knick · 0/816 firings"), ("release-review.html", "Release safety review"), ("executive-summary.html", "How to submit"),
        ("h81.html", "H81 · slip-cone"), ("h82.html", "H82 · fault collar"),
        ("h83.html", "H83 · fault collar"),
@@ -1481,12 +1481,87 @@ Format-valid (15/15 gems57 + 17/17 LIA checks, 0 NaN, values in [0,1], 37,654 bi
     shutil.copyfile(ROOT / "research/h77h_hypotheses.md", D / "research/h77h_hypotheses.md")
 
 
+def _write_h77vc():
+    card = jload("evidence/run_card_h77vc.json")
+    exp1 = jload("evidence/h77vc_exp1_canary.json")
+    exp2 = jload("evidence/h77vc_exp2_holdout.json")
+    exp3 = jload("evidence/h77vc_exp3_uniqueness.json")
+    if not (card and exp1 and exp2 and exp3):
+        return
+    sa = card["submission_artifacts"]
+    s30 = exp2["seed30"]["scores"]
+    s20 = exp2["seed20"]["scores"]
+    arms_order = [
+        ("h77v_submod300_lofo", "H77VC-LOFO (300m Submodular Cover)"),
+        ("h77v_submod300_37654", "H77VC-37654 (Matched 37,654 Submodular Cover)"),
+        ("h77v_submod300_36250", "H77VC-36250 (36,250 Uniqueness-Constrained Submod)"),
+        ("h77v_submod300_lofo_strict_oof", "H77VC Strict OOF Budget Calibration"),
+        ("h77v_nms_37654", "H77VC Surface + 7x7 Greedy NMS (Ablation)"),
+        ("h33_fold_fair_reclipped", "H33 Champion Construction (Fold-Fair Re-clipped)"),
+        ("h33_live_static", "H33 Static Live Raster (Fold-Visible Masked)"),
+    ]
+    rows_s30 = "".join(
+        f'<tr><td>{e(lbl)}</td><td><b>HOLDOUT-DTI {s30[k]["dti"]:.6f}</b></td>'
+        f'<td>[{s30[k]["ci95"][0]:.6f}, {s30[k]["ci95"][1]:.6f}]</td>'
+        f'<td>{e(s30[k]["evaluator_version"])}</td><td>{s30[k]["withheld_positive_pixels"]:,}</td></tr>'
+        for k, lbl in arms_order
+    )
+    rows_s20 = "".join(
+        f'<tr><td>{e(lbl)}</td><td><b>HOLDOUT-DTI {s20[k]["dti"]:.6f}</b></td>'
+        f'<td>[{s20[k]["ci95"][0]:.6f}, {s20[k]["ci95"][1]:.6f}]</td>'
+        f'<td>{e(s20[k]["evaluator_version"])}</td><td>{s20[k]["withheld_positive_pixels"]:,}</td></tr>'
+        for k, lbl in arms_order
+    )
+    body = f"""<h1>H77VC lane: Strike-Aligned Geothermal Vent Upflow &amp; Smectite Clay-Cap Breach Mechanics</h1>
+<p class="verdict"><b>Operative Release Verdict: NEGATIVE — OK to download for inspection only; Not OK to submit.</b>
+Selector status: <b>not approved</b>. Although Lane H77VC passes all 114 single-feature leakage canaries
+(<code>max AUC = {exp1["seed30_max_symmetric_auc"]:.5f} &lt;= 0.90</code>), achieves <b>0.168788 HOLDOUT-DTI</b> on Seed 30
+(11,342 withheld positive px, 95% CI 0.145589–0.191380) and <b>0.149091 HOLDOUT-DTI</b> on Seed 20 (11,321 withheld positive px,
+95% CI 0.128435–0.171099, two-seed mean <b>0.158628</b>), and has <b>0 overlap firings across all {exp3["informative_rasters_audited"]}
+informative sparse-dot rasters</b> (<code>max forward_overlap_3px = {exp3["informative_max_forward_overlap_3px"]:.5f} &lt;= 0.70</code>),
+the shared literal uniqueness tool (<code>vendor/gems57/uniqueness.py</code>) fails closed against the full-footprint dense witness
+(<code>17GEMSDOE_E-proba-multiscale</code>, <code>forward_overlap_3px = 1.0</code>) under Policy I17.</p>
+<section class="card dl"><h2>⬇ H77VC GeoTIFF &amp; Run Card (Inspection Only — Do Not Upload)</h2>
+<a class="btn" href="downloads/{e(sa["submission_name"])}.tif" download>Download .tif ({sa["primary_geotiff_bytes"] / 1024:.0f} KB)</a>
+<a class="btn alt" href="downloads/{e(sa["submission_name"])}.zip" download>One-TIFF .zip ({sa["primary_zip_bytes"] / 1024:.0f} KB)</a>
+<div class="chips"><span class="chip ok">OK to download: YES</span>
+<span class="chip ok">Portal format: PASS (all checks)</span>
+<span class="chip bad">Unique, literal rule: FAIL (Policy I17 dense witness)</span>
+<span class="chip ok">Unique, informative reading ({exp3["informative_rasters_audited"]} rasters): PASS (max {exp3["informative_max_forward_overlap_3px"]:.4f} &lt;= 0.70)</span>
+<span class="chip ok">Beat matched holdout best: YES (+0.0187 s30 / +0.0088 s20)</span>
+<span class="chip warn">Selector: not approved</span></div>
+{copy("Submission name (reference only)", sa["submission_name"])}
+{copy("Submission note (<=140 chars, reference only)", sa["submission_note_le140"])}
+<p class="small">SHA-256 of .tif: <code>{e(sa["primary_geotiff_sha256"])}</code> · {sa["dot_count"]:,} binary dots ·
+<a href="evidence/run_card_h77vc.json">Full JSON Run Card</a> ·
+<a href="evidence/h77vc_exp1_canary.json">Exp 1 Canary Receipt</a> ·
+<a href="evidence/h77vc_exp2_holdout.json">Exp 2 Holdout Receipt</a> ·
+<a href="evidence/h77vc_exp3_uniqueness.json">Exp 3 Uniqueness Receipt</a> ·
+<a href="research/h77v_geothermal_vent_hypotheses.md">Pre-Experiment Hypothesis Ranking</a></p></section>
+<h2>Diagnostic Benchmark Figure</h2>
+<p><img src="figures/h77v_holdout_and_uniqueness.svg" alt="H77VC dual-seed HOLDOUT-DTI benchmark" style="max-width:100%;height:auto;border:1px solid #cbd5e1;border-radius:6px;"></p>
+<h2>Experiment 2: Dual-Seed Whole-Component Holdout Evaluation (<code>gems57-pooled-hide-v2</code>)</h2>
+<h3>Seed 30 Primary Benchmark (11,342 Withheld Positive Pixels, 1,000 Block-Bootstrap Draws)</h3>
+<table><tr><th>Arm</th><th>Pooled HOLDOUT-DTI</th><th>95% Block Bootstrap CI</th><th>Evaluator</th><th>Withheld Positives</th></tr>{rows_s30}</table>
+<h3>Seed 20 Confirmation Benchmark (11,321 Withheld Positive Pixels, 1,000 Block-Bootstrap Draws)</h3>
+<table><tr><th>Arm</th><th>Pooled HOLDOUT-DTI</th><th>95% Block Bootstrap CI</th><th>Evaluator</th><th>Withheld Positives</th></tr>{rows_s20}</table>
+"""
+    (D / "h77vc.html").write_text(page("h77vc.html", "H77VC (Vent+ClayCap)", body))
+    shutil.copyfile(ROOT / "evidence/run_card_h77vc.json", D / "evidence/run_card_h77vc.json")
+    shutil.copyfile(ROOT / "evidence/h77vc_exp1_canary.json", D / "evidence/h77vc_exp1_canary.json")
+    shutil.copyfile(ROOT / "evidence/h77vc_exp2_holdout.json", D / "evidence/h77vc_exp2_holdout.json")
+    shutil.copyfile(ROOT / "evidence/h77vc_exp3_uniqueness.json", D / "evidence/h77vc_exp3_uniqueness.json")
+    shutil.copyfile(ROOT / "registry/preregistration_h77vc.json", D / "evidence/preregistration_h77vc.json")
+    shutil.copyfile(ROOT / "research/h77v_geothermal_vent_hypotheses.md", D / "research/h77v_geothermal_vent_hypotheses.md")
+
+
 if __name__ == "__main__":
     main()
     _write_h77e_knick()
     _inject_h77e_knick_hero()
     _write_h77g()
     _write_h77v()
+    _write_h77vc()
     write_review_pages()
 
     from build_h82_site import build as build_h82_texture
