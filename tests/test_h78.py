@@ -38,7 +38,10 @@ def test_uniqueness_informative_reading():
     assert rc["phase2_worst_overlap_informative"] <= 0.70
     assert rc["phase2_overlap_firings_informative"] == 0 and rc["identical_decoded"] == 0
     assert rc["literal_firings_all_space_filling"] is True
-    assert CARD["protocol_unique"] is True
+    assert CARD["protocol_unique_informative_reading"] is True
+    # repository policy I17: the literal reading binds, so space-filling firings make the file NOT protocol-unique
+    assert CARD["protocol_unique"] is (CARD["literal_reading_firings_final_dots"] == 0)
+    assert CARD["ok_to_submit"] is False
 
 
 def test_shipped_tif_matches_card_and_is_portal_shaped():

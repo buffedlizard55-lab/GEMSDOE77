@@ -68,37 +68,59 @@ def main():
     sub = jload("docs/data/h78_submission.json")
     primary = next((x for x in lanes["lanes"] if x.get("primary")), lanes["lanes"][0])
     # ---------------- status table (every file in the repository)
+    def holdout_cell(x):
+        if x.get("beats_holdout_best") is not None:
+            return yn(x["beats_holdout_best"], "YES", "NO")
+        if x.get("holdout_dti_hide_v2") is not None:
+            return (f'<span class="chip warn">reported {x["holdout_dti_hide_v2"]:.4f} HOLDOUT-DTI by its lane; '
+                    f'not re-verified here</span>')
+        return yn(None)
+
+    def info_cell(x):
+        v = x.get("informative_unique", x.get("gems57_symmetric_and_discrete_models_unique"))
+        return yn(v, "PASS", "FAIL")
+
     rows = ""
     for x in lanes["lanes"]:
         rows += (f'<tr><td><a href="{e(x["page"])}">{e(x["lane"])}</a></td>'
                  f'<td><a download href="{e(x["file"])}">{e(Path(x["file"]).name)}</a></td>'
                  f'<td>{yn(x.get("format_valid"), "PASS", "FAIL")}</td>'
-                 f'<td>{yn(x.get("protocol_unique"), "UNIQUE", "DUPLICATE / FAIL")}</td>'
-                 f'<td>{yn(x.get("beats_holdout_best"), "YES", "NO")}</td>'
+                 f'<td>{yn(x.get("protocol_unique"), "PASS", "FAIL")}</td>'
+                 f'<td>{info_cell(x)}</td>'
+                 f'<td>{holdout_cell(x)}</td>'
                  f'<td><span class="chip warn">not approved</span></td>'
                  f'<td>{e(x["upload"])}</td></tr>')
-    table = (f'<table><tr><th>Lane</th><th>File (click to download)</th><th>Portal format</th>'
-             f'<th>Unique vs registry</th><th>Beat the champion construction on the holdout?</th><th>Selector</th>'
-             f'<th>Can I upload it?</th></tr>{rows}</table><p class="small muted">{e(lanes["note"])}</p>')
+    table = (f'<table><tr><th>Lane</th><th>File (click to download)</th><th>Portal format (local checks)</th>'
+             f'<th>Unique, literal rule (binding)</th><th>Unique, informative reading (diagnostic)</th>'
+             f'<th>Beat the champion construction on the holdout?</th><th>Selector</th>'
+             f'<th>Can I submit it?</th></tr>{rows}</table><p class="small muted">{e(lanes["note"])}</p>')
     pz = Path(primary["file"]).with_suffix(".zip").as_posix()
     zip_btn = f'<a class="btn alt" href="{e(pz)}" download>Same file as one-TIFF .zip</a>' if (D / pz).exists() else ""
     size_kb = (D / primary["file"]).stat().st_size / 1024
-    dl = f"""<section class="card dl"><h2>⬇ Download the newest submission file</h2>
+    glance = """<p class="verdict"><b>Status at a glance.</b> <b>OK to download:</b> every file below.
+<b>Not OK to submit:</b> none of them is cleared. The repository fails closed on the brief's literal uniqueness rule
+(irregularity I17). The rule says a file duplicates <i>any</i> registry raster when more than 70% of its dots lie within
+3 px of that raster's dots. Several registry rasters are space-filling: one covers 100% of the allowed pixels. Even random
+dots exceed 0.70 against them, so <b>no non-empty file can pass the literal rule</b>. Only the protocol owner can resolve
+this, with one shared registry policy. Until then, spending a slot is a selector decision outside this repository.</p>"""
+    dl = f"""<section class="card dl"><h2>⬇ Newest file: download</h2>
 <p class="small muted"><b>{e(primary["lane"])}.</b> {e(primary.get("why_primary", ""))}</p>
 <a class="btn" href="{e(primary["file"])}" download>Download .tif ({size_kb:.0f} KB)</a>{zip_btn}
 <div class="chips"><span class="chip ok">OK to download: YES</span>
-<span class="chip {'ok' if primary.get('format_valid') else 'bad'}">Portal format: {'PASS' if primary.get('format_valid') else 'FAIL'}</span>
-<span class="chip {'ok' if primary.get('protocol_unique') else 'bad'}">Unique vs registry: {'PASS' if primary.get('protocol_unique') else 'FAIL'}</span>
+<span class="chip {'ok' if primary.get('format_valid') else 'bad'}">Portal format (local checks): {'PASS' if primary.get('format_valid') else 'FAIL'}</span>
+<span class="chip {'ok' if primary.get('protocol_unique') else 'bad'}">Unique, literal rule: {'PASS' if primary.get('protocol_unique') else 'FAIL'}</span>
+<span class="chip {'ok' if primary.get('informative_unique') else 'bad'}">Unique, informative reading: {'PASS' if primary.get('informative_unique') else 'FAIL'}</span>
 <span class="chip bad">Beat the champion construction on the holdout: NO</span>
 <span class="chip warn">Selector: not approved</span></div>
-<p class="verdict"><b>Can I upload it?</b> Yes. The portal should accept it: it uses the same encoding as the GEMSDOE32 file that
-scored 0.2778 (all cells finite, values exactly 0 or 1, no nodata tag, EPSG:32611, 3730×3292, the official transform), and
-it is not a copy of any registry submission.<br><b>Will it beat 0.2778?</b> <b>Not expected.</b> Its projection is below
-the 0.2778 file, and its holdout did not beat the champion construction (see the <a href="{e(primary["page"])}">lane page</a>). Spending a weekly slot on it is a
-selector decision, and the evidence here does not support spending one.</p>
-{copy("Submission name", primary.get("name", Path(primary["file"]).stem))}
-{copy("Note for the optional Note box", primary.get("note", ""))}
-<p class="small">sha256 of the .tif: <code>{e(primary.get("sha256", ""))}</code> · <a href="executive-summary.html">How to submit, step by step →</a></p></section>"""
+<p class="verdict"><b>Can I submit it?</b> <b>No.</b> {e(primary["upload"])}<br>
+<b>Would the portal accept the format?</b> Probably. It passes 17 local checks against the official grid and footprint:
+every cell finite, values exactly 0 or 1, no nodata tag, EPSG:32611, 3730×3292, the official transform. That is the
+encoding of the GEMSDOE32 file that the owner reports scored 0.2778. Local checks are not an organizer receipt.<br>
+<b>Will it beat 0.2778?</b> <b>Not expected.</b> Its projection is below the 0.2778 file, and its holdout did not beat the
+champion construction (see the <a href="{e(primary["page"])}">lane page</a>).</p>
+{copy("Submission name (for reference)", primary.get("name", Path(primary["file"]).stem))}
+{copy("Note (for reference)", primary.get("note", ""))}
+<p class="small">sha256 of the .tif: <code>{e(primary.get("sha256", ""))}</code> · <a href="executive-summary.html">How submission works, step by step →</a></p></section>"""
     facts = ""
     if card:
         h = card["holdout"]
@@ -112,14 +134,16 @@ selector decision, and the evidence here does not support spending one.</p>
 <li><a href="h78.html">Full H78 page: the hypotheses, the three experiments, uniqueness and the run card →</a></li></ul>"""
     body = f"""<h1>Start here</h1>
 <p>This repository builds GeoTIFF submissions for the <a href="{COMP}">DOE GEMS Prize fault-detection challenge</a>
-(DrivenData competition 306). The box below gives the newest file and says plainly whether it is OK to upload. The table under it lists every file in the repository with the same four checks.</p>
+(DrivenData competition 306). The first box says plainly what may be downloaded and what may be submitted. The table lists every file
+in the repository with the same checks.</p>
+{glance}
 {dl}
 <h2>Every file in this repository</h2>{table}
 <div class="values"><b>The target, labelled.</b> On 2026-10-21 the <a href="{LB}">public leaderboard</a> showed 0.2778 at
 row 47, team extradr19 (ORGANIZER-CONFIRMED as a leaderboard value). The leader then had 0.4413 and second place 0.3904. The
 owner reports that 0.2778 came from <code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</code> (GEMSDOE32); that link
 between file and score is OWNER-REPORTED.
-No file here has an organizer score. This lane used 0 submission slots.</div>
+No file here has an organizer score. The H78 lane used 0 submission slots.</div>
 {facts}
 <h2>Why 0.2778, in one paragraph</h2>
 <p>The 0.2778 file is 37,654 single-pixel dots spaced 3 px apart, all on the H19-5 lineament line set, and none on the
@@ -133,9 +157,11 @@ credit there (H78 E1/E2 and the LIA lane). The full analysis is on <a href="lia-
 
     # ---------------- general executive summary (how to submit)
     guide = f"""<h1>Executive summary: how to submit a file from this repository</h1>
-<p class="verdict"><b>Bottom line.</b> Every file on <a href="index.html">Start here</a> marked "Portal format: PASS" and
-"Unique vs registry: UNIQUE" can be uploaded. The green box holds the newest one. <b>No file is selector-approved, and none
-is expected to beat 0.2778.</b> Spending a weekly slot is a separate decision.</p>
+<p class="verdict"><b>Bottom line.</b> <b>No file in this repository is cleared to submit today</b> (Not OK to submit).
+Every file is OK to download for inspection. The steps below are how to submit once a file is cleared: it must pass the
+literal uniqueness rule (or a protocol-owner policy replaces that rule), and the selector must approve it. None is expected
+to beat 0.2778.</p>
+{glance}
 {dl}
 <h2>What the submission form asks for</h2>
 <table><tr><th>Field</th><th>What to give it</th></tr>
@@ -144,8 +170,8 @@ The form accepts a single GeoTIFF, or a zip containing a single GeoTIFF. The CRS
 competition grid: EPSG:32611, 3730 rows × 3292 columns, 100 m pixels, origin (243350, 4508550).</td></tr>
 <tr><td>Note (optional)</td><td>Paste the note from the copy box (it is at most 140 characters).</td></tr></table>
 <h2>Steps</h2><ol>
-<li>Download the <code>.tif</code> from the green box. Do not upload this web page, a JSON receipt or the repository.</li>
-<li>Optional check: compare the file's SHA-256 with the one shown in the green box
+<li>Download the cleared file's <code>-zeros.tif</code>. Do not upload this web page, a JSON receipt or the repository.</li>
+<li>Optional check: compare the file's SHA-256 with the one shown on its lane page
 (<code>sha256sum file.tif</code> on Linux/macOS, <code>certutil -hashfile file.tif SHA256</code> on Windows).</li>
 <li>Sign in at <a href="{COMP}">the competition page</a> and open its submission form (the menu wording may differ).</li>
 <li>Choose the file, paste the note and submit. Check the weekly submission allowance first.</li>
@@ -155,7 +181,7 @@ competition grid: EPSG:32611, 3730 rows × 3292 columns, 100 m pixels, origin (2
 files most likely had NaN or nodata-tagged cells inside the scored area, which the portal reports as out of range. This
 cause is our reading of the evidence and has not been confirmed by the organizer (irregularity I09). The <code>-zeros</code>
 files avoid this: every one of the 12,279,160 cells is finite and exactly 0.0 or 1.0, there is no nodata tag, and the grid is
-copied from <code>sample_submission.tif</code>. This is the same encoding as the 0.2778 file the portal accepted and scored.
+copied from <code>sample_submission.tif</code>. This is the encoding of the GEMSDOE32 file that the owner reports scored 0.2778.
 Each file is read back and passes 17 checks against the official footprint (<code>src/gems77lia/validate.py</code>). The
 shared template validator is also run. It reports only its known mismatch: it derives the footprint from a feature band,
 which differs from <code>sample_submission.tif</code> by 4,601 cells. The <code>-nan</code> twins (NaN outside the study area) are kept for reference only; upload the
@@ -189,15 +215,16 @@ def h78_body(card, sub):
     src = "".join(f'<li><a href="{e(s["url"])}">{e(s["title"])}</a> — {e(s["used_for"])}</li>' for s in card["sources"])
     h = card["holdout"]
     return f"""<h1>H78 lane: lidar scarp morphology as off-support evidence</h1>
-<p class="verdict"><b>Verdict: {e(card["verdict"].upper())}.</b> {e(card["verdict_reason"])} The file is portal-valid
-{'and unique' if card["protocol_unique"] else 'but NOT unique'}; it is OK to upload
-{'' if card["protocol_unique"] else '<b>no</b> '}but it is not expected to beat 0.2778.</p>
+<p class="verdict"><b>Verdict: {e(card["verdict"].upper())}. Not OK to submit; OK to download for inspection.</b>
+{e(card["verdict_reason"])} The file passes the local portal-format checks. It is not a copy of any registry raster under the
+informative reading, but it fails the binding literal rule. It is not expected to beat 0.2778.</p>
 <section class="card dl"><h2>⬇ H78 file</h2>
 <a class="btn" href="downloads/{e(sub["primary"]["file"])}" download>Download .tif</a>
 <a class="btn alt" href="downloads/{e(sub["zip"]["zip"])}" download>One-TIFF .zip</a>
 <a class="btn alt" href="downloads/{e(sub["twin_nan"]["file"])}" download>NaN-outside twin (reference only)</a>
 <div class="chips"><span class="chip {'ok' if sub['download_ok_format_valid'] else 'bad'}">Portal format: {sub["primary"]["n_pass"]}/{sub["primary"]["n_checks"]} PASS</span>
-<span class="chip {'ok' if card['protocol_unique'] else 'bad'}">Unique vs {rc["registry_files"]} registry rasters: {'PASS' if card['protocol_unique'] else 'FAIL'}</span>
+<span class="chip {'ok' if card['protocol_unique'] else 'bad'}">Unique, literal rule ({rc["registry_files"]} rasters): {'PASS' if card['protocol_unique'] else 'FAIL'}</span>
+<span class="chip {'ok' if card['protocol_unique_informative_reading'] else 'bad'}">Unique, informative reading: {'PASS' if card['protocol_unique_informative_reading'] else 'FAIL'}</span>
 <span class="chip bad">Beat the champion construction on the holdout: NO</span><span class="chip warn">Selector: not approved</span></div>
 {copy("Submission name", card["submission_name"])}{copy("Note", card["note"])}
 <p class="small">sha256 <code>{e(card["raster_sha256"])}</code> · {sub["dots"]:,} dots · <a href="evidence/h78_run_card.json">JSON run card</a></p></section>
@@ -217,7 +244,10 @@ rasters: the 812-raster registry plus every TIFF published in GEMSDOE73–76 and
 surface, phase 2 = final dots. Worst Spearman ρ: surface {rc["phase1_worst_rho"]:.3f}, dots {rc["phase2_worst_rho"]:.3f}
 (limit 0.90). Worst share of dots within 3 px of one informative raster's dots: {rc["phase2_worst_overlap_informative"]:.3f}
 (limit 0.70; {e(rc["phase2_worst_overlap_submission"])}). {rc["space_filling_rasters"]} space-filling rasters are reported
-separately: their 3 px halos cover ≥ 70% of the allowed cells, so even uniformly random dots exceed 0.70 against them.</p>
+separately. Their 3 px halos cover ≥ 70% of the allowed cells, so even uniformly random dots exceed 0.70 against them. The
+literal rule counts them, and every one of the {card["literal_reading_firings_final_dots"]} literal firings is one of them.
+Under the repository's fail-closed policy (I17) the file is therefore <b>not protocol-unique</b>, and the informative reading
+is a diagnostic only. {e(card["uniqueness_policy"])}</p>
 <h2>Named non-fault mimic</h2><p>{e(card["non_fault_mimic"])}</p>
 <h2>Official sources used</h2><ul>{src}</ul>"""
 

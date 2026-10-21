@@ -56,9 +56,10 @@ def main():
     checks = {x["check"]: x["status"] for x in pv["checks"]}
     rho_ok = (lit["rho_firings"] == 0)
     unique_informative = rho_ok and not informative_firings
+    literal_unique = rho_ok and not firings
     criteria = {
         "1_valid_format": bool(pv["passed"] and sub["zip"]["passed"]),
-        "2_unique_informative_reading": bool(unique_informative),
+        "2_literal_protocol_uniqueness": bool(literal_unique),
         "3_leakage_canary_clear": all(not v["leakage_flag"] for v in hold["leakage_canary"].values()),
         "4_S0_projection_delta_ge_0": bool(s0d >= 0),
         "5_holdout_paired_ci_not_entirely_below_0": bool(hold["pooled"]["A0"]["paired_differences"]["A0"]["ci95"][1] >= 0),
@@ -107,6 +108,7 @@ def main():
             "space_filling_firings_in_template_audit": len(sf_firings),
             "template_literal_reading_duplicate": lit["duplicate"],
             "template_like_for_like_reading_duplicate": lfl["duplicate"],
+            "literal_protocol_unique": literal_unique,
             "unique_informative_reading": unique_informative,
             "postmerge_check": _postmerge(),
             "thresholds": p2["thresholds"]},
@@ -126,10 +128,18 @@ def main():
                       "all_checks": f"{pv['n_pass']}/{pv['n_checks']} PASS"},
         "submission_name": sub["name"], "note": sub["note"], "note_chars": sub["note_chars"],
         "promotion_criteria": criteria, "verdict": verdict,
-        "verdict_reason": (f"Pre-registered rule: S0 (LOO-validated) projects {s0d:+.4f} and S1 projects {s1d:+.4f} vs the "
-                           "0.2778 champion (same instrument). Valid, unique (informative reading) and safe to upload; "
-                           "not projected to beat the champion. Slot decision: selector."
-                           if verdict == "negative" else "All pre-registered criteria met; selector decides the slot."),
+        "protocol_unique": bool(literal_unique),
+        "ok_to_submit": False,
+        "submission_status": {
+            "ok_to_download_for_inspection": True,
+            "ok_to_submit": False,
+            "literal_protocol_uniqueness": "PASS" if literal_unique else "FAIL",
+            "portal_acceptance": "NOT ORGANIZER-CONFIRMED",
+            "selector_approved": False
+        },
+        "verdict_reason": (f"The informative-only reading is {rep['worst_overlap']:.3f}, but the literal template audit records {len(sf_firings)} "
+                           "space-filling-raster overlap firings. Therefore this TIFF is not protocol-unique and "
+                           "is not approved for submission; local format validity does not establish portal acceptance."),
         "budget": {"experiments_used": 3, "limit": 3, "weekly_slots_used_by_this_run": 0,
                    "disclosure": ("E3 included a uniqueness repair: the first build was logged DUPLICATE, rebuilt under an "
                                   "explicit per-raster overlap budget, re-audited and re-holdout-tested. No new hypothesis "

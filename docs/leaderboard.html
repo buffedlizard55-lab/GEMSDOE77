@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>28-Submission Live Leaderboard Forensic Audit — GEMSDOE77</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">GEMSDOE77 · H77 Geothermal Fault Discovery</a>
+      <nav class="nav">
+        <a href="h77-step.html">H77-Step (0.1527 Holdout #1)</a>
+        <a href="h77-step-executive-summary.html">H77-Step Exec Brief</a>
+        <a href="index.html">Overview &amp; All Lanes</a>
+        <a class="active" href="leaderboard.html">28-Run Leaderboard Audit</a>
+        <a href="sources.html">Official Sources</a>
+        <a href="audit.html">Audit &amp; Irregularities</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="card">
+      <h1>Complete Forensic Audit of Organizer-Confirmed Live Submissions (<code>n = 28</code>) &amp; Promoted Candidate</h1>
+      <p>Every score below carries an explicit evidence class tag (<span class="badge-live">ORGANIZER-CONFIRMED</span> vs <span class="badge-holdout">HOLDOUT-DTI</span>). Zero projected or extrapolated live scores appear anywhere in this repository.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Rank / Run</th>
+            <th>Repository / Source</th>
+            <th>Score &amp; Evidence Class</th>
+            <th>Emitted Pixels</th>
+            <th>Mechanism &amp; Forensic Takeaway</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Comp #1</td>
+            <td>DrivenData External Top Entry</td>
+            <td><span class="badge-live">0.4413 ORGANIZER-CONFIRMED</span></td>
+            <td>—</td>
+            <td>Multi-scale 2D spatial encoder + metric-calibrated discrete emission across full footprint.</td>
+          </tr>
+          <tr>
+            <td>Comp Top-Tier</td>
+            <td>DrivenData External Anchor</td>
+            <td><span class="badge-live">0.3195 ORGANIZER-CONFIRMED</span></td>
+            <td>—</td>
+            <td>Target competitive benchmark motivating zero-SGMC multi-scale step &amp; submodular design.</td>
+          </tr>
+          <tr class="highlight">
+            <td><strong>Promoted</strong></td>
+            <td><strong>GEMSDOE77 (<code>gems77-step-propensity-submod300</code>)</strong></td>
+            <td><span class="badge-holdout">0.1527 HOLDOUT-DTI (hide-v2)</span><br /><span class="badge-holdout">0.1858 HOLDOUT-DTI (A_quad)</span></td>
+            <td><strong>34,625</strong></td>
+            <td><strong>#1 All-Time Holdout Across Both Instruments:</strong> HW/FW step purity + V-LBCO crack-tip cones + Radon multi-family ensemble + flank-zeroed 300 m submodular packing. Ready for live upload.</td>
+          </tr>
+          <tr>
+            <td>Team #1</td>
+            <td><code>GEMSDOE32</code> (<code>h33-h33-2-b2-zeros</code>)</td>
+            <td><span class="badge-live">0.2778 ORGANIZER-CONFIRMED</span><br /><span class="badge-holdout">0.0961 HOLDOUT-DTI (fold-fair)</span></td>
+            <td>37,654</td>
+            <td>H19-5 4-line ridge + D2.8 Poisson dots + <code>d_cat &le; 200 m</code> collar prune.</td>
+          </tr>
+          <tr>
+            <td>Team #2</td>
+            <td><code>GEMSDOE49</code> (<code>anderson-geothermal-pinn-38854</code>)</td>
+            <td><span class="badge-live">0.2750 ORGANIZER-CONFIRMED</span></td>
+            <td>38,854</td>
+            <td>Andersonian stress + geothermal PINN blend on H33 backbone.</td>
+          </tr>
+          <tr>
+            <td>Team #3</td>
+            <td><code>GEMSDOE36</code> (<code>h36-1-rung30-blind-r1</code>)</td>
+            <td><span class="badge-live">0.2710 ORGANIZER-CONFIRMED</span></td>
+            <td>37,660</td>
+            <td>Blind-quadrant transfer variant of H33.</td>
+          </tr>
+          <tr>
+            <td>Team #4 / #5</td>
+            <td><code>GEMSDOE28</code> / <code>GEMSDOE31</code> (<code>h27-4</code>)</td>
+            <td><span class="badge-live">0.2708 ORGANIZER-CONFIRMED</span></td>
+            <td>40,199</td>
+            <td>Clipped <code>d_cat &le; 100 m</code> (note: <code>GEMSDOE31</code> was an accidental byte-identical duplicate).</td>
+          </tr>
+          <tr>
+            <td>Team #6</td>
+            <td><code>GEMSDOE33</code> (<code>h34-2-b3</code>)</td>
+            <td><span class="badge-live">0.2647 ORGANIZER-CONFIRMED</span></td>
+            <td>~35,100</td>
+            <td>Over-clipped <code>d_cat &le; 300 m</code> (&minus;0.0131 drop proves real unmapped faults in 200–300 m shell).</td>
+          </tr>
+          <tr>
+            <td>Team #7</td>
+            <td><code>GEMSDOE25</code> (<code>dotted-h19-5-d2-8</code>)</td>
+            <td><span class="badge-live">0.2600 ORGANIZER-CONFIRMED</span></td>
+            <td>44,090</td>
+            <td>First D2.8 Poisson-disk discretization of H19-5 (+0.0678 over solid skeleton).</td>
+          </tr>
+          <tr>
+            <td>Team #8</td>
+            <td><code>GEMSDOE70</code> (<code>gems70-p5-dual-submod300-oof38k</code>)</td>
+            <td><span class="badge-live">0.2478 ORGANIZER-CONFIRMED</span><br /><span class="badge-holdout">0.1113 HOLDOUT-DTI (hide-v2)</span></td>
+            <td>37,654</td>
+            <td>Best prior zero-H19 pure ML run; held back by 25% SGMC contamination &amp; <code>border12</code> erosion.</td>
+          </tr>
+          <tr>
+            <td>Team #13</td>
+            <td><code>19GEMSDOE</code> (<code>h19-5-4lines-corroboration</code>)</td>
+            <td><span class="badge-live">0.1922 ORGANIZER-CONFIRMED</span><br /><span class="badge-holdout">0.1639 HOLDOUT-DTI (A_quad)</span></td>
+            <td>121,131</td>
+            <td>Continuous 1-px ridge combining 16GEMSDOE + L1 tips + L2 heat + L3 openness + L4 worms.</td>
+          </tr>
+          <tr>
+            <td>Team #14</td>
+            <td><code>16GEMSDOE</code> (<code>spatial-oof-hgb-scarp-ridge</code>)</td>
+            <td><span class="badge-live">0.1855 ORGANIZER-CONFIRMED</span></td>
+            <td>123,939</td>
+            <td>4-quadrant OOF HGB on 5GEMSDOE ResNet34 + 48 multi-sensor features.</td>
+          </tr>
+          <tr>
+            <td>Team #17</td>
+            <td><code>5GEMSDOE</code> (<code>resnet34-4fold-oof</code>)</td>
+            <td><span class="badge-live">0.1563 ORGANIZER-CONFIRMED</span></td>
+            <td>227,507</td>
+            <td>4-fold OOF 2D ResNet34 U-Net wide probability ribbon.</td>
+          </tr>
+          <tr>
+            <td>Team #18–28</td>
+            <td><code>GEMSDOE67</code> (0.1426), <code>GEMSDOE66</code> (0.1152), <code>GEMSDOE71</code> (0.0558), <strong><code>GEMSDOE72</code> (0.0492)</strong>, <code>GEMSDOE68</code> (0.0437), <code>GEMSDOE69</code> (0.0053)</td>
+            <td><span class="badge-live">ORGANIZER-CONFIRMED</span></td>
+            <td>29k–311k</td>
+            <td>2026-10-20 batch proving single-pixel geophysics &amp; <code>SGMC</code> bedrock contacts (<code>0.0492</code>) fail without Quaternary scarp step polarity &amp; multi-scale continuity.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="font-size:0.84rem; color:#475569;">Complete machine-readable 28-entry ledger: <code>evidence/forensics_28_live_submissions.json</code>. Status notice: automatic upload is <em>Not approved</em> without explicit human selector sign-off on the non-submission dense-witness exemption; see <a href="h77-step.html">H77-Step</a> and <a href="audit.html">Audit &amp; Irregularities</a>.</p>
+    </div>
+  </main>
+</body>
+</html>

@@ -32,6 +32,29 @@ def test_unambiguous_download_status_and_accessibility_basics():
         assert 'Do not' in s and 'research TIFF' in s
 
 
+def test_historical_build_utility_cannot_delete_or_overwrite_other_lane_artifacts():
+    script=(ROOT/'scripts/build_submission.py').read_text()
+    assert 'for old in out.glob' not in script
+    assert 'Refusing to overwrite existing artifact(s)' in script
+    assert 'portal accepted and scored' not in script
+
+
+def test_submission_status_obeys_literal_uniqueness_gate():
+    lanes=json.loads((DOC/'data/lanes.json').read_text())
+    lia=lanes['lanes'][0]
+    assert lia['protocol_unique'] is False
+    assert 'not ok to submit' in lia['upload'].lower()
+    assert (DOC/lia['file']).is_file()
+    page=(DOC/'lia-executive-summary.html').read_text()
+    assert 'Literal protocol uniqueness: FAIL' in page
+    assert ('Can I submit it?</b> <b>No' in page or 'Can I upload it?</b> <b>No' in page)
+    assert 'Can I upload it?</b> Yes.' not in page
+    assert 'do not upload' in (DOC/'lia-executive-summary.html').read_text().lower()
+    contact=lanes['lanes'][1]
+    assert contact['protocol_unique'] is False
+    assert 'not ok to submit' in contact['upload'].lower()
+
+
 def test_feed_is_not_score_verification():
     feed=json.loads((DOC/'source-health.json').read_text())
     assert len(feed['repos'])==78
@@ -57,6 +80,26 @@ def test_original_prompt_preserved_and_postrun_caveat_visible():
     assert not card['holdout_valid_for_promotion']
 
 
+def test_cross_lane_release_status_fails_closed():
+    """A diagnostic subset PASS must never become literal protocol clearance."""
+    lanes=json.loads((DOC/'data/lanes.json').read_text())
+    assert lanes['lanes']
+    assert all(x['protocol_unique'] is False for x in lanes['lanes'])
+    assert all('Not OK to submit' in x['upload'] for x in lanes['lanes'])
+
+    lia=json.loads((DOC/'data/run-card.json').read_text())
+    registry=lia['registry_comparison']
+    assert registry['template_literal_reading_duplicate'] is True
+    assert registry['space_filling_firings_in_template_audit'] > 0
+    assert registry['unique_informative_reading'] is True  # narrower diagnostic only
+
+    assert 'Not OK to submit' in (DOC/'index.html').read_text()
+    lia_page=(DOC/'lia.html').read_text()
+    assert '<b>Can I upload it?</b> <b>No' in lia_page
+    assert 'do not upload' in (DOC/'lia-executive-summary.html').read_text()
+    assert '<b>Can I upload it?</b> Yes' not in lia_page
+
+
 def test_pages_staging_preserves_legacy_docs_urls_and_excludes_secrets(tmp_path):
     from stage_pages import stage
     out=stage(tmp_path/'public')
@@ -73,13 +116,16 @@ def test_home_pages_put_download_and_per_file_status_first():
     lanes=json.loads((DOC/'data/lanes.json').read_text())['lanes']
     home=(DOC/'index.html').read_text()
     head=home[:home.index('Every file in this repository')]
-    assert 'Download .tif' in head and 'Can I upload it?' in head and 'Will it beat 0.2778?' in head
+    assert 'Download .tif' in head and 'Can I submit it?' in head and 'Will it beat 0.2778?' in head
+    assert 'Not OK to submit' in head and 'OK to download' in head
+    assert 'Can I submit it?</b> Yes' not in home and 'Can I upload it?</b> Yes' not in home
     for x in lanes:
         assert (DOC/x['file']).exists(), x['file']
         assert Path(x['file']).name in home
         assert (DOC/x['page']).exists(), x['page']
     guide=(DOC/'executive-summary.html').read_text()
     assert 'single GeoTIFF' in guide and 'Note' in guide and 'EPSG:32611' in guide and '[0, 1]' in guide
+    assert 'Not OK to submit' in guide
     prim=[x for x in lanes if x.get('primary')]
-    assert len(prim)==1 and prim[0]['format_valid'] and prim[0]['protocol_unique']
+    assert len(prim)==1 and prim[0]['format_valid'] and prim[0]['protocol_unique'] is False
     assert prim[0]['name'] in home and prim[0]['note'] in home and len(prim[0]['note'])<=140

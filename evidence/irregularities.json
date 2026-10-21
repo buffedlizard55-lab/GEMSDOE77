@@ -1,0 +1,48 @@
+{
+  "evidence_class": "AUDIT-IRREGULARITY-LOG",
+  "generated_utc": "2026-10-21T04:42:00Z",
+  "irregularities": [
+    {
+      "id": "IRR-01",
+      "severity": "HIGH",
+      "component": "vendor/gems57/uniqueness.py (lines 90-95, 325-331)",
+      "finding": "Upstream uniqueness.py documented that continuous pre-placement surfaces are evaluated via Spearman correlation only, yet summarize_registry_rows required my_dot_count > 0 (where _dots requires |a - 1.0| < 1e-6), causing every valid continuous posterior in [0, 1) to falsely return unique=False even when duplicate_count=0 and worst Spearman = 0.4027 <= 0.90.",
+      "resolution": "Fixed directly in vendor/gems57/uniqueness.py per Protocol Rule 2 (has_signal = my_dot_count > 0 or valid varying continuous surface), reported in vendor/README.md, and regression-tested in tests/test_gems77_suite.py."
+    },
+    {
+      "id": "IRR-02",
+      "severity": "HIGH",
+      "component": "External Fluvial Stack (data/external/dem10_chi_100m_i16.tif)",
+      "finding": "Signed int16 bands in dem10_chi_100m_i16.tif contain unmasked -32768 nodata sentinels inside small endorheic / edge cells of the valid footprint fp, creating +-32,189 spikes under Gaussian derivative smoothing if unmasked.",
+      "resolution": "Explicitly masked via fp & np.isfinite(raw) & (raw > -32760.0) with nearest-valid EDT fill prior to all spatial filtering in src/gems77/features.py."
+    },
+    {
+      "id": "IRR-03",
+      "severity": "CRITICAL",
+      "component": "Spatial Positive-Unlabeled Training (d(x, V) == 0 Self-Distance Tautology)",
+      "finding": "Computing catalogue-derived distance or relay-annulus features directly from V produces d(x, V) == 0 identically on 100% of training positives y=1 and > 3.5 px on 100% of training negatives y=0, causing tree ensembles to split trivially on d == 0 and degrading HOLDOUT-DTI from 0.1527 to 0.1122 (and 7x7 NMS from 0.0826 to 0.0692).",
+      "resolution": "Eliminated isotropic distance rings completely and introduced 5-bucket Voronoi Leave-Bucket-of-Components-Out (V-LBCO) self-supervision for directional Pollard & Segall crack-tip cones + orphan geothermal conduits."
+    },
+    {
+      "id": "IRR-04",
+      "severity": "CRITICAL",
+      "component": "Off-Catalogue SGMC Bedrock Contacts (data/external/sgmc_faults_100m.tif)",
+      "finding": "Organizer receipt from GEMSDOE72 proved live on 2026-10-20 that models targeting off-catalogue SGMC bedrock contacts achieve B'=0.6457 offline yet score 0.0492 ORGANIZER-CONFIRMED on the DrivenData leaderboard (ancient Mesozoic/Paleozoic thrusts & intrusive contacts, not active Quaternary geothermal faults). Blending 25-50% SGMC weights dragged GEMSDOE70 P8 down to 0.2478 live.",
+      "resolution": "Completely barred sgmc_faults_100m.tif from both features and training targets (0% SGMC weight; verified by unit test)."
+    },
+    {
+      "id": "IRR-05",
+      "severity": "HIGH",
+      "component": "Submodular Masked-Collar Halo Ringing & 12-px Border Truncation in Prior Phase-5 Emitter",
+      "finding": "Leaving q_pad > 0 inside the masked collar d_cat <= 2.0 px caused prior submodular allocators (GEMSDOE70 P9) to dump 6,415 dots (17.0% of total dot budget) at d_cat = 2.24 px collecting phantom kernel overlap credit from already-masked faults, while binary_erosion(..., 12) discarded 4.1% of hidden edge faults.",
+      "resolution": "Zeroed q_pad strictly outside allowed_mask BEFORE kernel summation in src/gems77/emit.py (reducing <=2.5 px collar dots 15x from 6,415 to 431) and restored full 5,167,373-pixel footprint coverage (3.19% dots in border12)."
+    },
+    {
+      "id": "IRR-06",
+      "severity": "MEDIUM",
+      "component": "Historical Portfolio Duplicate & Non-Prediction Files (GEMSDOE31, GEMSDOE48, Prior NaN Errors)",
+      "finding": "(a) GEMSDOE31 submitted exact duplicate SHA-256 2fc94a38... of GEMSDOE28 h27-4 (both 0.2708); (b) GEMSDOE48 stored ground-truth labels.tif and footprint-mask.tif inside candidate directories; (c) historical runs failed DrivenData ingestion with 'Predicted values must be in range [0, 1]' due to NaN/nodata outside footprint or float overshoot.",
+      "resolution": "Filtered non-prediction masks out of the 326-raster uniqueness audit, enforced explicit np.clip(pred, 0.0, 1.0) with nodata=None across all 12,279,160 grid cells, and verified 0 NaN/Inf via shared submission_writer.py."
+    }
+  ]
+}

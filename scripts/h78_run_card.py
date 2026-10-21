@@ -32,7 +32,12 @@ def main():
     p1, p2 = un["phase1_surface_before_placement"], un["phase2_final_dots"]
     canary = {k: v["auc"] for k, v in e3["leakage_canary"].items()}
     beats = bool(dA0["ci95"][0] > 0)
-    unique = bool(un["protocol_unique_informative"])
+    # Repository policy since I17 (merged PR #7, "fail closed on literal registry uniqueness"): the brief says ANY
+    # registry raster, so the literal reading binds; the informative reading is a diagnostic only.
+    unique_informative = bool(un["protocol_unique_informative"])
+    literal_firings = sum(len((un[ph].get("summary") or {}).get("literal_firings", []))
+                          for ph in ("phase2_final_dots",))
+    unique = bool(unique_informative and literal_firings == 0)
     fmt = bool(sub["download_ok_format_valid"])
     s0 = e3["full_map_candidate"]["S0"]["dti_projection"]
     s0c = e3["champion_S0_projection"]["dti_projection"]
@@ -43,6 +48,8 @@ def main():
     if s0 < s0c:
         reasons.append(f"INSTRUMENT S0 projection {s0:.4f} < champion {s0c:.4f}")
     reasons.append("E1 and E2 found no live-supported field")
+    if not unique:
+        reasons.append(f"literal registry gate fails ({literal_firings} final-dot firings, all on space-filling rasters; the informative reading passes)")
     card = {
         "lane": "H78 residual-guided off-support allocation (self-assigned; IR-78-01)",
         "hypothesis": "Uncatalogued faults off the H19-5 support leave 1 m lidar scarp morphology; ranking off-support dots by a lidar scarp consensus earns hidden-fault credit where the 0.2778 construction has none.",
@@ -100,8 +107,11 @@ def main():
                       "template_validator_passed": sub["template_validator_primary"]["passed"],
                       "zip_single_tiff": sub["zip"]["passed"], "nan_twin_bit_identical_in_footprint": sub["in_footprint_bit_identical"]},
         "submission_name": sub["name"], "note": sub["note"], "note_chars": len(sub["note"]),
-        "format_valid": fmt, "protocol_unique": unique, "beats_holdout_best": beats,
-        "ok_to_download": True, "ok_to_upload_format": fmt and unique, "approved_for_weekly_slot": False,
+        "format_valid": fmt, "protocol_unique": unique, "protocol_unique_informative_reading": unique_informative,
+        "literal_reading_firings_final_dots": literal_firings,
+        "uniqueness_policy": "Literal reading binds (repository policy I17): any registry raster with > 70% of our dots within 3 px is a duplicate. All literal firings here are space-filling rasters, against which even random dots fire; resolving that contradiction is a protocol-owner decision, not this lane's.",
+        "beats_holdout_best": beats,
+        "ok_to_download": True, "ok_to_submit": bool(unique and verdict == "promote"), "approved_for_weekly_slot": False,
         "weekly_slots_used": 0, "organizer_confirmed_score": None,
         "verdict": verdict, "verdict_reason": "; ".join(reasons) + ".",
         "budget": "3 experiments (E1, E2, E3); E3 re-run twice for implementation bugs, not re-tuned (IR-78-03)",
@@ -122,17 +132,26 @@ def main():
     row = {"lane": "H78: lidar scarp consensus, uniqueness-capped allocation", "page": "h78.html", "summary": "executive-summary.html",
            "file": "downloads/" + sub["primary"]["file"], "format_valid": fmt, "protocol_unique": unique, "beats_holdout_best": beats,
            "verdict": verdict, "name": sub["name"], "note": sub["note"], "sha256": sub["primary"]["sha256"], "s0_projection": s0,
-           "upload": ("Safe to upload (portal-valid, unique). Not expected to beat 0.2778; selector: not approved." if fmt and unique
-                      else "NOT OK to upload: " + ("format check failed" if not fmt else "uniqueness failed"))}
+           "informative_unique": unique_informative,
+           "upload": ("Not OK to submit: " + ("" if unique else f"literal registry gate fails ({literal_firings} firings, all on space-filling rasters; "
+                      f"informative reading passes, worst overlap {p2['informative_reading']['worst_forward_overlap']:.3f}) and ")
+                      + "the holdout is negative. Inspection download only; selector: not approved.") if verdict != "promote" or not unique
+                      else "Candidate for selector review."}
     lia = next((x for x in lanes["lanes"] if x["lane"].startswith("LIA")), None)
     lia_h = j("evidence/e3_holdout_final.json")["pooled"]["A0"]["scores"]["C"]["dti"] if lia else None
-    if fmt and unique:
+    for x in lanes["lanes"]:
+        if x["lane"].startswith("Selective-U") and x["page"] == "index.html":
+            x["page"], x["summary"] = "urank.html", "urank-executive-summary.html"
+        if x["lane"].startswith("LIA"):
+            x.setdefault("informative_unique", True)
+            x.setdefault("beats_holdout_best", False)  # HOLDOUT-DTI 0.0706 vs 0.0958 (evidence/e3_holdout_final.json)
+    if fmt:
         for x in lanes["lanes"]:
             x.pop("primary", None)
             x.pop("why_primary", None)
         row["primary"] = True
-        row["why_primary"] = (f"Generated in this session; portal-valid and unique. It ties the LIA file: INSTRUMENT S0 projection "
-                              f"{s0:.4f} vs {lia['s0_projection']:.4f}, HOLDOUT-DTI {c['dti']:.4f} vs {lia_h:.4f} (same evaluator and "
+        row["why_primary"] = (f"Generated in this session (H78 lane). It ties the LIA file: INSTRUMENT S0 projection "
+                              f"{s0:.4f} vs {j('docs/data/run-card.json')['live_inversion_projection']['S0_candidate']:.4f}, HOLDOUT-DTI {c['dti']:.4f} vs {lia_h:.4f} (same evaluator and "
                               f"split). Showing it here is not a selection; the selector decides.") if lia else "Generated in this session."
     lanes["lanes"].insert(0, row)
     (ROOT / "docs" / "data" / "lanes.json").write_text(json.dumps(lanes, indent=1) + "\n")

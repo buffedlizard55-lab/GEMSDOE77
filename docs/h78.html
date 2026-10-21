@@ -4,15 +4,16 @@
 <link rel="stylesheet" href="assets/lia.css"></head><body>
 <header><div class="wrap"><span class="brand">GEMSDOE77 · DOE GEMS Prize</span><a href="index.html">Start here</a> <a href="executive-summary.html">How to submit</a> <a href="h78.html" class=here>H78 lane</a> <a href="lia.html">LIA lane</a> <a href="contactphys.html">Contact-physics lane</a> <a href="urank.html">Selective-U lane</a> <a href="lia-analysis.html">Why 0.2778</a> <a href="lia-sources.html">Sources</a>
 <a href="https://github.com/buffedlizard55-lab/GEMSDOE77">GitHub</a></div></header><main><div class="wrap"><h1>H78 lane: lidar scarp morphology as off-support evidence</h1>
-<p class="verdict"><b>Verdict: NEGATIVE.</b> holdout delta vs champion construction -0.0250 (95% CI -0.0301 to -0.0202) is entirely below 0; INSTRUMENT S0 projection 0.2450 &lt; champion 0.2881; E1 and E2 found no live-supported field. The file is portal-valid
-and unique; it is OK to upload
-but it is not expected to beat 0.2778.</p>
+<p class="verdict"><b>Verdict: NEGATIVE. Not OK to submit; OK to download for inspection.</b>
+holdout delta vs champion construction -0.0250 (95% CI -0.0301 to -0.0202) is entirely below 0; INSTRUMENT S0 projection 0.2450 &lt; champion 0.2881; E1 and E2 found no live-supported field; literal registry gate fails (44 final-dot firings, all on space-filling rasters; the informative reading passes). The file passes the local portal-format checks. It is not a copy of any registry raster under the
+informative reading, but it fails the binding literal rule. It is not expected to beat 0.2778.</p>
 <section class="card dl"><h2>⬇ H78 file</h2>
 <a class="btn" href="downloads/gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros.tif" download>Download .tif</a>
 <a class="btn alt" href="downloads/gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros.zip" download>One-TIFF .zip</a>
 <a class="btn alt" href="downloads/gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-nan.tif" download>NaN-outside twin (reference only)</a>
 <div class="chips"><span class="chip ok">Portal format: 17/17 PASS</span>
-<span class="chip ok">Unique vs 839 registry rasters: PASS</span>
+<span class="chip bad">Unique, literal rule (839 rasters): FAIL</span>
+<span class="chip ok">Unique, informative reading: PASS</span>
 <span class="chip bad">Beat the champion construction on the holdout: NO</span><span class="chip warn">Selector: not approved</span></div>
 <p class="small muted">Submission name (61 characters)</p><div class="copy"><code>gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros</code><button data-copy="gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros">Copy</button></div><p class="small muted">Note (110 characters)</p><div class="copy"><code>GEMSDOE77 H78: 66% H19-5 support (S0 credit) + 34% 1m-lidar scarp-consensus dots, 38301 binary, 0 on catalogue</code><button data-copy="GEMSDOE77 H78: 66% H19-5 support (S0 credit) + 34% 1m-lidar scarp-consensus dots, 38301 binary, 0 on catalogue">Copy</button></div>
 <p class="small">sha256 <code>4571e767757be95e3fb70b4afb05e45528b1cfd74147e168c36253b1247f1c47</code> · 38,301 dots · <a href="evidence/h78_run_card.json">JSON run card</a></p></section>
@@ -32,7 +33,10 @@ rasters: the 812-raster registry plus every TIFF published in GEMSDOE73–76 and
 surface, phase 2 = final dots. Worst Spearman ρ: surface 0.369, dots 0.639
 (limit 0.90). Worst share of dots within 3 px of one informative raster's dots: 0.660
 (limit 0.70; GEMSDOE68:registry/rasters/rasters/19GEMSDOE__h19-5-powerlaw-budget-multiline.tif). 44 space-filling rasters are reported
-separately: their 3 px halos cover ≥ 70% of the allowed cells, so even uniformly random dots exceed 0.70 against them.</p>
+separately. Their 3 px halos cover ≥ 70% of the allowed cells, so even uniformly random dots exceed 0.70 against them. The
+literal rule counts them, and every one of the 44 literal firings is one of them.
+Under the repository's fail-closed policy (I17) the file is therefore <b>not protocol-unique</b>, and the informative reading
+is a diagnostic only. Literal reading binds (repository policy I17): any registry raster with &gt; 70% of our dots within 3 px is a duplicate. All literal firings here are space-filling rasters, against which even random dots fire; resolving that contradiction is a protocol-owner decision, not this lane&#x27;s.</p>
 <h2>Named non-fault mimic</h2><p>Pluvial Lake Lahontan shoreline benches and wave-cut risers, fluvial terrace risers and fan-incision banks, and road cuts/canal banks all produce linear slope breaks with the same profile.</p>
 <h2>Official sources used</h2><ul><li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DrivenData GEMS problem description (metric, format)</a> — DTI definition, file format</li><li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">DrivenData GEMS public leaderboard</a> — 0.2778, 0.4413, 0.3904 (ORGANIZER-CONFIRMED)</li><li><a href="https://pangea.stanford.edu/ERE/db/GeoConf/papers/SGW/2025/Hardwick.pdf">Hardwick et al. 2025, Stanford Geothermal Workshop (INGENIOUS UAV lidar)</a> — H78-1 mechanism</li><li><a href="https://publications.mygeoenergynow.org/grc/1034813.pdf">Hart-Wagoner et al., GRC (INGENIOUS Quaternary fault database)</a> — catalogue provenance</li><li><a href="https://publications.mygeoenergynow.org/grc/1034745.pdf">Faulds &amp; Richards, GRC (INGENIOUS favorable structural settings)</a> — H78-2 rationale</li><li><a href="https://gbcge.org/current-projects/ingenious/">GBCGE INGENIOUS project page</a> — project scope and dates</li><li><a href="https://gdr.openei.org/submissions/1391">GDR submission 1391, INGENIOUS Great Basin Regional Dataset Compilation (DOI 10.15121/1881483, CC BY 4.0)</a> — H78-2 field (its &#x27;Well and Spring Temperature and Chemistry&#x27; resource); the INGENIOUS Quaternary fault compilation is in the same submission</li><li><a href="https://www.usgs.gov/3d-elevation-program">USGS 3D Elevation Program (3DEP; free, no use restrictions)</a> — source of the 1 m DEM tiles behind lidar_scarp_features_u8 (H78-1)</li></ul></div></main>
 <footer><div class="wrap">Selector status for every file on this site: <b>not approved</b>. Whether to spend a

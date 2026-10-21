@@ -4,25 +4,34 @@
 <link rel="stylesheet" href="assets/lia.css"></head><body>
 <header><div class="wrap"><span class="brand">GEMSDOE77 · DOE GEMS Prize</span><a href="index.html">Start here</a> <a href="executive-summary.html" class=here>How to submit</a> <a href="h78.html">H78 lane</a> <a href="lia.html">LIA lane</a> <a href="contactphys.html">Contact-physics lane</a> <a href="urank.html">Selective-U lane</a> <a href="lia-analysis.html">Why 0.2778</a> <a href="lia-sources.html">Sources</a>
 <a href="https://github.com/buffedlizard55-lab/GEMSDOE77">GitHub</a></div></header><main><div class="wrap"><h1>Executive summary: how to submit a file from this repository</h1>
-<p class="verdict"><b>Bottom line.</b> Every file on <a href="index.html">Start here</a> marked "Portal format: PASS" and
-"Unique vs registry: UNIQUE" can be uploaded. The green box holds the newest one. <b>No file is selector-approved, and none
-is expected to beat 0.2778.</b> Spending a weekly slot is a separate decision.</p>
-<section class="card dl"><h2>⬇ Download the newest submission file</h2>
-<p class="small muted"><b>H78: lidar scarp consensus, uniqueness-capped allocation.</b> Generated in this session; portal-valid and unique. It ties the LIA file: INSTRUMENT S0 projection 0.2450 vs 0.2450, HOLDOUT-DTI 0.0708 vs 0.0706 (same evaluator and split). Showing it here is not a selection; the selector decides.</p>
+<p class="verdict"><b>Bottom line.</b> <b>No file in this repository is cleared to submit today</b> (Not OK to submit).
+Every file is OK to download for inspection. The steps below are how to submit once a file is cleared: it must pass the
+literal uniqueness rule (or a protocol-owner policy replaces that rule), and the selector must approve it. None is expected
+to beat 0.2778.</p>
+<p class="verdict"><b>Status at a glance.</b> <b>OK to download:</b> every file below.
+<b>Not OK to submit:</b> none of them is cleared. The repository fails closed on the brief's literal uniqueness rule
+(irregularity I17). The rule says a file duplicates <i>any</i> registry raster when more than 70% of its dots lie within
+3 px of that raster's dots. Several registry rasters are space-filling: one covers 100% of the allowed pixels. Even random
+dots exceed 0.70 against them, so <b>no non-empty file can pass the literal rule</b>. Only the protocol owner can resolve
+this, with one shared registry policy. Until then, spending a slot is a selector decision outside this repository.</p>
+<section class="card dl"><h2>⬇ Newest file: download</h2>
+<p class="small muted"><b>H78: lidar scarp consensus, uniqueness-capped allocation.</b> Generated in this session (H78 lane). It ties the LIA file: INSTRUMENT S0 projection 0.2450 vs 0.2450, HOLDOUT-DTI 0.0708 vs 0.0706 (same evaluator and split). Showing it here is not a selection; the selector decides.</p>
 <a class="btn" href="downloads/gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros.tif" download>Download .tif (148 KB)</a><a class="btn alt" href="downloads/gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros.zip" download>Same file as one-TIFF .zip</a>
 <div class="chips"><span class="chip ok">OK to download: YES</span>
-<span class="chip ok">Portal format: PASS</span>
-<span class="chip ok">Unique vs registry: PASS</span>
+<span class="chip ok">Portal format (local checks): PASS</span>
+<span class="chip bad">Unique, literal rule: FAIL</span>
+<span class="chip ok">Unique, informative reading: PASS</span>
 <span class="chip bad">Beat the champion construction on the holdout: NO</span>
 <span class="chip warn">Selector: not approved</span></div>
-<p class="verdict"><b>Can I upload it?</b> Yes. The portal should accept it: it uses the same encoding as the GEMSDOE32 file that
-scored 0.2778 (all cells finite, values exactly 0 or 1, no nodata tag, EPSG:32611, 3730×3292, the official transform), and
-it is not a copy of any registry submission.<br><b>Will it beat 0.2778?</b> <b>Not expected.</b> Its projection is below
-the 0.2778 file, and its holdout did not beat the champion construction (see the <a href="h78.html">lane page</a>). Spending a weekly slot on it is a
-selector decision, and the evidence here does not support spending one.</p>
-<p class="small muted">Submission name (61 characters)</p><div class="copy"><code>gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros</code><button data-copy="gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros">Copy</button></div>
-<p class="small muted">Note for the optional Note box (110 characters)</p><div class="copy"><code>GEMSDOE77 H78: 66% H19-5 support (S0 credit) + 34% 1m-lidar scarp-consensus dots, 38301 binary, 0 on catalogue</code><button data-copy="GEMSDOE77 H78: 66% H19-5 support (S0 credit) + 34% 1m-lidar scarp-consensus dots, 38301 binary, 0 on catalogue">Copy</button></div>
-<p class="small">sha256 of the .tif: <code>4571e767757be95e3fb70b4afb05e45528b1cfd74147e168c36253b1247f1c47</code> · <a href="executive-summary.html">How to submit, step by step →</a></p></section>
+<p class="verdict"><b>Can I submit it?</b> <b>No.</b> Not OK to submit: literal registry gate fails (44 firings, all on space-filling rasters; informative reading passes, worst overlap 0.660) and the holdout is negative. Inspection download only; selector: not approved.<br>
+<b>Would the portal accept the format?</b> Probably. It passes 17 local checks against the official grid and footprint:
+every cell finite, values exactly 0 or 1, no nodata tag, EPSG:32611, 3730×3292, the official transform. That is the
+encoding of the GEMSDOE32 file that the owner reports scored 0.2778. Local checks are not an organizer receipt.<br>
+<b>Will it beat 0.2778?</b> <b>Not expected.</b> Its projection is below the 0.2778 file, and its holdout did not beat the
+champion construction (see the <a href="h78.html">lane page</a>).</p>
+<p class="small muted">Submission name (for reference) (61 characters)</p><div class="copy"><code>gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros</code><button data-copy="gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros">Copy</button></div>
+<p class="small muted">Note (for reference) (110 characters)</p><div class="copy"><code>GEMSDOE77 H78: 66% H19-5 support (S0 credit) + 34% 1m-lidar scarp-consensus dots, 38301 binary, 0 on catalogue</code><button data-copy="GEMSDOE77 H78: 66% H19-5 support (S0 credit) + 34% 1m-lidar scarp-consensus dots, 38301 binary, 0 on catalogue">Copy</button></div>
+<p class="small">sha256 of the .tif: <code>4571e767757be95e3fb70b4afb05e45528b1cfd74147e168c36253b1247f1c47</code> · <a href="executive-summary.html">How submission works, step by step →</a></p></section>
 <h2>What the submission form asks for</h2>
 <table><tr><th>Field</th><th>What to give it</th></tr>
 <tr><td>File</td><td>The <code>…-zeros.tif</code> file, or the <code>…-zeros.zip</code> that contains only that one GeoTIFF.
@@ -30,8 +39,8 @@ The form accepts a single GeoTIFF, or a zip containing a single GeoTIFF. The CRS
 competition grid: EPSG:32611, 3730 rows × 3292 columns, 100 m pixels, origin (243350, 4508550).</td></tr>
 <tr><td>Note (optional)</td><td>Paste the note from the copy box (it is at most 140 characters).</td></tr></table>
 <h2>Steps</h2><ol>
-<li>Download the <code>.tif</code> from the green box. Do not upload this web page, a JSON receipt or the repository.</li>
-<li>Optional check: compare the file's SHA-256 with the one shown in the green box
+<li>Download the cleared file's <code>-zeros.tif</code>. Do not upload this web page, a JSON receipt or the repository.</li>
+<li>Optional check: compare the file's SHA-256 with the one shown on its lane page
 (<code>sha256sum file.tif</code> on Linux/macOS, <code>certutil -hashfile file.tif SHA256</code> on Windows).</li>
 <li>Sign in at <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">the competition page</a> and open its submission form (the menu wording may differ).</li>
 <li>Choose the file, paste the note and submit. Check the weekly submission allowance first.</li>
@@ -41,7 +50,7 @@ competition grid: EPSG:32611, 3730 rows × 3292 columns, 100 m pixels, origin (2
 files most likely had NaN or nodata-tagged cells inside the scored area, which the portal reports as out of range. This
 cause is our reading of the evidence and has not been confirmed by the organizer (irregularity I09). The <code>-zeros</code>
 files avoid this: every one of the 12,279,160 cells is finite and exactly 0.0 or 1.0, there is no nodata tag, and the grid is
-copied from <code>sample_submission.tif</code>. This is the same encoding as the 0.2778 file the portal accepted and scored.
+copied from <code>sample_submission.tif</code>. This is the encoding of the GEMSDOE32 file that the owner reports scored 0.2778.
 Each file is read back and passes 17 checks against the official footprint (<code>src/gems77lia/validate.py</code>). The
 shared template validator is also run. It reports only its known mismatch: it derives the footprint from a feature band,
 which differs from <code>sample_submission.tif</code> by 4,601 cells. The <code>-nan</code> twins (NaN outside the study area) are kept for reference only; upload the

@@ -3,8 +3,8 @@
 
 Outputs (docs/downloads/, only files named gems77-h78-*; other lanes' files are never touched):
   <name>-zeros.tif   PRIMARY.  All 12,279,160 cells finite: 1.0 on dots, 0.0 elsewhere, no nodata
-                     tag, float32, 256x256 deflate tiles - the encoding of the GEMSDOE32 0.2778
-                     file that the portal accepted and scored.
+                     tag, float32, 256x256 deflate tiles - the encoding of the GEMSDOE32 file
+                     that the owner reports scored 0.2778.
   <name>-nan.tif     Twin with bit-identical in-footprint values and NaN outside the official
                      footprint, written by the shared template writer (gems.submission_writer).
   <name>-zeros.zip   One-member zip of the primary TIF (the form accepts a .zip with one GeoTIFF).
