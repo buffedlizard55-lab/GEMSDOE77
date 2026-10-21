@@ -1,0 +1,29 @@
+{
+  "schema": "gems-run-card-arena-8d3ee5f5-v1",
+  "branch": "arena/8d3ee5f5-gemsdoe77",
+  "date_utc": "2026-10-21",
+  "lane": "none assigned; registry gate review",
+  "hypothesis": "No new hypothesis tested. Gate question: does a continuous witness surface count as a dot set for the 0.70 overlap rule?",
+  "mechanism": "Shared _dots() treats every finite positive pixel as a dot; dense surface covers 100% of the footprint within 3 px.",
+  "non_fault_process_that_could_mimic_it": "Not applicable: no candidate was generated.",
+  "holdout_dti": null,
+  "holdout_dti_ci95": null,
+  "withheld_positives": null,
+  "evaluator_version": "gems57-pooled-hide-v2 (not run)",
+  "overlap_vs_registry": {
+    "dense_witness_shared_definition": 1.0,
+    "dense_witness_top37654": 0.018870884196941672,
+    "h33_binary": 0.15188024404740338,
+    "stop_threshold": 0.70,
+    "label": "REGISTRY-MEASUREMENT"
+  },
+  "rank_correlation_vs_registry": null,
+  "raster_sha256": null,
+  "validator_output": "No candidate raster generated. Preflight re-run: STOP_UNIVERSAL_DUPLICATE, exit 2 (reproduced).",
+  "submission_name": null,
+  "submission_note": null,
+  "verdict": "negative",
+  "authorized_to_submit": false,
+  "weekly_slots_used": 0,
+  "experiments_run": 0
+}
