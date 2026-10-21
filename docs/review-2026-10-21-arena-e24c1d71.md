@@ -76,3 +76,11 @@ The user requested a leakage canary for every feature and a spatially blocked ho
 ## Review run card
 
 See [`evidence/arena_e24c1d71_run_card.json`](evidence/arena_e24c1d71_run_card.json) for the single machine-readable run card. It records a negative result, no new raster, no holdout value, the measured universal overlap blocker, local format-audit scope, and the absence of selector/portal approval.
+
+## PR and mainline reconciliation
+
+This review and its preflight were run against the session checkout based on `40075f6f73db9f2844c478da5670a193713e6e23`. After committing and pushing the review, `origin/main` advanced to `b0b26754d354dae6e797ea7d57f3b7c4a40fcdcb` and now includes PR #100. That mainline adds H85 and an amended shared duplicate-policy helper (`representation_class_v2` / `binding_duplicate_decision`); it also retains a candidate-independent `scripts/preflight_registry.py` and committed receipt with `STOP_UNIVERSAL_DUPLICATE`.
+
+The upstream status needs explicit reconciliation before this PR is merged: main's README labels H85 “OK TO SUBMIT,” while the checked-in release receipt still reports zero repository-authorized files, H85's run card records `approved_for_weekly_slot: false`, and the receipt's operator-decision scope says the complete 836-entry registry was not certified. Those are distinct scopes/decisions, not a result this review can reconcile by inference. This E24 evidence does not authorize H85 or alter the upstream policy.
+
+PR #106 is open, but GitHub reports it non-mergeable. A local merge of `origin/main` produced conflicts in the README, shared page builder, tests, and generated landing pages; it was aborted without resolving by overwriting either side. `gh pr merge 106 --merge` was attempted and GitHub refused because a clean merge commit cannot be created. The next step is a deliberate owner review of the mainline policy/status, then regenerate the entry pages and resolve the conflicts; do not force-merge or silently revert the upstream work.
