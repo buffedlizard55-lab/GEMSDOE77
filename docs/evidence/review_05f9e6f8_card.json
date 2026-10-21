@@ -1,0 +1,36 @@
+{
+  "schema": "gems-parallel-review-card-v1",
+  "branch": "arena/05f9e6f8-gemsdoe77",
+  "hypothesis": "No geological experiment: candidate-independent registry rejection and release-adapter review.",
+  "mechanism": "Dense positive registry support covers every allowed pixel, forcing literal forward overlap to 1 for any nonempty candidate.",
+  "named_non_fault_mimicking_process": "Not tested; intrusive lithologic contacts and flight-line seams could mimic the first proposed magnetic phase signature.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "value": null,
+    "ci_95": null,
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "status": "Not run; preflight stopped before feature generation."
+  },
+  "correlation_overlap_vs_registry": {
+    "rank_correlation": null,
+    "surface_and_final_nonempty_support_forward_overlap_proved": 1.0,
+    "duplicate_stop": true,
+    "registry_complete": false,
+    "scope": "One hash-pinned universal rejection witness, not a full registry scan. No candidate placed."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NOT_RUN_NO_NEW_RASTER",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "existing_release_authorized_files": 0
+  },
+  "submission_name": null,
+  "submission_note": "No new TIFF: mandatory duplicate-stop. Existing research downloads are NOT OK TO SUBMIT.",
+  "experiments_run": 0,
+  "weekly_slots_used": 0,
+  "ok_to_submit": false,
+  "verdict": "negative"
+}

@@ -8,7 +8,28 @@ summarised with provenance at the end rather than re-transcribed hash-by-hash
 `docs/score-ledger.csv`; later entries below are OWNER-REPORT as supplied in
 the 2026-10-21 brief — no organizer receipts).*
 
-## 2026-10-21 H79 execution addendum (current session)
+## Current 05f9e6f8 review addendum — 2026-10-21
+
+The full standing request is retained in README. This invocation again assigns no identifiable method paragraph. Fresh hash-pinned preflight stops all nonempty candidates under the literal registry overlap rule. No new geological experiment, TIFF or slot was used. The new review fixes contradictory recorded measurement handling in the release adapter; it does not relax the shared protocol. See `docs/review-2026-10-21-05f9e6f8.md`. GitHub Pages exists in legacy mode; switching to Actions publishing was denied by the integration's permissions.
+
+## 2026-10-21 review addendum — arena/60aafd45-gemsdoe77
+
+No new method paragraph is assigned in this invocation. The freshly rechecked dense registry witness blocks every nonempty candidate under the binding literal rule. No new TIFF, model experiment or slot is authorized by this review. See `docs/review-2026-10-21-60aafd45.md` and the corrected H33 analysis. Superseded earlier leaderboard observations below are historical, not current submission-page receipts.
+
+## Current review addendum — 2026-10-21
+
+The latest readiness review (`docs/preflight-review.md`) generated no new TIFF and ran no geological experiment.
+A freshly pinned universal witness (`evidence/registry_preflight.json`) blocks every nonempty allowed candidate
+under the mandatory literal overlap rule. H82 is the latest documented lane (`evidence/h82_run_card.json`):
+negative HOLDOUT-DTI 0.012184, duplicate overlap 1.000, incomplete two-witness scan, and three experiments
+used; do not resume it. H81 is also closed after 69 duplicate firings and an incomplete 832-raster scan.
+The site shows H82 as the newest inspection-only download and H80 as the evidence-complete featured negative;
+neither presentation is a promotion. Run the pinned preflight before future authorized research, preserve closed
+lanes, and do not treat older execution addenda as a new lane assignment. No TIF may be uploaded and no
+selector-approved slot exists. The original complete user request remains embedded in README.md. This addendum
+does not relax its gates or authorize a slot.
+
+## Historical 2026-10-21 H79 execution addendum
 
 This session's registered lane is **H79-ORIENT**, not the historical contact-physics
 lane mentioned in older repository notes. The operative preregistration is
@@ -128,3 +149,10 @@ listed sites ≤0.1461 down to 0.0000. GEMSDOE77 (this repo): no organizer score
 verdict negative (see README).
 
 *Post-merge namespacing note (PR #5): this lane's files that collided with concurrently merged lanes were renamed — `registry/preregistration_contactphys.json`, `evidence/run_card_contactphys.json`, `docs/contactphys*.html`, `scripts/build_site_contactphys.py`. Frozen receipts (`registry/preregistration_amendment_exp3.json`, `evidence/*.json`) retain their original internal path strings as historical record.*
+
+## H82-TEXTURE historical execution addendum
+One narrow texture-boundary feasibility experiment was completed before the parallel universal-preflight review merged. This is distinct from H82 chemistry-concordance. Results: `evidence/h82_texture/run_card.json`; review: `docs/review-h82-texture.md`. Negative, closed, no dots/slot, inspection-only TIFF. Preflight now blocks any new experiment; this addendum grants no exception.
+
+## H83-NETSIB addendum (2026-10-21, branch arena/e8283608-gemsdoe77)
+The standing request and parallel-run protocol above were re-read and applied unchanged. Lane H83-NETSIB (visible fault-network sibling/gap/continuation geometry, learned by synthetic re-withholding) used 3 experiments: Exp1 canaries and surface scan PASS; Exp2 HOLDOUT-DTI 0.1538 (s20) / 0.1637 (s30), above the preregistered 0.152718 incumbent by point estimate only and below the concurrently merged H77-VDS (0.1608/0.1716); Exp3 built a validator-PASS unique TIFF. The final-dot duplicate rule fired against 16 wide dot rasters, so the verdict is **negative / NOT OK TO SUBMIT**. Evidence: `evidence/h83netsib_run_card.json`, `docs/irregularities.md` IR-H83N-01..07. Next session: preregister `S_netsib_only` fresh (it scored higher than the candidate), and the owner should decide whether the 70% dot rule should compare only rasters with a similar dot budget.
+

@@ -1,0 +1,47 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>H82 executive summary — how a submission is made · GEMSDOE77</title>
+<link rel="stylesheet" href="assets/lia.css"></head><body>
+<header><div class="wrap"><span class="brand">GEMSDOE77 · DOE GEMS Prize</span><a href="index.html">Start here</a> <a href="h82tcstep.html">H82 · TCSTEP (negative)</a> <a href="h82tcstep-executive-summary.html" class=here>H82 guide</a>
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE77">GitHub</a></div></header>
+<main><div class="wrap"><h1>Executive summary: exactly how to make a submission</h1>
+<p class="verdict"><b>STATUS RIGHT NOW: DO NOT SUBMIT ANYTHING FROM THIS REPOSITORY.</b>
+The newest file (H82, below) is a validated but <b>negative</b> research result: it is safe to
+download for inspection and it must <b>not</b> be uploaded. As of 2026-10-21 the repository
+authorizes <b>0 files</b> for submission (<a href="data/submission-authorization.json">machine-readable gate</a>).
+The steps below are the exact mechanics to use <i>only</i> for a future file that this page
+explicitly marks “OK TO SUBMIT” after a human selector decision.</p>
+
+<h2>The one-minute version</h2>
+<ol>
+<li>Confirm this page (or <a href="index.html">Start here</a>) shows <b>OK TO SUBMIT: YES</b> for one named file. Today it does not — stop here.</li>
+<li>Download that exact <code>.tif</code> (or its single-TIFF <code>.zip</code>) and verify its SHA-256 matches the value printed next to it.</li>
+<li>On DrivenData: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/create/">New submission</a> → choose the file → paste the Note text exactly as published → submit once. Respect the weekly cap shown on the submission page (three feedback slots/week per <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">the rules PDF</a>).</li>
+<li>Record the organizer score + submission ID back into the repo (label it <b>ORGANIZER-CONFIRMED</b> with the receipt). Never edit a local HOLDOUT-DTI into that field.</li>
+</ol>
+
+<h2>What the file must be (and what H82 already satisfies locally)</h2>
+<ul>
+<li>Single-band GeoTIFF (<code>.tif</code>) or a <code>.zip</code> containing exactly one GeoTIFF.</li>
+<li>CRS EPSG:32611, shape 3730 × 3292, geotransform identical to <code>sample_submission.tif</code> (100 m pixels, origin 243350 / 4508550).</li>
+<li>Float32 values in [0, 1] everywhere; no NaN/Inf. (H82: values are exactly {0.0, 1.0}, nodata = none, 0 non-finite cells — so the earlier portal error “Predicted values must be in range [0, 1]” is not reproducible from value range on this file. Local PASS is still not organizer acceptance.)</li>
+<li>A unique submission name and a Note of at most 140 characters (H82's are published on the <a href="h82tcstep.html">H82 page</a> for inspection only).</li>
+</ul>
+
+<h2>Why nothing is submittable yet</h2>
+<p>Three independent fail-closed gates must all pass:</p>
+<ol>
+<li><b>Holdout gate:</b> a candidate must beat the accepted repository best on the shared
+hide-and-recover evaluator. H82 scored HOLDOUT-DTI 0.0688/0.0700 vs the 0.152718 incumbent → <b>FAIL</b>.</li>
+<li><b>Uniqueness gate:</b> rank-correlation ≤ 0.90 and ≤ 70% of dots within 3 px of any registry
+raster. A dense registry witness covers 100% of the allowed footprint, so the literal rule fails
+for <i>every</i> non-empty candidate until the protocol owners resolve the dense-support
+definition → <b>FAIL by construction</b> (within the 36 sparse local rasters actually checked,
+H82's worst overlap is 0.391 and worst surface |ρ| is 0.073).</li>
+<li><b>Selector gate:</b> promotion to a weekly slot is a separate human decision. → <b>Not approved.</b></li>
+</ol>
+<p>Full evidence: <a href="evidence/run_card_h82.json">H82 run card</a> ·
+<a href="evidence/h82_e2_holdout.json">holdout</a> · <a href="evidence/h82_e1_canary_surface.json">canaries</a> ·
+<a href="h82tcstep.html">lane page</a>. Every score on this site is labelled
+<b>HOLDOUT-DTI</b> (local estimate with evaluator version, withheld-positive count, 95% CI) or
+<b>ORGANIZER-CONFIRMED</b> (from a submission-page receipt). There are no projections dressed as scores.</p>
+</div></main></body></html>

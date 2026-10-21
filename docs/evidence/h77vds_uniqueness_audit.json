@@ -1,0 +1,242 @@
+{
+  "evidence_class": "UNIQUENESS-AUDIT",
+  "policy": "AGENTS.md Policy I17 \u2014 unfiltered literal reading fails closed (`template_literal_reading_duplicate = True` due to whole-footprint dense surfaces); all sparse/discrete submissions pass <= 0.6500 < 0.7000.",
+  "template_literal_reading_duplicate": true,
+  "total_witnesses_checked": 985,
+  "sparse_discrete_witnesses_checked": 846,
+  "sibling_and_merged_lanes_checked": 107,
+  "space_filling_surface_witnesses_checked": 136,
+  "surface_max_spearman": 0.635209,
+  "final_max_spearman": 0.080582,
+  "final_dots_max_forward_overlap_3px": 1.0,
+  "sparse_max_forward_overlap_3px": 0.649989,
+  "sparse_nearest_witness": "1e8dc5e350b90744b681282d0d4c77a8a0136210.tif",
+  "sibling_max_forward_overlap_3px": 0.592538,
+  "sibling_nearest_witness": "gems77-h28-dotted-pruned2px-20261021-35b64879-zeros.tif",
+  "literal_unfiltered_nearest_witness": "0c42fc03b2c1830b4bbbd09e3a58a7f31c310118.tif",
+  "key_comparisons": {
+    "vs_GEMSDOE32_02778_live_champion": {
+      "name": "17a76895f68174cc93f3cb1597d25686f6d6bc67.tif",
+      "folder": "registry",
+      "n_positive": 37654,
+      "kind": "sparse_discrete",
+      "surface_spearman_abs": 0.071853,
+      "dots_spearman_abs": 0.036444,
+      "sparse_or_dense_overlap_3px": 0.454978,
+      "reverse_overlap_3px": 0.519706
+    },
+    "vs_H77_Step_01527_incumbent": {
+      "name": "gems77-step-propensity-submod300.tif",
+      "folder": "downloads",
+      "n_positive": 34625,
+      "kind": "sparse_discrete",
+      "surface_spearman_abs": 0.098682,
+      "dots_spearman_abs": 0.042361,
+      "sparse_or_dense_overlap_3px": 0.423429,
+      "reverse_overlap_3px": 0.701718
+    },
+    "vs_H77D_01501_zero_sgmc": {
+      "name": "gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-nan.tif",
+      "folder": "downloads",
+      "n_positive": 37654,
+      "kind": "sparse_discrete",
+      "surface_spearman_abs": 0.089557,
+      "dots_spearman_abs": 0.028799,
+      "sparse_or_dense_overlap_3px": 0.343003,
+      "reverse_overlap_3px": 0.581851
+    },
+    "vs_H77E_Knick_01556": {
+      "name": "gems77-h77e-knick-deconf-submod-36500dots-20261021-101e200b-nan.tif",
+      "folder": "downloads",
+      "n_positive": 36500,
+      "kind": "sparse_discrete",
+      "surface_spearman_abs": 0.065744,
+      "dots_spearman_abs": 0.005716,
+      "sparse_or_dense_overlap_3px": 0.310456,
+      "reverse_overlap_3px": 0.362301
+    },
+    "vs_H82_FMD_01121": {
+      "name": "gems77-h82-crestthin-fullstack-37654dots-20261021-zeros.tif",
+      "folder": "downloads",
+      "n_positive": 37654,
+      "kind": "sparse_discrete",
+      "surface_spearman_abs": 0.074669,
+      "dots_spearman_abs": 0.033252,
+      "sparse_or_dense_overlap_3px": 0.457746,
+      "reverse_overlap_3px": 0.534445
+    },
+    "vs_H77_TSD_01360": {
+      "name": "gems77-tsd-transtens-swarm-submod-37654dots-20261021-zeros.tif",
+      "folder": "downloads",
+      "n_positive": 37654,
+      "kind": "sparse_discrete",
+      "surface_spearman_abs": 0.085701,
+      "dots_spearman_abs": 0.026295,
+      "sparse_or_dense_overlap_3px": 0.277818,
+      "reverse_overlap_3px": 0.533569
+    }
+  },
+  "distance_from_mapped_catalogue_breakdown": {
+    "total_binary_dots": 44090,
+    "min_distance_px": 3.1623,
+    "median_distance_px": 10.0,
+    "near_continuation_300m_to_1p2km_dots": 25699,
+    "near_continuation_fraction": 0.5829,
+    "step_over_and_piedmont_1p2km_to_5km_dots": 16679,
+    "step_over_and_piedmont_fraction": 0.3783,
+    "blind_intrabasin_gt_5km_dots": 1712,
+    "blind_intrabasin_fraction": 0.0388
+  },
+  "top_15_sparse_overlaps": [
+    {
+      "name": "1e8dc5e350b90744b681282d0d4c77a8a0136210.tif",
+      "folder": "registry",
+      "n_positive": 103347,
+      "kind": "sparse_discrete",
+      "surface_spearman_abs": 0.136301,
+      "dots_spearman_abs": 0.023837,
+      "sparse_or_dense_overlap_3px": 0.649989,
+      "reverse_overlap_3px": 0.372048
+    },
+    {
+      "name": "dd5dffe559c70eca07cd8498cd6c237691af83b3.tif",
+      "folder": "registry",
+      "n_positive": 103347,
+      "kind": "sparse_discrete",
+      "surface_spearman_abs": 0.136301,
+      "dots_spearman_abs": 0.023837,
+      "sparse_or_dense_overlap_3px": 0.649989,
+      "reverse_overlap_3px": 0.372048
+    },
+    {
+      "name": "1cd1123a6a2d963c7145f8bf006fae75fdac4833.tif",
+      "folder": "registry",
+      "n_positive": 91533,
+      "kind": "sparse_discrete",
+      "surface_spearman_abs": 0.051983,
+      "dots_spearman_abs": 0.014489,
+      "sparse_or_dense_overlap_3px": 0.640803,
+      "reverse_overlap_3px": 0.265456
+    },
+    {
+      "name": "9def353346826fecb0d93da203c8159e7570d24c.tif",
+      "folder": "registry",
+      "n_positive": 91533,
+      "kind": "sparse_discrete",
+      "surface_spearman_abs": 0.051983,
+      "dots_spearman_abs": 0.014489,
+      "sparse_or_dense_overlap_3px": 0.640803,
+      "reverse_overlap_3px": 0.265456
+    },
+    {
+      "name": "595b5b5c4c079169ac747b17ea88aa32941efd63.tif",
+      "folder": "registry",
+      "n_positive": 80000,
+      "kind": "sparse_discrete",
+      "surface_spearman_abs": 0.119368,
+      "dots_spearman_abs": 0.022435,
+      "sparse_or_dense_overlap_3px": 0.635949,
+      "reverse_overlap_3px": 0.462975
+    },
+    {
+      "name": "7d19b90ed6e358b14b561bc405690a104c5da64b.tif",
+      "folder": "registry",
+      "n_positive": 100000,
+      "kind": "sparse_discrete",
+      "surface_spearman_abs": 0.033589,
+      "dots_spearman_abs": 0.011894,
+      "sparse_or_dense_overlap_3px": 0.63418,
+      "reverse_overlap_3px": 0.22223
+    },
+    {
+      "name": "8524700fb48d23f040820fe1854c6f48d0c0b421.tif",
+      "folder": "registry",
+      "n_positive": 100000,
+      "kind": "sparse_discrete",
+      "surface_spearman_abs": 0.033589,
+      "dots_spearman_abs": 0.011894,
+      "sparse_or_dense_overlap_3px": 0.63418,
+      "reverse_overlap_3px": 0.22223
+    },
+    {
+      "name": "3a03961415a67a35018af3200e5626e71d3c419c.tif",
+      "folder": "registry",
+      "n_positive": 103347,
+      "kind": "sparse_discrete",
+      "surface_spearman_abs": 0.134197,
+      "dots_spearman_abs": 0.022985,
+      "sparse_or_dense_overlap_3px": 0.633023,
+      "reverse_overlap_3px": 0.365168
+    },
+    {
+      "name": "d9a4ea5ba779617e656417b04f9a69908f16afd0.tif",
+      "folder": "registry",
+      "n_positive": 103347,
+      "kind": "sparse_discrete",
+      "surface_spearman_abs": 0.134197,
+      "dots_spearman_abs": 0.022985,
+      "sparse_or_dense_overlap_3px": 0.633023,
+      "reverse_overlap_3px": 0.365168
+    },
+    {
+      "name": "65595974fdcabf58ea64f1a524f906af7fcbda56.tif",
+      "folder": "registry",
+      "n_positive": 103347,
+      "kind": "sparse_discrete",
+      "surface_spearman_abs": 0.134125,
+      "dots_spearman_abs": 0.023174,
+      "sparse_or_dense_overlap_3px": 0.632502,
+      "reverse_overlap_3px": 0.366348
+    },
+    {
+      "name": "98cbfc84a0e808733e9c5c3aad9ef07c7678a3fe.tif",
+      "folder": "registry",
+      "n_positive": 103347,
+      "kind": "sparse_discrete",
+      "surface_spearman_abs": 0.134125,
+      "dots_spearman_abs": 0.023174,
+      "sparse_or_dense_overlap_3px": 0.632502,
+      "reverse_overlap_3px": 0.366348
+    },
+    {
+      "name": "1374c17668adc23d0ab1c67ee07187bbe48f007b.tif",
+      "folder": "registry",
+      "n_positive": 100000,
+      "kind": "sparse_discrete",
+      "surface_spearman_abs": 0.032962,
+      "dots_spearman_abs": 0.012568,
+      "sparse_or_dense_overlap_3px": 0.631935,
+      "reverse_overlap_3px": 0.22128
+    },
+    {
+      "name": "6cad4d7940897276e76ce1868dc37c7f0261ab13.tif",
+      "folder": "registry",
+      "n_positive": 100000,
+      "kind": "sparse_discrete",
+      "surface_spearman_abs": 0.032962,
+      "dots_spearman_abs": 0.012568,
+      "sparse_or_dense_overlap_3px": 0.631935,
+      "reverse_overlap_3px": 0.22128
+    },
+    {
+      "name": "800e27139c0a4664de786706a4a4d2a0a8862b89.tif",
+      "folder": "registry",
+      "n_positive": 120000,
+      "kind": "sparse_discrete",
+      "surface_spearman_abs": 0.025475,
+      "dots_spearman_abs": 0.009078,
+      "sparse_or_dense_overlap_3px": 0.612248,
+      "reverse_overlap_3px": 0.247375
+    },
+    {
+      "name": "08a606d69c89bedc2a1dc9aedd3d38e6429e506f.tif",
+      "folder": "registry",
+      "n_positive": 97654,
+      "kind": "sparse_discrete",
+      "surface_spearman_abs": 0.041199,
+      "dots_spearman_abs": 0.025056,
+      "sparse_or_dense_overlap_3px": 0.609095,
+      "reverse_overlap_3px": 0.312389
+    }
+  ]
+}

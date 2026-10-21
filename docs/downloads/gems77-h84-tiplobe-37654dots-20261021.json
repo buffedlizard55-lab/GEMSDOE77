@@ -1,0 +1,16 @@
+{
+  "name": "gems77-h84-tiplobe-37654dots-20261021-b57c52b3-zeros",
+  "note": "H84 tip-lobe 37654 dots; HOLDOUT-DTI 0.1209 [0.1068,0.1354] s30 vs random +0.073; tip AUC 0.79; NOT FOR UPLOAD without selector",
+  "tif": "downloads/gems77-h84-tiplobe-37654dots-20261021-b57c52b3-zeros.tif",
+  "zip": "downloads/gems77-h84-tiplobe-37654dots-20261021-b57c52b3-zeros.zip",
+  "sha256": "2bff4b55cabe5a4eb7ab1aeff6b21e407a87a576d1d0c3c5f20ed3ddb1c279ba",
+  "holdout_dti": 0.12089361808734306,
+  "ci95": [
+    0.1067926809908466,
+    0.13535731296973777
+  ],
+  "withheld": 11342,
+  "verdict": "negative",
+  "ok_to_download": "YES for inspection",
+  "ok_to_submit": "NO - NOT OK TO SUBMIT (selector not approved, duplicate overlap, literal dense gate fail)"
+}

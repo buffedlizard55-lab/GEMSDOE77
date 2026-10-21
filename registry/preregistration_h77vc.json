@@ -1,0 +1,121 @@
+{
+  "schema_version": "gems-preregistration-v1",
+  "lane_id": "H77V-GEOTHERMAL-VENT-SUBMOD",
+  "branch": "arena/969c315b-gemsdoe77",
+  "preregistered_utc": "2026-10-21T15:46:00Z",
+  "protocol_rules": {
+    "max_experiments": 3,
+    "max_wall_clock_hours": 2.0,
+    "leakage_canary_auc_ceiling": 0.90,
+    "surface_spearman_abs_ceiling": 0.90,
+    "dot_spearman_abs_ceiling": 0.90,
+    "dot_3px_forward_overlap_ceiling": 0.70,
+    "holdout_evaluator": "vendor/gems57/evaluate_holdout.py (gems57-pooled-hide-v2)",
+    "submission_writer": "vendor/gems57/submission_writer.py",
+    "weekly_submission_slots_touched": 0
+  },
+  "candidate_hypotheses": [
+    {
+      "rank": 1,
+      "id": "H77V-1",
+      "name": "Strike-Steered Hydrothermal Upflow Plume x Smectite Clay-Cap Lateral Breach x Vent-Bridged Step-Over Mechanics",
+      "selected_for_execution": true,
+      "layers": [
+        "training_features.tif:cond_surf (Band 17)",
+        "training_features.tif:rtp (Band 2)",
+        "training_features.tif:iso_grav_anom (Band 13)",
+        "training_features.tif:depth_to_base_surf (Band 15)",
+        "training_features.tif:geod_shearrate (Band 7)",
+        "training_features.tif:geod_dilaterate (Band 8)",
+        "training_features.tif:deq_n100a15 (Band 10)",
+        "training_features.tif:ieq_n100a15 (Band 16)",
+        "training_features.tif:det_elev (Band 12)",
+        "geodawn_rad_u8.tif (K, Th, U)",
+        "geodawn_extensions_u8.tif (TMI_up150)",
+        "2m_temperature_probe_INGENIOUS_regional_data.zip (DOE GDR 1391)",
+        "paleo_geothermal_regional.zip (DOE GDR 1391)",
+        "gdr_wellspring_in_footprint.csv (DOE GDR 1391)",
+        "gdr_volcanic_vents_in_footprint.csv (DOE GDR 1391)",
+        "lidar_scarp_features_u8.tif (USGS 3DEP 1m)",
+        "topo_10m_derived_100m_u8.tif & dem10_chi_100m_*.tif (USGS 3DEP 10m)"
+      ],
+      "physical_signature": "Upward-convex Hessian ridge and lateral gradient of log(1+cond_surf) co-located with short-wavelength RTP magnetite-destruction trough (G15(rtp)-G2(rtp)) and K/Th potassic alteration, coupled with strike-steered thermal/geochemical advection and Leave-Bucket-of-Components-Out (V-LBCO) vent-bridged relay corridors.",
+      "why_missed_by_catalogue": "75% of Great Basin geothermal systems are blind (Faulds & Hinz 2015), localized in concealed intra-basin step-overs and piedmont relay ramps lacking continuous subaerial scarps.",
+      "difference_from_existing_lanes": "Prior lanes used either topographic step purity + Radon worms (H77-Step) or isotropic GDR Gaussians (H77D) without clay-cap Hessian ridges, RTP magnetite-destruction troughs, strike-steered thermal advection, vent-bridged V-LBCO relays, or uniqueness-constrained 300m submodular placement.",
+      "expected_holdout_dti_gain": "+0.002 to +0.006 over repo holdout best (0.1527)",
+      "implementation_cost": "Low-Medium (~45 min, <800 MB RAM)",
+      "external_data_obtainable_in_sandbox": true
+    },
+    {
+      "rank": 2,
+      "id": "H77V-2",
+      "name": "Paleogeothermal Sinter/Travertine Piezometric Elevation-Band & Range-Front Spillover Predictor",
+      "selected_for_execution": true,
+      "layers": [
+        "training_features.tif:det_elev (Band 12)",
+        "training_features.tif:iso_grav_anom_hg (Band 18)",
+        "topo_10m_derived_100m_u8.tif:dem_mean (Band 9)",
+        "paleo_geothermal_regional.zip (DOE GDR 1391)"
+      ],
+      "physical_signature": "Piezometric elevation-band window exp(-(det_elev - 35m)^2/(2*55m)^2) x cross-strike gravity horizontal gradient x sinter/travertine/tufa proximity.",
+      "why_missed_by_catalogue": "Silica sinter and carbonate travertine cement low-relief piedmont fault traces where erosion removed vertical scarp offset.",
+      "difference_from_existing_lanes": "Models the physical piezometric water-table spillover band rather than a pure Euclidean point halo.",
+      "expected_holdout_dti_gain": "+0.001 to +0.003 on piedmont fault segments",
+      "implementation_cost": "Low (integrated into H77V block)",
+      "external_data_obtainable_in_sandbox": true
+    },
+    {
+      "rank": 3,
+      "id": "H77V-3",
+      "name": "Fluid-Driven Microseismic Swarm Clustering Ratio x Positive Crustal Dilatation",
+      "selected_for_execution": true,
+      "layers": [
+        "training_features.tif:deq_n100a15 (Band 10)",
+        "training_features.tif:ieq_n100a15 (Band 16)",
+        "training_features.tif:geod_dilaterate (Band 8)",
+        "training_features.tif:geod_shearrate (Band 7)",
+        "training_features.tif:cond_surf (Band 17)"
+      ],
+      "physical_signature": "Swarm clustering differential z(ieq_n100a15) - z(deq_n100a15) gated by positive geodetic dilatation and MT surface conductance.",
+      "why_missed_by_catalogue": "Fluid-overpressured step-over fault meshes release strain via microseismic swarm creep rather than M>6.5 scarp-forming ruptures.",
+      "difference_from_existing_lanes": "Uses the full-vs-declustered seismic swarm clustering differential gated by positive dilatation.",
+      "expected_holdout_dti_gain": "+0.001 to +0.002 in transtensional step-overs",
+      "implementation_cost": "Low (integrated into H77V block)",
+      "external_data_obtainable_in_sandbox": true
+    },
+    {
+      "rank": 4,
+      "id": "H77V-4",
+      "name": "Multi-Depth 3D Magnetotelluric Crustal Conduit Vertical Alignment (2-20 km vs 0-2 km)",
+      "selected_for_execution": false,
+      "layers": [
+        "USGS 3D Great Basin MT Conductance Slices (2-5 km, 5-10 km, 10-20 km)",
+        "training_features.tif:cond_surf (Band 17)"
+      ],
+      "physical_signature": "Cross-depth coherence between mid-crustal conductive roots (5-20 km) and shallow clay caps (0-2 km).",
+      "why_missed_by_catalogue": "Directly images deep crustal hydrothermal roots beneath unbroken basin fill.",
+      "difference_from_existing_lanes": "Shipped training_features.tif contains only shallow surface conductance.",
+      "expected_holdout_dti_gain": "+0.003 (requires external 3D MT slices)",
+      "implementation_cost": "High / Blocked by sandbox firewall",
+      "official_free_source": "USGS Data Release by Peacock et al. (2020), DOI 10.5066/P9TWT2LU (sciencebase.gov, linked from DOE GDR 1391)",
+      "external_data_obtainable_in_sandbox": false
+    },
+    {
+      "rank": 5,
+      "id": "H77V-5",
+      "name": "Nighttime ASTER/Landsat-8 Thermal Infrared Radiative Flux & SWIR Argillic Alteration Lineaments",
+      "selected_for_execution": false,
+      "layers": [
+        "Nighttime winter ASTER AST_08 / Landsat-8 TIRS Land Surface Temperature",
+        "ASTER SWIR Band 4/6/8 clay/sulfate absorption depth"
+      ],
+      "physical_signature": "100m radiative heat-flux ridges and argillic mineral alteration lineaments.",
+      "why_missed_by_catalogue": "Maps active steaming ground and argillic alteration along eroded piedmont traces.",
+      "difference_from_existing_lanes": "No spaceborne optical/SWIR/TIR channels are in training_features.tif or data/external/.",
+      "expected_holdout_dti_gain": "+0.003 (requires mosaicked satellite scenes)",
+      "implementation_cost": "Very High / Blocked by sandbox firewall",
+      "official_free_source": "NASA/USGS LP DAAC & EarthExplorer (https://earthexplorer.usgs.gov/)",
+      "external_data_obtainable_in_sandbox": false
+    }
+  ]
+}

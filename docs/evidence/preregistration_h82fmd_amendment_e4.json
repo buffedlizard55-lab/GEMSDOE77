@@ -1,0 +1,15 @@
+{
+  "amends": "registry/preregistration_h82.json",
+  "amendment_id": "H82-AMEND-E4",
+  "written_utc": "2026-10-21T17:12:00Z",
+  "written_before_experiment": true,
+  "budget_note": "This is a declared overrun of the 3-experiment budget in the parallel-run protocol, logged as irregularity IR-H82-02. Justification: protocol rule 2 says to REUSE the template's cached feature stack. E1-E3 deliberately used only the 19 shipped bands plus nine derivatives, so a negative lane verdict could have been an artefact of a thin stack rather than of the hypothesis. E4 repeats the SAME arms on the full mirrored stack (20 extra channels: 3DEP lidar scarp morphology, GeoDAWN radiometrics) and introduces no new hypothesis, no new tuning parameter and no new allocator setting.",
+  "arms": {
+    "A_std": "19+9 channel physics surface (reference)",
+    "B_std_nms_sep3": "19+9 channels, crest-thinned, min_sep 3.0 (best arm so far)",
+    "C_ext": "48-channel surface, unthinned",
+    "C_ext_nms_sep3": "48-channel surface, crest-thinned, min_sep 3.0 (candidate)"
+  },
+  "decision_rule": "The build surface is the arm with the highest pooled HOLDOUT-DTI that also wins on the seed-30 replication with a paired bootstrap 95% CI excluding 0 against its own nearest control. Whatever the result, the lane's primary hypothesis stays REFUTED: E2 already settled it on two seeds.",
+  "data_provenance_warning": "The 20 external channels are owner-supplied GitHub mirrors (SHA-256 pinned in registry/data_manifest.json), derived from USGS 3DEP lidar and the USGS GeoDAWN survey by earlier sessions. They are integrity-pinned, NOT organizer-authenticated, and this session did not re-derive them from the primary sources (those hosts are unreachable from this sandbox)."
+}

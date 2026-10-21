@@ -1,0 +1,15 @@
+{
+  "registered_utc": "2026-10-21",
+  "lane": "H82 local ternary radiometric rank-mixture entropy deficit",
+  "assignment_irregularity": "No identifiable single-method paragraph in supplied brief; this is a narrow self-declared lane, not an externally assigned lane.",
+  "hypotheses": "research/h82_hypotheses.md",
+  "inputs": ["SHA-pinned ext_geodawn_rad_u8 (K/Th/U only)", "bridge existing_faults (split/mask only)", "bridge sample_submission (grid/footprint only)"],
+  "formula": "K,Th,U quantized intensities /255; rank-share q=(v+0.02)/(sum(v)+0.06); normalized entropy H=-sum(q log q)/log(3); deficit=max(0,gaussian(H,sigma=2.5px)-H); divide by 99th percentile over valid domain and clip to [0,1]; do not fill invalid radiometric cells from neighbors; keep footprint/valid support and zero exact catalogue pixels only on output.",
+  "quantization_caveat": "Each channel separately quantized: rank-share is NOT elemental chemistry or a physical K/Th/U ratio.",
+  "mimic": "Lithologic contacts, soil provenance/transport and airborne flight-line seams",
+  "experimental_plan": "One frozen static candidate. Single-feature symmetric AUC canaries for K,Th,U,entropy,background entropy,deficit on seed-20 whole-component four-quadrant buffered hide-and-recover. Shared gems57.evaluate_holdout pooled DTI with paired 20km-block 95% CI vs seed-820 permutation of this exact candidate intensity distribution across valid non-catalogue radiometric pixels (spatial-random control). Surface gate against two SHA-pinned witnesses before placement; if duplicate, STOP with no dots and package only that same surface as research-only, not a submission. No tuning or post-outcome alternative.",
+  "parameters": {"epsilon":0.02,"sigma_px":2.5,"normalization_percentile":99,"seed":20,"feature_buffer_px":3,"bootstrap_draws":1000},
+  "protocol": "Literal surface positive-support overlap >0.70 or rank Spearman >0.90 is a duplicate stop; no dot placement after a surface stop. Even after a success, final-dot gate separately required. No selector approval and no weekly slot usage.",
+  "budget": {"max_experiments":3,"max_hours":2,"planned_experiments":1},
+  "current_incumbent": "H77-Step 0.152718 HOLDOUT-DTI gems57-pooled-hide-v2, 11,321 positives, 95% CI [0.131548,0.175185]; prior split may differ from this experiment and cannot be used as paired evidence."
+}
