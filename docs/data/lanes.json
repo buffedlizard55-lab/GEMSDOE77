@@ -7,9 +7,9 @@
    "summary": "lia-executive-summary.html",
    "file": "downloads/gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif",
    "format_valid": true,
-   "protocol_unique": true,
+   "protocol_unique": false,
    "verdict": "negative",
-   "upload": "Safe to upload (portal-valid, unique). Not recommended for a slot; selector: not approved."
+   "upload": "Not OK to submit: format-valid, but literal registry gate failed (35 dense-raster overlap firings); selector: not approved."
   },
   {
    "lane": "Contact-physics + front-base",
@@ -17,9 +17,9 @@
    "summary": "contactphys-executive-summary.html",
    "file": "downloads/gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif",
    "format_valid": true,
-   "protocol_unique": null,
+   "protocol_unique": false,
    "verdict": "negative",
-   "upload": "Selector: not approved (see its run card)."
+   "upload": "Not OK to submit: post-merge literal dense-raster overlap is 0.979; scientific gate failed; selector: not approved."
   },
   {
    "lane": "Selective-U curvature (research TIFF)",
