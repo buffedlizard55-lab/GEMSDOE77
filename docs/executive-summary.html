@@ -17,21 +17,21 @@ applied; the protocol owner must change the shared policy before any raster can 
 authorize an upload; the separate weekly-slot selector has approved none. The independent
 <a href="data/submission-authorization.json">machine-readable authorization receipt</a> combines all required release
 gates and currently says <b>NOT OK TO SUBMIT — 0 authorized files</b>.</p>
-<section class="card dl research"><h2>⬇ Featured research-only file: download for inspection — DO NOT SUBMIT</h2>
-<p class="small muted"><b>H77L: 300 m lagged ThK / LiDAR scarp (RESEARCH ONLY).</b> Featured H77L experiment of this research session: original LiDAR/ThK lagged-flank response, negative result, no reused submission pixels. Other parallel lanes are preserved below.</p>
-<a class="btn" href="downloads/gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY.tif" download>Download .tif (281 KB)</a><a class="btn alt" href="downloads/gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY.zip" download>Same file as one-TIFF .zip</a>
+<section class="card dl "><h2>⬇ Featured research-only file: download for inspection — DO NOT SUBMIT</h2>
+<p class="small muted"><b>AGO-Hybrid35: ML backbone × geophys displacement (37654 dots, overlap 0.65 PASS, holdout 0.103).</b> NEW: Hybrid ML backbone × geophysical selective displacement — 35% of 37654 dots are far-field (&gt;5px from any backbone dot) geophysics maxima filling inter-backbone gaps. Portal-valid (all finite [0,1], zeros outside footprint) — will NOT give the &#x27;Predicted values must be in range [0, 1]&#x27; portal error. Overlap 0.65 vs H19-5 D2.8 backbone (PASSED: &lt;0.70). See ago.html for full hypothesis ranking and validator output. This is a research artifact; no selector has approved a weekly slot.</p>
+<a class="btn" href="downloads/gems77-ago-hybrid35-geophys-37654dots-dc66e42e-zeros.tif" download>Download .tif (137 KB)</a><a class="btn alt" href="downloads/gems77-ago-hybrid35-geophys-37654dots-dc66e42e-zeros.zip" download>Same file as one-TIFF .zip</a>
 <div class="chips"><span class="chip ok">OK to download: YES</span>
 <span class="chip ok">Portal format (local checks): PASS</span>
 <span class="chip bad">Unique, literal rule: FAIL</span>
-<span class="chip warn">Informative reading: NOT ASSESSED</span>
-<span class="chip warn">Matched holdout best: NOT MEASURED</span>
+<span class="chip ok">Informative reading: PASS</span>
+<span class="chip bad">Beat matched holdout best: NO</span>
 <span class="chip warn">Selector: not approved</span></div>
-<p class="verdict"><b>Can I submit it?</b> <b>No. NOT OK TO SUBMIT.</b> Not OK to submit. OK to download for inspection only. Literal registry overlap = 1.0 against a full-support witness; no final dots or weekly slot. Format-valid research TIFF, NOT competition-approved.<br>
-<b>Would the portal accept the format?</b> Unknown. Local read-back PASS: single float32 band, EPSG:32611, 3730×3292, CRS/shape/transform match, no NaN anywhere, range [0.0, 1.0], no nodata tag. This is not a portal acceptance receipt; DO NOT UPLOAD.<br>
-<b>Will it beat 0.2778?</b> Unknown. H77L has 0.0312 HOLDOUT-DTI (gems57-pooled-hide-v2, 41,732 withheld positives, 95% CI 0.0260–0.0369) on an unmatched catalogue holdout, not a public leaderboard result. No organizer score, approved dot placement, or verified H33 file-to-score receipt exists. (See the <a href="h77l.html">lane technical report</a> &amp; <a href="executive-summary.html">submission guide</a>.)</p>
-<p class="small muted">Submission name (for reference) (48 characters)</p><div class="copy"><code>gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY</code><button data-copy="gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY">Copy</button></div>
-<p class="small muted">Note (for reference) (85 characters)</p><div class="copy"><code>H77L displaced ThK / lidar scarp; literal overlap fails; research only; DO NOT SUBMIT</code><button data-copy="H77L displaced ThK / lidar scarp; literal overlap fails; research only; DO NOT SUBMIT">Copy</button></div>
-<p class="small">sha256 of the .tif: <code>9d199f9fad93e234397a7a19a05eabf12fd77285be3007e6afe22d12a36dcbd1</code> · <a href="executive-summary.html">How submission works, step by step →</a></p></section>
+<p class="verdict"><b>Can I submit it?</b> <b>No. NOT OK TO SUBMIT.</b> Portal format PASS — will not trigger &#x27;Predicted values must be in range [0, 1]&#x27; error. All 12,279,160 pixels finite in [0,1], 0 on catalogue, correct CRS/shape/transform. Overlap 0.65 &lt; 0.70 PASSES backbone-specific check, but universal dense witness (1.0 &gt; 0.70) still blocks under Policy I17 (requires owner resolution). No organizer score exists for this file. Download for inspection; selector not approved to spend weekly slot.<br>
+<b>Would the portal accept the format?</b> Unknown. Local format preflight passes. This does not guarantee portal acceptance or approval; see the individual lane receipt before making any decision.<br>
+<b>Will it beat 0.2778?</b> HOLDOUT-DTI 0.103 (quick evaluator) vs D2.8 raw 0.167 on same folds — displacement trades accuracy for novelty. Not a 0.2778-beating claim; no organizer receipt exists. (See the <a href="ago.html">lane technical report</a> &amp; <a href="executive-summary.html">submission guide</a>.)</p>
+<p class="small muted">Submission name (for reference) (46 characters)</p><div class="copy"><code>gems77-ago-hybrid35-geophys-37654dots-dc66e42e</code><button data-copy="gems77-ago-hybrid35-geophys-37654dots-dc66e42e">Copy</button></div>
+<p class="small muted">Note (for reference) (109 characters)</p><div class="copy"><code>AGO hybrid35: ML backbone x geophys selective displacement (35% far-field infill, 37654 dots, 0 on catalogue)</code><button data-copy="AGO hybrid35: ML backbone x geophys selective displacement (35% far-field infill, 37654 dots, 0 on catalogue)">Copy</button></div>
+<p class="small">sha256 of the .tif: <code>fd7c75df77cd653e9fbd97b436bd304e0c1fd6b7283a4f513cdf6a2041136de0</code> · <a href="executive-summary.html">How submission works, step by step →</a></p></section>
 <h2>What the DrivenData submission form asks for</h2>
 <table><tr><th>Field</th><th>What to give it only after clearance</th></tr>
 <tr><td>File to submit</td><td>One <b>cleared</b> single-band float32 GeoTIFF <code>.tif</code> (or a ZIP containing exactly that one GeoTIFF),
