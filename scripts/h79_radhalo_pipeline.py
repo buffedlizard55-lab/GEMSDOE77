@@ -148,10 +148,10 @@ def run_surface() -> None:
     f = features(); can = canaries(f); uq = uniqueness(f["surface"], "surface")
     max_abs_rho = max((abs(r["spearman_full_footprint"]) for r in uq["rows"]
                        if r.get("spearman_full_footprint") is not None), default=0.0)
-    out = {"experiment": "H79-E1", "feature_definition": json.loads((ROOT / "registry/preregistration_h79.json").read_text())["fixed_transform"],
+    out = {"experiment": "H79-E1", "feature_definition": json.loads((ROOT / "registry/preregistration_h79_radhalo.json").read_text())["fixed_transform"],
            "leakage_canary": can, "surface_max_abs_spearman": max_abs_rho,
            "surface_duplicate": max_abs_rho > .90, "registry": uq}
-    _json(ROOT / "evidence/h79_e1_surface.json", out)
+    _json(ROOT / "evidence/h79_radhalo_e1_surface.json", out)
     print(json.dumps({"canary_max": max(v["symmetric_auc"] for v in can.values()),
                       "surface_max_abs_spearman": max_abs_rho,
                       "duplicate": out["surface_duplicate"]}, indent=2))
@@ -170,7 +170,7 @@ def emit(surface: np.ndarray, allowed: np.ndarray, limit=N_DOTS) -> np.ndarray:
 
 
 def run_holdout() -> None:
-    e1 = json.loads((ROOT / "evidence/h79_e1_surface.json").read_text())
+    e1 = json.loads((ROOT / "evidence/h79_radhalo_e1_surface.json").read_text())
     if e1["surface_duplicate"] or any(v["leakage_flag"] for v in e1["leakage_canary"].values()):
         raise SystemExit("E1 gate failed; no holdout")
     f = features(); grid = load_grid(DATA); folds, _ = buffered_component_draw(grid, seed=SEED, hide_frac=.20, buffer_px=3)
@@ -190,13 +190,13 @@ def run_holdout() -> None:
            "evaluator_version": eh.VERSION, "fold_receipts": receipts,
            "summary": summary, "implementation_sha256": eh.implementation_hashes(),
            "current_holdout_best": {"score": .152718, "source": "evidence/h77/run_card.json"}}
-    _json(ROOT / "evidence/h79_e2_holdout.json", out)
+    _json(ROOT / "evidence/h79_radhalo_e2_holdout.json", out)
     print(json.dumps(summary, indent=2))
 
 
 def run_artifact() -> None:
     # E3 always preserves a unique negative-result deliverable if E1 passed; it is not selector approval.
-    e1 = json.loads((ROOT / "evidence/h79_e1_surface.json").read_text())
+    e1 = json.loads((ROOT / "evidence/h79_radhalo_e1_surface.json").read_text())
     if e1["surface_duplicate"]:
         raise SystemExit("surface duplicate: protocol requires stop")
     f = features(); grid = load_grid(DATA)
@@ -206,7 +206,7 @@ def run_artifact() -> None:
         p.unlink(missing_ok=True)
     receipt = write_submission(out, pred, DATA / "sample_submission.tif", grid.footprint,
                                catalogue=grid.catalogue, name=NAME, note=NOTE,
-                               metadata={"lane": "H79", "selector_approved": False})
+                               metadata={"lane": "H79-RH", "selector_approved": False})
     for p in (out, out.with_suffix(".zip"), out.with_suffix(".json")):
         shutil.copy2(p, ROOT / "docs" / "downloads" / p.name)
     print(json.dumps(receipt, indent=2))
@@ -217,7 +217,7 @@ def run_final_uniqueness() -> None:
     p = ROOT / "submissions" / f"{NAME}.tif"
     with rasterio.open(p) as src: arr = src.read(1)
     uq = uniqueness(arr, "final-dots")
-    _json(ROOT / "evidence/h79_e3_uniqueness.json", uq)
+    _json(ROOT / "evidence/h79_radhalo_e3_uniqueness.json", uq)
     print(json.dumps({k: uq[k] for k in ("registry_rasters_checked", "worst_spearman_full_footprint", "worst_dot_overlap", "duplicate_count", "unique", "stop_required")}, indent=2))
 
 

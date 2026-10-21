@@ -1,6 +1,6 @@
 {
   "schema": "gems-parallel-run-card-v1",
-  "lane": "H79 radiometric phase-offset alteration-halo pairing",
+  "lane": "H79-RH radiometric phase-offset alteration-halo pairing",
   "hypothesis": "A concealed permeable fault may place a selectively mobile uranium residual halo 300 m from a K-Th common-mode lithologic edge; lagged pairing may recover the structural center while suppressing coincident lithologic contacts.",
   "mechanism": "Rank-intensity U minus K-Th common mode, smoothed at 150 m; pair a K-Th edge with a selective-U edge shifted 300 m over four normals, and penalize same-pixel selective-U edges.",
   "named_non_fault_process_that_could_mimic_it": "Hillslope transport across a sediment or soil boundary can spatially displace uranium-bearing material without fault permeability.",

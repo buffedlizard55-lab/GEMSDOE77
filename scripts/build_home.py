@@ -22,7 +22,7 @@ PD = "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
 NAV = [("index.html", "Start here"), ("executive-summary.html", "How to submit"),
        ("h77d.html", "H77D (Zero-SGMC)"), ("h77d-executive-summary.html", "H77D guide"),
-       ("h77-step.html", "H77-Step"), ("h79.html", "H79 negative"), ("h78.html", "H78 lane"),
+       ("h77-step.html", "H77-Step"), ("h79.html", "H79-BB negative"), ("h79-radhalo.html", "H79-RH negative"), ("h78.html", "H78 lane"),
        ("lia.html", "LIA lane"), ("contactphys.html", "Contact-physics lane"), ("urank.html", "Selective-U lane"),
        ("lia-analysis.html", "Why 0.2778"), ("lia-sources.html", "Sources")]
 
@@ -106,13 +106,16 @@ def main():
 (irregularity I17). The rule says a file duplicates <i>any</i> registry raster when more than 70% of its dots lie within
 3 px of that raster's dots. Several registry rasters are space-filling: one covers 100% of the allowed pixels. Even random
 dots exceed 0.70 against them, so <b>no non-empty file can pass the literal rule</b>. Only the protocol owner can resolve
-this, with one shared registry policy. Until then, spending a slot is a selector decision outside this repository.</p>"""
+this, with one shared registry policy. Until then, spending a slot is a selector decision outside this repository.
+The machine-readable <a href="data/submission-authorization.json">submission authorization receipt</a> independently
+combines all required release gates and currently reports <b>NOT OK TO SUBMIT — 0 authorized files</b>.</p>"""
     beat_txt = primary.get(
         "beat_02778_summary",
         "Not expected. Its projection is below the 0.2778 file, and its holdout did not beat the champion construction.",
     )
-    dl = f"""<section class="card dl"><h2>⬇ Newest file: download</h2>
+    dl = f"""<section class="card dl"><h2>⬇ Highlighted download (not approved to submit)</h2>
 <p class="small muted"><b>{e(primary["lane"])}.</b> {e(primary.get("why_primary", ""))}</p>
+<p class="small muted"><b>Freshness:</b> H78 is the latest completed experiment in this repository; its result is negative and it is not approved. This H77D file is highlighted for comparison, not because it is the newest experiment.</p>
 <a class="btn" href="{e(primary["file"])}" download>Download .tif ({size_kb:.0f} KB)</a>{zip_btn}
 <div class="chips"><span class="chip ok">OK to download: YES</span>
 <span class="chip {'ok' if primary.get('format_valid') else 'bad'}">Portal format (local checks): {'PASS' if primary.get('format_valid') else 'FAIL'}</span>

@@ -6,7 +6,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def test_h79_negative_artifact_and_site_are_unambiguous():
-    card = json.loads((ROOT / "evidence/h79_run_card.json").read_text())
+    card = json.loads((ROOT / "evidence/h79_radhalo_run_card.json").read_text())
     tif = ROOT / "submissions" / f"{card['submission_name']}.tif"
     assert tif.is_file()
     assert hashlib.sha256(tif.read_bytes()).hexdigest() == card["raster_sha256"]
@@ -20,7 +20,7 @@ def test_h79_negative_artifact_and_site_are_unambiguous():
     assert card["holdout_dti"]["beats_current_best"] is False
     assert card["correlation_overlap_vs_registry"]["duplicate_stop"] is True
     assert card["validator_output"]["all_checks_passed"] is True
-    page = (ROOT / "docs/h79.html").read_text()
+    page = (ROOT / "docs/h79-radhalo.html").read_text()
     assert "OK to download" in page
     assert "NOT OK to submit" in page
     assert card["raster_sha256"] in page

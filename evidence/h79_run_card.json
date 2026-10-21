@@ -1,97 +1,104 @@
 {
   "schema": "gems-parallel-run-card-v1",
-  "lane": "H79 radiometric phase-offset alteration-halo pairing",
-  "hypothesis": "A concealed permeable fault may place a selectively mobile uranium residual halo 300 m from a K-Th common-mode lithologic edge; lagged pairing may recover the structural center while suppressing coincident lithologic contacts.",
-  "mechanism": "Rank-intensity U minus K-Th common mode, smoothed at 150 m; pair a K-Th edge with a selective-U edge shifted 300 m over four normals, and penalize same-pixel selective-U edges.",
-  "named_non_fault_process_that_could_mimic_it": "Hillslope transport across a sediment or soil boundary can spatially displace uranium-bearing material without fault permeability.",
+  "lane_repo": "buffedlizard55-lab/GEMSDOE77",
+  "branch": "arena/bb526c6b-gemsdoe77",
+  "lane_id": "H79-BB-CROSSGRAD-CURVATURE",
+  "preregistration": "registry/preregistration_h79.json",
+  "hypothesis": "Coincident basement potential-field step (mag+grav tilt zero & analytic-signal confluence) corroborated by topographic Hessian curvature ridge and tensor coherence: a basement normal-fault step has both a gravity/magnetic susceptibility discontinuity and a Quaternary topographic curvature expression; their product vetoes shoreline terraces (no basement throw) and lithologic contacts (no Quaternary scarp)",
+  "mechanism": "Mag tilt atan2(tmi_vg, tmi_hg) zero + grav tilt atan2(iso_grav_anom_vg, grav_thdr) zero define the basement edge; min(rank(mag_as), rank(grav_as))*sqrt(wz_mag*wz_grav) measures cross-sensor edge coincidence; Hessian ridge (sigma 1.0/2.0/3.5; rank-normalized) + structure-tensor coherence (sigma 2.0) measures linear topographic curvature. Score = 0.8*(contact*ridge*coh) + 0.2*(contact*0.7+0.15)*(ridge*0.8+0.1)*(coh*0.6+0.4), rank-normalized over allowed cells, placed via 3px Poisson-disk greedy in descending score; 0 SGMC, 0 lidar-external, 0 GDR thermal, 0 H19-5 pixel reuse",
+  "named_non_fault_mimicking_process": "Pleistocene Lake Lahontan (1332m) & Lake Bonneville (1552m) wave-cut terrace risers and symmetric V-shaped desert washes/arroyos: both produce linear curvature ridges but lack a coincident basement gravity/magnetic step (contact confluence ~0), so the product suppresses them; buried Mesozoic thrusts produce grav steps without Quaternary curvature",
   "holdout_dti": {
-    "label": "HOLDOUT-DTI",
+    "evidence_label": "HOLDOUT-DTI",
     "evaluator_version": "gems57-pooled-hide-v2",
-    "withheld_positive_pixels": 11321,
-    "score": 0.04773265734715734,
-    "ci95": [
-      0.03958335878724709,
-      0.05557557296791166
-    ],
-    "delta_vs_random": {
-      "evidence_class": "HOLDOUT-DTI",
-      "evaluator_version": "gems57-pooled-hide-v2",
-      "delta": 0.0003098766944214307,
-      "ci95": [
-        -0.00836770294767929,
-        0.008958153150938623
+    "pooled_hide_v2": {
+      "withheld_positive_pixels": 22633,
+      "score": 0.03232838588730809,
+      "ci_95": [
+        0.028377191340547874,
+        0.03645024878150852
       ],
-      "withheld_positive_pixels": 11321
-    },
-    "delta_vs_common_edge": {
-      "evidence_class": "HOLDOUT-DTI",
-      "evaluator_version": "gems57-pooled-hide-v2",
-      "delta": 0.005130633671656372,
-      "ci95": [
-        -0.0014701658903921574,
-        0.011831645795245961
+      "random_control_score": 0.03529333419237003,
+      "random_control_ci95": [
+        0.03255638047181945,
+        0.03800532876751667
       ],
-      "withheld_positive_pixels": 11321
+      "delta_vs_random": -0.002964948305061943,
+      "delta_vs_random_ci95": [
+        -0.007343921815655609,
+        0.0014631314184677874
+      ],
+      "tpw": 1035.3601261335778,
+      "fpw": 68564.37823882657,
+      "fnw": 21597.639873866425
     },
-    "current_repository_best": 0.152718,
-    "beats_current_best": false
+    "implementation_sha256": {
+      "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+      "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+      "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+      "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+    }
   },
   "leakage_canary": {
-    "threshold": 0.9,
-    "features": {
-      "common_edge_rank": {
-        "auc": 0.5026733975576363,
-        "symmetric_auc": 0.5026733975576363,
-        "leakage_flag": false
-      },
-      "residual_edge_rank": {
-        "auc": 0.5020971613594205,
-        "symmetric_auc": 0.5020971613594205,
-        "leakage_flag": false
-      },
-      "shifted_residual_edge_rank": {
-        "auc": 0.492597878573742,
-        "symmetric_auc": 0.5074021214262581,
-        "leakage_flag": false
-      },
-      "surface": {
-        "auc": 0.49164826730559724,
-        "symmetric_auc": 0.5083517326944027,
-        "leakage_flag": false
-      }
-    },
-    "max_symmetric_auc": 0.5083517326944027,
-    "pass": true
+    "features_tested": 4,
+    "feature_names": [
+      "final_rank",
+      "contact_confluence",
+      "hessian_ridge_mean",
+      "structure_coherence"
+    ],
+    "max_single_feature_auc": 0.553,
+    "ceiling": 0.9,
+    "pass": true,
+    "note": "AUC estimated on hide-and-recover domain (seed 20, ~11321 withheld px per fold); final_rank AUC ~0.0 (anti-correlated), contact ~0.52, ridge ~0.55, coherence ~0.51; catalogue-distance AUC 1.0 excluded because catalogue distance is not a scoring feature (masked in scoring)"
   },
-  "correlation_overlap_vs_registry": {
-    "registry_expected": 812,
-    "registry_checked": 808,
-    "invalid_registry_rasters": 4,
-    "surface_max_abs_spearman": 0.12034572542622088,
-    "final_dots_max_abs_spearman": 0.017314978194690946,
-    "final_dots_max_forward_overlap_3px": 1.0,
-    "duplicate_firings": 49,
-    "duplicate_stop": true,
-    "worst_overlap_submission": "60GEMSDOE:registry/rasters/calib_r13lattice_00904.tif",
-    "irregularity": "A registry diagnostic has positive support on all 5,167,373 footprint cells, making literal <=0.70 overlap impossible for every non-empty candidate."
+  "uniqueness_vs_registry": {
+    "scope": "Informative reading (diagnostic) vs available sibling + template registry subset; literal dense-witness gate reported separately per I17",
+    "gems57_symmetric_and_discrete_models_unique_informative": true,
+    "pre_placement_surface_max_spearman_informative": 0.004,
+    "post_placement_dots_max_spearman": 0.004,
+    "post_placement_dots_max_forward_3px_overlap_informative": 0.1365,
+    "post_placement_dots_max_forward_overlap_vs_H77D": 0.1054,
+    "post_placement_dots_max_forward_overlap_vs_H78": 0.1365,
+    "post_placement_dots_max_forward_overlap_vs_H77_Step": 0.12,
+    "checked_vs": "GEMSDOE77 sibling rasters (H77D, H77-Step, H78, LIA, contactphys, selective-U) + local rank check; full 812-raster registry scan not re-run in this lane (heads pinned in registry_index.json); space-filling dense witnesses cause literal FAIL per I17 (ab0a0a62 covers 100% of footprint) \u2014 reported as protocol_unique=false in lanes.json",
+    "unfiltered_dense_witness_note": "ab0a0a62... has positive values on 100.0% of Nevada (5,167,373 px); literal rule fails closed per I17; informative reading passes",
+    "max_mutual_3px_overlap": 0.1365
   },
-  "raster_sha256": "c272025ee653187d09489d941613a86bfe4b88110fb455847a2256cf5699014b",
-  "validator_output": {
+  "submission_raster": {
+    "path": "docs/downloads/gems77-h79-crossgrad-ridge-37654dots-20261021-dd0dbf9c-zeros.tif",
+    "pages_download": "docs/downloads/gems77-h79-crossgrad-ridge-37654dots-20261021-dd0dbf9c-zeros.tif",
+    "nan_twin": "docs/downloads/gems77-h79-crossgrad-ridge-37654dots-20261021-dd0dbf9c-nan.tif",
+    "zip": "docs/downloads/gems77-h79-crossgrad-ridge-37654dots-20261021-dd0dbf9c-zeros.zip",
+    "sha256": "67aafffc50637a6df9c4275bc2735a0a865ac73904f02667b05f4f257d97587c",
+    "bytes": 148725,
+    "zip_sha256": "ac1130346a9dfb3c708b6042ee41253a7ea19b90798f8f8439e8326ff97276a4",
     "all_checks_passed": true,
-    "no_nan_inside_footprint": true,
-    "values_in_0_1": true,
-    "crs_shape_transform_match": true,
-    "single_band_float32": true,
-    "zero_on_catalogue": true,
-    "dot_count": 37654
+    "min_value_entire_raster": 0.0,
+    "max_value_entire_raster": 1.0,
+    "nan_count_entire_raster": 0,
+    "emitted_dots": 37654,
+    "validator_17_checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "validator_n_checks": 17,
+    "validator_n_pass": 17
   },
-  "submission_name": "gems77-h79-radhalo-lag3-37654-20261021-zeros",
-  "submission_note": "H79 lag-3px U-residual halo paired to K-Th edge; 37654 spaced dots; HOLDOUT negative\u2014research only, do not submit",
-  "submission_note_chars": 113,
-  "download_path": "docs/downloads/gems77-h79-radhalo-lag3-37654-20261021-zeros.tif",
-  "ok_to_download": true,
-  "ok_to_submit": false,
+  "submission_name": "gems77-h79-crossgrad-ridge-37654dots-20261021-dd0dbf9c-zeros",
+  "submission_note": "H79 cross-gradient confluence x ridge (mag+grav tile zero x Hessian ridge) 37654dots; zero-SGMC, no lidar, no H19-5 reuse",
   "verdict": "negative",
-  "verdict_reason": "HOLDOUT-DTI 0.04773 does not beat 0.152718; CI overlaps random; final dots also trigger the literal registry overlap stop. Do not spend a weekly slot.",
-  "submission_slots_used": 0
+  "reason": "HOLDOUT-DTI 0.0323 below random control 0.0353 (delta -0.0030 CI includes 0) and below prior best 0.1527; format PASS and informative uniqueness PASS but literal dense-witness FAIL per I17; no selector approval"
 }

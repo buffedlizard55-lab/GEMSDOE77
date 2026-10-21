@@ -1,22 +1,98 @@
 {
-  "lane": "H79 radiometric phase-offset alteration-halo pairing",
-  "registered_utc": "2026-10-21T12:00:00Z",
-  "assignment_irregularity": "The supplied prompt again refers to a single method paragraph but contains no delimited method paragraph; this is a narrow autonomous lane and not a claimed assigned lane.",
-  "hypothesis": "A concealed permeable fault may place a selectively mobile uranium residual halo 300 m to either side of a K-Th common-mode lithologic edge; a lagged edge-pair response should recover the structural center while rejecting same-pixel lithologic contacts.",
-  "named_non_fault_mimic": "Hillslope transport across a sediment or soil boundary can spatially displace uranium-bearing material without fault permeability.",
-  "inputs": [
-    "SHA-256-pinned cached GeoDAWN radiometric K, Th and U uint8 rank-intensity bands",
-    "sample_submission.tif only for footprint/grid",
-    "visible fault catalogue only for pixel-exact placement masking in each holdout fold"
+  "schema_version": 1,
+  "lane_id": "H79-BB-CROSSGRAD-CURVATURE",
+  "session_branch": "arena/bb526c6b-gemsdoe77",
+  "preregistered_date_utc": "2026-10-21T15:00:00Z",
+  "status_at_preregistration": "LOCKED_BEFORE_EXPERIMENTS",
+  "lane_declaration": "Self-declared orthogonal research lane. Prompt references 'the single method paragraph below' without supplying a standalone method paragraph (IR-78-01, IR-79-01). This lane builds on the forensic finding that 100% of organizer-scored truth that is recoverable sits >200m from the catalogue, but >3px off the H19-5 support has not yet earned live credit with any measured field (H78 E1/E2 negative). The lane targets a distinct physical signature: coincident basement potential-field step + surficial curvature ridge, which discriminates active normal-fault steps from shoreline terraces (no geophysical step) and lithologic contacts (no curvature).",
+  "ranked_hypotheses": [
+    {
+      "id": "H79-1",
+      "rank": 1,
+      "title": "Coincident Basement Potential-Field Step + Topographic Curvature Ridge (Cross-Gradient Confluence x Ridge)",
+      "role": "PRIMARY_IMPLEMENTED_CANDIDATE",
+      "layers": [
+        "training_features.tif bands 2 (rtp), 3 (tmi_hg), 9 (tmi_vg), 11 (iso_grav_anom_vg), 13 (iso_grav_anom), 14 (tmi), 12 (det_elev), 19 (det_elev_slope) — 100% official competition cache, SHA-pinned",
+        "Derived mag_tilt = atan2(tmi_vg, max(tmi_hg,eps)), mag_as = sqrt(tmi_hg^2+tmi_vg^2), grav_thdr = hypot(grad(iso_grav_anom)), grav_tilt = atan2(iso_grav_anom_vg, grav_thdr), grav_as = sqrt(grav_thdr^2+iso_grav_anom_vg^2), all filled median in footprint, nearest for FFT",
+        "Contact-confluence scalar: min(rank(mag_as), rank(grav_as)) * sqrt(wz_mag*wz_grav) where wz = 1-|tilt|/(pi/2) (zero-contour proximity)",
+        "Topographic ridge: hessian_ridge(det_elev, sigma=1.0,2.0,3.5) + gaussian curvature + structure_tensor coherence (sigma 2.0) — 100% footprint, no LiDAR dependency",
+        "Final score = confluence * (ridge1+ridge2)/2 * coherence — cross-sensor edge coincidence plus surficial expression",
+        "Visible catalogue geometry only via fold['visible'] distance masking for holdout (no catalogue-derived features in scoring)"
+      ],
+      "physical_signature": "A normal-fault step offsets basement density & magnetization (coincident grav/mag tilt zero, peak analytic signal) while the updip continuation produces a linear topographic curvature ridge (crest-trough dipole) with high along-strike coherence. Their product is high only where a basement step has surficial expression; one-sided step polarity (hanging-wall drop) further distinguishes from symmetric washes.",
+      "why_unmapped_not_catalogued": "Buried intrabasin faults under 100-1500m Quaternary fill have zero aerial-photo scarp but a persistent basement step (Faulds & Henry 2008; Blakely & Simpson 1986). Shorelines have curvature without basement step; SGMC lithologic contacts have potential-field step without Quaternary curvature — product vetoes both.",
+      "named_non_fault_mimic": "Pleistocene Lake Lahontan (1332m) and Bonneville (1552m) wave-cut terrace risers (symmetric curvature, no basement throw, no mag tilt zero); symmetric V-shaped desert washes (curvature but grav/mag confluence ~0); unreactivated Mesozoic thrusts (grav step but no Quaternary scarp curvature)",
+      "difference_vs_repo": "H77D used hydro+LOCO+scarp+submod with 92 channels; H77-Step used HW/FW step tensor + V-LBCO + Radon multi-azimuth; H78 used 7-operator lidar consensus only to rank off-support dots; LIA used straight edges; Contactphys used front-base asymmetry; Selective-U used U rank curvature. None used mag-grav cross-gradient confluence weighted by topographic ridge as primary scorer. This lane uses 0 SGMC, 0 lidar-external, 0 GDR thermal, 0 H19-5 pixel reuse — pure competition-band potential-field + DEM derivatives.",
+      "expected_dti_gain_qualitative": "MEDIUM-HIGH (+0.015-0.03 HOLDOUT-DTI hoped) where blind faults have subtle scarps; zero where fully buried (needs independent geophysical-only corroboration).",
+      "implementation_cost": "Low (CPU raster ops, ~3 min, no training, no external data beyond pinned cache)"
+    },
+    {
+      "id": "H79-2",
+      "rank": 2,
+      "title": "Drainage Network Deflection + Profile Curvature Break",
+      "role": "CANDIDATE_HYPOTHESIS",
+      "layers": ["det_elev, det_elev_slope (bands 12,19) + flow accumulation & channel deflection azimuth from DEM (D8)"],
+      "physical_signature": "Fault-perpendicular drainage deflection (orthogonal channel bearing change) coincident with linear profile-curvature break and openness minimum.",
+      "why_unmapped_not_catalogued": "Blind/buried faults warp the piedmont fan surface and offset ephemeral channels laterally/vertically below the 1:24k mapping threshold; channels are sensitive strain markers (Bull 2007).",
+      "named_non_fault_mimic": "Lithology-controlled channel capture, irrigation ditches, and Lake Lahontan spillway channels (curvature without fault-aligned deflection cluster).",
+      "difference_vs_repo": "Prior DEM lanes used curvature/ridge amplitude only, not channel-network deflection azimuth; this adds an independent fluvial-strain sensor.",
+      "expected_dti_gain_qualitative": "Medium; moderate cost (flow routing)",
+      "implementation_cost": "Medium"
+    },
+    {
+      "id": "H79-3",
+      "rank": 3,
+      "title": "Multi-Scale Analytic-Signal Edge Coincidence (Magnetic × Gravimetric × Radiometric K/Th)",
+      "role": "CANDIDATE_HYPOTHESIS",
+      "layers": ["tmi_hg, tmi_vg, iso_grav_anom, iso_grav_anom_vg, tc (band6, radiometric total count) + K/Th from external GeoDAWN (optional, not required)"],
+      "physical_signature": "Co-located peaks of mag analytic signal and grav THDR across scales (1-6 px) plus coincident K/Th radiometric boundary — basement fault juxtaposing lithologies.",
+      "why_unmapped_not_catalogued": "Concealed basin-bounding faults offset lithologic packages without Quaternary scarp; multi-sensor coincidence discriminates regional lithologic trends.",
+      "named_non_fault_mimic": "Pure lithologic contacts (radiometric boundary without active scarp) and flight-line artifacts (single-sensor linear).",
+      "difference_vs_repo": "H77 variants used radiometric quantiles separately; none used multi-scale analytic-signal coincidence as primary.",
+      "expected_dti_gain_qualitative": "Medium; higher false-positive risk without curvature veto",
+      "implementation_cost": "Low-Medium"
+    },
+    {
+      "id": "H79-4",
+      "rank": 4,
+      "title": "Thermal Anomaly Gradient Aligned to Structure (GDR 2m Probes)",
+      "role": "CANDIDATE_HYPOTHESIS",
+      "layers": ["GDR 1391 2m probe anomalies + well/spring geothermometers + TMI_up150/RTP magnetite destruction proxy"],
+      "physical_signature": "Linear thermal gradient ridge aligned with a potential-field step and curvature break, indicating permeable fault-controlled upflow.",
+      "why_unmapped_not_catalogued": "Hydrothermal alteration demagnetizes and argillizes the fault zone, reducing scarp preservation but preserving thermal memory in shallow probes.",
+      "named_non_fault_mimic": "Closed-basin evaporative brines (diffuse thermal halo without structural alignment) and unaltered ash-flow tuffs.",
+      "difference_vs_repo": "H77D already used thermal manifestations heavily (ablation + live inversion); this would duplicate that lane.",
+      "expected_dti_gain_qualitative": "Moderate in geothermal districts; sparse coverage elsewhere",
+      "implementation_cost": "Low (sparse points, needs anisotropic kernel)"
+    },
+    {
+      "id": "H79-5",
+      "rank": 5,
+      "title": "Piedmont Sinuosity + Openness + Local Relief Multi-Scale Topo Ensemble",
+      "role": "CANDIDATE_HYPOTHESIS",
+      "layers": ["det_elev, dem curvature, relief5, tophat5, openness, LRM — all derivable from DEM"],
+      "physical_signature": "Low-sinuosity linear ridge with high openness contrast and local relief, characteristic of youthful fault-line scarps.",
+      "why_unmapped_not_catalogued": "Sub-meter scarps below Qfault mapping scale but visible in openness/relief texture.",
+      "named_non_fault_mimic": "Fan-head trenches, terracettes, and cattle trails (linear openness without coherence).",
+      "difference_vs_repo": "Similar to H78 lidar consensus but topo-only (no 1m LiDAR), so would be a sensitivity control rather than novel.",
+      "expected_dti_gain_qualitative": "Low-Medium; already covered by Step/H77D ablations",
+      "implementation_cost": "Low"
+    }
   ],
-  "fixed_transform": "Gaussian sigma=1.5 px; K-Th common mode=(K+Th)/2; selective residual=U-common; Sobel gradient magnitudes; max selective-gradient response shifted +/-3 px over four normals; geometric mean with common-mode edge; multiply by shifted/(shifted+coincident+epsilon). Robust percentile ranks are computed only on valid radiometric footprint cells.",
-  "fixed_placement": "Greedy 3.0 px Poisson spacing in descending surface order, 37,654 binary dots, no positive values on the visible catalogue. Final full-map file masks the full mapped catalogue pixel-exactly.",
-  "experiments": [
-    "E1: each-feature leakage canary plus pre-placement surface uniqueness",
-    "E2: four-quadrant whole-segment buffered hide-and-recover HOLDOUT-DTI against common-mode edge and random controls",
-    "E3: only if E1 is nonduplicate; place, write and validate a unique research TIFF; promotion still requires E2 to beat 0.152718 HOLDOUT-DTI and final-dot uniqueness"
-  ],
-  "promotion_gate": "Canary AUC <=0.90; surface Spearman <=0.90; final dot forward 3 px overlap <=0.70; format valid; HOLDOUT-DTI lower confidence comparison is not negative versus current 0.152718 incumbent. The selector alone may spend a weekly slot.",
-  "budget": {"maximum_experiments": 3, "maximum_hours": 2},
-  "score_policy": "Only evaluator output is HOLDOUT-DTI. No projection is a score. Organizer values require a submission-page receipt."
+  "budget_and_protocol": {
+    "maximum_experiments": 3,
+    "maximum_hours": 2,
+    "planned_experiments": 3,
+    "experiment_ids": ["E1_build_and_holdout", "E2_leakage_canary", "E3_uniqueness_and_write"],
+    "promotion_rule": [
+      "format valid: 17/17 portal-equivalence checks PASS (single-band float32, EPSG:32611, 3730x3292, transform (100,0,243350,0,-100,4508550), values in [0,1], no NaN inside footprint, zeros outside, 0 dots on catalogue)",
+      "unique informative reading: rho <=0.90 and max forward 3px overlap <=0.70 vs every informative registry raster on surface AND final dots; dense space-filling witnesses reported separately as policy I17 literal gate (not informative)",
+      "canary: every feature alone AUC <=0.90 on holdout (else flag leakage)",
+      "paired HOLDOUT-DTI delta vs champion construction: report with 95% CI; promotion requires CI not entirely below 0 AND beating prior holdout best would be noted but not required for deliverable — negative is deliverable",
+      "literal dense witness (I17) is a separate policy gate reported as FAIL-closed; informative PASS is the scientific uniqueness metric"
+    ],
+    "verdict_if_any_fails": "negative (deliverable). Selector, not this lane, decides any weekly slot. File remains OK to download, NOT OK to submit automatically.",
+    "external_data_needed": "None beyond SHA-pinned data/raw/training_features.tif + data/bridge grid; all transforms are computed locally (no new free source needed). Verified obtainable: registry/data_manifest.json pins 4371c82e present. If later adding GeoDAWN radiometric, source is USGS DOI 10.5066/P93LGLVQ (CC0, ~26MB uint8) — obtainable via ScienceBase.",
+    "hypotheses_are_ordinal_priorities_never_projected_scores": true
+  }
 }
