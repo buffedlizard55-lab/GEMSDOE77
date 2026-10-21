@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "lane_id": "H84-TIPLOBE-RELAY",
+  "session_branch": "arena/c37917cc-gemsdoe77",
+  "preregistered_date_utc": "2026-10-21T17:50:00Z",
+  "status_at_preregistration": "LOCKED_BEFORE_EXPERIMENTS",
+  "lane_declaration": "Geometry-only fault-tip crack-tip stress lobe + en-echelon relay-breach corridor from catalogue geometry only. For each fault segment 8-connected component split <=12px, compute PCA orientation, identify two tip pixels as extremes along major axis, propagate anisotropic lobe weight=(1-d/R)*max(0,cos(theta))^2 for d<25px (2.5km), theta between outward tip direction and tip-to-pixel vector. For parallel segment pairs angle diff <20deg projected along-strike overlap >1km across-strike sep <20px/2km add inter-tip linear corridor. Field normalized per holdout fold from visible faults only (buffered whole-component LOQO feature buffer 3px domain erosion 12px) visible faults masked pixel-exactly 300m triangular kernel DTI 37654-dot budget 2.8px min separation zero on catalogue.",
+  "source_hypotheses_file": "research/h84_hypotheses.md",
+  "ranked_hypotheses": [
+    {
+      "id": "H84-1",
+      "rank": 1,
+      "title": "Fault-tip stress lobe + relay breach corridor (implemented Exp1)",
+      "role": "PRIMARY_IMPLEMENTED_CANDIDATE",
+      "layers": [
+        "existing_faults.tif / labels.tif (60,988 px catalogue on 3730x3292 EPSG:32611 100m)",
+        "sample_submission.tif footprint (5,167,373 px)"
+      ],
+      "physical_signature": "Anisotropic crack-tip lobe beyond fault tips plus relay-ramp breaching corridors between overlapping en-echelon strands; 25px/2.5km radius 2.8px dot separation",
+      "why_unmapped_not_catalogued": "Tip horse-tail splay fans 22% and relay breaching fractures 48% geothermal per Faulds 2010 are blind under Quaternary cover lack scarp omitted from QFaults but highly dilational",
+      "named_non_fault_mimic": "Lake Lahontan/Bonneville terrace risers from tips, alluvial-fan apices, road cuts; inter-fan swales mimicking relay",
+      "difference_vs_repo": "H83 isotropic collar; H77E knick vertical; H77Step tip linear without angular lobe+relay; H81 slip-cone throw-gradient; no lane uses PCA orientation + outward tip lobe + relay corridor as primary (grep 2026-10-21 negative)",
+      "expected_dti_gain_qualitative": "Uncertain medium (tips/relays undermapped kernel rewards near-tip anisotropy cuts FP)",
+      "implementation_cost": "Very low CPU minutes"
+    },
+    {
+      "id": "H84-2",
+      "rank": 2,
+      "title": "Catalogue fault-intersection / relay-node intensity",
+      "role": "CANDIDATE_HYPOTHESIS",
+      "layers": [
+        "catalogue centreline network only"
+      ],
+      "physical_signature": "Kernel density of fault intersections and relay bends",
+      "why_unmapped_not_catalogued": "Node real even when small blind splay terminating at it is unmapped",
+      "named_non_fault_mimic": "Inactive intersections drainage junctions",
+      "difference_vs_repo": "No lane uses node intensity as primary",
+      "expected_dti_gain_qualitative": "Uncertain low-medium",
+      "implementation_cost": "Very low"
+    },
+    {
+      "id": "H84-3",
+      "rank": 3,
+      "title": "Signed across-strike K/Th radiometric asymmetry",
+      "role": "CANDIDATE_HYPOTHESIS",
+      "layers": [
+        "GeoDAWN K/Th USGS DOI 10.5066/P93LGLVQ registry/data_manifest.json ext_geodawn_* not locally restored"
+      ],
+      "physical_signature": "First derivative K/Th normal to local strike signed by hanging-wall",
+      "why_unmapped_not_catalogued": "Alteration halo outcrops where trace buried",
+      "named_non_fault_mimic": "Primary lithologic boundaries flight-line noise",
+      "difference_vs_repo": "No lane uses signed across-strike asymmetry",
+      "expected_dti_gain_qualitative": "Uncertain medium",
+      "implementation_cost": "Medium needs restored bands obtainable via owner mirror next session"
+    },
+    {
+      "id": "H84-4",
+      "rank": 4,
+      "title": "Multi-scale residual curvature after regional trend removal",
+      "role": "CANDIDATE_HYPOTHESIS",
+      "layers": [
+        "pinned 54-channel feature stack det_elev + curvature 418 MB not locally restored"
+      ],
+      "physical_signature": "Curvature of detrended piedmont at 300m-1.2km scales",
+      "why_unmapped_not_catalogued": "Sub-mapping-scale scarps survive in curvature texture",
+      "named_non_fault_mimic": "Fan cones terrace treads playas",
+      "difference_vs_repo": "Selective-U used raw U curvature without detrending/scale sweep",
+      "expected_dti_gain_qualitative": "Uncertain low-medium",
+      "implementation_cost": "Medium needs 418 MB stack"
+    },
+    {
+      "id": "H84-5",
+      "rank": 5,
+      "title": "Thermal spring/well alignment anisotropy (GDR 1391)",
+      "role": "CANDIDATE_HYPOTHESIS",
+      "layers": [
+        "DOE/NREL GDR 1391 wellsprings DOI 10.15121/1881483 owner mirror ext_gdr_wellspring_in_footprint.csv"
+      ],
+      "physical_signature": "Linear alignment of warm springs/wells Hough/kernel anisotropy",
+      "why_unmapped_not_catalogued": "Thermal memory survives where geomorphic expression buried",
+      "named_non_fault_mimic": "Brine anomalies irrigation return flow",
+      "difference_vs_repo": "H78 used proximity only adds alignment anisotropy",
+      "expected_dti_gain_qualitative": "Uncertain low-medium",
+      "implementation_cost": "Low-Medium obtainable via owner mirror next session"
+    }
+  ],
+  "budget_and_protocol": {
+    "maximum_experiments": 3,
+    "maximum_hours": 2,
+    "planned_experiments": 1,
+    "experiment_ids": [
+      "E1_holdout_canary_uniqueness_write"
+    ],
+    "promotion_rule": [
+      "format valid: single-band float32 EPSG:32611 3730x3292 transform (100,0,243350,0,-100,4508550) 100m values [0,1] exactly {0,1} binary dots all finite no NaN inside footprint zeros outside footprint mode=zero 0 dots on catalogue",
+      "leakage canary: every feature alone AUC <=0.90 else flag leakage verdict negative",
+      "HOLDOUT-DTI: pooled hide-and-recover buffered-whole-components-loqo-v2 seed 30 evaluator gems57-pooled-hide-v2 alpha 0.2 beta 0.8 300m kernel withheld positives + paired 95% CI report vs random and vs rebuilt H33 incumbent identical folds/budget never project to leaderboard",
+      "registry: compare_array_to_registry vs locally accessible sparse indexed rasters informative subset halo_bg<0.70 dense continuous witness positive density >0.5 excluded as non-dot field per support semantics resolution max |rho|<=0.90 and forward 3px overlap <=0.70 uniqueness incomplete scan scope limitation never clearance literal dense-witness gate reported separately as FAIL-closed for transparency",
+      "verdict_if_any_fails: negative deliverable File OK to download for inspection NOT OK to submit automatically without selector sign-off No weekly slot without selector approval"
+    ],
+    "external_data_needed": "None for Exp1 SHA-pinned bridge grid only",
+    "hypotheses_are_ordinal_priorities_never_projected_scores": true
+  },
+  "number_labelling": "Every score HOLDOUT-DTI evaluator gems57-pooled-hide-v2 withheld positives 95% CI or ORGANIZER-CONFIRMED submission-page receipt or OWNER-REPORT family ledger no receipt Projections never written as scores",
+  "parallel_run_lane_note": "2026-10-21 brief contained no identifiable single method paragraph lane declared here before Exp1 per preflight addendum IR-77-06 as in contactphys/H83 preregistration"
+}
