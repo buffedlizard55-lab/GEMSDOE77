@@ -1,47 +1,16 @@
 {
-  "id": "GEMSDOE77-PREREG-H82-STRIKE-ENTROPY",
-  "registered_utc": "2026-10-21",
-  "lane": "H82-STRIKE-ENTROPY",
-  "assignment_irregularity": "The supplied brief contains no single identifiable method paragraph; this lane was autonomously declared before E1 and is not claimed to be assigned.",
-  "hypothesis": "Catalogue-visible fault-strike heterogeneity indicates transfer/intersection zones where an unmapped strand may continue beyond the mapped trace.",
-  "mechanism": "Gaussian structure-tensor axial orientation entropy (spin-2 isotropy) times local visible-trace density; no thermal, geophysical, external, prior-prediction, or hidden-fault inputs.",
-  "named_non_fault_mimic": "Digitization bends, dense mapped swarms, and non-geothermal fault intersections.",
-  "inputs": {
-    "catalogue": "data/bridge/existing_faults.tif",
-    "footprint_grid": "data/bridge/sample_submission.tif",
-    "cached_feature_stack": "registry/feature_receipt.json points to data/processed/stack.npy, absent in this checkout; deliberately unused because H82 is catalogue-only; no private rebuild"
-  },
-  "transform": {
-    "binary_fault_smoothing_sigma_px": 1.0,
-    "tensor_averaging_sigma_px": 10.0,
-    "density_sigma_px": 10.0,
-    "density_scale": "q95 of local density on footprint, computed from visible faults only",
-    "formula": "(1 - sqrt((Jxx-Jyy)^2+4*Jxy^2)/(Jxx+Jyy+1e-12)) * (1-exp(-local_density/q95)); normalize by max footprint value",
-    "edge_mode": "constant zero; feature only used inside footprint",
-    "catalogue_usage": "visible mask only within each fold; full catalogue used only for final-dot exclusion"
-  },
-  "candidate_ranking": "research/h82_hypotheses.md (written before experiment)",
-  "holdout": {
-    "evaluator": "gems57-pooled-hide-v2",
-    "implementation": "vendor/gems57/evaluate_holdout.py",
-    "split": "buffered whole-component quadrant draw, seeds 20 and 30, hide_frac=0.20, feature buffer=3 px, 12-pixel boundary erosion",
-    "alpha": 0.2,
-    "beta": 0.8,
-    "kernel_radius_m": 300.0,
-    "emission_budget_per_fold": 37654,
-    "minimum_separation_px": 2.8,
-    "bootstrap": "paired 20 km physical blocks, 2000 draws, fixed seeds"
-  },
-  "canary": {
-    "test": "the sole H82 entropy feature alone against withheld positive pixels and footprint negatives more than 3 px from the full catalogue",
-    "threshold_symmetric_auc": 0.90
-  },
-  "uniqueness": {
-    "preplacement": "all 812 indexed public inventory TIFFs plus local siblings where readable; any |Spearman rho| > 0.90 stops. Report incomplete inventory/read errors fail-closed.",
-    "finaldots": "same registry plus local siblings; any forward 3-px overlap > 0.70 or |Spearman rho| > 0.90 stops; dense witness is a literal blocker under Policy I17.",
-    "no_exemption": true
-  },
-  "controls": ["random fixed-budget dots", "distance-to-visible-fault fixed-budget dots"],
-  "promotion": "Negative unless primary H82 HOLDOUT-DTI lower 95% CI exceeds the frozen 0.152718 local incumbent, confirmation is directionally consistent, all canaries and uniqueness checks pass, shared writer validates, and separate selector approval exists. No slot is spent in this lane.",
-  "budget": {"max_experiments": 3, "max_hours": 2, "planned": ["E1 canary + pre-placement registry comparison", "E2 dual-seed holdout", "E3 artifact + final-dot registry comparison"]}
+  "lane": "H82 concealed-reservoir concordance at cool outlets",
+  "written_before_outcome": true,
+  "date_utc": "2026-10-21",
+  "method": "Only measured T, quartz/chalcedony/cation geotherm estimates and point coordinates from SHA-pinned GDR owner mirror; filter all three finite 0<T<400, outlet 0<T<200, estimate minimum>100, outlet<=60. For each point weight min(1,max(0,min(estimates)-100)/100)*exp(-(max(estimates)-min(estimates))/80)*(1-max(0,T-35)/50) clipped >=0; pixelwise max for duplicate locations; Gaussian sigma 20 px=2 km; normalize by global maximum. Uniform control gives each accepted site equal weight; random control uses same dot budget. Dots greedily spaced >=3 px; capped at 37654. Zero mapped faults and outside footprint. No dist_known_fault_px column use.",
+  "input_sha256": "122718e65bdf55aab0ee12ad20d80062f0deb1de957225a61ad880dd5dc196ea",
+  "folds": "vendor/gems57/holdout.py buffered_component_draw seed=20 hide_frac=.20 buffer_px=3 boundary_px=12; visible masked pixel-exactly. No catalogue feature in this candidate; same global predictor for each fold is appropriate.",
+  "evaluator": "vendor/gems57/evaluate_holdout.py gems57-pooled-hide-v2; alpha=.2 beta=.8 radius=300m; 200px physical block bootstrap 1000 draws seed=82021",
+  "canary": "Each of: concordant point impulse halo, accepted-site presence halo, and outlet-cool-weighted halo alone. If symmetric AUC > .90 STOP.",
+  "surface_uniqueness": "Shared compare_array_to_registry against SHA-pinned H33, full-footprint dense witness and local current research rasters; if abs(rho)>.90 STOP. Incomplete registry => cannot certify global uniqueness.",
+  "final_uniqueness": "Shared compare_array_to_registry against pinned H33 and dense witness; overlap >.70 or abs(rho)>.90 => DUPLICATE and STOP; no tuning or selector.",
+  "promotion_rule": "Only with HOLDOUT-DTI 95% lower bound above historical .152718, complete literal registry clearance and separate selector approval. Format PASS never means approved.",
+  "budget": "Three experiments maximum; two hours maximum; no slot spending.",
+  "research": "research/h82_hypotheses.md",
+  "scientific_caveat": "Quartz/chalcedony and cation geothermometers are not independent thermometers and agreement alone cannot establish a buried reservoir; this tests a new proxy rather than a proven mechanism. Official GDR source not directly retrievable within this sandbox."
 }

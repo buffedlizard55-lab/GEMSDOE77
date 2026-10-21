@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""H82: pre-registered fault-strike-entropy lane using shared gems57 tools.
+"""H82SE: pre-registered fault-strike-entropy lane using shared gems57 tools.
 
 Run in order: e1 (feature-only leakage + pre-placement registry), e2 (dual-seed
 HOLDOUT-DTI), e3 (shared-writer TIFF + final-dot registry). The feature is
 computed only from the visible fault mask for each holdout. See
-registry/preregistration_h82.json and research/h82_hypotheses.md.
+registry/preregistration_h82se.json and research/h82se_hypotheses.md.
 """
 from __future__ import annotations
 
@@ -144,7 +144,7 @@ def _canary(surface: np.ndarray, hidden: np.ndarray, grid) -> dict:
     scores = np.concatenate([surface.ravel()[pos], surface.ravel()[neg]])
     labels = np.concatenate([np.ones(pos.size, np.uint8), np.zeros(neg.size, np.uint8)])
     auc = float(roc_auc_score(labels, scores))
-    return {"feature": "h82_strike_entropy", "evidence_class": "LEAKAGE-CANARY",
+    return {"feature": "h82se_strike_entropy", "evidence_class": "LEAKAGE-CANARY",
             "auc": auc, "symmetric_auc": max(auc, 1.0 - auc),
             "threshold": 0.90, "pass": max(auc, 1.0 - auc) <= 0.90,
             "withheld_positive_pixels": int(pos.size), "negative_pixels": int(neg.size),
@@ -183,7 +183,7 @@ def run_e1() -> None:
                        if r.get("spearman_full_footprint") is not None), default=0.0)
     surface_dup = bool(max_abs_rho > 0.90)
     e1 = {
-        "experiment": "H82-E1",
+        "experiment": "H82SE-E1",
         "feature_definition": "1-sigma smoothed visible-fault structure-tensor entropy times density gate; 10-px tensor/density scales; q95 footprint scale",
         "input_catalogue_sha256": sha256(GG.DATA_DIR / "existing_faults.tif"),
         "input_footprint_sha256": sha256(GG.DATA_DIR / "sample_submission.tif"),
@@ -196,10 +196,10 @@ def run_e1() -> None:
         "registry_complete": uq.get("complete_accessible_scan", False),
         "decision": "STOP" if (not canary["pass"] or surface_dup) else "CONTINUE_TO_E2",
     }
-    write_json(OUT / "h82_e1_surface.json", e1)
+    write_json(OUT / "h82se_e1_surface.json", e1)
     print(json.dumps({k: e1[k] for k in ("canary", "surface_max_abs_spearman", "surface_duplicate", "registry_complete", "decision")}, indent=2))
     if not canary["pass"] or surface_dup:
-        raise SystemExit("H82 E1 stop gate fired; no holdout or emission")
+        raise SystemExit("H82SE E1 stop gate fired; no holdout or emission")
 
 
 def _evaluate_seed(seed: int) -> dict:
@@ -212,7 +212,7 @@ def _evaluate_seed(seed: int) -> dict:
     distance_control = np.where(grid.footprint, 1.0 / (1.0 + dist), 0.0).astype(np.float32)
     rng = np.random.default_rng(8200 + seed)
     random_surface = np.where(grid.footprint, rng.random(grid.shape, dtype=np.float32), 0.0).astype(np.float32)
-    arms = {"H82_entropy": surface, "visible_distance_control": distance_control,
+    arms = {"H82SE_entropy": surface, "visible_distance_control": distance_control,
             "random_control": random_surface}
     terms: dict[str, list[np.ndarray]] = {k: [] for k in arms}
     receipts = []
@@ -230,7 +230,7 @@ def _evaluate_seed(seed: int) -> dict:
         receipts.append({**fold["receipt"], "dots_per_arm_per_fold": BUDGET})
     pooled_terms = {name: np.sum(parts, axis=0) for name, parts in terms.items()}
     summary = EH.pooled_summary(pooled_terms, draws=2000, seed=82_000 + seed,
-                                candidate="H82_entropy")
+                                candidate="H82SE_entropy")
     hidden_n = int(folds[0]["hidden_all"].sum())
     return {"evidence_class": "HOLDOUT-DTI", "evaluator_version": EH.VERSION,
             "holdout_seed": seed, "withheld_positive_pixels": hidden_n,
@@ -240,25 +240,25 @@ def _evaluate_seed(seed: int) -> dict:
 
 
 def run_e2() -> None:
-    e1 = json.loads((OUT / "h82_e1_surface.json").read_text())
+    e1 = json.loads((OUT / "h82se_e1_surface.json").read_text())
     if e1["decision"] != "CONTINUE_TO_E2":
         raise SystemExit("E1 did not pass")
     seed20 = _evaluate_seed(20)
     seed30 = _evaluate_seed(30)
-    result = {"experiment": "H82-E2", "evaluator_version": EH.VERSION,
+    result = {"experiment": "H82SE-E2", "evaluator_version": EH.VERSION,
               "seed20": seed20, "seed30": seed30,
               "incumbent_reference": {"evidence_class": "HOLDOUT-DTI",
                   "evaluator_version": EH.VERSION, "score": INCUMBENT,
                   "withheld_positive_pixels": 11321,
                   "ci95": [0.131548, 0.175185],
                   "source": "evidence/h77/run_card.json; same evaluator and primary holdout seed; not a paired cross-lane interval"}}
-    write_json(OUT / "h82_e2_holdout.json", result)
+    write_json(OUT / "h82se_e2_holdout.json", result)
     print(json.dumps({"seed20": seed20["summary"], "seed30": seed30["summary"]}, indent=2))
 
 
 def run_e3() -> None:
-    e1 = json.loads((OUT / "h82_e1_surface.json").read_text())
-    e2 = json.loads((OUT / "h82_e2_holdout.json").read_text())
+    e1 = json.loads((OUT / "h82se_e1_surface.json").read_text())
+    e2 = json.loads((OUT / "h82se_e2_holdout.json").read_text())
     if e1["decision"] != "CONTINUE_TO_E2":
         raise SystemExit("E1 stop gate fired")
     grid = GG.load_grid()
@@ -270,19 +270,19 @@ def run_e3() -> None:
         raise RuntimeError(f"final emission produced {n_dots}, expected {BUDGET}")
     pred = dots.astype(np.float32)
     dot_digest = hashlib.sha256(np.ascontiguousarray(np.flatnonzero(dots), dtype=np.int64).tobytes()).hexdigest()[:8]
-    name = f"gems77-h82-strike-entropy-{BUDGET}dots-20261021-{dot_digest}-zeros"
+    name = f"gems77-h82se-strike-entropy-{BUDGET}dots-20261021-{dot_digest}-zeros"
     path = ROOT / "submissions" / f"{name}.tif"
-    s20 = e2["seed20"]["summary"]["scores"]["H82_entropy"]
-    note = (f"H82 local fault-strike entropy; {BUDGET} dots; HOLDOUT-DTI {s20['dti']:.4f} "
+    s20 = e2["seed20"]["summary"]["scores"]["H82SE_entropy"]
+    note = (f"H82SE local fault-strike entropy; {BUDGET} dots; HOLDOUT-DTI {s20['dti']:.4f} "
             f"({EH.VERSION}, {s20['withheld_positive_pixels']} positives, CI {s20['ci95'][0]:.4f}-{s20['ci95'][1]:.4f}); NOT SUBMIT")
     if len(note) > 140:
         raise ValueError(f"submission note too long ({len(note)} chars)")
     receipt = write_submission(path, pred, GG.DATA_DIR / "sample_submission.tif",
                                grid.footprint, note=note, name=name,
                                catalogue=grid.catalogue,
-                               metadata={"lane": "H82-STRIKE-ENTROPY", "selector_approved": False,
+                               metadata={"lane": "H82SE-STRIKE-ENTROPY", "selector_approved": False,
                                          "weekly_slots_used": 0, "budget_dots": BUDGET,
-                                         "holdout_seed20": s20["dti"], "holdout_seed30": e2["seed30"]["summary"]["scores"]["H82_entropy"]["dti"]})
+                                         "holdout_seed20": s20["dti"], "holdout_seed30": e2["seed30"]["summary"]["scores"]["H82SE_entropy"]["dti"]})
     download_path = ROOT / "docs" / "downloads" / path.name
     shutil.copy2(path, download_path)
     shutil.copy2(path.with_suffix(".zip"), download_path.with_suffix(".zip"))
@@ -296,13 +296,13 @@ def run_e3() -> None:
                        if r.get("spearman_full_footprint") is not None), default=0.0)
     duplicate_rows = [r for r in comparisons if r.get("duplicate_by_rho") or r.get("duplicate_by_overlap")
                       or r.get("identical_bytes") or r.get("identical_decoded_predictions")]
-    scores20 = e2["seed20"]["summary"]["scores"]["H82_entropy"]
-    scores30 = e2["seed30"]["summary"]["scores"]["H82_entropy"]
+    scores20 = e2["seed20"]["summary"]["scores"]["H82SE_entropy"]
+    scores30 = e2["seed30"]["summary"]["scores"]["H82SE_entropy"]
     beats = scores20["ci95"][0] > INCUMBENT
     gates_pass = bool(not duplicate_rows and uq["complete_accessible_scan"] and beats)
     card = {
         "schema_version": "gems-run-card-v2",
-        "lane_id": "H82-STRIKE-ENTROPY",
+        "lane_id": "H82SE-STRIKE-ENTROPY",
         "hypothesis": "Locally mixed fault-strike orientation around visible mapped strands marks transfer/intersection zones from which unrecorded faults may continue.",
         "mechanism": "Spin-2 Gaussian structure-tensor entropy times local visible trace density; computed fold-blind from visible catalogue only, no training on held-out labels.",
         "named_non_fault_process": "Digitization bends, dense mapped swarms, or non-geothermal fault intersections.",
@@ -350,15 +350,15 @@ def run_e3() -> None:
         "preplacement_uniqueness": e1["preplacement_uniqueness"],
         "final_uniqueness": uq,
         "irregularities": [
-            "No assigned single-method paragraph was identifiable in the supplied prompt; H82 was self-declared before E1.",
-            "The declared cached feature stack is absent. H82 is catalogue-only and did not rebuild or privately fork it.",
+            "No assigned single-method paragraph was identifiable in the supplied prompt; H82SE was self-declared before E1.",
+            "The declared cached feature stack is absent. H82SE is catalogue-only and did not rebuild or privately fork it.",
             "The public owner-repository raster inventory is not the organizer's full/private registry; completeness only applies to the indexed accessible inventory.",
             "The shared release policy has a known full-support dense-raster witness; literal uniqueness is expected to fail for any nonempty dot field under Policy I17.",
             "No organizer upload/receipt or weekly slot was used; local TIFF validation is not portal acceptance."
         ]
     }
-    write_json(OUT / "h82_run_card.json", card)
-    write_json(OUT / "h82_e3_uniqueness.json", uq)
+    write_json(OUT / "h82se_run_card.json", card)
+    write_json(OUT / "h82se_e3_uniqueness.json", uq)
     print(json.dumps({"submission_name": name, "sha256": receipt["sha256"],
                       "seed20_dti": scores20["dti"], "seed30_dti": scores30["dti"],
                       "max_overlap": max_overlap, "max_abs_rho": max_abs_rho,

@@ -1,5 +1,8 @@
 import hashlib
 import json
+import shutil
+
+import pytest
 from pathlib import Path
 
 from release_gate import assess, build
@@ -91,7 +94,11 @@ def test_run_card_schema_guardrail_blocks_false_promotion(tmp_path):
 
 def approval_row(tmp_path):
     artifact = tmp_path / "candidate.tif"
-    artifact.write_bytes(b"test artifact; format evidence supplied separately")
+    source = json.loads((ROOT / "docs/data/lanes.json").read_text())["lanes"][0]
+    shutil.copyfile(ROOT / "docs" / source["file"], artifact)
+    shutil.copytree(ROOT / "data/bridge", tmp_path / "data/bridge")
+    (tmp_path / "registry").mkdir()
+    shutil.copyfile(ROOT / "registry/data_manifest.json", tmp_path / "registry/data_manifest.json")
     return {
         "lane": "approval-regression", "file": artifact.name,
         "format_valid": True, "protocol_unique": True,
@@ -131,10 +138,118 @@ def test_malformed_run_card_fails_closed_without_stale_receipt(tmp_path):
 
 
 def test_consistent_promotion_can_pass_recorded_decision_gate(tmp_path):
-    # This gate combines recorded evidence; it does not validate TIFF bytes itself.
+    # The gate checks bytes and binding, but still consumes recorded science/selector decisions.
     row = approval_row(tmp_path)
     row["run_card"] = "card.json"
-    (tmp_path / "card.json").write_text(json.dumps({"verdict": "promote"}))
+    (tmp_path / "card.json").write_text(json.dumps({
+        "verdict": "promote", "raster_sha256": row["sha256"],
+        "protocol_unique": True, "holdout_valid_for_promotion": True,
+        "beats_holdout_best": True, "approved_for_weekly_slot": True,
+        "registry": {"full_registry_certified": True},
+    }))
     assert assess(row, tmp_path, root=tmp_path)["authorized_to_submit"]
     row["selector_approved"] = False
     assert not assess(row, tmp_path, root=tmp_path)["authorized_to_submit"]
+
+
+@pytest.mark.parametrize("sha", [None, "0" * 64, True])
+def test_unbound_or_other_artifact_card_cannot_authorize(tmp_path, sha):
+    row = approval_row(tmp_path)
+    row["run_card"] = "card.json"
+    (tmp_path / "card.json").write_text(json.dumps({"verdict": "promote", "raster_sha256": sha}))
+    result = assess(row, tmp_path, root=tmp_path)
+    assert not result["authorized_to_submit"]
+    assert not result["checks"]["run_card_artifact_matches"]
+
+
+def test_matching_hash_cannot_authorize_fake_tiff(tmp_path):
+    row = approval_row(tmp_path)
+    artifact = tmp_path / row["file"]
+    artifact.write_bytes(b"not a GeoTIFF")
+    row["sha256"] = hashlib.sha256(artifact.read_bytes()).hexdigest()
+    row["run_card"] = "card.json"
+    (tmp_path / "card.json").write_text(json.dumps({"verdict": "promote", "raster_sha256": row["sha256"]}))
+    result = assess(row, tmp_path, root=tmp_path)
+    assert result["checks"]["sha256_matches"]
+    assert result["checks"]["run_card_artifact_matches"]
+    assert not result["checks"]["format_readback_passed"]
+    assert not result["authorized_to_submit"]
+
+
+@pytest.mark.parametrize("payload", [
+    {"registry": [1]}, {"registry": "complete"},
+    {"correlation_overlap_vs_registry": {"phase": {"dot_duplicate_count": "zero"}}},
+    {"registry": {"complete": "true"}},
+    {"registry": {"surface_max_forward_overlap_3px": float("nan")}},
+    {"registry": {"surface_max_forward_overlap_3px": float("inf")}},
+    {"registry": {"duplicate_count": True}},
+])
+def test_malformed_nested_guardrails_are_denied_not_crashes(tmp_path, payload):
+    row = approval_row(tmp_path)
+    row["run_card"] = "card.json"
+    payload.update(verdict="promote", raster_sha256=row["sha256"])
+    (tmp_path / "card.json").write_text(json.dumps(payload))
+    result = assess(row, tmp_path, root=tmp_path)
+    assert not result["authorized_to_submit"]
+    assert result["run_card_audit"]["read_error"]
+
+
+def test_modified_reference_cannot_authorize(tmp_path):
+    row = approval_row(tmp_path)
+    row["run_card"] = "card.json"
+    (tmp_path / "card.json").write_text(json.dumps({"verdict": "promote", "raster_sha256": row["sha256"]}))
+    (tmp_path / "data/bridge/sample_submission.tif").write_bytes(b"wrong reference")
+    result = assess(row, tmp_path, root=tmp_path)
+    assert not result["authorized_to_submit"]
+    assert "reference hash mismatch" in result["format_readback"]["error"]
+
+
+@pytest.mark.parametrize("value", [-9999.0, 1.1, float("nan"), float("inf")])
+def test_green_manifest_cannot_override_actual_pixel_range(tmp_path, value):
+    import rasterio
+    from rasterio.windows import Window
+    import numpy as np
+    row = approval_row(tmp_path)
+    path = tmp_path / row["file"]
+    with rasterio.open(path, "r+") as dst:
+        dst.write(np.array([[value]], dtype="float32"), 1, window=Window(0, 0, 1, 1))
+    row["sha256"] = hashlib.sha256(path.read_bytes()).hexdigest()
+    row["run_card"] = "card.json"
+    (tmp_path / "card.json").write_text(json.dumps({"verdict":"promote", "raster_sha256":row["sha256"]}))
+    result = assess(row, tmp_path, root=tmp_path)
+    assert result["checks"]["sha256_matches"]
+    assert result["checks"]["run_card_artifact_matches"]
+    assert not result["checks"]["format_readback_passed"]
+    assert not result["authorized_to_submit"]
+
+
+def test_matching_card_hash_alone_is_not_positive_science_evidence(tmp_path):
+    row = approval_row(tmp_path)
+    row["run_card"] = "card.json"
+    (tmp_path / "card.json").write_text(json.dumps({"verdict":"promote", "raster_sha256":row["sha256"]}))
+    result = assess(row, tmp_path, root=tmp_path)
+    assert result["checks"]["format_readback_passed"]
+    assert result["checks"]["run_card_artifact_matches"]
+    assert not result["checks"]["explicit_run_card_promotion_evidence"]
+    assert not result["authorized_to_submit"]
+
+
+def test_malformed_nested_guardrails_fail_closed(tmp_path):
+    row = approval_row(tmp_path)
+    row['run_card'] = 'card.json'
+    payloads = [
+        {'registry': 'complete'},
+        {'uniqueness_audit': []},
+        {'registry_comparison': {'literal_reading': 'clear'}},
+        {'registry': {'duplicate_count': '0'}},
+        {'correlation_overlap_vs_registry': {'final_dots_max_forward_overlap_3px': float('nan')}},
+        {'registry': {'surface_max_forward_overlap_3px': float('inf')}},
+        {'registry': {'surface_max_forward_overlap_3px': -1}},
+        {'registry': {'surface_max_forward_overlap_3px': 1.1}},
+        {'registry': {'duplicate_count': False}},
+    ]
+    for payload in payloads:
+        (tmp_path / 'card.json').write_text(json.dumps({'verdict': 'promote', **payload}))
+        result = assess(row, tmp_path, root=tmp_path)
+        assert not result['authorized_to_submit'], payload
+        assert result['run_card_audit']['read_error'], payload

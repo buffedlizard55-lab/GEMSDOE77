@@ -6,7 +6,7 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
-from h82_strike_entropy import strike_entropy
+from h82se_strike_entropy import strike_entropy
 
 
 def test_crossing_has_higher_local_orientation_entropy_than_straight_trace():

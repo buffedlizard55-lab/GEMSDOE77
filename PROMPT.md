@@ -8,23 +8,58 @@ summarised with provenance at the end rather than re-transcribed hash-by-hash
 `docs/score-ledger.csv`; later entries below are OWNER-REPORT as supplied in
 the 2026-10-21 brief — no organizer receipts).*
 
-## 2026-10-21 H82 execution addendum (current checkout)
+## 2026-10-21 parallel H82-SE execution addendum — arena/21cc174e-gemsdoe77
 
-The supplied brief did not identify a single assigned method paragraph. H82 was
-self-declared and preregistered before E1 in `registry/preregistration_h82.json`;
-its ranked hypotheses are in `research/h82_hypotheses.md`. H82-STRIKE-ENTROPY is
-negative: the newly generated artifact is OK TO DOWNLOAD FOR INSPECTION, NOT OK TO
-SUBMIT, and no selector or weekly slot was used. Full result: `evidence/h82_run_card.json`.
-The 54-band feature-stack receipt points to `data/processed/stack.npy`, which is
-absent in this checkout; H82 is catalogue-only, so the cached stack was not rebuilt
-or privately forked. Shared `vendor/gems57` evaluator and writer were used unchanged.
+This branch's H82-SE strike-entropy lane is distinct from the H82 cool-outlet,
+H82-TEXTURE, and H82R lanes merged from other sessions in `main`. It was
+preregistered before E1 in `registry/preregistration_h82se.json`; ranked
+hypotheses are in `research/h82se_hypotheses.md`. The result is negative:
+inspection download YES, submission NO. HOLDOUT-DTI 0.097608 (evaluator
+`gems57-pooled-hide-v2`, seed 20, 11,321 withheld positives, 95% CI
+[0.079093, 0.117763]) and 0.103416 (same evaluator, seed 30, 11,342 withheld
+positives, 95% CI [0.081687, 0.125512]) are both below the local incumbent.
+The final-dot registry audit found a 3-px overlap of 1.0 and duplicate firings;
+no weekly slot was used. Do not merge H82-SE evidence into another H82 run card.
+Full card: `evidence/h82se_run_card.json`.
 
-## 2026-10-21 H79 execution addendum (historical previous lane)
+## 2026-10-21 parallel H82-SE lane addendum — arena/21cc174e-gemsdoe77
 
-The earlier H79-ORIENT lane (not the current H82 lane) is documented in
-`registry/preregistration_h79_orient.json` and `evidence/h79_orient_run_card.json`.
-It was also negative, inspection-download only, not approved to submit, and used no
-weekly slot. The full request below remains the standing project brief.
+This branch's H82-SE strike-entropy method is distinct from the upstream H82
+cool-outlet/geothermometry, H82-TEXTURE, and H82R lanes. Its preregistration is
+`registry/preregistration_h82se.json`; ranked hypotheses are
+`research/h82se_hypotheses.md`; the run card is `evidence/h82se_run_card.json`.
+Result: negative; OK TO DOWNLOAD FOR INSPECTION, NOT OK TO SUBMIT. HOLDOUT-DTI
+is 0.097608 (`gems57-pooled-hide-v2`, seed 20, 11,321 withheld positives,
+95% CI [0.079093, 0.117763]) and 0.103416 (same evaluator, seed 30, 11,342
+withheld positives, 95% CI [0.081687, 0.125512]). The final-dot overlap gate
+failed; no selector approval or slot was used. H82-SE did not reuse or overwrite
+any upstream H82 artifacts.
+
+## 2026-10-21 review addendum — arena/60aafd45-gemsdoe77
+
+No new method paragraph is assigned in this invocation. The freshly rechecked dense registry witness blocks every nonempty candidate under the binding literal rule. No new TIFF, model experiment or slot is authorized by this review. See `docs/review-2026-10-21-60aafd45.md` and the corrected H33 analysis. Superseded earlier leaderboard observations below are historical, not current submission-page receipts.
+
+## Current review addendum — 2026-10-21
+
+The latest readiness review (`docs/preflight-review.md`) generated no new TIFF and ran no geological experiment.
+A freshly pinned universal witness (`evidence/registry_preflight.json`) blocks every nonempty allowed candidate
+under the mandatory literal overlap rule. H82 is the latest documented lane (`evidence/h82_run_card.json`):
+negative HOLDOUT-DTI 0.012184, duplicate overlap 1.000, incomplete two-witness scan, and three experiments
+used; do not resume it. H81 is also closed after 69 duplicate firings and an incomplete 832-raster scan.
+The site shows H82 as the newest inspection-only download and H80 as the evidence-complete featured negative;
+neither presentation is a promotion. Run the pinned preflight before future authorized research, preserve closed
+lanes, and do not treat older execution addenda as a new lane assignment. No TIF may be uploaded and no
+selector-approved slot exists. The original complete user request remains embedded in README.md. This addendum
+does not relax its gates or authorize a slot.
+
+## Historical 2026-10-21 H79 execution addendum
+
+This session's registered lane is **H79-ORIENT**, not the historical contact-physics
+lane mentioned in older repository notes. The operative preregistration is
+`registry/preregistration_h79_orient.json`; the measured artifact and stop decision are
+in `evidence/h79_orient_run_card.json`. The full request below remains preserved as the
+standing brief. H79's result is negative, safe to download for inspection, not
+approved to submit, and no weekly slot was selected.
 
 ## Highest urgency
 
@@ -137,3 +172,6 @@ listed sites ≤0.1461 down to 0.0000. GEMSDOE77 (this repo): no organizer score
 verdict negative (see README).
 
 *Post-merge namespacing note (PR #5): this lane's files that collided with concurrently merged lanes were renamed — `registry/preregistration_contactphys.json`, `evidence/run_card_contactphys.json`, `docs/contactphys*.html`, `scripts/build_site_contactphys.py`. Frozen receipts (`registry/preregistration_amendment_exp3.json`, `evidence/*.json`) retain their original internal path strings as historical record.*
+
+## H82-TEXTURE historical execution addendum
+One narrow texture-boundary feasibility experiment was completed before the parallel universal-preflight review merged. This is distinct from H82 chemistry-concordance. Results: `evidence/h82_texture/run_card.json`; review: `docs/review-h82-texture.md`. Negative, closed, no dots/slot, inspection-only TIFF. Preflight now blocks any new experiment; this addendum grants no exception.

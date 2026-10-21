@@ -1,0 +1,45 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>H77-BGB Executive Summary &amp; Submission Guide · GEMSDOE77</title>
+<meta name="description" content="Executive summary for H77-BGB lane: OK to download for inspection, Not OK to submit. How to package a format-valid [0, 1] GeoTIFF without triggering validator errors.">
+<link rel="stylesheet" href="assets/lia.css"></head><body>
+<header><div class="wrap"><span class="brand">GEMSDOE77 · DOE GEMS Prize</span><a href="index.html">Start here</a> <a href="executive-summary.html">Portfolio submission guide</a> <a href="bgb.html">H77-BGB full report</a> <a href="h77d.html">H77D</a> <a href="h77-step.html">H77-Step</a> <a href="lia-analysis.html">Why 0.2778</a>
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE77">GitHub</a></div></header><main><div class="wrap">
+<h1>H77-BGB Executive Summary: Status at a Glance &amp; Format Guide</h1>
+<p class="verdict"><b>At a glance — OK to download? YES (for technical inspection). OK to submit to DrivenData? NO (Not OK to submit; Selector: not approved).</b></p>
+
+<section class="card dl">
+<h2>1. Immediate Decision Matrix for <code>gems77-bgb-growthwedge-transtens-37654dots-20261021-3c58975b-zeros.tif</code></h2>
+<a class="btn" href="downloads/gems77-bgb-growthwedge-transtens-37654dots-20261021-3c58975b-zeros.tif" download>Download .tif (126 KB)</a>
+<a class="btn alt" href="downloads/gems77-bgb-growthwedge-transtens-37654dots-20261021-3c58975b-zeros.zip" download>Download single-TIFF .zip</a>
+<a class="btn alt" href="evidence/run_card_bgb.json">View Run Card JSON</a>
+<table>
+<tr><th>Gate</th><th>Requirement</th><th>Measured Value on <code>H77-BGB</code></th><th>Status</th></tr>
+<tr><td><b>Local GeoTIFF Format &amp; Range</b></td><td>Single-band <code>float32</code>, <code>EPSG:32611</code>, <code>3730×3292</code>, exact transform, <code>0</code> NaNs/Infs, all values in <code>[0, 1]</code>, <code>0</code> on known catalogue</td><td><code>37,654</code> binary <code>1.0</code> dots, <code>12,241,506</code> zeros, <code>0</code> NaNs, <code>nodata=None</code>, <code>[0.0, 1.0]</code></td><td><b>PASS (17/17 checks)</b></td></tr>
+<tr><td><b>Leakage Canaries</b></td><td>Single-feature symmetric ROC-AUC $\le 0.90$ on withheld faults before training</td><td>Max symmetric ROC-AUC = <code>0.6378</code> across all 10 channels (<code>bgb_01</code>)</td><td><b>PASS (0 flags)</b></td></tr>
+<tr><td><b>Phase 1 Pre-Placement Surface Uniqueness</b></td><td>Spearman $|\rho| \le 0.90$ vs 829 readable registry + sibling rasters</td><td>Max $|\rho| = 0.1421$ (<code>S_bgb_composite</code>) / <code>0.2087</code> (<code>p_full</code>)</td><td><b>PASS</b></td></tr>
+<tr><td><b>Phase 2 Sparse Dot-Field Uniqueness</b></td><td>$\le 70\%$ of dots within <code>3 px</code> of any sparse dot submission ($\le 100\text{k}$ dots)</td><td>Max 3-px forward overlap = <code>0.5722</code> (archive) / <code>0.2917</code> (local siblings); max mutual = <code>0.3379</code>; max dot $|\rho| = 0.0462$</td><td><b>PASS (0 sparse duplicates)</b></td></tr>
+<tr><td><b>Phase 2 Literal All-Raster Rule (Policy <code>I17</code>)</b></td><td>$\le 70\%$ of dots within <code>3 px</code> of <i>every</i> registry file including dense continuous maps</td><td><code>1.0000 &gt; 0.70</code> against 26 space-filling continuous rasters (e.g. <code>17GEMSDOE_E-proba-multiscale</code> sha256 <code>ab0a0a62...</code>)</td><td><b>FAIL (Policy I17)</b></td></tr>
+<tr><td><b>Spatially Blocked Holdout Promotion Bar</b></td><td>Beat repository holdout best (<code>H77-Step</code>: <code>0.152718 HOLDOUT-DTI</code>)</td><td><code>0.058406 HOLDOUT-DTI</code> (<code>A_bgb_lane</code>, CI <code>[0.045764, 0.070749]</code>) / <code>0.102390 HOLDOUT-DTI</code> (<code>A_bgb_loco</code>, CI <code>[0.085140, 0.122998]</code>, <code>11,342</code> withheld px)</td><td><b>FAIL (Verdict: NEGATIVE)</b></td></tr>
+<tr><td><b>Human Selector Slot Approval</b></td><td>Separate selector sign-off required before spending 1 of 3 weekly slots</td><td><code>selector_approved = false</code>, <code>weekly_slots_spent = 0</code></td><td><b>Not approved — DO NOT SUBMIT</b></td></tr>
+</table>
+</section>
+
+<h2>2. How to Avoid the <code>"Predicted values must be in range [0, 1]"</code> Portal Error</h2>
+<p>Earlier runs across the GEMSDOE family suffered submission rejections with the portal message
+<code>Error: Predicted values must be in range [0, 1]</code> when exporting GeoTIFFs that contained <code>NaN</code> outside the study
+footprint, negative sentinel values (<code>-9999.0</code> or <code>-3.4e38</code>), or unclipped tree logits. The shared writer
+(<code>vendor/gems57/submission_writer.py</code>) and preflight validator (<code>scripts/validate_submission.py</code>) prevent this class
+of error by enforcing six invariants on the primary <code>-zeros.tif</code> artifact:</p>
+<ol>
+<li><b>Write <code>0.0</code> (never <code>NaN</code> or <code>-9999</code>) outside the active footprint</b> and set <code>nodata=None</code> in the GeoTIFF profile so strict array validators that run <code>(arr &gt;= 0.0) &amp; (arr &lt;= 1.0)</code> across the full <code>3730×3292</code> array evaluate to <code>True</code> on all <code>12,279,160</code> pixels.</li>
+<li><b>Clip and binarize predictions inside the footprint to exact <code>float32</code> values in <code>[0.0, 1.0]</code></b> (specifically <code>0.0</code> and <code>1.0</code> for discrete dot covers).</li>
+<li><b>Zero out all mapped catalogue fault pixels (<code>existing_faults.tif == 1</code>)</b> plus a <code>300 m</code> (<code>3.0 px</code>) exclusion collar so zero false-positive budget is wasted near known faults that the organizer masks during scoring.</li>
+<li><b>Match the exact reference grid of <code>sample_submission.tif</code>:</b> CRS <code>EPSG:32611</code>, dimensions <code>3730</code> rows × <code>3292</code> columns, affine transform <code>(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)</code>, single band, <code>DEFLATE</code> compression.</li>
+<li><b>Package a single-member <code>.zip</code> archive</b> containing only the <code>.tif</code> at root level for portals that prefer zipped uploads.</li>
+<li><b>Keep the submission note $\le 140$ characters</b> (138 characters for <code>H77-BGB</code>):<br>
+<code>H77-BGB basement growth-wedge + transtensional strain + clay-cap breach (37654 dots); HOLDOUT-DTI 0.0584 lane / 0.1024 LOCO; DO NOT UPLOAD</code></li>
+</ol>
+<p>See <a href="bgb.html"><code>docs/bgb.html</code></a> for the full 3-experiment scientific report and <a href="executive-summary.html"><code>docs/executive-summary.html</code></a> for the repository-wide submission guide.</p>
+</div></main>
+<footer><div class="wrap">Selector status for every file on this site: <b>not approved</b>. Research artifacts only — do not upload to DrivenData.</div></footer>
+</body></html>
