@@ -35,7 +35,7 @@ NAV = [("review-latest.html", "Latest review"), ("metric-review.html", "Correcte
        ("h77l.html", "H77L · research-only"), ("h77d.html", "H77D (Zero-SGMC)"), ("h77d-executive-summary.html", "H77D guide"),
        ("h77-step.html", "H77-Step"), ("h77e.html", "H77E · negative"), ("h78.html", "H78 lane"),
        ("lia.html", "LIA lane"), ("contactphys.html", "Contact-physics lane"), ("urank.html", "Selective-U lane"),
-       ("lia-analysis.html", "Why 0.2778"), ("lia-sources.html", "Sources")]
+       ("lia-analysis.html", "Historical H33 note (superseded)"), ("lia-sources.html", "Sources")]
 
 
 def e(x):
@@ -87,7 +87,7 @@ def main():
         markdown.markdown(review, extensions=["tables", "fenced_code"])))
 
     review = markdown.markdown((D / "review-904a24d3.md").read_text(), extensions=["tables"])
-    (D / "review-904a24d3.html").write_text(page("review-904a24d3.html", "Current repository review", review))
+    (D / "review-904a24d3.html").write_text(page("review-904a24d3.html", "Historical repository review (superseded)", review))
     lanes = jload("docs/data/lanes.json")
     card = jload("evidence/h78_run_card.json")
     sub = jload("docs/data/h78_submission.json")
@@ -367,8 +367,35 @@ These are registry/format measurements, not scores or portal acceptance.</p>"""
 {copy("H77-TSD unique submission name (inspection reference — DO NOT UPLOAD)", tsub["name"])}
 {copy("H77-TSD short note <= 140 chars (inspection reference — DO NOT UPLOAD)", tsub["note"])}
 <p class="small">GeoTIFF SHA-256: <code>{e(tsub["tif_sha256"])}</code> · ZIP SHA-256: <code>{e(tsub["zip_sha256"])}</code> · <a href="evidence/run_card_tsd.json">Machine-readable Run Card (.json)</a></p></section>"""
-    body = f"""{tsd_box}{h82_banner}{rank_box}<h1>Start here</h1>
-<p><strong>Earlier review #49 generated no new TIFF; H82 above is a later negative research download. NOT OK TO SUBMIT.</strong> <a href="review-904a24d3.html">Earlier audit and corrected H33 analysis</a>.</p>
+    preflight_now = jload("evidence/registry_preflight.json")
+    audit_now = jload("evidence/listed_download_audit.json")
+    authorization_now = jload("docs/data/submission-authorization.json")
+    source_feed_now = jload("docs/source-health.json")
+    proof_now = preflight_now["proof"]
+    retrieved_now = sum(x.get("status") == "retrieved" for x in source_feed_now["repos"])
+    format_pass_now = sum(x.get("format_pass") is True for x in audit_now["artifacts"])
+    authorized_now = authorization_now["repository_authorized_file_count"]
+    current_status_box = f"""<section class="card" id="current-session-status" style="border:3px solid #991b1b;background:#fff7f7;">
+<h2>Current session · 2026-10-21 · branch <code>arena/eacf8dd2-gemsdoe77</code></h2>
+<p><strong>OK TO DOWNLOAD FOR INSPECTION: YES (existing files only) · OK TO SUBMIT: NO.</strong>
+No new TIFF, geological experiment, or submission slot was produced. The current authorization receipt allows
+<strong>{authorized_now} files</strong>. Do not upload any archived download based on format checks.</p>
+<p><strong>Candidate-independent registry stop:</strong> <code>{e(preflight_now["decision"])}</code> — the pinned witness covers
+{proof_now["exact_witness_positive_allowed_pixels"]:,}/{proof_now["allowed_pixels"]:,} allowed pixels within 3 px;
+nonempty forward-overlap lower bound {proof_now["nonempty_subset_forward_overlap_lower_bound"]:.1f} &gt; {proof_now["overlap_stop_threshold_strictly_greater_than"]:.2f}.
+This is a protocol rejection from one witness, not evidence that geological methods are alike or a full registry clearance.</p>
+<p><strong>Download audit:</strong> {format_pass_now}/{audit_now["listed_count"]} listed primary TIFFs pass local format checks only; this is not uniqueness, organizer acceptance, or submission authorization.
+<strong>Source inventory:</strong> {retrieved_now}/{len(source_feed_now["repos"])} configured owner repositories retrieved at
+<code>{e(source_feed_now["checked_utc"])}</code>; this feed is not score verification and official non-GitHub pages remain unfetched.</p>
+<p><a href="review-latest.html">Three-pass review and conditional hypotheses</a> ·
+<a href="evidence/review_eacf8dd2_run_card.json">Review run card</a> ·
+<a href="evidence/registry_preflight.json">Preflight receipt</a> ·
+<a href="evidence/listed_download_audit.json">Format-audit receipt</a> ·
+<a href="data/submission-authorization.json">Authorization receipt</a> ·
+<a href="source-health.json">Source-inventory JSON</a>.</p>
+</section>"""
+    body = f"""{current_status_box}{tsd_box}{h82_banner}{rank_box}<h1>Start here</h1>
+<p><strong>Current branch review: no new TIFF; universal duplicate-stop blocker; NOT OK TO SUBMIT any file.</strong> Archived research downloads below are not new candidates or authorized submissions. <a href="review-latest.html">Current review and corrected H33 evidence</a>.</p>
 <p>This repository builds and audits fault-probability GeoTIFFs for the <a href="{COMP}">DOE GEMS Prize</a>
 (DrivenData competition 306). The first box distinguishes downloading a file from permission to upload it. The table
 lists the reviewed research candidates, not every historical archived/NaN-twin file; see <a href="audit.html">archive audit</a>.</p>
@@ -377,20 +404,17 @@ lists the reviewed research candidates, not every historical archived/NaN-twin f
 <p><a href="review-latest.html">Latest review: no new TIFF; independently verified duplicate-stop blocker</a> · <a href="metric-review.html">Corrected H33 analysis</a></p>
 {orient_box}
 <h2>Reviewed downloadable candidates</h2>{table}
-<div class="values"><b>Score provenance and slot limits.</b> The supplied 0.2778 attribution to H33,
-and leaderboard targets 0.3195 / 0.4413, are unverified claims in this review, not submission-page receipts.
-Earlier pages retain dated public-leaderboard observations; those do not identify TIFF bytes or establish current rank.
-The freshly retrieved GEMSDOE32 source says it has no organizer score for its artifacts.
-The current weekly allowance must be checked on the official submission page; this review used no slot.</div>
+<div class="values"><b>Score provenance and slot limits.</b> The H33 value 0.2778 is an OWNER-REPORT / user-supplied claim; no organizer receipt ties it to the archived TIFF. The user also supplied 0.3195 and 0.4413 as conflicting reference values, unverified claims in this review and not submission-page receipts; neither was refreshed from the official leaderboard in this session. The pinned GEMSDOE32 owner page includes a dated 2026-10-04 table with 0.3195, but explicitly says no organizer score exists for artifacts in that repository. That page snapshot is not current-rank verification or a TIFF-to-score receipt. The current weekly allowance must be checked on the official submission page; this review used no slot.</div>
 {facts}
-<h2>Why the H33 file might have achieved the owner's reported 0.2778</h2>
-<p><b>Direct raster measurement, not an authenticated causal leaderboard attribution:</b> the archived H33 file has 37,654
+<h2>How the H33 raster could plausibly affect the reported 0.2778 — not score attribution</h2>
+<p><b>Direct raster measurement, not an authenticated causal leaderboard explanation:</b> the archived H33 file has 37,654
 positive pixels on the H19-5 backbone. It is exactly the earlier 44,090-pixel dotted raster with the 6,436 dots at or
 within 200 m of the known catalogue removed; no new fault pixels were added
 (<a href="evidence/prior_forensics.json">pixel-forensics receipt</a>). The official <a href="{PD}">300 m triangular DTI
-kernel</a> rewards coverage but penalizes redundant prediction mass. Sparse dots and near-catalogue pruning are a
-plausible way to cut false positives while retaining nearby unmapped-fault coverage. This explains the *mechanism*,
-not proof that the specific file received that score or that another submission will beat it.
+kernel</a> is described in the pinned local metric implementation as balancing fault coverage and prediction-side
+false-positive mass. Sparse dots and near-catalogue pruning could reduce redundant prediction mass while retaining
+some nearby unmapped-fault coverage; pruning could also erase true withheld-fault predictions. This is a plausible
+mechanism only: it does not establish that the TIFF received 0.2778 or that another artifact can beat it.
 <a href="metric-review.html">Corrected analysis and evidence limits →</a></p>"""
     (D / "index.html").write_text(page("index.html", "Start here", body))
 
@@ -862,12 +886,12 @@ Format-valid (15/15 checks, 0 NaN, values in [0,1], 37,654 binary dots) and info
 
 def write_review_pages():
     for source, output, title in (
-        ("docs/review-2026-10-21-60aafd45.md", "review-latest.html", "Latest repository review"),
+        ("docs/review-2026-10-21-arena-eacf8dd2.md", "review-latest.html", "Latest repository review"),
         ("research/why-h33-scored-02778.md", "metric-review.html", "Corrected H33 analysis"),
     ):
         body = markdown.markdown((ROOT / source).read_text(), extensions=["tables", "fenced_code"])
         (D / output).write_text(page(output, title, body))
-    for name in ("review_60aafd45_card.json", "review_60aafd45_verification.json"):
+    for name in ("review_eacf8dd2_run_card.json",):
         shutil.copyfile(ROOT / "evidence" / name, D / "evidence" / name)
 
 

@@ -1,37 +1,38 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1"><title>Why 0.2778 · GEMSDOE77</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>Historical H33 analysis — superseded · GEMSDOE77</title>
 <link rel="stylesheet" href="assets/lia.css"></head><body>
-<header><div class="wrap"><span class="brand">GEMSDOE77 · DOE GEMS Prize</span><a href="lia.html">LIA lane overview</a> <a href="lia-executive-summary.html">How to submit</a> <a href="lia-analysis.html" class=here>Why 0.2778</a> <a href="lia-sources.html">Sources & limits</a> <a href="index.html">All GEMSDOE77 lanes</a>
-<a href="https://github.com/buffedlizard55-lab/GEMSDOE77">GitHub</a></div></header><main><div class="wrap"><h1>Why GEMSDOE32 h33-2-b2 scored 0.2778, and whether it can be beaten</h1>
-<p class="muted">The full text is in <a href="https://github.com/buffedlizard55-lab/GEMSDOE77/blob/main/reports/why_02778.md"><code>reports/why_02778.md</code></a>. Every number comes from <code>evidence/*.json</code>.</p>
+<header><div class="wrap"><span class="brand">GEMSDOE77 · DOE GEMS Prize</span><a href="lia.html">LIA lane overview</a> <a href="lia-executive-summary.html">How to submit</a> <a href="lia-analysis.html" class=here>Historical H33 note (superseded)</a> <a href="lia-sources.html">Sources & limits</a> <a href="index.html">All GEMSDOE77 lanes</a>
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE77">GitHub</a></div></header><main><div class="wrap"><section class="card" style="border:3px solid #991b1b;background:#fff7f7;">
+<h2>Historical LIA lane — superseded status and score provenance</h2>
+<p>This page describes an earlier research artifact; it is not a new candidate. The downloadable TIFF is for inspection only and is <b>NOT OK TO SUBMIT</b>. The current authorization receipt governs and authorizes 0 repository files.
+The 0.2778 association is an OWNER-REPORT, not an organizer receipt tied to these raster bytes. The pinned GEMSDOE32 owner page says no organizer score exists for artifacts in that repository. Tables below that use reported scores are historical, unverified owner-page inputs; S0/S1 values are INSTRUMENT sensitivities, not scores or causal evidence. The current official leaderboard and portal were not freshly retrieved in this session.</p>
+<p><a href="review-latest.html">Current three-pass review</a> · <a href="data/submission-authorization.json">Current file authorization</a> · <a href="source-health.json">Source-inventory feed (not score verification)</a>.</p></section><h1>Historical H33 raster forensics and S0 sensitivity analysis — not score attribution</h1>
+<p class="muted">The full source is marked superseded at <a href="https://github.com/buffedlizard55-lab/GEMSDOE77/blob/main/reports/why_02778.md"><code>reports/why_02778.md</code></a>. Raster counts are local measurements; owner-reported score rows and S0 values are not organizer receipts or scores. See the <a href="https://github.com/buffedlizard55-lab/GEMSDOE77/blob/main/research/why-h33-scored-02778.md">corrected analysis</a>.</p>
 <h2>1. The raster, re-measured from its bytes</h2>
 <p>sha256 <code>c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9</code>: 37,654 binary dots, 0 on catalogue pixels, median nearest-neighbour spacing 3.00 px.
 The closest dot is 224 m from a mapped fault. <b>100%</b> of the dots lie exactly on the H19-5 ridge set (19GEMSDOE).</p>
 <h2>2. Mechanism</h2>
 <p>DTI = T / (0.2 (T + S − M<sub>k</sub>) + 0.8 K). For a new binary dot, ΔD = 0.2·(ΔT+1−k). The rule k &gt; α·DTI applies only if ΔT=k; no optimal spacing follows from it. <a href="metric-review.html">Corrected derivation and attribution limits</a>.
 Truth credit is a maximum per truth cell, not additive across dots. Known-fault pixels are masked from scoring, and test truth contains only faults <i>not</i> in the catalogue.</p>
-<h2 id="inversion">3. Live-score inversion (95 organizer-scored rasters)</h2>
-<p>E[TP<sub>i</sub>] = Σ<sub>y</sub> h(y) M<sub>i</sub>(y) holds exactly (linearity of expectation). We fit h ≥ 0 by NNLS on the linearised DTI identity.</p>
+<h2 id="inversion">3. Historical S0 inversion of 95 owner-reported rows (not organizer receipts)</h2>
+<p>The linearized DTI identity is a mathematical sensitivity model. Its fit to 95 score values copied into owner-repository evidence does not authenticate those values, reveal private labels, or establish organizer scores for the represented TIFFs.</p>
 <table><tr><th>Model</th><th>Parameters</th><th>LOO RMSE</th><th>LOO Spearman</th></tr>
 <tr><td>Catalogue distance only</td><td>6</td><td>0.1355</td><td>+0.203</td></tr>
 <tr><td>H19-5 support distance only</td><td>5</td><td>0.0365</td><td>+0.867</td></tr>
 <tr><td><b>S0: support × catalogue</b></td><td>9</td><td>0.0324</td><td>+0.917</td></tr>
 <tr><td>S1: S0 + H77-1 straight edges (off-support)</td><td>18</td><td>0.0328</td><td>+0.912</td></tr>
 <tr><td>S2: S0 + H77-2 strain deficit (off-support)</td><td>18</td><td>0.0324</td><td>+0.917</td></tr></table>
-<p>Predicting the mean gives RMSE 0.0853. S0 implies K ≈ 10,366 hidden-truth pixels.</p>
+<p>Predicting the mean gives historical row-wise RMSE 0.0853. Under its own assumptions S0 implies K ≈ 10,366 hidden-truth pixels; this is a model parameter, not a measurement or estimate validated against secret labels.</p>
 <h3>The lineage, reproduced by S0 (INSTRUMENT, in-sample; S0 runs a consistent +0.003 to +0.013 high)</h3>
-<table><tr><th>Step</th><th>Score (OWNER-REPORTED)</th><th>S0</th><th>Dots</th><th>Credit per dot</th></tr><tr><td>H19-5 solid ridges (19GEMSDOE)</td><td>0.1922</td><td>0.1946</td><td>121,131</td><td>0.053</td></tr><tr><td>dotted d=1.5 px (GEMSDOE24)</td><td>0.2477</td><td>0.2593</td><td>60,069</td><td>0.090</td></tr><tr><td>dotted d=2.8 px (GEMSDOE25)</td><td>0.2600</td><td>0.2734</td><td>44,090</td><td>0.109</td></tr><tr><td>d2.8 minus dots &lt;=1 px from catalogue (GEMSDOE28/31)</td><td>0.2708</td><td>0.2824</td><td>40,199</td><td>0.118</td></tr><tr><td>d2.8 minus dots &lt;=2 px (200 m) from catalogue (GEMSDOE32)</td><td>0.2778</td><td>0.2879</td><td>37,654</td><td>0.125</td></tr></table>
+<table><tr><th>Step</th><th>Owner-reported score row (unverified)</th><th>S0 sensitivity (not a score)</th><th>Dots</th><th>Modeled credit per dot</th></tr><tr><td>H19-5 solid ridges (19GEMSDOE)</td><td>0.1922</td><td>0.1946</td><td>121,131</td><td>0.053</td></tr><tr><td>dotted d=1.5 px (GEMSDOE24)</td><td>0.2477</td><td>0.2593</td><td>60,069</td><td>0.090</td></tr><tr><td>dotted d=2.8 px (GEMSDOE25)</td><td>0.2600</td><td>0.2734</td><td>44,090</td><td>0.109</td></tr><tr><td>d2.8 minus dots &lt;=1 px from catalogue (GEMSDOE28/31)</td><td>0.2708</td><td>0.2824</td><td>40,199</td><td>0.118</td></tr><tr><td>d2.8 minus dots &lt;=2 px (200 m) from catalogue (GEMSDOE32)</td><td>0.2778</td><td>0.2879</td><td>37,654</td><td>0.125</td></tr></table>
 <h3>Champion credit per dot by zone (break-even bar 0.0576)</h3>
 <table><tr><th>Zone (support / catalogue distance)</th><th>Dots</th><th>Mean isolated credit</th></tr><tr><td>on/cat&lt;=0.4km</td><td>3,825</td><td>0.049</td></tr><tr><td>on/cat0.4-2km</td><td>15,305</td><td>0.100</td></tr><tr><td>on/cat&gt;2km</td><td>18,524</td><td>0.208</td></tr></table>
-<h2>4. Can it be beaten?</h2>
-<p><b>Without the uniqueness rule: yes, modestly.</b> Pruning the dots that fall below the bar helps. <b>Under the rule: very likely not, with the fields known today.</b>
-The 3 px overlap radius equals the kernel radius, so at least 30% of a unique raster's dots must earn credit more than 3 px from H19-5.
-To tie the champion, those dots need at least <b>0.056</b> credit each.
-Neither tested off-support field improves the leave-one-out fit.</p>
-<table><tr><th>Target</th><th>Score</th><th>Credit per dot needed (at 37,654 dots)</th><th>Recall of hidden truth</th></tr><tr><td>leaderboard #1 (ORGANIZER-CONFIRMED public LB, 2026-10-21)</td><td>0.4413</td><td>0.194</td><td>0.70</td></tr><tr><td>user-quoted 0.3195 (not on current leaderboard top 20)</td><td>0.3195</td><td>0.139</td><td>0.50</td></tr></table>
+<h2>4. What this historical sensitivity analysis cannot establish</h2>
+<p>It cannot establish whether H33 received 0.2778, whether a new candidate can beat that OWNER-REPORT value, or the probability of a future leaderboard gain. The pruning and off-support calculations depend on the fitted S0 model, whose owner-reported input rows are unauthenticated. Any target table below is a hypothetical sensitivity calculation only; the recall column is model-implied, not observed.</p>
+<table><tr><th>Unverified sensitivity target</th><th>Model-required credit per dot (37,654-dot assumption)</th><th>Model-implied recall</th></tr><tr><td>Historical sensitivity target 0.4413 (not score-verified)</td><td>0.194</td><td>0.70</td></tr><tr><td>Historical sensitivity target 0.3195 (not score-verified)</td><td>0.139</td><td>0.50</td></tr></table>
 <h2 id="hypotheses">5. Hypotheses (pre-registered before the holdout; <a href="https://github.com/buffedlizard55-lab/GEMSDOE77/blob/main/docs/research/hypotheses.md">full table</a>)</h2>
 <table><tr><th>Rank</th><th>ID</th><th>Signature</th><th>Result</th></tr>
-<tr><td>1</td><td>H77-3 live-inversion allocation</td><td>Truth density from 95 scores; greedy expected-credit placement</td><td>S0 LOO ρ +0.917. It explains the lineage.</td></tr>
+<tr><td>1</td><td>H77-3 live-inversion allocation</td><td>Fit to 95 owner-reported rows; modeled expected-credit placement</td><td>S0 LOO ρ +0.917 within those rows; not proof of the lineage mechanism.</td></tr>
 <tr><td>2</td><td>H77-1 straight-edge field</td><td>det_elev, NMS thin edges × 1.5 km structure-tensor coherence</td><td>Live: inconclusive (one in-sample bin; no LOO gain). Holdout alone: 0.0788 vs random 0.0480</td></tr>
 <tr><td>3</td><td>H77-4 parallel strands</td><td>3–6 px ring around the support</td><td>Negative (h = 0)</td></tr>
 <tr><td>4</td><td>H77-2 strain–catalogue deficit</td><td>rank(geod_2ndinv, shear) − rank(catalogue density)</td><td>Negative (no change)</td></tr>
@@ -55,8 +56,8 @@ The measured footprint mismatch can place NaNs inside cells that the sample subm
 Proposed upstream patch: <a href="https://github.com/buffedlizard55-lab/GEMSDOE77/blob/main/reports/template_fix_validate_footprint.patch"><code>reports/template_fix_validate_footprint.patch</code></a>.</li>
 <li>GEMSDOE71's vendored <code>gems57/grid.py</code> differs from its own pin (a local edit to <code>REPO_ROOT</code>). This repo vendors the upstream bytes (GEMSDOE66@0f6762f0); all 11 pins verify.</li></ul></div></main>
 <footer><div class="wrap">Selector status for every file on this page: not approved (the slot decision is a separate selector step). Generated by <code>scripts/lia_build_site.py</code> from <code>docs/data/*.json</code> and
-<code>evidence/*.json</code>. Labels: <b>ORGANIZER-CONFIRMED</b> (public leaderboard), <b>OWNER-REPORTED</b>
-(transcribed from the submission page), <b>HOLDOUT-DTI</b> (local hide-and-recover), <b>INSTRUMENT</b>
-(projection, never a score).</div></footer>
+<code>evidence/*.json</code>. Labels: <b>ORGANIZER-CONFIRMED</b> (organizer receipt tied to exact artifact), <b>OWNER-REPORTED</b>
+(transcribed from an owner page/submission record; not independently authenticated), <b>HOLDOUT-DTI</b> (local hide-and-recover), <b>INSTRUMENT</b>
+(projection/sensitivity, never a score).</div></footer>
 <script>document.querySelectorAll('button[data-copy]').forEach(b=>b.onclick=()=>{navigator.clipboard.writeText(b.dataset.copy);b.textContent='Copied';setTimeout(()=>b.textContent='Copy',1200)})</script>
 </body></html>

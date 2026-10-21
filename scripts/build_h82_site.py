@@ -78,13 +78,19 @@ with 6,436 near-catalogue dots removed, leaving 37,654. Sparse placement can red
 0.2778 remains OWNER-REPORT. Neither that lineage nor the conflicting requested leaderboard targets prove a causal effect,
 an optimal 200 m buffer, or a future gain. H82 supplies no evidence of beating it.</p>'''
     (D / "h82-texture.html").write_text(render("h82-texture.html", "H82 · negative research", body))
-    # Put the current session status before historical banners on both entry pages.
+    # Keep the current session's explicit release status ahead of this historical
+    # inspection-only H82 banner on the landing page. The guide has no such card,
+    # so its existing introduction remains first.
     for name in ("index.html", "executive-summary.html"):
         p = D / name
         text = p.read_text()
         text = re.sub(r'<section class="card dl research" id="h82-status">.*?</section>', "", text, flags=re.S)
-        marker = '<main><div class="wrap">'
-        text = text.replace(marker, marker + box, 1)
+        current = re.search(r'<section class="card" id="current-session-status"[^>]*>.*?</section>', text, flags=re.S)
+        if name == "index.html" and current:
+            text = text[:current.end()] + box + text[current.end():]
+        else:
+            marker = '<main><div class="wrap">'
+            text = text.replace(marker, marker + box, 1)
         p.write_text(text)
     target = D / "evidence/h82_texture"
     target.mkdir(parents=True, exist_ok=True)

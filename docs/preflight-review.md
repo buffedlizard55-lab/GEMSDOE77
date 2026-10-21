@@ -13,6 +13,10 @@ The requested **new protocol-unique submission is blocked**, not completed. A ne
 would not satisfy the literal overlap gate. This review uses the mandatory stop rule rather than
 repackaging an old file or inventing an approved candidate. No competition slot was used.
 
+## Current checkout follow-up — 2026-10-21
+
+This historic readiness page is not the latest branch-specific review. On `arena/eacf8dd2-gemsdoe77`, the pinned preflight again reports `STOP_UNIVERSAL_DUPLICATE`; no candidate, experiment, new TIFF, or slot was produced. The updated [three-pass review](review-2026-10-21-arena-eacf8dd2.md) and [review run card](evidence/review_eacf8dd2_run_card.json) are authoritative for this checkout. The local listed-file audit now covers 29 primary TIFFs, all format-pass only; the current submission-authorization receipt still authorizes zero files. Do not use the download audit as a uniqueness or upload-approval signal.
+
 ## Pass 1 — review and implementation
 
 Read the repository README and embedded original request, PROMPT, AGENTS, irregularities, preregistration,

@@ -25,7 +25,10 @@ def main():
     (D/'h82rank.html').write_text(page)
     lanespath=D/'data'/'lanes.json'; lanes=json.loads(lanespath.read_text())
     lanes['lanes']=[r for r in lanes['lanes'] if not r['lane'].startswith('H82R:')]
-    lanes['lanes'].insert(1 if any(r['lane'].startswith('H82:') for r in lanes['lanes']) else 0,{
+    h77v_index=next((i for i,r in enumerate(lanes['lanes']) if r['lane'].startswith('H77V:')),None)
+    h82_index=next((i for i,r in enumerate(lanes['lanes']) if r['lane'].startswith('H82:')),None)
+    insert_index=h77v_index+1 if h77v_index is not None else (h82_index if h82_index is not None else 0)
+    lanes['lanes'].insert(insert_index,{
         'lane':'H82R: local ternary radiometric rank-mixture entropy (STOPPED; research only)',
         'page':'h82rank.html','summary':'executive-summary.html','file':f'downloads/{path.name}',
         'run_card':'evidence/h82rank_run_card.json','format_valid':True,'protocol_unique':False,
@@ -39,6 +42,6 @@ def main():
         note += (' ' if note else '') + 'H82R: radiometric negative research file; NOT OK TO SUBMIT.'
     import re
     lanes['note'] = re.sub(r'All \d+ listed TIFF lanes', f'All {len(lanes["lanes"])} listed TIFF lanes', note)
-    lanespath.write_text(json.dumps(lanes,indent=1,ensure_ascii=False)+'\n')
+    lanespath.write_text(json.dumps(lanes,indent=2)+'\n')
 
 if __name__=='__main__':main()

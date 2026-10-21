@@ -318,7 +318,52 @@ def test_current_review_and_metric_correction_are_linked():
     review = (DOC / 'review-latest.html').read_text()
     assert 'NOT OK TO SUBMIT' in review
     assert 'No new TIFF was generated' in review
-    assert 'Resource not accessible by integration' in review
+    assert 'STOP_UNIVERSAL_DUPLICATE' in review
+    assert 'OWNER-REPORT / user-supplied' in review
+    assert '82/82 configured owner-repository inventories' in review
+
+
+def test_current_status_precedes_historical_download_cards_and_is_machine_linked():
+    home = (DOC / 'index.html').read_text()
+    current = home.index('id="current-session-status"')
+    old_h82 = home.index('id="h82-status"')
+    assert current < old_h82
+    status = home[current:old_h82]
+    assert 'OK TO DOWNLOAD FOR INSPECTION: YES' in status
+    assert 'OK TO SUBMIT: NO' in status and '0 files' in status
+    assert '29/29 listed primary TIFFs pass local format checks only' in status
+    assert '82/82 configured owner repositories' in status
+    for link in ('review-latest.html', 'evidence/review_eacf8dd2_run_card.json',
+                 'evidence/registry_preflight.json', 'evidence/listed_download_audit.json',
+                 'data/submission-authorization.json', 'source-health.json'):
+        assert link in status
+    card = json.loads((ROOT / 'evidence/review_eacf8dd2_run_card.json').read_text())
+    assert card['verdict'] == 'negative' and card['experiments_run'] == 0
+    assert card['raster_sha256'] is None and card['submission_name'] is None
+    assert card['submission_note'] is None and card['submission_note_status'].startswith('NOT APPLICABLE')
+    assert card['holdout_dti']['status'].startswith('NOT RUN')
+    assert card['weekly_slots_used'] == 0
+
+
+def test_legacy_lia_pages_flag_historical_score_claims_and_current_status():
+    for name in ('lia.html', 'lia-executive-summary.html', 'lia-analysis.html', 'lia-sources.html'):
+        page = (DOC / name).read_text()
+        assert 'Historical LIA lane' in page
+        assert 'NOT OK TO SUBMIT' in page
+        assert '0 repository files' in page
+        assert 'not an organizer receipt tied to these raster bytes' in page
+        assert 'current official leaderboard and portal were not freshly retrieved' in page
+        assert 'review-latest.html' in page
+    overview = (DOC / 'lia.html').read_text()
+    assert '95 organizer-scored registry rasters' not in overview
+    assert 'ORGANIZER-CONFIRMED</b>. The brief' not in overview
+    assert 'unverified OWNER-REPORT 0.2778 reference' in overview
+    analysis = (DOC / 'lia-analysis.html').read_text()
+    assert '95 owner-reported rows (not organizer receipts)' in analysis
+    assert 'Why GEMSDOE32 h33-2-b2 scored 0.2778' not in analysis
+    sources = (DOC / 'lia-sources.html').read_text()
+    assert 'Official sources (each one opened and read' not in sources
+    assert 'no organizer score exists for artifacts in that repository' in sources
 
 
 def test_current_preflight_review_does_not_claim_a_new_submission():

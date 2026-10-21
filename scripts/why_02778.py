@@ -1,13 +1,16 @@
 #!/usr/bin/env python3
-"""Quantitative evidence for reports/why_02778.md (S0 live-inversion instrument).
+"""Historical S0 live-inversion worksheet; not evidence of H33 score attribution.
 
-* re-measures the 0.2778 raster from its bytes (dots, spacing, catalogue distances);
+* re-measures the 0.2778-associated raster from its bytes (dots, spacing, catalogue distances);
 * reproduces the GEMSDOE19 -> GEMSDOE32 lineage with the S0 instrument (in-sample);
-* champion credit per dot by S0 bin vs the break-even bar alpha*DTI;
-* break-even credit per off-support dot for a protocol-unique candidate;
-* credit per dot implied by the leaderboard #1 (0.4413, ORGANIZER-CONFIRMED on the
-  public leaderboard page) at the champion's dot count.
-Writes evidence/why_02778.json.  Projections are INSTRUMENT values, not scores.
+* computes hypothetical champion credit-per-dot/break-even sensitivities;
+* includes an unverified 0.4413 reference supplied by earlier owner/user notes.
+
+No organizer receipt ties 0.2778 to this TIFF, and the pinned GEMSDOE32 source page
+says no organizer score exists for its artifacts. Writes historical worksheet data to
+`evidence/why_02778.json`; all inversion outputs are INSTRUMENT values, never scores
+or proof of likely performance. Do not use this script to claim a current leaderboard
+value, causal attribution, or promotion evidence; use the corrected analysis instead.
 """
 from __future__ import annotations
 

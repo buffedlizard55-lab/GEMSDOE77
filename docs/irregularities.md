@@ -1,5 +1,17 @@
 # Irregularities and next-session handoff
 
+## Current session — 2026-10-21 (`arena/eacf8dd2-gemsdoe77`)
+
+| ID | Verified finding | Consequence |
+|---|---|---|
+| IR-EACF-01 | Fresh pinned registry preflight verifies shared template hashes and grid, then finds the 3-px dilation of one pinned positive witness covers all 5,106,385 allowed pixels; literal nonempty forward-overlap lower bound is 1.0 > 0.70. | `STOP_UNIVERSAL_DUPLICATE` before feature/candidate work. This is one-witness rejection, not a complete registry scan or uniqueness certificate. No candidate or TIFF was generated; do not privately change the gate. |
+| IR-EACF-02 | The listed-download audit read 29 primary TIFFs from the current lane manifest; all local format checks pass. | Format only. It does not authorize submission, check the archive for uniqueness, prove organizer acceptance, or imply selector approval. Central authorization remains 0 files. |
+| IR-EACF-03 | Current checkout lacks `data/raw/training_features.tif`, `data/processed/stack.npy`, and `.cache/gems_data/training_features.tif`; older restore receipts are historical. | No feature-alone canaries or new holdout were run; no expensive restore was attempted after the preflight stop. |
+| IR-EACF-04 | `scripts/refresh_sources.py` retrieved 82/82 configured owner-repository inventories at 2026-10-21T17:55:10Z; official non-GitHub competition/data/leaderboard pages were not fetched. | Fresh inventory only, not score verification or source availability. H33's 0.2778 remains unauthenticated; the pinned GEMSDOE32 page explicitly says no organizer score exists for artifacts in that repo. |
+| IR-EACF-05 | Frozen H77-Step run card uses permissive submit wording; current artifact and central authorization receipts do not grant a slot/file. | Preserve the historical card, but display and follow `NOT OK TO SUBMIT`; do not infer current authorization from `verdict: promote`. |
+
+See [the current three-pass review](review-2026-10-21-arena-eacf8dd2.md) and [review run card](evidence/review_eacf8dd2_run_card.json). The conditional candidate ideas are a research backlog only, not a lane assignment or exception to the preflight.
+
 ## H77-TSD update (2026-10-21; branch `arena/b2132ad0-gemsdoe77`)
 
 | ID | Verified irregularity | Consequence |

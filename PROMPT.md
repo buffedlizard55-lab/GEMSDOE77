@@ -8,6 +8,10 @@ summarised with provenance at the end rather than re-transcribed hash-by-hash
 `docs/score-ledger.csv`; later entries below are OWNER-REPORT as supplied in
 the 2026-10-21 brief — no organizer receipts).*
 
+## 2026-10-21 current-session addendum — arena/eacf8dd2-gemsdoe77
+
+No new method paragraph is assigned. Fresh `scripts/preflight_registry.py` result is `STOP_UNIVERSAL_DUPLICATE`: one pinned dense witness covers all 5,106,385 allowed pixels within 3 px, making the current literal lower-bound forward overlap 1.0 (>0.70) for every nonempty candidate. This is a candidate-independent protocol stop, not geological similarity. No candidate, feature, holdout, TIFF, or slot was generated. Existing download format audit is 29/29, but authorizes 0 files and is not uniqueness or portal clearance. Full cached feature stack is absent. Do not bypass the stop, copy/repackage a prior TIFF, or treat a historical run-card promotion as current approval. See `docs/review-2026-10-21-arena-eacf8dd2.md`, `evidence/review_eacf8dd2_run_card.json`, and refreshed `docs/source-health.json` (GitHub repository inventory only; not score verification). The corrected H33 analysis is `research/why-h33-scored-02778.md`; older reported leaderboard values below are historical OWNER-REPORT/page claims, not current authenticated receipts.
+
 ## 2026-10-21 review addendum — arena/60aafd45-gemsdoe77
 
 No new method paragraph is assigned in this invocation. The freshly rechecked dense registry witness blocks every nonempty candidate under the binding literal rule. No new TIFF, model experiment or slot is authorized by this review. See `docs/review-2026-10-21-60aafd45.md` and the corrected H33 analysis. Superseded earlier leaderboard observations below are historical, not current submission-page receipts.

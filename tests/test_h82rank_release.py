@@ -30,6 +30,10 @@ def test_h82_card_and_download_are_negative():
 def test_h82_pages_and_manifest_fail_closed():
     card = json.loads((ROOT/'evidence/h82rank_run_card.json').read_text())
     lanes = json.loads((ROOT/'docs/data/lanes.json').read_text())['lanes']
+    names = [r['lane'] for r in lanes]
+    h77v_position = next(i for i, value in enumerate(names) if value.startswith('H77V:'))
+    h82r_position = next(i for i, value in enumerate(names) if value.startswith('H82R:'))
+    assert h82r_position == h77v_position + 1  # stable inventory order on rebuild
     row = next(r for r in lanes if r['lane'].startswith('H82R:'))
     assert row['sha256'] == card['raster_sha256']
     assert row['protocol_unique'] is False and row['verdict'] == 'negative'

@@ -1,4 +1,6 @@
-# Current review — 2026-10-21 — branch 904a24d3
+> **HISTORICAL / SUPERSEDED:** This branch review predates `arena/eacf8dd2-gemsdoe77`. Use [the current three-pass review](review-2026-10-21-arena-eacf8dd2.md) for the current checkout's status and evidence.
+
+# Historical review — 2026-10-21 — branch 904a24d3
 
 ## Executive decision: download for inspection; NOT OK TO SUBMIT
 

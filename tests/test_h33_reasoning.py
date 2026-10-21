@@ -1,8 +1,21 @@
 """Algebra checks, not HOLDOUT-DTI measurements or leaderboard forecasts."""
+from pathlib import Path
+
 import numpy as np
 
 from gems57.metric import ALPHA, dti_binary, kernel, marginal_accept
+
+ROOT = Path(__file__).resolve().parents[1]
 from scipy.ndimage import distance_transform_edt
+
+
+def test_old_h33_inversion_note_is_explicitly_superseded():
+    report = (ROOT / "reports/why_02778.md").read_text()
+    script = (ROOT / "scripts/why_02778.py").read_text()
+    assert report.startswith("> **HISTORICAL / SUPERSEDED:**")
+    assert "No organizer receipt for this TIFF was verified" in report
+    assert "not evidence of H33 score attribution" in script
+    assert "ORGANIZER-CONFIRMED on the" not in script
 
 
 def components(pred, truth):

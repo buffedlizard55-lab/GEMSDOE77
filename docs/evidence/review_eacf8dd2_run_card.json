@@ -1,0 +1,62 @@
+{
+  "schema": "gems-repository-review-run-card-v1",
+  "review_date_utc": "2026-10-21",
+  "branch": "arena/eacf8dd2-gemsdoe77",
+  "hypothesis": "Repository review only. No assigned new method was tested. The top conditional research idea is event-level uncertainty-weighted seismic-plane coherence, but it is not viable in this sandbox and was not run.",
+  "mechanism": "No new mechanism was implemented or evaluated. The conditional ComCat idea would test whether depth-consistent event planes indicate blind faults beyond broad 100 km-smoothed seismicity summaries.",
+  "named_non_fault_process_that_could_mimic_it": "Volcanic or geothermal earthquake swarms, quarry blasts, aftershock sequences, and spatially varying seismic-network detection.",
+  "holdout_dti": {
+    "evidence_class": "NO NEW HOLDOUT-DTI RESULT",
+    "evaluator_version": null,
+    "withheld_positive_pixels": null,
+    "value": null,
+    "ci95": null,
+    "status": "NOT RUN: the universal registry preflight stopped new field generation before any experiment; active cached feature stack is absent.",
+    "historical_reference_only": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "withheld_positive_pixels": 11321,
+      "value": 0.15271838267517626,
+      "ci95": [
+        0.13154777963689623,
+        0.17518471011261624
+      ],
+      "lane": "H77-Step frozen receipt; historical reference, not measured in this review"
+    }
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT; NOT SCORE",
+    "candidate_surface_rank_correlation": null,
+    "candidate_final_dot_overlap": null,
+    "candidate_status": "No new surface or dots built; no candidate-specific correlation/overlap statistic exists.",
+    "preflight_receipt": "evidence/registry_preflight.json",
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "allowed_pixels": 5106385,
+    "witness_covered_allowed_pixels": 5106385,
+    "nonempty_candidate_forward_overlap_lower_bound_3px": 1.0,
+    "protocol_stop_threshold": 0.7,
+    "complete_registry_scan": false,
+    "decision": "STOP_UNIVERSAL_DUPLICATE; rejection witness only, not uniqueness clearance"
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "new_candidate_generated": false,
+    "no_nan_inside_footprint": "NOT APPLICABLE: no new TIFF",
+    "values_in_0_1": "NOT APPLICABLE: no new TIFF",
+    "crs_shape_transform_match": "NOT APPLICABLE: no new TIFF",
+    "existing_listed_primary_file_audit": {
+      "evidence_class": "FORMAT-INTEGRITY-MEASUREMENT; NOT SCORE OR PORTAL ACCEPTANCE",
+      "receipt": "evidence/listed_download_audit.json",
+      "listed_primary_tiffs": 29,
+      "local_format_pass_count": 29,
+      "all_format_pass": true
+    },
+    "release_authorization": "NOT OK TO SUBMIT; 0 authorized files"
+  },
+  "submission_name": null,
+  "submission_note": null,
+  "submission_note_status": "NOT APPLICABLE: no new candidate TIFF exists or is authorized for upload.",
+  "experiments_run": 0,
+  "weekly_slots_used": 0,
+  "verdict": "negative"
+}
