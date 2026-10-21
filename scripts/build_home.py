@@ -71,11 +71,15 @@ def main():
     primary = next((x for x in lanes["lanes"] if x.get("primary")), lanes["lanes"][0])
     # ---------------- status table (every file in the repository)
     def holdout_cell(x):
+        if x.get("holdout_evidence_class") == "HOLDOUT-DTI":
+            ci = x["holdout_ci95"]
+            return (f'<span class="chip warn">HOLDOUT-DTI {x["holdout_dti"]:.6f}; '
+                    f'{e(x["holdout_evaluator_version"])}, {x["holdout_withheld_positive_pixels"]:,} withheld positives; '
+                    f'95% CI [{ci[0]:.6f}, {ci[1]:.6f}]</span>')
         if x.get("beats_holdout_best") is not None:
             return yn(x["beats_holdout_best"], "YES", "NO")
         if x.get("holdout_dti_hide_v2") is not None:
-            return (f'<span class="chip warn">reported {x["holdout_dti_hide_v2"]:.4f} HOLDOUT-DTI by its lane; '
-                    f'not re-verified here</span>')
+            return '<span class="chip warn">HOLDOUT-DTI recorded by its lane; details in run card, not organizer score</span>'
         return yn(None)
 
     def info_cell(x):
@@ -84,8 +88,11 @@ def main():
 
     rows = ""
     for x in lanes["lanes"]:
+        sibling_zip = Path(x["file"]).with_suffix(".zip").as_posix()
+        zip_link = f' · <a download href="{e(sibling_zip)}">.zip</a>' if (D / sibling_zip).is_file() else ""
         rows += (f'<tr><td><a href="{e(x["page"])}">{e(x["lane"])}</a></td>'
-                 f'<td><a download href="{e(x["file"])}">{e(Path(x["file"]).name)}</a></td>'
+                 f'<td><a download href="{e(x["file"])}">{e(Path(x["file"]).name)}</a>{zip_link}'
+                 f'<br><small class="muted">SHA-256 <code>{e(x.get("sha256", "not recorded"))}</code></small></td>'
                  f'<td>{yn(x.get("format_valid"), "PASS", "FAIL")}</td>'
                  f'<td>{yn(x.get("protocol_unique"), "PASS", "FAIL")}</td>'
                  f'<td>{info_cell(x)}</td>'
@@ -104,13 +111,16 @@ def main():
 (irregularity I17). The rule says a file duplicates <i>any</i> registry raster when more than 70% of its dots lie within
 3 px of that raster's dots. Several registry rasters are space-filling: one covers 100% of the allowed pixels. Even random
 dots exceed 0.70 against them, so <b>no non-empty file can pass the literal rule</b>. Only the protocol owner can resolve
-this, with one shared registry policy. Until then, spending a slot is a selector decision outside this repository.</p>"""
+this, with one shared registry policy. Until then, spending a slot is a selector decision outside this repository.
+The machine-readable <a href="data/submission-authorization.json">submission authorization receipt</a> independently
+combines all required release gates and currently reports <b>NOT OK TO SUBMIT — 0 authorized files</b>.</p>"""
     beat_txt = primary.get(
         "beat_02778_summary",
-        "Not expected. Its projection is below the 0.2778 file, and its holdout did not beat the champion construction.",
+        "No leaderboard score or projection is established by this local artifact; see the lane's HOLDOUT-DTI receipt. This file is not cleared to submit.",
     )
-    dl = f"""<section class="card dl"><h2>⬇ Newest file: download</h2>
+    dl = f"""<section class="card dl"><h2>⬇ Highlighted download (not approved to submit)</h2>
 <p class="small muted"><b>{e(primary["lane"])}.</b> {e(primary.get("why_primary", ""))}</p>
+<p class="small muted"><b>Freshness:</b> H79 is the latest completed research lane. It is negative, inspection-only, and not approved for submission; this highlighted file is shown for audit and download only.</p>
 <a class="btn" href="{e(primary["file"])}" download>Download .tif ({size_kb:.0f} KB)</a>{zip_btn}
 <div class="chips"><span class="chip ok">OK to download: YES</span>
 <span class="chip {'ok' if primary.get('format_valid') else 'bad'}">Portal format (local checks): {'PASS' if primary.get('format_valid') else 'FAIL'}</span>
@@ -130,7 +140,7 @@ encoding of the GEMSDOE32 file that the owner reports scored 0.2778. Local check
     if card:
         h = card["holdout"]
         d = card["paired_difference_vs_champion_construction"]
-        facts = f"""<h2>The H78 lane in four lines</h2><ul>
+        facts = f"""<h2>Prior H78 lane details (historical comparison)</h2><ul>
 <li><b>Artifact:</b> <code>{e(card["submission_name"])}</code> · sha256 <code>{e(card["raster_sha256"])}</code></li>
 <li><b>Hypothesis:</b> {e(card["hypothesis"])}</li>
 <li><b>Result:</b> HOLDOUT-DTI {h["dti"]:.4f} (95% CI {h["ci95"][0]:.4f}–{h["ci95"][1]:.4f}; {e(h["evaluator_version"])};
@@ -148,8 +158,9 @@ encoding of the GEMSDOE32 file that the owner reports scored 0.2778. Local check
 row 47, team extradr19 (ORGANIZER-CONFIRMED as a leaderboard value). The leader then had 0.4413 and second place 0.3904. The
 owner reports that 0.2778 came from <code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</code> (GEMSDOE32); that link
 between file and score is OWNER-REPORTED.
-No file here has an organizer score. The H78 lane used 0 submission slots.</div>
+No file here has an organizer score. H79 used 0 competition slots; no artifact has selector authorization.</div>
 {facts}
+<h2>H79: latest negative research lane</h2><p>H79-BB (basement potential-field step × topographic curvature ridge) scored 0.032328 HOLDOUT-DTI (evaluator gems57-pooled-hide-v2; 22,633 withheld positives; 95% CI [0.028377, 0.036450]) versus random control 0.035293 HOLDOUT-DTI (same evaluator and withheld count; 95% CI [0.032556, 0.038005]). The paired difference is -0.002965 (95% CI [-0.007344, 0.001463]), so the result is negative. Literal uniqueness fails under I17; selector approval is absent. The [H79 report](h79.html) and [run card](../evidence/h79_run_card.json) provide methods and limitations. This is not a leaderboard score or submission clearance.</p>
 <h2>How the repository interprets the reported 0.2778</h2>
 <p>The association between the reported score and <code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</code> is <strong>OWNER-REPORTED</strong>, not copied from an organizer receipt for that file. The repository's hash-checked forensic copy is described as 37,654 single-pixel dots aligned with the H19-5 lineament set and outside the mapped catalogue. Under the published DTI metric (<a href="{PD}">problem description</a>), the 300 m triangular kernel gives partial credit near hidden faults while false-positive predictions and missed fault length are penalized. A sparse lineament-aligned construction is therefore a plausible explanation for its reported result, but the file-to-score linkage and causal explanation are not organizer-confirmed. The current uniqueness gate is broader than H19-5 alone and is blocked by a space-filling registry witness. See <a href="lia-analysis.html">the forensic analysis and its provenance limits</a>.</p>"""
     (D / "index.html").write_text(page("index.html", "Start here", body))
