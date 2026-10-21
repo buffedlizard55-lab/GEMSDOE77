@@ -145,4 +145,18 @@ GitHub authenticated operations work. CPU scientific transforms, local validatio
 - **IR-PREFLIGHT-04:** README XSEN paragraph promised a portal range error could not recur from local checks. Replaced with finite/range readback evidence and explicit unknown portal acceptance.
 - **IR-PREFLIGHT-05:** Current live leaderboard, weekly cap and official external data cannot be freshly verified from this restricted-host sandbox. Family score mentions are not file-to-score receipts. Official reference README checked via GitHub supports CPU-only environments.
 
-- **IR-PREFLIGHT-06 (parallel merge):** PR #47 replaced LIA `docs/data/submission.json` with H28's incompatible schema, breaking the Pages build (`KeyError: zip`). Restored LIA metadata and retained unchanged H28 metadata as `docs/data/h28_submission.json`; added identity/hash regression protection. Neither TIFF was regenerated.
+- **IR-PREFLIGHT-06 (parallel merge):** PR #47 replaced LIA `docs/data/submission.json` with H28's incompatible schema, breaking the Pages build (`KeyError: zip`). Restored LIA metadata and retained unchanged H28 metadata as `docs/data/h28-submission.json`; added identity/hash regression protection. Neither TIFF was regenerated.
+
+## Review 904a24d3 — 2026-10-21
+
+- IR-904-01: H33 analysis incorrectly assumed every added dot has deltaT=q and
+  deltaD=alpha. Corrected the general marginal inequality; removed unsupported
+  universal distance, near-catalogue false-positive and performance-gain claims.
+- IR-904-02: Shared pinned metric prose says deltaT<=q, false when a dot credits
+  multiple truth pixels. Numerical evaluator unchanged; regression added.
+  Upstream prose correction remains pending; no private template fork.
+- IR-904-03: Release-gate nested malformed objects could crash, and NaN overlap
+  could bypass numeric comparisons. Added fail-closed type/range/finite checks.
+- IR-904-04: The requested single method paragraph is absent. No lane invented,
+  no stopped experiment rerun. Dense registry rejection witness reproduced;
+  new compliant TIFF not delivered. Historical downloads are inspection-only.

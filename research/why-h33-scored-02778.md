@@ -104,3 +104,5 @@ was retrieved over GitHub in this session. Its README explicitly offers CPU-only
 and GPU environments. Thus a GPU is helpful, not an absolute requirement of
 that reference solution. DrivenData authentication and an organizer receipt
 for the named H33 file are unavailable here; no credentials were requested.
+
+Parallel review [904a24d3](../docs/review-904a24d3.md) independently found the same marginal-credit prose error; its additional redundant-dot and soft-field regression tests are preserved.

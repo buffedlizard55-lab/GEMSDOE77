@@ -13,9 +13,9 @@ from __future__ import annotations
 import hashlib
 import html
 import json
+import markdown
 import shutil
 
-import markdown
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -85,6 +85,9 @@ def main():
     (D / "preflight-review.html").write_text(page(
         "preflight-review.html", "Submission readiness review",
         markdown.markdown(review, extensions=["tables", "fenced_code"])))
+
+    review = markdown.markdown((D / "review-904a24d3.md").read_text(), extensions=["tables"])
+    (D / "review-904a24d3.html").write_text(page("review-904a24d3.html", "Current repository review", review))
     lanes = jload("docs/data/lanes.json")
     card = jload("evidence/h78_run_card.json")
     sub = jload("docs/data/h78_submission.json")
@@ -268,6 +271,7 @@ These are registry/format measurements, not scores or portal acceptance.</p>"""
 <li><b>Verdict:</b> <b>{e(card["verdict"].upper())}</b> — {e(card["verdict_reason"])}</li>
 <li><a href="h78.html">Full H78 page: the hypotheses, the three experiments, uniqueness and the run card →</a></li></ul>"""
     body = f"""<h1>Start here</h1>
+<p><strong>Current review: no new TIFF generated; NOT OK TO SUBMIT.</strong> <a href="review-904a24d3.html">Three-pass audit and corrected H33 analysis</a>. Existing downloads are for inspection only.</p>
 <p>This repository builds and audits fault-probability GeoTIFFs for the <a href="{COMP}">DOE GEMS Prize</a>
 (DrivenData competition 306). The first box distinguishes downloading a file from permission to upload it. The table
 lists the reviewed research candidates, not every historical archived/NaN-twin file; see <a href="audit.html">archive audit</a>.</p>

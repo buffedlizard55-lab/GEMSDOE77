@@ -293,7 +293,7 @@ def test_current_preflight_review_does_not_claim_a_new_submission():
 
 def test_lia_and_parallel_h28_metadata_do_not_collide():
     lia = json.loads((DOC / "data/submission.json").read_text())
-    h28 = json.loads((DOC / "data/h28_submission.json").read_text())
+    h28 = json.loads((DOC / "data/h28-submission.json").read_text())
     card = json.loads((DOC / "data/run-card.json").read_text())
     assert lia["name"] == card["submission_name"]
     assert lia["name"] != h28["name"]

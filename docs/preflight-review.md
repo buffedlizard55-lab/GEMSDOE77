@@ -117,8 +117,13 @@ and only then seek separate selector approval. No automatic upload or private ex
 
 While preparing this review PR, main received PRs #47 and #48. Preserved their H28 artifacts and H81 status correction.
 The H28 merge had replaced `docs/data/submission.json` with a different schema, causing `lia_build_site.py` to raise
-`KeyError: zip` in the CI-equivalent build. Retained H28 metadata under `docs/data/h28_submission.json`, restored the
+`KeyError: zip` in the CI-equivalent build. Retained H28 metadata under `docs/data/h28-submission.json`, restored the
 original LIA metadata, and added LIA/run-card identity protection plus a regression test binding both metadata records
 to their unchanged TIFF hashes. This is metadata repair, not a new candidate or an ownership claim over parallel work.
 The primary download inventory is still 22 entries; the new unlisted H28 archive is outside this review's listed-file
 audit. Repeated the full build, verifier and software tests after reconciliation.
+
+A subsequent main merge (PR #49) independently fixed the same metadata collision and marginal-DTI prose.
+Reconciled onto its canonical `h28-submission.json` path (identical metadata bytes), preserved its review and
+release-gate NaN/type hardening, and retained both regression suites. All combined tests and build checks were
+repeated; no shared-template source or raster bytes were changed.
