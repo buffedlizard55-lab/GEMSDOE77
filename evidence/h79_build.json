@@ -1,0 +1,117 @@
+{
+ "budget": 37654,
+ "dots": 37654,
+ "elapsed_seconds": 89.9,
+ "name": "gems77-h79-attrctx-hgb-greedy37654-20261021T1455Z-zeros",
+ "note": "H79 qfaults-attribute+strike context HGB, fold-blind; 37654 greedy dots >300m off catalogue. HOLDOUT-DTI .151 s20/.165 s30, not live",
+ "note_chars": 132,
+ "sha256": "210576444c179b90b8e71a15118e0a63d8285e6cbd1604a67f921473560927ab",
+ "surface_sha256": "54379f349d33fbc0e5191633800e858c424fe0a1a36a32e5599234ebfec82d6a",
+ "template_report": {
+  "bands": 1,
+  "blocksize": [
+   256,
+   256
+  ],
+  "bounds": [
+   243350.0,
+   4135550.0,
+   572550.0,
+   4508550.0
+  ],
+  "bytes": 137568,
+  "crs": "EPSG:32611",
+  "dtype": "float32",
+  "fixture_grid": false,
+  "has_validity_mask": false,
+  "height": 3730,
+  "infinity_pixels": 0,
+  "mass": 37654.0,
+  "mass_outside_footprint": 0,
+  "max": 1.0,
+  "mean": 0.0030664964579045773,
+  "min": 0.0,
+  "n_nan": 0,
+  "n_nonzero": 37654,
+  "nan_pixels": 0,
+  "nodata": null,
+  "ok": true,
+  "path": "/home/user/GEMSDOE77/docs/downloads/gems77-h79-attrctx-hgb-greedy37654-20261021T1455Z-zeros.tif",
+  "problems": [],
+  "ref_bounds": [
+   243350.0,
+   4135550.0,
+   572550.0,
+   4508550.0
+  ],
+  "sha256": "210576444c179b90b8e71a15118e0a63d8285e6cbd1604a67f921473560927ab",
+  "transform": [
+   100.0,
+   0.0,
+   243350.0,
+   0.0,
+   -100.0,
+   4508550.0
+  ],
+  "validation_class": "local on-disk template/range check; not organizer upload acceptance",
+  "width": 3292
+ },
+ "tif": "docs/downloads/gems77-h79-attrctx-hgb-greedy37654-20261021T1455Z-zeros.tif",
+ "validator": {
+  "all_checks_passed": true,
+  "band_description": [
+   null
+  ],
+  "bytes": 137568,
+  "checks": {
+   "crs_epsg_32611": true,
+   "dimensions_3730x3292": true,
+   "dtype_float32": true,
+   "in_footprint_all_finite": true,
+   "in_footprint_range_0_1": true,
+   "max_le_1": true,
+   "min_ge_0": true,
+   "no_inf_anywhere": true,
+   "no_nan_anywhere": true,
+   "no_sentinel_values": true,
+   "outside_footprint_zero": true,
+   "range_0_1_guaranteed": true,
+   "single_band": true,
+   "transform_matches_sample_submission": true,
+   "zero_dots_on_mapped_catalogue": true
+  },
+  "emitted_positive_pixels": 37654,
+  "file": "/home/user/GEMSDOE77/docs/downloads/gems77-h79-attrctx-hgb-greedy37654-20261021T1455Z-zeros.tif",
+  "footprint_fraction": 0.007286874781441169,
+  "in_footprint_positive_pixels": 37654,
+  "max": 1.0,
+  "mean": 0.0030664964579045773,
+  "meta": {
+   "count": 1,
+   "crs": "EPSG:32611",
+   "dtype": "float32",
+   "nodata": null,
+   "profile_compress": "deflate",
+   "shape": [
+    3730,
+    3292
+   ],
+   "transform": [
+    100.0,
+    0.0,
+    243350.0,
+    0.0,
+    -100.0,
+    4508550.0
+   ]
+  },
+  "min": 0.0,
+  "n_finite": 12279160,
+  "n_infinite": 0,
+  "n_nan": 0,
+  "on_catalogue_positive_pixels": 0,
+  "sha256": "210576444c179b90b8e71a15118e0a63d8285e6cbd1604a67f921473560927ab",
+  "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance"
+ },
+ "zip_sha256": "e93a4d37f94914bd9f85b3fddb2ad84cea9763f8f9f8c05aa1de112c19a7dbde"
+}

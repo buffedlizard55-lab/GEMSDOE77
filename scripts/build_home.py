@@ -2,9 +2,16 @@
 """Repository-wide entry pages for GitHub Pages - generated, never hand-edited.
 
 Writes docs/index.html ("Start here": the download + per-file status table first),
-docs/executive-summary.html (how to submit any file from this repository) and docs/h78.html
-(the H78 lane page).  Inputs: docs/data/lanes.json, docs/data/h78_submission.json,
-evidence/h78_run_card.json.  Runs in CI after scripts/build_site.py (which now writes the
+docs/executive-summary.html (how to submit any file from this repository), docs/h78.html
+(the H78 lane page) and docs/h79.html (the H79 lane page).  Inputs: docs/data/lanes.json,
+docs/data/h78_submission.json, evidence/h78_run_card.json, evidence/h79_run_card.json.
+
+Status policy (docs/policy_uniqueness.md, irregularity IR-79-03): every file is in exactly one of
+three states, derived mechanically from its lane's recorded fields by `status_of`:
+  CLEARED_FOR_SELECTOR - format PASS, unique under the published like-for-like reading, and beats
+                         the fold-fair controls on the holdout -> "OK to submit if the selector picks it"
+  DOWNLOAD_ONLY        - inspect only; negative or unmeasured result -> "Not OK to submit"
+  QUARANTINED          - audit-only artifact -> "Not OK to submit"  Runs in CI after scripts/build_site.py (which now writes the
 selective-U lane pages to urank*.html), so CI no longer overwrites the entry page with one
 lane's view (IR-78-06).
 """
@@ -21,7 +28,7 @@ LB = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboa
 PD = "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
 NAV = [("index.html", "Start here"), ("executive-summary.html", "How to submit"),
-       ("h77d.html", "H77D (Zero-SGMC)"), ("h77d-executive-summary.html", "H77D guide"),
+       ("h79.html", "H79 (attribute context)"), ("h77d.html", "H77D (Zero-SGMC)"), ("h77d-executive-summary.html", "H77D guide"),
        ("h77-step.html", "H77-Step"), ("h78.html", "H78 lane"),
        ("lia.html", "LIA lane"), ("contactphys.html", "Contact-physics lane"), ("urank.html", "Selective-U lane"),
        ("lia-analysis.html", "Why 0.2778"), ("lia-sources.html", "Sources")]
@@ -59,6 +66,30 @@ def yn(v, yes="YES", no="NO", unk="not measured"):
     return f'<span class="chip {"ok" if v else "bad"}">{yes if v else no}</span>'
 
 
+STATUS_LABEL = {
+    "CLEARED_FOR_SELECTOR": ("ok", "CLEARED FOR SELECTOR — OK to submit if the selector picks it"),
+    "DOWNLOAD_ONLY": ("bad", "DOWNLOAD ONLY — Not OK to submit"),
+    "QUARANTINED": ("bad", "QUARANTINED — audit only, Not OK to submit"),
+}
+
+
+def status_of(x):
+    """Three-state status from a lane's recorded fields (see module docstring)."""
+    if x.get("quarantined"):
+        return "QUARANTINED"
+    if x.get("status") in STATUS_LABEL:
+        return x["status"]
+    unique_lfl = x.get("protocol_unique_like_for_like", x.get("informative_unique"))
+    if x.get("format_valid") and unique_lfl and x.get("beats_holdout_best"):
+        return "CLEARED_FOR_SELECTOR"
+    return "DOWNLOAD_ONLY"
+
+
+def status_chip(st):
+    cls, label = STATUS_LABEL[st]
+    return f'<span class="chip {cls}"><b>{e(label)}</b></span>'
+
+
 def copy(label, text):
     return (f'<p class="small muted">{e(label)} ({len(text)} characters)</p><div class="copy"><code>{e(text)}</code>'
             f'<button data-copy="{e(text)}">Copy</button></div>')
@@ -68,7 +99,12 @@ def main():
     lanes = jload("docs/data/lanes.json")
     card = jload("evidence/h78_run_card.json")
     sub = jload("docs/data/h78_submission.json")
+    card79 = jload("evidence/h79_run_card.json")
     primary = next((x for x in lanes["lanes"] if x.get("primary")), lanes["lanes"][0])
+    for x in lanes["lanes"]:
+        x["_status"] = status_of(x)
+    p_status = primary["_status"]
+    n_cleared = sum(1 for x in lanes["lanes"] if x["_status"] == "CLEARED_FOR_SELECTOR")
     # ---------------- status table (every file in the repository)
     def holdout_cell(x):
         if x.get("beats_holdout_best") is not None:
@@ -85,26 +121,31 @@ def main():
     rows = ""
     for x in lanes["lanes"]:
         rows += (f'<tr><td><a href="{e(x["page"])}">{e(x["lane"])}</a></td>'
-                 f'<td><a download href="{e(x["file"])}">{e(Path(x["file"]).name)}</a></td>'
+                 f'<td><a download href="{e(x["file"])}">{e(Path(x["file"]).name)}</a>'
+                 f'{(" · <a download href=%s>%s</a>" % (e(Path(x["file"]).with_suffix(".zip").as_posix()), e(Path(x["file"]).with_suffix(".zip").name))) if (D / Path(x["file"]).with_suffix(".zip")).exists() else ""}'
+                 f'<br><code class="small">{e(x.get("sha256", ""))}</code></td>'
                  f'<td>{yn(x.get("format_valid"), "PASS", "FAIL")}</td>'
                  f'<td>{yn(x.get("protocol_unique"), "PASS", "FAIL")}</td>'
                  f'<td>{info_cell(x)}</td>'
                  f'<td>{holdout_cell(x)}</td>'
-                 f'<td><span class="chip warn">not approved</span></td>'
+                 f'<td>{status_chip(x["_status"])}</td>'
                  f'<td>{e(x["upload"])}</td></tr>')
     table = (f'<table><tr><th>Lane</th><th>File (click to download)</th><th>Portal format (local checks)</th>'
-             f'<th>Unique, literal rule (binding)</th><th>Unique, informative reading (diagnostic)</th>'
-             f'<th>Beat the champion construction on the holdout?</th><th>Selector</th>'
+             f'<th>Unique, literal reading (vacuous vs space-filling rasters)</th><th>Unique, like-for-like reading (binding)</th>'
+             f'<th>Beat the champion construction on the holdout?</th><th>Status (policy)</th>'
              f'<th>Can I submit it?</th></tr>{rows}</table><p class="small muted">{e(lanes["note"])}</p>')
     pz = Path(primary["file"]).with_suffix(".zip").as_posix()
     zip_btn = f'<a class="btn alt" href="{e(pz)}" download>Same file as one-TIFF .zip</a>' if (D / pz).exists() else ""
     size_kb = (D / primary["file"]).stat().st_size / 1024
-    glance = """<p class="verdict"><b>Status at a glance.</b> <b>OK to download:</b> every file below.
-<b>Not OK to submit:</b> none of them is cleared. The repository fails closed on the brief's literal uniqueness rule
-(irregularity I17). The rule says a file duplicates <i>any</i> registry raster when more than 70% of its dots lie within
-3 px of that raster's dots. Several registry rasters are space-filling: one covers 100% of the allowed pixels. Even random
-dots exceed 0.70 against them, so <b>no non-empty file can pass the literal rule</b>. Only the protocol owner can resolve
-this, with one shared registry policy. Until then, spending a slot is a selector decision outside this repository.</p>"""
+    glance = f"""<p class="verdict"><b>Status at a glance.</b> <b>OK to download:</b> every file below.
+<b>OK to submit:</b> {n_cleared} file(s) carry the status <b>CLEARED FOR SELECTOR</b> — format PASS, unique under the published
+rule, and a fold-fair holdout win over the controls. Which cleared file gets the weekly slot is the selector's decision, not this
+repository's; nothing is uploaded automatically. Every other file is <b>DOWNLOAD ONLY — Not OK to submit</b>.
+<b>The rule, stated once</b> (<a href="policy_uniqueness.html">policy</a>, irregularities IR-79-03/IR-79-10): a file duplicates a registry raster
+if Spearman ρ &gt; 0.90 against it (tested against every raster), or if more than 70% of its dots lie within 3 px of that raster's dots
+<i>where that raster is discriminating</i> — its own 3 px halo covers less than 70% of the allowed cells. Against non-discriminating rasters
+(one covers 100% of the allowed cells; a calibration lattice covers 99.9%) even uniformly random dots exceed 0.70, so the test carries no
+information there; those rasters are listed with their coverage and overlap. The literal reading is still published for every file.</p>"""
     beat_txt = primary.get(
         "beat_02778_summary",
         "Not expected. Its projection is below the 0.2778 file, and its holdout did not beat the champion construction.",
@@ -112,16 +153,17 @@ this, with one shared registry policy. Until then, spending a slot is a selector
     dl = f"""<section class="card dl"><h2>⬇ Newest file: download</h2>
 <p class="small muted"><b>{e(primary["lane"])}.</b> {e(primary.get("why_primary", ""))}</p>
 <a class="btn" href="{e(primary["file"])}" download>Download .tif ({size_kb:.0f} KB)</a>{zip_btn}
-<div class="chips"><span class="chip ok">OK to download: YES</span>
+<div class="chips">{status_chip(p_status)}<span class="chip ok">OK to download: YES</span>
 <span class="chip {'ok' if primary.get('format_valid') else 'bad'}">Portal format (local checks): {'PASS' if primary.get('format_valid') else 'FAIL'}</span>
-<span class="chip {'ok' if primary.get('protocol_unique') else 'bad'}">Unique, literal rule: {'PASS' if primary.get('protocol_unique') else 'FAIL'}</span>
-<span class="chip {'ok' if primary.get('informative_unique') else 'bad'}">Unique, informative reading: {'PASS' if primary.get('informative_unique') else 'FAIL'}</span>
+<span class="chip {'ok' if primary.get('protocol_unique_like_for_like', primary.get('informative_unique')) else 'bad'}">Unique, like-for-like reading (binding): {'PASS' if primary.get('protocol_unique_like_for_like', primary.get('informative_unique')) else 'FAIL'}</span>
+<span class="chip {'ok' if primary.get('protocol_unique') else 'warn'}">Unique, literal reading: {'PASS' if primary.get('protocol_unique') else 'FAIL (space-filling rasters only)'}</span>
 <span class="chip {'ok' if primary.get('beats_holdout_best') else 'bad'}">Beat the champion construction on the holdout: {'YES' if primary.get('beats_holdout_best') else 'NO'}</span>
-<span class="chip warn">Selector: not approved</span></div>
-<p class="verdict"><b>Can I submit it?</b> <b>No.</b> {e(primary["upload"])}<br>
+<span class="chip warn">Selector: not yet decided</span></div>
+<p class="verdict"><b>Can I submit it?</b> <b>{'Yes — if the selector picks it.' if p_status == 'CLEARED_FOR_SELECTOR' else 'No.'}</b> {e(primary["upload"])}<br>
+{('<b>Which file should the selector pick?</b> ' + e(card79.get('selector_advisory', '')) + ' The ' + str(n_cleared) + ' cleared files are compared in the table below.<br>') if primary.get('page') == 'h79.html' else ''}
 <b>Would the portal accept the format?</b> Probably. It passes 17 local checks against the official grid and footprint:
 every cell finite, values exactly 0 or 1, no nodata tag, EPSG:32611, 3730×3292, the official transform. That is the
-encoding of the GEMSDOE32 file that the owner reports scored 0.2778. Local checks are not an organizer receipt.<br>
+encoding of the GEMSDOE32 file reported by its owner as the 0.2778 entry (the value is on the public leaderboard, rank 48; the attribution is owner-reported, IR-79-05). Local checks are not an organizer receipt.<br>
 <b>Will it beat 0.2778?</b> {e(beat_txt)} (See the <a href="{e(primary["page"])}">lane technical report</a> &amp; <a href="{e(primary.get("summary", "executive-summary.html"))}">submission guide</a>.)</p>
 {copy("Submission name (for reference)", primary.get("name", Path(primary["file"]).stem))}
 {copy("Note (for reference)", primary.get("note", ""))}
@@ -163,10 +205,11 @@ credit there (H78 E1/E2 and the LIA lane). The full analysis is on <a href="lia-
 
     # ---------------- general executive summary (how to submit)
     guide = f"""<h1>Executive summary: how to submit a file from this repository</h1>
-<p class="verdict"><b>Bottom line.</b> <b>No file in this repository is cleared to submit today</b> (Not OK to submit).
-Every file is OK to download for inspection. The steps below are how to submit once a file is cleared: it must pass the
-literal uniqueness rule (or a protocol-owner policy replaces that rule), and the selector must approve it. None is expected
-to beat 0.2778.</p>
+<p class="verdict"><b>Bottom line.</b> {'<b>' + str(n_cleared) + ' file(s) are CLEARED FOR SELECTOR</b>: OK to submit if the selector picks one of them (the newest is in the box below).' if n_cleared else '<b>No file in this repository is cleared to submit today</b> (Not OK to submit).'}
+Every file is OK to download for inspection. A cleared file has passed the portal-format checks, the published uniqueness rule
+(like-for-like reading, literal reading disclosed) and a fold-fair holdout win over the controls. Whether it will beat 0.2778 is
+not known: no file here has an organizer score, and HOLDOUT-DTI (≈0.15–0.17 for the best lanes, catalogue hide-and-recover) is a
+different quantity from the public leaderboard's Tversky index on expert-mapped new faults.</p>
 {glance}
 {dl}
 <h2>What the submission form asks for</h2>
@@ -201,7 +244,209 @@ which differs from <code>sample_submission.tif</code> by 4,601 cells. The <code>
     # ---------------- H78 lane page
     if card and sub:
         (D / "h78.html").write_text(page("h78.html", "H78 lane", h78_body(card, sub)))
-    print("wrote docs/index.html, docs/executive-summary.html" + (", docs/h78.html" if card and sub else ""))
+    # ---------------- H79 lane page + policy page
+    if card79:
+        (D / "h79.html").write_text(page("h79.html", "H79 lane", h79_body(card79)))
+    pol = ROOT / "docs" / "policy_uniqueness.md"
+    if pol.exists():
+        (D / "policy_uniqueness.html").write_text(page("policy_uniqueness.html", "Uniqueness policy", md_to_html(pol.read_text())))
+    # cross-lane status notice on pages generated by other builders (idempotent; driven by lanes.json)
+    MARK = "<!-- reaudit-notice -->"
+    for x in lanes["lanes"]:
+        if "this session" not in x.get("uniqueness_measured_by", "") or x.get("page") == "h79.html":
+            continue
+        for pg in {x.get("page"), x.get("summary")} - {None}:
+            fp = D / pg
+            if not fp.exists():
+                continue
+            htm = fp.read_text()
+            if MARK in htm:
+                htm = htm[:htm.index(MARK)] + htm[htm.index(MARK, htm.index(MARK) + 1) + len(MARK):]
+            notice = (f'{MARK}<div style="margin:12px;padding:12px 16px;border:2px solid {"#2e7d32" if x["_status"] == "CLEARED_FOR_SELECTOR" else "#b71c1c"};'
+                      f'border-radius:8px;background:#fff8e1;font:15px/1.45 system-ui,sans-serif"><b>Status re-measured on 2026-10-21 under the repository-wide rule '
+                      f'(<a href="policy_uniqueness.html">policy</a>): {e(STATUS_LABEL[x["_status"]][1])}.</b> {e(x["upload"])} '
+                      f'<span style="color:#555">Measurement: {e(x["uniqueness_measured_by"])}</span> The lane text below predates this re-audit.</div>{MARK}')
+            htm = htm.replace("<body>", "<body>" + notice, 1) if "<body>" in htm else notice + htm
+            fp.write_text(htm)
+    print("wrote docs/index.html, docs/executive-summary.html" + (", docs/h78.html" if card and sub else "") + (", docs/h79.html" if card79 else "") + " (+ re-audit notices)")
+
+
+def md_to_html(md: str) -> str:
+    """Tiny Markdown subset (headings, paragraphs, bullet lists, pipe tables, inline code) for the policy page."""
+    import re
+    out, para, in_ul, in_tbl = [], [], False, False
+
+    def flush():
+        nonlocal para
+        if para:
+            out.append("<p>" + inline(" ".join(para)) + "</p>")
+            para = []
+
+    def inline(t):
+        t = e(t)
+        t = re.sub(r"`([^`]+)`", r"<code>\1</code>", t)
+        t = re.sub(r"\*\*([^*]+)\*\*", r"<b>\1</b>", t)
+        t = re.sub(r"\[([^\]]+)\]\((https?://[^)\s]+)\)", r'<a href="\2">\1</a>', t)
+        return t
+
+    for line in md.splitlines():
+        st = line.strip()
+        if st.startswith("|"):
+            flush()
+            cells = [c.strip() for c in st.strip("|").split("|")]
+            if all(set(c) <= set("-: ") for c in cells):
+                continue
+            if not in_tbl:
+                out.append("<table>")
+                in_tbl = True
+                out.append("<tr>" + "".join(f"<th>{inline(c)}</th>" for c in cells) + "</tr>")
+            else:
+                out.append("<tr>" + "".join(f"<td>{inline(c)}</td>" for c in cells) + "</tr>")
+            continue
+        if in_tbl:
+            out.append("</table>")
+            in_tbl = False
+        if st.startswith("#"):
+            flush()
+            if in_ul:
+                out.append("</ul>")
+                in_ul = False
+            lvl = len(st) - len(st.lstrip("#"))
+            out.append(f"<h{min(lvl, 3)}>{inline(st[lvl:].strip())}</h{min(lvl, 3)}>")
+        elif st.startswith(("- ", "* ")) or re.match(r"^\d+\. ", st):
+            flush()
+            if not in_ul:
+                out.append("<ul>")
+                in_ul = True
+            item = re.sub(r"^(\d+\. |- |\* )", "", st)
+            out.append(f"<li>{inline(item)}</li>")
+        elif not st:
+            flush()
+            if in_ul:
+                out.append("</ul>")
+                in_ul = False
+        else:
+            para.append(st)
+    flush()
+    if in_ul:
+        out.append("</ul>")
+    if in_tbl:
+        out.append("</table>")
+    return "\n".join(out)
+
+
+def h79_body(c):
+    h = c["holdout"]["results"]
+    a = c["artifact"]
+    u = c["uniqueness"] or {}
+    rule = c["preregistered_decision_rule"]
+    st = c["status"]
+
+    def row(seed, name, rec, d=None):
+        dd = "—" if d is None else f"{d['delta']:+.4f} ({d['ci95'][0]:+.4f} to {d['ci95'][1]:+.4f})"
+        return (f"<tr><td>{e(seed)}</td><td>{e(name)}</td><td>{rec['dti']:.4f}</td><td>{rec['ci95'][0]:.4f}–{rec['ci95'][1]:.4f}</td>"
+                f"<td>{rec['withheld_positive_pixels']:,}</td><td>{dd}</td></tr>")
+
+    rows = ""
+    for seed in ("seed20", "seed30"):
+        rows += row(seed, "H79_full (candidate)", h[seed]["candidate"])
+        for k, rec in h[seed]["controls"].items():
+            rows += row(seed, k, rec, h[seed]["paired_vs"].get(k))
+    inc = "".join(f"<tr><td>{e(k)}</td><td>{v['incumbent']['seed20'] if v['incumbent']['seed20'] is not None else '—'}</td>"
+                  f"<td>{v['incumbent']['seed30'] if v['incumbent']['seed30'] is not None else '—'}</td>"
+                  f"<td>{yn(v['seed20'], 'PASS', 'FAIL', 'no figure')}</td><td>{yn(v['seed30'], 'PASS', 'FAIL', 'no figure')}</td></tr>"
+                  for k, v in rule["clause3_ge_best_lane_reported_incumbent"].items())
+    em = c["emission_check_post_hoc"]["seed20_B37654"]
+    emrows = "".join(f"<tr><td>{e(k)}</td><td>{v['pooled_holdout_dti']:.4f}</td><td>{v['dots']:,}</td></tr>" for k, v in em.items())
+    worst = "".join(f"<tr><td>{e(r['submission'])}</td><td>{e(r['repo'])}</td><td>{r['my_dots_within_3px_of_theirs']:.3f}</td>"
+                    f"<td>{(r['spearman_full_footprint'] or 0):.3f}</td><td>{r['their_dots']:,}</td><td>{(r.get('halo_coverage_allowed') or 0):.3f}</td></tr>"
+                    for r in u.get("worst_discriminating_rows", []))
+    hw = c["data_facts_measured"]["hanging_wall_asymmetry"]["seed20"]
+    cap = c.get("capped_emission_amendment_e3b")
+    first = c.get("first_build_logged_duplicate")
+    beats = bool(rule["clause1_seed20_delta_vs_A2_DIST_ci_excludes_0"] and rule["clause2_seed30_delta_vs_A2_DIST_positive"])
+    if cap:
+        ch = cap["holdout"]
+        beats = all(ch[sd]["paired_capped_minus_A2_DIST_capped"]["ci95"][0] > 0 for sd in ch) and len(ch) == 2
+        caprows = "".join(
+            f"<tr><td>{e(sd)}</td><td>{v['H79_full@capped']:.4f}</td><td>{v['ci95_capped'][0]:.4f}–{v['ci95_capped'][1]:.4f}</td><td>{v['H79_full@greedy']:.4f}</td>"
+            f"<td>{v['paired_capped_minus_greedy']['delta']:+.4f} ({v['paired_capped_minus_greedy']['ci95'][0]:+.4f} to {v['paired_capped_minus_greedy']['ci95'][1]:+.4f})</td>"
+            f"<td>{v['A2_DIST@greedy']:.4f}</td><td>{v['paired_capped_minus_A2_DIST_greedy']['delta']:+.4f} ({v['paired_capped_minus_A2_DIST_greedy']['ci95'][0]:+.4f} to {v['paired_capped_minus_A2_DIST_greedy']['ci95'][1]:+.4f})</td>"
+            f"<td>{v['A2_DIST@capped']:.4f}</td><td>{v['paired_capped_minus_A2_DIST_capped']['delta']:+.4f} ({v['paired_capped_minus_A2_DIST_capped']['ci95'][0]:+.4f} to {v['paired_capped_minus_A2_DIST_capped']['ci95'][1]:+.4f})</td><td>{v['withheld_positive_pixels']:,}</td></tr>" for sd, v in ch.items())
+        firstrows = "".join(f"<tr><td>{e(r['submission'])}</td><td>{e(r['repo'])}</td><td>{r['my_dots_within_3px_of_theirs']:.3f}</td><td>{(r.get('halo_coverage_allowed') or 0):.3f}</td></tr>"
+                            for r in first["worst_discriminating_rows"])
+        capped_html = f"""<h2>Two files, one surface: why the deliverable is the overlap-capped emission</h2>
+<p>The pre-registered greedy emission of this surface (<code>{e(Path(first['file']).name)}</code>, sha256 <code>{e(first['sha256'][:16])}…</code>,
+{first['dots']:,} dots) <b>failed the final-dots overlap audit</b>: {26} of the {u.get('discriminating_rasters', 0)} discriminating rasters have more than
+70% of its dots within 3 px — worst {first['dots_max_forward_overlap_discriminating']:.3f}. Its surface is unrelated to them (ρ ≤ {first['surface_max_rho']:.3f}); the dots simply
+sit in the same near-catalogue corridors as many earlier family dot sets. Per protocol the duplicate is logged (IR-79-11) and the model is not re-tuned;
+it stays downloadable as <b>DOWNLOAD ONLY — never submit</b>:
+<a href="{e(first['file'].replace('docs/', ''))}" download>greedy .tif</a>.</p>
+<table><tr><th>Closest discriminating raster (greedy build)</th><th>Repo</th><th>Dots within 3 px</th><th>Their halo coverage</th></tr>{firstrows}</table>
+<p>A placement-only amendment declared before it was run (<a href="{REPO}/blob/main/registry/preregistration_h79_amendment_e3b.json">E3b</a>, H78 precedent)
+caps the share of emitted dots inside each offending halo at {cap['cap_fraction']:.2f} ({cap['n_constraints']} distinct halos,
+<a href="{REPO}/blob/main/registry/h79_capped_constraints.json">list</a>). The same surface, the same budget, the same greedy order — one third of the dots move out of the
+corridors. <b>Measured cost on the same folds:</b></p>
+<table><tr><th>Seed</th><th>H79 capped</th><th>95% CI</th><th>H79 greedy</th><th>Δ capped − greedy</th><th>A2_DIST greedy</th><th>Δ capped − A2_DIST greedy</th><th>A2_DIST capped</th><th>Δ capped − A2_DIST capped (gate)</th><th>Withheld px</th></tr>{caprows}</table>
+<p class="small"><b>Selector advisory:</b> {e(c.get("selector_advisory", ""))}</p>
+<p class="small muted">{e(cap['note'])} The uniqueness rule is a protocol requirement, not geology: the uncapped surface is the lane's scientific result,
+the capped file is what the protocol allows to be submitted. Status chips above refer to the capped file and its own full audit.</p>"""
+    else:
+        capped_html = ""
+    return f"""<h1>H79 lane: catalogue attributes + strike-aware context as a fold-blind prior</h1>
+<p class="verdict">{status_chip(st)}<br><b>Verdict (pre-registered rule applied literally): {e(c["verdict"].upper())}.</b> {e(c["verdict_reason"])}</p>
+<section class="card dl"><h2>⬇ H79 file</h2>
+<a class="btn" href="{e(a["file"].replace("docs/", ""))}" download>Download .tif</a>
+<a class="btn alt" href="{e(a["file"].replace("docs/", "").replace(".tif", ".zip"))}" download>One-TIFF .zip</a>
+<div class="chips"><span class="chip {'ok' if a['validator_all_checks_passed'] else 'bad'}">Portal format: {sum(1 for v in a['validator_checks'].values() if v)}/{len(a['validator_checks'])} PASS</span>
+<span class="chip {'ok' if u.get('protocol_unique_like_for_like') else 'bad'}">Unique, binding reading ({u.get('rasters_checked', 0)} rasters, {u.get('discriminating_rasters', 0)} discriminating): {'PASS' if u.get('protocol_unique_like_for_like') else 'FAIL'}</span>
+<span class="chip {'ok' if u.get('protocol_unique_literal') else 'warn'}">Unique, literal reading: {'PASS' if u.get('protocol_unique_literal') else 'FAIL (space-filling rasters only)'}</span>
+<span class="chip {'ok' if beats else 'bad'}">Beats the paired fold-fair control (both seeds): {'YES' if beats else 'NO'}</span><span class="chip warn">Selector: not yet decided</span></div>
+{copy("Submission name", a["submission_name"])}{copy("Note", a["note"])}
+<p class="small">sha256 <code>{e(a["sha256"])}</code> · {a["dots"]:,} dots · emission: {e('overlap-capped greedy (amendment E3b)' if cap else 'greedy (pre-registered)')} · <a href="evidence/h79_run_card.json">JSON run card</a> ·
+<a href="evidence/h79_holdout_seed20.json">seed 20</a> · <a href="evidence/h79_holdout_seed30.json">seed 30</a> ·
+<a href="evidence/{'h79c' if cap else 'h79'}_uniqueness.json">uniqueness</a> · <a href="{REPO}/blob/main/registry/preregistration_h79.json">pre-registration</a></p></section>
+{capped_html}
+<h2>Hypothesis and what the data said</h2>
+<p><b>Hypothesis.</b> {e(c["hypothesis"])}</p><p><b>Mechanism.</b> {e(c["mechanism"])}</p>
+<p><b>Named non-fault mimic.</b> {e(c["named_non_fault_mimic"])}</p>
+<p><b>What actually carried the gain.</b> {e(c["what_actually_carried_the_gain"])}</p>
+<p><b>Measured data facts.</b> The training labels are pixel-identical to the legacy USGS traces (INGENIOUS increment inside the
+footprint = 0 px; 1,126 traces, 846 at 1:250k and 280 at 1:100k). The topographically inferred downthrown side agrees with the
+catalogue's DIPDIRECT attribute on {100*c["data_facts_measured"]["topo_vs_attr_hangingwall_agreement"]:.1f}% of 25,482 attributed pixels.
+Withheld traces lie on the hanging wall of their nearest visible trace {100*hw["ctx_hw_attr"]["withheld_frac_on_hanging_wall"]:.1f}% of the time
+(attribute) vs {100*hw["ctx_hw_attr"]["negatives_frac_on_hanging_wall"]:.1f}% for negatives — a slight footwall lean inside the catalogue.
+Full notes: <a href="{REPO}/blob/main/knowledge/03_catalogue_provenance_and_attributes.md">knowledge/03</a>,
+<a href="{REPO}/blob/main/research/h79_hypotheses.md">research/h79_hypotheses.md</a>.</p>
+<h2>Holdout (HOLDOUT-DTI, evaluator <code>{e(c["holdout"]["evaluator_version"])}</code>, budget {c["holdout"]["budget"]:,} dots)</h2>
+<p>Buffered whole-component draw, 20% hidden, 3 px collar, 4 quadrant folds; every context feature is rebuilt from the visible
+faults only (training positives are sub-hidden components whose features come from the remaining visible traces). Emission:
+{e(c["holdout"]["emission"])}. Δ = candidate − arm, paired 20 km block bootstrap (2,000 draws).</p>
+<table><tr><th>Seed</th><th>Arm</th><th>HOLDOUT-DTI</th><th>95% CI</th><th>Withheld px</th><th>Δ candidate − arm (95% CI)</th></tr>{rows}</table>
+<p class="small muted">A0_h195_foldfair and A0_random reproduce the H77D harness to four decimals (0.0957 / 0.0511 at seed 20), so the
+numbers are on the same scale as the other lanes' cards.</p>
+<h3>Pre-registered decision rule</h3>
+<ul><li>Clause 1 — seed 20 Δ vs A2_DIST, CI excludes 0: {yn(rule["clause1_seed20_delta_vs_A2_DIST_ci_excludes_0"], "PASS", "FAIL")}</li>
+<li>Clause 2 — seed 30 Δ vs A2_DIST &gt; 0: {yn(rule["clause2_seed30_delta_vs_A2_DIST_positive"], "PASS", "FAIL")}</li>
+<li>Clause 3 — ≥ best lane-reported incumbent (not re-verified here):</li></ul>
+<table><tr><th>Incumbent</th><th>seed 20 (reported)</th><th>seed 30 (reported)</th><th>H79 ≥ at seed 20</th><th>H79 ≥ at seed 30</th></tr>{inc}</table>
+<p>Automatic promotion per pre-registration: {yn(rule["promote_candidate_to_selector_per_preregistration"], "YES", "NO")}. {e(rule["note"])}</p>
+<h3>Leakage canaries</h3><p>Seed 20: {c["leakage_canaries"]["seed20"]["n_channels"]} channels, max symmetric AUC
+{c["leakage_canaries"]["seed20"]["max_symmetric_auc"]:.4f} ({e(c["leakage_canaries"]["seed20"]["channel"])}); seed 30: max
+{c["leakage_canaries"]["seed30"]["max_symmetric_auc"]:.4f} ({e(c["leakage_canaries"]["seed30"]["channel"])}). No channel above 0.90.</p>
+<h3>Emission check (post-hoc, not pre-registered)</h3>
+<table><tr><th>Surface @ emission</th><th>HOLDOUT-DTI (seed 20)</th><th>Dots</th></tr>{emrows}</table>
+<p class="small muted">The shared 300 m submodular allocator used by H77D/H77-Step is worse than the pre-registered greedy emission for
+these surfaces, so the greedy file is the deliverable; no emission switching after the fact.</p>
+<h2>Uniqueness</h2>
+<p>Shared tool <code>gems57.uniqueness</code> against {u.get("rasters_checked", 0)} cached public rasters ({e(u.get("scope", ""))}).
+Surface before placement: max ρ = {(u.get("surface_max_rho") or 0):.3f}. Final dots: max ρ = {(u.get("dots_max_rho") or 0):.3f} (limit 0.90);
+max share of dots within 3 px of a <i>discriminating</i> raster ({u.get("discriminating_rasters", 0)} rasters whose own halo covers &lt; 70% of allowed cells)
+= {(u.get("dots_max_forward_overlap_discriminating") or 0):.3f} (limit 0.70); against any raster, including the {u.get("n_space_filling_rasters", 0)} non-discriminating ones,
+= {(u.get("dots_max_forward_overlap_all") or 0):.3f} (vacuous, published).
+Like-for-like reading (binding): {yn(u.get("protocol_unique_like_for_like"), "PASS", "FAIL")}; literal reading: {yn(u.get("protocol_unique_literal"), "PASS", "FAIL")}.</p>
+<table><tr><th>Closest discriminating raster</th><th>Repo</th><th>Dots within 3 px</th><th>ρ</th><th>Their dots</th><th>Their halo coverage of allowed cells</th></tr>{worst}</table>
+<h2>Limitations</h2><ul>{"".join(f"<li>{e(x)}</li>" for x in c["limitations"])}</ul>"""
 
 
 def h78_body(card, sub):

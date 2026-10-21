@@ -1,0 +1,144 @@
+{
+ "amendment": "E3b uniqueness-capped emission",
+ "arms": {
+  "A2_DIST@capped": {
+   "dots": 37654,
+   "max_halo_fraction_among_constraints": 0.6599298879269134,
+   "pooled_holdout_dti": 0.1047407463557302
+  },
+  "A2_DIST@greedy": {
+   "dots": 37654,
+   "max_halo_fraction_among_constraints": null,
+   "pooled_holdout_dti": 0.12769486430327634
+  },
+  "H79_full@capped": {
+   "dots": 37654,
+   "max_halo_fraction_among_constraints": 0.6599298879269134,
+   "pooled_holdout_dti": 0.14139276275519722
+  },
+  "H79_full@greedy": {
+   "dots": 37654,
+   "max_halo_fraction_among_constraints": null,
+   "pooled_holdout_dti": 0.16450475906071862
+  }
+ },
+ "budget": 37654,
+ "candidate_factor": 80,
+ "cap_fraction": 0.66,
+ "evaluator_version": "gems57-pooled-hide-v2",
+ "evidence_class": "HOLDOUT-DTI",
+ "lane": "H79-ATTR-HANGINGWALL",
+ "n_constraints": 39,
+ "pooled_summary": {
+  "alpha": 0.2,
+  "best_comparable_control": "H79_full@greedy",
+  "beta": 0.8,
+  "bootstrap": {
+   "caveat": "Conditional on fitted folds, catalogue labels and fixed budgets; not a leaderboard interval.",
+   "clusters": 155,
+   "confidence": 0.95,
+   "draws": 2000,
+   "method": "paired physical spatial-cluster percentile",
+   "seed": 520860
+  },
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "evidence_class": "HOLDOUT-DTI",
+  "implementation_sha256": {
+   "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+   "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+   "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+   "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+  },
+  "paired_differences": {
+   "A2_DIST@capped": {
+    "ci95": [
+     0.02620353858924456,
+     0.04721461004154878
+    ],
+    "delta": 0.03665201639946701,
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "evidence_class": "HOLDOUT-DTI",
+    "withheld_positive_pixels": 11342
+   },
+   "A2_DIST@greedy": {
+    "ci95": [
+     0.0020303791830295396,
+     0.02596377929325693
+    ],
+    "delta": 0.013697898451920876,
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "evidence_class": "HOLDOUT-DTI",
+    "withheld_positive_pixels": 11342
+   },
+   "H79_full@greedy": {
+    "ci95": [
+     -0.027916491354323635,
+     -0.018678636112659817
+    ],
+    "delta": -0.02311199630552141,
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "evidence_class": "HOLDOUT-DTI",
+    "withheld_positive_pixels": 11342
+   }
+  },
+  "pooled": true,
+  "scores": {
+   "A2_DIST@capped": {
+    "ci95": [
+     0.08758130784316391,
+     0.1210052346965106
+    ],
+    "dti": 0.1047407463557302,
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "evidence_class": "HOLDOUT-DTI",
+    "fnw": 9586.860067754122,
+    "fpw": 36661.82405325537,
+    "tpw": 1755.1399322458751,
+    "withheld_positive_pixels": 11342
+   },
+   "A2_DIST@greedy": {
+    "ci95": [
+     0.1097695084625697,
+     0.14575694223000019
+    ],
+    "dti": 0.12769486430327634,
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "evidence_class": "HOLDOUT-DTI",
+    "fnw": 9198.333318519626,
+    "fpw": 36425.40835973449,
+    "tpw": 2143.6666814803707,
+    "withheld_positive_pixels": 11342
+   },
+   "H79_full@capped": {
+    "ci95": [
+     0.1243016775857967,
+     0.15774461613800364
+    ],
+    "dti": 0.14139276275519722,
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "evidence_class": "HOLDOUT-DTI",
+    "fnw": 8964.52751477106,
+    "fpw": 36327.87182537118,
+    "tpw": 2377.4724852289382,
+    "withheld_positive_pixels": 11342
+   },
+   "H79_full@greedy": {
+    "ci95": [
+     0.14674828353510128,
+     0.18247317096434496
+    ],
+    "dti": 0.16450475906071862,
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "evidence_class": "HOLDOUT-DTI",
+    "fnw": 8571.139982222297,
+    "fpw": 36079.3727433479,
+    "tpw": 2770.8600177776966,
+    "withheld_positive_pixels": 11342
+   }
+  },
+  "triangular_radius_m": 300.0
+ },
+ "seed": 30,
+ "status": "declared in registry/preregistration_h79_amendment_e3b.json before running; placement-only change",
+ "withheld_positive_pixels": 11342
+}

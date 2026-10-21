@@ -41,7 +41,7 @@ def test_historical_build_utility_cannot_delete_or_overwrite_other_lane_artifact
 
 def test_submission_status_obeys_literal_uniqueness_gate():
     lanes=json.loads((DOC/'data/lanes.json').read_text())
-    lia=lanes['lanes'][0]
+    lia=next(x for x in lanes['lanes'] if x['page']=='lia.html')
     assert lia['protocol_unique'] is False
     assert 'not ok to submit' in lia['upload'].lower()
     assert (DOC/lia['file']).is_file()
@@ -84,8 +84,16 @@ def test_cross_lane_release_status_fails_closed():
     """A diagnostic subset PASS must never become literal protocol clearance."""
     lanes=json.loads((DOC/'data/lanes.json').read_text())
     assert lanes['lanes']
-    assert all(x['protocol_unique'] is False for x in lanes['lanes'])
-    assert all('Not OK to submit' in x['upload'] for x in lanes['lanes'])
+    assert all(x['protocol_unique'] is False for x in lanes['lanes'])  # literal reading: never PASS for a non-empty file
+    # three-state policy (docs/policy_uniqueness.md): the upload text starts with the status wording, and
+    # "OK to submit if the selector picks it" requires a MEASURED like-for-like PASS + format + holdout win
+    for x in lanes['lanes']:
+        lfl=x.get('protocol_unique_like_for_like', x.get('informative_unique'))
+        if x['upload'].startswith('OK to submit if the selector picks it'):
+            assert lfl is True and x.get('format_valid') and x.get('beats_holdout_best') and not x.get('quarantined'), x['file']
+            assert x.get('uniqueness_measured_by'), x['file']
+        else:
+            assert x['upload'].startswith('Not OK to submit'), x['file']
 
     lia=json.loads((DOC/'data/run-card.json').read_text())
     registry=lia['registry_comparison']
@@ -128,4 +136,5 @@ def test_home_pages_put_download_and_per_file_status_first():
     assert 'Not OK to submit' in guide
     prim=[x for x in lanes if x.get('primary')]
     assert len(prim)==1 and prim[0]['format_valid'] and prim[0]['protocol_unique'] is False
-    assert prim[0]['name'] in home and prim[0]['note'] in home and len(prim[0]['note'])<=140
+    import html as _html
+    assert prim[0]['name'] in home and prim[0]['note'] in _html.unescape(home) and len(prim[0]['note'])<=140

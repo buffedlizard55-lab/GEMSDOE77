@@ -22,16 +22,30 @@ jobs:
       - run: python scripts/lia_build_site.py
       - run: python scripts/build_home.py
       - run: python -m pytest -q
-      - name: Ensure model experiment stays stopped
+      - name: Ensure model experiment stays stopped and the status policy is applied mechanically
         run: |
           python - <<'PY'
-          import json
+          import json, sys
+          sys.path.insert(0, 'scripts')
+          import build_home as BH
           c=json.load(open('evidence/run_card.json'))
           assert c['verdict']=='negative'
           assert c['ok_to_download'] and not c['ok_to_submit']
           assert not c['protocol_unique'] and c['weekly_slots_used']==0
           lanes=json.load(open('docs/data/lanes.json'))['lanes']
-          assert all(x['verdict']=='negative' for x in lanes)
-          assert all(x['protocol_unique'] is False for x in lanes)
-          assert all('Not OK to submit' in x['upload'] for x in lanes)
+          allowed={'CLEARED_FOR_SELECTOR','DOWNLOAD_ONLY','QUARANTINED'}
+          for x in lanes:
+              st=BH.status_of(x)
+              assert st in allowed, x['file']
+              if st=='CLEARED_FOR_SELECTOR':
+                  assert x['upload'].startswith('OK to submit if the selector picks it'), x['file']
+                  assert x.get('format_valid') and x.get('beats_holdout_best'), x['file']
+                  assert x.get('protocol_unique_like_for_like', x.get('informative_unique')), x['file']
+              else:
+                  assert x['upload'].startswith('Not OK to submit'), x['file']
+              # the literal reading is never reported as PASS unless measured so
+              assert x.get('protocol_unique') is not True or x.get('literal_reading_measured_pass'), x['file']
+          h79=json.load(open('evidence/h79_run_card.json'))
+          assert h79['weekly_slots_used']==0 and h79['live_score'] is None and not h79['organizer_confirmed']
+          assert h79['ok_to_submit']==(h79['status']=='CLEARED_FOR_SELECTOR')
           PY

@@ -1,0 +1,26 @@
+{
+ "lane_id": "H79-ATTR-HANGINGWALL",
+ "amendment": "E3b -- uniqueness-capped emission",
+ "declared_utc": "2026-10-21T15:16:00Z",
+ "declared_before": "any capped emission was run or scored",
+ "trigger": "E3 phase-2 audit of the first build (sha256 210576444c17...): surface rho max 0.348 (PASS); final dots: 26 of 852 discriminating registry rasters (own 3 px halo covering < 70 % of allowed cells) have forward overlap > 0.70, worst 0.931 vs GEMSDOE3 coverage-v3-wide (halo coverage 0.610). The first build is therefore NOT protocol-unique under docs/policy_uniqueness.md and is kept as a logged duplicate (download-only).",
+ "what_changes": "Only the placement step. The model, features, folds, surfaces and the pre-registered greedy ordering are unchanged. A capacity constraint is added to the greedy: for every discriminating registry raster R whose halo the dots would otherwise over-fill, at most CAP = 0.66 x (fold budget) of the accepted dots may lie inside R's 3 px halo. Constraints are instantiated iteratively: start with the rasters > 0.70 in the first audit, re-audit the capped dot set against ALL cached rasters, add any new violators, repeat until none remain. The final audit is the one reported.",
+ "what_does_not_change": "Budget B = 37,654; exclusion > 3 px from the visible catalogue; min separation 2.8 px; the hypothesis; the pre-registered decision rule (which is evaluated on the GREEDY, uncapped holdout numbers already recorded). The capped emission's HOLDOUT-DTI is reported separately on the same folds (seeds 20 and 30) so the cost of the constraint is visible; it is not used to re-decide clauses 1-3.",
+ "precedent": "H78 lane, IR-78-03 (capacity-constrained greedy with cap 0.66 against informative rasters).",
+ "reporting": "evidence/h79_run_card.json gets 'first_build_logged_duplicate' (sha, worst rows) and 'capped_emission' (holdout numbers + final audit). Both files stay in docs/downloads; only the capped one can carry CLEARED_FOR_SELECTOR, and only if its own full audit passes rho <= 0.90 everywhere and forward overlap <= 0.70 against every discriminating raster.",
+ "post_declaration_log": [
+  {
+   "utc": "2026-10-21T15:15:00Z",
+   "event": "First capped run (cap = 0.66 x fold budget, emit77 default candidate pool = 10 x budget) left the budget unfilled (30,064 / 37,654 dots at seed 20) because almost every pooled candidate lies inside the constrained halos; the halo fraction of EMITTED dots was therefore ~0.83, i.e. the declared cap was not met in substance. HOLDOUT-DTI of that variant: 0.14396 (s20) / 0.15475 (s30). Not used."
+  },
+  {
+   "utc": "2026-10-21T15:20:00Z",
+   "event": "Fix (faithful to the declaration, which is about accepted dots): enlarge the candidate pool (candidate_factor 80) so the budget fills and the cap binds on the emitted set (max halo fraction 0.660). Budget sweep under the cap (pool large enough to fill), HOLDOUT-DTI s20/s30: N=20,000 0.1118/0.1223; 26,000 0.1212/0.1309; 31,000 0.1259/0.1373; 37,654 0.1311/0.1419 -> the pre-registered budget B = 37,654 is kept (monotone). evidence/h79_capped_candidate_factor_check.json."
+  },
+  {
+   "utc": "2026-10-21T15:21:51Z",
+   "event": "Capped build written: gems77-h79-attrctx-hgb-capped066-20261021T1517Z-zeros.tif, 37,654 dots, max halo fraction 0.660 over the 39 constrained halos; full phase-2 audit against all 905 cached rasters started (tag h79c)."
+  }
+ ],
+ "cost_of_uniqueness_measured": "HOLDOUT-DTI drops from 0.1509 -> 0.1311 (s20) and 0.1645 -> 0.1419 (s30): roughly one third of the dots must leave the near-catalogue corridors that 26 earlier family rasters already occupy. The constraint is a protocol requirement, not a geological one; the uncapped surface remains the lane's scientific result."
+}

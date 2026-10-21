@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "lane_id": "H79-ATTR-HANGINGWALL",
+  "session_branch": "arena/21419aee-gemsdoe77",
+  "preregistered_utc": "2026-10-21T14:25:00Z",
+  "status_at_preregistration": "LOCKED_BEFORE_E1 (E0 is a data-availability check, not a model experiment)",
+  "lane_declaration": "Self-declared lane (the 2026-10-21 brief again contains no single method paragraph; IR-79-01). The lane uses a layer no prior GEMSDOE lane has used: the per-trace ATTRIBUTES of the public Quaternary-fault catalogue (dip direction, recency class, slip-rate class, mapping certainty, map scale) from the INGENIOUS/USGS qfaults compilation (GDR 1391), turned into fold-blind rasters derived only from VISIBLE catalogue pixels.",
+  "ranked_hypotheses": [
+    {
+      "id": "H79-1",
+      "rank": 1,
+      "role": "PRIMARY",
+      "title": "Attribute-conditioned hanging-wall strand prior",
+      "layers": [
+        "qfaults_ingenious_nad83conus117_2023-06-27 attributes (DIPDIRECT, RCODE2023, SCODE2023, FCODE2023, MAPSCALE) joined to the 1,126 in-footprint traces via trace_segments_utm11.csv (record_id = shapefile FID) -- GDR 1391, CC BY 4.0, free/official",
+        "existing_faults.tif (visible pixels only, per fold)",
+        "training_features.tif band 12 det_elev (hanging-wall = downthrown side when DIPDIRECT is Unspecified/NaN) and the 19 shared bands via data/processed/stack.npy (A2 columns)"
+      ],
+      "physical_signature": "Signed hanging-wall distance field: d_vis(x) * sign(n_HW . (x - x_nearest_visible)), where n_HW is the dip-direction normal of the nearest visible trace (attribute when given; otherwise the lower-det_elev side, i.e. the downthrown block of a normal fault). Plus nearest-visible-trace recency class, slip-rate class, certainty, map scale, and strike-parallel/normal decomposition of the offset.",
+      "why_unmapped_not_catalogued": "The in-footprint catalogue is entirely 1:100,000 and 1:250,000 legacy mapping (MEASURED E0: MAPSCALE 100 = 280 traces, 250 = 846; zero 1:10k INGENIOUS lidar traces inside the footprint). A 1:250k line represents a fault ZONE; lidar-era expert mapping adds synthetic/antithetic strands on the downthrown (hanging-wall, basinward) side within ~0.3-3 km and along-strike continuations. Those strands are absent from the catalogue by mapping scale, not by geology.",
+      "named_non_fault_mimic": "Hanging-wall (basinward) alluvial-fan incision banks, fluvial terrace risers and pluvial Lake Lahontan shoreline benches -- all preferentially located on the same downthrown side.",
+      "differs_from_repo": "H77-Step uses DEM-only HW/FW step asymmetry with no catalogue attributes; H77D/LIA/H78 use isotropic distance to visible faults and crack-tip lobes; no lane has used DIPDIRECT, recency, slip rate, certainty or map scale.",
+      "expected_dti_gain": "MODERATE (adds directional + activity information to the strongest known context feature, visible distance)",
+      "implementation_cost": "LOW-MEDIUM (~45 min CPU on 2 vCPU incl. baselines)"
+    },
+    {
+      "id": "H79-2",
+      "rank": 2,
+      "role": "DATA-AVAILABILITY CHECK (E0)",
+      "title": "Catalogue-increment learning: train on INGENIOUS-minus-USGS additions",
+      "layers": ["labels.tif vs. rasterised qfaults traces"],
+      "physical_signature": "The generative process of the test set is 'newer expert mapping minus the public catalogue'; if labels.tif contained INGENIOUS-only additions, the increment would be a direct empirical analogue.",
+      "why_unmapped_not_catalogued": "By construction (increment = not in USGS Qfaults).",
+      "named_non_fault_mimic": "n/a",
+      "differs_from_repo": "No lane split the labels by provenance.",
+      "expected_dti_gain": "HIGH if the increment existed",
+      "implementation_cost": "TRIVIAL",
+      "pre_result_note": "To be settled by E0 before any model experiment."
+    },
+    {
+      "id": "H79-3",
+      "rank": 3,
+      "role": "BLOCKED (external data not obtainable from this sandbox)",
+      "title": "Sub-kilometre seismicity lineaments from raw hypocentres",
+      "layers": ["USGS ComCat FDSN event service (https://earthquake.usgs.gov/fdsnws/event/1/) and Nevada Seismological Laboratory catalogue -- free, official, public domain"],
+      "physical_signature": "Anisotropic (strike-aligned) kernel density of M>=1.5 hypocentres; the provided deq/ieq bands are coarse (n100/a15) densities and smear lineaments.",
+      "why_unmapped_not_catalogued": "Microseismicity illuminates blind/buried active structures with no surface scarp.",
+      "named_non_fault_mimic": "Mining/quarry blasts and geothermal-production induced seismicity clusters.",
+      "differs_from_repo": "No lane used raw hypocentres.",
+      "expected_dti_gain": "MODERATE in seismically active basins, sparse elsewhere",
+      "implementation_cost": "LOW once data are present; sandbox egress is limited to github/pypi hosts (verified), so NOT viable this session."
+    },
+    {
+      "id": "H79-4",
+      "rank": 4,
+      "role": "SECONDARY (evaluated only as an ablation feature)",
+      "title": "Map-scale location-uncertainty halo",
+      "layers": ["MAPSCALE attribute (100 vs 250) of the nearest visible trace"],
+      "physical_signature": "1:250k traces carry hundreds of metres of positional error; truth strands may sit 1-3 px off the catalogue line.",
+      "why_unmapped_not_catalogued": "Only the exact catalogue pixels are masked (forum 11516), so offset strands count as new truth.",
+      "named_non_fault_mimic": "Erosional scarp flanks of the mapped fault itself.",
+      "differs_from_repo": "Prior lanes pruned dots within 200 m of the catalogue regardless of map scale.",
+      "expected_dti_gain": "LOW (live evidence H27-4/H33: deleting dots <=200 m from the catalogue raised the score)",
+      "implementation_cost": "TRIVIAL"
+    },
+    {
+      "id": "H79-5",
+      "rank": 5,
+      "role": "NOT RUN",
+      "title": "Activity-weighted anisotropic strike-continuation kernel from trace tips",
+      "layers": ["trace strike + RCODE2023/SCODE2023"],
+      "physical_signature": "Elliptical along-strike kernel from visible trace tips weighted by recency/slip class.",
+      "why_unmapped_not_catalogued": "Fault tips propagate; legacy mapping stops where scarps become subtle.",
+      "named_non_fault_mimic": "Drainage lineaments aligned with regional strike.",
+      "differs_from_repo": "Tip continuation exists (H77D crack-tip lobes, h16-continuation 0.0461 live, tip-relay 0.0159 live) but never activity-weighted.",
+      "expected_dti_gain": "LOW (prior continuation lanes scored poorly live)",
+      "implementation_cost": "LOW"
+    }
+  ],
+  "experiments": {
+    "E0": "Rasterise the 1,126 in-footprint qfaults traces; measure overlap with labels.tif; count label pixels > 3 px from any trace (the INGENIOUS increment).",
+    "E1": "Per holdout seed: build fold-blind attribute rasters from VISIBLE pixels only; single-feature symmetric ROC-AUC canaries (withheld positives vs. negatives > 3 px from the full catalogue). Hard stop if any max(AUC, 1-AUC) > 0.90. Also measure the agreement of the det_elev-inferred downthrown side with the DIPDIRECT attribute where both exist.",
+    "E2": "Seed 20 (gems57-pooled-hide-v2, buffered_component_draw hide_frac 0.20, buffer 3 px): 4-fold LOQO HistGradientBoosting out-of-fold surfaces for arms A2_standard (19 bands + terrain + rad, exact H77D legacy columns and HGB_LEGACY_KW), A2_DIST (A2 + isotropic visible-distance/density context), H79_full (A2_DIST + attribute rasters), ATTR_only; controls A0_h195_foldfair and A0_random. Emission: emit77.emit_dots greedy, fold-proportional budget B = 37,654, exclusion > 3 px from visible. Scoring: vendor/gems57 evaluate_holdout.evaluate per fold, pooled_summary paired 20 km block bootstrap (2,000 draws).",
+    "E3": "Only if the E2 rule passes: confirm H79_full vs A2_DIST on seed 30; then fit on the full catalogue (all traces visible), emit B = 37,654 dots with > 3 px catalogue exclusion, write the GeoTIFF with the shared writer, validate, and run the uniqueness audit (surface and dots) against the registry."
+  },
+  "decision_rule": {
+    "promote_candidate_to_selector": "Delta(H79_full - A2_DIST) > 0 with 95% paired CI excluding 0 on seed 20 AND delta > 0 on seed 30 AND H79_full pooled HOLDOUT-DTI >= best lane-reported incumbent in this repository at the same budget (H77-Step 0.1527 seed 20; H77D 0.1403 seed 20 / 0.1501 seed 30).",
+    "otherwise": "verdict NEGATIVE for slot promotion; the TIF (if built) is download-only and labelled NOT OK to submit.",
+    "budget": "3 experiments (E1-E3) or 2 hours of wall clock after preregistration, whichever first."
+  },
+  "leakage_controls": [
+    "Attribute rasters are computed from visible catalogue pixels only; hidden components and the 3 px collar never enter any feature.",
+    "The GDR well/spring 'dist_known_fault_px' column is not read.",
+    "No prior submission raster enters any feature; H19-5 is used only for the A0 control.",
+    "Negatives for canaries are > 3 px from the FULL catalogue (so a withheld component cannot be a 'negative')."
+  ],
+  "named_controls": ["A0_random", "A0_h195_foldfair", "A2_standard", "A2_DIST"],
+  "uniqueness_rule": "Surface Spearman |rho| <= 0.90 against every registry raster and forward 3 px dot overlap <= 0.70 against every registry raster whose 3 px halo covers < 70% of allowed cells (non-space-filling); space-filling rasters are reported separately because the literal test is vacuous for them (IR-79-03)."
+}
