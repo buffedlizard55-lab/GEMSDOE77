@@ -1390,6 +1390,97 @@ or decode-identical file exists, so it is new work — it is simply not clear of
         p.write_text(txt)
 
 
+def _write_h77h():
+    h77h_card = jload("evidence/run_card_h77h.json")
+    h77h_e1 = jload("evidence/h77h_e1_canary_surface.json")
+    h77h_e2 = jload("evidence/h77h_e2_holdout.json")
+    h77h_e3 = jload("evidence/h77h_e3_uniqueness.json")
+    if not (h77h_card and h77h_e1 and h77h_e2 and h77h_e3):
+        return
+    tif = h77h_card["raster_path"].removeprefix("docs/")
+    zip_ = h77h_card["zip_path"].removeprefix("docs/")
+    s20 = h77h_card["holdout_dti"]["seed_20"]
+    s30 = h77h_card["holdout_dti"]["seed_30"]
+    uq = h77h_card["correlation_overlap_vs_registry"]
+    arm_order = [
+        ("A_h77h_full (34 ch unguarded submodular)", "A_h77h_full"),
+        ("A_h77h_guarded (34 ch capacity-guarded deliverable <=0.65)", "A_h77h_guarded"),
+        ("A_h77h_static (31 ch zero-catalogue piedmont/sinter)", "A_h77h_static"),
+        ("A_h33_foldfair (19GEMSDOE H19-5 D2.8 fold-fair)", "A_h33_foldfair"),
+        ("S_h77h_pure_physics (label-free piedmont/sinter composite)", "S_h77h_pure_physics"),
+        ("A_std19_control (19 competition bands control)", "A_std19_control"),
+        ("A0_random (uniform random allowed dots)", "A0_random"),
+    ]
+    arm_rows = "".join(
+        f"<tr><td>{e(label)}</td>"
+        f"<td><b>{s20[key]['dti']:.4f}</b> ({s20[key]['ci95'][0]:.4f}–{s20[key]['ci95'][1]:.4f})</td>"
+        f"<td><b>{s30[key]['dti']:.4f}</b> ({s30[key]['ci95'][0]:.4f}–{s30[key]['ci95'][1]:.4f})</td>"
+        f"<td><code>gems57-pooled-hide-v2</code> (11,321 / 11,342 withheld)</td></tr>"
+        for label, key in arm_order
+    )
+    can_s20 = h77h_e1["canaries_by_seed"]["20"]["h77h_canaries"]
+    can_s30 = h77h_e1["canaries_by_seed"]["30"]["h77h_canaries"]
+    can_rows = "".join(
+        f"<tr><td><code>{e(k)}</code></td><td>{can_s20[k]['symmetric_auc']:.4f}</td>"
+        f"<td>{can_s30[k]['symmetric_auc']:.4f}</td></tr>"
+        for k in can_s20
+    )
+    body = f"""<h1>H77H · piedmont-bajada alluvial-fan toe pinchout × synthetic/antithetic scarp polarity × en-échelon sinter-relay bridge</h1>
+<p class="verdict"><b>Verdict: NEGATIVE (Policy I17 fail-closed) — OK TO DOWNLOAD FOR INSPECTION; NOT OK TO SUBMIT.</b>
+{e(h77h_card['verdict_reason'])}</p>
+<section class="card dl research"><h2>⬇ H77H inspection-only GeoTIFF (DO NOT SUBMIT)</h2>
+<a class="btn" href="{e(tif)}" download>Download .tif ({h77h_card['raster_bytes'] / 1024:.0f} KB)</a>
+<a class="btn alt" href="{e(zip_)}" download>Download one-TIFF .zip</a>
+<div class="chips"><span class="chip ok">OK to download: YES</span>
+<span class="chip ok">Portal format (15/15 + 17/17 checks): PASS</span>
+<span class="chip bad">Unique, literal rule (Policy I17): FAIL</span>
+<span class="chip ok">Unique, informative reading (74 sparse rasters): PASS (max 0.6500 &le; 0.70)</span>
+<span class="chip ok">Beat 0.1527 H77-Step &amp; 0.1556 H77E on holdout: YES (0.1579 s20 / 0.1570 s30 guarded; 0.1709 / 0.1684 full)</span>
+<span class="chip warn">Selector: not approved (0 weekly slots used)</span></div>
+{copy('Submission name (for reference only — DO NOT UPLOAD)', h77h_card['submission_name'])}
+{copy('Short note <= 140 chars (for reference only — DO NOT UPLOAD)', h77h_card['submission_note'])}
+<p class="small">SHA-256 of .tif: <code>{e(h77h_card['raster_sha256'])}</code> ·
+SHA-256 of .zip: <code>{e(h77h_card['zip_sha256'])}</code> ·
+<a href="evidence/run_card_h77h.json">JSON run card</a> ·
+<a href="evidence/h77h_e1_canary_surface.json">Exp 1 canary/surface receipt</a> ·
+<a href="evidence/h77h_e2_holdout.json">Exp 2 dual-seed holdout receipt</a> ·
+<a href="evidence/h77h_e3_uniqueness.json">Exp 3 uniqueness receipt</a> ·
+<a href="evidence/preregistration_h77h.json">preregistration JSON</a> ·
+<a href="research/h77h_hypotheses.md">5 ranked hypotheses &amp; 0.2778 PhD analysis</a></p></section>
+<h2>Diagnostic map &amp; dual-seed holdout benchmark</h2>
+<p><img src="figures/h77h_surface_and_dots.png" alt="H77H piedmont-bajada and sinter-relay channels, emitted dots, and dual-seed holdout benchmark" style="max-width:100%;height:auto;border:1px solid #cbd5e1;border-radius:6px"></p>
+<h2>Dual-seed holdout evaluation (Exp 2 · <code>gems57-pooled-hide-v2</code>)</h2>
+<table><tr><th>Arm</th><th>Seed 20 HOLDOUT-DTI (95% CI)</th><th>Seed 30 HOLDOUT-DTI (95% CI)</th><th>Evaluator &amp; withheld positives</th></tr>{arm_rows}</table>
+<h2>Five ranked untried geological hypotheses &amp; PhD analysis of <code>GEMSDOE32</code> (<code>0.2778</code>)</h2>
+<p>Before implementing <code>H77H</code>, we formulated and ranked 5 candidate geological hypotheses in <a href="research/h77h_hypotheses.md"><code>research/h77h_hypotheses.md</code></a>:
+<b>(1) H77H-1 (Selected):</b> Piedmont-Bajada Alluvial-Fan Toe Pinchout (<code>slope_max - slope_p90</code> &times; <code>aspect_coherence</code>), Synthetic/Antithetic Scarp Polarity (<code>(downface + 1.25*upface)/cross_max</code>) &amp; En-Échelon Sinter-Relay Bridge;
+<b>(2) H77H-2:</b> Weathering-Normalized Radiometric Regolith Provenance Dipole (<code>|&nabla;(Th/K)|</code> across piedmont breaklines);
+<b>(3) H77H-3:</b> Shallow Seismogenic Moment-Rate &times; Geodetic Coulomb Stress-Rate Ridge;
+<b>(4) H77H-4:</b> Double-Difference Relocated Microearthquake Hypocenter Plane Projection (USGS ComCat blocked in sandbox);
+<b>(5) H77H-5:</b> Sentinel-1 InSAR Line-of-Sight Phase-Gradient Discontinuities (NASA ASF / Copernicus blocked in sandbox).<br>
+<b>Why <code>GEMSDOE32</code> (<code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</code>) scored <code>0.2778</code> (<code>ORGANIZER-CONFIRMED</code> row #48 for team <code>extradr19</code>; <code>OWNER-REPORT</code> file attribution):</b>
+Discretizing the 376,974-pixel <code>H19-5</code> centerline skeleton (<code>0.1922</code>) to <code>d = 2.8 px</code> (<code>280 m</code>) spacing (just inside the 300 m triangular kernel radius) and pruning the 2-px catalogue collar (<code>44,090 &rarr; 37,654</code> dots) cut the 0.2&times;FP Tversky denominator penalty by &sim;5.2&times; while retaining &gt;86% of the 300 m tube integral. On fold-fair spatial holdout (<code>gems57-pooled-hide-v2</code>), <code>H77H</code> beats fold-fair <code>H33</code> (<code>0.0961</code> s20 / <code>0.0990</code> s30) by <b>+0.0617 / +0.0579 HOLDOUT-DTI</b> (capacity-guarded deliverable) and <b>+0.0748 / +0.0694</b> (unguarded), and even the zero-catalogue physical stack <code>A_h77h_static</code> (<code>0.0985</code> s20 / <code>0.1069</code> s30) beats <code>H33</code> without any fault-catalogue features.</p>
+<h2>Leakage canaries (Exp 1 · ceiling AUC &le; 0.90)</h2>
+<table><tr><th>Channel</th><th>Seed 20 symmetric AUC</th><th>Seed 30 symmetric AUC</th></tr>{can_rows}</table>
+<h2>Registry uniqueness audit (Exp 3 · 81 checked rasters)</h2>
+<p>Phase 1 surface max |Spearman &rho;| = {uq['surface_max_abs_spearman']:.4f} &le; 0.90 (informative max |&rho;| = {uq['surface_informative_max_abs_spearman']:.4f}); Phase 2 final dots informative max 3-px overlap = {uq['final_dots_informative_max_forward_overlap_3px']:.4f} &le; 0.70 and max |&rho;| = {uq['final_dots_informative_max_abs_spearman']:.4f} &le; 0.90 across all 74 non-space-filling rasters in the 81-raster local registry (vs H33 overlap {uq['vs_h33_champion']['forward_overlap_3px']:.4f}, &rho; {uq['vs_h33_champion']['spearman_full_footprint']:+.5f}). Literal gate fails closed under Policy I17.</p>"""
+    exec_body = f"""<h1>H77H Executive Summary &amp; Submission Guide</h1>
+<p class="verdict"><b>Decision for <code>{e(h77h_card['submission_name'])}</code>: OK TO DOWNLOAD FOR INSPECTION · NOT OK TO SUBMIT.</b><br>
+Format-valid (15/15 gems57 + 17/17 LIA checks, 0 NaN, values in [0,1], 37,654 binary dots), informative-unique against all 74 sparse rasters checked (max 3-px overlap 0.6500 &le; 0.70), and achieves repository-highest dual-seed HOLDOUT-DTI ({s20['A_h77h_guarded']['dti']:.4f} s20 / {s30['A_h77h_guarded']['dti']:.4f} s30 capacity-guarded deliverable; {s20['A_h77h_full']['dti']:.4f} s20 / {s30['A_h77h_full']['dti']:.4f} s30 unguarded, beating 0.1527 H77-Step and 0.1556 H77E), but Policy I17 fails closed (1.000 overlap on dense witness ab0a0a62 and pending selector approval).</p>
+<section class="card dl research"><h2>⬇ H77H Artifact &amp; Metadata</h2>
+<a class="btn" href="{e(tif)}" download>Download .tif ({h77h_card['raster_bytes'] / 1024:.0f} KB)</a>
+<a class="btn alt" href="{e(zip_)}" download>Download one-TIFF .zip</a>
+{copy('Submission name (reference only — DO NOT SUBMIT)', h77h_card['submission_name'])}
+{copy('Short note <= 140 chars (reference only — DO NOT SUBMIT)', h77h_card['submission_note'])}
+<p class="small">TIFF SHA-256: <code>{e(h77h_card['raster_sha256'])}</code> · <a href="h77h.html">Full H77H report →</a> · <a href="evidence/run_card_h77h.json">JSON run card →</a></p></section>"""
+    (D / "h77h.html").write_text(page("h77h.html", "H77H · piedmont-relay", body))
+    (D / "h77h-executive-summary.html").write_text(page("h77h-executive-summary.html", "H77H guide", exec_body))
+    for fname in ("run_card_h77h.json", "h77h_e1_canary_surface.json", "h77h_e2_holdout.json", "h77h_e3_uniqueness.json"):
+        shutil.copyfile(ROOT / "evidence" / fname, D / "evidence" / fname)
+    shutil.copyfile(ROOT / "registry/preregistration_h77h.json", D / "evidence/preregistration_h77h.json")
+    shutil.copyfile(ROOT / "research/h77h_hypotheses.md", D / "research/h77h_hypotheses.md")
+
+
 if __name__ == "__main__":
     main()
     _write_h77e_knick()
@@ -1404,3 +1495,5 @@ if __name__ == "__main__":
     _write_h83()
     _write_h82fmd()
     _inject_h82fmd_hero()
+
+    _write_h77h()

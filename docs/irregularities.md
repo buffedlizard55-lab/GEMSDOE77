@@ -77,6 +77,8 @@
 | IR-77E-03 | Post-audit of `H77D` (PR #12) uncovered `cov3 >= 0.30` filter masking `18` mid-density informative duplicate firings up to `0.8949` (`gems7-halo15-gbt-v1`). | Enforced exact `vendor/gems57/uniqueness.py:dot_overlap` capacity across ALL `816` `<70%`-halo rasters in `H77E-Knick` (`0 / 816` firings, `max_ov = 0.66800`; `0 / 18` firings vs all sparse `GEMSDOE77` siblings, `max_ov = 0.42104`). |
 | IR-77E-04 | Two malformed / off-grid external TIFFs (`GEMSDOE74` `89ffb2d6...tif` missing `StripOffsets`; `GEMSDOE68` `a97c7b2a...tif` `shape=(32, 48)`). | Logged explicitly in `evidence/h77e/uniqueness_audit_861.json`. |
 | IR-77E-05 | Concurrent session also created `docs/h77e.html` (`ucpeuler-ctx`) on `main` while this lane ran. | Preserved concurrent `docs/h77e.html` + `src/gems77e/fields.py` 100% intact and published this lane's page at `docs/h77e-knick.html` (`max_ov = 0.42104` between the two lanes). |
+| IR-H77H-01 | Merged PR #47 (`c87dd5b`) overwrote `docs/data/submission.json` (causing `scripts/lia_build_site.py` to fail in CI with `KeyError: 'zip'`) and added an unindexed, unvalidated 55,403-dot collar-pruned copy of `H28` (`docs/downloads/gems77-h28-dotted-pruned2px-20261021-35b64879-zeros.{tif,zip}`, 1.000 3-px overlap with canonical `H28`). | Restored `docs/data/submission.json` from pre-PR-#47 commit `2b22987` (restoring CI green status) and removed the unindexed duplicate H28-pruned binary artifacts. |
+| IR-H77H-02 | No separate single-method paragraph was supplied in the 2026-10-21 prompt for `arena/2ebd0138-gemsdoe77`. | Formulated and ranked 5 untried geological hypotheses in `research/h77h_hypotheses.md`, locked `registry/preregistration_h77h.json` before Experiment 1, and executed the 3-experiment `H77H` (`H77H-PBF`) pipeline (`0.1579` s20 / `0.1570` s30 capacity-guarded deliverable HOLDOUT-DTI; `0.1709` / `0.1684` unguarded; fail-closed `negative` under Policy `I17`). |
 
 ## Next session — ordered by risk reduction
 
@@ -225,6 +227,12 @@ GitHub authenticated operations work. CPU scientific transforms, local validatio
 
 ## H77VS updates — 2026-10-21 (Tufa-Deconfounded Vent-Sinter & Multi-Depth Conductive Heat-Flow Strike-Conduit Coupling)
 
+
+## H84 update (2026-10-21; branch `arena/c90f977a-gemsdoe77`)
+| ID | Verified irregularity | Consequence |
+|---|---|---|
+| IR-H84-01 | First Exp2/Exp3 runs (sed-derived scripts) overwrote `evidence/h84_holdout.json`/`h84_surface.npy`; fixed to exp-specific filenames and deterministically re-run — identical HOLDOUT-DTI reproduced (Exp2 0.12148954698767672, Exp3 0.11454159467432438). | Evidence files now distinct per experiment; no result changed. |
+| IR-H84-02 | 78.6% of H84 final dots fall within 3 px of the sparse H83 collar raster (>0.70 protocol limit); Spearman 0.318 passes. | Logged as duplicate drift into the H83 lane; verdict negative, NOT OK TO SUBMIT, lane closed. |
 | ID | Measured finding | Action / consequence |
 |---|---|---|
 | IR-H77VS-01 | **Pleistocene Lake Lahontan Shoreline `Tufa` Confounding in `Paleo_geothermal_final.csv` (`src/gems77_step/features.py`):** Out of `281` in-footprint records in `data/external/paleo_geothermal_regional.zip` (DOE GDR 1391), `86` (`30.6%`) are `Deposit_type == "Tufa"` (`85`) or `"Tufa and travertine"` (`1`), which are Pleistocene Lake Lahontan algal/wave-agitation carbonate shoreline mounds (`med_d_vis = 61.5 px = 6.15 km`, `12.8% <= 10 px` visible, `3.5% <= 15 px` hidden on Seed 20). High-enthalpy hydrothermal fault-vent deposits sit directly on fault conduits: `Alteration`/`Argillic alteration` (`n=14`, `med_d_vis = 1.0 px`, `100.0% <= 10 px` visible, `15.4% <= 15 px` hidden), `Sulfur` (`n=5`, `med_d_vis = 2.0 px`, `80.0% <= 10 px`), `Sinter` (`n=50`, `med_d_vis = 4.0 px`, `64.0% <= 10 px`), and `Veins/Breccia/Explosion craters` (`n=15`, `46.7% <= 10 px`). Prior code (`src/gems77_step/features.py` lines 253–264) set `imp_paleo = 1.0` equally across all 281 points. | Closed lanes are left untouched per `AGENTS.md`. In `src/gems77v/fields.py:extract_paleo_sinter_vs_tufa`, we separate the `195` high-enthalpy fault-vent records from the `86` lacustrine `Tufa` mounds (`h77v_tufa_shoreline_deconf_contrast` lifts single-channel ROC-AUC over raw `h77v_sinter_alter_vent_conduit`). |

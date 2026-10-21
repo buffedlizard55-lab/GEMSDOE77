@@ -2,16 +2,16 @@
   "schema": "gems-listed-download-readback-v1",
   "evidence_class": "FORMAT-INTEGRITY-MEASUREMENT; NOT SCORE OR PORTAL ACCEPTANCE",
   "scope": "Every primary TIFF in docs/data/lanes.json; no archive or NaN twins, no uniqueness certification",
-  "manifest_sha256": "9b3f6dd3aa6adede826447519ef34d1f799100e9890eeef2733c1592feafa493",
+  "manifest_sha256": "18279d2ca09fb841ef23e534747f2263e31755f8f9d37099d7e8c362be9a7996",
   "reference_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
-  "listed_count": 32,
+  "listed_count": 33,
   "all_format_pass": true,
   "authorized_to_submit": false,
   "artifacts": [
     {
-      "lane": "H82-FMD: mapping-deficit allocation (HOLDOUT-DTI 0.1121 s20 / 0.1093 s30 for the crest-thinned 48-channel build; the preregistered deficit weight itself is REFUTED; negative result)",
-      "file": "downloads/gems77-h82-crestthin-fullstack-37654dots-20261021-zeros.tif",
-      "sha256": "4f69c9fa0187cfb61394b558d9866794ef15ad7066d135fde8acef4349faac13",
+      "lane": "H77H (NEWEST): Piedmont-Bajada Alluvial-Fan Toe Pinchout \u00d7 Synthetic/Antithetic Scarp Polarity \u00d7 En-Echelon Sinter-Relay Bridge (HOLDOUT-DTI 0.1579 s20 / 0.1570 s30 deliverable, 0.1709 / 0.1684 unguarded; Policy I17 negative)",
+      "file": "downloads/gems77-h77h-piedmont-relay-37654dots-20261021-56b7c98c-zeros.tif",
+      "sha256": "e4c718f450130e2e07e14ef506f051ea974c53382740974e758858519e866fe4",
       "checks": {
         "single_band": true,
         "crs_matches": true,
@@ -30,6 +30,24 @@
       "lane": "H82R: local ternary radiometric rank-mixture entropy (STOPPED; research only)",
       "file": "downloads/gems77-h82-ternaryentropy-20261021-RESEARCH-ONLY.tif",
       "sha256": "56debe682505bf2649f30d914c7b552dcf669bce4b902ce91eb3e5363031f115",
+      "checks": {
+        "single_band": true,
+        "crs_matches": true,
+        "shape_matches": true,
+        "transform_matches": true,
+        "finite_entire_raster": true,
+        "no_nan_inside_footprint": true,
+        "values_in_0_1": true,
+        "nodata_none": true,
+        "sha256_matches_manifest": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
+    {
+      "lane": "H82-FMD: mapping-deficit allocation (HOLDOUT-DTI 0.1121 s20 / 0.1093 s30 for the crest-thinned 48-channel build; the preregistered deficit weight itself is REFUTED; negative result)",
+      "file": "downloads/gems77-h82-crestthin-fullstack-37654dots-20261021-zeros.tif",
+      "sha256": "4f69c9fa0187cfb61394b558d9866794ef15ad7066d135fde8acef4349faac13",
       "checks": {
         "single_band": true,
         "crs_matches": true,
