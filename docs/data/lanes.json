@@ -1,6 +1,34 @@
 {
-  "note": "H82-TEXTURE and H82 chemistry-concordance are distinct parallel negative lanes. All listed files are inspection-only and NOT OK TO SUBMIT; see submission-authorization.json. Historical baseline wins are not matched-current-incumbent evidence. H82R: radiometric negative research file; NOT OK TO SUBMIT. H82S (windowed spectral magnetic source-depth gradient, negative, research-only) is a third independent H82-family lane from a separate parallel session and is listed for inspection only.",
+  "note": "H77V (up-gradient geothermal vent advection-backtracking & dilational conduit tensor), H82-TEXTURE, and H82 chemistry-concordance are distinct negative lanes. All listed files are inspection-only and NOT OK TO SUBMIT; see submission-authorization.json. Historical baseline wins are not matched-current-incumbent evidence. H82R: radiometric negative research file; NOT OK TO SUBMIT. H82S (windowed spectral magnetic source-depth gradient, negative, research-only) is a fourth independent H82-family lane from a separate parallel session and is listed for inspection only.",
   "lanes": [
+    {
+      "lane": "H77V: up-gradient geothermal vent advection-backtracking, Lake Lahontan tufa sieve & dilational conduit tensor (HOLDOUT-DTI 0.1270 [0.1128, 0.1422] s30 / 0.1293 [0.1129, 0.1469] s20; negative under Policy I17)",
+      "page": "h77v.html",
+      "summary": "executive-summary.html",
+      "file": "downloads/gems77-h77v-vent-advect-conduit-37654dots-20261021-8910ea15-zeros.tif",
+      "zip": "downloads/gems77-h77v-vent-advect-conduit-37654dots-20261021-8910ea15-zeros.zip",
+      "run_card": "submissions/run_card_h77v_20261021.json",
+      "format_valid": true,
+      "protocol_unique": false,
+      "informative_unique": true,
+      "beats_holdout_best": false,
+      "selector_approved": false,
+      "verdict": "negative",
+      "primary": false,
+      "name": "gems77-h77v-vent-advect-conduit-37654dots-20261021-8910ea15-zeros",
+      "note": "H77V up-gradient vent advection + dilational conduit + 300m submodular (37654 dots); HOLDOUT-DTI 0.1270 (s30) / 0.1293 (s20); Policy I17",
+      "sha256": "2cef6d5133bceaf5206b5ee3701abb66120ef35aedd8850ab21946c2176b0e10",
+      "holdout_dti_hide_v2": 0.127042,
+      "holdout_evaluator_version": "gems57-pooled-hide-v2",
+      "holdout_positive_pixels": 11342,
+      "holdout_ci95": [
+        0.112808,
+        0.142177
+      ],
+      "upload": "Not OK to submit. OK to download for inspection only. Format-valid (17/17 checks, 0 NaN, values in [0,1]), statistically significant dual-seed gain over non-H77V base (+0.0120 s30 / +0.0116 s20, 95% CIs exclude 0), and passes informative sparse uniqueness (worst 3-px overlap 0.6618 <= 0.70; surface max |rho| 0.4078 <= 0.90; dot max |rho| 0.1570 <= 0.90), but the literal registry rule fails closed under Policy I17 (1.000 > 0.70 against dense_witness ab0a0a62) and HOLDOUT-DTI 0.1270 (s30) / 0.1293 (s20) is below the 0.1527 H77-Step repo best; selector: not approved.",
+      "why_primary": "New H77V lane: up-gradient geothermal vent advection-backtracking, Lake Lahontan tufa sieve, and transtensional dilational conduit gate.",
+      "beat_02778_summary": "Not authorized for submission: passes informative sparse uniqueness and beats non-H77V base on both seeds, but below the 0.1527 H77-Step holdout best and blocked under Policy I17."
+    },
     {
       "lane": "H82-TEXTURE: K/Th local second-moment boundary (negative, continuous research surface)",
       "page": "h82-texture.html",
