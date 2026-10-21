@@ -193,9 +193,9 @@ def test_h77e_deliverables_run_card_geotiff_and_pages():
                 continue
             assert (ROOT / "docs" / href).exists(), (page_name, href)
     readme_txt = (ROOT / "README.md").read_text()
-    assert sub["submission_name"] in readme_txt[:6000]
-    assert sub["primary_geotiff_sha256"] in readme_txt[:6000]
-    assert sub["companion_pure_sha256"] in readme_txt[:6000]
+    # The current primary is selected by the newest lane state, not this archived H77E card.
+    assert "gems77-h81-slipcone-37654dots-20261021-0fbeaf41-zeros" in readme_txt[:6000]
+    assert "NOT OK TO SUBMIT" in readme_txt[:6000]
     head_md = readme_txt.split("# Original project request")[0]
     for target in re.findall(r'\]\(([^)]+)\)', head_md):
         if target.startswith(("http://", "https://", "#")):

@@ -14,6 +14,7 @@ import hashlib
 import html
 import json
 import shutil
+import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -22,9 +23,9 @@ REPO = "https://github.com/buffedlizard55-lab/GEMSDOE77"
 LB = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
 PD = "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
-NAV = [("index.html", "Start here"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
-       ("h77e-knick.html", "H77E-Knick · 0/816 firings"), ("release-review.html", "Release safety review"), ("executive-summary.html", "How to submit"),
-       ("h81.html", "H81 · slip-cone"),
+NAV = [("index.html", "Start here"), ("h81.html", "H81 · negative"), ("release-review.html", "Release safety review"), ("executive-summary.html", "How to submit"),
+       ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
+       ("h77e-knick.html", "H77E-Knick · archived"),
        ("h80t.html", "H80T · tilt-persist"), ("h80t-executive-summary.html", "H80T guide"),
        ("h80.html", "H80 · negative"), ("ago.html", "AGO · negative proxies"),
        ("h79-orient.html", "H79-ORIENT · negative"), ("h79-orient-executive-summary.html", "H79-ORIENT guide"),
@@ -121,15 +122,56 @@ def main():
             or h80_overlap["max_3px_overlap"] <= h80_overlap["limit"]
             or h80["informative_max_dot_overlap"] != h80_overlap["max_3px_overlap"]
             or h80["informative_checked_rasters"] != h80_overlap["n_compared"]
-            or h80["primary"] is not True
+            or h80["primary"] is not False
             or h80["protocol_unique"] is not False
             or h80["beats_holdout_best"] is not False):
         raise ValueError("H80 manifest/landing page differs from the frozen negative run card")
+    h81_rows = [x for x in lanes["lanes"] if x["lane"].startswith("H81:")]
+    h81_card = jload("docs/evidence/h81_run_card.json")
+    if len(h81_rows) != 1 or not h81_card:
+        raise ValueError("H81 lane missing from manifest or frozen run card")
+    h81 = h81_rows[0]
+    h81_tif = D / h81["file"]
+    h81_zip = D / "downloads" / h81_card["validator"]["zip_file"]
+    h81_zip_ok = False
+    if h81_zip.is_file():
+        try:
+            with zipfile.ZipFile(h81_zip) as archive:
+                h81_zip_ok = archive.namelist() == [h81_tif.name] and archive.read(h81_tif.name) == h81_tif.read_bytes()
+        except (OSError, zipfile.BadZipFile, KeyError):
+            h81_zip_ok = False
+    h81_result = h81_card["holdout_dti"]
+    h81_corr = h81_card["correlation_overlap_vs_registry"]
+    if (h81_card["verdict"] != "negative" or h81_card["ok_to_submit"] is not False
+            or h81_card["ok_to_download"] is not True
+            or h81["file"] != f"downloads/{h81_card['validator']['file']}"
+            or h81["name"] != h81_card["submission_name"]
+            or h81["note"] != h81_card["submission_note"]
+            or h81["sha256"] != h81_card["raster_sha256"]
+            or not h81_tif.is_file()
+            or hashlib.sha256(h81_tif.read_bytes()).hexdigest() != h81_card["raster_sha256"]
+            or not h81_zip_ok
+            or hashlib.sha256(h81_zip.read_bytes()).hexdigest() != h81_card["validator"]["zip_sha256"]
+            or h81["format_valid"] is not h81_card["validator"]["validator"]["all_checks_passed"]
+            or h81["holdout_dti_hide_v2"] != h81_result["value"]
+            or h81["holdout_positive_pixels"] != h81_result["withheld_positives"]
+            or h81["holdout_ci95"] != h81_result["ci95"]
+            or h81_corr["final_dots_max_forward_overlap_3px"] <= 0.70
+            or h81["protocol_unique"] is not False
+            or h81["beats_holdout_best"] is not False
+            or h81["primary"] is not True):
+        raise ValueError("H81 manifest/landing page differs from the frozen negative run card or duplicate stop")
     if sum(bool(x.get("primary")) for x in lanes["lanes"]) != 1:
         raise ValueError("exactly one download must be featured")
     primary = next(x for x in lanes["lanes"] if x.get("primary"))
     # ---------------- status table (every file in the repository)
     def holdout_cell(x):
+        if x["lane"].startswith("H81:"):
+            h = h81_card["holdout_dti"]
+            return (f'<span class="chip bad">HOLDOUT-DTI {h["value"]:.5f} '
+                    f'(95% CI {h["ci95"][0]:.5f}–{h["ci95"][1]:.5f}; '
+                    f'{e(h["evaluator_version"])}; {h["withheld_positives"]:,} withheld); '
+                    'negative, below incumbent</span>')
         if x["lane"].startswith("H77L:"):
             h = lag_card["holdout_dti"]
             return (f'<span class="chip warn">HOLDOUT-DTI {h["dti"]:.4f} '
@@ -229,6 +271,7 @@ gates and currently says <b>NOT OK TO SUBMIT — 0 authorized files</b>.</p>"""
 <p class="verdict"><b>Can I submit it?</b> <b>No. NOT OK TO SUBMIT.</b> {e(primary["upload"])}<br>
 <b>Would the portal accept the format?</b> Unknown. {e(format_text)}<br>
 <b>Will it beat 0.2778?</b> {e(beat_txt)} (See the <a href="{e(primary["page"])}">lane technical report</a> &amp; <a href="{e(primary.get("summary", "executive-summary.html"))}">submission guide</a>.)</p>
+{f'<p class="small"><b>Holdout caveat:</b> {e(primary["protocol_caveat"])}</p>' if primary.get("protocol_caveat") else ''}
 {copy("Submission name (for reference)", primary.get("name", Path(primary["file"]).stem))}
 {copy("Note (for reference)", primary.get("note", ""))}
 <p class="small">sha256 of the .tif: <code>{e(primary.get("sha256", ""))}</code> · <a href="executive-summary.html">How submission works, step by step →</a></p></section>"""
@@ -279,7 +322,7 @@ not proof that the specific file received that score or that another submission 
 
     # ---------------- general executive summary (how to submit)
     guide = f"""<h1>Executive summary: how to submit — only AFTER approval</h1>
-<p class="verdict"><b>Today: NOT OK TO SUBMIT any file here.</b> The featured H80 file is explicitly
+<p class="verdict"><b>Today: NOT OK TO SUBMIT any file here.</b> The featured {e(primary['lane'])} file is explicitly
 <b>RESEARCH ONLY</b>. Download is for inspection, not permission to upload. Before spending one of the official
 <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">three weekly feedback slots</a>, the shared uniqueness policy must
 be resolved, a candidate must beat a <em>matched</em> holdout incumbent, and a separate selector must approve it. No
@@ -292,8 +335,8 @@ condition is met merely by passing a format check.</p>
 <tr><td>File to submit</td><td>One <b>cleared</b> single-band float32 GeoTIFF <code>.tif</code> (or a ZIP containing exactly that one GeoTIFF),
 never this HTML page, a PDF, a JSON run card, or a file marked RESEARCH ONLY. Match the <a href="{PD}">official grid</a>:
 EPSG:32611; 3730 rows × 3292 columns; 100 m resolution; top-left origin (243350, 4508550). Prediction values [0, 1].</td></tr>
-<tr><td>Note (optional)</td><td>Paste the <b>approved file's</b> distinct short note, no longer than 140 characters. The featured H80
-research-file note says DO NOT SUBMIT and is <em>not</em> an upload recommendation.</td></tr></table>
+<tr><td>Note (optional)</td><td>Paste the <b>approved file's</b> distinct short note, no longer than 140 characters. The featured {e(primary['lane'])}
+research-file note is for identification only and is <em>not</em> an upload recommendation.</td></tr></table>
 <h2>Actual submission steps (not executable for today's files)</h2><ol>
 <li>First confirm the site's per-file row says <b>OK TO SUBMIT</b> and the selector has approved this exact SHA-256;
 none currently does. Download the approved GeoTIFF, not a research-only or NaN-outside twin.</li>
@@ -635,25 +678,6 @@ def _write_h77e_knick():
 
 
 
-def _inject_h77e_knick_hero():
-    rc77e = jload("evidence/h77e/run_card.json")
-    if not rc77e:
-        return
-    sub = rc77e["submission_artifact"]
-    hero = f"""<section class="card dl"><h2>⬇ Latest H77E-Knick Research Deliverable (0 / 816 Informative Firings · Dual-Seed Positive Holdout)</h2>
-<p class="verdict"><b>OK to download: YES</b> (15/15 <code>vendor/gems57</code> + 17/17 grid checks PASS, binary float32 in <code>[0, 1]</code>, <code>0</code> NaNs).<br>
-<b>Not OK to submit (NOT OK TO SUBMIT automatically — inspection only without human selector Policy I17 sign-off):</b>
-45 space-filling &ge;70%-halo archive heatmaps trigger literal overlap; across ALL <code>816</code> &lt;70%-halo portfolio rasters AND all <code>18</code> sparse GEMSDOE77 files, forward 3-px overlap has <b>0 firings</b> (<code>max = 0.66800 &le; 0.70</code>; local siblings <code>max = 0.42104 &le; 0.70</code>).<br>
-<b>Official HOLDOUT-DTI (<code>gems57-pooled-hide-v2</code>):</b> <code>0.126664</code> on Seed 20 (95% CI <code>0.111196–0.141749</code>; +0.0303 vs fold-fair H33) &amp; <code>0.124727</code> on Seed 30 (95% CI <code>0.109650–0.138262</code>; +0.0257 vs fold-fair H33); pure physics twin <code>0.155623</code> (Seed 20) / <code>0.154666</code> (Seed 30).</p>
-<a class="btn" href="downloads/{e(Path(sub["primary_geotiff"]).name)}" download>Download H77E-Knick .tif ({sub["file_bytes"]//1024} KB)</a>
-<a class="btn alt" href="downloads/{e(Path(sub["primary_zip"]).name)}" download>Single-TIFF .zip ({sub["zip_bytes"]//1024} KB)</a>
-<a class="btn alt" href="h77e-knick.html">Full H77E-Knick report &amp; figures →</a>
-<p class="small">name: <code>{e(sub["submission_name"])}</code> · sha256: <code>{e(sub["primary_geotiff_sha256"])}</code> · note: <code>{e(sub["submission_note"])}</code></p></section>"""
-    for pname in ("index.html", "executive-summary.html"):
-        ptxt = (D / pname).read_text()
-        ptxt = ptxt.replace("<h1>", hero + "<h1>", 1)
-        (D / pname).write_text(ptxt)
-
 def _write_h77g():
     h77g_card = jload("evidence/run_card_h77g.json")
     h77g_e1 = jload("evidence/h77g_e1_canary_surface.json")
@@ -740,5 +764,4 @@ Format-valid (15/15 checks, 0 NaN, values in [0,1], 37,654 binary dots) and info
 if __name__ == "__main__":
     main()
     _write_h77e_knick()
-    _inject_h77e_knick_hero()
     _write_h77g()

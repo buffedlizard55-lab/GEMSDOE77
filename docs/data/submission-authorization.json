@@ -1,6 +1,6 @@
 {
   "schema": "gems-submission-authorization-v1",
-  "generated_utc": "2026-10-21T16:41:11+00:00",
+  "generated_utc": "2026-10-21T16:52:39+00:00",
   "policy": "Authorization requires artifact existence, matching SHA-256, a readable run card with a promote verdict, local format PASS, literal protocol uniqueness (including <=0.70 real-model forward 3-px overlap and complete registry), improvement over the accepted holdout best, a promote verdict, and explicit selector approval. Missing fields or historical run-card uniqueness/completeness failures fail closed.",
   "repository_authorized_file_count": 0,
   "repository_decision": "NOT OK TO SUBMIT",
@@ -15,7 +15,7 @@
       "reconciliation_note": "Historical run card and operative release gate both fail closed."
     },
     {
-      "lane": "H77E-Knick (NEWEST): 10m 3DEP Knickpoint + TIGER-Deconfounded Step + Up-Dip Seismicity + 4-Scale SLOCO + 816-Raster Capped 300 m Submodular Cover",
+      "lane": "H77E-Knick (historical): 10m 3DEP Knickpoint + TIGER-Deconfounded Step + Up-Dip Seismicity + 4-Scale SLOCO + 816-Raster Capped 300 m Submodular Cover",
       "run_card": "evidence/h77e/run_card.json",
       "recorded_verdict": "negative",
       "recorded_safe_to_submit": false,
@@ -197,7 +197,7 @@
       ]
     },
     {
-      "lane": "H77E-Knick (NEWEST): 10m 3DEP Knickpoint + TIGER-Deconfounded Step + Up-Dip Seismicity + 4-Scale SLOCO + 816-Raster Capped 300 m Submodular Cover",
+      "lane": "H77E-Knick (historical): 10m 3DEP Knickpoint + TIGER-Deconfounded Step + Up-Dip Seismicity + 4-Scale SLOCO + 816-Raster Capped 300 m Submodular Cover",
       "file": "downloads/gems77-h77e-knick-deconf-submod-36500dots-20261021-101e200b-zeros.tif",
       "sha256": "db0dd67da44b83bc47f05289c05e2e917118d04b03e4958076f64661b726fb6b",
       "checks": {

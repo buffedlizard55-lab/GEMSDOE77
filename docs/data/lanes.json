@@ -1,8 +1,8 @@
 {
- "note": "All 22 listed TIFF lanes are inspection downloads only; every file is NOT OK TO SUBMIT. H80 (Riedel) is featured because it has complete evidence from the pinned gems57 evaluator; the later AGO variants have only a different quick 4-quadrant proxy and are not comparable. H80-OTA (orphan thermal alignment, negative) was merged in parallel and is listed second. The literal uniqueness/selector gates remain fail-closed; see docs/data/submission-authorization.json. H81 (slip-cone, negative, research-only) and H77G (hydrothermal demagnetization trough, negative, research-only) are listed for inspection only.",
+ "note": "All 22 listed TIFF lanes are inspection downloads only; every file is NOT OK TO SUBMIT. H81 slip-cone is the newest featured negative artifact and stopped at the final-dot duplicate gate; its registry scan is incomplete. Other lanes are retained for audit. The literal uniqueness and selector gates remain fail-closed; see docs/data/submission-authorization.json.",
  "lanes": [
   {
-   "lane": "H77G: hydrothermal magnetite-destruction trough × gravity-basement step × MT clay-cap margin (HOLDOUT-DTI 0.0619 s20 / 0.0618 s30, pure 0.0392/0.0471; negative result)",
+   "lane": "H77G: hydrothermal magnetite-destruction trough \u00d7 gravity-basement step \u00d7 MT clay-cap margin (HOLDOUT-DTI 0.0619 s20 / 0.0618 s30, pure 0.0392/0.0471; negative result)",
    "page": "h77g.html",
    "summary": "h77g-executive-summary.html",
    "file": "downloads/gems77-h77g-demagtrough-gravstep-37654dots-20261021-08b78f3c-zeros.tif",
@@ -28,7 +28,7 @@
    "beat_02778_summary": "Not expected: HOLDOUT-DTI 0.0619 (Seed 20) / 0.0618 (Seed 30) for A_std+H77G and 0.0392/0.0471 for standalone S_h77g_physics are below the 0.152718 H77-Step repository incumbent, with no organizer score."
   },
   {
-   "lane": "H77E-Knick (NEWEST): 10m 3DEP Knickpoint + TIGER-Deconfounded Step + Up-Dip Seismicity + 4-Scale SLOCO + 816-Raster Capped 300 m Submodular Cover",
+   "lane": "H77E-Knick (historical): 10m 3DEP Knickpoint + TIGER-Deconfounded Step + Up-Dip Seismicity + 4-Scale SLOCO + 816-Raster Capped 300 m Submodular Cover",
    "page": "h77e-knick.html",
    "summary": "executive-summary.html",
    "file": "downloads/gems77-h77e-knick-deconf-submod-36500dots-20261021-101e200b-zeros.tif",
@@ -105,8 +105,8 @@
    "informative_checked_rasters": 19,
    "informative_max_dot_overlap": 0.9815833333333334,
    "upload": "Not OK to submit. OK to download for inspection only. HOLDOUT-DTI 0.09579668 (gems57-pooled-hide-v2; 11,319 withheld positives; 95% CI 0.08818346\u20130.10324797) is below the 0.152718 incumbent. The local 3-px dot overlap 0.981583 with H77-Urank exceeds 0.70; only 19 local rasters were checked. Pre-placement surface rank-correlation is not recorded in the H80 run-card summary. No weekly slot used.",
-   "primary": true,
-   "why_primary": "Featured inspection artifact with complete pinned-evaluator evidence: catalogue-only Riedel R/R-prime rays from degree-1 tips. It is format-valid but negative on holdout and fails the local literal-overlap gate; this is not an approval or a claim that it is the chronologically newest lane.",
+   "primary": false,
+   "why_primary": "Earlier negative Riedel-tip artifact retained for audit; not the latest lane.",
    "format_description": "Local format preflight PASS: single-band float32, EPSG:32611, 3730\u00d73292, exact sample transform, finite values in [0,1], no NaN/Inf, no nodata tag. This does not prove portal acceptance.",
    "beat_02778_summary": "No claim that this file beats the owner-reported 0.2778. Its 0.09580 HOLDOUT-DTI is a local hide-and-recover result, below the retained 0.152718 HOLDOUT-DTI incumbent; it is not a leaderboard projection.",
    "organizer_confirmed_score": null,
@@ -491,9 +491,19 @@
     0.05523215485018934,
     0.07790796160479564
    ],
-   "upload": "Not OK to submit. OK to download for inspection only. HOLDOUT-DTI 0.06707 (gems57-pooled-hide-v2, 11,321 withheld positives, 95% CI 0.05523-0.07791); literal gate FAIL; selector not approved; zero weekly slots.",
-   "primary": false,
-   "why_primary": "H81 strand-tip slip-cone lane; clearance per release gate (not approved)."
+   "upload": "Not OK to submit. OK to download for inspection only. HOLDOUT-DTI 0.067071 (gems57-pooled-hide-v2; 11,321 withheld positives; 95% CI 0.055232\u20130.077908); final-dot overlap 1.0 > 0.70 and registry scan incomplete; selector not approved; zero weekly slots.",
+   "primary": true,
+   "why_primary": "Latest H81 strand-tip slip-cone research artifact; holdout-negative and stopped after the final-dot registry overlap exceeded 0.70. OK to download for inspection only; NOT OK TO SUBMIT.",
+   "zip": "downloads/gems77-h81-slipcone-37654dots-20261021-0fbeaf41-zeros.zip",
+   "informative_unique": false,
+   "informative_checked_rasters": 832,
+   "informative_max_dot_overlap": 1.0,
+   "holdout_dti_hide_v2": 0.0670711968860764,
+   "holdout_evaluator_version": "gems57-pooled-hide-v2",
+   "holdout_positive_pixels": 11321,
+   "format_description": "Frozen local validator reports one float32 band, EPSG:32611, 3730\u00d73292, exact sample transform, no NaN/Inf, values in [0,1], 0 positive pixels on mapped catalogue. Local checks do not prove portal acceptance.",
+   "beat_02778_summary": "No evidence this artifact beats the owner-reported 0.2778. HOLDOUT-DTI 0.067071 [0.055232,0.077908] is below the local 0.152718 HOLDOUT-DTI incumbent; this is not a leaderboard projection.",
+   "protocol_caveat": "The component-LOCO eligibility filter uses the union of held-out truth locations to censor nearby source components. This was preregistered as a conservative guard, but the standing brief requires visible-only catalogue features; independent review is needed. Treat this HOLDOUT-DTI as a frozen diagnostic, not promotion evidence."
   }
  ]
 }

@@ -8,14 +8,9 @@ summarised with provenance at the end rather than re-transcribed hash-by-hash
 `docs/score-ledger.csv`; later entries below are OWNER-REPORT as supplied in
 the 2026-10-21 brief — no organizer receipts).*
 
-## 2026-10-21 H79 execution addendum (current session)
+## Historical lane notes and current checkout status
 
-This session's registered lane is **H79-ORIENT**, not the historical contact-physics
-lane mentioned in older repository notes. The operative preregistration is
-`registry/preregistration_h79_orient.json`; the measured artifact and stop decision are
-in `evidence/h79_orient_run_card.json`. The full request below remains preserved as the
-standing brief. H79's result is negative, safe to download for inspection, not
-approved to submit, and no weekly slot was selected.
+The original 2026-10-21 H79-ORIENT session was followed by subsequent merged lanes. It is historical, not the active lane for every later checkout. The latest fully documented lane in this checkout is **H81 slip-budget strand-tip cones**, preregistered at `registry/preregistration_h81.json` with its frozen card at `docs/evidence/h81_run_card.json`. H81 exhausted its three-experiment budget, is negative, and stopped after the final-dot registry overlap exceeded the 0.70 limit. Its TIF is available for inspection only; **NOT OK TO SUBMIT**. This checkout has no separately assigned new method paragraph and no selector-approved weekly slot. The full request below remains the standing brief.
 
 ## Highest urgency
 
