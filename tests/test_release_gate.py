@@ -5,9 +5,22 @@ import shutil
 import pytest
 from pathlib import Path
 
+import release_gate
 from release_gate import assess, build
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def test_pinned_real_witness_is_an_independent_release_veto():
+    # Uses real SHA-pinned cached bytes and unchanged shared grid/support code,
+    # not the mocked conditional clear-path in the other unit test.
+    report=release_gate.audit_independent_duplicate_stop(ROOT)
+    pin=json.loads((ROOT/'registry/witness_sources.json').read_text())['dense_witness']
+    assert report['decision']=='STOP_UNIVERSAL_DUPLICATE'
+    assert report['passed_veto'] is False
+    assert report['witness_sha256']==pin['sha256']
+    assert report['proof']['allowed_pixels']==report['proof']['allowed_pixels_within_3px']==5106385
+    assert report['proof']['nonempty_subset_forward_overlap_lower_bound']==1.0
 
 
 def test_published_portfolio_fails_closed(tmp_path):
@@ -137,8 +150,8 @@ def test_malformed_run_card_fails_closed_without_stale_receipt(tmp_path):
         assert not result["checks"]["run_card_present"]
 
 
-def test_consistent_promotion_can_pass_recorded_decision_gate(tmp_path):
-    # The gate checks bytes and binding, but still consumes recorded science/selector decisions.
+def test_consistent_promotion_still_requires_independent_witness(tmp_path, monkeypatch):
+    # Recorded science/selector fields cannot override missing registry inputs.
     row = approval_row(tmp_path)
     row["run_card"] = "card.json"
     (tmp_path / "card.json").write_text(json.dumps({
@@ -147,9 +160,49 @@ def test_consistent_promotion_can_pass_recorded_decision_gate(tmp_path):
         "beats_holdout_best": True, "approved_for_weekly_slot": True,
         "registry": {"full_registry_certified": True},
     }))
-    assert assess(row, tmp_path, root=tmp_path)["authorized_to_submit"]
+    missing = assess(row, tmp_path, root=tmp_path)
+    assert not missing["authorized_to_submit"]
+    assert missing["independent_duplicate_preflight"]["decision"] == "STOP_INPUT_ERROR"
+    assert "independent_duplicate_veto_passed" in missing["failed_gates"]
+
+    # A full-registry card can pass the *decision aggregator* only when an
+    # independently verified witness does not already prove a duplicate. Stub
+    # the preflight for this positive-path unit test; production reads the TIFF.
+    monkeypatch.setattr(release_gate, "universal_preflight", lambda root: {
+        "decision": "NO_UNIVERSAL_PROOF_NOT_CLEARANCE",
+        "template_hashes_verified": True, "grid_matches": True,
+        "input_sha256": {"witness": "synthetic-fixture"},
+        "proof": {"universal_overlap_blocker": False},
+    })
+    ok = assess(row, tmp_path, root=tmp_path)
+    assert ok["authorized_to_submit"]
+    assert ok["independent_duplicate_preflight"]["decision"] == "NO_UNIVERSAL_PROOF_NOT_CLEARANCE"
     row["selector_approved"] = False
     assert not assess(row, tmp_path, root=tmp_path)["authorized_to_submit"]
+
+
+def test_independent_universal_duplicate_vetoes_forged_clearance(tmp_path, monkeypatch):
+    row = approval_row(tmp_path)
+    row["run_card"] = "card.json"
+    (tmp_path / "card.json").write_text(json.dumps({
+        "verdict": "promote", "raster_sha256": row["sha256"],
+        "protocol_unique": True, "holdout_valid_for_promotion": True,
+        "beats_holdout_best": True, "approved_for_weekly_slot": True,
+        "registry": {"full_registry_certified": True},
+    }))
+    monkeypatch.setattr(release_gate, "universal_preflight", lambda root: {
+        "decision": "STOP_UNIVERSAL_DUPLICATE",
+        "template_hashes_verified": True, "grid_matches": True,
+        "input_sha256": {"witness": "fixture"},
+        "proof": {"universal_overlap_blocker": True,
+                  "nonempty_subset_forward_overlap_lower_bound": 1.0},
+    })
+    result = assess(row, tmp_path, root=tmp_path)
+    assert result["checks"]["format_readback_passed"] is True
+    assert result["run_card_audit"]["explicit_promotion_evidence"] is True
+    assert result["independent_duplicate_preflight"]["decision"] == "STOP_UNIVERSAL_DUPLICATE"
+    assert "independent_duplicate_veto_passed" in result["failed_gates"]
+    assert result["authorized_to_submit"] is False
 
 
 @pytest.mark.parametrize("sha", [None, "0" * 64, True])

@@ -1,0 +1,65 @@
+{
+  "checked_utc": "2026-10-21T18:00:31Z",
+  "method": "Read public source pages with Arena fetch_page; no logged-in DrivenData access and no sponsor-private ground truth. GitHub mirrors verified separately by SHA-256.",
+  "scope": "Manual-review source ledger for this review, not a live scoreboard, license opinion or file-specific organizer score receipt",
+  "lines": [
+    {
+      "claim": "Task predicts fault locations; initial test uses newly mapped expert faults; a later round re-scores against expanded expert-reviewed labels.",
+      "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+      "location": "Problem description; Competition structure",
+      "status": "directly read"
+    },
+    {
+      "claim": "DTI has alpha 0.2, beta 0.8 and a 300 m linear triangular kernel; GeoTIFF is single-band float32 with values [0,1], EPSG:32611 at 100 m and sample-matching bounds; outside-bounds values described as null/NaN.",
+      "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+      "location": "Performance metric; Mathematical representation; Submission format",
+      "status": "directly read",
+      "irregularity": "Our zero-outside-footprint writer has no organizer acceptance receipt establishing equivalence to the written null/NaN convention. Local range/shape PASS is not acceptance."
+    },
+    {
+      "claim": "The public first-ranked participant row showed 0.4413 at this check. The row does not include a submission GeoTIFF name or hash; it is not a file-specific receipt.",
+      "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+      "location": "Public leaderboard, first-ranked row",
+      "status": "PUBLIC-LEADERBOARD OBSERVATION (not ORGANIZER-CONFIRMED for a file)"
+    },
+    {
+      "claim": "Feedback submissions are limited to up to three per week in the official rules; one final submission must be selected. Remaining allowance for this account cannot be read unauthenticated.",
+      "source": "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
+      "location": "Sections 3.4 Feedback and 3.5 What To Submit",
+      "status": "directly read"
+    },
+    {
+      "claim": "Unauthenticated competition data and submission tabs redirect to DrivenData login.",
+      "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/data/",
+      "other_source": "https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/",
+      "location": "Observed redirected login page",
+      "status": "directly read; no authentication requested"
+    },
+    {
+      "claim": "USGS GeoDAWN magnetic/radiometric survey release describes 200 m Area 1 and 400 m Area 2 flight-line spacing at 90 degrees, micro-leveling, and varying terrain clearance. USGS displays CC0 1.0 for this release.",
+      "source": "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+      "location": "Release abstract, Citation Information and Rights; DOI 10.5066/P93LGLVQ",
+      "status": "directly read; acquisition-QC hypothesis is ours, not an endorsed USGS conclusion"
+    },
+    {
+      "claim": "GDR INGENIOUS 1391 lists public CC BY 4.0 regional wells/springs, geothermal chemistry, and links to the USGS heat-flow release.",
+      "source": "https://gdr.openei.org/submissions/1391",
+      "location": "Description, Resources, License; DOI 10.15121/1881483",
+      "status": "metadata directly read; source zip not downloaded or checked for AOI/fields"
+    },
+    {
+      "claim": "GEMSDOE32 landing page associates H33 with pruning but explicitly states it has no organiser score for any artifact in that repository.",
+      "source": "https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html",
+      "location": "One-click submission file; Status / Not claimed",
+      "status": "owner-site claim, not organizer receipt; H33 0.2778 remains OWNER-REPORT"
+    },
+    {
+      "claim": "The organizer-linked reference solution describes CPU-only and GPU environments; GPU is optional, though training may be slower.",
+      "source": "https://github.com/drivendataorg/gems-prize-reference-solution/blob/aebe92f7c8a990f0e3443451b7a825d9afd6336b/README.md",
+      "location": "Getting started; Choosing GPU vs. CPU",
+      "status": "directly read"
+    }
+  ],
+  "organizer_submission_receipt_for_this_repo": null,
+  "remaining_weekly_slots_verified": false
+}

@@ -1,7 +1,7 @@
 # H33: what the bytes establish, and what the reported score does not
 
 Updated 2026-10-21. This review supersedes the earlier causal/optimality claims in this document.
-**No new HOLDOUT-DTI or ORGANIZER-CONFIRMED score was obtained.** The supplied 0.2778 is an unverified owner attribution, not a measured outcome in this review. The supplied leaderboard targets 0.3195 and 0.4413 are not current authenticated receipts here.
+**No new HOLDOUT-DTI or ORGANIZER-CONFIRMED score was obtained.** The supplied 0.2778 is an unverified owner attribution, not a measured outcome in this review. The 0.3195 brief target is stale; the official public leaderboard's 0.4413 first-ranked row was directly read on 2026-10-21 (PUBLIC-LEADERBOARD OBSERVATION), **not** an authenticated exact-TIFF submission receipt.
 
 ## Evidence ledger
 
@@ -11,7 +11,7 @@ Updated 2026-10-21. This review supersedes the earlier causal/optimality claims 
 | H33 removes 6,436 dots from a 44,090-dot D2.8 mirror without adding dots | Retained `evidence/prior_forensics.json`; historical byte forensics, not freshly rerun lineage analysis. |
 | The family site associates H33 with near-catalogue pruning | [GEMSDOE32 site source, pinned commit](https://github.com/buffedlizard55-lab/GEMSDOE32/blob/f62038b54dcb7767d4d997f80b033cdc3d42bef9/docs/index.html), freshly retrieved through GitHub API. It explicitly says “NO ORGANISER SCORE EXISTS for this or any artifact in this repository.” An owner website is not an organizer receipt. |
 | The organizer reference supports CPU-only execution | [Official reference README, pinned commit](https://github.com/drivendataorg/gems-prize-reference-solution/blob/aebe92f7c8a990f0e3443451b7a825d9afd6336b/README.md), freshly retrieved. GPU accelerates training; it is not universally required. |
-| Local DTI uses maximum triangular-kernel credit, not additive per-dot truth credit | Pinned `vendor/gems57/metric.py` and regression tests. This is the local implementation; the [organizer problem page](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/) was not freshly accessible through this sandbox's allowed hosts. |
+| Local DTI uses maximum triangular-kernel credit, not additive per-dot truth credit | Pinned `vendor/gems57/metric.py` and regression tests. This is the local implementation; the [organizer problem page](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/) was independently read via public web fetch on 2026-10-21 (α=0.2, β=0.8, 300 m triangular kernel). The `bash` sandbox's outbound allowlist still blocks that host. |
 
 Mirror provenance: `registry/witness_sources.json`. A pinned owner mirror establishes reproducibility of those bytes, not official-origin authenticity or their leaderboard score.
 

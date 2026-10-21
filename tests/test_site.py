@@ -64,6 +64,30 @@ def test_submission_status_obeys_literal_uniqueness_gate():
     assert 'not ok to submit' in contact['upload'].lower()
 
 
+def test_legacy_leaderboard_retracts_unauthenticated_file_scores():
+    archived = (DOC/'leaderboard.html').read_text()
+    assert 'CURRENT CORRECTION — DO NOT SUBMIT' in archived
+    assert 'NOT OK TO SUBMIT under the current literal overlap veto' in archived
+    assert '0.4413 PUBLIC-LEADERBOARD OBSERVATION (not TIFF-bound)' in archived
+    assert '0.2778 OWNER-REPORT (unverified file attribution)' in archived
+    assert 'ORGANIZER-CONFIRMED' not in archived
+
+
+def test_entry_page_exposes_current_stop_and_artifact_receipt():
+    page=(DOC/'index.html').read_text()
+    guide=(DOC/'executive-summary.html').read_text()
+    assert page.index('no new eligible TIFF') < page.index('Archived Candidate')
+    assert 'OK TO DOWNLOAD FOR INSPECTION: YES' in page
+    assert 'OK TO SUBMIT: NO — NOT OK TO SUBMIT' in page
+    assert 'gems77-h83-faultcollar-37553dots' in page
+    assert 'review-latest.html' in page and 'registry_preflight.json' in page
+    assert 'not proven equivalent to portal acceptance' in guide
+    assert 'null/NaN outside the data bounds' in guide
+    assert 'PUBLIC-LEADERBOARD OBSERVATION' in page
+    assert 'exact TIFF bytes' in guide
+    assert 'A public leaderboard row alone' not in guide or 'does not identify' in guide
+
+
 def test_feed_is_not_score_verification():
     feed=json.loads((DOC/'source-health.json').read_text())
     assert len(feed['repos'])==82
@@ -72,6 +96,19 @@ def test_feed_is_not_score_verification():
     assert feed['checked_utc']
     assert all(not r.get('authenticated_score_receipt',False) for r in feed['repos'])
     assert not any(r['score_verified'] for r in feed['official_sources'])
+    lb = feed['public_leaderboard']
+    assert lb['score_is_submission_page_receipt'] is False
+    assert lb['raster_sha256'] is None and lb['submission_name'] is None
+    source_page=(DOC/'sources.html').read_text()
+    assert 'leaderboard/' in source_page
+    if lb['status'] != 'retrieved':
+        assert lb['public_dti'] is None
+        assert 'No current public-leaderboard observation' in source_page
+        assert 'public DTI 0.4413' not in source_page  # never carry a stale score
+    else:
+        assert lb['evidence_class'].startswith('PUBLIC-LEADERBOARD OBSERVATION')
+        assert lb['checked_utc'] and lb['html_sha256']
+        assert 'not identify any submitted TIFF' in source_page
 
 
 def test_all_published_scores_have_version_count_ci():
@@ -179,8 +216,8 @@ def test_new_research_raster_is_visible_but_never_called_a_submittable_entry():
     assert tif.name in home and tif.name in detail and 'RESEARCH ONLY' in guide
     assert 'NOT OK TO SUBMIT' in home and 'NOT OK TO SUBMIT' in detail
     assert '0.0 or 1.0' not in home[:home.index('Reviewed downloadable candidates')]
-    assert 'unverified claims in this review' in home
-    assert 'not submission-page receipts' in home
+    assert 'PUBLIC-LEADERBOARD OBSERVATION' in home
+    assert 'OWNER-REPORT' in home and 'The GEMSDOE32 page says it has no organizer score' in home
     assert 'row #48' not in home
     assert (DOC/'evidence/h77l_run_card.json').is_file()
     assert 'independent re-read audit' in detail and 'three-pass review' in detail
@@ -318,7 +355,7 @@ def test_current_review_and_metric_correction_are_linked():
     review = (DOC / 'review-latest.html').read_text()
     assert 'NOT OK TO SUBMIT' in review
     assert 'No new TIFF was generated' in review
-    assert 'Resource not accessible by integration' in review
+    assert 'redirect to login' in review and '5,106,385' in review
 
 
 def test_current_preflight_review_does_not_claim_a_new_submission():

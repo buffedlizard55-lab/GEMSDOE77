@@ -4,8 +4,8 @@ import datetime as dt
 import hashlib
 import json
 import subprocess
-import urllib.request
 from pathlib import Path
+from public_leaderboard import observe as observe_public_leaderboard
 ROOT = Path(__file__).resolve().parents[1]
 # Repo spellings follow the supplied URLs, not guessed aliases.
 REPOS = ['GEMSDOE','GEMSDOE2','GEMSDOE3','GEMSDOE4','5GEMSDOE','6GEMSDOE','7GEMSDOE','8GEMSDOE',
@@ -73,18 +73,20 @@ def official_health(pair):
                        scope='Official reference code only; not portal, DTI-distance spec or leaderboard receipt')
         except Exception as e: row.update(status='error',error=str(e))
     else:
-        # Do not evade the sandbox allowlist or mislabel lack of access as source unavailability.
-        row.update(status='not fetched by scheduled CI runner (restricted outbound hosts)',
-                   verification='Automated feed has no official-page check. Dated manual web-fetch review: docs/review-2026-10-21-h77l.md. Do not infer current scores from that snapshot.')
+        # The GitHub inventory does not verify this source. The public leaderboard
+        # is separately monitored with a strict, fail-closed parser below.
+        row.update(status='not checked by this source inventory',
+                   verification='Follow the official link for current data and rules; no organizer submission-page receipt is available.')
     return row
 
 
 def main():
     with cf.ThreadPoolExecutor(max_workers=6) as pool: rows=list(pool.map(repo_health,REPOS))
     report={'checked_utc':dt.datetime.now(dt.timezone.utc).isoformat(),
-            'purpose':'Repository/page freshness and artifact inventory, NOT scores, scientific validation, or full raster uniqueness',
+            'purpose':'Repository/page freshness and artifact inventory, NOT artifact scores, scientific validation, or full raster uniqueness',
             'repos':rows,'official_sources':[official_health(p) for p in OFFICIAL],
-            'score_policy':'No organizer-confirmed receipt is available. Never treat webpage mentions as verified scores.',
+            'public_leaderboard':observe_public_leaderboard(),
+            'score_policy':'The public row is a dated observation, never an exact-file organizer submission-page receipt. No organizer-confirmed receipt is available.',
             'weekly_cap':None,'weekly_cap_status':'CI does not re-check official rules PDF. Dated manual review 2026-10-21 observed three feedback submissions/week; see docs/review-2026-10-21-h77l.md. Zero slots consumed by this pipeline.'}
     for path in [ROOT/'evidence/source_health.json',ROOT/'docs/source-health.json']:
         path.parent.mkdir(exist_ok=True,parents=True)

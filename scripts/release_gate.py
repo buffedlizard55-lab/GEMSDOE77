@@ -20,6 +20,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "vendor"))
 from gems57.grid import load_grid
 from gems57.validate import validate
+from preflight_registry import audit as universal_preflight
 
 DEFAULT_LANES = ROOT / "docs" / "data" / "lanes.json"
 DEFAULT_OUT = ROOT / "docs" / "data" / "submission-authorization.json"
@@ -54,6 +55,41 @@ def audit_format(path: Path, root: Path = ROOT) -> dict:
                 "checks": result["checks"], "sha256": result["sha256"]}
     except (OSError, ValueError, KeyError, TypeError) as exc:
         return {"all_checks_passed": False, "error": str(exc)}
+
+
+def audit_independent_duplicate_stop(root: Path = ROOT) -> dict:
+    """Re-read the pinned witness before an otherwise-promoted artifact can ship.
+
+    The historical card's `full_registry_certified` is a recorded decision, not
+    an independent raster comparison. This necessary veto uses the unchanged
+    shared support/dilation logic via the candidate-independent preflight. If
+    its witness is missing or damaged, fail closed; no silent 'dense' exemption.
+    A negative preflight is NOT a full-registry uniqueness certificate.
+    """
+    try:
+        result = universal_preflight(root)
+        decision = result.get("decision")
+        verified = (result.get("template_hashes_verified") is True
+                    and result.get("grid_matches") is True)
+        proof = result.get("proof")
+        if (not verified or not isinstance(proof, dict)
+                or (decision == "STOP_UNIVERSAL_DUPLICATE"
+                    and proof.get("universal_overlap_blocker") is not True)
+                or (decision == "NO_UNIVERSAL_PROOF_NOT_CLEARANCE"
+                    and proof.get("universal_overlap_blocker") is not False)
+                or decision not in {"STOP_UNIVERSAL_DUPLICATE",
+                                    "NO_UNIVERSAL_PROOF_NOT_CLEARANCE"}):
+            return {"decision": "STOP_INCONSISTENT_PREFLIGHT", "passed_veto": False,
+                    "error": "missing or contradictory shared-template witness receipt"}
+        return {"decision": decision,
+                "passed_veto": decision == "NO_UNIVERSAL_PROOF_NOT_CLEARANCE",
+                "witness_sha256": result.get("input_sha256", {}).get("witness"),
+                "proof": proof}
+    except Exception as exc:
+        # A missing cache or pin error must never authorize a syntactically
+        # 'promote' run card. Do not fetch or mutate the registry in this gate.
+        return {"decision": "STOP_INPUT_ERROR", "passed_veto": False,
+                "error": str(exc)}
 
 
 def reject_json_constant(value: str):
@@ -242,6 +278,15 @@ def assess(row: dict, docs: Path, root: Path = ROOT) -> dict:
         measured and format_audit.get("sha256") == measured)
     checks["run_card_artifact_matches"] = bool(
         measured and rc_audit["raster_sha256"] == measured)
+    # Run the expensive, SHA-pinned witness veto only for otherwise-clear
+    # candidates. The negative portfolio never reads the optional cache, but a
+    # future forged positive card cannot green-light itself when it is absent.
+    if all(checks.values()) and rc_audit["guardrail_clear"]:
+        duplicate_preflight = audit_independent_duplicate_stop(root)
+    else:
+        duplicate_preflight = {"decision": "NOT_RUN_OTHER_GATES_FAILED",
+                               "passed_veto": False}
+    checks["independent_duplicate_veto_passed"] = duplicate_preflight["passed_veto"]
     authorized = all(checks.values()) and rc_audit["guardrail_clear"]
     failed = [name for name, passed in checks.items() if not passed]
     return {
@@ -251,6 +296,7 @@ def assess(row: dict, docs: Path, root: Path = ROOT) -> dict:
         "checks": checks,
         "run_card_audit": rc_audit,
         "format_readback": format_audit,
+        "independent_duplicate_preflight": duplicate_preflight,
         "authorized_to_submit": authorized,
         "decision": "OK TO SUBMIT" if authorized else "NOT OK TO SUBMIT",
         "failed_gates": failed,
@@ -288,7 +334,11 @@ def build(lanes_path: Path = DEFAULT_LANES, out: Path = DEFAULT_OUT) -> dict:
             "literal protocol uniqueness (including <=0.70 real-model forward 3-px overlap and "
             "complete registry), improvement over the accepted holdout best, a promote "
             "verdict, and explicit selector approval. Missing fields or historical run-card "
-            "uniqueness/completeness failures fail closed."
+            "uniqueness/completeness failures fail closed. Any otherwise-promoted "
+            "artifact also requires a fresh, SHA-pinned shared-template witness "
+            "preflight: a universal duplicate or missing/unverifiable witness "
+            "vetoes upload. Absence of a universal witness is necessary but "
+            "not a full-registry uniqueness certificate."
         ),
         "repository_authorized_file_count": sum(r["authorized_to_submit"] for r in rows),
         "repository_decision": "OK TO SUBMIT" if any(r["authorized_to_submit"] for r in rows) else "NOT OK TO SUBMIT",

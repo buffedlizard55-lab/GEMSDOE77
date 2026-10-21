@@ -1,5 +1,10 @@
 # Project prompt (operative brief — re-read at the start of every session)
 
+## Current 2026-10-21 status — branch arena/ed604c5e-gemsdoe77
+
+The owner again provided no separate single-method paragraph. A fresh hash-pinned shared-template preflight proves a full-footprint registered witness covers every allowed pixel, so every nonempty candidate fails the binding 70% overlap threshold on surface AND final dots. **No new GeoTIFF, HOLDOUT-DTI, or organizer submission exists from this review; no weekly slot was used.** Existing TIFFs are downloadable for inspection only, NOT OK TO SUBMIT. The three-pass review, conditional four-hypothesis slate, source ledger and negative card are linked from `docs/review-2026-10-21-ed604c5e.md`. Resolve the shared protocol before assigning another lane; do not quietly exempt dense priors. The unmodified archived owner request is preserved at the end of README and in `docs/PROJECT_PROMPT.md`; the newer site-inventory names are tracked separately.
+
+
 *Stored 2026-10-21 per the project owner's instruction ("Put this prompt into
 the repo readme and read it every time we work on the project"). This file
 preserves the operative instructions; the owner's long family score list is
@@ -102,7 +107,7 @@ answer to build the lane's candidate. Verify line by line; no hallucinations.
 ## Competition anchors
 
 - Overview/problem/metric: https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/
-- Leaderboard: https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/ (2026-10-21 read: #1 xiaofanhu **0.4413 ORGANIZER-CONFIRMED**; brief-era references 0.3195/0.3262 are superseded)
+- Leaderboard: https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/ (2026-10-21 direct public read: #1 xiaofanhu **0.4413 PUBLIC-LEADERBOARD OBSERVATION**; not a submission-page receipt or proof for H33; brief-era 0.3195 is superseded)
 - Reference solution: https://github.com/drivendataorg/gems-prize-reference-solution
 - Rules PDF: https://docs.nlr.gov/docs/fy26osti/96647.pdf
 - GeoDAWN: https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and

@@ -1,0 +1,65 @@
+{
+  "schema": "gems-review-negative-run-card-v1",
+  "review_utc": "2026-10-21",
+  "branch": "arena/ed604c5e-gemsdoe77",
+  "hypothesis": "Conditional only: a flight-azimuth/QC-normalized GeoDAWN magnetic contact crossing, corroborated by gravity, could expose a covered basement fault absent from the USGS/INGENIOUS surface compilation. Not an assigned lane and NOT TESTED.",
+  "mechanism": "Suppress acquisition-aligned magnetic micro-leveling stripes before testing cross-scale RTP/TMI contact continuity and independent gravity agreement. This is a future proposal, not a built model or claim of geothermal vents.",
+  "named_non_fault_process_that_could_mimic_it": "Lithologic/intrusive contacts, survey flight-line micro-leveling seams and varying terrain clearance can create similar potential-field edges.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI — NOT MEASURED THIS REVIEW",
+    "evaluator_version": null,
+    "withheld_positive_pixels": null,
+    "value": null,
+    "ci95": null,
+    "reason": "Mandatory candidate-independent duplicate stop before feature construction; no assigned method and no live feature cache. Historical holdouts are not new results."
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT — NOT HOLDOUT-DTI OR ORGANIZER SCORE",
+    "rank_correlation": null,
+    "rank_correlation_reason": "No candidate raster; the overlap veto alone suffices",
+    "preplacement_surface_nonempty_forward_overlap_3px_lower_bound": 1.0,
+    "final_dots_nonempty_forward_overlap_3px_lower_bound": 1.0,
+    "strict_stop_threshold": 0.7,
+    "allowed_pixels": 5106385,
+    "covered_allowed_pixels": 5106385,
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "full_registry_audit": false,
+    "proof": "evidence/registry_preflight.json",
+    "verdict": "STOP_UNIVERSAL_DUPLICATE"
+  },
+  "raster_sha256": null,
+  "new_raster_generated": false,
+  "validator_output": {
+    "new_artifact_no_nan_inside_footprint": null,
+    "new_artifact_values_in_0_1": null,
+    "new_artifact_crs_shape_transform_match": null,
+    "new_artifact_status": "NOT APPLICABLE: no new TIFF was generated",
+    "prior_listed_primary_tiffs_checked": 30,
+    "prior_listed_primary_tiffs_local_format_pass": true,
+    "prior_listed_primary_tiffs_receipt": "evidence/listed_download_audit.json",
+    "portal_acceptance": "UNKNOWN — no file-specific organizer receipt"
+  },
+  "submission_name": null,
+  "submission_note": null,
+  "organizer_confirmed_score": null,
+  "public_leaderboard": {
+    "evidence_class": "PUBLIC-LEADERBOARD OBSERVATION — not a submission-page receipt",
+    "checked_utc": "2026-10-21",
+    "top_participant_score": 0.4413,
+    "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+    "file_attribution": null
+  },
+  "h33_owner_attribution": {
+    "evidence_class": "OWNER-REPORT — not a file-specific organizer receipt",
+    "value": 0.2778,
+    "source": "https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html"
+  },
+  "source_ledger": "evidence/official_sources_ed604c5e.json",
+  "experiments_run": 0,
+  "weekly_slots_used": 0,
+  "ok_to_download_existing_research_files_for_inspection": true,
+  "ok_to_download_a_new_candidate": false,
+  "ok_to_submit": false,
+  "verdict": "negative",
+  "next_action": "Shared protocol owner resolves full-footprint witness semantics and assigns a genuinely distinct lane; then verify organizer inputs, run leakage canaries and fold-visible buffered-segment holdout, validate full registry and actual GeoTIFF, seek a separate selector decision."
+}

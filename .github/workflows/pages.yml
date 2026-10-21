@@ -22,17 +22,28 @@ jobs:
           python-version: '3.11'
           cache: pip
       - run: pip install -r requirements.txt
-      - name: Refresh source inventory only — never model or slot selection
+      - name: Refresh source inventory and optional public leaderboard row — never select a slot
         env:
           GH_TOKEN: ${{ github.token }}
         run: python scripts/refresh_sources.py
+      - name: Restore public SHA-pinned rejection witnesses
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/restore_registry.py
+      - name: Verify expected candidate-independent duplicate stop (exit 2)
+        run: |
+          set +e
+          python scripts/preflight_registry.py
+          rc=$?
+          set -e
+          if [ "$rc" -ne 2 ]; then echo "Pinned witness missing/changed, or stop semantics changed: $rc"; exit 1; fi
       - run: python scripts/build_site.py
       - run: python scripts/lia_build_site.py
       - run: python scripts/build_h82rank_site.py
       - name: Independently re-read every listed primary TIFF (no model or slot)
         run: python scripts/audit_downloads.py
-      - run: python scripts/build_home.py
       - run: python scripts/release_gate.py --verify-fail-closed
+      - run: python scripts/build_home.py
       - run: python -m pytest -q
       - run: python scripts/stage_pages.py
       - uses: actions/configure-pages@v5
