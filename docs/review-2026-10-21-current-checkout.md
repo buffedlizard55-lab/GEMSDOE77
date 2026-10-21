@@ -18,18 +18,19 @@ The strongest historical local measurement described by the current README is **
 ### Tests and tools
 
 - The base interpreter initially lacked NumPy and pytest. Created the ignored `.venv` and installed the exact packages in `requirements.txt`; no dependency manifest or system Python was changed.
-- Full suite after the corrections: **98 passed** (`.venv/bin/python -m pytest -q`).
+- Full suite after merging current main and regenerating the site: **102 passed** (`.venv/bin/python -m pytest -q`).
 - `scripts/verify_all.py` completed with `all_passed: true` for the selected frozen contact-physics artifact's readback, ZIP, and metric property checks. This is a selected-artifact verification, not an all-lane test or an organizer check.
 - `scripts/release_gate.py --out /tmp/gems77-review-release-final.json --verify-fail-closed` returned **NOT OK TO SUBMIT; 0 authorized files** with exit status 0 for the fail-closed verification. It did not rewrite the published receipt.
 - `git diff --check` passed. Static pages were rebuilt with the existing lane/home generators and link tests are included in the full suite.
 
-### 26-path GeoTIFF inventory
+### GeoTIFF inventory (expanded after main reconciliation)
 
-I independently read every `*.tif` path in `docs/downloads/`, `docs/submissions/`, and `submissions/` with Rasterio against the tracked `data/bridge/sample_submission.tif`. This is an integrity/format measurement against the repository's local bridge raster only, not official provenance, uniqueness, scientific quality, portal acceptance, or upload approval.
+I independently read every `*.tif` path in `docs/downloads/`, `docs/submissions/`, and `submissions/` with Rasterio against the tracked `data/bridge/sample_submission.tif`. This is an integrity/format measurement against the repository's local bridge raster only, not official provenance, uniqueness, scientific quality, portal acceptance, or upload approval. The audit was repeated after reconciling main, which had added concurrent H79-ORIENT/H80/AGO files.
 
-- **20 TIFF paths:** single-band float32; grid/CRS/transform match; finite values in `[0,1]`; zero outside the finite sample footprint.
-- **6 TIFF paths:** retain NaN outside the footprint and fail an all-raster-cells-finite / zero-outside preflight. Each has 7,111,787 NaNs outside the 5,167,373-cell local footprint. These are historical diagnostics, not eligible submission files.
-- All 26 files remain in the repository as historical evidence; no raster bytes were modified. Removed user-facing links to the NaN diagnostic TIFFs from the landing/research pages and README. Their filenames remain described as invalid diagnostics, not downloads.
+- **38 TIFF paths total.** All match the local sample's band count, dtype, CRS, shape, and transform.
+- **29 TIFF paths:** all pixels are finite and in `[0,1]`; 25 also have zeros outside the finite sample footprint. Four AGO `-zeros.tif` paths have nonzero pixels outside that local footprint; this violates the repository's conservative outside-zero convention but not the basic all-pixel numeric range check. Organizer handling is unverified.
+- **9 TIFF paths:** contain NaNs outside the footprint and fail an all-raster-cells-finite / zero-outside preflight. These are historical diagnostics, not eligible submission files.
+- All 38 paths remain in the repository as historical evidence; no raster bytes were modified. Removed user-facing links to NaN diagnostic TIFFs from the landing/research pages and README. Their filenames remain described as invalid diagnostics, not downloads.
 
 ### Code correction
 
@@ -70,7 +71,7 @@ This is deliberately a **conservative local policy**. It does not prove that the
   "correlation_overlap_vs_registry": "NOT RUN in this review; all candidate lanes remain blocked/negative under existing evidence.",
   "raster_sha256": null,
   "validator": {
-    "local_bridge_grid": "20 of 26 TIFF paths pass all-raster finite/[0,1], CRS/shape/transform, and outside-zero checks; 6 NaN-outside diagnostics fail the strict all-pixel preflight.",
+    "local_bridge_grid": "38 TIFF paths match band/dtype/CRS/shape/transform; 29 are all-finite and in [0,1], of which 25 also satisfy the local outside-zero convention; 9 NaN-outside diagnostics fail strict all-pixel preflight. Four AGO zero-outside variants have nonzero values outside the local sample footprint.",
     "release_gate": "NOT OK TO SUBMIT; 0 authorized files.",
     "official_provenance_and_portal_acceptance": "NOT VERIFIED."
   },
