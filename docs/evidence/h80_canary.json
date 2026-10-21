@@ -1,0 +1,8 @@
+{
+  "feature": "h80_riedel_surface_foldfair",
+  "auc": 0.6868240255675756,
+  "n_pos": 11319,
+  "n": 4840796,
+  "leakage_flag_if_auc_gt_0.90": false,
+  "evaluator_note": "AUC on withheld catalogue pixels vs fold-fair Riedel surface"
+}

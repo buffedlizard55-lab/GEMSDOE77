@@ -8,16 +8,26 @@ summarised with provenance at the end rather than re-transcribed hash-by-hash
 `docs/score-ledger.csv`; later entries below are OWNER-REPORT as supplied in
 the 2026-10-21 brief — no organizer receipts).*
 
-## Current session status note — 2026-10-21
+## Current branch review-only scope — 2026-10-21
 
-The current assignment still has no identifiable single method paragraph. Do
-not treat a repository hypothesis ranking as an assignment or self-authorize a
-new experiment. The review-only finding and ranked untested candidates are in
-[`docs/review-2026-10-21-h33-and-next-lane.md`](docs/review-2026-10-21-h33-and-next-lane.md).
-No data restoration, new holdout, TIFF build, selector action, or slot has
-occurred in this review-only scope. A documentation-only PR does not authorize
-a method lane. A dense registry witness remains a literal uniqueness stop until
-the shared protocol owner resolves that policy.
+The task attached to this branch has no identifiable single method paragraph.
+Do not treat prior or concurrently merged repository lanes as an assignment or
+self-authorize an experiment. This branch's H33 attribution and ranked next-lane
+review is [`docs/review-2026-10-21-h33-and-next-lane.md`](docs/review-2026-10-21-h33-and-next-lane.md).
+No data restoration, new holdout, TIFF, selector action, or slot occurred in
+this review. Its documentation-only PR does not authorize a method lane. The
+dense-raster witness remains a literal uniqueness stop pending shared
+protocol-owner resolution.
+
+## Historical H79-ORIENT execution addendum (parallel session, 2026-10-21)
+
+That session's registered lane was **H79-ORIENT**, not the historical contact-physics
+lane mentioned in older repository notes. Its operative preregistration is
+`registry/preregistration_h79_orient.json`; the measured artifact and stop decision are
+in `evidence/h79_orient_run_card.json`. The full request below remains preserved as the
+standing brief. H79's result is negative, safe to download for inspection, not
+approved to submit, and no weekly slot was selected. This historical addendum does
+not authorize a new lane on the current branch.
 
 ## Highest urgency
 

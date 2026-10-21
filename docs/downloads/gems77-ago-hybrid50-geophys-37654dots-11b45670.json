@@ -1,0 +1,34 @@
+{
+  "file": "docs/downloads/gems77-ago-hybrid50-geophys-37654dots-11b45670-zeros.tif",
+  "file_nan": "docs/downloads/gems77-ago-hybrid50-geophys-37654dots-11b45670-nan.tif",
+  "file_zip": "docs/downloads/gems77-ago-hybrid50-geophys-37654dots-11b45670-zeros.zip",
+  "sha256": "c027f571a45566a8cf10b081f7d00fa48242bc4dfbc7f832ba98c06a5aca194e",
+  "sha256_nan": "5a08bfa0cf69935a65c4a2cbab15d884e4de0e853b3a92e99d1973a16f81e737",
+  "bytes_zeros": 137490,
+  "bytes_nan": 178055,
+  "shape": [
+    3730,
+    3292
+  ],
+  "crs": "EPSG:32611",
+  "transform": [
+    100.0,
+    0.0,
+    243350.0,
+    0.0,
+    -100.0,
+    4508550.0
+  ],
+  "dtype": "float32",
+  "positive_pixels": 37654,
+  "on_catalogue": 0,
+  "overlap_vs_d28_3px": 0.5,
+  "holdout_quick": 0.0894009915954029,
+  "all_finite": true,
+  "all_in_01": true,
+  "portal_format": "PASS",
+  "portal_error_predicted_values_must_be_in_range_0_1": "WILL NOT OCCUR",
+  "n_dots": 37654,
+  "displacement_pct": 50,
+  "mechanism": "ML backbone (H19-5 D2.8, 44074 dots) scored by grav-mag gradient strength sqrt(grav_gmag*rtp_gmag)*(0.5+0.5*dilatation); keep top by score, replace bottom with far-field (>5px) geophysics maxima via Poisson thinning min_dist=2.8"
+}

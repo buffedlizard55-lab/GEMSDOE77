@@ -1,0 +1,24 @@
+{
+  "file": "/home/user/GEMSDOE77/data/processed/xsen.npy",
+  "channels": [
+    "xsen_as_ridge_s1p5",
+    "xsen_as_ridge_s3",
+    "xsen_as_persist",
+    "xsen_radgrad_thk",
+    "xsen_radgrad_uk",
+    "xsen_radgrad",
+    "xsen_coincide",
+    "xsen_coincide_min"
+  ],
+  "shape": [
+    3730,
+    3292,
+    8
+  ],
+  "footprint_px": 5167373,
+  "seconds": 19.9,
+  "inputs": [
+    "training_features.tif bands 3,9",
+    "geodawn_extensions_u8.tif bands 1,2"
+  ]
+}
