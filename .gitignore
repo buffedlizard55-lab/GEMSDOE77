@@ -1,0 +1,7 @@
+# large restored inputs live outside git (re-fetch with scripts/restore_data.py)
+.cache/
+.venv/
+__pycache__/
+*.pyc
+work/
+*.aux.xml
