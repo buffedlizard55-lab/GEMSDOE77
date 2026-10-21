@@ -1,0 +1,26 @@
+{
+  "evidence_class": "SOURCE-RETRIEVAL, NOT SCIENTIFIC VALIDATION OR SCORE",
+  "official_reference": {
+    "url": "https://github.com/drivendataorg/gems-prize-reference-solution/blob/aebe92f7c8a990f0e3443451b7a825d9afd6336b/README.md",
+    "commit": "aebe92f7c8a990f0e3443451b7a825d9afd6336b",
+    "content_sha256": "cfa4d55559c9128313beb9417eae7e0a94c31677132afb1120f9e86222804239",
+    "verified_claim": "README explicitly supports CPU-only and GPU environments"
+  },
+  "family_inventory": {
+    "receipt": "docs/source-health.json",
+    "scope": "78 configured owner repositories, not authenticated score receipts"
+  },
+  "not_freshly_retrieved": [
+    "DrivenData leaderboard/problem/data pages",
+    "USGS GeoDAWN and 3DEP",
+    "DOE GDR 1391",
+    "NLR competition PDF"
+  ],
+  "reason": "Outbound network restricted to GitHub and package registries; no official portal authentication",
+  "h33_family_page": {
+    "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/f62038b54dcb7767d4d997f80b033cdc3d42bef9/docs/index.html",
+    "content_sha256": "d83dd1ace9e2338c312ba9d6775413ab0b5ed8e9ae22e73b4d8291fca30aa0ec",
+    "evidence_class": "OWNER-REPOSITORY PAGE, NOT ORGANIZER RECEIPT",
+    "verified_quote": "NO ORGANISER SCORE EXISTS for this or any artifact in this repository."
+  }
+}

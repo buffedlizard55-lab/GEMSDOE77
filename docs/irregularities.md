@@ -1,5 +1,15 @@
 # Irregularities and next-session handoff
 
+## H82 update (2026-10-21; later than historical rows)
+
+| ID | Verified irregularity | Consequence |
+|---|---|---|
+| IR-82-01 | No assigned single-method paragraph in the latest parallel-run prompt; H82 chemistry lane self-declared before outcomes. | Do not assume any method was assigned by the user; avoid lane collisions; H82 is now stopped negative. |
+| IR-82-02 | SHA-pinned `17GEMSDOE` registry witness is positive throughout the permitted footprint; H82 final dots have literal 3-pixel forward overlap 1.000. Only two registry witnesses were checked. | Stop. Neither byte novelty nor local format validity grants protocol uniqueness/slot clearance. Only protocol owner can resolve universal dense-surface representation contradiction in the shared template. |
+| IR-82-03 | Only 41 chemistry records (32 unique cells) passed the preregistered all-three hot-estimate + cool-outlet filter. Input CSV is an owner mirror, not organizer-authenticated; official GDR not reachable here. | HOLDOUT-DTI 0.012184 (gems57-pooled-hide-v2, 11,321 withheld positives, 95% CI [0.003700, 0.022844]) is negative; do not tune on this holdout or interpret as geothermal vent discovery. |
+| IR-82-04 | Local release gate did not recognize H82 card's `duplicate` and `registry_complete` fields although row status still failed closed. | Fixed once in repository-wide `scripts/release_gate.py` and tested, not in a private scientific evaluator. |
+| IR-82-05 | Local format [0,1]/finite PASS does not prove portal acceptance; prior rejected submission bytes absent. Source feed is GitHub inventory, not a private organizer leaderboard feed. | Inspection download only, zero approved slots, no attribution of owner-reported H33 score. See [three-pass review](review-2026-10-21-h82.md). |
+
 > Historical lane ledger. Its early I08/“Access and capability boundaries” text reflects an earlier session: on 2026-10-21 official competition/USGS/GDR/NLR **public pages were independently read via the web fetch tool** (not sandbox `bash`). Organizer-only training downloads, the private entry receipts, and authenticated portal submissions remain unavailable. [Current H77L three-pass review](review-2026-10-21-h77l.md) supersedes the old next-session guidance; do not rewrite old run cards.
 
 | ID | Finding | Action / consequence |
@@ -135,4 +145,65 @@ GitHub authenticated operations work. CPU scientific transforms, local validatio
 | IR-H77G-01 | **3.5 km / 7.0 km rectilinear mesh periodicity in Band 17 (`cond_surf`):** In `data/raw/training_features.tif` Band 17 (`cond_surf`, USGS Data Release `doi:10.5066/P9TWT2LU`), 30.53% of adjacent vertical pixel differences (`dy`) and 30.35% of adjacent horizontal pixel differences (`dx`) are identically zero, and `|∇cond_surf|` at $\sigma = 2.0\text{ px}$ exhibits sharp 1-D FFT spectral peaks at **35.02 px (3,502 m)** and **70.04 px (7,004 m)** along N–S and E–W grid lines (`docs/figures/h77g_surface_and_dots.png`, Panel 3). | Any short-wavelength spatial derivative ($\sigma < 35\text{ px}$) of `cond_surf` extracts the artificial 3.5 km / 7.0 km MT inversion mesh cell boundaries rather than geological clay-cap edges (`AUC = 0.5045` on Seed 20). Future lanes using `cond_surf` must treat it as a regional prior or smooth at $\sigma \ge 35\text{ px}$ ($3.5\text{ km}$). |
 | IR-H77G-02 | **Along-axis vs across-axis eigenvalue swap in `src/gems77/features77.py:hessian_ridge`:** `F77.hessian_ridge(a, sigma)` returns `-small * (big < 0)` (along-ridge curvature rather than across-ridge curvature), which vanishes on straight 1-D ridges/troughs (`6.18e-5` in `tests/test_h77g.py`). | Closed lanes are left untouched per `AGENTS.md`. In `src/gems77g/fields.py:hessian_trough`, we implemented the true scale-normalized across-valley eigenvalue $\lambda_1 > 0$ weighted by linear tubularity, raising `h77g_composite_surface` single-feature AUC to `0.5618` and lifting `S_h77g_physics` `HOLDOUT-DTI` to `0.0392` (Seed 20) / `0.0471` (Seed 30, `0.0804` in SE). |
 | IR-H77G-03 | **Cold-structural vs hydrothermal fault dichotomy on catalogue holdouts:** Standalone `S_h77g_physics` (`0.0392` / `0.0471`) scores below uniform random (`0.0476` / `0.0481`) on the pooled 4-quadrant catalogue holdout except in the hydrothermally active SE quadrant (`0.0804` vs `0.0515`). | Most of the 59,661 mapped USGS/INGENIOUS Quaternary fault pixels are cold structural normal faults without hydrothermal demagnetization. Hydrothermal alteration channels must be used as a local sub-regime interaction modifier inside a structural/topographic/catalogue-continuation backbone. |
+
+
+
+## Review 60aafd45 — 2026-10-21
+
+- **IR-60A-01:** Green manifest flags plus a minimal promote card previously authorized arbitrary bytes. Release gate now invokes the pinned shared validator and requires a matching canonical run-card raster hash. Scientific/selector evidence is still recorded, not independently certified.
+- **IR-60A-02:** Historical H33 prose assumed ΔT=k universally and claimed a fixed α denominator increment. Corrected derivation and counterexample tests; no emission optimum or promised score gain. Pinned template docstring also incorrectly states ΔT<=k; implementation tests pass. Upstream issue creation denied by integration permissions; proposed report saved in `docs/research/shared-metric-documentation-issue.md`.
+- **IR-60A-03:** Source feed omitted GEMSDOE79–82. Added all four; refreshed 82 names, 81 retrieved, 62GEMSDOE HTTP 504 reported without invented content.
+- **IR-60A-04:** Two AGO artifacts pass finite/range but fail local zero-outside-footprint policy. The new readback receipt makes the distinction explicit; no organizer rejection is inferred.
+- **IR-60A-05:** No newly assigned lane, and restored dense witness reconfirms universal literal overlap. No experiment/placement/new TIFF; no prior artifact rebranded as new.
+
+- **IR-60A-06:** Base-commit `docs/data/submission.json` contains H28 identity and an unrelated AGO diagnostic twin, but LIA builder expects LIA plus ZIP. Full site build crashes despite baseline tests passing. Added a namespaced, independently byte-verified LIA receipt and explicit cross-lane identity regression test; old generic manifest retained for audit, not used to render LIA.
+
+## Candidate-independent readiness review — 2026-10-21
+
+- **IR-PREFLIGHT-01:** No identifiable new single-method assignment; all stored stopped lanes preserved. No new geological experiment.
+- **IR-PREFLIGHT-02:** Fresh SHA-pinned dense witness positive at every allowed pixel. Literal overlap rule rejects every nonempty surface/dot subset (1.0 > 0.70). Added reproducible rejection-only preflight; no density exemption or private gate.
+- **IR-PREFLIGHT-03:** Historical H33 analysis asserted constant denominator increment per dot and guaranteed near-catalogue false positives. Corrected the local research prose and added algebra counterexamples; runtime shared template unchanged. Its metric.py docstring also incorrectly bounds dT <= k, though the runtime metric does not rely on that bound. Shared-source documentation repair belongs upstream; no private fork introduced.
+- **IR-PREFLIGHT-04:** README XSEN paragraph promised a portal range error could not recur from local checks. Replaced with finite/range readback evidence and explicit unknown portal acceptance.
+- **IR-PREFLIGHT-05:** Current live leaderboard, weekly cap and official external data cannot be freshly verified from this restricted-host sandbox. Family score mentions are not file-to-score receipts. Official reference README checked via GitHub supports CPU-only environments.
+
+- **IR-PREFLIGHT-06 (parallel merge):** PR #47 replaced LIA `docs/data/submission.json` with H28's incompatible schema, breaking the Pages build (`KeyError: zip`). Restored LIA metadata and retained unchanged H28 metadata as `docs/data/h28-submission.json`; added identity/hash regression protection. Neither TIFF was regenerated.
+
+## Review 904a24d3 — 2026-10-21
+
+- IR-904-01: H33 analysis incorrectly assumed every added dot has deltaT=q and
+  deltaD=alpha. Corrected the general marginal inequality; removed unsupported
+  universal distance, near-catalogue false-positive and performance-gain claims.
+- IR-904-02: Shared pinned metric prose says deltaT<=q, false when a dot credits
+  multiple truth pixels. Numerical evaluator unchanged; regression added.
+  Upstream prose correction remains pending; no private template fork.
+- IR-904-03: Release-gate nested malformed objects could crash, and NaN overlap
+  could bypass numeric comparisons. Added fail-closed type/range/finite checks.
+- IR-904-04: The requested single method paragraph is absent. No lane invented,
+  no stopped experiment rerun. Dense registry rejection witness reproduced;
+  new compliant TIFF not delivered. Historical downloads are inspection-only.
+
+## H82R updates — 2026-10-21 (local radiometric rank-mixture entropy deficit)
+
+| ID | Verified observation | Consequence |
+|---|---|---|
+| IR-H82-01 | The user provided no identifiable single-method lane paragraph. | Self-declared narrow lane preregistered in `registry/preregistration_h82rank.json` before one experiment; not represented as an assigned lane. |
+| IR-H82-02 | SHA-pinned USGS-derived K/Th/U mirror is independently uint8-quantized, with nodata=0; USGS does not endorse this entropy transform. | Treat rank-share as exploratory intensity only, exclude cells where any band=0, never claim calibrated chemistry. |
+| IR-H82-03 | Literal 3 px overlap vs pinned full-footprint raster = 1.0 on stopped H82 surface; rho max abs 0.01063 on two witnesses. | Mandatory duplicate stop before placement, no final-dot audit; research-only TIFF, zero authorized slots. Two witnesses suffice to reject, not to clear the complete registry. |
+| IR-H82-04 | One-ID mirror restore temporarily overwrote historical 23-file receipt with a one-file receipt. | Restored historical receipt unchanged; H82 directly checks the current mirror SHA against `registry/data_manifest.json`. Do not interpret historical receipt as proof 23 files are present in this checkout. |
+| IR-H82-05 | First regenerated aggregate note omitted the test-required phrase 'NOT OK TO SUBMIT'. | Fixed site builder note, rebuilt pages, re-ran 126 tests and fail-closed release gate. |
+| IR-H82-06 | After this lane began, main advanced via PR #47 and overwrote LIA's `docs/data/submission.json` with an H28 record missing its ZIP and pointing `twin_nan` to an AGO file. `scripts/lia_build_site.py` raised `KeyError: 'zip'` and CI would fail. | Preserved the H28 record as `docs/data/h28-submission.json` for audit; restored LIA's generated `docs/data/submission.json` from pre-PR main (commit `2b22987`), which is what the shared LIA site builder, tests, and validators require. Re-ran full CI sequence: 127 tests pass including a receipt-collision regression. H28 is NOT cleared or promoted; do not use the incomplete H28 metadata as a validator. Future lanes must namespace their output receipts and test the aggregate CI build. |
+
+- IR-H82-07: Concurrent review PR #49 corrected an unsupported universal marginal-DTI condition in the older H33 analysis (see `research/why-h33-scored-02778.md` and `tests/test_marginal_dti_review.py`). H82's scientific result does not rely on that condition; the README now links the corrected analysis. Do not reinstate the old per-dot 283m threshold or claim near-catalogue dots are always false positives.
+
+- IR-H82R-08: A separate parallel session independently preregistered H82 cool-outlet chemistry and merged before this radiometric lane. | The radiometric lane's *display/file-path alias* is H82R (`registry/h82rank_alias.json`); its frozen preregistration, run card and raster were not recomputed or re-scored. Keep both H82 (cool-outlet) and H82R (radiometric) negative lanes visible; neither is a cleared competition submission.
+
+## H77V updates — 2026-10-21 (Geothermal Vent Advection-Backtracking & Dilational Conduit Lane)
+
+| ID | Measured finding | Action / consequence |
+|---|---|---|
+| IR-H77V-01 | The prompt references "the single method paragraph below" without an attached paragraph, while emphasizing scientific discovery of geothermal vents. | Self-declared and preregistered Lane `H77V` (`H77V-VENT-ADVECT-CONDUIT`) in `registry/preregistration_h77v_20261021.json` and `research/hypotheses-h77v-2026-10-21.md` before running Experiment 1. |
+| IR-H77V-02 | Direct inspection of all 281 in-footprint rows of `Paleo_geothermal_final.csv` (`paleo_geothermal_regional.zip`, DOE GDR 1391) revealed that 86 rows (`30.6%`) are `Deposit_type == 'Tufa'`, which in NW Nevada predominantly form along wave-agitated Pleistocene Lake Lahontan paleoshorelines ($Z_{\text{ortho}} \le 1,340\text{ m}$) rather than tectonic fault conduits; prior feature builders (`src/gems77_step/features.py`) weighted `Tufa` and `Sinter` identically (`1.0`). | Implemented explicit Lake Lahontan tufa sieving in `src/gems77v/features.py` (`_parse_paleo_vents_tufa_sieved`), downweighting shoreline `Tufa` at $Z_{\text{ortho}} \le 1,340\text{ m}$ to `0.15` while weighting fault-orifice `Sinter`, `Silicified fault breccia`, and `Explosion craters` at `2.2` and `Travertine` / `Silica-cemented sand` at `1.5`. |
+| IR-H77V-03 | In `gdr_wellspring_in_footprint.csv` (`27,092` rows), `24,634` rows (`90.9%`) are drilled wells (`well_*`) sited in flat valleys down-gradient of range-front faults and `2,458` rows (`9.1%`) are natural surface springs (`spring_*`); additionally, `thermalclass` contains `121` rows with trailing whitespace `'Hot '` (`6.1%` of hot rows). | Separated surface spring orifices ($L_{\text{back}} = 0$) from drilled outflow wells (backtracked upslope along $+\nabla G_8(Z_{\text{ortho}})$ by thermal dilution $\mathcal{D}_{\text{dil}}$ and cation–chalcedony kinetic fractionation), and stripped whitespace on `thermalclass`. |
+| IR-H77V-04 | Out-of-footprint nodata pixels in `training_features.tif` carry finite float32 `-3.4028235e+38`, which overflows float32 when squared in gradient/analytic-signal products before masking. | Guarded `clean_band(arr, footprint)` in `src/gems77v/features.py` with `np.isfinite(out) & (np.abs(out) < 1e15) & footprint`, eliminating all float32 overflow warnings. |
+| IR-H77V-05 | **The Basin-ID Tree-Split Trap:** Letting `HistGradientBoostingClassifier` split directly on smooth regional hydrothermal plume channels (`A_h77v_tree_submod`) slightly degrades out-of-quadrant generalization (`0.11356` vs `0.11507` base on Seed 30; `0.11454` vs `0.11770` on Seed 20) because trees use regional plume amplitude + elevation to memorize training-quadrant geothermal field coordinates. Conversely, applying the `H77V` vent-advection & dilational conduit surface as a monotone translation-invariant physical gate (`A_h77v_gated_submod`) yields **`0.12704` on Seed 30** (paired `+0.01197`, 95% CI `[+0.00547, +0.01872]` vs base; `+0.01348`, CI `[+0.00592, +0.02158]` vs raw tree) and **`0.12931` on Seed 20** (paired `+0.01161`, CI `[+0.00441, +0.01855]` vs base; `+0.01477`, CI `[+0.00722, +0.02337]` vs raw tree). | Recorded both `A_h77v_gated_submod` and `A_h77v_tree_submod` in `evidence/h77v_exp2_holdout.json` and `submissions/run_card_h77v_20261021.json`. Because `0.12704` (Seed 30) does not exceed the `0.152718` `H77-Step` repo best and literal dense-witness (`ab0a0a62`) overlap is `1.000 > 0.70` under Policy I17, the lane verdict is `negative` (`NOT OK TO SUBMIT`, `0` weekly slots spent). |
 

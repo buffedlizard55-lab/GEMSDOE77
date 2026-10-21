@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""H82: write the fail-closed submission GeoTIFF + one-TIFF ZIP + receipt.
+"""H83: write the fail-closed submission GeoTIFF + one-TIFF ZIP + receipt.
 
-Loads the deterministic emission mask from Experiment 1 (evidence/h82_dots_ranked.npy,
-re-derivable by re-running scripts/h82_holdout.py with the preregistered seed) and
+Loads the deterministic emission mask from Experiment 1 (evidence/h83_dots_ranked.npy,
+re-derivable by re-running scripts/h83_holdout.py with the preregistered seed) and
 packages it via the shared fail-closed writer (vendor/gems57/submission_writer.py):
 single-band float32, EPSG:32611, 3730x3292, pinned transform, values exactly {0,1},
 no nodata tag, zeros outside the footprint, zero dots on the mapped catalogue.
@@ -28,12 +28,12 @@ from gems57 import grid as G  # noqa: E402
 from gems57.submission_writer import write_submission  # noqa: E402
 
 BRIDGE = ROOT / "data" / "bridge"
-DOTS_NPY = ROOT / "evidence" / "h82_dots_ranked.npy"
+DOTS_NPY = ROOT / "evidence" / "h83_dots_ranked.npy"
 OUT_DIR = ROOT / "docs" / "downloads"
-NAME_STEM = "gems77-h82-faultcollar-37553dots-20261021"
+NAME_STEM = "gems77-h83-faultcollar-37553dots-20261021"
 
-SUBMISSION_NAME = "gems77-h82-faultcollar-37553dots-20261021-zeros"
-SUBMISSION_NOTE = ("H82 fault-damage collar 37553 dots; HOLDOUT-DTI 0.1227 [0.1080,0.1372] s30; "
+SUBMISSION_NAME = "gems77-h83-faultcollar-37553dots-20261021-zeros"
+SUBMISSION_NOTE = ("H83 fault-damage collar 37553 dots; HOLDOUT-DTI 0.1227 [0.1080,0.1372] s30; "
                    "below 0.152718 incumbent: NEGATIVE, do not upload")
 assert len(SUBMISSION_NAME) <= 140 and len(SUBMISSION_NOTE) <= 140, (len(SUBMISSION_NAME), len(SUBMISSION_NOTE))
 
@@ -59,7 +59,7 @@ def main() -> None:
         catalogue=grid.catalogue,
         note=SUBMISSION_NOTE, name=SUBMISSION_NAME,
         metadata=dict(
-            lane_id="H82-FAULTCOLLAR",
+            lane_id="H83-FAULTCOLLAR",
             holdout_dti=0.1226552189170721,
             holdout_ci95=[0.10799672421127436, 0.1372130738097347],
             withheld_positive_pixels=11342,

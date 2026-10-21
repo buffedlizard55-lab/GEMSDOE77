@@ -1,0 +1,70 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>Corrected H33 analysis · GEMSDOE77</title>
+<meta name="description" content="GEMSDOE77 (DOE GEMS Prize): download the submission GeoTIFFs and see, per file, whether it is OK to upload.">
+<link rel="stylesheet" href="assets/lia.css"></head><body>
+<header><div class="wrap"><span class="brand">GEMSDOE77 · DOE GEMS Prize</span><a href="review-latest.html">Latest review</a> <a href="metric-review.html" class=here>Corrected H33 analysis</a> <a href="index.html">Start here</a> <a href="h77v.html">H77V (Vent-Advect)</a> <a href="h82-texture.html">H82-TEXTURE · negative</a> <a href="h82rank.html">H82R · radiometric negative</a> <a href="preflight-review.html">Current readiness review</a> <a href="h82-executive-summary.html">H82 · cool-outlet negative</a> <a href="h77g.html">H77G · negative</a> <a href="h77g-executive-summary.html">H77G guide</a> <a href="h77e-knick.html">H77E-Knick · 0/816 firings</a> <a href="release-review.html">Release safety review</a> <a href="executive-summary.html">How to submit</a> <a href="h81.html">H81 · slip-cone</a> <a href="h82.html">H82 · fault collar</a> <a href="h83.html">H83 · fault collar</a> <a href="h80t.html">H80T · tilt-persist</a> <a href="h80t-executive-summary.html">H80T guide</a> <a href="h80.html">H80 · negative</a> <a href="ago.html">AGO · negative proxies</a> <a href="h79-orient.html">H79-ORIENT · negative</a> <a href="h79-orient-executive-summary.html">H79-ORIENT guide</a> <a href="h79.html">H79-BB · research-only</a> <a href="h79-radhalo.html">H79-RH · negative</a> <a href="h77l.html">H77L · research-only</a> <a href="h77d.html">H77D (Zero-SGMC)</a> <a href="h77d-executive-summary.html">H77D guide</a> <a href="h77-step.html">H77-Step</a> <a href="h77e.html">H77E · negative</a> <a href="h78.html">H78 lane</a> <a href="lia.html">LIA lane</a> <a href="contactphys.html">Contact-physics lane</a> <a href="urank.html">Selective-U lane</a> <a href="lia-analysis.html">Why 0.2778</a> <a href="lia-sources.html">Sources</a>
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE77">GitHub</a></div></header><main><div class="wrap"><h1>H33: what the bytes establish, and what the reported score does not</h1>
+<p>Updated 2026-10-21. This review supersedes the earlier causal/optimality claims in this document.
+<strong>No new HOLDOUT-DTI or ORGANIZER-CONFIRMED score was obtained.</strong> The supplied 0.2778 is an unverified owner attribution, not a measured outcome in this review. The supplied leaderboard targets 0.3195 and 0.4413 are not current authenticated receipts here.</p>
+<h2>Evidence ledger</h2>
+<table>
+<thead>
+<tr>
+<th>Claim</th>
+<th>Evidence and scope</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>H33 mirror has 37,654 positive pixels, none on the mapped catalogue; nearest catalogue distance is √5 pixels</td>
+<td>Fresh hash-pinned raster readback: <code>evidence/h77l_independent_audit.json</code>; measurements, not scores. The file SHA-256 is <code>c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9</code>.</td>
+</tr>
+<tr>
+<td>H33 removes 6,436 dots from a 44,090-dot D2.8 mirror without adding dots</td>
+<td>Retained <code>evidence/prior_forensics.json</code>; historical byte forensics, not freshly rerun lineage analysis.</td>
+</tr>
+<tr>
+<td>The family site associates H33 with near-catalogue pruning</td>
+<td><a href="https://github.com/buffedlizard55-lab/GEMSDOE32/blob/f62038b54dcb7767d4d997f80b033cdc3d42bef9/docs/index.html">GEMSDOE32 site source, pinned commit</a>, freshly retrieved through GitHub API. It explicitly says “NO ORGANISER SCORE EXISTS for this or any artifact in this repository.” An owner website is not an organizer receipt.</td>
+</tr>
+<tr>
+<td>The organizer reference supports CPU-only execution</td>
+<td><a href="https://github.com/drivendataorg/gems-prize-reference-solution/blob/aebe92f7c8a990f0e3443451b7a825d9afd6336b/README.md">Official reference README, pinned commit</a>, freshly retrieved. GPU accelerates training; it is not universally required.</td>
+</tr>
+<tr>
+<td>Local DTI uses maximum triangular-kernel credit, not additive per-dot truth credit</td>
+<td>Pinned <code>vendor/gems57/metric.py</code> and regression tests. This is the local implementation; the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">organizer problem page</a> was not freshly accessible through this sandbox's allowed hosts.</td>
+</tr>
+</tbody>
+</table>
+<p>Mirror provenance: <code>registry/witness_sources.json</code>. A pinned owner mirror establishes reproducibility of those bytes, not official-origin authenticity or their leaderboard score.</p>
+<h2>Correct marginal-emission algebra</h2>
+<p>This is a <strong>mathematical derivation</strong>, not a HOLDOUT-DTI result, score projection, or organizer receipt.
+Let T be total maximum credit summed over truth cells, S the predicted mass, M the predicted mass weighted by proximity to truth, and K the number of truth cells. With α=0.2 and β=0.8:</p>
+<pre><code>D = α(T + S − M) + βK
+s = T / D
+</code></pre>
+<p>For a new binary dot at an empty prediction pixel, let k be its nearest-truth kernel weight and ΔT the increase in <em>total</em> maximum truth coverage. Then ΔS=1, ΔM=k, and:</p>
+<pre><code>ΔD = α(ΔT + 1 − k)
+new s &gt; old s  iff  ΔT &gt; α s (ΔT + 1 − k)
+</code></pre>
+<p>The simplified threshold <code>k &gt; αs</code> holds <strong>only when ΔT=k</strong>. It is not a general inclusion rule. A dot may cover multiple truth cells, making ΔT greater than k; an overlapping dot may add no truth credit at all. Consequently the denominator does <strong>not</strong> always increase by α. Tests in <code>tests/test_marginal_explanation.py</code> check both counterexamples and the general identity against the unchanged shared implementation.</p>
+<p>The pinned template's docstring also says <code>ΔT &lt;= k</code>, which is not generally true. This is a documentation defect, not evidence that its <code>marginal_accept</code> implementation is incorrect. The pinned code is preserved; the upstream report is recorded in the session review. No private evaluator fork is introduced.</p>
+<h2>Plausible explanation — not causal proof</h2>
+<p>Thinning a thick prediction ribbon can reduce false-positive mass while preserving much of the max-kernel truth coverage. Pruning near-catalogue dots can help if they mostly predict structures excluded from the hidden target. Both mechanisms are compatible with the retained lineage, but neither is guaranteed: thinning may remove uniquely useful coverage, and a genuinely unmapped fault can lie near a mapped fault. Pixel-exact catalogue masking does not imply a blanket exclusion of its surrounding halo.</p>
+<p>The owner's sequence of scores is observational and lacks authenticated artifact-to-score receipts. It therefore cannot prove that pruning caused the reported improvement, that H33 is optimal, that further thinning cannot help, or that a particular detector would beat it. The previous document's fixed-denominator, “emission optimum,” required-credit percentage and leaderboard-causation claims are withdrawn.</p>
+<h2>Can a new method beat it?</h2>
+<p>Possibly, but <strong>not established by this review</strong>. The defensible next test is a preregistered, catalogue-independent geological signal with single-feature canaries and a matched buffered whole-segment hide-and-recover evaluation. Rebuild all catalogue-derived features using visible segments only. Compare with the incumbent on identical folds, withheld positives, masks, dot budget and evaluator version; publish pooled DTI and a segment/block-resampled confidence interval. An existing final H33 raster is not a leakage-safe holdout baseline if it was constructed with the entire catalogue.</p>
+<p>A catalogue holdout measures recovery of withheld mapped faults, not geothermal vents directly, and may not represent truly unmapped faults. Better holdout performance is necessary under the user's promotion rule, but not sufficient evidence of a leaderboard gain or productive geothermal resources.</p>
+<h2>Why no new TIFF is generated in this review</h2>
+<p>A freshly restored registry witness has positive support across all 5,167,373 footprint cells. Every nonempty allowed prediction set is therefore contained in its support and its three-pixel dilation. Under the currently binding literal rule, forward overlap is exactly 1, exceeding 0.70. This is a deterministic rejection certificate, not geological similarity evidence. No low rank correlation or new filename can undo this rejection. Changing the shared protocol requires its owner's decision; this review does not exempt dense rasters privately.</p>
+<p>Existing files remain downloadable <strong>for inspection only</strong>. There is no new candidate, no new holdout score, no selector approval and no competition slot use.</p>
+<h2>Parallel-session reconciliation</h2>
+<p>The concurrent readiness review and <a href="../docs/review-904a24d3.md">904a24d3 review</a> independently found the same marginal-credit error. Their additional tests (<code>tests/test_h33_reasoning.py</code>, <code>tests/test_marginal_dti_review.py</code>) and candidate-independent <a href="../evidence/registry_preflight.json">preflight certificate</a> are preserved. Neither review authorizes a candidate.</p></div></main>
+<footer><div class="wrap">Selector status for every file on this site: <b>not approved</b>. Whether to spend a
+weekly slot is a separate selector decision, not this repository's. Generated by <code>scripts/build_home.py</code> from
+<code>docs/data/*.json</code> and <code>evidence/*.json</code>. Number labels: <b>ORGANIZER-CONFIRMED</b> (public
+submission-page receipt tied to an artifact), <b>HOLDOUT-DTI</b> (local hide-and-recover; evaluator version, withheld positives, 95% CI),
+<b>INSTRUMENT</b> (projection, never a score).</div></footer>
+<script>document.querySelectorAll('button[data-copy]').forEach(b=>b.onclick=()=>{navigator.clipboard.writeText(b.dataset.copy);b.textContent='Copied';setTimeout(()=>b.textContent='Copy',1200)})</script>
+</body></html>

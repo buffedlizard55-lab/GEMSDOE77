@@ -1,91 +1,16 @@
 {
-  "schema_version": 1,
-  "lane_id": "H82-FAULTCOLLAR",
-  "session_branch": "arena/a58fc25f-gemsdoe77",
-  "preregistered_date_utc": "2026-10-21T16:00:00Z",
-  "status_at_preregistration": "LOCKED_BEFORE_EXPERIMENTS",
-  "lane_declaration": "Geometry-only research lane. Targets blind normal-fault damage zones clustering off the mapped USGS/INGENIOUS catalogue trace at the 300 m DTI kernel scale: zero on the mapped trace, peaked collar around visible faults at 100-400 m, decay to zero by ~1.2 km, computed per holdout fold from visible faults only, visible faults masked pixel-exactly from scoring, 2.8 px dot separation, 37,654-dot budget. Zero SGMC, zero lidar, zero external data, no model training. Uses the shared template's pinned gems57 evaluator (gems57-pooled-hide-v2, alpha=0.2, beta=0.8, 300 m triangular kernel) and the shared fail-closed submission_writer.",
-  "source_hypotheses_file": "research/h82_hypotheses.md",
-  "ranked_hypotheses": [
-    {
-      "id": "H82-1",
-      "rank": 1,
-      "title": "Hanging-wall fault-damage collar at kernel scale (implemented in Exp 1)",
-      "role": "PRIMARY_IMPLEMENTED_CANDIDATE",
-      "layers": ["existing_faults.tif / labels.tif (mapped catalogue, 60,988 px)", "sample_submission.tif (footprint grid, EPSG:32611, 3730x3292, 100 m)"],
-      "physical_signature": "Off-trace damage-zone clustering at ~1 kernel radius (300 m) from visible faults; on-trace trough so mapped faults earn no credit.",
-      "why_unmapped_not_catalogued": "Blind/low-relief splays parallel to mapped traces under Quaternary cover never entered the Quaternary fault catalogue.",
-      "named_non_fault_mimic": "Lake Lahontan/Bonneville terrace risers, symmetric washes, road and canal cuts.",
-      "difference_vs_repo": "D77 used a flat 250 m-1 km distance band (0.0000 HOLDOUT-DTI); H82 uses a kernel-scale peaked collar with per-fold visible-faults-only features and buffered whole-component hide-and-recover.",
-      "expected_dti_gain_qualitative": "Uncertain, low-medium; may be ~0 if withheld truth does not sit near visible traces.",
-      "implementation_cost": "Very low (CPU raster ops, minutes)"
-    },
-    {
-      "id": "H82-2",
-      "rank": 2,
-      "title": "Catalogue fault-intersection / relay-node intensity",
-      "role": "CANDIDATE_HYPOTHESIS",
-      "layers": ["catalogue centreline network only"],
-      "physical_signature": "Kernel density of fault intersections and relay bends (damage focusing).",
-      "why_unmapped_not_catalogued": "The node is real even when a small blind splay terminating at it is unmapped.",
-      "named_non_fault_mimic": "Mapped intersections of inactive traces; drainage junctions.",
-      "difference_vs_repo": "No repo lane uses node/intersection intensity as primary scorer.",
-      "expected_dti_gain_qualitative": "Uncertain, low-medium",
-      "implementation_cost": "Very low"
-    },
-    {
-      "id": "H82-3",
-      "rank": 3,
-      "title": "Signed across-strike K/Th radiometric asymmetry",
-      "role": "CANDIDATE_HYPOTHESIS",
-      "layers": ["GeoDAWN K/Th (USGS DOI 10.5066/P93LGLVQ; registry/data_manifest.json ext_geodawn_*, not locally restored)"],
-      "physical_signature": "First derivative of K/Th normal to local catalogue strike, signed by hanging-wall side.",
-      "why_unmapped_not_catalogued": "Alteration halo outcrops where the trace is buried below mapping scale.",
-      "named_non_fault_mimic": "Primary lithologic boundaries; flight-line noise.",
-      "difference_vs_repo": "No repo lane uses signed across-strike radiometric asymmetry as primary.",
-      "expected_dti_gain_qualitative": "Uncertain, medium",
-      "implementation_cost": "Medium; needs restored external bands; not obtainable from this sandbox's outbound allowlist (github.com only) — deferred"
-    },
-    {
-      "id": "H82-4",
-      "rank": 4,
-      "title": "Multi-scale residual curvature after regional trend removal",
-      "role": "CANDIDATE_HYPOTHESIS",
-      "layers": ["pinned 54-channel feature stack det_elev + curvature bands (data/processed/stack.npy, not locally restored)"],
-      "physical_signature": "Curvature of detrended piedmont surface at 300 m-1.2 km scales.",
-      "why_unmapped_not_catalogued": "Sub-mapping-scale scarps survive in curvature texture.",
-      "named_non_fault_mimic": "Fan cones, terrace treads, playas.",
-      "difference_vs_repo": "Selective-U used raw U-rank curvature without detrending or scale sweep.",
-      "expected_dti_gain_qualitative": "Uncertain, low-medium",
-      "implementation_cost": "Medium; needs restored 418 MB stack"
-    },
-    {
-      "id": "H82-5",
-      "rank": 5,
-      "title": "Thermal spring/well alignment anisotropy (GDR 1391)",
-      "role": "CANDIDATE_HYPOTHESIS",
-      "layers": ["DOE/NREL GDR submission 1391 well/spring temperatures (DOI 10.15121/1881483, CC BY 4.0)"],
-      "physical_signature": "Linear alignment of warm springs/wells (Hough / kernel-density anisotropy).",
-      "why_unmapped_not_catalogued": "Thermal memory survives where geomorphic expression is buried.",
-      "named_non_fault_mimic": "Evaporative brine anomalies; irrigation return flow.",
-      "difference_vs_repo": "H78 used distance-to-manifestation proximity only; this adds alignment anisotropy.",
-      "expected_dti_gain_qualitative": "Uncertain, low-medium in geothermal districts",
-      "implementation_cost": "Low-Medium; gdr.openei.org not reachable from this sandbox — deferred"
-    }
-  ],
-  "budget_and_protocol": {
-    "maximum_experiments": 3,
-    "maximum_hours": 2,
-    "planned_experiments": 1,
-    "experiment_ids": ["E1_holdout_canary_uniqueness_write"],
-    "promotion_rule": [
-      "format valid: submission_writer fail-closed checks PASS (single-band float32, EPSG:32611, 3730x3292, transform (100,0,243350,0,-100,4508550), values in [0,1], no NaN, zeros outside footprint, 0 dots on catalogue)",
-      "canary: every feature alone AUC <=0.90 on holdout (else flag leakage, verdict negative)",
-      "HOLDOUT-DTI: pooled hide-and-recover, evaluator gems57-pooled-hide-v2, withheld positives + paired 95% CI; report vs random control; never project to leaderboard",
-      "registry: compare_array_to_registry vs locally accessible indexed rasters; incomplete scan is a scope limitation, never a clearance; literal dense-witness gate (I17) reported FAIL-closed",
-      "verdict_if_any_fails: negative (deliverable). File OK to download, NOT OK to submit automatically. Selector decides any weekly slot."
-    ],
-    "external_data_needed": "None for Exp 1; SHA-pinned bridge grid only.",
-    "hypotheses_are_ordinal_priorities_never_projected_scores": true
-  }
+  "lane": "H82 concealed-reservoir concordance at cool outlets",
+  "written_before_outcome": true,
+  "date_utc": "2026-10-21",
+  "method": "Only measured T, quartz/chalcedony/cation geotherm estimates and point coordinates from SHA-pinned GDR owner mirror; filter all three finite 0<T<400, outlet 0<T<200, estimate minimum>100, outlet<=60. For each point weight min(1,max(0,min(estimates)-100)/100)*exp(-(max(estimates)-min(estimates))/80)*(1-max(0,T-35)/50) clipped >=0; pixelwise max for duplicate locations; Gaussian sigma 20 px=2 km; normalize by global maximum. Uniform control gives each accepted site equal weight; random control uses same dot budget. Dots greedily spaced >=3 px; capped at 37654. Zero mapped faults and outside footprint. No dist_known_fault_px column use.",
+  "input_sha256": "122718e65bdf55aab0ee12ad20d80062f0deb1de957225a61ad880dd5dc196ea",
+  "folds": "vendor/gems57/holdout.py buffered_component_draw seed=20 hide_frac=.20 buffer_px=3 boundary_px=12; visible masked pixel-exactly. No catalogue feature in this candidate; same global predictor for each fold is appropriate.",
+  "evaluator": "vendor/gems57/evaluate_holdout.py gems57-pooled-hide-v2; alpha=.2 beta=.8 radius=300m; 200px physical block bootstrap 1000 draws seed=82021",
+  "canary": "Each of: concordant point impulse halo, accepted-site presence halo, and outlet-cool-weighted halo alone. If symmetric AUC > .90 STOP.",
+  "surface_uniqueness": "Shared compare_array_to_registry against SHA-pinned H33, full-footprint dense witness and local current research rasters; if abs(rho)>.90 STOP. Incomplete registry => cannot certify global uniqueness.",
+  "final_uniqueness": "Shared compare_array_to_registry against pinned H33 and dense witness; overlap >.70 or abs(rho)>.90 => DUPLICATE and STOP; no tuning or selector.",
+  "promotion_rule": "Only with HOLDOUT-DTI 95% lower bound above historical .152718, complete literal registry clearance and separate selector approval. Format PASS never means approved.",
+  "budget": "Three experiments maximum; two hours maximum; no slot spending.",
+  "research": "research/h82_hypotheses.md",
+  "scientific_caveat": "Quartz/chalcedony and cation geothermometers are not independent thermometers and agreement alone cannot establish a buried reservoir; this tests a new proxy rather than a proven mechanism. Official GDR source not directly retrievable within this sandbox."
 }

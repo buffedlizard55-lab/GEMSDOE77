@@ -12,3 +12,8 @@ data/raw/
 data/processed/
 data/external/
 evidence/*.npy
+
+# SHA-pinned cache inputs (regenerate with scripts/fetch_data.py)
+/data/sample_submission.tif
+/data/existing_faults.tif
+/data/geodawn_rad_u8.tif

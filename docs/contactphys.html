@@ -41,17 +41,14 @@ solid H19-5 surface (121,131 px → 0.1922) → dotted thinning d1.5 (60,069 px 
 solo prune (40,199 px → 0.2708) → <b>h33-2-b2 deletes every dot within 2 px (200 m) of the mapped catalogue</b>
 (37,654 px → 0.2778). Under the official metric
 DTI = TP<sub>w</sub> / (TP<sub>w</sub> + 0.2·FP<sub>w</sub> + 0.8·FN<sub>w</sub>) with a 300 m triangular kernel,
-each emitted unit always adds 0.2 to the denominator but earns at most its kernel credit k; a dot helps iff
-<b>k &gt; 0.2·DTI</b> (≈0.054 at DTI 0.27). Dots hugging known faults cover structures that are already mapped
-(and therefore not in the hidden truth) — they pay the false-positive tax for almost no credit. Deleting them,
-and spacing the rest so one dot covers each 300 m kernel footprint, raises credit per dot without finding a single
-new fault. That is why thinning bought +0.086 (0.1922→0.2778).</p>
-<p><b>Beating it — let alone the public leader at 0.4413 (ORGANIZER-CONFIRMED, leaderboard read 2026-10-21) —
-cannot come from more thinning.</b> At equal emitted mass the leader's pixels earn roughly 60% more mean kernel
-credit than the H19-5 family's; only a better-ranked <i>field</i> (pixels closer to real unmapped faults) can supply
-that. This repository tested one new field family honestly; it did not clear the bar (below). No score in this
-repository is organizer-confirmed for any local file; 0.2778 itself is an owner report without a receipt in any
-inspected sibling repo, and no local proxy reproduces it — flagged as irregularity IR-77-04.</p></div>
+a new dot changes the denominator by 0.2·(ΔT+1−k), where ΔT is its marginal total truth coverage
+and k its nearest-truth kernel weight. The simple bar k &gt; 0.2·DTI applies only when ΔT=k.
+Thinning and near-catalogue pruning may reduce redundant false-positive mass, but can also discard useful coverage.
+This is a plausible explanation of owner-reported ordering, not proof of causation or optimality.
+<a href="metric-review.html">Corrected algebra and evidence limits</a>.</p>
+<p><b>Beating the owner-reported H33 result remains unproven.</b> Neither a fixed credit increase
+nor an exhausted thinning optimum follows from the available evidence. A matched leakage-safe holdout,
+protocol clearance and separate selector approval must precede a new competition slot.</p></div>
 
 <div class="card"><h2>What was tested (preregistered, 3 experiments)</h2>
 <p>Ranked hypotheses were frozen in <code>registry/preregistration_contactphys.json</code> before Exp 1. Top lane:

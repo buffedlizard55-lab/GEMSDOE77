@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-"""GEMSDOE77 H82 Experiment 1: hanging-wall fault-damage collar, hide-and-recover holdout.
+"""GEMSDOE77 H83 Experiment 1: hanging-wall fault-damage collar, hide-and-recover holdout.
 
-Preregistered at registry/preregistration_h82.json (Rank-1 hypothesis from research/h82_hypotheses.md).
+Preregistered at registry/preregistration_h83.json (Rank-1 hypothesis from research/h83_hypotheses.md).
 Everything here is geometry-only: the SHA-pinned bridge grid (data/bridge), the shared gems57 holdout
 instrument (buffered whole-component hide-and-recover), and the shared DTI evaluator
 (gems57-pooled-hide-v2, alpha=0.2, beta=0.8, 300 m triangular kernel). No training, no external data.
 
-Outputs: evidence/h82_holdout.json (canary + holdout arms + pooled CI) and evidence/h82_dots_ranked.npy
-(deterministic re-derivable emission mask used by scripts/h82_build_submission.py).
+Outputs: evidence/h83_holdout.json (canary + holdout arms + pooled CI) and evidence/h83_dots_ranked.npy
+(deterministic re-derivable emission mask used by scripts/h83_build_submission.py).
 """
 from __future__ import annotations
 
@@ -137,14 +137,14 @@ def main() -> None:
     results["dots_on_catalogue"] = int((dot_mask & cat).sum())
     results["min_dot_distance_to_catalogue_px"] = float(
         ndi.distance_transform_edt(~cat)[dot_mask].min()) if dot_mask.any() else None
-    np.save(ROOT / "evidence" / "h82_dots_ranked.npy", dot_mask)
+    np.save(ROOT / "evidence" / "h83_dots_ranked.npy", dot_mask)
     log(f"total dots {int(dot_mask.sum()):,}")
 
     # ---- exact per-fold DTI + pooled terms ----
-    terms_by_arm = {"H82": None, "A0_random": None}
+    terms_by_arm = {"H83": None, "A0_random": None}
     per_fold = {}
-    for arm in ("H82", "A0_random"):
-        dots = dot_mask if arm == "H82" else None
+    for arm in ("H83", "A0_random"):
+        dots = dot_mask if arm == "H83" else None
         if arm == "A0_random":
             r2 = np.random.default_rng(999)
             surf = np.zeros(foot.shape, np.float32)
@@ -170,10 +170,10 @@ def main() -> None:
         log(f"{arm}: pooled HOLDOUT-DTI={results['arms'][arm]['pooled_holdout_dti']:.6f} "
             f"dots={int(dots.sum()):,}")
 
-    summary = EH.pooled_summary(terms_by_arm, draws=1000, seed=520810, candidate="H82")
+    summary = EH.pooled_summary(terms_by_arm, draws=1000, seed=520810, candidate="H83")
     results["pooled_summary"] = summary
-    s = summary["scores"]["H82"]
-    log(f"H82 HOLDOUT-DTI {s['dti']:.6f} 95% CI [{s['ci95'][0]:.6f}, {s['ci95'][1]:.6f}] "
+    s = summary["scores"]["H83"]
+    log(f"H83 HOLDOUT-DTI {s['dti']:.6f} 95% CI [{s['ci95'][0]:.6f}, {s['ci95'][1]:.6f}] "
         f"withheld {s['withheld_positive_pixels']}")
     ctrl = summary["best_comparable_control"]
     log(f"best control {ctrl}: {summary['scores'][ctrl]['dti']:.6f}; "
@@ -229,7 +229,7 @@ def main() -> None:
 
     results["elapsed_s"] = round(time.time() - t0, 1)
     (ROOT / "evidence").mkdir(exist_ok=True)
-    out = ROOT / "evidence" / "h82_holdout.json"
+    out = ROOT / "evidence" / "h83_holdout.json"
     out.write_text(json.dumps(results, indent=2, allow_nan=False) + "\n")
     log(f"DONE {results['elapsed_s']}s -> {out}")
 
