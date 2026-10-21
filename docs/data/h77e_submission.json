@@ -1,0 +1,16 @@
+{
+  "name": "gems77-h77e-ucpeuler-ctx-37654dots-20261021-22873551-zeros",
+  "note": "H77E UCP-Euler+LOCO-ctx submod 37654; HOLDOUT-DTI 0.1305/0.1342 < best 0.1527; NEGATIVE not selector-approved",
+  "file": "downloads/gems77-h77e-ucpeuler-ctx-37654dots-20261021-22873551-zeros.tif",
+  "sha256": "2269b714c78262a8d45dbd5eb02290a27ec9b99afe02340e343f5cb1ac7c58f3",
+  "dots": 37654,
+  "format_valid": true,
+  "protocol_unique": false,
+  "verdict": "negative",
+  "holdout_dti_seed20": 0.13054,
+  "holdout_dti_seed30": 0.1342,
+  "repo_holdout_best": 0.15272,
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "selector": "not approved"
+}
