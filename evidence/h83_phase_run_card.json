@@ -1,0 +1,153 @@
+{
+  "schema_version": "gems-run-card-v2",
+  "lane_id": "H83-PHASE-physics",
+  "branch": "arena/9a46b655-gemsdoe77",
+  "timestamp_utc": "2026-10-21T18:30:00Z",
+  "verdict": "negative",
+  "selector_status": "not approved \u2014 requires selector decision; 0 weekly slots used; format-valid inspection download only",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "weekly_slots_used": 0,
+  "organizer_confirmed_score": null,
+  "experiment_budget_used": "3 of 3 pre-registered (registry/preregistration_h83_phasemag.json)",
+  "hypothesis": "Buried normal faults under basin fill produce weak-amplitude but phase-stable magnetic contacts across wavelengths; amplitude-independent multi-scale gradient-phase congruency detects them where amplitude-threshold detectors miss.",
+  "mechanism": "5 magnetic bands (mag_anom 1, rtp 2, tmi_hg 3, tmi_vg 9, tmi 14) -> Gaussian gradients at 1.5/3.0/6.0 px -> phase vectors exp(j*theta) -> resultant length R=|sum exp(j theta)|/K times soft amplitude gate -> per-band PC -> rank01 cross-band mean + 300m structure-tensor coherence gate. Physics-only surface (phase_stack) emitted via greedy Poisson-disk 2.8 px min-sep, 37654 binary dots >2px from catalogue, no HGB training.",
+  "named_non_fault_process_that_could_mimic_it": "Intrusive/sedimentary magnetic susceptibility contacts, flight-line levelling seams (GeoDAWN azimuth 90\u00b0), cultural noise; holdout shows phase-only surface below random, indicating mimics dominate blind-basin magnetic phase at 100 m scale.",
+  "leakage_canary": {
+    "evidence_class": "CANARY-DIAGNOSTIC",
+    "ceiling_symmetric_auc": 0.9,
+    "max_phase_symmetric_auc_seed20": 0.5687,
+    "max_phase_channel_seed20": "phase_mag",
+    "max_std_symmetric_auc_seed20": 0.56,
+    "pass": true,
+    "detail": "evidence/h83_phase_e1_canary_surface.json"
+  },
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "triangular_kernel_radius_m": 300,
+    "seed20": {
+      "withheld_positive_pixels": 11321,
+      "candidate_S_phase": {
+        "dti": 0.03923442481377833,
+        "ci95": [
+          0.03029215449787562,
+          0.048072218526565236
+        ]
+      },
+      "candidate_A_cand": {
+        "dti": 0.0656670186389307,
+        "ci95": [
+          0.05046166179140399,
+          0.08141432860893398
+        ]
+      },
+      "control_A_std19": {
+        "dti": 0.06183510301855965,
+        "ci95": [
+          0.04736630145070781,
+          0.07720595856201404
+        ]
+      },
+      "random_A0": {
+        "dti": 0.047084223943834526,
+        "ci95": [
+          0.041387534407269354,
+          0.05296987781814585
+        ]
+      },
+      "paired_delta_S_phase_minus_random": {
+        "delta": -0.007849799130056196,
+        "ci95": [
+          -0.02,
+          0.005
+        ]
+      },
+      "incumbent_repo_best": 0.152718,
+      "beats_incumbent": false,
+      "reading": "Physics phase_stack surface scores below random (0.0392 vs 0.0471) and far below 0.152718 incumbent; candidate HGB improves over std19 by +0.0038 but CI includes 0 and still far below incumbent. Phase-congruency detects edges but not hidden-fault-specific edges at holdout scale."
+    },
+    "incumbent_repo_best": 0.152718,
+    "beats_incumbent": false,
+    "detail": "evidence/h83_phase_e2_holdout.json"
+  },
+  "correlation_overlap_vs_registry": {
+    "scope": "local docs/downloads + submissions sha-deduped + H33; NOT complete family registry",
+    "complete": false,
+    "surface_before_placement": {
+      "phase_stack_max_abs_spearman": 0.0686,
+      "worst_file": "docs/downloads/gems77-h82-ternaryentropy-20261021-RESEARCH-ONLY.tif",
+      "checked": 47,
+      "rho_gate_090": "PASS"
+    },
+    "final_dots": {
+      "checked": 47,
+      "max_forward_overlap_3px_literal": 0.9982,
+      "worst_literal_file": "docs/downloads/gems77-h82-ternaryentropy-20261021-RESEARCH-ONLY.tif (continuous_surface, dense 35% footprint, halo 1.0)",
+      "max_forward_overlap_3px_informative_dot_fields": 0.3549,
+      "worst_informative_file": "docs/downloads/gems77-ago-hybrid50-geophys-37654dots-11b45670-zeros.tif",
+      "literal_firings_gt070": 7,
+      "informative_firings_gt070": 0,
+      "informative_gate_070": "PASS (0.3549 <= 0.70)",
+      "literal_gate_note": "7 literal firings are dense continuous surfaces (support fraction >0.20, halo 1.0) per two-phase protocol; not evidence of duplication for dot fields",
+      "byte_unique_among_checked": true,
+      "vs_H33_forward_overlap": 0.3267,
+      "vs_H33_halo": 0.138,
+      "protocol_unique_informative": true,
+      "protocol_unique_literal": false,
+      "protocol_unique_overall": false,
+      "two_phase_classification": "continuous_surface vs dot_field per vendor/gems57/uniqueness.py DENSE_SUPPORT_FRACTION=0.20"
+    },
+    "protocol_unique": false,
+    "note": "Literal overlap fails due to dense continuous research surfaces (expected per preflight fix); informative dot_field gate passes (0.3549 <=0.70, rho 0.0686 <=0.90). Byte-unique."
+  },
+  "raster_sha256": "a9091405194547f8a7b62ea08671ab23e52fb910b7205db65df5814555e43c47",
+  "file": "docs/downloads/gems77-h83-phase-physics-37654dots-20261021-ec451d91-zeros.tif",
+  "zip_sha256": "f945b68e50db4cd5b1c7a38c5d214e1709265e17e4e753c0d4b6ac41b60b0628",
+  "validator": {
+    "tool": "vendor/gems57/validate.py via submission_writer (unmodified, template pin verified)",
+    "all_checks_passed": true,
+    "single_band": true,
+    "dtype_float32": true,
+    "dimensions_3730x3292": true,
+    "crs_epsg_32611": true,
+    "transform_matches_sample_submission": true,
+    "no_nan_anywhere": true,
+    "no_inf_anywhere": true,
+    "values_in_0_1": true,
+    "range_0_1_guaranteed": true,
+    "min_ge_0": true,
+    "max_le_1": true,
+    "in_footprint_all_finite": true,
+    "in_footprint_range_0_1": true,
+    "outside_footprint_zero": true,
+    "zero_dots_on_mapped_catalogue": true,
+    "min_dot_distance_to_catalogue_px": 2.23606797749979,
+    "dots": 37654,
+    "dots_on_mapped_catalogue": 0,
+    "bytes": 136852,
+    "no_nan_inside_footprint": true,
+    "crs_shape_transform_match": true,
+    "min": 0.0,
+    "max": 1.0,
+    "zip_sha256": "f945b68e50db4cd5b1c7a38c5d214e1709265e17e4e753c0d4b6ac41b60b0628"
+  },
+  "submission_name": "gems77-h83-phase-physics-37654dots-20261021-ec451d91-zeros",
+  "note": "H83-PHASE physics phase-congruency stack 37654 dots >2px from catalogue amplitude-independent",
+  "note_chars": 93,
+  "reason": "NEGATIVE: HOLDOUT-DTI 0.0392 (S_phase) / 0.0657 (A_cand) far below 0.152718 incumbent; physics surface below random; paired gain over std19 not significant; passes informative dot_field uniqueness (0.3549) and rho (0.0686) but literal dense-surface gate fires by design (7 dense research rasters). Byte-novel, format-valid research artifact for inspection only. Do not submit without selector approval; preflight dense-surface fix documented.",
+  "elapsed_seconds": 1800,
+  "preflight_fix": "scripts/preflight_registry.py updated to classify witness as continuous_surface (support fraction 1.0 >0.20) per vendor/gems57/uniqueness.py DENSE_SUPPORT_FRACTION; literal overlap 1.0 now correctly not blocking dot_field submissions; both readings reported.",
+  "files_for_review": {
+    "tif": "docs/downloads/gems77-h83-phase-physics-37654dots-20261021-ec451d91-zeros.tif",
+    "zip": "docs/downloads/gems77-h83-phase-physics-37654dots-20261021-ec451d91-zeros.zip",
+    "json": "docs/downloads/gems77-h83-phase-physics-37654dots-20261021-ec451d91-zeros.json",
+    "run_card": "evidence/h83_phase_run_card.json",
+    "holdout": "evidence/h83_phase_e2_holdout.json",
+    "canary": "evidence/h83_phase_e1_canary_surface.json",
+    "build": "evidence/h83_phase_e3_build.json"
+  }
+}

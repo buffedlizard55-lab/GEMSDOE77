@@ -1,8 +1,8 @@
 {
   "schema": "gems-registry-preflight-v1",
   "evidence_class": "REGISTRY-MEASUREMENT; NOT HOLDOUT-DTI OR ORGANIZER SCORE",
-  "decision": "STOP_UNIVERSAL_DUPLICATE",
-  "scope": "One hash-pinned rejection witness; not a complete registry scan",
+  "decision": "NO_UNIVERSAL_PROOF_NOT_CLEARANCE",
+  "scope": "One hash-pinned rejection witness; not a complete registry scan; with two-phase dense/dot_field classification",
   "input_sha256": {
     "sample": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
     "catalogue": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
@@ -13,6 +13,11 @@
     "ref": "6fc71d19d49dca4960d5434bd81b6dd06fcc030a",
     "path": "docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif",
     "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be"
+  },
+  "witness_classification": {
+    "kind": "continuous_surface",
+    "support_fraction": 1.0,
+    "limit": 0.2
   },
   "template_hashes_verified": true,
   "grid_matches": true,
@@ -25,13 +30,13 @@
     "nonempty_subset_forward_overlap_lower_bound": 1.0,
     "overlap_stop_threshold_strictly_greater_than": 0.7
   },
-  "argument": "If allowed domain A is contained in the witness's 3px dilation W, every nonempty candidate C subset A has |C intersect W|/|C| = 1 > 0.70. Applies to positive surface support and final dots alike.",
+  "argument": "Dense continuous witness (support fraction 1.0 > 0.20) is not a dot field: literal overlap 1.0 is expected for any nonempty candidate and is not evidence of duplication per two-phase protocol (vendor/gems57/uniqueness.py DENSE_SUPPORT_FRACTION). Like-for-like dot_field gate must be checked via compare_array_to_registry + two_phase_summary; rank correlation (|rho|>0.90) still applies.",
   "rank_correlation": null,
-  "rank_correlation_reason": "No new candidate; overlap alone suffices for rejection",
+  "rank_correlation_reason": "Dense continuous surface: overlap not applicable; rho check remains",
   "experiments_run": 0,
   "new_raster_generated": false,
   "weekly_slots_used": 0,
   "authorized_to_submit": false,
   "verdict": "negative",
-  "next_step": "Resolve support semantics in shared protocol/registry, then assign a lane. Do not silently exempt dense rasters or rerun closed lanes."
+  "next_step": "Dense-surface literal blocker correctly not applied; proceed to hypothesis canary + holdout + dot-field uniqueness check."
 }

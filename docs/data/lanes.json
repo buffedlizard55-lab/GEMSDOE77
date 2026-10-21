@@ -1,6 +1,34 @@
 {
-  "note": "H77-TSD (transtensional strain-partitioning \u00d7 seismic swarm excess \u00d7 MT clay-cap margin + 12-bit LOCO relay & 300 m submod), H77V, H82-TEXTURE, and H82 chemistry-concordance are distinct negative lanes. All listed files are inspection-only and NOT OK TO SUBMIT; see submission-authorization.json. Historical baseline wins are not matched-current-incumbent evidence. H82R: radiometric negative research file; NOT OK TO SUBMIT.",
+  "note": "H83-PHASE (phase-congruency) unique physics surface: informative uniqueness PASS (0.3549 <=0.70), literal dense-surface firings are not dot-field duplicates per DENSE_SUPPORT_FRACTION=0.20 fix; HOLDOUT-DTI negative (0.0392 physics, 0.0657 HGB) below 0.1527; format-valid inspection download; NOT OK TO SUBMIT without selector; see evidence/h83_phase_run_card.json",
   "lanes": [
+    {
+      "lane": "H83-PHASE: magnetic phase-congruency buried contacts (phase-congruency amplitude-independent 0.0392 / 0.0657 HOLDOUT-DTI; informative unique)",
+      "page": "h83phase.html",
+      "summary": "executive-summary.html",
+      "file": "downloads/gems77-h83-phase-physics-37654dots-20261021-ec451d91-zeros.tif",
+      "zip": "downloads/gems77-h83-phase-physics-37654dots-20261021-ec451d91-zeros.zip",
+      "run_card": "evidence/h83_phase_run_card.json",
+      "format_valid": true,
+      "protocol_unique": false,
+      "informative_unique": true,
+      "beats_holdout_best": false,
+      "selector_approved": false,
+      "verdict": "negative",
+      "primary": true,
+      "name": "gems77-h83-phase-physics-37654dots-20261021-ec451d91-zeros",
+      "note": "H83-PHASE physics phase-congruency stack 37654 dots >2px from catalogue amplitude-independent",
+      "sha256": "a9091405194547f8a7b62ea08671ab23e52fb910b7205db65df5814555e43c47",
+      "holdout_dti_hide_v2": 0.03923442481377833,
+      "holdout_evaluator_version": "gems57-pooled-hide-v2",
+      "holdout_positive_pixels": 11321,
+      "holdout_ci95": [
+        0.03029215449787562,
+        0.048072218526565236
+      ],
+      "upload": "Not OK to submit \u2014 HOLDOUT-DTI 0.0392 (S_phase) / 0.0657 (A_cand) below 0.152718 incumbent and S_phase below random; passes informative uniqueness (max 3px overlap 0.3549 <=0.70, max |rho| 0.0686 <=0.90) and format validation 15/15; fails literal gate vs 7 dense continuous surfaces (expected per two-phase fix); selector: not approved; 0 slots.",
+      "why_primary": "H83-PHASE magnetic phase-congruency: amplitude-independent multi-scale gradient-phase buried contacts; byte-unique; informative-unique; format-valid; negative holdout but valuable falsification of blind-basin phase hypothesis.",
+      "beat_02778_summary": "Physics surface below random; HGB candidate +0.0038 over std19 (CI includes 0) but still 0.087 below 0.1527 H77-Step best; not a projection of beating 0.2778 owner-report."
+    },
     {
       "lane": "H77-TSD: Transtensional strain-partitioning \u00d7 seismic swarm excess \u00d7 MT clay-cap margin + 12-bit LOCO relay & 300 m submod (0.1360 / 0.1337 HOLDOUT-DTI; negative under Policy I17)",
       "page": "tsd.html",
@@ -234,7 +262,7 @@
       "informative_checked_rasters": 19,
       "informative_max_dot_overlap": 0.9815833333333334,
       "upload": "Not OK to submit. OK to download for inspection only. HOLDOUT-DTI 0.09579668 (gems57-pooled-hide-v2; 11,319 withheld positives; 95% CI 0.08818346\u20130.10324797) is below the 0.152718 incumbent. The local 3-px dot overlap 0.981583 with H77-Urank exceeds 0.70; only 19 local rasters were checked. Pre-placement surface rank-correlation is not recorded in the H80 run-card summary. No weekly slot used.",
-      "primary": true,
+      "primary": false,
       "why_primary": "Featured inspection artifact with complete pinned-evaluator evidence: catalogue-only Riedel R/R-prime rays from degree-1 tips. It is format-valid but negative on holdout and fails the local literal-overlap gate; this is not an approval or a claim that it is the chronologically newest lane.",
       "format_description": "Local format preflight PASS: single-band float32, EPSG:32611, 3730\u00d73292, exact sample transform, finite values in [0,1], no NaN/Inf, no nodata tag. This does not prove portal acceptance.",
       "beat_02778_summary": "No claim that this file beats the owner-reported 0.2778. Its 0.09580 HOLDOUT-DTI is a local hide-and-recover result, below the retained 0.152718 HOLDOUT-DTI incumbent; it is not a leaderboard projection.",

@@ -1,0 +1,156 @@
+{
+  "experiment": 1,
+  "lane": "H83-PHASE",
+  "seed": 20,
+  "withheld_positives": 11321,
+  "band_identities": {
+    "spearman_tmi_hg_vs_gradmag": 0.9955830783613435,
+    "n_sample": 200000
+  },
+  "canaries": {
+    "mag_anom": {
+      "auc": 0.5121162693224981,
+      "sym_auc": 0.5121162693224981
+    },
+    "rtp": {
+      "auc": 0.5206602665400583,
+      "sym_auc": 0.5206602665400583
+    },
+    "tmi_hg": {
+      "auc": 0.5318925772899921,
+      "sym_auc": 0.5318925772899921
+    },
+    "geod_2ndinv": {
+      "auc": 0.5687441197774048,
+      "sym_auc": 0.5687441197774048
+    },
+    "iso_grav_anom_slope": {
+      "auc": 0.5229715628036392,
+      "sym_auc": 0.5229715628036392
+    },
+    "tc": {
+      "auc": 0.4661280326384595,
+      "sym_auc": 0.5338719673615405
+    },
+    "geod_shearrate": {
+      "auc": 0.5682188508082325,
+      "sym_auc": 0.5682188508082325
+    },
+    "geod_dilaterate": {
+      "auc": 0.5171549962459148,
+      "sym_auc": 0.5171549962459148
+    },
+    "tmi_vg": {
+      "auc": 0.48640833473191414,
+      "sym_auc": 0.5135916652680859
+    },
+    "deq_n100a15": {
+      "auc": 0.5393239296440243,
+      "sym_auc": 0.5393239296440243
+    },
+    "iso_grav_anom_vg": {
+      "auc": 0.5179524507552336,
+      "sym_auc": 0.5179524507552336
+    },
+    "det_elev": {
+      "auc": 0.515941146983482,
+      "sym_auc": 0.515941146983482
+    },
+    "iso_grav_anom": {
+      "auc": 0.4588601936666372,
+      "sym_auc": 0.5411398063333628
+    },
+    "tmi": {
+      "auc": 0.511499968642346,
+      "sym_auc": 0.511499968642346
+    },
+    "depth_to_base_surf": {
+      "auc": 0.5242089565851074,
+      "sym_auc": 0.5242089565851074
+    },
+    "ieq_n100a15": {
+      "auc": 0.5438655631127992,
+      "sym_auc": 0.5438655631127992
+    },
+    "cond_surf": {
+      "auc": 0.4787102694108294,
+      "sym_auc": 0.5212897305891706
+    },
+    "iso_grav_anom_hg": {
+      "auc": 0.4921544022171186,
+      "sym_auc": 0.5078455977828814
+    },
+    "det_elev_slope": {
+      "auc": 0.5680862414981008,
+      "sym_auc": 0.5680862414981008
+    },
+    "phase_rtp": {
+      "auc": 0.5374107084179843,
+      "sym_auc": 0.5374107084179843
+    },
+    "phase_tmi": {
+      "auc": 0.5304643165356417,
+      "sym_auc": 0.5304643165356417
+    },
+    "phase_mag": {
+      "auc": 0.5403581439360481,
+      "sym_auc": 0.5403581439360481
+    },
+    "phase_gradhg": {
+      "auc": 0.5205071846568323,
+      "sym_auc": 0.5205071846568323
+    },
+    "phase_gradvg": {
+      "auc": 0.5327110849306598,
+      "sym_auc": 0.5327110849306598
+    },
+    "phase_stack": {
+      "auc": 0.5369276011394752,
+      "sym_auc": 0.5369276011394752
+    },
+    "phase_coherence": {
+      "auc": 0.5020247182227718,
+      "sym_auc": 0.5020247182227718
+    }
+  },
+  "canary_worst_sym_auc": 0.5687441197774048,
+  "canary_pass_lt_090": true,
+  "surface_uniqueness": {
+    "scope": "local docs/downloads+submissions+ H33 sampled n=200k",
+    "n_compared": 48,
+    "max_abs_rho": 0.0685510082615572,
+    "top5": [
+      {
+        "file": "docs/downloads/gems77-h80t-tilt-persist-37654dots-20261021-7d5f7b11-nan.tif",
+        "sha256": "d9f63db37c2ddfd8a403a02beecf9e89409c83e18a18dc19aca3e7940121b563",
+        "dots": 37654,
+        "spearman_sampled_surface": 0.0685510082615572
+      },
+      {
+        "file": "docs/downloads/gems77-h80t-tilt-persist-37654dots-20261021-7d5f7b11-zeros.tif",
+        "sha256": "19e92e4db42b0de59c558e95a52ee419fc81f4c187c4fd22e35f252e16a4446a",
+        "dots": 37654,
+        "spearman_sampled_surface": 0.0685510082615572
+      },
+      {
+        "file": "docs/downloads/gems77-ago-hybrid50-geophys-37654dots-11b45670-nan.tif",
+        "sha256": "5a08bfa0cf69935a65c4a2cbab15d884e4de0e853b3a92e99d1973a16f81e737",
+        "dots": 37654,
+        "spearman_sampled_surface": 0.06552774969145607
+      },
+      {
+        "file": "docs/downloads/gems77-ago-hybrid50-geophys-37654dots-11b45670-zeros.tif",
+        "sha256": "c027f571a45566a8cf10b081f7d00fa48242bc4dfbc7f832ba98c06a5aca194e",
+        "dots": 37654,
+        "spearman_sampled_surface": 0.06552774969145607
+      },
+      {
+        "file": "docs/downloads/gems77-ago-hybrid35-geophys-37654dots-dc66e42e-nan.tif",
+        "sha256": "7b97ea874f70e4effc3c8e92c98c92fc650a366273c385f3bf70c0400e6dff7c",
+        "dots": 37654,
+        "spearman_sampled_surface": 0.05495203792467455
+      }
+    ]
+  },
+  "seconds": 153.6
+}

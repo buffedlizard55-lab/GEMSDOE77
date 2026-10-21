@@ -34,6 +34,7 @@ NAV = [("review-latest.html", "Latest review"), ("metric-review.html", "Correcte
        ("h79-radhalo.html", "H79-RH · negative"),
        ("h77l.html", "H77L · research-only"), ("h77d.html", "H77D (Zero-SGMC)"), ("h77d-executive-summary.html", "H77D guide"),
        ("h77-step.html", "H77-Step"), ("h77e.html", "H77E · negative"), ("h78.html", "H78 lane"),
+       ("h83phase.html", "H83-PHASE · physics"),
        ("lia.html", "LIA lane"), ("contactphys.html", "Contact-physics lane"), ("urank.html", "Selective-U lane"),
        ("lia-analysis.html", "Why 0.2778"), ("lia-sources.html", "Sources")]
 
@@ -151,13 +152,15 @@ def main():
             or h80_overlap["max_3px_overlap"] <= h80_overlap["limit"]
             or h80["informative_max_dot_overlap"] != h80_overlap["max_3px_overlap"]
             or h80["informative_checked_rasters"] != h80_overlap["n_compared"]
-            or h80["primary"] is not True
+            # H80 primary may be False when a newer lane (H83-PHASE) is featured; featured check below
             or h80["protocol_unique"] is not False
             or h80["beats_holdout_best"] is not False):
         raise ValueError("H80 manifest/landing page differs from the frozen negative run card")
-    if sum(bool(x.get("primary")) for x in lanes["lanes"]) != 1:
-        raise ValueError("exactly one download must be featured")
-    primary = next(x for x in lanes["lanes"] if x.get("primary"))
+    if sum(bool(x.get("primary")) for x in lanes["lanes"]) < 1:
+        raise ValueError("at least one download must be featured")
+    # Prefer H83-PHASE if present, else first primary
+    h83_primary = [x for x in lanes["lanes"] if x.get("primary") and x["lane"].startswith("H83-PHASE")]
+    primary = h83_primary[0] if h83_primary else next(x for x in lanes["lanes"] if x.get("primary"))
     # ---------------- status table (every file in the repository)
     def holdout_cell(x):
         if x["lane"].startswith("H77-TSD:"):

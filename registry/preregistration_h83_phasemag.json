@@ -1,0 +1,21 @@
+{
+  "registered_utc": "2026-10-21T18:00:00Z",
+  "lane": "H83-PHASE magnetic phase-congruency buried contacts",
+  "branch": "arena/9a46b655-gemsdoe77",
+  "incumbent_holdout_dti": 0.152718,
+  "incumbent_evaluator": "gems57-pooled-hide-v2",
+  "incumbent_withheld_positives_seed20": 11321,
+  "incumbent_ci95": [0.131548, 0.175185],
+  "hypothesis": "Buried normal faults under basin fill produce weak-amplitude but phase-stable magnetic contacts across wavelengths; amplitude-independent multi-scale gradient-phase congruency detects them where amplitude-threshold Hessian/tilt detectors miss.",
+  "mechanism": "5 magnetic bands (mag_anom 1, rtp 2, tmi_hg 3, tmi_vg 9, tmi 14) -> Gaussian gradients at 1.5/3.0/6.0 px -> phase vectors exp(j*theta) -> normalized resultant length R + amp-weighted persistence -> per-band phase-congruency strength -> rank01 cross-band average + 300m structure-tensor coherence gate. Added to 19 core bands in HGB LOQO; control = 19 core alone.",
+  "named_non_fault_mimic": "Intrusive/lithologic magnetic contacts, sedimentary susceptibility contrasts, USGS GeoDAWN flight-line levelling seams (azimuth 90°)",
+  "inputs": ["data/raw/training_features.tif 19 bands (SHA 4371c82e)", "data/bridge/sample_submission.tif footprint", "data/bridge/existing_faults.tif catalogue mask only for holdout split/label/mask"],
+  "signature": "PC = |sum_k exp(j theta_k)|/K * (sum_k amp_k * R_k)/sum_k amp_k; coherence via 2*|Jxx-Jyy,Jxy|/tr",
+  "parameters": {"scales_px": [1.5, 3.0, 6.0], "coherence_sigma": 3.0, "rank01_tie": "average"},
+  "controls": ["19-band HGB", "phase-only HGB", "random"],
+  "canaries": ["phase_congruency_rtp", "phase_congruency_tmi", "phase_stack_mean", "phase_coherence", "19core_top"],
+  "validation": "buffered_component_draw hide 20% segments + 3px buffer, 4 quadrants, visible-only catalogue features, pixel-exact masking, pooled DTI alpha0.2 beta0.8 R300m, 20km block bootstrap 1000 draws, seeds 20/30",
+  "promotion": "Require candidate >0.152718 HOLDOUT-DTI on seed 20 and literal rho <=0.90 + like-for-like dot overlap <=0.70 vs dot_fields; dense continuous surfaces (support fraction >0.20) excluded from dot-overlap literal reading per two_phase protocol, reported separately; need selector approval, 0 automatic slots.",
+  "budget": {"max_experiments": 3, "max_hours": 2, "planned_experiments": 3},
+  "expected_improvement": "Unknown; rank is priority/cost judgment, not projected score. Phase-congruency targets blind-basin blind spot not in H77-Step's scarp-focused features."
+}

@@ -1,0 +1,64 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>H83-PHASE: magnetic phase-congruency · GEMSDOE77</title>
+<meta name="description" content="H83-PHASE magnetic phase-congruency buried contacts — unique physics surface, negative holdout, inspection download.">
+<link rel="stylesheet" href="assets/lia.css"></head><body>
+<header><div class="wrap"><span class="brand">GEMSDOE77 · DOE GEMS Prize</span><a href="index.html">Start here</a> <a href="executive-summary.html">How to submit</a> <a href="h83phase.html" class=here>H83-PHASE · physics</a> <a href="https://github.com/buffedlizard55-lab/GEMSDOE77">GitHub</a></div></header>
+<main><div class="wrap">
+<h1>H83-PHASE: magnetic phase-congruency buried contacts (37654 dots)</h1>
+<p class="verdict"><b>OK TO DOWNLOAD FOR INSPECTION: YES.</b> <b>OK TO SUBMIT: NO — RESEARCH ONLY (negative holdout).</b> Byte-unique format-valid GeoTIFF (single-band float32 EPSG:32611 3730×3292 values [0,1] zeros outside, 0 on catalogue) passes informative uniqueness (max 3px overlap 0.3549 ≤0.70, max |rho| 0.0686 ≤0.90) but literal gate fires on 7 dense continuous surfaces (expected per two-phase fix). HOLDOUT-DTI 0.0392 (physics) / 0.0657 (HGB) below 0.1527 incumbent and physics below random. Selector: not approved. 0 weekly slots used. Do not upload without separate selector approval.</p>
+
+<section class="card dl"><h2>⬇ Download the H83-PHASE GeoTIFF (inspection only — DO NOT SUBMIT)</h2>
+<a class="btn" href="downloads/gems77-h83-phase-physics-37654dots-20261021-ec451d91-zeros.tif" download>Download .tif (133.6 KB)</a>
+<a class="btn alt" href="downloads/gems77-h83-phase-physics-37654dots-20261021-ec451d91-zeros.zip" download>Same file as one-TIFF .zip (97.9 KB)</a>
+<a class="btn alt" href="downloads/gems77-h83-phase-physics-37654dots-20261021-ec451d91-zeros.json">Format receipt (JSON)</a>
+<div class="chips"><span class="chip ok">OK to download: YES</span> <span class="chip ok">Format preflight: PASS 15/15</span> <span class="chip bad">Holdout vs incumbent: FAIL (0.0392 &lt; 0.1527)</span> <span class="chip ok">Informative uniqueness: PASS (0.3549 ≤0.70)</span> <span class="chip warn">Literal dense: 7 firings (expected, not dot duplication)</span> <span class="chip warn">Selector: not approved</span> <span class="chip bad">OK TO SUBMIT: NO</span></div>
+<p class="small muted">Submission name (for reference only — do not submit):</p>
+<div class="copy"><code>gems77-h83-phase-physics-37654dots-20261021-ec451d91-zeros</code><button data-copy="gems77-h83-phase-physics-37654dots-20261021-ec451d91-zeros">Copy</button></div>
+<p class="small muted">Note-field text (93/140 chars, for reference only):</p>
+<div class="copy"><code>H83-PHASE physics phase-congruency stack 37654 dots &gt;2px from catalogue amplitude-independent</code><button data-copy="H83-PHASE physics phase-congruency stack 37654 dots &gt;2px from catalogue amplitude-independent">Copy</button></div>
+<p class="small">SHA-256 (.tif): <code>a9091405194547f8a7b62ea08671ab23e52fb910b7205db65df5814555e43c47</code> · 136,852 bytes · single-band float32 · EPSG:32611 · 3730×3292 · values {0,1} in [0,1] · 0 NaN · nodata=None · 37,654 dots · 0 on catalogue · min catalogue distance √5 px (223.6 m). Local format PASS does not prove portal acceptance. Run card: <a href="evidence/h83_phase_run_card.json">evidence/h83_phase_run_card.json</a> · <a href="executive-summary.html">How submission would work after approval →</a></p>
+</section>
+
+<h2>Why H33 scored 0.2778 (OWNER-REPORT) and why 0.4413 needs a better detector</h2>
+<p><b>Attribution warning:</b> 0.2778 is OWNER-REPORT: GEMSDOE32 site says “NO ORGANISER SCORE EXISTS for this artifact” (verified 2026-10-21) and labels it UNSCORED; leaderboard #1 is 0.4413 ORGANIZER-CONFIRMED (xiaofanhu). Numerical match is not a receipt. <a href="research/why-h33-scored-02778.md">Corrected H33 analysis →</a></p>
+<p>H33 (c55bafc4, 37654 dots) is 44,090-dot Poisson-scattered H19-5 ridge (121k px) thinned to preserve 77.8% TP_w while cutting FP_w 3× (DTI denominator T+0.2FP+0.8FN), then stripped of dots ≤200m from catalogue (collar pruning proves zero unmapped faults lie ≤200m from mapped faults, but dropping 200-300m loses -0.0131 proving real continuations begin at >200m). It is emission-optimal on a 0.19-class field; further thinning loses TP_w. To reach 0.4413 requires a field that puts mass where hidden faults actually are — detector, not packing.</p>
+<p>H83-PHASE tests one such detector (amplitude-independent phase congruency for buried basement offsets) and is negative: physics-only 0.0392 < random 0.0471, HGB candidate 0.0657 < 0.1527. Falsification is deliverable: phase-congruency alone does not separate blind-fault contacts from intrusive/sedimentary contacts at 100 m in this AOI.</p>
+
+<h2>Hypotheses considered (ranked before experiments)</h2>
+<table><tr><th>Rank</th><th>Hypothesis · layers</th><th>Signature</th><th>Why off-catalogue</th><th>Status</th></tr>
+<tr><td>1</td><td><b>H83-PHASE (this lane)</b> · mag_anom(1) rtp(2) tmi_hg(3) tmi_vg(9) tmi(14) tc(6)</td><td>Multi-scale 150/300/600m gradient phase congruency R=|sum exp(jθ)|/K × soft amplitude, coherence-gated</td><td>Buried basement offset under cover weak amplitude but stable phase; amplitude detectors miss</td><td><b>Tested — negative (below random)</b></td></tr>
+<tr><td>2</td><td>Geodetic dilatation+shear anisotropy · geod_2ndinv(4) shearrate(7) dilaterate(8) iso_grav(13) det_elev(12)</td><td>Strain eigenvector dot gravity/topographic lineament, dilatant quadrant persistence</td><td>Active blind accommodation zone strain even without scarp</td><td>Not run (budget)</td></tr>
+<tr><td>3</td><td>Conductivity clay-cap breach + well thermal · cond_surf(17)+GDR wells</td><td>Conductivity ridge breach aligned with depth-detrended thermal excess</td><td>Hydrothermal conduit breaches cap, surface catalogue misses sealed conduits</td><td>Not run (needs GDR depth metadata check)</td></tr>
+<tr><td>4</td><td>Basement hinge + gravity odd/even · depth_to_base(15) iso_grav(13) vg(11)</td><td>Signed odd/even derivative ratio along magnetic axes, cross-scale sign stability</td><td>One-sided depth step + gravity low vs symmetric folds</td><td>Not run</td></tr>
+<tr><td>5</td><td>Seismic lineation transfer · ieq(16) deq(10) tmi_hg(3)</td><td>Epicentre structure-tensor coherence transferred to magnetic field</td><td>Swarm fabric along blind faults</td><td>Not viable (ComCat FDSN outside sandbox allowlist, verified blocked)</td></tr>
+</table>
+<p class="small">Full register with mimics and novelty: <code>research/h83_phase_hypotheses.md</code> · preregistration: <code>registry/preregistration_h83_phasemag.json</code> (frozen before Exp1). Mimic: intrusive/lithologic contacts, GeoDAWN flight-line seams.</p>
+
+<h2>Results — HOLDOUT-DTI gems57-pooled-hide-v2 seed 20 11,321 withheld positives</h2>
+<table><tr><th>Arm (37654-dot budget, 2.8px min-sep, >2px catalogue exclusion, no tuning)</th><th>HOLDOUT-DTI</th><th>95% CI</th></tr>
+<tr><td><b>S_phase</b> physics phase_stack</td><td><b>0.0392</b></td><td>[0.0303, 0.0481]</td></tr>
+<tr><td>A_phase HGB 7 phase channels</td><td>0.0442</td><td>[0.0368, 0.0518]</td></tr>
+<tr><td>A_std19 HGB 19 core bands control</td><td>0.0618</td><td>[0.0474, 0.0772]</td></tr>
+<tr><td><b>A_cand</b> HGB 19+7 (preregistered candidate → TIF uses physics-only for uniqueness)</td><td><b>0.0657</b></td><td>[0.0505, 0.0814]</td></tr>
+<tr><td>A0_random</td><td>0.0471</td><td>[0.0414, 0.0530]</td></tr>
+<tr><td>Repo incumbent H77-Step</td><td>0.152718</td><td>[0.1315, 0.1752]</td></tr>
+</table>
+<p>Paired S_phase vs random -0.0078 (CI includes 0, below random); A_cand vs A_std19 +0.0038 CI [-0.0028,+0.0110] not significant. Leakage canary worst symAUC 0.5687 ≤0.90 (pass, no leakage). Surface rho max |rho|=0.0686 ≤0.90 pass. Final dots: informative max overlap 0.3549 ≤0.70 PASS; literal 0.998 vs 7 dense continuous surfaces (support fraction >0.20, halo 1.0) — expected per two-phase fix, not dot duplication. vs H33 0.3267 distinct. Byte-unique. Verdict <b>negative</b> (below incumbent) but falsifiable and reusable.</p>
+
+<h2>How to submit — only after future selector approval (not this file)</h2>
+<ol><li>Confirm a future file's row on <a href="index.html">Start-here page</a> says <b>OK TO SUBMIT</b> for its exact SHA-256 (none does today; this file is inspection-only).</li>
+<li>Download that approved <code>.tif</code> (or one-TIFF <code>.zip</code>); verify <code>sha256sum</code> matches its run card. Values must already be in [0,1] — portal error note on <a href="executive-summary.html">executive summary</a>.</li>
+<li>Sign in to <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData #306</a> → <b>New submission</b> → choose file under <em>File to submit</em>, paste ≤140-char note, submit, archive organizer receipt. Only receipt makes score ORGANIZER-CONFIRMED. This sandbox cannot log in or upload for you.</li></ol>
+
+<h2>Official sources (manual review)</h2>
+<table><tr><th>Claim</th><th>Source</th></tr>
+<tr><td>Task, metric (α=0.2 β=0.8 R=300m), GeoTIFF format</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Problem page 967</a></td></tr>
+<tr><td>Public leaderboard #1 =0.4413</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Leaderboard</a></td></tr>
+<tr><td>GeoDAWN DOI 10.5066/P93LGLVQ</td><td><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN</a></td></tr>
+<tr><td>INGENIOUS GDR 1391 CC BY 4.0</td><td><a href="https://gdr.openei.org/submissions/1391">GDR 1391</a></td></tr>
+<tr><td>Reference solution CPU/GPU</td><td><a href="https://github.com/drivendataorg/gems-prize-reference-solution">GitHub</a></td></tr>
+<tr><td>Rules PDF EPSG:32611 Tversky</td><td><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">96647.pdf</a> <a href="https://epsg.io/32611">epsg.io/32611</a> <a href="https://en.wikipedia.org/wiki/Tversky_index">Wikipedia</a></td></tr>
+<tr><td>H33 bytes & UNSCORED status</td><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html">GEMSDOE32 site</a></td></tr>
+</table>
+<p class="small muted">Evidence: <code>evidence/h83_phase_e1_canary_surface.json</code> · <code>evidence/h83_phase_e2_holdout.json</code> · <code>evidence/h83_phase_e3_build.json</code> · <code>evidence/h83_phase_run_card.json</code> Code: <code>src/gems83_phase/fields.py</code> <code>scripts/h83_phase_pipeline.py</code> Fix: <code>scripts/preflight_registry.py</code> two-phase dense/dot_field classification.</p>
+</div></main></body></html>
