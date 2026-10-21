@@ -1,0 +1,56 @@
+{
+  "schema": "gems-review-source-receipt-v1",
+  "retrieved_at_utc": "2026-10-21T18:41:24Z",
+  "evidence_class": "PINNED GITHUB CONTENT RETRIEVAL; NOT SCORE ATTRIBUTION OR GEOLOGICAL VALIDATION",
+  "retrieval_method": "gh api repos/{owner}/{repo}/contents/{path}?ref={commit} with Accept: application/vnd.github.raw",
+  "sources": [
+    {
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/f62038b54dcb7767d4d997f80b033cdc3d42bef9/docs/index.html",
+      "repository": "buffedlizard55-lab/GEMSDOE32",
+      "commit": "f62038b54dcb7767d4d997f80b033cdc3d42bef9",
+      "path": "docs/index.html",
+      "role": "Owner-maintained project site; not an organizer source",
+      "bytes": 19571,
+      "sha256": "d83dd1ace9e2338c312ba9d6775413ab0b5ed8e9ae22e73b4d8291fca30aa0ec",
+      "verified_text": [
+        "H33-2-B2 is described as a 0.2708 base with all dots at catalogue distance <= 2 px removed; 37,654 dots remain.",
+        "The page reports a live-mirror +0.004870 result in four quadrants and a projected 0.2747 live DTI; the page explicitly labels this a MODEL, not a score.",
+        "The page states: NO ORGANISER SCORE EXISTS for this or any artifact in this repository."
+      ],
+      "score_classification": {
+        "0.2708": "OWNER-REPORT base value; not authenticated as a score",
+        "0.2747": "OWNER-MODEL PROJECTION; explicitly not a score",
+        "0.2778": "OWNER-REPORT claim; no submission-page receipt tying it to the named TIFF bytes"
+      },
+      "interpretation": "The page documents a proposed mechanism and an owner model. It does not authenticate the user-supplied 0.2778 value or bind any score to a TIFF hash."
+    },
+    {
+      "url": "https://github.com/drivendataorg/gems-prize-reference-solution/blob/aebe92f7c8a990f0e3443451b7a825d9afd6336b/README.md",
+      "repository": "drivendataorg/gems-prize-reference-solution",
+      "commit": "aebe92f7c8a990f0e3443451b7a825d9afd6336b",
+      "path": "README.md",
+      "role": "Competition organizer reference-solution repository",
+      "bytes": 2367,
+      "sha256": "cfa4d55559c9128313beb9417eae7e0a94c31677132afb1120f9e86222804239",
+      "verified_text": [
+        "The README says the reference implementation supports GPU and CPU-only setups and recommends a GPU for faster training; CPU-only is supported."
+      ],
+      "interpretation": "This resolves the claim that a GPU is mandatory for the organizer reference solution; it does not establish the available hardware or performance of this checkout."
+    }
+  ],
+  "manual_review_links_not_fetched_in_this_environment": [
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/data/",
+    "https://www.usgs.gov/3d-elevation-program",
+    "https://earthquake.usgs.gov/fdsnws/event/1/query",
+    "https://www.usgs.gov/landsat-missions/landsat-collection-2",
+    "https://gdr.openei.org/submissions/1391"
+  ],
+  "access_and_attribution_limits": [
+    "Sandbox outbound access is restricted to GitHub and package registries; the DrivenData leaderboard, rules/data pages, USGS services, and GDR page were not freshly retrieved.",
+    "No authenticated DrivenData account, submission-page receipt, current leaderboard receipt, or file-hash-to-score receipt was available.",
+    "The brief gives conflicting current leaderboard figures 0.3195 and 0.4413; neither is certified by this review.",
+    "The supplied 0.2778 H33 value remains OWNER-REPORT, not ORGANIZER-CONFIRMED."
+  ]
+}

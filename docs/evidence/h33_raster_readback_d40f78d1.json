@@ -1,0 +1,36 @@
+{
+  "schema": "gems-raster-readback-v1",
+  "measured_at_utc": "2026-10-21T18:41:24Z",
+  "evidence_class": "RASTER-READBACK / FORENSICS; NOT HOLDOUT-DTI OR ORGANIZER SCORE",
+  "file": ".cache/registry/h33.tif",
+  "source": {
+    "repository": "buffedlizard55-lab/GEMSDOE77 registry owner mirror",
+    "sha256_expected": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "sha256_read": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "hash_matches": true,
+    "authentication_note": "Byte reproducibility against the pinned owner mirror is not organizer provenance."
+  },
+  "raster_metadata": {
+    "crs": "EPSG:32611",
+    "shape_rows_columns": [3730, 3292],
+    "band_count": 1,
+    "dtype": "float32",
+    "transform": [100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0],
+    "nodata": null,
+    "matches_sample_grid": true
+  },
+  "pixel_measurements": {
+    "all_values_finite": true,
+    "nan_count": 0,
+    "infinite_count": 0,
+    "unique_values": [0.0, 1.0],
+    "positive_pixels_in_footprint": 37654,
+    "positive_pixels_on_known_catalogue": 0,
+    "minimum_distance_to_known_catalogue_pixels": {
+      "value": 2.23606797749979,
+      "unit": "grid pixels"
+    },
+    "method": "rasterio readback; finite sample-footprint mask; exact positive-pixel count; Euclidean distance transform from the known catalogue raster"
+  },
+  "score_attribution": "None. These are raster and byte measurements only."
+}

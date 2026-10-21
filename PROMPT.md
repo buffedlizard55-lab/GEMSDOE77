@@ -1,3 +1,9 @@
+## Current review addendum — arena/d40f78d1-gemsdoe77 (2026-10-21)
+
+This addendum supersedes earlier branch/session status notes below. No single method paragraph was assigned; do not infer a lane or resume a closed one. The fresh pinned preflight returns `STOP_UNIVERSAL_DUPLICATE`: every allowed pixel is positive in a pinned rejection witness, so every nonempty candidate exceeds the literal overlap threshold before candidate construction. No geological experiment, holdout, TIFF, slot, upload, or submission authorization occurred. Existing research TIFFs are inspection-only; none is approved to submit. See `docs/review-2026-10-21-arena-d40f78d1.md`, `evidence/registry_preflight.json`, and `evidence/review_d40f78d1_card.json`.
+
+The pinned H33 owner-site page says no organizer score exists for artifacts in that repository. The reported `0.2778` remains OWNER-REPORT, not a score tied to the named bytes. The current-leader values `0.3195` and `0.4413` conflict and were not authenticated in this review. The feature stack is absent from this checkout; no candidate feature or holdout was run. The current site generator now points `review-latest.html` to the d40 review rather than an older branch snapshot. The generated `urank` page change is an H82R row insertion, not a timestamp-only build effect.
+
 # Project prompt (operative brief — re-read at the start of every session)
 
 *Stored 2026-10-21 per the project owner's instruction ("Put this prompt into
@@ -8,15 +14,15 @@ summarised with provenance at the end rather than re-transcribed hash-by-hash
 `docs/score-ledger.csv`; later entries below are OWNER-REPORT as supplied in
 the 2026-10-21 brief — no organizer receipts).*
 
-## Current 05f9e6f8 review addendum — 2026-10-21
+## Historical 05f9e6f8 review addendum — 2026-10-21
 
 The full standing request is retained in README. This invocation again assigns no identifiable method paragraph. Fresh hash-pinned preflight stops all nonempty candidates under the literal registry overlap rule. No new geological experiment, TIFF or slot was used. The new review fixes contradictory recorded measurement handling in the release adapter; it does not relax the shared protocol. See `docs/review-2026-10-21-05f9e6f8.md`. GitHub Pages exists in legacy mode; switching to Actions publishing was denied by the integration's permissions.
 
-## 2026-10-21 review addendum — arena/60aafd45-gemsdoe77
+## Historical 2026-10-21 review addendum — arena/60aafd45-gemsdoe77
 
 No new method paragraph is assigned in this invocation. The freshly rechecked dense registry witness blocks every nonempty candidate under the binding literal rule. No new TIFF, model experiment or slot is authorized by this review. See `docs/review-2026-10-21-60aafd45.md` and the corrected H33 analysis. Superseded earlier leaderboard observations below are historical, not current submission-page receipts.
 
-## Current review addendum — 2026-10-21
+## Historical review addendum — pre-d40 (2026-10-21)
 
 The latest readiness review (`docs/preflight-review.md`) generated no new TIFF and ran no geological experiment.
 A freshly pinned universal witness (`evidence/registry_preflight.json`) blocks every nonempty allowed candidate
@@ -53,9 +59,7 @@ prompt.
    exceeds 0.90, or more than 70% of your dots fall within 3 px of one registry
    raster's dots, you have drifted into another lane: log it as a duplicate
    and stop. Check on the surface before placement AND on the final dots.
-   *(GEMSDOE77 note: the 2026-10-21 brief contained no identifiable single
-   method paragraph, so the lane was declared in
-   `registry/preregistration_contactphys.json` before Exp 1 — IR-77-06.)*
+   *(Historical correction: an earlier session inferred a lane from generic brief text. For the active d40 review no method paragraph is assigned; do not infer or revive a closed lane.)*
 2. **Reuse, don't rebuild.** Use the template's cached feature stack,
    `evaluate_holdout.py` and `submission_writer.py`. Holdout = hide-and-recover:
    withhold whole fault segments with a buffer, derive every catalogue-based
@@ -106,7 +110,7 @@ answer to build the lane's candidate. Verify line by line; no hallucinations.
 ## Competition anchors
 
 - Overview/problem/metric: https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/
-- Leaderboard: https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/ (2026-10-21 read: #1 xiaofanhu **0.4413 ORGANIZER-CONFIRMED**; brief-era references 0.3195/0.3262 are superseded)
+- Leaderboard: https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/ (older 2026-10-21 notes report 0.4413; this brief also gives 0.3195. Neither was refreshed in the active d40 review; treat both as unverified here.)
 - Reference solution: https://github.com/drivendataorg/gems-prize-reference-solution
 - Rules PDF: https://docs.nlr.gov/docs/fy26osti/96647.pdf
 - GeoDAWN: https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and

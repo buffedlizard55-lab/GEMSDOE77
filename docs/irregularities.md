@@ -265,3 +265,16 @@ GitHub authenticated operations work. CPU scientific transforms, local validatio
 ### 05f9e6f8 final integration repair
 
 Incoming H82-FMD added diagnostics inside the pinned vendor module and caused the strict preflight to return STOP_INPUT_ERROR. Restored the original shared file, original pin policy and strict hash test; retained the extra diagnostic report helpers outside vendor in `src/gems82fmd/registry_diagnostics.py`. Both callers updated, literal measurements and authorization rules unchanged. Earlier local-amendment notes are historical only, not the operative pin policy.
+
+## Active branch review — arena/d40f78d1-gemsdoe77 (2026-10-21)
+
+| ID | Verified finding | Consequence |
+|---|---|---|
+| IR-D40-01 | The active brief supplied no identifiable method paragraph. Older preregistrations and self-declared lanes belong to earlier sessions. | No lane was selected, no experiment or holdout was run, and no closed lane was resumed. |
+| IR-D40-02 | Fresh preflight returns `STOP_UNIVERSAL_DUPLICATE`: the pinned witness is positive at all 5,106,385 allowed pixels, so every nonempty candidate has a 1.0 lower-bound forward overlap, greater than the strict 0.70 stop threshold. | Candidate generation, surface scoring, dot placement, uniqueness claims and TIFF creation stop. This is a one-witness rejection certificate, not complete-registry clearance. |
+| IR-D40-03 | The local competition feature stack is absent from this checkout. | No feature canary or spatial holdout was possible. Owner-mirror hashes do not establish organizer provenance. |
+| IR-D40-04 | The pinned GEMSDOE32 owner page says “NO ORGANISER SCORE EXISTS” for artifacts in that repository and labels its 0.2747 value a model projection. | The prompt's H33 0.2778 association is OWNER-REPORT, not an organizer-confirmed score tied to the named TIFF. The claimed current leader values 0.3195 and 0.4413 were not authenticated in this review. |
+| IR-D40-05 | `scripts/build_home.py` pointed `review-latest.html` at the 6a5eca5f branch report/card while README and other review notes described later states. | Updated the generated latest-review source and its regression tests to the active d40 review. Historical branch cards remain preserved. |
+| IR-D40-06 | The existing listed-download audit contains 37 primary TIFFs; the older readiness page/card still said 23. | Updated the current readiness page/card to match the manifest-bound 37/37 format-integrity readback. Format PASS still does not mean uniqueness or upload approval. |
+| IR-D40-07 | Exact generated-file diff: both `docs/urank.html` and `docs/urank-executive-summary.html` add the same H82R negative/research-only table row; they are not timestamp-only. The authorization JSON changed only its generated timestamp and still authorizes zero files. | Retained generated outputs, clarified their source, and documented the semantic change. |
+| IR-D40-08 | The first revised executive guide dropped the historical H82 research-download link; an existing site test caught the omission. | Restored the link with a clear archived/inspection-only/NOT OK TO SUBMIT label; the final full suite passes. |

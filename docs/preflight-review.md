@@ -1,4 +1,6 @@
-# Submission readiness review — 2026-10-21
+# Submission readiness review — 2026-10-21 (branch `arena/d40f78d1-gemsdoe77`)
+
+**Current branch decision:** no lane assigned; `STOP_UNIVERSAL_DUPLICATE`; no new TIFF, experiment, holdout, or slot; NOT OK TO SUBMIT. This snapshot is the current readiness gate. See the [three-pass branch review](review-latest.html) and its [run card](evidence/review_d40f78d1_card.json).
 
 **OK TO DOWNLOAD FOR INSPECTION. NOT OK TO SUBMIT. No new TIFF generated in this review.**
 
@@ -20,7 +22,7 @@ shared-template pins, historical run cards/reviews, site builders and release co
 single-method assignment was supplied. Closed lanes were not restarted; shared evaluator/writer and their
 cached scientific inputs were not rebuilt or privately forked.
 
-Added `scripts/preflight_registry.py`: a candidate-independent rejection proof using the unchanged shared
+Re-ran the existing `scripts/preflight_registry.py`: a candidate-independent rejection proof using the unchanged shared
 finite-positive support definition and circular three-pixel dilation. The script checks input SHA-256,
 shared-template pins and exact CRS/shape/transform before deriving the allowed domain. The restored witness is
 positive at **5,106,385 of 5,106,385** allowed pixels (**REGISTRY MEASUREMENT**, not a score).
@@ -34,13 +36,13 @@ rejection, never a pass. The two restored witnesses have pinned owner-mirror pro
 
 ## Pass 2 — independent checks and corrections
 
-Added `scripts/audit_downloads.py`, which independently opens every primary TIFF listed in `lanes.json`,
-not merely trusting the manifest format flag. **23 of 23** pass SHA-256, single-band, all-finite [0,1],
+Re-ran the existing `scripts/audit_downloads.py`, which independently opens every primary TIFF listed in `lanes.json`,
+not merely trusting the manifest format flag. **37 of 37** pass SHA-256, single-band, all-finite [0,1],
 no-NaN-in-footprint, no-nodata, and exact reference CRS/shape/transform (**FORMAT/INTEGRITY MEASUREMENTS**).
 This scope excludes unlisted archives and NaN twins. It does not test portal acceptance, hidden performance,
-full-registry uniqueness or selector approval. The existing H77L independent audit also passes its checks.
+full-registry uniqueness or selector approval. A retained H77L independent-audit receipt reports PASS; it was not rerun in this review.
 
-Corrected [the H33 scientific analysis](https://github.com/buffedlizard55-lab/GEMSDOE77/blob/main/research/why-h33-scored-02778.md).
+The retained [corrected H33 scientific analysis](https://github.com/buffedlizard55-lab/GEMSDOE77/blob/main/research/why-h33-scored-02778.md) was re-read.
 The exact marginal gain is `dT > alpha*DTI*(dT + 1 - k)`; the simpler `k > alpha*DTI` requires `dT == k`.
 One dot can cover multiple truth cells, and mapped/unmapped faults can be close to each other. Removed unsupported
 claims of fixed denominator cost, guaranteed false positives near the catalogue, exhausted emission optimization,
@@ -79,15 +81,12 @@ These are manual-review links, not newly verified availability or scientific val
 ## Pass 3 — end-to-end requirements and source boundaries
 
 - Software regression tests cover finite-positive support, Euclidean-radius boundaries, empty/invalid grids,
-  input pin failure, format/range/hash failure, and the exact metric algebra. Full suite and CI-equivalent build
-  were rerun; see the PR checks for the final software-test result, not a performance score.
+  input pin failure, format/range/hash failure, and the exact metric algebra. The final local suite reported **265 tests passed** (software tests, not a performance score); the CI-equivalent builds and release checks also passed.
 - Entry page retains one-click TIFF/ZIP downloads and explicit NOT OK TO SUBMIT status. Evidence links and
   submission instructions remain visible. Current release authorization grants no uploads.
 - Restored only pinned witnesses; no new TIFF, copied submission, trained model, geological experiment,
   HOLDOUT-DTI estimate, bootstrap CI or organizer score is represented as a result of this review.
-- Existing scheduled source feed was refreshed: **78/78** configured owner-repository inventories retrieved
-  (**SOURCE-HEALTH MEASUREMENT**). It records commits, page-content hashes and TIFF paths, not verified scores.
-  [Freshness feed](source-health.json). This is not an exhaustive registry beyond the configured repositories.
+- The last recorded scheduled source-feed receipt covers **78/78** configured owner-repository inventories (**SOURCE-HEALTH MEASUREMENT**); it was not refreshed in this branch review. It records commits, page-content hashes and TIFF paths, not verified scores. [Historical freshness feed](source-health.json). This is not an exhaustive registry beyond the configured repositories.
 - Official organizer [reference README](https://github.com/drivendataorg/gems-prize-reference-solution/blob/aebe92f7c8a990f0e3443451b7a825d9afd6336b/README.md)
   was freshly retrieved via GitHub; it supports CPU-only and GPU setups. GPU is helpful, not an absolute
   requirement of that reference solution. [Research source receipt](evidence/preflight_sources.json).
@@ -113,22 +112,19 @@ whole-segment hide-and-recover with the pinned evaluator, require a supported pa
 incumbent, generate through the shared writer, check both surface and dots against a complete current registry,
 and only then seek separate selector approval. No automatic upload or private exemption is introduced here.
 
-## Parallel-merge reconciliation
+## Archived parallel-merge reconciliation from earlier reviews
 
-While preparing this review PR, main received PRs #47 and #48. Preserved their H28 artifacts and H81 status correction.
+An earlier review session recorded that main received PRs #47 and #48. Preserved their H28 artifacts and H81 status correction.
 The H28 merge had replaced `docs/data/submission.json` with a different schema, causing `lia_build_site.py` to raise
 `KeyError: zip` in the CI-equivalent build. Retained H28 metadata under `docs/data/h28-submission.json`, restored the
 original LIA metadata, and added LIA/run-card identity protection plus a regression test binding both metadata records
 to their unchanged TIFF hashes. This is metadata repair, not a new candidate or an ownership claim over parallel work.
-The primary download inventory is still 22 entries; the new unlisted H28 archive is outside this review's listed-file
-audit. Repeated the full build, verifier and software tests after reconciliation.
+At that historical point the primary download inventory had 22 entries; the new unlisted H28 archive was outside that review's listed-file audit. The full build, verifier and software tests were repeated after that reconciliation.
 
 A subsequent main merge (PR #49) independently fixed the same metadata collision and marginal-DTI prose.
 Reconciled onto its canonical `h28-submission.json` path (identical metadata bytes), preserved its review and
 release-gate NaN/type hardening, and retained both regression suites. All combined tests and build checks were
 repeated; no shared-template source or raster bytes were changed.
 
-PR #52 then merged the independent H82 chemistry lane while this PR was under reconciliation. Its TIFFs, negative
-status, source code and tests are preserved without rerunning its experiment or claiming authorship. Re-read all
-**23** currently listed primary TIFFs: format/integrity PASS for every file, zero authorized uploads. The previous
-22-file receipt was replaced with this current 23-file manifest-bound readback.
+PR #52 later merged the independent H82 chemistry lane while that earlier PR was under reconciliation. Its TIFFs, negative
+status, source code and tests are preserved without rerunning its experiment or claiming authorship. The earlier review then re-read **23** listed primary TIFFs. The current branch readback covers **37/37** listed primary TIFFs (FORMAT/INTEGRITY-MEASUREMENT) and still authorizes zero uploads; see the linked current audit receipt.

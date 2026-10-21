@@ -322,28 +322,37 @@ def test_current_review_and_metric_correction_are_linked():
     assert '5,106,385' in review
     assert 'Candidate screen' in review
     assert 'NOT RUN' in review
-    current_card = json.loads((DOC / 'evidence/review_6a5eca5f_card.json').read_text())
-    assert current_card['branch'] == 'arena/6a5eca5f-gemsdoe77'
+    current_card = json.loads((DOC / 'evidence/review_d40f78d1_card.json').read_text())
+    assert current_card['branch'] == 'arena/d40f78d1-gemsdoe77'
     assert current_card['new_tiff_generated'] is False
     assert current_card['holdout_dti']['evidence_class'] == 'NOT RUN'
     assert current_card['ok_to_submit'] is False
+    assert current_card['submission_name'] is None
 
 
 def test_current_review_has_no_submission_download_or_score_projection():
-    report = (ROOT / 'docs/review-2026-10-21-arena-6a5eca5f.md').read_text()
-    assert 'NO NEW TIFF GENERATED' in report
-    assert 'Expected DTI change is unknown' in report
+    report = (ROOT / 'docs/review-2026-10-21-arena-d40f78d1.md').read_text()
+    assert 'NO NEW TIFF' in report
+    assert 'Expected HOLDOUT-DTI improvement is **unknown' in report
     assert 'cross-wavelet coherence' in report
-    assert 'monogenic phase congruency already exists' in report
-    assert 'not obtainable/validated' in report.lower()
+    assert 'monogenic phase congruency' in report
+    assert 'not viable' in report.lower()
     assert 'ORGANIZER-CONFIRMED' in report
     assert '0.2778' in report
     assert 'causal proof' in report
-    assert 'submission_name": null' in report
-    card = json.loads((ROOT / 'evidence/review_6a5eca5f_card.json').read_text())
+    card = json.loads((ROOT / 'evidence/review_d40f78d1_card.json').read_text())
     assert card['raster_sha256'] is None
     assert card['submission_name'] is None
     assert card['weekly_slots_used'] == 0
+    assert card['ok_to_submit'] is False
+
+
+def test_urank_generated_pages_include_the_h82r_lane_row():
+    for name in ('urank.html', 'urank-executive-summary.html'):
+        text = (DOC / name).read_text()
+        assert 'h82rank.html' in text and 'H82R: local ternary radiometric rank-mixture entropy' in text
+        assert 'Not OK to submit. OK to download for inspection only.' in text
+        assert 'generated_utc' not in text
 
 
 def test_current_preflight_review_does_not_claim_a_new_submission():
@@ -358,6 +367,8 @@ def test_current_preflight_review_does_not_claim_a_new_submission():
     assert card["raster_sha256"] is None and card["submission_name"] is None
     assert len(card["submission_note"]) <= 140
     assert card["holdout_dti"]["value"] is None
+    assert card["validator"]["listed_count"] == 37
+    assert card["branch"] == "arena/d40f78d1-gemsdoe77"
 
 
 def test_lia_and_parallel_h28_metadata_do_not_collide():

@@ -291,8 +291,9 @@ applied; the protocol owner must change the shared policy before any raster can 
 authorize an upload; the separate weekly-slot selector has approved none. The independent
 <a href="data/submission-authorization.json">machine-readable authorization receipt</a> combines all required release
 gates and currently says <b>NOT OK TO SUBMIT — 0 authorized files</b>.</p>
-<p><b>Current review: no new TIFF generated.</b> A fresh hash-checked, candidate-independent proof confirms the universal
-blocker before any new experiment. <a href="preflight-review.html">Three-pass review, conditional hypotheses and next steps</a> ·
+<p><b>Current branch arena/d40f78d1: no new TIFF generated, so there is no new artifact to download.</b>
+Existing linked research files are inspection-only; none is approved to submit. A fresh hash-checked, candidate-independent proof confirms the universal blocker before any new experiment.
+<a href="review-latest.html">Three-pass review, conditional hypotheses and next steps</a> ·
 <a href="evidence/registry_preflight.json">Reproducible blocker receipt</a> ·
 <a href="evidence/listed_download_audit.json">Independent format readback of every listed primary TIFF</a>.
 These are registry/format measurements, not scores or portal acceptance.</p>"""
@@ -423,11 +424,11 @@ not proof that the specific file received that score or that another submission 
     # ---------------- general executive summary (how to submit)
     guide = f"""<h1>Executive summary: how to submit — only AFTER approval</h1>
 {h77vs_box}{tsd_box}
-<p class="verdict"><b>NEW H82 file:</b> <a href="{e(h82['file'])}" download>Download the format-valid TIFF for inspection</a>;
-<b>NOT OK TO SUBMIT</b>. See <a href="h82-executive-summary.html">its test result and exact name/note</a>.
-This is a negative experiment, not a competition submission authorization.</p>
-<p class="verdict"><b>Today: NOT OK TO SUBMIT any file here.</b> The featured H80 file is explicitly
-<b>RESEARCH ONLY</b>. Download is for inspection, not permission to upload. Before spending a weekly feedback slot (check the current allowance on the submission page and
+<p class="verdict"><b>Current branch arena/d40f78d1: no new TIFF was generated; no new file is available to download.</b>
+Existing linked research artifacts are for inspection only. <b>NOT OK TO SUBMIT any file in this repository.</b>
+The <a href="review-latest.html">current three-pass review</a> records the fail-closed duplicate stop and explains the evidence.</p>
+<p class="verdict"><b>Archived H82 negative research artifact:</b> <a href="downloads/gems77-h82-cool-chemconcord-11185dots-20261021-245bb13136-zeros.tif" download>download for inspection</a>; <b>NOT OK TO SUBMIT</b>. See <a href="h82-executive-summary.html">its historical result</a>; this is not a new candidate or submission authorization.</p>
+<p class="verdict"><b>Today: NOT OK TO SUBMIT any file here.</b> Before spending a weekly feedback slot (check the current allowance on the submission page and
 <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">official rules</a>), the shared uniqueness policy must
 be resolved, a candidate must beat a <em>matched</em> holdout incumbent, and a separate selector must approve it. No
 condition is met merely by passing a format check.</p>
@@ -973,14 +974,18 @@ Format-valid (15/15 checks, 0 NaN, values in [0,1], 37,654 binary dots) and info
 
 def write_review_pages():
     for source, output, title in (
-        ("docs/review-2026-10-21-arena-6a5eca5f.md", "review-latest.html", "Latest repository review"),
+        ("docs/review-2026-10-21-arena-d40f78d1.md", "review-latest.html", "Latest repository review"),
         ("research/why-h33-scored-02778.md", "metric-review.html", "Corrected H33 analysis"),
     ):
         body = markdown.markdown((ROOT / source).read_text(), extensions=["tables", "fenced_code"])
         (D / output).write_text(page(output, title, body))
-    for name in ("review_6a5eca5f_card.json", "review_60aafd45_card.json", "review_60aafd45_verification.json",
-                 "review_05f9e6f8_card.json", "review_05f9e6f8_preflight.json",
-                 "review_05f9e6f8_verification.json"):
+    for name in (
+        "review_d40f78d1_card.json", "review_sources_d40f78d1.json",
+        "h33_raster_readback_d40f78d1.json", "review_6a5eca5f_card.json",
+        "review_60aafd45_card.json", "review_60aafd45_verification.json",
+        "review_05f9e6f8_card.json", "review_05f9e6f8_preflight.json",
+        "review_05f9e6f8_verification.json",
+    ):
         shutil.copyfile(ROOT / "evidence" / name, D / "evidence" / name)
 
 
