@@ -1,10 +1,19 @@
 {
   "schema": "gems-submission-authorization-v1",
-  "generated_utc": "2026-10-21T16:41:11+00:00",
+  "generated_utc": "2026-10-21T18:43:59+00:00",
   "policy": "Authorization requires artifact existence, matching SHA-256, a readable run card with a promote verdict, local format PASS, literal protocol uniqueness (including <=0.70 real-model forward 3-px overlap and complete registry), improvement over the accepted holdout best, a promote verdict, and explicit selector approval. Missing fields or historical run-card uniqueness/completeness failures fail closed.",
   "repository_authorized_file_count": 0,
   "repository_decision": "NOT OK TO SUBMIT",
   "historical_run_card_reconciliation": [
+    {
+      "lane": "H77V (NEWEST): 3.6 km spectral mesh-dealiased MT/strain regime \u00d7 tubular demagnetization trough \u00d7 3DEP knickpoint-scarp step + 8-ch SLOCO + LDSA 300 m cover (0/95 informative firings; HOLDOUT-DTI 0.1444 s20 / 0.1424 s30 unique; 0.1530 s20 / 0.1527 s30 pure)",
+      "run_card": "evidence/run_card_h77v.json",
+      "recorded_verdict": "negative",
+      "recorded_safe_to_submit": false,
+      "historical_promotion_conflict": false,
+      "operative_decision": "NOT OK TO SUBMIT",
+      "reconciliation_note": "Historical run card and operative release gate both fail closed."
+    },
     {
       "lane": "H77G: hydrothermal magnetite-destruction trough \u00d7 gravity-basement step \u00d7 MT clay-cap margin (HOLDOUT-DTI 0.0619 s20 / 0.0618 s30, pure 0.0392/0.0471; negative result)",
       "run_card": "evidence/run_card_h77g.json",
@@ -160,6 +169,41 @@
     }
   ],
   "artifacts": [
+    {
+      "lane": "H77V (NEWEST): 3.6 km spectral mesh-dealiased MT/strain regime \u00d7 tubular demagnetization trough \u00d7 3DEP knickpoint-scarp step + 8-ch SLOCO + LDSA 300 m cover (0/95 informative firings; HOLDOUT-DTI 0.1444 s20 / 0.1424 s30 unique; 0.1530 s20 / 0.1527 s30 pure)",
+      "file": "downloads/gemsdoe77-h77v-dealiased-vent-demag-knick-ldsa-20261021.tif",
+      "sha256": "861c880e7a56203d197182075765480efaf224ad6cfde342fab511f5f908fa4c",
+      "checks": {
+        "artifact_exists": true,
+        "run_card_present": true,
+        "format_valid": true,
+        "literal_protocol_unique": false,
+        "beats_accepted_holdout_best": true,
+        "scientific_verdict_promote": false,
+        "selector_approved": false,
+        "sha256_matches": true
+      },
+      "run_card_audit": {
+        "run_card": "evidence/run_card_h77v.json",
+        "present": true,
+        "recorded_verdict": "negative",
+        "recorded_safe_to_submit": false,
+        "literal_duplicate_recorded": true,
+        "real_model_forward_overlap_3px": null,
+        "real_model_forward_overlap_exceeds_070": false,
+        "registry_incomplete": false,
+        "holdout_invalid_for_promotion": false,
+        "historical_promotion_conflict": false,
+        "guardrail_clear": false
+      },
+      "authorized_to_submit": false,
+      "decision": "NOT OK TO SUBMIT",
+      "failed_gates": [
+        "literal_protocol_unique",
+        "scientific_verdict_promote",
+        "selector_approved"
+      ]
+    },
     {
       "lane": "H77G: hydrothermal magnetite-destruction trough \u00d7 gravity-basement step \u00d7 MT clay-cap margin (HOLDOUT-DTI 0.0619 s20 / 0.0618 s30, pure 0.0392/0.0471; negative result)",
       "file": "downloads/gems77-h77g-demagtrough-gravstep-37654dots-20261021-08b78f3c-zeros.tif",

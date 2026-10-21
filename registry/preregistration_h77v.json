@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "lane_id": "H77V-DEALIASED-VENT-DEMAG-KNICK-LDSA",
+  "session_branch": "arena/65c05dc9-gemsdoe77",
+  "preregistered_date_utc": "2026-10-21",
+  "status_at_preregistration": "LOCKED_BEFORE_EXPERIMENTS",
+  "lane_declaration": "Self-declared preregistered lane H77V following AGENTS.md, docs/PROJECT_PROMPT.md, and docs/review-2026-10-21-h77g.md (IR-H77G-01, IR-H77G-02, IR-H77G-03). Tests spectral mesh de-aliasing (sigma >= 36 px = 3.6 km) of rectilinear 3.5 km / 7.0 km MT/geodetic/seismic inversion grids, corrected across-valley tubular Hessian demagnetization troughs, antiparallel gravity-basement step concordance, road/mining-deconfounded 1 m LiDAR & 10 m 3DEP fluvial knickpoint-scarp interactions, 8-channel fold-visible SLOCO mechanics, and kernel-convolved Lagrangian-priced Dinkelbach submodular cover allocation.",
+  "hard_invariants": {
+    "zero_sgmc_channels": true,
+    "forbidden_csv_columns": ["dist_known_fault_px", "known_fault", "label"],
+    "zero_prior_submission_rasters_in_features_or_training": true,
+    "single_feature_symmetric_auc_ceiling": 0.90,
+    "surface_spearman_abs_ceiling": 0.90,
+    "final_dots_informative_forward_3px_overlap_ceiling": 0.70,
+    "final_dots_mutual_3px_overlap_ceiling": 0.70,
+    "max_experiments": 3,
+    "max_wall_hours": 2.0,
+    "vendor_gems57_unmodified": true
+  },
+  "hypotheses": [
+    {
+      "id": "H77V-1",
+      "name": "Spectral Mesh-Dealiased Regional Crustal Regime Modulator (sigma = 36 px = 3.6 km)",
+      "layers": [
+        "training_features.tif Band 17 (cond_surf)",
+        "training_features.tif Band 4 (geod_2ndinv)",
+        "training_features.tif Band 7 (geod_shearrate)",
+        "training_features.tif Band 8 (geod_dilaterate)",
+        "training_features.tif Band 10 (deq_n100a15)",
+        "training_features.tif Band 16 (ieq_n100a15)",
+        "external/acquisition_block_id_100m.tif"
+      ],
+      "mechanism": "Eliminates the 35.02 px (3.5 km) and 70.04 px (7.0 km) rectilinear inversion mesh step artifacts discovered in IR-H77G-01 (where 23.5%-33.1% of adjacent pixel diffs are identically zero) via sigma=36 px Gaussian low-pass filtering before computing clay-cap margin gradients and transtensional strain-seismicity regime modulators."
+    },
+    {
+      "id": "H77V-2",
+      "name": "Corrected Tubular Hydrothermal Demagnetization Trough x Scarp-Knickpoint Conduit",
+      "layers": [
+        "training_features.tif Band 2 (rtp)",
+        "external/geodawn_extensions_u8.tif (tmi_up150)",
+        "external/lidar_scarp_features_u8.tif",
+        "external/dem10_chi_100m_u8.tif",
+        "external/tiger_road_distance_m.tif",
+        "external/blm_closed_claim_distance_m.tif"
+      ],
+      "mechanism": "Applies the IR-H77G-02 corrected across-valley Hessian eigenvalue (lambda_1(-H_RTP) > 0) weighted by linear tubularity across 150 m, 300 m, and 600 m scales, and couples multi-scale magnetite-destruction persistence with road/claim-deconfounded 1 m LiDAR / 10 m 3DEP scarps and fluvial knickpoints."
+    },
+    {
+      "id": "H77V-3",
+      "name": "Antiparallel Gravity-Basement Step Concordance x Hydrothermal Disequilibrium Upflow",
+      "layers": [
+        "training_features.tif Band 13 (iso_grav_anom)",
+        "training_features.tif Band 11 (iso_grav_anom_vg)",
+        "training_features.tif Band 15 (depth_to_base_surf)",
+        "external/gdr_wellspring_in_footprint.csv",
+        "external/2m_temperature_probe_INGENIOUS_regional_data.zip",
+        "external/paleo_geothermal_regional.zip"
+      ],
+      "mechanism": "Targets buried intrabasin and piedmont step-over faults where isostatic gravity drops into the basin antiparallel to increasing basement depth (-grad g_iso . grad Z_base > 0), co-located with hyperbolic basement/gravity relay-ramp saddles and DOE GDR 1391 chemical geothermometry disequilibrium / 2 m thermal probe plumes."
+    },
+    {
+      "id": "H77V-4",
+      "name": "Kernel-Convolved Lagrangian-Priced Dinkelbach Submodular Cover (LDSA)",
+      "layers": [
+        "Out-of-fold propensity surface P_H77V(x)",
+        "Deconfounded geomorphic crest field C_deconf(x)",
+        "Informative prior raster 3-px halo capacity index"
+      ],
+      "mechanism": "Pre-screens candidate dot centers by their 29-pixel 300 m triangular kernel integral rather than single-pixel point probability, and prices binding prior-raster 3-px halos via a convex utilization shadow price plus hard cap (<= 0.65) so dots shift 1-2 px into halo-free saddle positions (> 3.0 px from prior dot centers, < 3.0 px from fault traces) without losing DTI recall."
+    }
+  ],
+  "experiments": [
+    {
+      "id": "E1",
+      "description": "Build zero-SGMC 132-channel static physical + 8-channel fold-visible SLOCO feature stack (140 total features), run 140 single-feature leakage canaries (all symmetric ROC-AUC <= 0.90), and evaluate H77V + ablations on official gems57-pooled-hide-v2 Seed 20 (11,321 withheld positive pixels) with 2,000-draw 20 km paired block bootstrap."
+    },
+    {
+      "id": "E2",
+      "description": "Independent zero-retuning replication of locked H77V pipeline on official gems57-pooled-hide-v2 Seed 30 (11,342 withheld positive pixels) with 2,000-draw 20 km paired block bootstrap."
+    },
+    {
+      "id": "E3",
+      "description": "Strictly out-of-fold full-Nevada dual-checkerboard surface build, pre-placement Spearman surface audit (|rho| <= 0.90) + post-placement 3-px dot overlap audit (informative overlap <= 0.70, 0 informative firings) across all valid archive + sibling + local GEMSDOE77 rasters, official submission_writer packaging, and 17-check validation."
+    }
+  ]
+}
