@@ -130,3 +130,8 @@ def test_h77v_artifact_matches_run_card_and_is_negative():
         assert src.crs.to_epsg() == 32611 and src.shape == (3730, 3292)
     assert np.isfinite(a).all() and float(a.min()) >= 0.0 and float(a.max()) <= 1.0
     assert int((a > 0).sum()) == 37654
+    for rel in ("docs/h77vs.html", "docs/h77vs-executive-summary.html", "docs/index.html", "README.md"):
+        txt = (ROOT / rel).read_text()
+        assert card["submission_name"] in txt
+        assert "NOT OK TO SUBMIT" in txt
+

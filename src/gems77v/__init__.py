@@ -1,4 +1,4 @@
-"""GEMSDOE77 Lane H77V: Tufa-Deconfounded Vent-Sinter & Conductive Heat-Flow Conduit Coupling."""
+"""GEMSDOE77 Lane H77V / H77VS: Geothermal Vent Advection-Backtracking & Tufa-Deconfounded Vent-Sinter Heat-Flow Coupling."""
 from .fields import (
     FORBIDDEN_COLUMNS,
     H77V_NAMES,
