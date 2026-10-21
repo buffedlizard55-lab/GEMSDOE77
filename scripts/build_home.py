@@ -23,6 +23,7 @@ LB = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboa
 PD = "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
 NAV = [("index.html", "Start here"), ("release-review.html", "Release safety review"), ("executive-summary.html", "How to submit"),
+       ("h80t.html", "H80T · tilt-persist"), ("h80t-executive-summary.html", "H80T guide"),
        ("h80.html", "H80 · negative"), ("ago.html", "AGO · negative proxies"),
        ("h79-orient.html", "H79-ORIENT · negative"), ("h79-orient-executive-summary.html", "H79-ORIENT guide"),
        ("h79.html", "H79-BB · research-only"),

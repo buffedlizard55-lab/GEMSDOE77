@@ -1,0 +1,260 @@
+{
+  "schema": "gems-parallel-run-card-v1",
+  "lane_id": "H80T",
+  "lane_repo": "buffedlizard55-lab/GEMSDOE77",
+  "branch": "arena/de858329-gemsdoe77",
+  "hypothesis": "H80T: Multi-Scale Tilt-Angle Persistence x AS-Weighted Zero Proximity + Signed Basement Throw (Blakely & Simpson 1986; Miller & Singh 1994; Nabighian 1972)",
+  "mechanism": "Derive true magnetic tilt atan2(tmi_vg, |grad_H tmi|) and gravity tilt atan2(grav_vg, |grad_H iso_grav_anom|) at Gaussian scales sigma=1.5 px (150 m) and sigma=3.0 px (300 m) without using mislabelled band 6 (TC) or signed band 18; weight zero-crossing proximity (1 - |tilt|/(pi/2)) by log1p(analytic signal), take scale persistence min(Z_1.5, Z_3.0) per field, multiply magnetic x gravity persistence, and gate by downdip basement-depth throw alignment max(0, -grad(depth_to_base) . grad(iso_grav_anom)). Emit 37,654 greedy 300 m-spaced binary dots >2 px from mapped catalogue.",
+  "named_non_fault_process_that_could_mimic_it": "Mesozoic pluton/intrusive contacts and caldera ring margins (tilt zero-crossing + analytic-signal ridge without Quaternary dip-slip throw), GeoDAWN airborne survey-block seams, and remanently magnetized Tertiary volcanics.",
+  "holdout_dti": {
+    "evidence_label": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": 22893,
+    "score": 0.006029811997190169,
+    "ci_95": [
+      0.004811043995249961,
+      0.0073449458723021475
+    ],
+    "random_control_score": 0.0022131273853914996,
+    "random_control_ci_95": [
+      0.0018228705854937094,
+      0.00267946060086265
+    ],
+    "grav_thdr_control_score": 0.005338639795520501,
+    "grav_thdr_control_ci_95": [
+      0.003709142226729452,
+      0.007120530805378706
+    ],
+    "paired_vs_random": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.0038166846117986698,
+      "ci95": [
+        0.0024822634684792365,
+        0.005178712370823593
+      ],
+      "withheld_positive_pixels": 22893
+    },
+    "paired_vs_grav_control": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.0006911722016696683,
+      "ci95": [
+        -0.0009910373606283698,
+        0.002281837219429853
+      ],
+      "withheld_positive_pixels": 22893
+    },
+    "exp2_multi_sensor_rank_fusion_dti": 0.005130482036334981,
+    "exp2_multi_sensor_rank_fusion_ci_95": [
+      0.004022372688696723,
+      0.006245566881942958
+    ],
+    "exp3_hgb_21ch_soft_dti": 0.016604549057377634,
+    "exp3_hgb_21ch_soft_ci_95": [
+      0.01413991791307848,
+      0.019176171146537618
+    ],
+    "exp3_hgb_19ch_baseline_soft_dti": 0.01634102106526168,
+    "exp3_paired_delta_tilt_vs_19ch": 0.0002635279921159549,
+    "exp3_paired_delta_ci_95": [
+      6.082339349057849e-05,
+      0.0004810950772558666
+    ],
+    "retained_repo_incumbent_dti": 0.152718,
+    "retained_repo_incumbent_withheld_positive_pixels": 11321,
+    "beats_accepted_holdout_best": false
+  },
+  "leakage_canary": {
+    "features_tested": 12,
+    "max_sym_auc": 0.5499240484184486,
+    "exp3_21ch_max_sym_auc": 0.5658726009453967,
+    "ceiling": 0.9,
+    "pass": true
+  },
+  "correlation_overlap_vs_registry": {
+    "checked_rasters": 20,
+    "expected_registry_rasters": 812,
+    "complete_accessible_scan": false,
+    "surface_before_placement": {
+      "checked_local_rasters": 20,
+      "expected_registry_rasters": 812,
+      "complete_accessible_scan": false,
+      "max_abs_surface_spearman": 0.13315329491172243,
+      "worst_rho_submission": "17GEMSDOE__E-proba-multiscale_20260930T044527Z.tif",
+      "vs_h33_spearman": 0.015907059916664523,
+      "max_forward_overlap_3px": 1.0,
+      "surface_duplicate_count": 0,
+      "dot_duplicate_count": 2
+    },
+    "final_dots": {
+      "checked_local_rasters": 20,
+      "expected_registry_rasters": 812,
+      "complete_accessible_scan": false,
+      "max_abs_surface_spearman": 0.021410939857323126,
+      "worst_rho_submission": "gems77-ago-hybrid50-geophys-37654dots-11b45670-zeros.tif",
+      "vs_h33_spearman": 0.003654933274269667,
+      "vs_h33_forward_overlap_3px": 0.21086737132841132,
+      "max_forward_overlap_3px": 1.0,
+      "max_forward_overlap_3px_informative_dot_fields": 0.4468051203059436,
+      "worst_informative_dot_field_submission": "gems77-ago-hybrid50-geophys-37654dots-11b45670-zeros.tif",
+      "surface_duplicate_count": 0,
+      "dot_duplicate_count": 2,
+      "informative_dot_field_duplicate_count": 0
+    },
+    "duplicate_stop": true,
+    "duplicate_stop_reason": "Binding literal rule fires on full-footprint continuous witness 17GEMSDOE__E-proba-multiscale (ab0a0a62, forward overlap 1.0 > 0.70, Policy I17); informative dot-field reading passes (max overlap 0.4468 <= 0.70, max surface |rho| 0.1332 <= 0.90). Additionally, Exp 3's 21-channel HGB surface had rho = 0.9088 > 0.90 vs 17GEMSDOE and was stopped."
+  },
+  "protocol_unique": false,
+  "informative_unique": true,
+  "raster_sha256": "19e92e4db42b0de59c558e95a52ee419fc81f4c187c4fd22e35f252e16a4446a",
+  "submission_raster": {
+    "path": "submissions/gems77-h80t-tilt-persist-37654dots-20261021-7d5f7b11-zeros.tif",
+    "pages_download": "docs/downloads/gems77-h80t-tilt-persist-37654dots-20261021-7d5f7b11-zeros.tif",
+    "zip_download": "docs/downloads/gems77-h80t-tilt-persist-37654dots-20261021-7d5f7b11-zeros.zip",
+    "nan_twin_download": "docs/downloads/gems77-h80t-tilt-persist-37654dots-20261021-7d5f7b11-nan.tif",
+    "sha256": "19e92e4db42b0de59c558e95a52ee419fc81f4c187c4fd22e35f252e16a4446a",
+    "zip_sha256": "d3ea3d7eb7d0dcd24be30804e552f2ffe19f6ccc7f4d9cb0954191fdb87d250a",
+    "nan_twin_sha256": "d9f63db37c2ddfd8a403a02beecf9e89409c83e18a18dc19aca3e7940121b563",
+    "bytes": 118281,
+    "dots": 37654,
+    "validator": {
+      "file": "gems77-h80t-tilt-persist-37654dots-20261021-7d5f7b11-zeros.tif",
+      "sha256": "19e92e4db42b0de59c558e95a52ee419fc81f4c187c4fd22e35f252e16a4446a",
+      "bytes": 118281,
+      "mode": "zeros",
+      "dots": 37654,
+      "checks": [
+        {
+          "check": "GeoTIFF driver",
+          "status": "PASS",
+          "detail": "GTiff"
+        },
+        {
+          "check": "single band",
+          "status": "PASS",
+          "detail": "count=1"
+        },
+        {
+          "check": "dtype float32",
+          "status": "PASS",
+          "detail": "float32"
+        },
+        {
+          "check": "CRS EPSG:32611",
+          "status": "PASS",
+          "detail": "32611"
+        },
+        {
+          "check": "CRS equals sample_submission",
+          "status": "PASS",
+          "detail": ""
+        },
+        {
+          "check": "shape 3730x3292 equals sample_submission",
+          "status": "PASS",
+          "detail": "(3730, 3292)"
+        },
+        {
+          "check": "transform equals sample_submission",
+          "status": "PASS",
+          "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)"
+        },
+        {
+          "check": "resolution 100 m",
+          "status": "PASS",
+          "detail": "(100.0, 100.0)"
+        },
+        {
+          "check": "nodata tag none (zeros) or NaN (nan)",
+          "status": "PASS",
+          "detail": "None"
+        },
+        {
+          "check": "no NaN/inf inside official footprint",
+          "status": "PASS",
+          "detail": "nonfinite_inside=0"
+        },
+        {
+          "check": "all 12,279,160 cells finite (no NaN anywhere)",
+          "status": "PASS",
+          "detail": "nonfinite=0"
+        },
+        {
+          "check": "zeros outside footprint",
+          "status": "PASS",
+          "detail": ""
+        },
+        {
+          "check": "values within [0, 1]",
+          "status": "PASS",
+          "detail": "min=0.0 max=1.0"
+        },
+        {
+          "check": "binary values {0,1} inside footprint",
+          "status": "PASS",
+          "detail": ""
+        },
+        {
+          "check": "0 dots on masked catalogue pixels",
+          "status": "PASS",
+          "detail": "on_catalogue=0"
+        },
+        {
+          "check": "name non-empty, <= 120 chars",
+          "status": "PASS",
+          "detail": "58 chars"
+        },
+        {
+          "check": "note <= 140 chars",
+          "status": "PASS",
+          "detail": "107 chars"
+        }
+      ],
+      "n_checks": 17,
+      "n_pass": 17,
+      "passed": true
+    },
+    "zip_validator": {
+      "zip": "gems77-h80t-tilt-persist-37654dots-20261021-7d5f7b11-zeros.zip",
+      "members": [
+        "gems77-h80t-tilt-persist-37654dots-20261021-7d5f7b11-zeros.tif"
+      ],
+      "exactly_one_geotiff": true,
+      "member_bytes_identical_to_tif": true,
+      "sha256": "d3ea3d7eb7d0dcd24be30804e552f2ffe19f6ccc7f4d9cb0954191fdb87d250a",
+      "bytes": 79900,
+      "passed": true
+    }
+  },
+  "validator_output": {
+    "passed": true,
+    "n_pass": 17,
+    "n_checks": 17,
+    "no_nan_inside_footprint": true,
+    "no_nan_entire_raster": true,
+    "values_in_0_1": true,
+    "crs_epsg": 32611,
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "zero_dots_on_catalogue": true
+  },
+  "submission_name": "gems77-h80t-tilt-persist-37654dots-20261021-7d5f7b11-zeros",
+  "submission_note": "H80T dual-scale tilt persistence x basement throw, 37654 dots; HOLDOUT-DTI 0.0060 [0.0048,0.0073]; NEGATIVE",
+  "verdict": "negative",
+  "safe_to_download_and_submit": false,
+  "ok_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "weekly_slots_spent": 0,
+  "organizer_confirmed_score": null
+}
