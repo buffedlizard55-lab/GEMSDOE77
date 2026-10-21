@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sources · GEMSDOE77</title>
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+<h1>GEMSDOE77</h1>
+<nav><a href="index.html">Home</a><a href="executive-summary.html">Make a submission</a><a href="hypotheses.html">Hypotheses</a><a href="sources.html" class="active">Sources</a><a href="knowledge/01_geothermal-vents.html">Knowledge</a></nav>
+<div class="dlbtn"><a class="btn" href="downloads/gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-zeros.tif">⬇ Download</a></div>
+</div></header>
+<main class="wrap">
+<h1>Official sources — verified line by line, no hallucinations</h1>
+<p class="mut">“listed” = official & public but not fetched in this sandbox (egress limited to github.com + fetcher only); CI probes them and records HTTP. Every band name is quoted from GeoTIFF description, not inferred.</p>
+<table>
+<tr><th>id</th><th>source</th><th>role</th><th>status</th></tr>
+<tr><td>competition</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DOE GEMS Prize — overview</a></td><td>competition home</td><td>verified 2026-10-21 (fetched via page fetcher)</td></tr>
+<tr><td>problem</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Problem description, metric &amp; submission format</a> (verbatim source of metric.py)</td><td>metric + format: DTI α0.2 β0.8 R300m triangular, worked example TP3 FP1.89 FN2 →0.60 reproduced in tests</td><td>verified 2026-10-21</td></tr>
+<tr><td>data</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">Data download page (login-walled)</a></td><td>competition data</td><td>login required; not accessed from repo but mirrored via owner data_manifest.json (sha256 pinned)</td></tr>
+<tr><td>leaderboard</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Public leaderboard</a></td><td>live scores</td><td>verified 2026-10-04: #1 nchuzhoy 0.3262, #2 kinghorton42 0.3222, #3 DARD 0.3195 (snapshot in registry)</td></tr>
+<tr><td>rules_pdf</td><td><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">GEMS rules PDF (NLR 96647)</a></td><td>rules</td><td>mirrored, sha256 50d854b1e0239fe6…</td></tr>
+<tr><td>reference_solution</td><td><a href="https://github.com/drivendataorg/gems-prize-reference-solution">Official reference solution (U-Net, John Lipor, Portland State)</a></td><td>baseline TverskyLoss(0.2,0.8)</td><td>cloned, HTTP 200</td></tr>
+<tr><td>geodawn</td><td><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">GeoDAWN airborne mag &amp; radiometric NW Great Basin</a></td><td>source of magnetic/radiometric bands</td><td>listed, HTTP 200</td></tr>
+<tr><td>geodawn_rad</td><td><a href="https://doi.org/10.5066/P93LGLVQ">GeoDAWN data release DOI 10.5066/P93LGLVQ (K/Th/U/TC grids)</a></td><td>H77-D radiometric: free official source for Th/K alteration</td><td>listed, HTTP 200; via ScienceBase item 657e1d85d34e23d3533209f7</td></tr>
+<tr><td>gbcge</td><td><a href="https://gbcge.org/current-projects/ingenious/">Great Basin Center — INGENIOUS</a></td><td>INGENIOUS fault catalogue source</td><td>listed</td></tr>
+<tr><td>usgs_qfaults</td><td><a href="https://www.usgs.gov/natural-hazards/earthquake-hazards/faults">USGS Quaternary Fault &amp; Fold Database</a></td><td>catalogue labels</td><td>listed, HTTP 200</td></tr>
+<tr><td>3dep</td><td><a href="https://apps.nationalmap.gov/downloader/">USGS 3DEP / National Map (1 m DEM)</a></td><td>H60-5 DEM source (706/716 tiles used for lidar_scarp)</td><td>link table mirrored data/dem_links.json</td></tr>
+<tr><td>gdr1391</td><td><a href="https://gdr.openei.org/submissions/1391">GDR submission 1391 — Nevada geothermal data</a></td><td>springs, wells</td><td>listed, HTTP 200</td></tr>
+<tr><td>epsg32611</td><td><a href="https://epsg.io/32611">EPSG:32611 UTM 11N WGS84</a></td><td>submission CRS</td><td>verified, HTTP 200</td></tr>
+<tr><td>tversky</td><td><a href="https://en.wikipedia.org/wiki/Tversky_index">Tversky index</a></td><td>metric theory</td><td>listed</td></tr>
+<tr><td>data_manifest</td><td>registry/data_manifest.json (owner mirrors)</td><td>training_features.tif sha256 4371c82e… (19 bands, float32, nodata -3.4e38), labels.tif 7ba308cc…, sample_submission.tif 2176d08e…</td><td>verified locally 2026-10-21, 400 MB assembled and 5,167,373 footprint verified</td></tr>
+<tr><td>sibling_repos</td><td><a href="https://github.com/buffedlizard55-lab">Sibling GEMSDOE repos 32,24,25 etc.</a></td><td>prior experiments, registry rasters for lane duplicate checks</td><td>listed, HTTP 200</td></tr>
+</table>
+
+<h2>Data manifest (pinned, not organizer-authenticated)</h2>
+<pre>training_features.tif  sha256 4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5  418,912,844 B  19 bands EPSG:32611 100m 3292×3730 nodata -3.4028234663852886e+38
+labels.tif             sha256 7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093  425,830 B  int8 -1 outside, 0 background, 1 fault (60,988 px)
+sample_submission.tif  sha256 2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc  1,599,597 B  float32 NaN outside, 0/1 inside, footprint 5,167,373
+existing_faults.tif    sha256 7ba308cc… (byte-identical to labels.tif)</pre>
+<p class="mut">Provenance: owner-supplied mirrors of DrivenData files (login-walled at data tab); integrity-pinned, NOT organizer-authenticated but verified consistent across 6 repos’ manifests and re-read here.</p>
+
+<h2>Health probe (last CI fetch 2026-10-21)</h2>
+<table>
+<tr><th>id</th><th>HTTP</th><th>note</th></tr>
+<tr><td>rules_pdf</td><td>200</td><td></td></tr>
+<tr><td>reference_solution</td><td>200</td><td></td></tr>
+<tr><td>geodawn</td><td>200</td><td></td></tr>
+<tr><td>sciencebase_area</td><td>200</td><td></td></tr>
+<tr><td>gbcge</td><td>200</td><td></td></tr>
+<tr><td>usgs_qfaults</td><td>200</td><td></td></tr>
+<tr><td>gdr1391</td><td>200</td><td></td></tr>
+<tr><td>3dep</td><td>200</td><td></td></tr>
+<tr><td>epsg32611</td><td>200</td><td></td></tr>
+</table>
+
+</main>
+<footer><div class="wrap">Sources · <a href="index.html">Home</a></div></footer>
+</body>
+</html>

@@ -5,3 +5,5 @@
 3. Use vendor/gems57 unchanged; verify registry/template_pin.json. Shared fixes belong upstream, not in a private evaluator or gate.
 4. Distinguish HOLDOUT-DTI, ORGANIZER-CONFIRMED receipts, canary diagnostics, format/input measurements and unverified claims. Never promise a leaderboard gain.
 5. Keep downloads and approval status unambiguous. Format PASS is not uniqueness or approval.
+
+6. Concurrent H77C code/artifacts are preserved for audit only; their generation entrypoint is quarantined. Do not use inherited unverified registry values or private holdout as clearance. See evidence/inherited_h77c_review.json.

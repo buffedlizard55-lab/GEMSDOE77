@@ -19,6 +19,8 @@
 
 | I15 | Post-run support audit: default cross erosion does not cover every diagonal offset of the Gaussian stencil. | Preserve the stopped artifact and observed result, label holdout confounded/not promotion-valid, and add a fail-closed feature guard. No rerun or score replacement. See support_audit.json. |
 
+| I16 | Concurrent PRs #1/#2 merged into main while this lane was running; inherited H77C had unverified registry PASS/fallback values and a different evaluator. | Preserved sources/TIFFs/tests, namespaced the U lane, independently measured literal rejection for inherited TIFF, disabled unsafe legacy generator and marked it quarantined. No new model experiment. |
+
 ## Next session — ordered by risk reduction
 
 1. Read README original request, preregistration, run card and this ledger. Keep H77 stopped; do not re-tune its failed lane.

@@ -26,6 +26,10 @@
 - Found and diagnosed diagonal nodata-stencil contact in the historical feature domain. Added a fail-closed guard and regression test; retained the negative artifact/observed score without rerunning the stopped experiment. The historical computation is preserved in commit `1e5c994`, for audit only.
 - Test output: [tests-pass3.txt](evidence/tests-pass3.txt).
 
+## Concurrent-main merge safety review
+
+Main advanced via PRs #1/#2 during this run. Preserved their code, mirrored inputs, tests and TIFFs; renamed the U-lane feature module to avoid a namespace collision. Archived original incoming pages/code/claims as inert text. The inherited generator contained numerical fallbacks for absent registry measurements, and its metadata claimed PASS while saying values would be computed later. Independently audited incoming TIFF with the unchanged shared gate: rejection. Disabled the unsafe generation entrypoint and superseded approval claims without changing TIFF bytes. This is integration/immutable-byte review, not another geological experiment. Re-ran the combined suite.
+
 ## Not fulfilled / not claimed
 
 A protocol-unique, submission-approved TIFF has **not** been achieved; the measured universal overlap blocker prevents that under the supplied literal rule. No improved organizer score, current leaderboard record, complete family novelty, direct official PDF verification, full GPU training pipeline, or authenticated external-data eligibility is claimed. The negative research artifact is the deliverable required by the stop protocol. It is downloadable, but NOT OK TO SUBMIT.

@@ -64,6 +64,12 @@ Five lightweight static pages expose the download and approval status, executive
 
 The direct-source scientific literature review, current rules/external-data eligibility and official-origin authentication remain incomplete. Hash consistency does not authenticate a mirror's official origin. Do not label cached derivatives or webpage claims as independently official-verified. All source states and caveats are visible in [source health](evidence/source_health.json).
 
+## Concurrent-session integration
+
+While PR #3 was awaiting merge, PRs #1/#2 landed on main. Their H77C code, TIFF bytes, tests, review and historical sources have been preserved, not discarded. The selective-U module is now named `gems77.urank_features` to avoid overwriting the distinct incoming `gems77.features` implementation.
+
+**The inherited H77C artifact is also NOT OK TO SUBMIT.** Its original registry metadata claimed PASS while admitting comparisons “would be computed” if registry files were fetched; its generator had numeric fallbacks for missing measurements. Our independent shared-gate audit of the actual incoming TIFF finds 100% forward overlap with the dense witness. The inherited private holdout has not been validated as the required shared pooled whole-component instrument. No inherited score is adopted as our evidence. Original code/site/claims are retained as inert [archived source](docs/archive/concurrent-h77c/README.md.txt); the unsafe legacy generation entrypoint is disabled. [Independent inherited review](evidence/inherited_h77c_review.json).
+
 ## Next session — highest priority
 
 1. Resolve the dense-support contradiction upstream with the protocol owner/selector. As written, **every nonempty allowed candidate fails** against the measured dense witness. No private workaround.

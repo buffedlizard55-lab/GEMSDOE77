@@ -72,3 +72,15 @@ def test_runner_does_not_rerun_stopped_lane():
     import subprocess,sys
     p=subprocess.run([sys.executable,str(ROOT/'scripts/run_experiment.py')],capture_output=True,text=True)
     assert p.returncode!=0 and 'Do not rerun' in p.stderr
+
+
+def test_inherited_generator_and_artifact_remain_quarantined():
+    import subprocess,sys
+    p=subprocess.run([sys.executable,str(ROOT/'scripts/generate_submission.py')],capture_output=True,text=True)
+    assert p.returncode!=0 and 'quarantined' in p.stderr
+    review=json.loads((ROOT/'evidence/inherited_h77c_review.json').read_text())
+    assert not review['ok_to_submit'] and review['shared_registry_check']['stop_required']
+    assert review['shared_registry_check']['worst_dot_overlap']==1
+    data=json.loads((ROOT/'registry/submission_build.json').read_text())
+    assert not data['ok_to_submit'] and not data['run_card']['submission']['portal_ready']
+    assert (ROOT/'docs/archive/concurrent-h77c/generate_submission.py.txt').exists()
