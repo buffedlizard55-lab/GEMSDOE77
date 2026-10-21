@@ -1,5 +1,14 @@
 # Irregularities and next-session handoff
 
+## H77-TSD update (2026-10-21; branch `arena/b2132ad0-gemsdoe77`)
+
+| ID | Verified irregularity | Consequence |
+|---|---|---|
+| IR-TSD-01 | Policy I17 dense continuous witness `17GEMSDOE_E-proba-multiscale` (`ab0a0a62…`, `5,167,373` positive pixels) plus `155` other space-filling archive rasters (`>100,000` positive pixels) force literal 3-px forward overlap `= 1.000 > 0.70` for every non-empty candidate. | `H77-TSD` passes all 3 informative uniqueness gates across all 675 sparse rasters (`Phase 1 surface max |rho| = 0.4526 <= 0.90`, `Phase 2 dot max |rho| = 0.0863 <= 0.90`, `sparse 3-px forward overlap = 0.6917 <= 0.70`), but fails closed (`verdict: "negative"`, `NOT OK TO SUBMIT`) under Policy I17. |
+| IR-TSD-02 | `scripts/build_features.py` takes >480 s to compute all 54 channels of `data/processed/stack.npy` on CPU from cold start. | Completed channels 32..53 in a dedicated pass so all 54 channels were populated before `H77-TSD-E2` and `H77-TSD-E3`. |
+| IR-TSD-03 | Uncalibrated inverse-distance negative sampling causes LightGBM probability surfaces to concentrate immediately adjacent to `existing_faults.tif`, where `300 m` kernels suffer boundary overlap loss. | Used stratified 55% hard negatives (`3 < d_vis_tr <= 16.0` px) + 45% easy negatives (`d_vis_tr > 16.0` px) in 4-fold OOF training; verified on both Seed 30 (`0.13602` `HOLDOUT-DTI`) and Seed 20 (`0.13371` `HOLDOUT-DTI`). |
+| IR-TSD-04 | `H77-TSD` achieves statistically significant positive paired gains over `A_std_greedy`, `A_tsd_static_only`, `A_tsd_greedy`, and `A_tsd_mech_only` on both holdout seeds, but remains below the `0.1527` `H77-Step` repo holdout ceiling. | Published as an inspection-only research deliverable (`NOT OK TO SUBMIT`, `0` slots spent). |
+
 ## H82 update (2026-10-21; later than historical rows)
 
 | ID | Verified irregularity | Consequence |

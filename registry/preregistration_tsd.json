@@ -1,0 +1,79 @@
+{
+  "schema": "gemsdoe77-preregistration-v1",
+  "preregistered_utc": "2026-10-21T15:52:00Z",
+  "branch": "arena/b2132ad0-gemsdoe77",
+  "lane_id": "H77-TSD",
+  "lane_name": "Transtensional Strain-Partitioning Mode x Seismic Swarm Excess x MT Clay-Cap Margin + 12-Bit LOCO Relay Mechanics & 300m Submodular Cover",
+  "hypothesis_document": "research/hypotheses-tsd-2026-10-21.md",
+  "single_method_summary": "Target concealed geothermal-hosting faults in the Walker Lane - Basin & Range transition via the physical conjunction of (1) transtensional kinematic mode partitioning (sqrt(rank(geod_shearrate) * rank(max(geod_dilaterate, 0))) * (0.5 + 0.5*rank(geod_2ndinv))), (2) fluid-driven seismic swarm excess (rank(deq_n100a15) - 0.65*rank(ieq_n100a15)), (3) magnetotelluric clay-cap lateral conductance boundary perched over shallow conductive basement (|grad log1p(cond_surf)| * rank(-laplacian(depth_to_base_surf))), (4) DOE GDR 1391 chemical geothermometer disequilibrium & vent plumes coupled with magnetic demagnetization, and (5) missing-coverage-aware 1 m LiDAR scarp dipole & potential-field tilt zero-crossing bridges, integrated with strictly fold-visible 12-bit Leave-Own-Component-Out (LOCO) transtensional relay-corridor mechanics and emitted via exact 300 m triangular-kernel submodular coverage (37,654 binary dots, E=3 px catalogue collar).",
+  "named_non_fault_mimic": "Non-tectonic volcanic or mining/quarry seismic swarms, evaporite/playa brine surface conductivity edges (e.g., Carson Sink / Humboldt Sink playas), and Pleistocene Lake Lahontan shoreline scarps.",
+  "inputs_allowed": [
+    "data/raw/training_features.tif (SHA-256 4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5)",
+    "data/raw/existing_faults.tif (SHA-256 7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093; strictly visible-only inside holdout)",
+    "data/raw/sample_submission.tif (SHA-256 2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc; footprint/grid only)",
+    "data/raw/external/lidar_scarp_features_u8.tif (SHA-256 d580bb8bdcdb941e32fefb8b38044bc5bf04e199bf2e83498c3576e6fc465568; q==0 mapped to NaN)",
+    "data/raw/external/geodawn_rad_u8.tif (SHA-256 c22420f75999030d7cc65c9e31e50d232ea6158423bca051613a18a8b20ba682)",
+    "data/raw/external/geodawn_extensions_u8.tif (SHA-256 a35a9c6d2a14786f4dab85481ee59769213072f5dab5b2535ea82ae4d9bb7d9b)",
+    "data/raw/external/gdr_wellspring_in_footprint.csv (SHA-256 122718e65bdf55aab0ee12ad20d80062f0deb1de957225a61ad880dd5dc196ea; dist_known_fault_px strictly forbidden)",
+    "data/raw/external/gdr_volcanic_vents_in_footprint.csv (SHA-256 f91bafbaccaaf2754e71d60434fc0f9eb2c7b880c6e7148834974542ff6a0bf; dist_known_fault_px strictly forbidden)",
+    "data/processed/stack.npy (shared cached feature stack built by scripts/build_features.py)"
+  ],
+  "forbidden_inputs": [
+    "Any prior submission GeoTIFF (H19-5, H33, H77D, H77-Step, H78, etc.)",
+    "ext_derived_sgmc_faults_100m_u8.tif (0% SGMC contamination)",
+    "dist_known_fault_px column in GDR CSVs",
+    "Withheld fault segments in any holdout fold"
+  ],
+  "static_tsd_channels": [
+    "tsd_transtens_index",
+    "tsd_swarm_excess",
+    "tsd_mt_cap_margin",
+    "tsd_basement_pullapart",
+    "tsd_hydro_upflow_aniso",
+    "tsd_rad_kth_alter_edge",
+    "tsd_lidar_deconf_dipole",
+    "tsd_pot_tilt_bridge",
+    "tsd_strain_scarp_deficit",
+    "tsd_composite_surface"
+  ],
+  "fold_visible_loco_channels": [
+    "vis_dist_clipped",
+    "vis_cracktip_lobe",
+    "vis_stepover_corridor",
+    "vis_strain_deficit",
+    "vis_transtens_relay"
+  ],
+  "experiment_budget": {
+    "max_experiments": 3,
+    "max_hours": 2.0,
+    "experiments": [
+      {
+        "id": "E1",
+        "name": "Feature Synthesis, Single-Feature Leakage Canaries & Standalone Surface Screen",
+        "script": "scripts/tsd_exp1_canary_and_screen.py",
+        "output": "evidence/tsd_exp1_canary_and_screen.json",
+        "description": "Compute the 10 static H77-TSD channels and 5 fold-visible LOCO channels on seed=30; test symmetric ROC-AUC canaries on all 15 channels (hard stop if any > 0.90); score standalone label-free S_tsd_physics vs A0_random on gems57-pooled-hide-v2."
+      },
+      {
+        "id": "E2",
+        "name": "Dual-Seed Whole-Component Buffered Spatial Holdout & Ablation Benchmark",
+        "script": "scripts/tsd_exp2_holdout.py",
+        "output": "evidence/tsd_exp2_holdout.json",
+        "description": "Evaluate A_tsd_full (OOF blend + 300 m submodular cover, 37,654 dots) vs A_tsd_greedy (same surface + greedy emit77), A_tsd_static_only (no LOCO mechanics), A_std_greedy (standard raw+terrain+rad HGB + emit77), and A0_random on Seed 30 (11,342 withheld positives) and Seed 20 (11,321 withheld positives) using unmodified vendor/gems57/evaluate_holdout.py."
+      },
+      {
+        "id": "E3",
+        "name": "Full-Map Out-of-Fold Candidate Build, Two-Phase 812-Registry + Local Uniqueness Audit & Portal Packaging",
+        "script": "scripts/tsd_exp3_build_and_audit.py",
+        "output": "evidence/run_card_tsd.json",
+        "description": "Build 4-quadrant OOF full-map H77-TSD surface (0 in-sample pixels), run Phase 1 pre-placement surface uniqueness and Phase 2 final-dot uniqueness across all 812 archive registry rasters + all local GEMSDOE77 rasters via vendor/gems57/uniqueness.py, write gems77-tsd-transtens-swarm-submod-37654dots-20261021-zeros.tif (.zip) via vendor/gems57/submission_writer.py, and verify with scripts/validate_submission.py."
+      }
+    ]
+  },
+  "promotion_and_uniqueness_policy": {
+    "leakage_canary_ceiling_symmetric_auc": 0.90,
+    "surface_spearman_rho_limit": 0.90,
+    "final_dots_3px_forward_overlap_limit": 0.70,
+    "policy_i17_literal_dense_witness_rule": "Under repository Policy I17, the full-footprint continuous witness ab0a0a62 forces literal 3-px forward overlap = 1.0 > 0.70 on every non-empty candidate. Therefore protocol_unique must be recorded as false and overall verdict/upload status must remain fail-closed ('negative' / 'NOT OK TO SUBMIT — inspection download only') even if scientific holdout and sparse dot-field uniqueness pass."
+  }
+}
