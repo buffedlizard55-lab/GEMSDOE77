@@ -26,6 +26,24 @@
       "complete_registry_scan": false
     }
   },
+  "review_validation": {
+    "listed_primary_tiffs": {
+      "evidence_class": "FORMAT/INTEGRITY MEASUREMENT",
+      "count": 32,
+      "all_pass": true,
+      "portal_acceptance": false,
+      "uniqueness_clearance": false
+    },
+    "software_tests": {
+      "evidence_class": "TEST RESULT",
+      "passed": 236,
+      "failed": 0
+    },
+    "preflight_exit_code": 2,
+    "preflight_decision": "STOP_UNIVERSAL_DUPLICATE",
+    "release_authorized_file_count": 0
+  },
+  "shared_tool_repair": "scripts/preflight_registry.py now verifies an exact declared local amendment hash only when its upstream hash matches the pinned file hash and measurement_semantics_unchanged is true. No overlap threshold or measurement changed.",
   "raster_sha256": null,
   "validator_output": {
     "new_tiff_generated": false,
