@@ -1,0 +1,56 @@
+{
+  "file": "/home/user/GEMSDOE77/docs/downloads/gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif",
+  "checks": {
+    "crs_epsg": 32611,
+    "shape": [
+      3730,
+      3292
+    ],
+    "count": 1,
+    "dtype": "float32",
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata_is_none": true,
+    "transform_matches_sample": true,
+    "crs_matches_sample": true,
+    "n_cells": 12279160,
+    "n_nan": 0,
+    "n_inf": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "n_below_0": 0,
+    "n_above_1": 0,
+    "n_sentinel_le_-1e30": 0,
+    "outside_footprint_nonzero": 0,
+    "dots_gt_0": 44090,
+    "dots_equal_1": 44090,
+    "unique_values": [
+      0.0,
+      1.0
+    ],
+    "dots_on_catalogue": 0,
+    "min_dot_distance_to_catalogue_px": 3.1622776601683795,
+    "dots_with_neighbour_within_2p8px": 0,
+    "sha256": "20be05cc671c85484e4cfc8ea40d2fced71d7ec70f20ab915f36fcc68fcc4851",
+    "sha256_matches_bundle": true,
+    "zip_members": [
+      "gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif"
+    ],
+    "zip_single_tif_identical": true,
+    "metric_exact_vs_bruteforce_max_err": 7.105427357601002e-15,
+    "official_worked_example_recomputed": 0.6026516673362796,
+    "alpha_beta_radius": [
+      0.2,
+      0.8,
+      300.0
+    ]
+  },
+  "failures": [],
+  "all_passed": true
+}

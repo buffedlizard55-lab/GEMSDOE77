@@ -109,6 +109,13 @@
   "template_literal_reading_duplicate": true,
   "template_like_for_like_reading_duplicate": true,
   "unique_informative_reading": true,
+  "postmerge_check": {
+   "rasters_checked": 19,
+   "scope": "rasters published after the registry snapshot: GEMSDOE77 main lanes + GEMSDOE73-76",
+   "worst_overlap_informative": 0.22939227095999792,
+   "worst_spearman": 0.014878746913165507,
+   "duplicates": 0
+  },
   "thresholds": {
    "rho": 0.9,
    "forward_overlap": 0.7,

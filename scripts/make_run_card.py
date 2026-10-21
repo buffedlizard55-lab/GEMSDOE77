@@ -19,6 +19,18 @@ def j(p):
     return json.loads((ROOT / p).read_text())
 
 
+def _postmerge():
+    p = ROOT / "evidence" / "e3_uniqueness_postmerge.json"
+    if not p.exists():
+        return None
+    rows = [r for r in json.loads(p.read_text())["rows"] if r.get("positives")]
+    inf = [r for r in rows if not r.get("space_filling")]
+    return {"rasters_checked": len(rows), "scope": "rasters published after the registry snapshot: GEMSDOE77 main lanes + GEMSDOE73-76",
+            "worst_overlap_informative": max(r["forward_overlap"] for r in inf) if inf else None,
+            "worst_spearman": max(r["spearman"] for r in rows) if rows else None,
+            "duplicates": sum(bool(r.get("duplicate_flag")) for r in rows)}
+
+
 def main():
     sub = j("docs/data/submission.json")
     rep = j("evidence/e3_unique_repair.json")
@@ -96,6 +108,7 @@ def main():
             "template_literal_reading_duplicate": lit["duplicate"],
             "template_like_for_like_reading_duplicate": lfl["duplicate"],
             "unique_informative_reading": unique_informative,
+            "postmerge_check": _postmerge(),
             "thresholds": p2["thresholds"]},
         "duplicate_log": {"first_build": "logged DUPLICATE by the template audit, not shipped",
                           "first_build_dots": first.get("candidate", {}).get("dots"),

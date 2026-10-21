@@ -1,0 +1,35 @@
+{
+ "note": "Status of every submission file in this repository, copied from each lane's own run card. Selector approval is a separate step; no file below is selector-approved.",
+ "lanes": [
+  {
+   "lane": "LIA: live-score inversion and allocation",
+   "page": "lia.html",
+   "summary": "lia-executive-summary.html",
+   "file": "downloads/gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif",
+   "format_valid": true,
+   "protocol_unique": true,
+   "verdict": "negative",
+   "upload": "Safe to upload (portal-valid, unique). Not recommended for a slot; selector: not approved."
+  },
+  {
+   "lane": "Contact-physics + front-base",
+   "page": "contactphys.html",
+   "summary": "contactphys-executive-summary.html",
+   "file": "downloads/gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif",
+   "format_valid": true,
+   "protocol_unique": null,
+   "verdict": "negative",
+   "upload": "Selector: not approved (see its run card)."
+  },
+  {
+   "lane": "Selective-U curvature (research TIFF)",
+   "page": "index.html",
+   "summary": "executive-summary.html",
+   "file": "downloads/gems77-h77-urank-curvature-0d868dc271bb-research.tif",
+   "format_valid": true,
+   "protocol_unique": false,
+   "verdict": "negative",
+   "upload": "Not OK to submit: research TIFF, literal gate failed."
+  }
+ ]
+}

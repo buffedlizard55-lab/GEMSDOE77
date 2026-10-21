@@ -1,7 +1,10 @@
-# large restored inputs live outside git (re-fetch with scripts/restore_data.py)
-.cache/
+# large restored inputs live outside git (re-fetch with scripts/lia_restore_data.py or scripts/download_competition_data.sh)
 .venv/
+.cache/
 __pycache__/
+.pytest_cache/
 *.pyc
-work/
 *.aux.xml
+work/
+data/*
+!data/README.md

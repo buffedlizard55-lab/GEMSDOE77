@@ -1,0 +1,1570 @@
+Data Acquisition and Processing of the  
+GeoDAWN Aeromagnetic and Radiometric Survey 
+Task Order No. 140G0221F0024 
+NV_WestCentral_Geophysical_2020_D21  
+ 
+ 
+ 
+Contract No. G16PC00016 
+U. S. GEOLOGICAL SURVEY 
+NATIONAL GEOSPATIAL TECHNICAL OPERATIONS CENTER 
+1400 Independence Dr. 
+Rolla, MO 65401 
+ 
+ 
+Submitted By: 
+NV5 GEOSPATIAL, Inc. 
+and 
+EDCON-PRJ, Inc. 
+ 
+
+
+2 
+ 
+Table of Contents 
+ 
+Table of Contents ............................................................................................................................ 2 
+List of Figures ................................................................................................................................. 2 
+List of Tables .................................................................................................................................. 3 
+Introduction ..................................................................................................................................... 3 
+Survey Planning .............................................................................................................................. 5 
+Data Acquisition ............................................................................................................................. 7 
+Survey Methodology ..................................................................................................................... 12 
+Safety Plan .................................................................................................................................... 15 
+Equipment ..................................................................................................................................... 16 
+Data Processing ............................................................................................................................. 21 
+Deliverables .................................................................................................................................. 27 
+Appendix A: Daily Survey Log 
+Appendix B: Control Line Mean Counts 
+Appendix C: Daily Spectrometer Resolution Tests 
+ List of Figures 
+ 
+Figure 1. Location Map of the GeoDAWN Project Area. ............................................................................ 3 
+Figure 2. The Shawnee Mtns. and Granite Springs Valley, Pershing County. ............................................. 4 
+Figure 3. The Four GeoDAWN Acquisition Blocks. .................................................................................... 5 
+Figure 4. The Layout for Area 1 (Clayton Valley) with 100-meter drape areas shown in gray. .................. 6 
+Figure 5. Magnetic Intensity Maps Showing Monthly Acquisition Progress. .............................................. 7 
+Figure 6. The NOAA Air Quality Map for August 26, 2021. ....................................................................... 8 
+Figure 7. The Phoenix Mine, Lander County, Nevada. ................................................................................ 9 
+Figure 8. Installation of the Radar Altimeter at the Tonopah Municipal Airport. ...................................... 10 
+Figure 9. The Fallon Naval Air Station, Churchill County. ........................................................................ 11 
+Figure 10. Sand Mountain, Churchill County, Nevada. .............................................................................. 11 
+Figure 11. Star Peak, Humboldt Range, Pershing County, Nevada. ........................................................... 14 
+Figure 12. The EDCON-PRJ IAGSA Certificate. ...................................................................................... 15 
+Figure 13. The Cloudstreet Cessna 206 at the Fallon Airport. .................................................................... 16 
+Figure 14. The Bell Jet Ranger at a refueling stop on the Tonopah Block. ................................................ 17 
+Figure 15. Pilot's view of the Gold Zone Mine, Nye County, Nevada. ...................................................... 17 
+Figure 16. The Nuvia Dynamics Advanced Gamma Ray Spectrometer System. ....................................... 18 
+Figure 17. The Base Station Locations for the GeoDAWN Project. .......................................................... 20 
+Figure 18. IGRF Values for Area 1............................................................................................................. 23 
+Figure 19. IGRF Values for Area 2............................................................................................................. 23 
+
+3 
+ 
+List of Tables 
+ 
+Table 1. Aircraft and Cosmic Background Values. .................................................................................... 24 
+Table 2. Stripping Coefficients ................................................................................................................... 25 
+Table 3. Window Sensitivities .................................................................................................................... 25 
+Table 4. Attenuation Corrections ................................................................................................................ 25 
+ 
+Introduction 
+ 
+Task Order Task Order No. 140G0221F0024 NV_WestCentral_Geophysical_2020_D21 was 
+issued in March of 2021 to NV5 Geospatial, Inc. and its sub- contractor EDCON-PRJ, Inc. The 
+GeoDAWN Survey is one of many geophysical surveys recently funded through the Earth 
+Mapping Resources Initiative (Earth MRI). The contract cover ed the acquisition and processing 
+of aeromagnetic and radiometric data acquired over a portion of west-central Nevada (Figure 1).  
+ 
+ 
+Figure 1. Location Map of the GeoDAWN Project Area. 
+ 
+The GeoDAWN survey area encompasses 51,857 square kilometers in west -central Nevada. It 
+includes portions of Churchill, Esmeralda, Eureka, Lander, Lyon, Mineral, Nye, Pershing, and 
+Washoe Counties,  as well as small portions of Mono and Inyo Counties in California. The survey 
+extends 330 kilometers from west to east and 370 kilometers from north to south. 
+
+
+4 
+ 
+A total of 149,030 linear kilometers of h igh-resolution aeromagnetic and radiometric data was 
+acquired for the purpose of imaging the subsurface geology and structure of the area and to aid in 
+identifying potential locations of undiscovered mineral and geothermal resources. These data will 
+be used to evaluate the potential for undiscovered resources and will contribute to USGS and 
+DOE-related mineral and geothermal resource assessments of the region. 
+Stakeholders for this project include  the USGS Geology, Minerals, Energy, and Geophysics 
+Science Center, the DOE Office of Energy Efficiency and Renewable Energy, the Nevada Bureau 
+of Mines and Geology, Tribal Councils, and other state and federal offices. 
+ 
+The project was managed by the designated USGS Point -of-Contact (POC) from the National 
+Geospatial Technical Operations Center in Rolla, Missouri.  Chase Thompson was the Project 
+Manager for the NV5 Geospatial GPSC3 contract (G16PC00016). Technical Liaisons from the 
+USGS directed the survey planning and conducted reviews of the preliminary field data. 
+ 
+ 
+Figure 2. The Shawnee Mtns. and Granite Springs Valley, Pershing County. 
+ 
+Michael Hobbs, VP of Operations for EDCON-PRJ, managed the data acquisition, quality control, 
+and communications with the USGS and DOE Technical Liaisons. Nick Anderson conducted the 
+in-office quality control and processing of the data for EDCON -PRJ as well as the generation of 
+the grids and databases used for daily reviews.  
+ 
+A large number of individuals contributed their time, talent, focus and effort to the field acquisition 
+of the GeoDAWN data.  Cloudstreet Flying Service, owned and operated by Joe Nance, conducted 
+
+
+5 
+ 
+the fixed-wing operations. Pilots and crew for Cloudstreet included Tracie Porter, Kyle Kendall, 
+David Cyr, Bronson Macdonald, Nick Koukoutsakis, and Jim Witler.  
+ 
+Precision GeoSurveys, owned and operated by Harmen Keyser, conducted the helicopter 
+acquisition over the Tonopah Block. Pilots and crew members for Precision included Ryan Snow, 
+Bruce Larsen, Colin Pelton, Shawn Walker, Jenny Poon and Wendell Huttema. 
+Survey Planning 
+ 
+The first set of preliminary boundaries for the GeoDAWN Project was  forwarded by the USGS 
+staff to NV5 Geospatial in late September of 2020. The RFP and an initial Task Order was issued 
+on November 10, 2020 and a Technical Exchange was conducted on November 20, 2020.  
+During the Technical Exchange with USGS and DOE scientists and staff, agreements were reached 
+on the type of aircraft to be utilized, the use and characteristics of hybrid drape surfaces, and with 
+excluding areas over Tribal Lands within the survey. The NV5 Team submitted its final Technical 
+Proposal in January of 2021 and the Notice to Proceed was received in March of 2021. 
+ 
+ 
+Figure 3. The Four GeoDAWN Acquisition Blocks. 
+ 
+Given the extremely large size of the project, it was decided to divide the survey into four separate 
+acquisition blocks, each with an independent base of operations at the towns  which became the 
+name for each block. Acquisition was planned to begin at the northernmost block in the fall of 
+
+
+6 
+ 
+2021 and proceed south as weather permitted and then to return in 2022 to complete the unfinished 
+blocks. 
+The USGS staff coordinated efforts to contact Tribes within the survey area for permission to 
+overfly their lands during survey operations. Many tribes agreed to having the survey include their 
+lands, but several did not. Blocks of excluded airspace were generated to honor this request and 
+were incorporated into the flight navigation planning for the aircraft. The largest of these areas can 
+be seen  as red polygons in the image above (Figure 3.). 
+The GeoDAWN Project included two primary areas. Area 1 is located southwest of Tonopah and 
+was incorporated into the Tonopah acquisition block. Area 1 (The Clayton Valley) was designated 
+to be a high-density survey with primary flight traverse lines flown on a N 90° E heading at 200-
+meter spacings and tie lines to be flown on a N180°E heading at 2,000- meter spacings with a 
+hybrid, pre-planned drape of 100 meters over basins and 150 meters over mountain ranges (Figure 
+4.).   
+ 
+ 
+Figure 4. The Layout for Area 1 (Clayton Valley) with 100-meter drape areas shown in gray. 
+ 
+The rest of the GeoDAWN survey area (Area 2) was designated to have primary flight traverse 
+lines flown on a N 90° E heading at 400-meter spacings and tie lines flown on a N180°E heading 
+at 4,000-meter spacings, with a hybrid, pre -planned drape of 150 meters over the basins and 200 
+meters over the mountain ranges. Minor adjustments to the survey areas were made in consultation 
+
+
+7 
+ 
+with the USGS Technical Liaisons to square up boundary lines, improve the drape surface in areas 
+of high relief, and eliminate short line segments without tie line intersections.  
+The pre-planned drape surfaces were generated using proprietary software that incorporate s the 
+digital terrain model, the required drape height, and the flight characteristics of the survey aircraft 
+(survey speed, vertical acceleration, and rate of climb) to produce a hyperbolically- smoothed 
+digital surface that allow s close terrain following within a safe -flight envelope for the survey 
+aircraft. A climb/dive angle of 22 degrees was used for both Area 1 and Area 2 flight planning. 
+Data Acquisition 
+ 
+Data acquisition for the GeoDAWN Project required 142 days of fixed- wing flights and 22 days 
+of helicopter flights. A total of 149,030 kilometers of magnetic and radiometric data was acquired 
+over 1,055 primary flight lines and 83 tie lines (Figure 5.).  
+ 
+ 
+Figure 5. Magnetic Intensity Maps Showing Monthly Acquisition Progress. 
+ 
+Survey operations were originally planned to begin on August 1, 2021, but numerous large 
+wildfires in the Sierra Nevada Mountains created unsafe haze conditions that persisted throughout 
+the months of August, September, and much of October (Figure 6.).  
+ 
+
+
+8 
+ 
+ 
+Figure 6. The NOAA Air Quality Map for August 26, 2021. 
+ 
+The wildfires finally abated mid -October, and the Cessna -180 fixed- wing crew mobilized to 
+Winnemucca on October 30 and established the initial base of operations at the Winnemucca 
+Municipal Airport. After conducting  compensation flights , equipment calibrations and testing, 
+and the establishment of a radiometric control line, data acquisition commenced on November 1 
+and continued until December 7, when an early, heavy snow blanketed the entire GeoDAWN 
+survey area.  
+ 
+The crew was not able to reposition to the southern portion of the GeoDAWN project because 
+heavy snow had collected on the higher ranges even 300 kilometers to the south. As a result, 
+acquisition was halted for the balance of the year and the crew mobilized to the Salton Sea area 
+and acquired data for the GeoFLIGHT project during the winter. A total of 21,546 line-kilometers 
+of magnetic and radiometric data within the Winnemucca Block w as acquired during the fall of 
+2021. 
+ 
+The Cloudstreet crew re- mobilized to Winnemucca on May 14, 2022 with a different aircraft, a 
+Cessna Turbo 206, and re -commenced acquisition on May 15. They completed the 62,530 
+kilometers of the Winnemucca Block in July and relocated their base of operations to the Fallon 
+Municipal Airport. At each of these  operational bases, a new radiometric control line was 
+established and was flown each day prior to data collection.  
+ 
+
+
+9 
+ 
+ 
+Figure 7. The Phoenix Mine, Lander County, Nevada. 
+ 
+On August 17, during a routine oil change and inspection of the Cessna 206, metallic fragments 
+were discovered in the oil pan, necessitating a complete engine replacement. A new engine was 
+located and shipped to Fallon in three weeks. The installation and testing of the new engine took 
+another two weeks, and the Cessna 206 crew wasn’t back on survey until September 26.  
+ 
+When the engine failure in the Cessna 206 occurred, it became clear that another aircraft would 
+need to be brought in to assist with the remaining survey blocks in order to finish GeoDAWN in 
+the fall of 2022. The decision was made to bring in Precision GeoSurvey’s Bell Jet Ranger 
+helicopter to acquire the Tonopah Block, the southernmost block and the one that included Area 1 
+(Clayton Valley). This approach was presented to the USGS and DOE Technical Liaisons on 
+August 22 and met with their approval.  
+ 
+
+
+10 
+ 
+ 
+Figure 8. Installation of the Radar Altimeter at the Tonopah Municipal Airport. 
+ 
+The Precision Jet Ranger Crew arrived in Tonopah on September 12, installed surveying 
+equipment the next day, and began data acquisition on September 14. They completed the 21,600 
+kilometers of the Tonopah Block, including Area 1, on October 6, having conducted 22 days of 
+multiple sorties over 24 calendar days. The survey layout and pre -planned drape surface used for 
+the Winnemucca, Fallon, and Hawthorne Blocks were used for the Precision Jet Ranger acquisition 
+of the Tonopah Block. As with the other acquisition blocks, tie lines from one block extended a 
+minimum of two kilometers into the adjacent block to ensure seamless merging of the datasets. 
+
+
+11 
+ 
+ 
+Figure 9. The Fallon Naval Air Station, Churchill County. 
+ 
+Once data acquisition resumed with the new engine , the Cessna 206 crew maintained excellent 
+production, completing the remaining 47,219 kilometers of the Fallon and Hawthorne Blocks and 
+completing the GeoDAWN Project on November 20. During this period they were able to 
+complete the portions of the survey within the controlled airspace of the Fallon Naval Air Station 
+(Figure 9.) and the restricted bombing ranges that could only be accessed on weekends.  
+ 
+ 
+Figure 10. Sand Mountain, Churchill County, Nevada. 
+
+
+12 
+ 
+Survey Methodology 
+ 
+Aircraft Compensations: 
+Prior to the commencement of survey operations,  magnetic compensation and calibration routines 
+were conducted to generate coefficients used during processing of the survey data. The pilot s 
+climbed to approx. 1,500 meters (4,900 ft.) above terrain and flew a square pattern in the four 
+cardinal directions at a high altitude to suppress geologic effects on the readings. The pattern was 
+flown twice, once “flat” as if conducting survey operations and once while performing moderate 
+roll, pitch, and yaw maneuvers.  
+Several compensation routines were conducted during the GeoDAWN Project : One with the 
+Cessna-180 at the beginning of survey operations, one with the Cessna -206 when it arrived at 
+Winnemucca and another when it was fitted with a new engine, and one was conducted with the 
+Jet Ranger helicopter when it began operations on the Tonopah Block. The data from the flux-gate 
+magnetometers were processed to generate X, Y and Z -axis coefficients used to compensate for 
+heading and maneuver error during survey operations. 
+ 
+Radar Altimeter Calibrations: 
+Radar altimeter calibrations were performed on each aircraft to calculate the coefficients to convert 
+mVolts as supplied by the on- board altimeter to meters  for the database . Identical FreeFlight 
+Systems TRA3000 radar altimeters were mounted on all aircraft utilized o n the GeoDAWN 
+Project. Each radar altimeter calibration included coefficients generated at a range of altitudes from 
+60 meters to 450 meters.  
+ 
+Cosmic Calibration: 
+Radiometric data were acquired during the compensation routines for the purpose of determining 
+the cosmic background and aircraft background counts to be used in the processing of spectrometer 
+data. The cosmic background data were acquired for 20 minutes at an elevation of 1,500 meters 
+(4,900 ft.) AGL for each aircraft. 
+ 
+Sensitivity and Height Attenuation Calibration: 
+The radiometric sensitivity and attenuation calibrations were conducted in conjunction with the 
+radar altimeter calibrations. Data were collected during a series of passes over the same traverse 
+at altitudes ranging from 60 meters to 450 meters to determine the height attenuation coefficients. 
+ 
+ 
+
+13 
+ 
+Daily Test Line Survey: 
+Radiometric control line s were established in proximity to each of the bases of operation. Data 
+were collected at survey drape height each day prior to data acquisition. A minimum of 200 
+seconds of data were recorded each traverse. The control line data is used to correct for daily 
+variations in temperature, humidity, and ground- level radon concentrations. A spreadsheet of the 
+daily control line data was included for review in the materials uploaded daily to the USGS and is 
+included in its entirety with the deliverables for this project (Appendix B.). 
+ 
+Daily Spectrometer Resolution Tests: 
+Thorium resolution tests were conducted each day prior to takeoff. First, the radiometric system 
+was allowed to warm up for 10 minutes, then 5 minutes of data were recorded in a defined location, 
+followed by 5 minutes of data collected with a Thorium source placed beneath the aircraft . A 
+spreadsheet of these daily sensitivity tests was included in the materials uploaded daily to the 
+USGS and is included with the deliverables for this project (Appendix C.). 
+ 
+Calculated Radar and GPS Position Corrections: 
+Instead of providing data from a barometric altimeter and in addition to radar altimeter coverage, 
+we acquired and provide “calculated radar” elevations for the aircraft. The calculated radar values 
+are generated by taking the NAD83/NAVD88 elevation values and subtracting the corresponding 
+values from the  USGS 3DEP Elevation.  
+We applied Precise Point Positioning corrections to the on-board GPS data, which results in GPS 
+elevation accuracies at the sub -meter level. We utilize Inertial Explorer software, developed by 
+Novatel, Inc., to accomplish the post -flight GPS corrections. P recise Point Positioning is similar 
+to differential corrections made with a GPS base station  and is much more accurate when flight 
+line lengths are as long as were encountered in this survey.  
+ 
+Quality Control Measures: 
+The data from each flight were reviewed three times by separate individuals. The data were first 
+reviewed by the pilot and crew immediately after each flight.  Then the data were downloaded 
+from the onboard computer and uploaded via ftp site to EDCON -PRJ’s offices in Lakewood, 
+Colorado for formal quality review.  
+As a second check, Michael Hobbs, Operations Manager for EDCON-PRJ, would then download 
+the data and review for quality and completeness. Finally, in Lakewood, each flight’s data were 
+checked for quality by Nick Anderson, Airborne Data Processor for EDCON -PRJ, and then 
+compensated and corrected for diurnal activity using data collected from the base station 
+magnetometer. The data were reviewed for flight line accuracy, GPS resolution, radar altimeter 
+positioning, magnetometer noise levels, and spectrometer count levels, tuning, and resolution. 
+
+14 
+ 
+Daily acquisition updates were forwarded via e -mail to the USGS and DOE staff . Two Geosoft 
+databases, one for magnetic data and one for radiometric data, were updated daily and posted to 
+the USGS folder on EDCON-PRJ’s ftp site for review.  
+The data quality was very high during all phases of this survey. Diurnal activity during the survey 
+varied, as would be expected given that acquisition took place over a 12- month period. All line 
+segments re-flown for diurnal activity were acquired across at least two tie lines to ensure seamless 
+line patches.  
+ 
+  
+Figure 11. Star Peak, Humboldt Range, Pershing County, Nevada. 
+ 
+ 
+  
+
+
+15 
+ 
+Safety Plan 
+ 
+All flight operations were conducted with safety and environmental awareness as the number one 
+priority.   
+ 
+Figure 12. The EDCON-PRJ IAGSA Certificate. 
+ 
+EDCON-PRJ is a member of the International Airborne Geophysics Safety Association and 
+subscribes to its safety procedures and policies.  Our safety plan for each project includes: 
+ 
+1. A thorough review of the survey area by staff and pilots for risk assessment, drape 
+considerations, and public safety. 
+ 
+2. Daily inspection of equipment and aircraft for performance and operational safety. 
+ 
+3. Daily flight and safety planning were conducted with the crew prior to takeoff.  
+ 
+4. Real-time on -board weather radar and surface conditions reporting through satellite 
+service. 
+ 
+5. An Emergency Response Plan (EMP) was completed prior to the commencement of survey 
+operations and included contact information for pilot and crew, local response teams and 
+authorities. Local authorities were notified of the location and extent of survey operations 
+prior to their commencement.  
+ 
+6. Real time tracking of the survey aircraft and the chase vehicle through a satellite location 
+service was conducted throughout survey operations. 
+ 
+Prior to each flight, the pilot performed a complete pre-flight inspection of the aircraft, including 
+control surfaces, fuel contamination testing, communications equipment, geophysical equipment, 
+and electrical systems. The pilot and crew then reviewed the flight plan for the day and discussed 
+any potential safety issues due to terrain, obstacles, wind, and weather.  
+
+
+16 
+ 
+Equipment 
+ 
+Survey Aircraft:  
+ 
+Cloudstreet Flying Service employed both a Cessna C-180 (Reg. N -8814X) and C-206 Turbo 
+(Reg. N -283TB) aircraft for the  fixed-wing portions of the GeoDAWN Project  (Figure 13.) . 
+EDCON-PRJ has a 17 -year working history with Cloudstreet Flying Service, having jointly 
+completed over 130 similar fixed- wing magnetometer projects throughout the United States , 
+including numerous projects for the USGS.   
+ 
+ 
+Figure 13. The Cloudstreet Cessna 206 at the Fallon Airport. 
+ 
+The aircraft have  STOL modification kits, which gives them better stability, climb and dive, and 
+control characteristics while on survey operations. The fiberglass tail stinger, which measures 3.5 
+meters from aircraft tail to magnetometer sensor pod, isolates the sensor from vibration and 
+electromagnetic noise sources. 
+ 
+The Bell Jet Ranger helicopter (Reg. C -FZHK) (Figure 14.) that was utilized for the Tonopah 
+Block is owned and operated by Precision GeoSurveys, Inc. of Langley, British Columbia. 
+Precision and EDCON-PRJ have been partnering for the past year to increase production on large 
+EarthMRI surveys. Precision also provided fixed -wing assistance early in 2022 on the EarthMRI 
+GeoFLIGHT project in southern California and is currently conducting the acquisition for the 
+EarthMRI Republic Survey in northeast Washington State. 
+ 
+ 
+
+
+17 
+ 
+ 
+Figure 14. The Bell Jet Ranger at a refueling stop on the Tonopah Block. 
+ 
+Airborne Magnetometers:  
+ 
+A Geometrics G823A Magnetometer was installed in the aft section of the tail stinger of the Fixed-
+wing aircraft.  This Cesium -vapor magnetometer has a sensitivity of 0.015 nT over a range of 
+20,000 – 100,000 nT, with a sensor noise level of less than 0.002 nT.  The airborne magnetic field 
+data were recorded at 10 Hz . 
+ 
+ 
+Figure 15. Pilot's view of the Gold Zone Mine, Nye County, Nevada. 
+
+
+18 
+ 
+ 
+A Scintrex CS-3 split-beam cesium vapor magnetometer was installed in the sensor pod of the 
+forward stinger on the Bell Jet Ranger (Figure 15.). The Scintrex CS-3 has a sensitivity of 0.0006 
+nT over a range of 15,000 – 105,000 nT, with a noise level of 0.002  nT. The airborne magnetic 
+field data were recorded at 10 Hz . The sensor was oriented vertically during survey operations. 
+ 
+ 
+Gamma Ray Spectrometers: 
+ 
+Nuvia Dynamics Advanced Gamma Ray Spectrometers (AGRSs) were utilized by both the fixed-
+wing and helicopter platforms for the GeoDAWN Project  (Figure 16.). The fixed-wing system 
+consisted of 16.8 liters of downward-looking NaI detectors and a 2.1 liter upward-looking detector. 
+The helicopter system consisted of 16.8 liters of downward- looking NaI detectors and a 4.2 liter 
+upward-looking detector.  The AGRS systems  feature a 512-channel microprocessor, automatic 
+calibration, and tuning using natural background elements.  
+ 
+ 
+ 
+Figure 16. The Nuvia Dynamics Advanced Gamma Ray Spectrometer System. 
+ 
+The spectrometers were calibrated prior to the start of survey operations and were tested for 
+sensitivity and resolution prior to each day’ s flights. Data was logged over a control line each 
+morning enroute to the survey area. The daily and control line data and resolution tests are attached 
+to this report as (Appendix B.) and (Appendix C.). 
+ 
+ 
+
+
+19 
+ 
+Global Positioning Systems: 
+ 
+Novatel PowerPak7 dual-band, geodetic-quality GPS receiver s were installed in  all aircraft and 
+supplied navigation positioning as well as geophysical data points. WAAS DGPS corrections were 
+utilized, providing sub-meter horizontal and vertical positioning (2D-RMS 95% probability).  The 
+Novatel Receiver has a proven accuracy using WAAS of +/ - 0.6 m. GPS data were recorded at 5 
+Hz during all survey operations. Precise Point Positioning (PPP) corrections were employed post-
+flight to increase positional accuracy even further. 
+ 
+ 
+Fluxgate Compensation Magnetometers: 
+ 
+An Applied Physics Systems Model 539 High Speed Digital 3- axis Fluxgate Magnetometer was 
+used to provide compensation data to the fixed-wing aircraft during survey operations. The Model 
+539 records X, Y, and Z- axis data at 30 Hz. 
+ 
+A Billingsley Model TFM100G2 Triaxial Fluxgate Magnetometer provided compensation data to 
+the Bell Jet Ranger during survey operations. The Model TFM 100G2 was recording data at 50 
+Hz. 
+ 
+ 
+Radar Altimeters: 
+ 
+FreeFlight Systems TRA-3000 radar altimeters were mounted on the bottom of each of the aircraft 
+and provided ground clearance information to the pilot as well as aircraft elevation positions to the 
+geophysical data stream.  The TRA-3000 Radar Altimeter provides precise altitude information at 
+10 Hz, with a digital recording resolution of 0.25 ft. 
+ 
+ 
+Survey Navigation Systems: 
+ 
+An Ag -Nav Platinum three -dimensional survey and aircraft guidance system was utilized to 
+provide pilot guidance for the fixed-wing aircraft. The system provides the pilot with cross -track 
+X-Y guidance and a vertical lightbar supplies Z -axis positions relative to the pre -planned drape 
+surface. 
+ 
+The Bell Jet Ranger utilized a Nuvia Dynamics Airborne Geophysical Information System (AGIS) 
+for survey navigation. Three -axis guidance is supplied by a flat screen display mounted on the 
+instrument dash of the helicopter. The display also allows the pilot to monitor the status of all on-
+board geophysical systems, so that a geophysical operator is not necessary.  
+ 
+ 
+
+20 
+ 
+Ground Based Instrumentation:  
+ 
+A Geometrics G -858 Cesium m agnetometer was used as the primary base station during fixed-
+wing survey operations along with a Geometrics 856 magnetometer deployed as a backup system.  
+Two GEM GSM -19T base station magnetometers  were used during helicopter operations.The 
+time-synchronized ground magnetic field data were digitally recorded at a 1.0 Hz and to a 
+resolution of 0.1 nT. The base station locations were located in  quiet areas  distanced from 
+electromagnetic noise sources and vehicle traffic at the four bases of operation (Figure 17.).  
+Best efforts were mad e to position the bases of operations to minimize areas  more than the 
+requested 80 kilometers from base station magnetometers. Figure  17 shows each base station  
+location with an 80 kilometer range ring. 
+ 
+ 
+Figure 17. The Base Station Locations for the GeoDAWN Project. 
+ 
+ Base Station Locations (UTM Zone 11 WGS84): 
+Winnemucca: 432658 mE 4528343 mN 
+Fallon:  349803 mE 4373452 mN 
+Hawthorne: 357908 mE 4266948 mN 
+Tonopah: 491299 mE 4213070 mN 
+
+
+21 
+ 
+Data Processing 
+ 
+ 
+A. Flight Path Recovery 
+ 
+The DGPS navigation vertical and horizontal coordinate outputs were recorded as latitude, 
+longitude, and elevation using the WGS84 geographic coordinate system and vertical 
+datum. WGS84 Vertical Datum Mapping parameters for processed digital and mapped data 
+are shown below. 
+     
+    Projection Information: 
+ 
+    Projection :    Geographic (Lat/Lon)     
+    Ellipsoid:     WGS84        
+    Datum :       WGS84 
+ 
+Projection:    UTM, Zone 11 
+    Ellipsoid:    WGS84      
+    Datum:     WGS84 
+ 
+A speed check on the location data was completed, and the line location with the derived 
+aircraft speed information was mapped for editing. After editing, the GPS data were accepted 
+for the final flight-path map production. 
+ 
+B. Magnetic Data 
+ 
+     1. Preliminary Processing and Data Editing 
+ 
+a. Digital magnetic and navigation data were transmitted from the field to EDCON-
+PRJ’s data site for daily evaluation and verification.     
+b. Profile plots of the magnetic data for each line were inspected for noisy or 
+missing data. 
+c. The data quality was good, and no filters were applied. 
+d. De-culturing of the data was not conducted. 
+ 
+     2. I.G.R.F. 
+ 
+The International Geomagnetic Reference Field (IGRF 2020), updated to the dates of 
+the survey, was calculated for the survey then removed for the diurnal correction and 
+added back into diurnal corrected magnetics before leveling. It was removed 
+permanently after leveling per the USGS request. 
+ 
+
+22 
+ 
+ 
+ 
+    3. Diurnal Correction 
+ 
+The base magnetometer data were inspected and compared with the observed magnetic 
+data trace. The following diurnal correction, in addition to the removal of diurnal by 
+the line adjustment procedures, was applied to the dataset: 
+ 
+The observed diurnal data were first  low-pass filtered to remove noise  and then the 
+IGRF was removed from each base location  and subtracted from the IGRF corrected 
+observed magnetic data. 
+ 
+Winnemucca IGRF value:  50195 – Flight1 to 87(fixed wing) 
+Fallon IGRF Value:  49107 – Flight 88 to 148(fixed wing) 
+Hawthorne IGRF Value:  48566 – Flight 149 to 161(fixed wing) 
+Tonopah IGRF Value:  48566 – all flights (helicopter) 
+ 
+    4. Leveling and Micro-leveling 
+ 
+Mis-ties at line intersections were calculated and adjusted to minimize mis -tie errors.  
+Initial leveling adjustments were completed using a DC level adjustment to compensate 
+for long wavelength diurnal effects. The average intersection mis -tie before DC 
+adjustment was 13.82 nT; after DC adjustment, the average mis-tie was 3.12 nT. After 
+micro-leveling the average mis-tie was 0.57 nT. 
+ 
+After DC-leveling, a slight strike filter was applied to the magnetic grid to remove any 
+line-pulls, which was then used as a leveling surface in micro-leveling. 
+ 
+The DC-leveled data showed line some line-oriented anomalies. A strike filter removed 
+these minor line pulls.  Then, the DC -leveled data were subtracted from the strike 
+filtered data to make a difference channel. A new leveled magnetics channel was 
+created by subtracting the filtered difference from the DC-leveled mag.  This non-linear 
+adjustment helped to maintain valid detail with minimal filtering.   
+ 
+After micro-leveling a small number of tie-lines still were not at the correct level due 
+to lower elevations than the corresponding flight lines. As a result, the tie-lines in these 
+locations showed anomalies that were not present on the flight lines. To get these 
+intersections leveled, the tie -lines were forced to the flight -line levels by linear 
+interpolation, then micro-leveled again, which removed anomalies caused by the linear 
+interpolation. 
+ 
+
+23 
+ 
+After gridding the leveled data, a 150- 300 bandpass filter was applied to the tmi to 
+reduce the sharpness of the peaks and to improve data quality to any operator/filters 
+applied to the grids. 
+     
+      
+    5. Reduction to the Pole 
+  
+     Reduction-to-the pole calculates the field that would be observed if the survey area  
+     were located at the North magnetic pole. This transformation shifts the magnetic  
+     anomalies  more nearly over the causative bodies.  
+ 
+     The reduced-to-pole grid for Area 1 was calculated using the following parameters: 
+ 
+ 
+Figure 18. IGRF Values for Area 1. 
+ 
+     The reduced-to-pole grid for Area 2 was calculated using the following parameters: 
+ 
+ 
+Figure 19. IGRF Values for Area 2. 
+ 
+
+
+24 
+ 
+ C. Spectrometer Data 
+ 
+Spectrometer data was processed using Geosoft Praga 4 software. The processing 
+workflow followed Sections 1-6 below: 
+ 
+ 
+1.  Filtering  
+ 
+All spectrometer data had NASVD spectra smoothing applied to it. 
+ 
+ 
+2. Reduction to Standard Temperature and Pressure 
+  
+A temperature and relative humidity sensor was mounted in each aircraft and recorded 
+data during all survey traverses. The radar altimeter data were reduced to effective 
+height in meters using the temperature and pressure data millibars. 
+ 
+ 
+3. Dead Time Correction  
+ 
+The data were corrected for dead-time at 10 milliseconds. 
+ 
+ 
+4.   Aircraft, Cosmic, and Radon Background 
+ 
+Test flights flown at 1,500 meters (4,900 feet) AGL w ere performed to calculate the 
+background values per  I.A.E.A. standard procedures. Radon was not constant during 
+the period of data acquisition and was removed using the data collected by the upward 
+crystal and comparing the downward uranium and thorium data to upward uranium and 
+thorium (Table 1). 
+ 
+Table 1. Aircraft and Cosmic Background Values. 
+ Potassium Thorium Uranium Total Count 
+Aircraft 
+Background 
+4 1 0.5 25 
+Cosmic 
+Background 
+0.1007 0.087 0.1074 1.82 
+     
+ 
+Radon removal is one of the most difficult tasks to be done when processing 
+radiometric data. Radon concentrations vary widely from day- to-day due to 
+fluctuations in temperature, pressure, humidity and atmospheric inversions. Although 
+utilizing counts from the upward -looking crystal are the preferred method of radon 
+removal, the process is not perfect.  
+
+25 
+ 
+In several places within the northern portion of the GeoDAWN Survey, slight banding 
+can be seen in the Uranium Concentration Grid ( 22103_u.grd). Data were collected 
+over the course of a full year in the northern portion of the survey, making radon 
+concentrations difficult to normalize. The resultant banding in the Uranium 
+Concentration Grid could be removed by filtering, but the decision was made to not 
+reduce the overall resolution of the radiometric data by eliminating this cosmetic effect.  
+ 
+ 
+   5.  Compton Stripping & Window Sensitivities 
+ 
+A series of pad calibrations were performed on April 7, 2022, at the Nuvia Dynamics  
+Facilities in Mississauga, Ontario. The values obtained from the pad calibration were 
+used to determine Stripping Coefficients and Window Sensitivities (Tables 2,3.). 
+ 
+    Table 2. Stripping Coefficients  
+Alpha 0.3322 
+Beta 0.4552 
+Gamma 0.8937 
+A 0.05 
+B 0 
+G 0 
+ 
+ 
+Table 3. Window Sensitivities 
+Potassium (%K) 212 
+Uranium (ppm) 50 
+Thorium (ppm) 55 
+Total Count (nGy/h) 125 
+ 
+ 
+6. Attenuation Correction 
+      
+The data were corrected for attenuation due to altitude. Calibration flights were 
+performed with each aircraft along control lines at elevations from 30 meters – 455 
+meters (100 feet – 1500 feet) (Table 4.). 
+ 
+Table 4. Attenuation Corrections 
+Potassium/m@STP Thorium/m@STP Uranium/m@STP Total 
+Count/m@STP 
+-0.0025 -0.0023 -0.0024 -0.0025 
+ 
+ 
+ 
+     
+
+26 
+ 
+7. Daily Resolution Test 
+   
+The AGRS spectrometer is a self-calibrating system that calibrates itself to Thorium 
+peaks as it logs data. A Thorium sensitivity test was conducted each day prior to 
+takeoff. First, the radiometric system was allowed to warm up for 10 minutes, then 
+five minutes of data were recorded in a defined location, followed by five minutes 
+of data collected with a Thorium source placed beneath the aircraft. The data were 
+checked each day to make sure the resolution of the spectra remained well within 
+specification (Appendix C.).  
+ 
+ 
+8.  Daily Control Line  
+ 
+Radiometric control lines were established near each base of operations. Data were 
+collected at survey drape height each day prior to data acquisition. A minimum of 
+200 seconds of data were recorded each traverse. Data were collected along this same 
+traverse daily and checked for consistency (Appendix B). 
+  
+
+27 
+Deliverables 
+A. Digital Data (each file has a suffix of _a1 for area1 data and_a2, for area2 including 
+area1.)
+• 22103_tmi.grd:  Total Magnetic Intensity Grid in Geosoft Grid Format
+• 22103_tmi_upcont_tmi150.grd: TMI Grid of Area 2 with Area 1 Upward Continued
+• 22103_rtp.grd: Reduced To Pole TMI Grid in Geosoft Grid Format
+• 22103_vg.grd:  Vertical Gradient of the TMI Grid in Geosoft Grid Format
+• 22103_hg.grd:  Horizontal Gradient of the TMI Grid in Geosoft Grid Format
+• 22103_dem.grd:  Topography Grid in Geosoft Grid Format
+• 22103_k.grd: Potassium Grid in Geosoft Grid Format
+• 22103_tc.grd:  Total Count Grid in Geosoft Grid Format
+• 22103_th.grd:  Thorium Grid in Geosoft Grid Format
+• 22103_thk.grd: Thorium/Potassium ratio Grid in Geosoft Grid Format
+• 22103_u.grd:  Uranium Grid in Geosoft Grid Format
+• 22103_uk.grd:  Uranium/Potassium ratio Grid in Geosoft Grid Format
+• 22103_uth.grd: Uranium/Thorium ratio Grid in Geosoft Grid Format
+• 22103_ternary.map: Ternary image in Geotiff Map Format
+• 22103_mag.gdb:  Survey magnetic line data in Geosoft Database Format
+• 22103_spec.gdb:  Survey radiometric line data in Geosoft Database Format
+Ma
+p Projection Information for contract Task Order 140G0221F0024: 
+Projection:  UTM 
+Datum: WGS84 
+Base Latitude: 0 
+Central Meridian: -117
+False Easting:   500,000 meters 
+False Northing:  0 meters 
+G
+rid Information for Task Order 140G0221F0024: 
+Area 1: 
+Origin of Grid :  406600.0, 4153800.0 
+Grid Interval: 50 meters 
+A
+rea 2: 
+Origin of Grid :  243200.0, 4135400.0 
+Grid Interval: 100 meters 
+
+28 
+ 
+Profile Data Channel Descriptions (Magnetics): 
+Channel Name Description Units 
+Line Line Number  
+flight Flight Number  
+heading Heading Degrees 
+fid Fiducial  
+time Time HH:MM:SS.SSS 
+date Date YYYY/MM/DD 
+lat Latitude Decimal Degrees, WGS84 
+lon Longitude Decimal Degrees, WGS84 
+x UTM X Coordinate, Zone 11 Meters, WGS84 
+y UTM Y Coordinate, Zone 11 Meters, WGS84 
+dem Digital Elevation Model Meters 
+drape Drape Surface Meters 
+gps_elev Gps elevation Meters (PPP corrected) 
+radar Radar Altimeter Meters 
+calc_radar Calculated Radar (gps_elev – 
+DEM) 
+Meters 
+base Base Station Magnetics nT 
+raw_mag Raw magnetics nT 
+comp_mag Compensated Magnetics nT 
+igrf_cor_base IGRF correction for the Base nT 
+filtered_base Filtered Base Magnetics nT 
+diurnally_cor_mag (IGRF Corrected Comp_mag – 
+IGRF corrected filt base)  
+nT 
+dc_level_mag Diurnally corrrected DC leveled 
+Magnetics. 
+nT 
+micro_leveled_surface Magnetics to Micro-level onto nT 
+micro_leveled_correction Micro-leveling Correction nT 
+micro_Leveled_mag Micro-leveled diurnally corrected 
+magnetics 
+nT 
+igrf_correction IGRF Correction nT 
+final_Mag Diurnally and IGRF Corrected and 
+leveled Magnetics 
+nT 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+29 
+ 
+ 
+ 
+Profile Data Channel Descriptions (Radiometrics): 
+Channel Name Description Units 
+Line Line Number  
+flight Flight Number  
+heading Heading Degrees 
+fid Fiducial  
+date Date YYYY/MM/DD 
+time Time HH:MM:SS.SS 
+Lat Latitude Decimal Degrees, WGS84 
+Lon Longitude Decimal Degrees, WGS84 
+x UTM X Coordinate, Zone 11 Meters, WGS84 
+y UTM Y Coordinate, Zone 11 Meters, WGS84 
+dem Digital Elevation Model Meters 
+drape Drape Surface Meters 
+gps_elev Gps elevation Meters (PPP corrected) 
+radar Radar Altimeter (Area 1 only) Meters 
+calc_radar Calculated Radar (gps_elev – 
+DEM) 
+Meters 
+radar_stp Radar corrected to STP Meters 
+Dose  Dose nGy/hour 
+cosmic_raw Raw Cosmic Count Cps 
+k_raw Potassium Raw Cps 
+tc_raw Total Count Raw Cps 
+Up_tc_raw Upward Count Raw Cps 
+th_raw Thorium Raw Cps 
+u_raw Uranium Raw Cps 
+kcorr Corrected Potassium %K 
+tccorr Corrected Total Count nGy/hour 
+thcorr Corrected Thorium Ppm 
+ucorr Corrected Uranium Ppm 
+thk_ratio Thorium/Potassium Ratio  
+uk_ratio Uranium/Potassium Ratio  
+uth_ratio Uranium/Thorium Ratio  
+ISPD Downward Spectrum  
+ISPU Upward Spectrum  
+NASVD_spectrum Smoothed Downward Spectrum  
+radon Radon Correction Cps 
+pressure Air Pressure Mbar 
+temp Temperature  Degrees Celsius 
+humidity Humidity % 
+
+30 
+ 
+ 
+
+Appendix A: Daily Survey Log 
+ 
+Date Aircraft Base Comments Kms 
+10.30.21 Cessna-180 Winnemucca        Radar Calibration, Attenuation, Set Control Line  
+10.31.21 Cessna-180 Winnemucca        Compensation, Cosmic Background   
+11.01.21 Cessna-180 Winnemucca    7 Partial Flight Lines   720 
+11.02.21 Cessna-180 Winnemucca     1 Flight Line, 5 Partial Flight Lines 1035 
+11.03.21 Cessna-180 Winnemucca     1 Flight Line, 5 Partial Flight Lines      738 
+11.05.21 Cessna-180 Winnemucca     9 Partial Flight Lines   575 
+11.07.21 Cessna-180 Winnemucca     3 Partial Flight Lines, 1 Reflight Line   365 
+11.08.21 Cessna-180 Winnemucca     6 Partial Flight Lines, 2 Partial Tie Lines   585 
+11.11.21 Cessna-180 Winnemucca     2 Partial Flight Lines, 7 Partial Tie Lines   633 
+11.12.21 Cessna-180 Winnemucca     1 Flight Line, 6 Partial Flight Lines, 5 Partial Tie Lines 1309 
+11.13.21 Cessna-180 Winnemucca     9 Partial Flight Lines, 3 Partial Tie Lines 1081 
+11.14.21 Cessna-180 Winnemucca   11 Partial Flight Lines, 4  Tie Lines 1355 
+11.17.21 Cessna-180 Winnemucca     1 Partial Flight Line   145 
+11.20.21 Cessna-180 Winnemucca   10 Partial Flight Lines 1225 
+11.21.21 Cessna-180 Winnemucca    6  Partial Flight Lines, 4 Partial Tie Lines 1030 
+11.22.21 Cessna-180 Winnemucca     6 Partial Flight Lines   595 
+11.25.21 Cessna-180 Winnemucca     6 Partial Flight Lines, 2 Partial Tie Lines   895 
+11.26.21 Cessna-180 Winnemucca     9 Partial Flight Lines 1010 
+11.27.21 Cessna-180 Winnemucca     9 Partial Flight Lines, 3 Tie Lines 1190 
+11.28.21 Cessna-180 Winnemucca     1 Flight Line, 10 Partial Flight Lines, 1 Reflight Line, 2 Tie Lines 1185 
+11.30.21 Cessna-180 Winnemucca   11 Partial Flight Lines, 2 Tie Lines, 1 Partial Tie Line 1093 
+12.01.21 Cessna-180 Winnemucca    6  Partial Flight Lines   634 
+12.02.21 Cessna-180 Winnemucca     9 Partial Flight Lines 1152 
+12.03.21 Cessna-180 Winnemucca   10 Partial Flight Lines 1384 
+12.04.21 Cessna-180 Winnemucca     6 Partial Flight Lines   632 
+12.07.21 Cessna-180 Winnemucca     9 Partial Flight Lines      980 
+12.14.21 Cessna-180 Winnemucca        Survey operations ended for year due to snowpack.   
+5.14.22 Cessna-206 Winnemucca     Compensation, Cosmic Background, Radar Calibration, Attenuation   
+5.15.22 Cessna-206 Winnemucca     2 Partial Flight Lines, 2 Tie Lines   437 
+5.16.22 Cessna-206 Winnemucca     4 Partial Flight Lines, 2 Tie Lines   697 
+5.17.22 Cessna-206 Winnemucca     7 Partial Flight Lines, 2 Tie Lines 1430 
+5.18.22 Cessna-206 Winnemucca     5 Partial Flight Lines, 2 Partial Tie Lines   884 
+5.21.22 Cessna-206 Winnemucca     8 Partial Flight Lines, 3 Partial Tie Lines 1401 
+5.22.22 Cessna-206 Winnemucca     4 Partial Flight Lines, 3 Tie Lines   880 
+5.23.22 Cessna-206 Winnemucca     4 Flight Lines, 1 Tie Line   925 
+5.24.22 Cessna-206 Winnemucca     4 Partial Flight Lines   412 
+5.25.22 Cessna-206 Winnemucca   11 Partial Flight Lines, 3 Tie Lines 1479 
+5.26.22 Cessna-206 Winnemucca     6 Partial Flight Lines   442 
+5.27.22 Cessna-206 Winnemucca     4 Partial Flight Lines   352 
+5.31.22 Cessna-206 Winnemucca   13 Partial Flight Lines 1250 
+6.01.22 Cessna-206 Winnemucca     9 Partial Flight Lines 1319 
+
+ 
+ 
+     
+Date Aircraft Base Comments Kms 
+6.02.22 Cessna-206 Winnemucca     7 Partial Flight Lines 1026 
+6.03.22 Cessna-206 Winnemucca     4 Partial Flight Lines   670 
+6.06.22 Cessna-206 Winnemucca     6 Partial Flight Lines  912 
+6.07.22 Cessna-206 Winnemucca     6 Partial Flight Lines  1024 
+6.08.22 Cessna-206 Winnemucca     8 Partial Flight Lines  1536 
+6.09.22 Cessna-206 Winnemucca     5 Partial Flight Lines    637 
+6.10.22 Cessna-206 Winnemucca     5 Partial Flight Lines    699 
+6.14.22 Cessna-206 Winnemucca     4 Partial Flight Lines     928 
+6.15.22 Cessna-206 Winnemucca     4 Partial Flight Lines, 10 Tie Lines  1175 
+6.16.22 Cessna-206 Winnemucca     4 Partial Flight Lines    592 
+6.20.22 Cessna-206 Winnemucca     5 Partial Flight Lines, 7 Tie Lines  1307 
+6.22.22 Cessna-206 Winnemucca     6 Partial Flight Lines  1106 
+6.24.22 Cessna-206 Winnemucca   11 Partial Flight Lines    690 
+6.26.22 Cessna-206 Winnemucca     4 Partial Flight Lines    462 
+6.27.22 Cessna-206 Winnemucca     7 Partial Flight Lines    850 
+6.29.22 Cessna-206 Winnemucca     9 Partial Flight Lines    711 
+6.30.22 Cessna-206 Winnemucca     6 Partial Flight Lines    714 
+7.01.22 Cessna-206 Winnemucca     3 Partial Flight Lines    223 
+7.02.22 Cessna-206 Winnemucca   16 Partial Flight Lines     120 
+7.03.22 Cessna-206 Winnemucca   10 Partial Flight Lines, 1 Partial Tie Line    446 
+7.04.22 Cessna-206 Winnemucca     7 Partial Flight Lines, 2 Partial Tie Lines    862 
+7.05.22 Cessna-206 Winnemucca     9 Partial Flight Lines    882 
+7.06.22 Cessna-206 Winnemucca   10 Partial Flight Lines    844 
+7.07.22 Cessna-206 Winnemucca   10 Partial Flight Lines    611 
+7.08.22 Cessna-206 Winnemucca     9 Partial Flight Lines    700 
+7.09.22 Cessna-206 Winnemucca     3 Partial Flight Lines, 2 Partial Tie Lines    486 
+7.10.22 Cessna-206 Winnemucca     8 Partial Tie Lines    720 
+   C-206 Crew Repositioned to Fallon   
+7.11.22 Cessna-206 Fallon     4 Partial Flight Lines, Set New Control Line    360 
+7.14.22 Cessna-206 Fallon   13 Partial Flight Lines, 2 Partial Tie Lines    956 
+7.15.22 Cessna-206 Fallon   16 Partial Flight Lines  1291 
+7.16.22 Cessna-206 Fallon   10 Partial Flight Lines, 2 Partial Tie Lines  1012 
+7.17.22 Cessna-206 Fallon     8 Partial Flight Lines, 2 Partial Tie Lines    896 
+7.20.22 Cessna-206 Fallon   14 Partial Flight Lines, 2 Partial Tie Lines  1108 
+7.21.22 Cessna-206 Fallon   13 Partial Flight Lines, 2 Partial Tie Lines  1269 
+7.23.22 Cessna-206 Fallon   18 Partial Flight Lines,2 Partial Tie Lines  1389 
+7.24.22 Cessna-206 Fallon   14 Partial Flight Lines, 4 Partial Tie Lines  1236 
+7.31.22 Cessna-206 Fallon   15 Partial Flight Lines    973 
+8.01.22 Cessna-206 Fallon   20 Partial Flight Lines, 1 Partial Tie Line  1233 
+8.02.22 Cessna-206 Fallon   17 Partial Flight Lines, 2 Partial Flight Lines  1241 
+8.03.22 Cessna-206 Fallon   22 Partial Flight Lines  1344 
+8.04.22 Cessna-206 Fallon   17 Partial Flight Lines, 6 Partial Tie Lines    967 
+8.05.22 Cessna-206 Fallon     6 Partial Flight Lines    446 
+8.06.22 Cessna-206 Fallon     9 Partial Flight Lines    328 
+8.07.22 Cessna-206 Fallon   14 Partial Flight Lines, 1 Tie Line  1524 
+
+ 
+ 
+     
+Date Aircraft Base Comments Kms 
+8.08.22 Cessna-206 Fallon   14 Partial Flight Lines, 3 Partial Tie Lines    653 
+8.09.22 Cessna-206 Fallon   15 Partial Flight Lines     884 
+8.10.22 Cessna-206 Fallon     7 Partial Flight Lines, 8 Tie Lines    1012 
+8.11.22 Cessna-206 Fallon   16 Partial Flight Lines    1441 
+8.12.22 Cessna-206 Fallon   10 Partial Flight Lines       972 
+8.13.22 Cessna-206 Fallon   12 Partial Flight Lines    1234 
+8.14.22 Cessna-206 Fallon   11 Partial Flight Lines    1181 
+8.17.22 Cessna-206 Fallon     8 Partial Flight Lines      872 
+   Cessna Flights Suspended for Replacement of Aircraft Engine  
+9.12.22  Bell Jet Ranger Tonopah    Compensation, Cosmic Background  
+9.13.22 Bell Jet Ranger Tonopah     2 Tie Lines as Test Data  
+9.14.22 Bell Jet Ranger Tonopah     6 Flight Lines     877 
+9.15.22 Bell Jet Ranger Tonopah     8 Flight Lines, 4 Tie Lines  1100 
+9.16.22 Bell Jet Ranger Tonopah   12 Flight Lines  1265 
+9.17.22 Bell Jet Ranger Tonopah     6 Flight Lines    615 
+9.19.22 Bell Jet Ranger Tonopah     8 Flight Lines, 2 Partial Flight Lines    824 
+9.20.22 Bell Jet Ranger Tonopah     6 Flight Lines, 2 Partial Flight Lines    691 
+9.21.22 Bell Jet Ranger Tonopah   16 Flight Lines, Radar Calibration, Attenuation  1406 
+9.22.22 Bell Jet Ranger Tonopah   20 Flight Lines  1590 
+9.23.22 Bell Jet Ranger Tonopah     8 Flight Lines    622 
+9.26.22 Bell Jet Ranger Tonopah   18 Flight Lines  1333 
+   Cessna Flights Recommence with New Engine  
+ Cessna-206 Fallon    17 Partial Flight Lines, Compensation    324 
+9.27.22 Bell Jet Ranger Tonopah    14 Flight Lines    912 
+ Cessna-206 Fallon    24 Partial Flight Lines   1088 
+9.28.22 Bell Jet Ranger Tonopah    18 Flight Lines  1020 
+ Cessna-206 Fallon      5 Partial Flight Lines, 2 Partial Tie Lines    563 
+9.29.22 Bell Jet Ranger Tonopah    26 Flight Lines  1160 
+ Cessna-206 Fallon    17 Partial Flight Lines, 6 Partial Tie Lines  1010 
+9.30.22 Bell Jet Ranger Tonopah    30 Flight Lines, 9 Tie Lines   1210 
+ Cessna-206 Fallon    34 Partial Flight Lines, 2 Partial Tie Lines  1086 
+10.01.22 Bell Jet Ranger Tonopah      6 Flight Lines, 16 Tie Lines      (Begins Area 1 In-Fill)  1145 
+ Cessna-206 Fallon    13 Partial Flight Lines, 8 Tie Lines     971 
+10.02.22 Bell Jet Ranger Tonopah    20 Flight Lines  1174 
+ Cessna-206 Fallon    24 Partial Flight Lines, 1 Tie Line  1010 
+10.03.22 Bell Jet Ranger Tonopah      6 Flight Lines    387 
+ Cessna-206 Fallon      6 Partial Flight Lines, 1 Tie Line  1086 
+10.04.22 Bell Jet Ranger Tonopah    26 Flight Lines  1650 
+ Cessna-206 Fallon    12 Flight Lines  1032 
+10.05.22 Bell Jet Ranger Tonopah    22 Flight Lines  1492 
+ Cessna-206 Fallon      8 Flight Lines, 2 Tie Lines     766 
+10.06.22 Bell Jet Ranger Tonopah    36 Flight Lines, 4 Tie Lines (Completes Tonopah Block)  1225 
+ Cessna-206 Fallon    22 Partial Flight Lines    570 
+10.07.22 Cessna-206 Fallon      9 Flight Lines, 2 tie Lines    288 
+10.08.22 Cessna-206 Fallon    25 Partial Flight Lines 1305 
+
+ 
+ 
+     
+Date Aircraft Base Comments Kms 
+10.09.22 Cessna-206 Fallon    12 Partial Flight Lines, 10 Tie Lines  1124 
+10.10.22 Cessna-206 Fallon    16 Partial Flight Lines 1000 
+10.11.22 Cessna-206 Fallon   40 Partial Flight Lines   1100 
+10.12.22 Cessna-206 Fallon   26 Partial Flight Lines     906 
+10.13.22 Cessna-206 Fallon   22 Partial Flight Lines  1271 
+10.14.22 Cessna-206 Fallon   20 Partial Flight Lines   1009 
+10.15.22 Cessna-206 Fallon   19 Partial Flight Lines     797 
+10.16.22 Cessna-206 Fallon   32 Partial Flight Lines  1218 
+10.17.22 Cessna-206 Fallon   16 Partial Flight Lines   1098 
+10.18.22 Cessna-206 Fallon     8 Flight Lines     736 
+10.19.22 Cessna-206 Fallon   10 Flight Lines, 16 Partial Flight Lines   1137 
+10.20.22 Cessna-206 Fallon   12 Flight Lines, 1 Partial Flight Line    592 
+10.21.22 Cessna-206 Fallon   17 Flight Lines, 1 Tie Line  1416 
+10.23.22 Cessna-206 Fallon   47 Partial Flight Lines  1192 
+10.24.22 Cessna-206 Fallon   16 Flight Lines, 2 Partial Tie Lines  1358 
+10.25.22 Cessna-206 Fallon   12 Flight Lines, 10 Partial Flight Lines   1488 
+10.26.22 Cessna-206 Fallon   16 Flight Lines, 2 Partial Tie Lines  1395 
+10.27.22 Cessna-206 Fallon     6 Flight Lines, 2 Partial Tie Lines    613 
+10.28.22 Cessna-206 Fallon   10 Flight Lines, 2 Partial Tie Lines  1139 
+10.29.22 Cessna-206 Fallon   30 Partial Flight Lines  1520 
+10.30.22 Cessna-206 Fallon   20 Partial Flight Lines    788 
+   C-206 Crew Repositioned to Hawthorne  
+10.31.22 Cessna-206 Hawthorne     4 Flight Lines, 2 Partial Flight Lines     495 
+11.02.22 Cessna-206 Hawthorne     2 Fight Lines, 4 Partial Flight Lines     404 
+11.04.22 Cessna-206 Hawthorne   10 Flight Lines, 2 Partial Flight Lines, 4 Tie Lines    916 
+11.05.22 Cessna-206 Hawthorne     2 Flight Lines, 11 Partial Flight Lines     728 
+11.06.22 Cessna-206 Hawthorne     2 Flight Lines, 6 Partial Flight Lines    428 
+11.09.22 Cessna-206 Hawthorne     4 Flight Lines    376 
+11.10.22 Cessna-206 Hawthorne    10 Flight Lines, 6 Partial Flight Lines, 2 Tie Lines 1124 
+11.11.22 Cessna-206 Hawthorne    18 Flight Lines, 2 Tie Lines 1021 
+11.12.22 Cessna-206 Hawthorne      8 Flight Lines, 4 Tie Lines 865 
+11.14.22 Cessna-206 Hawthorne    13 Flight Lines, 3 Tie Lines 1285 
+11.15.22 Cessna-206 Hawthorne    14 Flight Lines 1274 
+11.16.22 Cessna-206 Hawthorne    20 Flight Lines, 2 Tie Lines 1161 
+11.17.22 Cessna-206 Hawthorne      9 Flight Lines, 5 Tie Lines    903 
+11.19.22 Cessna-206 Hawthorne    20 Flight Lines, 2 Tie Lines   1210 
+11.20.22 Cessna-206 Hawthorne    18 Flight Lines 886 
+     
+ 
+ 
+ 
+
+Appendix B: Control Line Mean Counts 
+ 
+Fixed-Wing (Winnemucca, Fallon and Hawthorne Blocks) 
+Date 
+Mean Total 
+Counts/Sec 
+Mean Th 
+Counts/Sec 
+Mean U 
+Counts/Sec 
+Mean K 
+Counts/Sec 
+Mean 
+Humidity % 
+Mean 
+Temp °C Flight #  Location 
+10/30/2021 2109 86 84 108 58 19.7 1  Winnemucca 
+10/31/2021 1671 69 68 87 55 16.7 2 Winnemucca 
+11/1/2021 1824 75 70 91 58 12.0 3,4 Winnemucca 
+11/2/2021 1973 83 79 101 58 9.2 5,6 Winnemucca 
+11/3/2021 2087 87 85 106 61 9.8 7 Winnemucca 
+11/5/2021 1924 81 78 100 57 11.2 8 Winnemucca 
+11/7/2021 1674 71 70 87 54 6.5 9 Winnemucca 
+11/8/2021 2080 88 83 106 58 3.0 10 Winnemucca 
+11/11/2021 1672 69 70 88 64 16.2 11 Winnemucca 
+11/12/2021 1859 77 76 97 76 11.7 12,13 Winnemucca 
+11/13/2021 2049 83 81 104 55 11.1 14,15 Winnemucca 
+11/14/2021 1951 80 78 100 54 12.5 16,17 Winnemucca 
+11/17/2021 1885 78 78 98 53 5.6 18 Winnemucca 
+11/20/2021 1899 77 76 96 53 3.7 19,20 Winnemucca 
+11/21/2021 1939 80 78 100 55 9.2 21,22 Winnemucca 
+11/22/2021 2111 86 81 104 53 4.7 23 Winnemucca 
+11/25/2021 1847 79 75 96 53 1.7 24,25 Winnemucca 
+11/26/2021 2194 96 86 110 54 5.2 26,27 Winnemucca 
+11/27/2021 2294 95 88 113 54 6.3 28,29 Winnemucca 
+11/28/2021 2263 95 87 112 54 8.9 30,31 Winnemucca 
+11/30/2021 2203 92 85 110 53 7.4 32,33 Winnemucca 
+12/1/2021 2273 94 88 112 53 7.7 34 Winnemucca 
+12/2/2021 2395 97 91 117 53 4.8 35,36 Winnemucca 
+12/3/2021 2441 100 94 121 52 13.7 37,38 Winnemucca 
+
+ 
+ 
+Date 
+Mean Total 
+Counts/Sec 
+Mean Th 
+Counts/Sec 
+Mean U 
+Counts/Sec 
+Mean K 
+Counts/Sec 
+Mean 
+Humidity % 
+Mean 
+Temp °C Flight #  Location 
+12/4/2021 2483 101 92 120 55 7.6 39 Winnemucca 
+12/7/2021 2375 96 89 115 52 4.6 40,41 Winnemucca 
+5/15/2022 1797 75 72 91 43 16.3 43 Winnemucca 
+5/16/2022 1998 82 83 104 45 14. 44,45 Winnemucca 
+5/17/2022 2030 83 82 103 47 11.0 46,47,48,49 Winnemucca 
+5/18/2021 2011 82 81 103 31 14.3 50 Winnemucca 
+5/21/2022 1912 79 78 98 31 9.8 51 Winnemucca 
+5/22/2022 1790 75 72 92 33 6.8 52 Winnemucca 
+5/23/2022 1875 77 77 97 31 11.4 53 Winnemucca 
+5/24/2022 1742 71 73 92 19 22.8 54 Winnemucca 
+5/25/2022 2547 102 105 129 35 10.0 55 Winnemucca 
+5/26/2022 2111 87 87 108 33 13.9 56 Winnemucca 
+5/27/2022 2163 90 89 113 38 11.4 57 Winnemucca 
+5/31/2022 1826 77 107 96 57 7.0 58 Winnemucca 
+6/1/2022 2613 107 108 131 47 7.3 59 Winnemucca 
+6/2/2022 2128 88 86 110 33 10.7 60 Winnemucca 
+6/3/2022 2528 103 107 129 40 14.2 61 Winnemucca 
+6/6/2022 1738 73 73 92 50 12.6 62 Winnemucca 
+6/7/2022 2510 102 106 127 48 10.3 63 Winnemucca 
+6/8/2022 2045 85 83 104 34 13.2 64 Winnemucca 
+6/9/2022 2604 104 107 132 45 16.2 65 Winnemucca 
+6/10/2022 2058 85 85 106 41 17.3 66 Winnemucca 
+6/14/2022 2627 108 109 132 44 5.3 67 Winnemucca 
+6/15/2022 1955 80 80 101 37 9.3 68 Winnemucca 
+6/16/2022 2617 106 107 133 28 12.4 69 Winnemucca 
+6/20/2022 1986 83 82 104 47 7.5 70 Winnemucca 
+6/22/2022 2557 102 107 130 34 14.6 71 Winnemucca 
+6/24/2022 2497 101 103 127 41 14.6 72 Winnemucca 
+6/26/2022 2567 103 107 131 26 18.2 73 Winnemucca 
+
+ 
+ 
+Date 
+Mean Total 
+Counts/Sec 
+Mean Th 
+Counts/Sec 
+Mean U 
+Counts/Sec 
+Mean K 
+Counts/Sec 
+Mean 
+Humidity % 
+Mean 
+Temp °C Flight #  Location 
+6/27/2022 2820 113 116 141 32 16.4 74 Winnemucca 
+6/29/2022 2074 85 86 106 26 16.1 75 Winnemucca 
+6/30/2022 2579 105 107 130 28 15.1 76 Winnemucca 
+7/1/2022 2587 104 108 132 21 14.5 77 Winnemucca 
+7/2/2022 1800 74 76 0 12 27.8 78 Winnemucca 
+7/3/2022 2033 86 85 108 25 16.2 79 Winnemucca 
+7/4/2022 1912 80 79 101 28 13.7 80 Winnemucca 
+7/5/2022 1972 82 82 103 35 16.5 81 Winnemucca 
+7/6/2022 2412 97 102 124 39 17.1 82 Winnemucca 
+7/7/2022 2527 101 107 128 36 17.3 83 Winnemucca 
+7/8/2022 2568 102 108 130 28 17.1 84 Winnemucca 
+7/9/2022 1976 82 83 104 23 17.9 85 Winnemucca 
+7/10/2022 2592 105 107 130 27 14.4 86 Winnemucca 
+7/11/2022 2292 93 97 118 30 18.3 87 Winnemucca 
+7/14/2022 1733 74 74 91 28 18.9 88 Fallon 
+7/15/2022 1981 86 84 104 25 18.7 89 Fallon 
+7/16/2022 1798 77 76 94 42 20.9 90 Fallon 
+7/17/2022 1932 83 84 103 29 21.0 91 Fallon 
+7/20/2022 1835 79 77 96 46 19.3 92 Fallon 
+7/21/2022 1725 74 73 91 27 20.0 93 Fallon 
+7/23/2022 1640 71 70 87 21 18.6 94 Fallon 
+7/24/2022 1620 70 68 85 22 18.6 95 Fallon 
+7/31/2022 1958 85 81 102 25 22.1 96 Fallon 
+8/1/2022 1712 73 73 91 46 21.6 97 Fallon 
+8/2/2022 1792 77 75 94 46 20.1 98 Fallon 
+8/3/2022 1719 74 73 91 50 20.4 99 Fallon 
+8/4/2022 1672 72 69 88 46 20.5 100 Fallon 
+8/5/2022 1716 74 71 90 50 22.0 101 Fallon 
+8/6/2022 1611 69 68 84 75 18.0 102 Fallon 
+
+ 
+ 
+Date 
+Mean Total 
+Counts/Sec 
+Mean Th 
+Counts/Sec 
+Mean U 
+Counts/Sec 
+Mean K 
+Counts/Sec 
+Mean 
+Humidity % 
+Mean 
+Temp °C Flight #  Location 
+8/7/2022 1885 81 81 98 53 19.5 103 Fallon 
+8/8/2022 1702 73 72 90 37 22.5 104 Fallon 
+8/9/2022 1598 69 66 83 65 18.8 105 Fallon 
+8/10/2022 1847 80 78 98 76 17.3 106 Fallon 
+8/11/2022 1712 75 72 90 51 19.0 107 Fallon 
+8/12/2022 1827 79 77 98 31 18.6 108 Fallon 
+8/13/2022 1584 69 68 84 24 17.5 109 Fallon 
+8/14/2022 1854 81 79 99 28 17.8 110 Fallon 
+8/17/2022 1934 83 80 100 36 22.2 111 Fallon 
+9/26/2022 1545 67 65 82 17 29.5 113 Fallon 
+9/27/2022 1674 71 68 86 34 19.6 114 Fallon 
+9/28/2022 1797 77 76 94 35 15.9 115 Fallon 
+9/29/2022 1827 80 78 97 37 15.0 116 Fallon 
+9/30/2022 1802 78 75 94 41 13.6 117 Fallon 
+10/1/2022 1923 81 79 100 49 11.4 118 Fallon 
+10/2/2022 1852 80 75 95 49 10.6 119 Fallon 
+10/3/2022 2028 86 82 104 49 10.2 120 Fallon 
+10/4/2022 1919 82 78 98 43 12.1 121 Fallon 
+10/5/2022 1988 86 79 102 41 13.3 122 Fallon 
+10/6/2022 2089 89 84 107 38 13.5 123 Fallon 
+10/7/2022 2113 88 84 109 29 17.5 124 Fallon 
+10/8/2022 1993 86 80 102 32 13.3 125 Fallon 
+10/9/2022 2039 87 82 105 36 12.6 126 Fallon 
+10/10/2022 1975 86 81 103 39 14.3 127 Fallon 
+10/11/2022 2059 87 83 106 43 12.8 128 Fallon 
+10/12/2022 1868 80 77 97 37 12.4 129 Fallon 
+10/13/2022 2056 87 84 105 42 10.9 130 Fallon 
+10/14/2022 2006 86 82 103 38 11.1 131 Fallon 
+10/15/2022 1891 82 76 96 37 11.2 132 Fallon 
+
+ 
+ 
+Date 
+Mean Total 
+Counts/Sec 
+Mean Th 
+Counts/Sec 
+Mean U 
+Counts/Sec 
+Mean K 
+Counts/Sec 
+Mean 
+Humidity % 
+Mean 
+Temp °C Flight #  Location 
+10/16/2022 1891 81 77 97 34 11.0 133 Fallon 
+10/17/2022 2101 91 84 107 39 8.7 134 Fallon 
+10/18/2022 2122 89 83 107 25 17.5 135 Fallon 
+10/19/2022 2061 87 82 104 33 10.5 136 Fallon 
+10/20/2022 1976 84 80 101 31 9.7 137 Fallon 
+10/21/2022 2073 87 80 104 36 9.1 138 Fallon 
+10/23/2022 1703 73 72 90 51 6.9 139 Fallon 
+10/24/2022 1595 69 67 84 49 3.2 140 Fallon 
+10/25/2022 1853 81 75 95 47 9.4 141 Fallon 
+10/26/2022 1688 74 71 88 54 7.1 142 Fallon 
+10/27/2022 1814 76 74 94 23 14.1 143 Fallon 
+10/28/2022 1877 81 75 97 37 7.5 144 Fallon 
+10/29/2022 1984 85 79 102 39 5.2 145 Fallon 
+10/30/2022 1981 86 79 101 44 4.9 146 Fallon 
+10/31/2022 3007 121 119 151 24 17.7 147  Hawthorne 
+11/2/2022 2318 97 96 122 35 7.6 148  Hawthorne 
+11/4/2022 2294 95 95 119 47 5.6 149  Hawthorne 
+11/5/2022 2784 114 113 142 53 8.3 150  Hawthorne 
+11/6/2022 2491 102 103 130 62 11.9 151  Hawthorne 
+11/9/20222 1767 74 75 93 45 9.9 152  Hawthorne 
+11/10/2022 2257 93 92 117 55 4.8 153  Hawthorne 
+11/11/2022 2460 101 99 125 60 4.1 154  Hawthorne 
+11/12/2022 2301 94 91 118 44 7.5 155  Hawthorne 
+11/14/2022 2768 112 111 140 67 4.2 156  Hawthorne 
+11/15/2022 2647 108 104 133 66 5.3 157  Hawthorne 
+11/16/2022 2459 100 97 124 59 5.3 158  Hawthorne 
+11/17/2022 2539 103 99 127 56 4.8 159  Hawthorne 
+11/19/2022 2538 104 99 128 56 2.3 160  Hawthorne 
+11/20/2022 2256 93 88 114 23 11.1 161  Hawthorne 
+
+ 
+ 
+ 
+ 
+Bell Jet Ranger (Tonopah Block) 
+Date 
+Mean Total 
+Counts/Sec 
+Mean Th 
+Counts/Sec 
+Mean U 
+Counts/Sec 
+Mean K 
+Counts/Sec 
+Mean 
+Humidity % 
+Mean 
+Temp °C Flight #  Location 
+9/12/2022 3197 133 142 173 32 27.8 1  Tonopah 
+9/13/2022 3629 150 162 192 34 27.2 2  Tonopah 
+9/14/2022 3866 159 169 207 54 20.0 3  Tonopah 
+9/15/2022 3417 143 149 183 22 28.2 4  Tonopah 
+9/16/2022 3729 154 163 200 26 23.1 5  Tonopah 
+9/17/2022 2750 116 120 149 13 29.3 6  Tonopah 
+9/19/2022 2662 113 119 146 42 11.2 7  Tonopah 
+9/20/2022 3000 125 132 161 36 10.2 8  Tonopah 
+9/21/2022 3166 135 142 169 39 14.8 9  Tonopah 
+9/22/2022 2954 124 128 159 49 10.2 10  Tonopah 
+9/23/2022 3924 162 170 207 36 10.4 11  Tonopah 
+9/26/2022 3364 140 145 179 19 13.3 12  Tonopah 
+9/27/2022 2509 104 109 137 8 28.5 13  Tonopah 
+9/28/2022 3764 154 167 200 28 13.8 14  Tonopah 
+9/29/2022 3752 154 165 196 53 14.4 15  Tonopah 
+9/30/2022 4011 166 175 213 31 12.3 16  Tonopah 
+10/1/2022 4035 167 176 211 31 12.5 17  Tonopah 
+10/2/2022 4080 168 177 213 31 13.0 18  Tonopah 
+10/3/2022 2815 120 121 150 13 25.8 19  Tonopah 
+10/4/2022 3362 141 143 180 32 11.1 20  Tonopah 
+10/5/2022 3645 152 158 195 26 12.6 21  Tonopah 
+10/6/2022 4134 170 180 216 24 14.2 22  Tonopah 
+
+Appendix C: Daily Spectrometer Resolution Tests 
+ 
+Fixed-Wing (Winnemucca, Fallon and Hawthorne Blocks) 
+Date Detector Detector Detector Detector Detector Detector Detector Detector Detector Detector Summed  Summed Summed  Summed 
+  110095 110095 110096 110096 110097 110097 110098 110098 180510 180510 Down Down Up Up 
+  Tl208 Cs137 Tl208 Cs137 Tl208 Cs137 Tl208 Cs137 Tl208 Cs137 Tl208 Cs137 Tl208 Cs137 
+11/1/2021 4.24 7.66 5.46 8.80 5.07 9.01 5.21 8.44 3.44 8.28 4.97 8.51 3.44 8.28 
+11/2/2021 4.76 7.17 5.40 7.96 5.08 8.28 5.36 8.34 4.56 4.72 5.30 7.70 4.56 4.72 
+11/3/2021 4.52 7.22 5.59 9.05 4.89 8.43 5.37 8.33 4.38 6.36 5.09 8.96 4.38 6.36 
+11/5/2021 4.73 6.36 5.53 8.32 4.77 8.41 5.14 8.68 4.12 5.74 5.10 7.88 4.12 5.74 
+11/7/2021 4.79 7.97 5.61 8.44 5.07 6.81 6.05 6.88 3.55 7.56 5.65 7.15 3.55 7.56 
+11/8/2021 4.44 7.38 5.61 9.10 5.03 8.72 4.92 8.38 4.70 8.15 5.34 9.10 4.70 8.15 
+11/11/2021 4.95 6.15 5.37 4.99 4.87 9.41 5.55 7.91 4.56 7.15 5.26 8.15 4.56 7.15 
+11/12/2021 4.53 7.98 5.53 8.04 4.64 8.78 5.30 8.54 4.27 5.49 5.08 7.98 4.27 5.49 
+11/13/2021 4.60 8.09 5.13 8.90 4.67 8.34 5.25 8.18 4.60 5.62 4.92 7.96 4.60 5.62 
+11/14/2021 4.76 7.38 5.31 9.07 4.91 8.59 8.99 4.08 6.52 4.76 5.29 8.64 4.08 6.52 
+11/17/2021 3.88 7.73 4.52 7.73 4.86 8.72 5.42 8.14 5.54 7.16 5.38 8.51 5.54 7.16 
+11/20/2021 4.67 8.15 5.50 8.09 4.91 8.39 6.96 8.90 4.94 5.41 5.20 7.92 4.94 5.41 
+11/21/2021 4.74 8.03 5.28 7.96 4.63 7.91 6.28 8.16 4.19 4.52 5.14 8.20 4.19 4.52 
+11/22/2021 4.71 7.44 5.79 9.03 4.75 8.77 5.17 9.45 3.73 6.99 5.13 8.87 3.73 6.99 
+11/25/2021 4.24 6.30 5.10 8.46 4.83 8.02 6.20 9.57 3.24 7.83 5.24 8.75 3.24 7.83 
+11/26/2021 4.75 7.59 5.56 8.83 4.87 8.79 5.91 9.78 2.75 8.45 5.33 8.58 2.75 8.45 
+11/27/2021 4.50 7.82 4.37 9.46 4.95 8.98 5.00 9.36 3.31 7.54 5.23 8.77 3.31 7.54 
+11/28/2021 4.58 7.74 5.70 9.50 5.05 9.21 4.92 9.22 3.84 7.27 5.02 8.94 3.84 7.27 
+11/30/2021 4.63 8.11 5.98 10.17 4.81 9.33 5.45 10.45 4.46 8.17 4.77 9.14 4.46 8.17 
+12/1/2021 4.42 7.81 5.36 9.76 4.80 8.11 6.29 10.37 4.00 8.11 5.11 8.99 4.00 8.11 
+12/2/2021 4.81 7.79 5.60 9.43 4.72 8.99 3.98 7.03 3.96 7.21 4.65 8.08 3.96 7.21 
+12/3/2021 4.92 8.01 5.18 9.73 5.01 9.31 3.94 7.05 3.79 7.61 4.71 8.24 3.79 7.61 
+12/4/2021 4.89 7.77 5.53 9.16 4.62 9.25 3.90 7.00 3.65 8.10 4.67 8.10 3.65 8.10 
+
+ 
+ 
+Date Detector Detector Detector Detector Detector Detector Detector Detector Detector Detector Summed  Summed Summed  Summed 
+  110095 110095 110096 110096 110097 110097 110098 110098 180510 180510 Down Down Up Up 
+  Tl208 Cs137 Tl208 Cs137 Tl208 Cs137 Tl208 Cs137 Tl208 Cs137 Tl208 Cs137 Tl208 Cs137 
+12/7/2021 4.73 7.70 5.87 8.96 4.95 8.52 3.76 6.51 3.83 6.67 4.77 7.53 3.83 6.67 
+5/15/2022 4.73 6.08 5.50 9.06 4.93 9.23 3.72 8.15 4.85 5.54 4.68 8.53 4.85 5.54 
+5/16/2022 4.54 7.80 5.30 6.04 4.90 6.50 4..11 5.38 4.80 4.69 4.67 5.59 4.80 4.69 
+5/17/2022 4.56 6.38 4.91 8.13 4.55 8.19 3.71 5.82 3.98 6.12 4.60 8.37 3.98 6.12 
+5/18/2022 4.52 7.74 5.81 7.86 4.93 7.80 4.03 8.11 4.14 3.98 4.62 8.46 4.14 3.98 
+5/21/2022 4.48 7.99 5.71 7.68 4.98 6.17 3.90 8.30 4.61 4.30 4.70 5.87 4.61 4.30 
+5/22/2022 4.53 6.92 5.61 7.58 4.94 9.20 4.09 7.94 4.10 5.33 4.65 8.44 4.10 5.33 
+5/23/2022 4.56 8.27 5.53 7.45 4.77 5.74 3.91 5.35 4.18 3.45 4.66 5.65 4.18 3.45 
+5/24/2022 4.62 4.18 5.00 7.38 4.64 3.62 4.09 7.93 4.27 4.34 4.48 5.61 4.27 4.34 
+5/25/2022 4.58 7.98 5.61 6.07 4.92 7.28 4.02 8.09 3.57 4.14 4.63 8.39 3.57 4.14 
+5/26/2022 4.37 5.79 4.12 8.47 5.01 8.00 3.76 5.84 4.63 5.82 4.58 6.40 4.63 5.82 
+5/27/2022 4.25 5.74 5.48 7.73 4.81 8.70 3.91 4.95 4.32 4.13 4.55 5.63 4.32 4.13 
+5/31/2022 4.72 7.83 5.75 6.90 4.85 6.61 4.04 8.06 4.18 1.99 4.73 5.77 4.18 1.99 
+6/1/2022 4.60 8.44 5.42 7.46 5.01 7.10 3.97 8.01 3.95 4.87 4.66 8.40 3.95 4.87 
+6/2/2022 4.58 6.10 5.24 7.85 4.87 8.76 4.06 5.75 4.24 5.71 4.65 8.22 4.24 5.71 
+6/3/2022 4.60 8.08 5.47 6.53 4.88 6.56 3.91 7.96 4.39 2.95 4.67 5.82 4.39 2.85 
+6/6/2022 4.57 4.46 5.71 6.30 4.88 7.86 4.06 7.92 4.20 4.98 4.64 5.26 4.20 4.98 
+6/7/2022 4.63 6.38 5.67 7.88 4.81 7.63 4.05 8.00 3.86 4.57 4.63 6.58 3.86 4.57 
+6/8/2022 4.54 8.12 5.47 6.69 4.84 7.32 3.95 7.97 3.71 4.43 4.64 8.38 3.71 4.43 
+6/9/2022 4.37 7.04 5.49 7.74 5.02 6.77 3.92 5.44 4.08 5.09 4.61 8.35 4.08 5.09 
+6/10/2022 4.36 7.77 5.05 7.94 4.91 8.65 3.91 7.89 3.61 4.56 4.63 8.28 3.61 4.56 
+6/14/2022 4.74 7.51 5.48 7.24 4.98 6.62 3.87 7.84 4.27 4.32 4.63 4.82 4.27 4.32 
+6/15/2022 4.65 7.81 5.56 8.45 4.87 7.21 4.07 7.79 4.38 4.89 4.61 6.13 4.38 4.89 
+6/16/2022 4.42 5.69 5.57 8.26 5.09 8.83 4.00 6.02 4.79 5.96 4.59 8.29 4.79 5.96 
+6/20/2022 4.76 5.56 5.70 7.62 4.94 7.42 3.99 7.93 4.40 5.96 4.72 5.84 4.40 5.96 
+6/22/2022 4.63 8.43 5.65 7.79 4.95 8.49 4.05 8.16 4.01 4.61 4.70 8.41 4.01 4.61 
+6/24/2022 4.54 8.05 5.18 6.36 4.75 7.40 3.81 7.92 4.48 4.88 4.53 8.50 4.48 4.88 
+6/26/2022 4.57 7.64 5.43 7.24 4.86 7.79 4.03 5.69 3.78 5.03 4.69 6.36 3.78 5.03 
+
+ 
+ 
+Date Detector Detector Detector Detector Detector Detector Detector Detector Detector Detector Summed  Summed Summed  Summed 
+  110095 110095 110096 110096 110097 110097 110098 110098 180510 180510 Down Down Up Up 
+  Tl208 Cs137 Tl208 Cs137 Tl208 Cs137 Tl208 Cs137 Tl208 Cs137 Tl208 Cs137 Tl208 Cs137 
+6/27/2022 4.40 8.04 5.35 7.30 4.44 7.02 4.08 5.16 4.00 3.98 4.52 5.86 4.00 3.98 
+6/29/2022 4.34 7.37 4.34 7.54 4.94 7.75 3.92 2.85 4.15 6.99 4.54 3.83 4.15 6.99 
+6/30/2022 4.44 4.28 5.53 8.34 4.62 6.67 3.99 3.52 4.55 5.28 4.49 3.81 4.55 5.28 
+7/1/2022 4.28 8.25 5.53 8.35 4.90 6.66 3.88 8.04 3.22 4.27 4.56 5.67 4.27 4.56 
+7/2/2022 4.51 8.11 4.78 3.79 4.79 5.85 3.45 7.84 4.69 6.90 4.62 7.10 4.69 6.90 
+7/3/2022 4.22 8.04 5.46 7.76 4.67 8.43 3.90 4.95 4.51 5.29 4.60 5.12 4.51 5.29 
+7/4/2022 4.74 6.10 5.29 7.52 4.74 8.23 3.97 4.19 4.31 8.23 4.56 5.88 4.31 8.23 
+7/5/2022 4.38 3.75 5.44 7.70 5.06 6.24 4.00 7.96 4.15 7.21 4.61 7.73 4.15 7.21 
+7/6/2022 4.53 3.41 5.31 5.73 4.68 6.16 3.96 4.83 3.80 7.80 4.68 6.15 3.80 7.80 
+7/7/2022 4.64 7.33 5.41 5.60 4.47 7.24 3.89 3.31 4.13 7.09 4.39 6.97 4.13 7.09 
+7/8/2022 4.05 4.20 5.28 8.62 4.80 5.85 3.89 4.43 3.54 6.96 4.56 5.42 3.54 6.96 
+7/9/2022 4.43 3.18 4.73 7.54 4.86 6.70 3.98 3.30 4.00 7.36 4.64 7.29 4.00 7.36 
+7/10/2022 4.39 5.53 5.66 6.45 4.77 8.00 4.02 5.42 3.98 8.04 4.61 5.92 3.98 8.04 
+7/11/2022 4.33 5.58 5.43 7.01 4.82 7.56 4.06 5.18 3.83 4.12 4.64 5.96 3.83 4.12 
+7/14/2022 4.39 5.33 5.19 6.94 4.35 5.67 3.99 5.11 3.93 2.80 4.60 5.68 3.93 2.80 
+7/15/2022 4.37 5.67 5.31 8.13 4.70 6.86 4.02 8.16 3.94 4.01 4.58 6.16 3.94 4.01 
+7/16/2022 4.23 8.16 5.32 2.34 4.72 7.43 3.92 8.11 3.87 5.07 4.53 6.41 3.87 5.07 
+7/17/2022 4.22 7.55 5.08 8.27 4.69 7.21 4.04 7.87 4.28 2.98 4.54 5.82 4.28 2.98 
+7/20/2022 4.54 8.53 5.20 7.73 4.93 7.09 3.97 5.31 4.69 3.53 4.65 5.90 4.69 3.53 
+7/21/2022 4.31 8.00 5.49 6.00 4.77 5.63 4.10 4.40 3.98 4.03 4.53 4.91 3.98 4.03 
+7/23/2022 4.42 7.99 5.34 8.84 4.77 7.05 3.95 5.60 3.67 4.61 4.56 6.16 3.67 4.61 
+7/24/2022 4.34 6.79 5.10 8.66 4.53 8.01 3.99 6.35 4.13 6.28 4.47 7.19 4.13 6.28 
+7/31/2022 4.44 6.23 5.09 8.91 5.05 8.77 4.12 5.96 3.73 6.00 4.61 7.03 3.73 6.00 
+8/1/2022 4.47 7.79 5.07 7.63 4.74 7.42 4.06 8.00 4.06 5.38 4.58 8.35 4.06 5.38 
+8/2/2022 4.54 5.88 5.39 7.19 4.84 8.00 4.01 8.06 3.86 3.39 4.53 6.22 3.86 3.39 
+8/3/2022 4.31 6.48 5.76 8.36 4.60 7.43 4.01 7.79 4.16 4.96 4.60 8.31 4.16 4.96 
+8/4/2022 4.59 4.49 4.83 6.85 4.78 6.21 4.01 7.76 4.20 4.81 4.60 8.10 4.20 4.81 
+8/5/2022 4.25 6.44 4.55 7.97 4.75 8.55 3.98 6.16 4.13 6.29 4.64 8.07 4.13 6.29 
+
+ 
+ 
+Date Detector Detector Detector Detector Detector Detector Detector Detector Detector Detector Summed  Summed Summed  Summed 
+  110095 110095 110096 110096 110097 110097 110098 110098 180510 180510 Down Down Up Up 
+  Tl208 Cs137 Tl208 Cs137 Tl208 Cs137 Tl208 Cs137 Tl208 Cs137 Tl208 Cs137 Tl208 Cs137 
+8/6/2022 4.55 8.70 5.57 8.53 4.82 6.25 3.98 8.01 3.25 3.39 4.72 7.93 3.25 3.39 
+8/7/2022 4.55 8.33 5.34 7.98 5.10 7.31 4.01 8.08 3.96 5.07 4.59 8.35 3.96 5.07 
+8/8/2022 4.12 4.92 5.17 8.68 4.74 6.61 3.83 7.99 3.73 4.70 4.58 8.30 3.73 4.70 
+8/9/2022 4.41 6.45 5.52 8.12 4.96 8.81 3.95 8.03 4.15 5.61 4.57 8.49 4.15 5.61 
+8/10/2022 4.38 5.78 5.03 7.88 4.76 6.92 3.90 8.14 4.25 4.24 4.50 6.45 4.25 4.24 
+8/11/2022 4.38 5.74 5.54 7.24 4.76 8.87 4.00 8.09 3.87 5.34 4.60 8.43 3.87 5.34 
+8/12/2022 4.48 8.47 5.39 8.78 4.58 6.45 4.00 7.72 3.42 2.86 4.55 5.57 3.42 2.86 
+8/13/2022 4.34 3.88 5.28 8.52 4.78 7.35 3.88 8.20 4.09 4.02 4.60 4.36 4.09 4.06 
+8/14/2022 4.52 6.21 5.26 7.54 4.87 7.04 3.86 7.93 3.60 4.07 4.56 6.21 4.07 3.86 
+8/17/2022 4.29 6.84 5.40 8.63 4.69 7.61 3.86 6.44 3.61 6.64 4.57 7.05 3.61 6.64 
+9/26/2022 4.54 8.10 5.23 7.81 4.97 7.27 3.88 8.20 4.15 4.76 4.74 6.63 4.15 4.76 
+9/27/2022 4.57 6.55 5.47 8.51 4.55 8.78 3.95 6.05 4.23 5.72 4.66 8.45 4.23 5.72 
+9/28/2022 4.59 8.28 5.38 8.85 3.94 8.26 4.76 8.38 4.34 6.64 4.56 8.67 4.34 6.64 
+9/29/2022 4.50 8.26 5.40 7.97 4.00 8.17 5.12 7.27 4.07 5.27 4.60 6.73 4.07 5.27 
+9/30/2022 4.60 8.37 5.38 7.09 4.90 9.13 3.95 8.22 4.02 4.88 4.69 8.55 4.02 4.88 
+10/1/2022 4.71 6.92 5.48 8.93 4.96 7.95 3.90 5.87 4.05 6.28 4.71 8.27 4.05 6.28 
+10/2/2022 4.54 7.30 5.47 8.88 4.97 8.57 3.79 6.47 4.10 6.79 4.60 7.67 4.10 6.79 
+10/3/2022 4.59 7.18 5.56 8.88 4.80 8.33 3.86 6.38 4.00 6.60 4.72 7.36 4.00 6.60 
+10/4/2022 4.50 6.96 5.39 8.85 4.94 7.92 3.92 6.32 3.93 6.66 4.65 7.34 3.93 6.66 
+10/5/2022 4.19 6.92 5.68 8.64 4.80 8.32 3.90 6.64 4.45 6.59 4.64 7.30 4.45 6.59 
+10/6/2022 4.62 6.64 5.62 8.41 4.44 7.96 4.01 6.32 3.30 6.28 4.60 6.92 3.30 6.28 
+10/7/2022 4.43 7.23 5.37 8.73 4.88 8.14 3.86 6.49 3.88 6.86 4.52 7.34 3.88 6.86 
+10/8/2022 4.59 7.66 5.38 9.31 4.81 8.65 3.83 6.98 4.10 7.40 4.52 7.84 4.09 7.39 
+10/9/2022 4.70 7.26 5.48 9.32 5.00 8.39 4.01 6.74 4.02 6.84 4.61 7.56 4.02 6.84 
+10/10/2022 4.70 6.63 5.61 8.94 4.89 9.22 3.93 5.95 4.19 6.30 4.58 8.50 4.19 6.30 
+10/11/2022 4.21 4.40 5.53 2.08 5.11 6.81 4.07 4.68 4.23 4.63 4.64 8.32 4.23 4.63 
+10/12/2022 4.36 5.56 5.37 8.30 5.08 8.91 4.10 5.46 3.75 4.99 4.64 8.41 3.75 4.99 
+10/13/2022 4.47 6.87 5.66 9.05 4.94 8.17 4.05 6.36 4.27 6.57 4.71 7.17 4.27 6.57 
+
+ 
+ 
+Date Detector Detector Detector Detector Detector Detector Detector Detector Detector Detector Summed  Summed Summed  Summed 
+  110095 110095 110096 110096 110097 110097 110098 110098 180510 180510 Down Down Up Up 
+  Tl208 Cs137 Tl208 Cs137 Tl208 Cs137 Tl208 Cs137 Tl208 Cs137 Tl208 Cs137 Tl208 Cs137 
+10/14/2022 4.54 7.11 5.29 8.96 4.75 8.45 3.93 6.82 3.70 7.31 4.56 7.59 3.70 7.31 
+10/15/2022 4.48 6.91 5.56 8.64 4.58 8.43 3.82 6.25 3.91 6.67 4.57 7.20 3.91 6.67 
+10/16/2022 4.61 7.12 5.50 8.97 5.04 8.27 3.85 6.57 4.16 6.71 4.58 7.27 4.16 6.71 
+10/17/2022 4.57 7.69 5.53 9.36 4.91 8.68 3.81 6.82 3.71 7.31 4.58 7.81 3.71 7.31 
+10/18/2022 4.29 7.51 5.14 9.27 4.99 8.60 3.84 6.76 3.70 8.17 4.55 7.73 3.70 8.17 
+10/19/2022 4.66 7.55 5.46 9.05 5.20 8.65 3.89 6.77 4.19 7.10 4.61 7.81 4.19 7.10 
+10/20/2022 4.49 7.59 5.57 9.42 4.94 8.68 3.87 6.70 3.83 7.26 4.62 7.82 3.83 7.26 
+10/21/2022 4.58 7.74 5.80 9.11 4.94 8.69 4.01 7.02 3.97 7.34 4.70 7.92 3.97 7.34 
+10/23/2022 4.75 8.45 5.97 7.59 4.89 7.49 4.06 7.95 4.18 5.80 4.66 8.45 4.18 5.80 
+10/24/2022 4.75 6.69 6.12 8.91 5.06 8.92 4.03 6.25 4.52 6.59 4.80 7.15 4.52 6.59 
+10/25/2022 4.62 6.23 5.83 8.27 5.10 8.93 4.02 8.06 4.18 6.06 4.75 8.44 4.18 6.06 
+10/26/2022 4.77 8.08 6.06 8.08 4.97 8.72 4.05 8.15 4.58 5.45 4.73 8.28 4.58 5.45 
+10/27/2022 4.94 6.11 5.43 7.84 4.83 7.84 3.86 5.56 4.82 5.98 4.70 8.52 4.82 5.98 
+10/28/2022 4.65 6.66 5.60 9.16 4.95 8.95 3.92 6.45 3.74 6.06 4.68 7.37 3.74 6.06 
+10/29/2022 4.89 7.56 5.85 9.42 4.78 8.52 3.85 6.81 4.35 7.23 4.65 7.75 4.35 7.23 
+10/30/2022 4.79 7.54 5.79 9.07 4.98 8.34 3.96 6.70 4.53 7.14 4.73 7.47 4.53 7.14 
+10/31/2022 4.37 7.13 5.58 9.30 4.73 8.50 3.78 6.66 3.73 7.74 4.46 7.64 3.73 7.74 
+11/2/2022 4.65 6.81 5.95 8.07 4.75 8.58 3.80 7.98 4.50 6.12 4.84 8.51 4.50 6.12 
+11/4/2022 4.95 7.71 5.69 8.10 4.96 8.02 3.99 8.05 4.50 4.90 4.74 6.16 4.50 4.90 
+11/5/2022 4.81 6.88 5.64 8.82 4.39 8.79 3.97 6.08 3.26 6.55 4.68 7.15 3.26 6.55 
+11/6/2022 4.60 6.24 5.51 9.27 5.08 7.34 3.87 5.83 5.06 5.95 4.63 6.70 5.06 5.95 
+11/9/2022 4.60 7.93 5.62 8.-4 4.94 7.96 3.76 7.80 4.43 4.79 4.57 7.79 4.43 4.79 
+11/10/2022 4.90 6.07 5.83 7.76 4.67 7.10 3.93 8.22 4.13 4.33 4.73 8.29 4.13 4.33 
+11/11/2022 4.89 6.26 5.42 8.22 4.87 7.44 3.78 5.97 4.02 6.29 4.76 6.65 4.02 6.29 
+11/12/2022 4.95 7.35 5.91 9.23 4.95 8.28 3.94 6.44 4.53 7.17 4.76 7.56 4.53 7.17 
+11/14/2022 4.74 6.94 5.76 8.85 4.84 8.30 3.88 6.61 3.72 6.67 4.64 7.21 3.72 6.67 
+11/15/2022 4.68 7.24 5.71 9.12 4.96 8.27 3.93 6.48 3.31 6.71 4.72 7.42 3.31 6.71 
+11/16/2022 4.71 7.34 5.95 9.27 5.12 8.26 4.12 6.60 3.31 6.73 4.76 7.60 3.31 6.73 
+
+ 
+ 
+Date Detector Detector Detector Detector Detector Detector Detector Detector Detector Detector Summed  Summed Summed  Summed 
+  110095 110095 110096 110096 110097 110097 110098 110098 180510 180510 Down Down Up Up 
+  Tl208 Cs137 Tl208 Cs137 Tl208 Cs137 Tl208 Cs137 Tl208 Cs137 Tl208 Cs137 Tl208 Cs137 
+11/17/2022 4.89 7.35 5.82 8.69 4.84 8.32 4.02 6.64 4.24 6.72 4.80 7.41 4.24 6.72 
+11/19/2022 5.01 7.80 5.87 9.05 5.08 8.87 4.08 6.99 4.72 7.12 4.71 7.98 4.72 7.12 
+11/20/2022 5.01 7.79 5.84 9.56 4.93 8.61 3.97 6.97 4.37 7.31 4.81 7.94 4.37 7.31 
+ 
+  
+
+ 
+ 
+ 
+Bell Jet Ranger (Tonopah Block) 
+Date Detector  Detector Detector Detector Detector Detector Detector Detector Detector Detector Summed Summed  Summed  Summed 
+  110070 110070 110062 110062 10061 10061 10081 10081 110077 110077 Down Down Up Up 
+  Tl208 Cs137 Tl208 Cs137 Tl208 Cs137 Tl208 Cs137 Tl208 Cs137 Tl208 Cs137 Tl208 Cs137 
+9/12/2022 4.99 5.50 5.27 7.02 4.59 7.78 4.56 827.00 4.68 7.51 5.04 7.69 4.68 7.51 
+9/13/2022 5.03 6.65 6.31 6.90 4.75 8.49 4.47 6.87 4.32 7.12 5.04 8.51 4.32 7.42 
+9/14/2022 5.27 7.12 6.69 8.27 4.90 8.75 4.69 8.23 4.52 4.78 5.15 8.32 4.52 4.78 
+9/15/2022 5.15 6.79 6.62 8.00 4.85 6.73 4.62 8.36 4.54 7.69 5.09 6.83 4.54 7.69 
+9/16/2022 5.17 6.79 6.70 8.41 4.77 8.54 4.55 8.23 4.55 7.68 5.00 7.13 4.55 7.68 
+9/17/2022 5.19 7.01 6.61 8.18 4.78 8.37 4.68 8.68 4.14 7.99 5.04 8.16 4.14 7.99 
+9/19/2022 5.28 8.29 6.87 8.32 4.94 6.95 4.60 6.71 4.54 7.29 5.15 6.63 4.54 7.29 
+9/20/2022 5.11 6.95 6.97 7.68 4.84 6.72 4.54 6.81 4.42 7.66 5.14 6.41 4.42 7.66 
+9/21/2022 5.17 8.32 6.84 8.20 4.92 6.93 4.48 7.11 4.32 4.99 5.12 7.08 4.32 4.99 
+9/22/2022 5.17 7.76 6.80 8.78 4.88 6.50 4.60 8.37 4.48 8.14 5.13 7.54 4.48 8.14 
+9/23/2022 5.34 7.77 6.92 8.89 4.85 8.83 4.54 7.59 4.61 6.12 5.16 8.79 4.61 6.12 
+9/26/2022 5.19 8.10 6.73 8.75 4.71 8.98 4.62 7.71 4.45 6.26 5.08 8.75 4.45 6.26 
+9/27/2022 5.17 7.37 6.66 8.80 4.75 8.81 4.56 8.41 4.59 8.06 5.09 8.63 4.59 8.06 
+9/28/2022 5.13 7.39 6.90 9.04 4.75 6.99 4.58 7.44 4.34 5.80 5.06 8.70 4.34 5.80 
+9/29/2022 5.27 6.67 6.71 8.29 4.75 5.97 4.56 8.20 4.55 7.93 5.08 8.40 4.55 7.93 
+9/30/2022 5.17 6.89 6.04 8.74 4.79 8.45 4.66 6.85 4.37 5.93 5.12 8.43 4.37 5.93 
+10/1/2022 5.16 7.35 6.74 8.44 4.79 8.77 4.63 7.02 4.24 6.09 5.11 7.63 4.24 6.09 
+10/2/2022 5.15 8.53 6.59 9.06 4.75 8.82 4.64 7.93 4.54 7.08 5.08 8.02 4.54 7.08 
+10/3/2022 5.07 7.80 6.73 8.77 4.79 7.99 4.54 7.49 4.39 6.80 5.06 8.38 4.39 6.80 
+10/4/2022 5.07 8.59 6.76 9.36 4.82 8.80 4.55 7.83 4.27 7.15 5.06 8.17 4.27 7.15 
+10/5/2022 5.35 8.66 6.82 9.16 4.83 8.77 4.63 7.57 4.27 7.04 5.19 8.70 4.27 7.04 
+10/6/2022 5.23 8.88 6.72 9.66 4.81 8.83 4.49 8.00 4.33 7.32 5.14 8.25 4.33 7.32 
+ 
+ 

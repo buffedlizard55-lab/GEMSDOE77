@@ -1,0 +1,8 @@
+{
+  "status": "quarantined; not approved",
+  "ok_to_submit": false,
+  "source_commit": "f06695d",
+  "review": "evidence/inherited_h77c_review.json",
+  "raw_source_archive": "docs/archive/concurrent-h77c",
+  "original_tiff_sha256": "0f86bf205eff2522fad4253d88dbd62220d06408deafb25a9672cc2e7ea0acab"
+}

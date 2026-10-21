@@ -1,0 +1,142 @@
+{
+  "reviewed_base_commit": "f06695d",
+  "inherited_from_pr": 2,
+  "purpose": "Post-merge immutable-byte safety audit, not an H77-U experiment",
+  "inherited_file": "docs/downloads/gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-zeros.tif",
+  "sha256": "0f86bf205eff2522fad4253d88dbd62220d06408deafb25a9672cc2e7ea0acab",
+  "shared_validator": {
+    "file": "/home/user/GEMSDOE77/docs/downloads/gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-zeros.tif",
+    "bytes": 139412,
+    "sha256": "0f86bf205eff2522fad4253d88dbd62220d06408deafb25a9672cc2e7ea0acab",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.003590636420994997,
+    "emitted_positive_pixels": 44090,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 44090,
+    "footprint_fraction": 0.00853238192791579
+  },
+  "shared_registry_check": {
+    "my_file": "/home/user/GEMSDOE77/docs/downloads/gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-zeros.tif",
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "my_dots": 44090,
+    "candidate_decoded_sha256": "14480f73799cece896dce83d955a4e56db9dcc4dba9f42f226ba4bd5c3a157c5",
+    "candidate_file_sha256": "0f86bf205eff2522fad4253d88dbd62220d06408deafb25a9672cc2e7ea0acab",
+    "rho_limit": 0.9,
+    "overlap_limit": 0.7,
+    "jaccard_limit": 0.5,
+    "registry_rasters_expected": 2,
+    "registry_rasters_checked": 2,
+    "complete_accessible_scan": false,
+    "missing_or_invalid": 0,
+    "source_errors": [
+      "Legacy list has no complete-inventory certificate; diagnostic only"
+    ],
+    "worst_spearman_full_footprint": 0.0014774246392517643,
+    "worst_rho_submission": "registry/rasters/GEMSDOE32__h33-2-b2-zeros.tif",
+    "worst_dot_overlap": 1.0,
+    "worst_overlap_submission": "docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif",
+    "worst_jaccard_dot_sets": 0.00853238192791579,
+    "worst_jaccard_submission": "docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif",
+    "byte_unique_among_checked": true,
+    "pixel_unique_among_checked": true,
+    "duplicate_count": 1,
+    "unique": false,
+    "rows": [
+      {
+        "repo": "buffedlizard55-lab/17GEMSDOE",
+        "submission": "docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif",
+        "file": "/home/user/GEMSDOE77/.cache/registry/dense_witness.tif",
+        "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+        "decoded_sha256": "11cb7dffcc88926fee8260f61df01d7712d3a7bb34fcc1bb333fb6b47f77ec05",
+        "their_dots": 5167373,
+        "my_dots_within_3px_of_theirs": 1.0,
+        "their_dots_within_3px_of_mine": 0.10127641259881956,
+        "spearman_full_footprint": -0.006198261994136352,
+        "jaccard_dot_sets": 0.00853238192791579,
+        "identical_bytes": false,
+        "identical_decoded_predictions": false,
+        "duplicate_by_rho": false,
+        "duplicate_by_overlap": true,
+        "duplicate_by_jaccard": false
+      },
+      {
+        "repo": "buffedlizard55-lab/60GEMSDOE",
+        "submission": "registry/rasters/GEMSDOE32__h33-2-b2-zeros.tif",
+        "file": "/home/user/GEMSDOE77/.cache/registry/h33.tif",
+        "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "decoded_sha256": "aec92fc3ff1e95f0b7a84d48294683199f2a3b25d9cdce2a95329aeccbfd839e",
+        "their_dots": 37654,
+        "my_dots_within_3px_of_theirs": 0.1558630074846904,
+        "their_dots_within_3px_of_mine": 0.1031762893716471,
+        "spearman_full_footprint": 0.0014774246392517643,
+        "jaccard_dot_sets": 0.004682718188857343,
+        "identical_bytes": false,
+        "identical_decoded_predictions": false,
+        "duplicate_by_rho": false,
+        "duplicate_by_overlap": false,
+        "duplicate_by_jaccard": false
+      }
+    ],
+    "jaccard_diagnostic_only": true,
+    "verdict": "negative",
+    "stop_required": true,
+    "candidate_rank_variation": true,
+    "scope": "All hash-verified accessible entries in the indexed public owner-repository inventory; not a complete organizer registry. External/private/unlinked/inaccessible files may be absent. Reverse overlap is diagnostic only."
+  },
+  "ok_to_submit": false,
+  "verdict": "negative",
+  "findings": [
+    "Original registry PASS text admits values would be computed if registry files fetched; not verified clearance.",
+    "Generator code contained numeric fallback overlap/correlation when measurements missing.",
+    "Measured shared literal gate fails. Inherited holdout is not validated as shared pooled whole-component hide/recover.",
+    "Mechanism text and named winning claycap hypothesis mismatch in inherited run card.",
+    "Original source/claims retained as archived text. Generation entry point disabled, not rerun."
+  ],
+  "full_registry_scanned": false,
+  "weekly_slots_used_by_this_review": 0
+}

@@ -1,0 +1,200 @@
+{
+ "note": "Post-merge check of the final GEMSDOE77-LIA dots against rasters published after the registry snapshot (GEMSDOE77 main lanes + GEMSDOE73-76 siblings). Overlap = Euclidean 3 px halo (template _near); Spearman closed form for binary rasters, rank-based otherwise.",
+ "rows": [
+  {
+   "repo": "GEMSDOE77-main",
+   "file": "gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif",
+   "positives": 44090,
+   "coverage_3px": 0.13965065305494984,
+   "forward_overlap": 0.22939227095999792,
+   "spearman": 0.012678832941584924,
+   "space_filling": false,
+   "duplicate_flag": false
+  },
+  {
+   "repo": "GEMSDOE77-main",
+   "file": "gems77-h77-urank-curvature-0d868dc271bb-research.tif",
+   "positives": 4961936,
+   "coverage_3px": 0.9804624994002606,
+   "forward_overlap": 0.9791769955379276,
+   "spearman": 0.0004076745993488354,
+   "space_filling": true,
+   "duplicate_flag": false
+  },
+  {
+   "repo": "GEMSDOE77-main",
+   "file": "gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-zeros.tif",
+   "positives": 44090,
+   "coverage_3px": 0.10203598044409107,
+   "forward_overlap": 0.09868747227513504,
+   "spearman": 0.0005643656375562411,
+   "space_filling": false,
+   "duplicate_flag": false
+  },
+  {
+   "repo": "GEMSDOE73",
+   "file": "docs/downloads/gems73-h73-1-piedmont-scarpchain-e1-37654dots-20261021.tif",
+   "positives": 37654,
+   "coverage_3px": 0.14062120267077394,
+   "forward_overlap": 0.11919734885055971,
+   "spearman": 0.0004971151035406058,
+   "space_filling": false,
+   "duplicate_flag": false
+  },
+  {
+   "repo": "GEMSDOE73",
+   "file": "docs/downloads/gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f-nan.tif",
+   "positives": 30762,
+   "coverage_3px": 0.040029296655070074,
+   "forward_overlap": 0.042976802442397516,
+   "spearman": 0.0011100424839226048,
+   "space_filling": false,
+   "duplicate_flag": false
+  },
+  {
+   "repo": "GEMSDOE73",
+   "file": "docs/downloads/gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f-zeros.tif",
+   "positives": 30762,
+   "coverage_3px": 0.040029296655070074,
+   "forward_overlap": 0.042976802442397516,
+   "spearman": 0.0011100424839226048,
+   "space_filling": false,
+   "duplicate_flag": false
+  },
+  {
+   "repo": "GEMSDOE74",
+   "file": "docs/downloads/gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-nan.tif",
+   "positives": 15628,
+   "coverage_3px": 0.07477736206729418,
+   "forward_overlap": 0.07256738773060564,
+   "spearman": -0.00016030391571788752,
+   "space_filling": false,
+   "duplicate_flag": false
+  },
+  {
+   "repo": "GEMSDOE74",
+   "file": "docs/downloads/gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.tif",
+   "positives": 15628,
+   "coverage_3px": 0.07477736206729418,
+   "forward_overlap": 0.07256738773060564,
+   "spearman": -0.00016030391571788752,
+   "space_filling": false,
+   "duplicate_flag": false
+  },
+  {
+   "repo": "GEMSDOE75",
+   "file": "docs/downloads/gemsdoe75-zeros-SCHEMA-DEMO-DO-NOT-SUBMIT.tif",
+   "positives": 0
+  },
+  {
+   "repo": "GEMSDOE76",
+   "file": "data/bridge/existing_faults.tif",
+   "positives": 60988,
+   "coverage_3px": 0.07516197858171682,
+   "forward_overlap": 0.0,
+   "spearman": -0.009446625555550616,
+   "space_filling": false,
+   "duplicate_flag": false
+  },
+  {
+   "repo": "GEMSDOE76",
+   "file": "data/bridge/sample_submission.tif",
+   "positives": 60988,
+   "coverage_3px": 0.07516197858171682,
+   "forward_overlap": 0.0,
+   "spearman": -0.009446625555550616,
+   "space_filling": false,
+   "duplicate_flag": false
+  },
+  {
+   "repo": "GEMSDOE76",
+   "file": "data/reference/example_submission.tif",
+   "positives": 60988,
+   "coverage_3px": 0.07516197858171682,
+   "forward_overlap": 0.0,
+   "spearman": -0.009446625555550616,
+   "space_filling": false,
+   "duplicate_flag": false
+  },
+  {
+   "repo": "GEMSDOE76",
+   "file": "data/reference/existing_faults.tif",
+   "positives": 60988,
+   "coverage_3px": 0.07516197858171682,
+   "forward_overlap": 0.0,
+   "spearman": -0.009446625555550616,
+   "space_filling": false,
+   "duplicate_flag": false
+  },
+  {
+   "repo": "GEMSDOE76",
+   "file": "evidence/lane-g76/gems76-piedmont-dipole-exp2-27569dots-DO-NOT-SUBMIT.tif",
+   "positives": 27569,
+   "coverage_3px": 0.035550785927813904,
+   "forward_overlap": 0.06961876679800642,
+   "spearman": 0.014878746913165507,
+   "space_filling": false,
+   "duplicate_flag": false
+  },
+  {
+   "repo": "GEMSDOE76",
+   "file": "quarantine/inherited-main-ac55947/docs/downloads/gemsdoe76-h76a-radiometric-halo-mtbreach-38412-20261021T000000Z-nan.tif",
+   "positives": 20044,
+   "coverage_3px": 0.07014649306701316,
+   "forward_overlap": 0.07288051561725335,
+   "spearman": 0.0009197348313438362,
+   "space_filling": false,
+   "duplicate_flag": false
+  },
+  {
+   "repo": "GEMSDOE76",
+   "file": "quarantine/inherited-main-ac55947/docs/downloads/gemsdoe76-h76a-radiometric-halo-mtbreach-38412-20261021T000000Z-zeros.tif",
+   "positives": 20044,
+   "coverage_3px": 0.07014649306701316,
+   "forward_overlap": 0.07288051561725335,
+   "spearman": 0.0009197348313438362,
+   "space_filling": false,
+   "duplicate_flag": false
+  },
+  {
+   "repo": "GEMSDOE76",
+   "file": "quarantine/inherited-main-ac55947/docs/downloads/gemsdoe76-h76b-transtensional-swarm-44200-20261021T000000Z-nan.tif",
+   "positives": 22362,
+   "coverage_3px": 0.07224249640401184,
+   "forward_overlap": 0.07958667118962504,
+   "spearman": -0.0004069859846041471,
+   "space_filling": false,
+   "duplicate_flag": false
+  },
+  {
+   "repo": "GEMSDOE76",
+   "file": "quarantine/inherited-main-ac55947/docs/downloads/gemsdoe76-h76b-transtensional-swarm-44200-20261021T000000Z-zeros.tif",
+   "positives": 22362,
+   "coverage_3px": 0.07224249640401184,
+   "forward_overlap": 0.07958667118962504,
+   "spearman": -0.0004069859846041471,
+   "space_filling": false,
+   "duplicate_flag": false
+  },
+  {
+   "repo": "GEMSDOE76",
+   "file": "quarantine/inherited-main-ac55947/docs/downloads/gemsdoe76-h76c-drainage-chain-29800-20261021T000000Z-nan.tif",
+   "positives": 16188,
+   "coverage_3px": 0.057333318972227904,
+   "forward_overlap": 0.058633196774782764,
+   "spearman": -0.000648039396154365,
+   "space_filling": false,
+   "duplicate_flag": false
+  },
+  {
+   "repo": "GEMSDOE76",
+   "file": "quarantine/inherited-main-ac55947/docs/downloads/gemsdoe76-h76c-drainage-chain-29800-20261021T000000Z-zeros.tif",
+   "positives": 16188,
+   "coverage_3px": 0.057333318972227904,
+   "forward_overlap": 0.058633196774782764,
+   "spearman": -0.000648039396154365,
+   "space_filling": false,
+   "duplicate_flag": false
+  }
+ ]
+}
