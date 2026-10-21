@@ -2,9 +2,9 @@
   "schema": "gems-listed-download-readback-v1",
   "evidence_class": "FORMAT-INTEGRITY-MEASUREMENT; NOT SCORE OR PORTAL ACCEPTANCE",
   "scope": "Every primary TIFF in docs/data/lanes.json; no archive or NaN twins, no uniqueness certification",
-  "manifest_sha256": "818ca48fe05413cc3ee651a0111a06064964a208fc5aeb19454b41fd6d947fe4",
+  "manifest_sha256": "a2ec942ed34a71341cc27c9edaaa93e590c5bd055caf1a04f5f7f70f9ebad34b",
   "reference_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
-  "listed_count": 28,
+  "listed_count": 31,
   "all_format_pass": true,
   "authorized_to_submit": false,
   "artifacts": [
@@ -27,9 +27,9 @@
       "authorized_to_submit": false
     },
     {
-      "lane": "H77V: up-gradient geothermal vent advection-backtracking, Lake Lahontan tufa sieve & dilational conduit tensor (HOLDOUT-DTI 0.1270 [0.1128, 0.1422] s30 / 0.1293 [0.1129, 0.1469] s20; negative under Policy I17)",
-      "file": "downloads/gems77-h77v-vent-advect-conduit-37654dots-20261021-8910ea15-zeros.tif",
-      "sha256": "2cef6d5133bceaf5206b5ee3701abb66120ef35aedd8850ab21946c2176b0e10",
+      "lane": "H82R: local ternary radiometric rank-mixture entropy (STOPPED; research only)",
+      "file": "downloads/gems77-h82-ternaryentropy-20261021-RESEARCH-ONLY.tif",
+      "sha256": "56debe682505bf2649f30d914c7b552dcf669bce4b902ce91eb3e5363031f115",
       "checks": {
         "single_band": true,
         "crs_matches": true,
@@ -45,9 +45,9 @@
       "authorized_to_submit": false
     },
     {
-      "lane": "H82R: local ternary radiometric rank-mixture entropy (STOPPED; research only)",
-      "file": "downloads/gems77-h82-ternaryentropy-20261021-RESEARCH-ONLY.tif",
-      "sha256": "56debe682505bf2649f30d914c7b552dcf669bce4b902ce91eb3e5363031f115",
+      "lane": "H77V: up-gradient geothermal vent advection-backtracking, Lake Lahontan tufa sieve & dilational conduit tensor (HOLDOUT-DTI 0.1270 [0.1128, 0.1422] s30 / 0.1293 [0.1129, 0.1469] s20; negative under Policy I17)",
+      "file": "downloads/gems77-h77v-vent-advect-conduit-37654dots-20261021-8910ea15-zeros.tif",
+      "sha256": "2cef6d5133bceaf5206b5ee3701abb66120ef35aedd8850ab21946c2176b0e10",
       "checks": {
         "single_band": true,
         "crs_matches": true,
@@ -498,6 +498,60 @@
       "lane": "H77-BGB: buried growth-wedge inflection x transtensional strain-partitioning x clay-cap breach (0.0584 lane / 0.1024 LOCO HOLDOUT-DTI)",
       "file": "downloads/gems77-bgb-growthwedge-transtens-37654dots-20261021-3c58975b-zeros.tif",
       "sha256": "07da3f559dd5f6d7f3971092bcc3dde060cd97b551ad6077b02ed558679f8e54",
+      "checks": {
+        "single_band": true,
+        "crs_matches": true,
+        "shape_matches": true,
+        "transform_matches": true,
+        "finite_entire_raster": true,
+        "no_nan_inside_footprint": true,
+        "values_in_0_1": true,
+        "nodata_none": true,
+        "sha256_matches_manifest": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
+    {
+      "lane": "H82-TCSTEP: radiometric total-count lithologic-offset step x coherence x low-slope blind gate + std19 HGB (HOLDOUT-DTI 0.0688 s20 / 0.0700 s30; physics below random; negative, lane closed)",
+      "file": "downloads/gems77-h82-tcstep-37654dots-20261021-2c501fd1-zeros.tif",
+      "sha256": "2cc14ba3ec8a6ea114c821445ff0ee90f84c7a8e62720e80c533c05475f76860",
+      "checks": {
+        "single_band": true,
+        "crs_matches": true,
+        "shape_matches": true,
+        "transform_matches": true,
+        "finite_entire_raster": true,
+        "no_nan_inside_footprint": true,
+        "values_in_0_1": true,
+        "nodata_none": true,
+        "sha256_matches_manifest": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
+    {
+      "lane": "H83: hanging-wall fault-damage collar at the 300 m kernel scale (negative result)",
+      "file": "downloads/gems77-h83-faultcollar-37553dots-20261021-a55f4c9c-zeros.tif",
+      "sha256": "7f71739a2804bf2fa7199d30d512e0a267e4cfa2fdd0d32304b962db65b98662",
+      "checks": {
+        "single_band": true,
+        "crs_matches": true,
+        "shape_matches": true,
+        "transform_matches": true,
+        "finite_entire_raster": true,
+        "no_nan_inside_footprint": true,
+        "values_in_0_1": true,
+        "nodata_none": true,
+        "sha256_matches_manifest": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
+    {
+      "lane": "H84-RAMP: B-LBCO deconfounded two-host relay-ramp & geodetic-geophysical stepover transfer corridor (HOLDOUT-DTI 0.1366 s20 / 0.1446 s30, physics 0.1423/0.1476; negative under Policy I17)",
+      "file": "downloads/gems77-h84-ramp-relay-37654dots-20261021-1b76b4b7-zeros.tif",
+      "sha256": "f06ada5aa834ceaf65e8700e36bbd46eddb96929b42c9041c72c8369c1022838",
       "checks": {
         "single_band": true,
         "crs_matches": true,

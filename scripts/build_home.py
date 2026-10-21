@@ -27,7 +27,7 @@ COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
 NAV = [("review-latest.html", "Latest review"), ("metric-review.html", "Corrected H33 analysis"), ("index.html", "Start here"), ("tsd.html", "H77-TSD · inspection"), ("h77v.html", "H77V (Vent-Advect)"), ("h82-texture.html", "H82-TEXTURE · negative"), ("h82rank.html", "H82R · radiometric negative"), ("preflight-review.html", "Current readiness review"), ("h82-executive-summary.html", "H82 · cool-outlet negative"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
        ("h77e-knick.html", "H77E-Knick · 0/816 firings"), ("release-review.html", "Release safety review"), ("executive-summary.html", "How to submit"),
        ("h81.html", "H81 · slip-cone"), ("h82.html", "H82 · fault collar"),
-       ("h83.html", "H83 · fault collar"),
+       ("h83.html", "H83 · fault collar"), ("h84.html", "H84-RAMP · relay-step"), ("h84-executive-summary.html", "H84 guide"),
        ("h80t.html", "H80T · tilt-persist"), ("h80t-executive-summary.html", "H80T guide"),
        ("h80.html", "H80 · negative"), ("ago.html", "AGO · negative proxies"),
        ("h79-orient.html", "H79-ORIENT · negative"), ("h79-orient-executive-summary.html", "H79-ORIENT guide"),
@@ -974,6 +974,150 @@ literal dense-witness gate (Policy I17) is fail-closed and this lane claims no e
 """
 
 
+def _write_h84():
+    h84_card = jload("evidence/h84_run_card.json")
+    h84_e1 = jload("evidence/h84_e1_canary_surface.json")
+    if not (h84_card and h84_e1) or h84_card["verdict"] != "negative" or h84_card["ok_to_submit"]:
+        raise ValueError("H84-RAMP cannot be presented as eligible to submit")
+    tif = h84_card["raster_path"].removeprefix("docs/")
+    zip_ = h84_card["zip_path"].removeprefix("docs/")
+    s20 = h84_card["holdout_dti"]["seed_20"]
+    s30 = h84_card["holdout_dti"]["seed_30"]
+    uq = h84_card["correlation_overlap_vs_registry"]
+    inf_uq = uq["informative_sparse_summary"]
+    val = h84_card["validator"]
+
+    arm_order = [
+        ("A_std_plus_h84 (19 std + 8 B-LBCO H84-RAMP + relay corridor)", "A_std_plus_h84"),
+        ("S_h84_physics (pure zero-training relay+bend+geod+base composite)", "S_h84_physics"),
+        ("A_std_plus_h84_blbco_only (27-ch B-LBCO HGB unmodulated)", "A_std_plus_h84_blbco_only"),
+        ("A_std_control (19-band training_features LOQO control)", "A_std_control"),
+        ("A0_random (uniform random dots in allowed domain)", "A0_random"),
+        ("A_std_plus_h84_naive (27-ch WITHOUT B-LBCO — IR-H84-01 self-collapse)", "A_std_plus_h84_naive"),
+    ]
+    arm_rows = "".join(
+        f"<tr><td>{e(label)}</td>"
+        f"<td><b>{s20[key]['dti']:.4f}</b> ({s20[key]['ci95'][0]:.4f}–{s20[key]['ci95'][1]:.4f})</td>"
+        f"<td><b>{s30[key]['dti']:.4f}</b> ({s30[key]['ci95'][0]:.4f}–{s30[key]['ci95'][1]:.4f})</td>"
+        f"<td><code>gems57-pooled-hide-v2</code> (11,321 s20 / 11,342 s30 withheld)</td></tr>"
+        for label, key in arm_order
+    )
+    can_s20 = h84_e1["canaries_by_seed"]["20"]["h84_canaries"]
+    can_s30 = h84_e1["canaries_by_seed"]["30"]["h84_canaries"]
+    taut_s20 = h84_e1["irregularity_IR_H84_01_self_collapse_tautology"]["20"]
+    can_rows = "".join(
+        f"<tr><td><code>{e(k)}</code></td>"
+        f"<td>{can_s20[k]['symmetric_auc']:.4f}</td>"
+        f"<td>{can_s30[k]['symmetric_auc']:.4f}</td>"
+        f"<td>{taut_s20['naive_visible_positive_means'][k]:+.4f}</td>"
+        f"<td>{taut_s20['blbco_deconfounded_visible_positive_means'][k]:+.4f}</td>"
+        f"<td>{taut_s20['withheld_holdout_positive_means'][k]:+.4f}</td></tr>"
+        for k in can_s20
+    )
+    check_rows = "".join(
+        f"<li><b>{e(k.replace('_', ' ').title())}:</b> {'PASS' if v else 'FAIL'}</li>"
+        for k, v in val["checks"].items()
+    )
+
+    body = f"""<h1>H84-RAMP · Deconfounded Two-Host En-Echelon Relay-Ramp &amp; Geodetic-Geophysical Stepover Transfer</h1>
+<p class="verdict"><b>Verdict: NEGATIVE — OK TO DOWNLOAD FOR INSPECTION; NOT OK TO SUBMIT.</b>
+{e(h84_card['verdict_reason'])}</p>
+<section class="card dl research"><h2>⬇ H84-RAMP Inspection-Only GeoTIFF (DO NOT SUBMIT)</h2>
+<a class="btn" href="{e(tif)}" download>Download .tif ({h84_card['raster_bytes'] / 1024:.0f} KB)</a>
+<a class="btn alt" href="{e(zip_)}" download>Download one-TIFF .zip</a>
+<div class="chips"><span class="chip ok">OK to download: YES</span>
+<span class="chip bad">OK to submit: NO</span>
+<span class="chip ok">Portal format (15/15 checks): PASS ({h84_card['dots_emitted']:,} dots, 0 on catalogue)</span>
+<span class="chip bad">Unique, literal rule (Policy I17): FAIL (1.000 vs dense_witness)</span>
+<span class="chip ok">Unique, informative reading (51 sparse rasters): PASS (max 3-px overlap {inf_uq['max_forward_overlap_3px']:.4f} &le; 0.70)</span>
+<span class="chip bad">Beat 0.152718 H77-Step incumbent: NO (0.1366 s20 / 0.1446 s30)</span>
+<span class="chip warn">Selector: not approved (0 weekly slots used)</span></div>
+{copy('Submission name (for reference only — DO NOT UPLOAD)', h84_card['submission_name'])}
+{copy('Short note <= 140 chars (for reference only — DO NOT UPLOAD)', h84_card['submission_note'])}
+<p class="small">SHA-256 of .tif: <code>{e(h84_card['raster_sha256'])}</code> ·
+SHA-256 of .zip: <code>{e(h84_card['zip_sha256'])}</code> ·
+<a href="evidence/h84_run_card.json">JSON run card</a> ·
+<a href="evidence/h84_e1_canary_surface.json">Exp 1 canary &amp; IR-H84-01 receipt</a> ·
+<a href="evidence/h84_e2_holdout.json">Exp 2 dual-seed holdout receipt</a> ·
+<a href="evidence/h84_e3_uniqueness.json">Exp 3 uniqueness receipt</a> ·
+<a href="evidence/preregistration_h84.json">preregistration JSON</a> ·
+<a href="research/h84_hypotheses.md">preregistered hypotheses &amp; PhD H33 analysis</a> ·
+<a href="h84-executive-summary.html">H84 executive summary &amp; submission guide →</a></p></section>
+
+<h2>Diagnostic map &amp; dual-seed holdout benchmark</h2>
+<p><img src="figures/h84_surface_and_dots.png" alt="H84-RAMP two-host relay facing corridor, composite surface, emitted binary dots, and dual-seed holdout benchmark" style="max-width:100%;height:auto;border:1px solid #cbd5e1;border-radius:6px"></p>
+
+<h2>Dual-seed holdout evaluation (Exp 2 · <code>gems57-pooled-hide-v2</code>, &alpha;=0.2, &beta;=0.8, 300 m kernel)</h2>
+<p>Every score below is labelled <b>HOLDOUT-DTI</b> (2,000 paired spatial-cluster bootstrap draws). No organizer score exists for this file.</p>
+<table><tr><th>Arm</th><th>Seed 20 HOLDOUT-DTI (95% CI)</th><th>Seed 30 HOLDOUT-DTI (95% CI)</th><th>Evaluator &amp; withheld positives</th></tr>{arm_rows}</table>
+<p class="small"><b>Paired differences for <code>A_std_plus_h84</code>:</b> vs <code>A_std_plus_h84_naive</code> (no B-LBCO):
+<b>+{s20['paired_differences_vs_A_std_plus_h84']['A_std_plus_h84_naive']['delta']:.4f}</b> s20 /
+<b>+{s30['paired_differences_vs_A_std_plus_h84']['A_std_plus_h84_naive']['delta']:.4f}</b> s30 (95% CIs exclude 0);
+vs <code>A_std_control</code> (19-band control):
+<b>+{s20['paired_differences_vs_A_std_plus_h84']['A_std_control']['delta']:.4f}</b> s20 /
+<b>+{s30['paired_differences_vs_A_std_plus_h84']['A_std_control']['delta']:.4f}</b> s30 (95% CIs exclude 0);
+vs <code>A0_random</code>:
+<b>+{s20['paired_differences_vs_A_std_plus_h84']['A0_random']['delta']:.4f}</b> s20 /
+<b>+{s30['paired_differences_vs_A_std_plus_h84']['A0_random']['delta']:.4f}</b> s30.</p>
+
+<h2>Irregularity discovered: IR-H84-01 (Relay-Stepover Self-Collapse Tautology) &amp; leakage canaries (Exp 1)</h2>
+<p><b>IR-H84-01:</b> When a classifier is trained on visible fault pixels (<code>y=1</code> for <code>x in V</code>), the Euclidean distance to the nearest visible component is identically <code>d1(x, V) == 0</code>, which forces 7 of the 8 two-host relay and collar channels to collapse to <code>0.0000</code> on 100% of training positives (driving <code>A_std_plus_h84_naive</code> down to <b>0.0418</b> s20 / <b>0.0331</b> s30, below random). Evaluating training rows via 5-bucket Buffered-Component Leave-Bucket-Out (<b>B-LBCO</b>, 3-px context buffer) restores the true stepover distribution and lifts holdout DTI by <b>+0.0948</b> (s20) and <b>+0.1115</b> (s30).</p>
+<table><tr><th>Channel</th><th>Seed 20 symm. AUC (&le;0.90)</th><th>Seed 30 symm. AUC (&le;0.90)</th><th>Naive visible pos mean</th><th>B-LBCO visible pos mean</th><th>Withheld holdout pos mean</th></tr>{can_rows}</table>
+
+<h2>Registry uniqueness audit (Exp 3 · {uq['registry_rasters_checked']} checked rasters)</h2>
+<p><b>Phase 1 (pre-placement surface):</b> max |Spearman &rho;| = <b>{uq['phase1_pre_placement_surface_max_abs_spearman']:.4f}</b> (physics) / <b>{uq['phase1_fullcat_surface_max_abs_spearman']:.4f}</b> (fullcat OOF) &le; 0.90.<br>
+<b>Phase 2 (informative sparse reading across {inf_uq['sparse_rasters_checked']} dot-field rasters):</b> <b>0 overlap firings</b> — max 3-px forward overlap = <b>{inf_uq['max_forward_overlap_3px']:.4f}</b> &le; 0.70 (vs <code>{e(inf_uq['worst_overlap_submission'])}</code>), max |Spearman &rho;| = <b>{inf_uq['max_abs_spearman']:.4f}</b> &le; 0.90. Versus <code>H33</code> champion (<code>.cache/registry/h33.tif</code>): 3-px forward overlap = <b>{uq['vs_h33_champion']['my_dots_within_3px_of_theirs']:.4f}</b>, Spearman &rho; = <b>{uq['vs_h33_champion']['spearman_full_footprint']:+.5f}</b>.<br>
+<b>Phase 2 (literal Policy I17 reading):</b> forward overlap = <b>1.0000</b> &gt; 0.70 against <code>.cache/registry/dense_witness.tif</code> (<code>ab0a0a62...</code>, 5,167,373 positive pixels covering 100% of allowed pixels within 3 px), and only {uq['registry_rasters_checked']}/812 multi-repo rasters are mirrored locally. Fails closed.</p>
+
+<h2>Named non-fault mimicking process</h2>
+<p>{e(h84_card['named_non_fault_mimicking_process'])}</p>
+
+<h2>Format preflight (15/15 checks PASS)</h2>
+<ul>{check_rows}</ul>
+"""
+
+    exec_body = f"""<h1>H84-RAMP Executive Summary &amp; Submission Guide</h1>
+<p class="verdict"><b>Decision for <code>{e(h84_card['submission_name'])}</code>: OK TO DOWNLOAD FOR INSPECTION · NOT OK TO SUBMIT (Not approved).</b><br>
+Format-valid (15/15 checks, 0 NaN, values in {{0,1}}, 37,654 binary dots, 0 on catalogue, min catalogue distance 5.00 px) and informative-unique across all 51 sparse rasters checked (max 3-px forward overlap {inf_uq['max_forward_overlap_3px']:.4f} &le; 0.70, vs H33 overlap {uq['vs_h33_champion']['my_dots_within_3px_of_theirs']:.4f}), with <b>HOLDOUT-DTI {s20['A_std_plus_h84']['dti']:.4f}</b> (s20) / <b>{s30['A_std_plus_h84']['dti']:.4f}</b> (s30; pure physics <b>{s20['S_h84_physics']['dti']:.4f}</b> / <b>{s30['S_h84_physics']['dti']:.4f}</b>), but below the 0.152718 H77-Step holdout incumbent and blocked under literal Policy I17.</p>
+<section class="card dl research"><h2>⬇ H84-RAMP Artifact &amp; Metadata (Inspection Only)</h2>
+<a class="btn" href="{e(tif)}" download>Download .tif ({h84_card['raster_bytes'] / 1024:.0f} KB)</a>
+<a class="btn alt" href="{e(zip_)}" download>Download one-TIFF .zip</a>
+<div class="chips"><span class="chip ok">OK to download: YES</span>
+<span class="chip bad">OK to submit: NO</span>
+<span class="chip warn">Selector: not approved (0 weekly slots used)</span></div>
+{copy('Submission name (reference only — DO NOT SUBMIT)', h84_card['submission_name'])}
+{copy('Short note <= 140 chars (reference only — DO NOT SUBMIT)', h84_card['submission_note'])}
+<p class="small">TIFF SHA-256: <code>{e(h84_card['raster_sha256'])}</code> · ZIP SHA-256: <code>{e(h84_card['zip_sha256'])}</code> · <a href="h84.html">Full H84-RAMP technical report →</a> · <a href="evidence/h84_run_card.json">JSON run card →</a> · <a href="research/h84_hypotheses.md">PhD H33 analysis &amp; hypotheses →</a></p></section>
+
+<h2>Step-by-step DrivenData portal submission procedure (only when a future file is selector-approved)</h2>
+<ol>
+<li><b>Check the release gate first:</b> Verify <code>docs/data/submission-authorization.json</code>. For H84-RAMP, <code>ok_to_submit</code> is <code>false</code> and selector status is <b>not approved</b>; do not spend a weekly slot on this file.</li>
+<li><b>Download the single GeoTIFF:</b> When a candidate is approved, download the <code>-zeros.tif</code> (or its single-TIFF <code>.zip</code>) and verify its SHA-256 checksum locally (<code>sha256sum {e(h84_card['submission_name'])}.tif</code>).</li>
+<li><b>Upload on DrivenData:</b> Visit the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData GEMS submissions portal</a> (requires competition login; 3 submissions allowed per 7-day rolling window per official rules).</li>
+<li><b>Paste metadata:</b> Enter the exact submission name and &le;140-character note shown above, submit, and record any returned score strictly as <b>ORGANIZER-CONFIRMED</b> with a screenshot/receipt.</li>
+</ol>
+
+<h2>Verified official reference links</h2>
+<table>
+<tr><th>Source</th><th>Verified URL</th><th>Role in H84-RAMP</th></tr>
+<tr><td>DrivenData GEMS Problem &amp; Metric Page</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">drivendata.org/.../page/967/</a></td><td>Grid contract (3730&times;3292, EPSG:32611, 100 m), DTI (&alpha;=0.2, &beta;=0.8, 300 m kernel), known-fault masking</td></tr>
+<tr><td>DrivenData Public Leaderboard</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">drivendata.org/.../leaderboard/</a></td><td>2026-10-21 top score: 0.4413 ORGANIZER-CONFIRMED (first place)</td></tr>
+<tr><td>DOE / NREL Official Prize Rules PDF</td><td><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">docs.nlr.gov/docs/fy26osti/96647.pdf</a></td><td>3 weekly feedback slots; finalist code &amp; methodology disclosure rules</td></tr>
+<tr><td>INGENIOUS Great Basin Dataset (GDR 1391)</td><td><a href="https://dx.doi.org/10.15121/1881483">dx.doi.org/10.15121/1881483</a></td><td>Upstream public source of the 19 geophysical, geodetic, gravity, magnetic, and fault layers</td></tr>
+<tr><td>USGS GeoDAWN Airborne Geophysics</td><td><a href="https://doi.org/10.5066/P93LGLVQ">doi.org/10.5066/P93LGLVQ</a></td><td>Airborne magnetic &amp; radiometric compilation across northern Nevada / Walker Lane</td></tr>
+</table>
+"""
+    (D / "h84.html").write_text(page("h84.html", "H84-RAMP · negative", body))
+    (D / "h84-executive-summary.html").write_text(page("h84-executive-summary.html", "H84-RAMP guide", exec_body))
+    (D / "evidence").mkdir(exist_ok=True)
+    (D / "research").mkdir(exist_ok=True)
+    for fname in ("h84_run_card.json", "h84_e1_canary_surface.json", "h84_e2_holdout.json", "h84_e3_uniqueness.json"):
+        shutil.copyfile(ROOT / "evidence" / fname, D / "evidence" / fname)
+    shutil.copyfile(ROOT / "registry/preregistration_h84.json", D / "evidence/preregistration_h84.json")
+    shutil.copyfile(ROOT / "research/h84_hypotheses.md", D / "research/h84_hypotheses.md")
+    print("wrote docs/h84.html and docs/h84-executive-summary.html")
+
+
 if __name__ == "__main__":
     main()
     _write_h77e_knick()
@@ -985,3 +1129,5 @@ if __name__ == "__main__":
     build_h82_texture(page)
 
     _write_h83()
+    _write_h84()
+
