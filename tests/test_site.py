@@ -321,6 +321,23 @@ def test_current_review_and_metric_correction_are_linked():
     assert 'Resource not accessible by integration' in review
 
 
+def test_active_branch_review_records_stop_and_no_submission():
+    source = (DOC / "review-2026-10-21-arena-00397d44.md").read_text()
+    card = json.loads((ROOT / "evidence/review_00397d44_run_card.json").read_text())
+    assert "STOP_UNIVERSAL_DUPLICATE" in source
+    assert "Cross-wavelet" in source or "cross-wavelet" in source
+    assert "Not viable now" in source
+    assert card["verdict"] == "negative"
+    assert card["raster_sha256"] is None and card["submission_name"] is None
+    assert card["holdout_dti"]["withheld_positive_pixels"] is None
+    assert card["validator_output"]["decision"] == "NOT OK TO SUBMIT"
+    assert not card["validator_output"]["new_tiff_generated"]
+    assert (DOC / "evidence/review_00397d44_run_card.json").read_bytes() == (ROOT / "evidence/review_00397d44_run_card.json").read_bytes()
+    latest = (DOC / "review-latest.html").read_text()
+    assert "arena/00397d44-gemsdoe77" in latest
+    assert "Resource not accessible by integration" in latest
+
+
 def test_current_preflight_review_does_not_claim_a_new_submission():
     text = (DOC / "preflight-review.html").read_text()
     assert "NOT OK TO SUBMIT" in text and "No new TIFF generated" in text
