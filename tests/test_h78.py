@@ -72,4 +72,5 @@ def test_lanes_and_home_page_show_h78_status():
     home = (ROOT / "docs/index.html").read_text()
     assert CARD["submission_name"] in home and CARD["raster_sha256"] in home
     readme = (ROOT / "README.md").read_text()
-    assert CARD["submission_name"] in readme[:6000] and CARD["raster_sha256"] in readme
+    # New lanes may precede H78; keep its historic file/hash documented without a brittle byte offset.
+    assert CARD["submission_name"] in readme and CARD["raster_sha256"] in readme

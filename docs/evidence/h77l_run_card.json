@@ -1,0 +1,106 @@
+{
+  "lane": "H77L",
+  "preregistration_sha256": "dd007db2c148bd1e74b83dbb74bc4423fc518153d1bfc03bc231d011cda38ad0",
+  "experiment_count": 1,
+  "hypothesis": "A 3-pixel strike-normal displaced GeoDAWN ThK rank-intensity flank at a USGS 3DEP lidar micro-scarp can signal a not-yet-mapped structure",
+  "mechanism": "Local structure-tensor scarp normal, positive 300 m ThK flank contrast minus 1.25x zero-lag gradient, weighted by lidar step and coherence; raw inputs only, no previous submission reused",
+  "named_non_fault_process": "road/canal embankment or Pleistocene lake shoreline bench across changing alluvium",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "dti": 0.031168049469754704,
+    "ci95": [
+      0.02597034755270614,
+      0.036921180837349236
+    ],
+    "withheld_positive_pixels": 41732,
+    "tpw": 1102.7814423639477,
+    "fpw": 8878.17839390693,
+    "fnw": 40629.21855763605
+  },
+  "paired_vs_lidar_step": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "delta": 0.016789140498771987,
+    "ci95": [
+      0.011887593751878549,
+      0.021990434435106905
+    ],
+    "withheld_positive_pixels": 41732
+  },
+  "best_comparable_control_this_experiment": "same_pixel_edge",
+  "current_repository_best_warning": "H77-Step 0.152718 HOLDOUT-DTI (gems57-pooled-hide-v2, 11,321 withheld positives, 95% CI [0.131548, 0.175185]) uses different folds/support; not comparable. No evidence this candidate beats the repository incumbent.",
+  "leakage_canary": {
+    "threshold_auc": 0.9,
+    "flagged": false,
+    "n_feature_fold_tests": 28,
+    "highest_auc": 0.6159326358884702
+  },
+  "registry": {
+    "scope": "two independently SHA-pinned rejection witnesses ONLY; not the full registry",
+    "surface_gate": "FAIL \u2014 one prior has universal >0 support; stop BEFORE dot placement",
+    "surface_max_spearman": 0.013549857595145232,
+    "surface_max_forward_overlap_3px": 1.0,
+    "postwrite_positive_support_max_spearman": 0.013549857595145232,
+    "postwrite_positive_support_max_forward_overlap_3px": 1.0,
+    "vs_h33_surface_rank_correlation": 0.004569063910083676,
+    "vs_h33_positive_support_overlap_3px": 0.23157356814340185,
+    "duplicate_rasters_in_checked_subset": 1,
+    "full_registry_certified": false,
+    "final_dot_placement_audit": "NOT RUN; pre-placement gate failed. Postwrite is unchanged surface, not placed dots.",
+    "universal_overlap_certificate": {
+      "evidence_class": "REGISTRY-MEASUREMENT",
+      "witness_file": "/home/user/GEMSDOE77/.cache/registry/dense_witness.tif",
+      "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+      "positive_pixels": 5167373,
+      "allowed_pixels": 5106385,
+      "uncovered_allowed_pixels": 0,
+      "covered_allowed_fraction": 1.0,
+      "universal_overlap_blocker": true,
+      "overlap_limit": 0.7,
+      "support_definition": "finite prediction > 0 (inherited literal support rule)",
+      "implication": "Every nonempty candidate dot set in the allowed domain has forward overlap 1.0 with this prior; therefore it cannot pass the 0.70 gate."
+    }
+  },
+  "raster_sha256": "9d199f9fad93e234397a7a19a05eabf12fd77285be3007e6afe22d12a36dcbd1",
+  "raster_path": "docs/downloads/gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY.tif",
+  "zip_path": "docs/downloads/gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY.zip",
+  "validator": {
+    "all_checks_passed": true,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "crs_shape_transform_match": true,
+    "min": 0.0,
+    "max": 1.0,
+    "nan_count_anywhere": 0
+  },
+  "submission_name": "gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY",
+  "submission_note": "H77L displaced ThK / lidar scarp; literal overlap fails; research only; DO NOT SUBMIT",
+  "note_length": 85,
+  "byte_distinct_vs_checked_witnesses": true,
+  "pixel_distinct_vs_checked_witnesses": true,
+  "ok_to_download_for_research": true,
+  "ok_to_submit": false,
+  "weekly_slots_spent": 0,
+  "organizer_confirmed_score_for_this_tif": null,
+  "elapsed_seconds": 30.18,
+  "verdict": "negative",
+  "reason": "Literal registry overlap exceeds 0.70 on a confirmed 100%-support witness; stopped before placement. No matched-current-best improvement/selector approval or organizer score."
+}
