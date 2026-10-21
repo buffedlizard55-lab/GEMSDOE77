@@ -83,6 +83,46 @@ While PR #3 was awaiting merge, PRs #1/#2 landed on main. Their H77C code, TIFF 
 
 ## Original project request
 
+## Concurrent lane merged 2026-10-21 — contact-physics + front-base (PR #5): also negative, DO NOT SUBMIT
+
+A third parallel session (this repo was empty at its start too) tested a
+preregistered ([registry/preregistration_contactphys.json](registry/preregistration_contactphys.json))
+derived-physics lane: correctly computed mag/gravity tilt + analytic signal +
+tilt confluence + signed basement step + monogenic phase congruency +
+pseudogravity-Poisson residual + range-front-base asymmetry in an HGB ranker
+(no catalogue-derived features in fitting; visible faults masked; fixed
+44,090-dot budget, >3 px off catalogue, 2.8 px min separation).
+
+- **Candidate (inspection only):**
+  [docs/downloads/gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif](docs/downloads/gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif)
+  · SHA-256 `20be05cc671c85484e4cfc8ea40d2fced71d7ec70f20ab915f36fcc68fcc4851`
+  · format-valid on independent re-read ([evidence/verification_pass2.json](evidence/verification_pass2.json))
+  · [run card](evidence/run_card_contactphys.json) · [lane page](docs/contactphys.html)
+  · [lane executive summary](docs/contactphys-executive-summary.html)
+- **Why negative:** primary arm HOLDOUT-DTI 0.1090 [0.0921, 0.1277] vs
+  standard-block 0.1043 (evaluator `gems57-pooled-hide-v2`, seed-30 draw,
+  11,342 withheld positives); paired Δ CI includes 0, and again on a frozen
+  seed-21 replication (two-draw Δ +0.0026 [-0.0030, +0.0080], 22,914 withheld
+  px). Preregistered gate failed twice ⇒ no slot (0 spent by all three lanes).
+- **Uniqueness:** 0 duplicates vs 43 local registry rasters (Exp-2 tool);
+  post-merge supplement vs the two lanes above
+  ([evidence/uniqueness_supplement_postmerge.json](evidence/uniqueness_supplement_postmerge.json)):
+  binary-dot forward overlaps 0.108–0.110, |ρ| ≤ 0.003. The literal tool on
+  `main` flags the dense urank surface as a universal blocker (0.979) — a
+  template divergence the family should converge (IR-77-09 in
+  [research/irregularities.md](research/irregularities.md)); `main`'s vendored
+  bytes were kept identical in this merge.
+- **Reusable measured findings:** shipped band 6 `tc` is radiometric **total
+  count, not tilt** (ρ +0.99995 vs GeoDAWN TC); band 18 is ∂g/∂x, not |∇g|
+  ([evidence/band_diagnostics.json](evidence/band_diagnostics.json));
+  `frontness` alone reaches HOLDOUT-DTI 0.0836; phase congruency alone is
+  worse than random (0.0404 < 0.0545). Analysis of why h33-2-b2 (0.2778
+  OWNER-REPORT) scored and what beating the 0.4413 ORGANIZER-CONFIRMED public
+  leader requires: [research/why-h33-scored-02778.md](research/why-h33-scored-02778.md).
+  Ranked hypotheses (incl. DATA-BLOCKED seismicity):
+  [research/hypotheses.md](research/hypotheses.md). Operative brief digest:
+  [PROMPT.md](PROMPT.md).
+
 The standing request is reproduced below and separately at [docs/PROJECT_PROMPT.md](docs/PROJECT_PROMPT.md). User-supplied claims and historical assertions in it are **not verified facts** and do not override the measured negative verdict above.
 
 # Original project request — standing instructions

@@ -1,0 +1,67 @@
+{
+  "kind": "uniqueness_supplement_postmerge",
+  "date": "2026-10-21",
+  "candidate": "gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif",
+  "why": "Two sibling lanes merged to main concurrently (PRs #1-#4); their rasters were absent from this lane's Exp-2 local registry (43 rasters).",
+  "literal_tool_on_main": {
+    "registry_rasters_checked": 2,
+    "registry_rasters_expected": 2,
+    "worst_spearman_abs": null,
+    "worst_dot_overlap": 0.9794964844635972,
+    "duplicate_count": 1,
+    "unique": false,
+    "rows": [
+      {
+        "repo": null,
+        "submission": "gems77-h77-urank-curvature-0d868dc271bb-research",
+        "file": "/home/user/GEMSDOE77/docs/downloads/gems77-h77-urank-curvature-0d868dc271bb-research.tif",
+        "sha256": "9489af2b7e1b06a249203d3c9d6dfe4ed469647f59ebe3a5ffe9c50c67e46b42",
+        "decoded_sha256": "0d868dc271bbe91688482bc543ff41afd6814b6867118721feb9a493824d8822",
+        "their_dots": 4961936,
+        "my_dots_within_3px_of_theirs": 0.9794964844635972,
+        "their_dots_within_3px_of_mine": 0.13937946801409773,
+        "spearman_full_footprint": 0.0012631741462636457,
+        "jaccard_dot_sets": 0.008614888416261221,
+        "identical_bytes": false,
+        "identical_decoded_predictions": false,
+        "duplicate_by_rho": false,
+        "duplicate_by_overlap": true,
+        "duplicate_by_jaccard": false
+      },
+      {
+        "repo": null,
+        "submission": "gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-zeros",
+        "file": "/home/user/GEMSDOE77/docs/downloads/gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-zeros.tif",
+        "sha256": "0f86bf205eff2522fad4253d88dbd62220d06408deafb25a9672cc2e7ea0acab",
+        "decoded_sha256": "14480f73799cece896dce83d955a4e56db9dcc4dba9f42f226ba4bd5c3a157c5",
+        "their_dots": 44090,
+        "my_dots_within_3px_of_theirs": 0.10757541392606033,
+        "their_dots_within_3px_of_mine": 0.14524835563619867,
+        "spearman_full_footprint": 0.0027407194259837604,
+        "jaccard_dot_sets": 0.0056566762465216,
+        "identical_bytes": false,
+        "identical_decoded_predictions": false,
+        "duplicate_by_rho": false,
+        "duplicate_by_overlap": false,
+        "duplicate_by_jaccard": false
+      }
+    ]
+  },
+  "binary_dot_reading": [
+    {
+      "submission": "gems77-h77-urank-curvature-0d868dc271bb-research",
+      "their_positive_px_literal": 4961936,
+      "their_binary_dots": 49618,
+      "binary_dot_forward_overlap": 0.10957133136765707,
+      "binary_dot_reverse_overlap": 0.1341247128058366
+    },
+    {
+      "submission": "gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-zeros",
+      "their_positive_px_literal": 44090,
+      "their_binary_dots": 44090,
+      "binary_dot_forward_overlap": 0.10757541392606033,
+      "binary_dot_reverse_overlap": 0.14524835563619867
+    }
+  ],
+  "note": "Vendor divergence: main carries the literal >0-support uniqueness tool; this lane's Exp 2 used GEMSDOE70's 2026-10-20 binary-dot/mutual version. Recorded as IR-77-09. Lane verdict (negative, DO NOT SUBMIT) is unchanged under either reading."
+}
