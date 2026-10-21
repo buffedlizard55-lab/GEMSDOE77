@@ -21,8 +21,10 @@ REPO = "https://github.com/buffedlizard55-lab/GEMSDOE77"
 LB = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
 PD = "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
-NAV = [("index.html", "Start here"), ("executive-summary.html", "How to submit"),
-       ("h80-depth.html", "H80-DB · negative"), ("h79.html", "H79 · research-only"),
+NAV = [("index.html", "Start here"), ("release-review.html", "Release safety review"), ("executive-summary.html", "How to submit"),
+       ("h80.html", "H80 Riedel · negative"), ("h80-depth.html", "H80-DB · negative"),
+       ("h79-orient.html", "H79-ORIENT · negative"), ("h79-orient-executive-summary.html", "H79-ORIENT guide"),
+       ("h79.html", "H79-BB · research-only"),
        ("h79-radhalo.html", "H79-RH · negative"),
        ("h77l.html", "H77L · research-only"), ("h77d.html", "H77D (Zero-SGMC)"), ("h77d-executive-summary.html", "H77D guide"),
        ("h77-step.html", "H77-Step"), ("h77e.html", "H77E · negative"), ("h78.html", "H78 lane"),
@@ -72,6 +74,13 @@ def main():
     card = jload("evidence/h78_run_card.json")
     sub = jload("docs/data/h78_submission.json")
     lag_card = jload("evidence/h77l_run_card.json")
+    orient_card = jload("evidence/h79_orient_run_card.json")
+    orient_rows = [x for x in lanes["lanes"] if x["lane"].startswith("H79-ORIENT:")]
+    if len(orient_rows) != 1 or not orient_card or orient_card["verdict"] != "negative" or orient_card["ok_to_submit"]:
+        raise ValueError("H79-ORIENT research lane missing from manifest/card or wrong clearance")
+    orient = orient_rows[0]
+    if orient["sha256"] != orient_card["raster_sha256"] or orient["name"] != orient_card["submission_name"]:
+        raise ValueError("H79-ORIENT site differs from frozen run card")
     lag_rows = [x for x in lanes["lanes"] if x["lane"].startswith("H77L:")]
     if len(lag_rows) != 1 or not lag_card or lag_card["verdict"] != "negative" or lag_card["ok_to_submit"]:
         raise ValueError("H77L research lane missing from manifest/card or wrong clearance")
@@ -90,17 +99,30 @@ def main():
     primary = next(x for x in lanes["lanes"] if x.get("primary"))
     # ---------------- status table (every file in the repository)
     def holdout_cell(x):
+        if x["lane"].startswith("H80-RW:"):
+            h = jload("evidence/h80_run_card.json")["holdout_dti"]
+            return (f'<span class="chip warn">HOLDOUT-DTI {h["value"]:.4f} '
+                    f'(95% CI {h["ci95"][0]:.4f}–{h["ci95"][1]:.4f}; '
+                    f'{e(h["evaluator_version"])}; {h["n_withheld_positives"]:,} withheld); negative</span>')
         if x["lane"].startswith("H80-DB:"):
             h = jload("evidence/run_card_h80_depth.json")["holdout_dti"]
             return (f'<span class="chip warn">HOLDOUT-DTI {h["score"]:.4f} '
                     f'(95% CI {h["ci95"][0]:.4f}–{h["ci95"][1]:.4f}; '
-                    f'{e(h["evaluator_version"])}; {h["withheld_positive_pixels"]:,} withheld); negative</span>')
+                    f'{e(h["evaluator_version"])}; {h["withheld_positive_pixels"]:,} withheld); '
+                    'cube-root variant; negative vs matched random</span>')
         if x["lane"].startswith("H77L:"):
             h = lag_card["holdout_dti"]
             return (f'<span class="chip warn">HOLDOUT-DTI {h["dti"]:.4f} '
                     f'(95% CI {h["ci95"][0]:.4f}–{h["ci95"][1]:.4f}; '
                     f'{e(h["evaluator_version"])}; {h["withheld_positive_pixels"]:,} withheld); '
                     'not comparable to incumbent</span>')
+        if x["lane"].startswith("H79-ORIENT:"):
+            h20 = orient_card["holdout"]["seed20"]["scores"]["H79_plus_raw"]
+            h30 = orient_card["holdout"]["seed30"]["scores"]["H79_plus_raw"]
+            return (f'<span class="chip warn">HOLDOUT-DTI {h30["dti"]:.4f} '
+                    f'(95% CI {h30["ci95"][0]:.4f}–{h30["ci95"][1]:.4f}; '
+                    f'{e(h30["evaluator_version"])}; {h30["withheld_positive_pixels"]:,} withheld); '
+                    f'seed20 {h20["dti"]:.4f}; negative</span>')
         if x["lane"].startswith("H79-BB:"):
             h = jload("evidence/h79_run_card.json")["holdout_dti"]
             v = h["pooled_hide_v2"]
@@ -185,6 +207,13 @@ gates and currently says <b>NOT OK TO SUBMIT — 0 authorized files</b>.</p>"""
 {copy("Submission name (for reference)", primary.get("name", Path(primary["file"]).stem))}
 {copy("Note (for reference)", primary.get("note", ""))}
 <p class="small">sha256 of the .tif: <code>{e(primary.get("sha256", ""))}</code> · <a href="executive-summary.html">How submission works, step by step →</a></p></section>"""
+    o20 = orient_card["holdout"]["seed20"]["scores"]["H79_plus_raw"]
+    o30 = orient_card["holdout"]["seed30"]["scores"]["H79_plus_raw"]
+    orient_box = f"""<section class="card" style="border:2px solid #b45309;background:#fffbeb;"><h2>⬇ H79-ORIENT: latest negative candidate</h2>
+<p><b>OK TO DOWNLOAD: YES.</b> <b>OK TO SUBMIT: NO.</b> The label-blind orientation/persistence artifact is a distinct research lane, but its primary is HOLDOUT-DTI {o30['dti']:.6f} on seed 30 (95% CI {o30['ci95'][0]:.6f}–{o30['ci95'][1]:.6f}; {o30['withheld_positive_pixels']:,} withheld positives) and {o20['dti']:.6f} on seed 20. The retained incumbent is 0.152718 HOLDOUT-DTI. The registry gate is also fail-closed.</p>
+<a class="btn" href="{e(orient['file'])}" download>Download H79-ORIENT .tif</a> <a class="btn alt" href="{e(orient['zip'])}" download>One-TIFF ZIP</a>
+<div class="chips"><span class="chip ok">Format preflight: PASS</span><span class="chip bad">Holdout: NEGATIVE</span><span class="chip bad">Registry: FAIL</span><span class="chip warn">Slots used: 0</span></div>
+<p class="small">SHA-256 <code>{e(orient['sha256'])}</code> · <a href="h79-orient.html">technical report</a> · <a href="h79-orient-executive-summary.html">H79-ORIENT guide</a> · <a href="evidence/h79_orient_run_card.json">run card</a></p></section>"""
     facts = ""
     if card:
         h = card["holdout"]
@@ -203,13 +232,14 @@ gates and currently says <b>NOT OK TO SUBMIT — 0 authorized files</b>.</p>"""
 lists the reviewed research candidates, not every historical archived/NaN-twin file; see <a href="audit.html">archive audit</a>.</p>
 {glance}
 {dl}
+{orient_box}
 <h2>Reviewed downloadable candidates</h2>{table}
 <div class="values"><b>The target, labelled.</b> On 2026-10-21 the <a href="{LB}">public leaderboard</a> showed
 <b>0.4413 ORGANIZER-CONFIRMED</b> for first place and <b>0.2778 ORGANIZER-CONFIRMED</b> for participant extradr19
 (at row #48 in this read). Neither public row identifies the underlying raster. The owner's claim that the specific
 <code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</code> file achieved 0.2778 is <b>OWNER-REPORT, not a submission
-receipt</b>; GEMSDOE32's own published page said it had no organizer score for that file. No H80-DB file has an organizer
-score. H80-DB used <b>zero</b> of the <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">three weekly feedback slots</a>.</div>
+receipt</b>; GEMSDOE32's own published page said it had no organizer score for that file. No H77L file has an organizer
+score. H77L used <b>zero</b> of the <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">three weekly feedback slots</a>.</div>
 {facts}
 <h2>Why the H33 file might have achieved the owner's reported 0.2778</h2>
 <p><b>Direct raster measurement, not an authenticated causal leaderboard attribution:</b> the archived H33 file has 37,654
@@ -224,19 +254,20 @@ not proof that the specific file received that score or that another submission 
 
     # ---------------- general executive summary (how to submit)
     guide = f"""<h1>Executive summary: how to submit — only AFTER approval</h1>
-<p class="verdict"><b>Today: NOT OK TO SUBMIT any file here.</b> The featured H80-DB file is explicitly
+<p class="verdict"><b>Today: NOT OK TO SUBMIT any file here.</b> The featured H77L file is explicitly
 <b>RESEARCH ONLY</b>. Download is for inspection, not permission to upload. Before spending one of the official
 <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">three weekly feedback slots</a>, the shared uniqueness policy must
 be resolved, a candidate must beat a <em>matched</em> holdout incumbent, and a separate selector must approve it. No
 condition is met merely by passing a format check.</p>
 {glance}
 {dl}
+{orient_box}
 <h2>What the DrivenData submission form asks for</h2>
 <table><tr><th>Field</th><th>What to give it only after clearance</th></tr>
 <tr><td>File to submit</td><td>One <b>cleared</b> single-band float32 GeoTIFF <code>.tif</code> (or a ZIP containing exactly that one GeoTIFF),
 never this HTML page, a PDF, a JSON run card, or a file marked RESEARCH ONLY. Match the <a href="{PD}">official grid</a>:
 EPSG:32611; 3730 rows × 3292 columns; 100 m resolution; top-left origin (243350, 4508550). Prediction values [0, 1].</td></tr>
-<tr><td>Note (optional)</td><td>Paste the <b>approved file's</b> distinct short note, no longer than 140 characters. The featured H80-DB
+<tr><td>Note (optional)</td><td>Paste the <b>approved file's</b> distinct short note, no longer than 140 characters. The H77L
 research-file note says DO NOT SUBMIT and is <em>not</em> an upload recommendation.</td></tr></table>
 <h2>Actual submission steps (not executable for today's files)</h2><ol>
 <li>First confirm the site's per-file row says <b>OK TO SUBMIT</b> and the selector has approved this exact SHA-256;
@@ -249,13 +280,13 @@ and open <b>New submission</b>. This sandbox cannot log into your account or upl
 <li>Choose the cleared <code>.tif</code>, enter its approved short note, and submit. Read the response; archive its
 organizer timestamp, submission ID and score receipt. Only then label that *file's* result ORGANIZER-CONFIRMED.</li>
 <li>For finalist materials, consult the <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">official rules PDF</a>:
-finalists must choose one submission for both prize phases and provide the required solution code assets and documentation. Check the competition platform for any additional current instructions.</li></ol>
+choose only one final submission for both prize phases and provide the required solution code assets and documentation. Check the competition platform for any additional current instructions.</li></ol>
 <h2>About the earlier “Predicted values must be in range [0, 1]” error</h2>
 <p>The original rejected bytes/organizer diagnostics are unavailable, so the cause is <b>not proven</b>. The pinned
 shared writer refuses non-finite or out-of-range values rather than clipping them, writes a single float32 band with no
-nodata sentinel, and re-opens its output to check the sample's CRS/shape/transform. For the featured H80-DB file, the
-read-back range is [0.0, 0.9884392], zero NaNs inside the footprint and anywhere else, and zeros outside the sample
-footprint (see <a href="downloads/gemsdoe77-h80-basement-cond-edge-RESEARCH-ONLY.json">validator receipt</a>). This removes the measured local risk of
+nodata sentinel, and re-opens its output to check the sample's CRS/shape/transform. For the linked H77L file, the
+read-back range is [0.0, 1.0], zero NaNs inside the footprint and anywhere else, and zeros outside the template's finite
+footprint (see <a href="evidence/h77l_run_card.json">validator receipt</a>). This removes the measured local risk of
 out-of-range pixels; it is <b>not an organizer acceptance guarantee</b> and does not override NOT OK TO SUBMIT.</p>
 <h2>Evidence classes</h2><ul>
 <li><b>ORGANIZER-CONFIRMED</b>: public <a href="{LB}">leaderboard</a> values and actual submission-page receipts;
@@ -278,17 +309,19 @@ projection is labelled INSTRUMENT, never presented as a score.</li></ul>"""
     shutil.copyfile(ROOT / "registry/preregistration_h77l.json", D / "evidence/preregistration_h77l.json")
     shutil.copyfile(ROOT / "research/h77l_pre_experiment_hypotheses.md", D / "research/h77l_pre_experiment_hypotheses.md")
 
-    # ---------------- H80 frozen evidence mirrored into the GitHub Pages tree
+    # ---------------- H80-DB evidence mirrored into the Pages tree (namespaced from the main-branch H80 Riedel lane)
     for fname in ("run_card_h80_depth.json", "h80_depth_holdout.json", "h80_depth_canaries.json", "h80_depth_surface_uniqueness.json", "h80_depth_input_receipt.json", "h80_depth_surfaces.json"):
         shutil.copyfile(ROOT / "evidence" / fname, D / "evidence" / fname)
-    shutil.copyfile(ROOT / "registry/preregistration_h80.json", D / "evidence/preregistration_h80.json")
-    shutil.copyfile(ROOT / "registry/preregistration_h80_amendment_postrun.json", D / "evidence/preregistration_h80_amendment_postrun.json")
-    shutil.copyfile(ROOT / "research/h80_pre_experiment_hypotheses.md", D / "research/h80_pre_experiment_hypotheses.md")
+    shutil.copyfile(ROOT / "registry/preregistration_h80.json", D / "evidence/preregistration_h80_depth.json")
+    shutil.copyfile(ROOT / "registry/preregistration_h80_amendment_postrun.json", D / "evidence/preregistration_h80_depth_amendment_postrun.json")
+    shutil.copyfile(ROOT / "research/h80_pre_experiment_hypotheses.md", D / "research/h80_depth_pre_experiment_hypotheses.md")
 
     # ---------------- H78 lane page
     if card and sub:
         (D / "h78.html").write_text(page("h78.html", "H78 lane", h78_body(card, sub)))
-    print("wrote docs/index.html, docs/executive-summary.html, docs/h77l.html" +
+    (D / "h79-orient.html").write_text(page("h79-orient.html", "H79-ORIENT lane", h79_orient_body(orient_card, False)))
+    (D / "h79-orient-executive-summary.html").write_text(page("h79-orient-executive-summary.html", "H79-ORIENT submission guide", h79_orient_body(orient_card, True)))
+    print("wrote docs/index.html, docs/executive-summary.html, docs/h77l.html, docs/h79-orient.html" +
           (", docs/h78.html" if card and sub else ""))
 
 
@@ -389,6 +422,69 @@ fault predictions; the <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">ru
 Only a shared representation-policy resolution and matched fold-rebuilt best, then selector approval, could make a
 later independently validated lane eligible. No assertion that H77L beats an owner-reported 0.2778 or the
 0.4413 ORGANIZER-CONFIRMED public leader is justified.</p>"""
+
+
+def h79_orient_body(card, guide=False):
+    """Render H79's negative, downloadable artifact with score provenance explicit."""
+    h20 = card["holdout"]["seed20"]
+    h30 = card["holdout"]["seed30"]
+    incumbent = card["holdout"]["incumbent"]
+    reg1 = card["correlation_overlap_vs_registry"]["surface_before_placement"]
+    reg2 = card["correlation_overlap_vs_registry"]["final_dots"]
+    ver = h30["scores"]["H79_plus_raw"]
+    file_path = card["file"].replace("docs/", "")
+    zip_path = card["zip"].replace("docs/", "")
+    title = "Executive submission guide" if guide else "Technical lane report"
+    intro = ("This is a submission guide for a future selector decision. Do not upload this file now: the scientific and "
+             "registry gates are negative. Downloading it is safe for inspection; that is not approval.") if guide else (
+             "H79-ORIENT is a genuinely distinct, label-blind research construction. It is format-valid and downloadable, "
+             "but its blocked holdout is negative versus the retained incumbent and its literal registry gate is fail-closed.")
+    score_rows = []
+    for label, h, arms in (("Seed 20", h20, h20["scores"]), ("Seed 30", h30, h30["scores"])):
+        for arm in ("H79_only", "H79_plus_raw", "raw_control", "random_control"):
+            if arm not in arms:
+                continue
+            s = arms[arm]
+            score_rows.append(f"<tr><td>{e(label)}</td><td><code>{e(arm)}</code></td><td><b>{s['dti']:.6f}</b></td>"
+                              f"<td>{s['ci95'][0]:.6f}–{s['ci95'][1]:.6f}</td><td>{s['withheld_positive_pixels']:,}</td>"
+                              f"<td><code>{e(h['evaluator_version'])}</code></td></tr>")
+    check_rows = "".join(f"<li><b>{e(k.replace('_', ' '))}:</b> {e(v)}</li>" for k, v in card["validator_output"]["checks"].items())
+    gate_rows = f"""<tr><td>Before placement</td><td>{reg1['checked_local_rasters']} of {reg1['expected_registry_rasters']}</td>
+<td>{reg1['max_abs_surface_spearman']:.6f}</td><td>{reg1['max_forward_overlap_3px']:.6f}</td>
+<td>{reg1['surface_duplicate_count']}/{reg1['dot_duplicate_count']}</td><td><b>FAIL</b></td></tr>
+<tr><td>Final dots</td><td>{reg2['checked_local_rasters']} of {reg2['expected_registry_rasters']}</td>
+<td>{reg2['max_abs_surface_spearman']:.6f}</td><td>{reg2['max_forward_overlap_3px']:.6f}</td>
+<td>{reg2['surface_duplicate_count']}/{reg2['dot_duplicate_count']}</td><td><b>FAIL</b></td></tr>"""
+    return f"""<h1>{e(title)}: H79-ORIENT</h1>
+<p class="verdict"><b>OK TO DOWNLOAD: YES.</b> <b>OK TO SUBMIT: NO.</b> {e(intro)}</p>
+<section class="card dl"><h2>⬇ Download the single-band GeoTIFF</h2>
+<p><b>{e(card['submission_name'])}</b> · 37,654 emitted dots · one float32 band · SHA-256 <code>{e(card['raster_sha256'])}</code></p>
+<a class="btn" href="{e(file_path)}" download>Download H79 .tif</a>
+<a class="btn alt" href="{e(zip_path)}" download>Download one-TIFF .zip</a>
+<div class="chips"><span class="chip ok">OK TO DOWNLOAD</span><span class="chip bad">OK TO SUBMIT: NO</span>
+<span class="chip ok">Format preflight: PASS</span><span class="chip bad">Holdout gate: FAIL</span><span class="chip bad">Registry gate: FAIL</span><span class="chip warn">Weekly slots used: 0</span></div>
+{copy('Submission name (reference only)', card['submission_name'])}
+{copy('Submission note (reference only; ≤140 characters)', card['note'])}
+<p class="small"><a href="evidence/h79_orient_run_card.json">Open the machine-readable JSON run card</a> · no organizer receipt exists for this artifact.</p></section>
+<h2>Decision</h2><p><b>Negative; no promotion.</b> The retained incumbent is <b>HOLDOUT-DTI {incumbent['dti']:.6f}</b>
+(95% CI {incumbent['ci95'][0]:.6f}–{incumbent['ci95'][1]:.6f}; {e(incumbent['evaluator_version'])}; {incumbent['withheld_positive_pixels']:,}
+withheld positives). H79's pre-registered primary <code>H79_plus_raw</code> is <b>HOLDOUT-DTI {ver['dti']:.6f}</b>
+(95% CI {ver['ci95'][0]:.6f}–{ver['ci95'][1]:.6f}; {ver['withheld_positive_pixels']:,} withheld positives) on seed 30,
+and <b>HOLDOUT-DTI {h20['scores']['H79_plus_raw']['dti']:.6f}</b> (95% CI {h20['scores']['H79_plus_raw']['ci95'][0]:.6f}–{h20['scores']['H79_plus_raw']['ci95'][1]:.6f}; {h20['scores']['H79_plus_raw']['withheld_positive_pixels']:,}
+withheld positives) on seed 20. These are local hide-and-recover measurements, not leaderboard scores.</p>
+<h2>What was tested</h2><p><b>Hypothesis:</b> {e(card['hypothesis'])}</p><p><b>Mechanism:</b> {e(card['mechanism'])}</p><p><b>Named non-fault mimic:</b> {e(card['named_non_fault_process'])}</p>
+<p>Layers were RTP, isostatic gravity anomaly, detrended elevation, and depth to basement, transformed into multi-scale Gaussian derivative edge axes, persistence, doubled-angle orientation confluence, and cross-sensor agreement. The stack is label-blind and contains no prior prediction or catalogue feature.</p>
+<h2>Holdout scores (every value is labelled HOLDOUT-DTI)</h2><p>Shared evaluator <code>gems57-pooled-hide-v2</code>, pooled α=0.2 and β=0.8, 300 m triangular kernel. Whole buffered fault components were hidden; catalogue features were derived from visible faults only and visible faults were masked pixel-exactly. CIs are the evaluator's 2,000-draw paired physical spatial-cluster bootstrap.</p>
+<table><tr><th>Seed</th><th>Arm</th><th>HOLDOUT-DTI</th><th>95% CI</th><th>Withheld positives</th><th>Evaluator</th></tr>{''.join(score_rows)}</table>
+<h2>Leakage canary</h2><p>Every one of the 14 features was tested alone. Maximum symmetric AUC was <b>0.6242</b> for <code>h79_dem_orientation_coherence</code>, below the preregistered 0.90 leakage stop threshold. This is a canary, not proof of no leakage. See <a href="evidence/h79_orient_canary.json">the full canary</a>.</p>
+<h2>Registry uniqueness: checked before placement and on final dots</h2><p>The shared <code>gems57.uniqueness</code> definitions were run before placement and after emission. Stop rule: surface |Spearman ρ| &gt; 0.90 or forward 3-pixel overlap &gt; 0.70. The dense witness <code>ab0a0a62…</code> covers the allowed footprint and fires the overlap rule; the inaccessible 812-raster snapshot means this is never upgraded to a clearance.</p>
+<table><tr><th>Phase</th><th>Local rasters checked</th><th>Max |surface ρ|</th><th>Max forward dot overlap</th><th>Surface / dot firings</th><th>Protocol result</th></tr>{gate_rows}</table>
+<h2>Format preflight</h2><p>All local checks passed: single band, float32, 3730×3292, EPSG:32611, official transform, finite values everywhere, values in [0,1], no nodata, and zero dots on mapped catalogue pixels.</p><ul>{check_rows}</ul>
+<h2>Exact submission steps (only if a future selector approves a file)</h2><ol><li>Do not use H79 now; this page says <b>OK TO SUBMIT: NO</b>.</li><li>For a later cleared file, download its single <code>-zeros.tif</code>, not JSON/HTML/repository files.</li><li>Verify the displayed SHA-256 locally (<code>sha256sum file.tif</code> or Windows <code>certutil -hashfile file.tif SHA256</code>).</li><li>On DrivenData, sign in, choose the TIFF in the competition submission form, paste the ≤140-character note, and check the weekly allowance before submitting.</li><li>Only a portal receipt or public leaderboard value may be labelled <b>ORGANIZER-CONFIRMED</b>. No such receipt exists for H79.</li></ol>
+<h2>Official sources and irregularity flags</h2><ul><li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DrivenData problem and metric specification</a> — submission grid, single-band contract, α=0.2, β=0.8 and 300 m triangular kernel.</li><li><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN</a> — official magnetic/radiometric/LiDAR source context; DOI 10.5066/P93LGLVQ.</li><li><a href="https://gdr.openei.org/submissions/1391">DOE/NREL GDR INGENIOUS submission 1391</a> — official Great Basin geothermal compilation used for hypothesis availability review, not as an H79 feature.</li><li><a href="https://github.com/drivendataorg/gems-prize-reference-solution">Organizer-linked reference solution</a> — implementation context, not a score receipt.</li><li><b>IR-79-01:</b> the first zero DTI log was a runner placement bug: holdout dots were excluded using distance to the full catalogue, which also excluded withheld positives. It was corrected to use visible-catalogue distance only; the zero results are superseded and are not reported as H79 scores. See the <a href="evidence/h79_orient_superseded_zero_bug.json">superseded-run receipt</a>.</li><li><b>IR-79-02:</b> GitHub API rate limiting left 13 comparable local TIFFs versus 812 expected; owner mirrors are not organizer-authenticated. This is a fail-closed limitation, not evidence of global uniqueness.</li><li><b>IR-79-03:</b> no DrivenData authentication or weekly selector approval is available here. No organizer-confirmed H79 score is claimed.</li></ul>
+<h2>Remaining blockers</h2><ul><li>H79 is below the retained incumbent; no promotion decision is supported.</li><li>The registry API snapshot is incomplete (13 local comparison rasters versus 812 expected); the dense witness alone forces a literal fail.</li><li>DrivenData authentication is unavailable in this workspace; no weekly slot was selected or spent.</li></ul>"""
+
+
 
 
 def h78_body(card, sub):

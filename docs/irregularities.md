@@ -18,6 +18,9 @@
 | I12 | Source feed is GitHub inventory/page freshness, not a competition-score feed. | Timestamp, retain source hashes, flag retrieval errors, never auto-promote. |
 | I13 | Full raw 19-band training stack and GPU network were not restored/trained in this narrow lane. | Reused the obtainable cached GeoDAWN stack required by this hypothesis. CPU suffices for this pilot; no claim full neural pipeline is complete. |
 | I14 | Initial shared-registry call preceded TIFF serialization. | Subsequent immutable-byte audit supplied the actual file SHA and verified decoded equality, ZIP membership, range and stop. No new experiment. |
+| I19 | H79's first holdout runner version used distance to the full catalogue, excluding hidden positives and forcing all arm scores to zero. | Corrected to visible-catalogue distance only; superseded zero logs are retained for audit and not treated as H79 results. The fixed three-experiment plan was rerun with the shared evaluator. |
+| I20 | H79 registry retrieval is incomplete (`13/812` local rasters), and a dense witness covers the allowed footprint. | Fail closed: H79 is OK to download but NOT OK to submit; no byte novelty or sparse-subset comparison is converted into protocol clearance. |
+| I21 | H79 is below the retained incumbent (`0.094507` seed 30 / `0.089063` seed 20 vs `0.152718` HOLDOUT-DTI). | Negative run card; no promotion, no organizer score claim, and zero weekly slots used. |
 
 | I15 | Post-run support audit: default cross erosion does not cover every diagonal offset of the Gaussian stencil. | Preserve the stopped artifact and observed result, label holdout confounded/not promotion-valid, and add a fail-closed feature guard. No rerun or score replacement. See support_audit.json. |
 

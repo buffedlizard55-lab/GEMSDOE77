@@ -1,32 +1,6 @@
 {
- "note": "Thirteen reviewed research lanes are retained. Every linked file is for inspection only and NOT OK TO SUBMIT: the literal dense-witness gate overlaps all nonempty candidates; no selector approval exists. H80 is the newest failed candidate and was stopped before final dot placement. See data/submission-authorization.json.",
+ "note": "18 reviewed lanes, including separate H80-RW (Riedel) and H80-DB (depth/conductivity variant). Every file remains inspection-only and NOT OK TO SUBMIT under the literal dense-witness gate and selector policy; H80-DB also has a documented post-run formula mismatch. No selector approved a weekly slot. See data/submission-authorization.json.",
  "lanes": [
-  {
-   "lane": "H80-DB: cube-root implementation variant \u2014 buried-basement depth step \u00d7 conductivity/gravity edge (negative research-only surface)",
-   "page": "h80-depth.html",
-   "summary": "executive-summary.html",
-   "file": "downloads/gemsdoe77-h80-basement-cond-edge-RESEARCH-ONLY.tif",
-   "run_card": "evidence/run_card_h80_depth.json",
-   "format_valid": true,
-   "protocol_unique": false,
-   "informative_unique": true,
-   "beats_holdout_best": false,
-   "verdict": "negative",
-   "primary": true,
-   "name": "gemsdoe77-h80-basement-cond-edge-RESEARCH-ONLY",
-   "note": "H80 basement-depth x conductivity edge; surface overlap gate failed; research only; DO NOT SUBMIT",
-   "sha256": "320fc2917ce7971fee5035d7be15c838275c9c4e56a9afe69f0386f37fe3f150",
-   "holdout_dti_hide_v2": 0.045551549566249204,
-   "holdout_evaluator_version": "gems57-pooled-hide-v2",
-   "holdout_positive_pixels": 7582,
-   "holdout_ci95": [
-    0.03251161762604909,
-    0.06028325960072994
-   ],
-   "upload": "Not OK to submit. OK to download for inspection only. H80 HOLDOUT-DTI 0.045552 (95% CI 0.032512\u20130.060283; gems57-pooled-hide-v2; 7,582 withheld positives), below the same-run random control 0.061243; paired \u0394 \u22120.015691 (95% CI \u22120.027200 to \u22120.001015). Surface overlap 1.000 > 0.70 against dense registry witness; stopped before final dots. Like-for-like diagnostic passes only vs the one checked sparse H33 raster (not a complete registry certificate). Post-run audit found the executed cube-root blend differs from the preregistered square-root formula; result applies only to that variant. No selector approval.",
-   "why_primary": "Newest H80 implementation variant: under-cover basement-step / conductivity edge fusion; the executed cube-root blend differs from the preregistered square-root formula, failed same-run random comparison and surface-uniqueness gate. Research only.",
-   "beat_02778_summary": "No claim to beat leaderboard scores. The holdout is negative vs its matched random control; it is not an organizer score and cannot establish a result against H33's owner-reported 0.2778."
-  },
   {
    "lane": "D77: blind-distance band 250m-1km off catalogue + greedy dots under the exact DTI bar (HOLDOUT-DTI 0.0000 [0.0000, 0.0000]; negative result)",
    "page": "downloads/gems77-d77-blind-band-35106dots-20261021-926076f7-zeros.tif",
@@ -53,6 +27,32 @@
    "beat_02778_summary": "Not expected: holdout-negative (0.0000 [0.0000, 0.0000]) with no organizer score. A format-valid, unique research TIFF delivered per the brief; not a 0.2778-beating claim."
   },
   {
+   "lane": "H80-RW: Riedel wing-crack tips (negative, inspection-only)",
+   "page": "h80.html",
+   "summary": "executive-summary.html",
+   "file": "downloads/gems77-h80-riedel-wingcrack-tips-20261021-zeros.tif",
+   "run_card": "evidence/h80_run_card.json",
+   "format_valid": true,
+   "protocol_unique": false,
+   "informative_unique": false,
+   "beats_holdout_best": false,
+   "verdict": "negative",
+   "primary": false,
+   "name": "gems77-h80-riedel-wingcrack-tips-20261021-zeros",
+   "note": "H80 Riedel 15/75deg tip rays; fold-fair HOLDOUT negative expected; research only DO NOT SUBMIT",
+   "sha256": "bab170ed60ab7e1a8afbfad69386a8266191fa4864ac3abac5b6290b7d25bc57",
+   "holdout_dti_hide_v2": 0.09579668088380372,
+   "holdout_evaluator_version": "gems57-pooled-hide-v2",
+   "holdout_positive_pixels": 11319,
+   "holdout_ci95": [
+    0.08818346093522027,
+    0.1032479741261599
+   ],
+   "upload": "Not OK to submit. OK to download for inspection only. Local format checks pass; HOLDOUT-DTI 0.095797 (95% CI 0.088183\u20130.103248; gems57-pooled-hide-v2; 11,319 withheld positives) is below the retained incumbent. Its local 3-px overlap is 0.9816 (>0.70) with the H77 selective-U raster; the registry check is incomplete. No selector approval; no slot used.",
+   "why_primary": "Parallel H80 Riedel wing-crack lane from main; distinct from H80-DB. Inspection only.",
+   "beat_02778_summary": "No organizer score for this TIFF; local HOLDOUT-DTI does not predict its leaderboard score."
+  },
+  {
    "lane": "H77L: 300 m lagged ThK / LiDAR scarp (RESEARCH ONLY)",
    "page": "h77l.html",
    "summary": "executive-summary.html",
@@ -75,7 +75,7 @@
     0.036921180837349236
    ],
    "upload": "Not OK to submit. OK to download for inspection only. Literal registry overlap = 1.0 against a full-support witness; no final dots or weekly slot. Format-valid research TIFF, NOT competition-approved.",
-   "why_primary": "Historical H77L experiment: original LiDAR/ThK lagged-flank response, negative result, no reused submission pixels. H80 is the current featured research-only file.",
+   "why_primary": "Featured H77L experiment of this research session: original LiDAR/ThK lagged-flank response, negative result, no reused submission pixels. Other parallel lanes are preserved below.",
    "beat_02778_summary": "Unknown. H77L has 0.0312 HOLDOUT-DTI (gems57-pooled-hide-v2, 41,732 withheld positives, 95% CI 0.0260\u20130.0369) on an unmatched catalogue holdout, not a public leaderboard result. No organizer score, approved dot placement, or verified H33 file-to-score receipt exists."
   },
   {
@@ -124,6 +124,36 @@
    "upload": "Not OK to submit. OK to download for inspection only. Literal registry overlap = 1.0 > 0.70 and HOLDOUT-DTI 0.047733 (gems57-pooled-hide-v2, 11,321 withheld positives, 95% CI 0.039583\u20130.055576) fails scientific promotion. Selector not approved; zero weekly slots.",
    "primary": false,
    "why_primary": "Concurrent negative H79-RH radiometric halo, retained for audit and inspection only."
+  },
+  {
+   "lane": "H79-ORIENT: label-blind cross-sensor orientation persistence (negative holdout)",
+   "page": "h79-orient.html",
+   "summary": "h79-orient-executive-summary.html",
+   "run_card": "evidence/h79_orient_run_card.json",
+   "file": "downloads/gems79-orient-persistence-37654dots-20261021-4abff47886.tif",
+   "zip": "downloads/gems79-orient-persistence-37654dots-20261021-4abff47886.zip",
+   "format_valid": true,
+   "protocol_unique": false,
+   "informative_unique": false,
+   "beats_holdout_best": false,
+   "holdout_dti_hide_v2": 0.09450695640486674,
+   "holdout_ci95": [
+    0.07655819744668374,
+    0.11284365420654904
+   ],
+   "holdout_positive_pixels": 11342,
+   "holdout_evaluator_version": "gems57-pooled-hide-v2",
+   "verdict": "negative",
+   "name": "gems79-orient-persistence-37654dots-20261021-4abff47886",
+   "note": "H79 orientation persistence; HOLDOUT-DTI 0.0945 s30 / 0.0891 s20; registry gate failed; research only",
+   "sha256": "745dbaa427bc1edaf477b3d0b4847b8be8d30d396106a61b1318a8726599be8e",
+   "informative_checked_rasters": 13,
+   "informative_max_surface_abs_spearman": 0.07976707194570443,
+   "informative_max_dot_overlap": 1.0,
+   "upload": "Not OK to submit. OK to download for inspection only. Local format checks pass; primary HOLDOUT-DTI is 0.0945 on seed 30 (95% CI 0.0766\u20130.1128; 11,342 withheld positives) / 0.0891 on seed 20 (95% CI 0.0724\u20130.1054; 11,321 withheld positives), below the 0.1527 incumbent. The dense witness fires the binding registry gate; registry coverage is incomplete. No weekly slot used.",
+   "primary": false,
+   "why_primary": "Latest H79-ORIENT research artifact. It tests a label-blind orientation/persistence mechanism distinct from prior H79-BB/H79-RH, lineament, lidar and catalogue-mechanics lanes; it is packaged for inspection only.",
+   "beat_02778_summary": "No. The validated primary is HOLDOUT-DTI 0.0945 on seed 30 and 0.0891 on seed 20, both below the retained 0.152718 HOLDOUT-DTI incumbent; it does not support a 0.2778 projection."
   },
   {
    "lane": "H77D: Coupled Zero-SGMC Tectono-Hydrothermal Conduits + 12-Bit LOCO + 300 m Submodular Cover (0.15011 / 0.14030 HOLDOUT-DTI)",
@@ -237,7 +267,8 @@
    "sha256": "2269b714c78262a8d45dbd5eb02290a27ec9b99afe02340e343f5cb1ac7c58f3",
    "informative_unique": false,
    "run_card": "evidence/run_card_h77e.json",
-   "upload": "Not OK to submit: HOLDOUT-DTI 0.1305 (s20) / 0.1342 (s30) below repo best 0.15272, final-dot duplicate logged (0.835 > 0.70 within 3px of GEMSDOE67 ovtr-ml-cover among 37 checked rasters; full registry unchecked, REST rate-limited), protocol_unique=false (Policy I17). SAFE TO DOWNLOAD, inspection only (validator PASS 15/15, 0 NaN). Selector: not approved."
+   "upload": "Not OK to submit: HOLDOUT-DTI 0.1305 (s20) / 0.1342 (s30) below repo best 0.15272, final-dot duplicate logged (0.835 > 0.70 within 3px of GEMSDOE67 ovtr-ml-cover among 37 checked rasters; full registry unchecked, REST rate-limited), protocol_unique=false (Policy I17). SAFE TO DOWNLOAD, inspection only (validator PASS 15/15, 0 NaN). Selector: not approved.",
+   "primary": false
   },
   {
    "lane": "H77-XSEN: magnetic analytic-signal x radiometric Th/K+U/K boundary coincidence (0.0994 HOLDOUT-DTI)",
@@ -252,7 +283,109 @@
    "name": "gems77-xsen-coincide-hgb-37654dots-20261021-zeros",
    "note": "XSEN mag analytic-signal x ThK/UK boundary HGB, 37654 dots; HOLDOUT-DTI 0.0994, below 0.1527 repo best: NEGATIVE, do not submit",
    "sha256": "e7c81754420b9a6b4126ad1d7239870ae680eaa61e97a6d3f16f644a620d1c6a",
-   "upload": "Not OK to submit: HOLDOUT-DTI 0.0994 < 0.1527 incumbent, coincidence gain not significant (paired CI includes 0), and 93.4% of dots within 3px of GEMSDOE37's sparse dotted raster (>0.70 duplicate limit). Inspection only; selector: not approved."
+   "upload": "Not OK to submit: HOLDOUT-DTI 0.0994 < 0.1527 incumbent, coincidence gain not significant (paired CI includes 0), and 93.4% of dots within 3px of GEMSDOE37's sparse dotted raster (>0.70 duplicate limit). OK to download for inspection only; NOT OK TO SUBMIT; selector: not approved.",
+   "primary": false
+  },
+  {
+   "lane": "AGO-Hybrid35: ML backbone \u00d7 geophys displacement (37654 dots, overlap 0.65 PASS, holdout 0.103)",
+   "page": "ago.html",
+   "summary": "executive-summary.html",
+   "file": "downloads/gems77-ago-hybrid35-geophys-37654dots-dc66e42e-zeros.tif",
+   "file_nan": "downloads/gems77-ago-hybrid35-geophys-37654dots-dc66e42e-nan.tif",
+   "file_zip": "downloads/gems77-ago-hybrid35-geophys-37654dots-dc66e42e-zeros.zip",
+   "format_valid": true,
+   "protocol_unique": false,
+   "informative_unique": true,
+   "beats_holdout_best": false,
+   "verdict": "negative",
+   "primary": false,
+   "name": "gems77-ago-hybrid35-geophys-37654dots-dc66e42e",
+   "note": "AGO hybrid35: ML backbone x geophys selective displacement (35% far-field infill, 37654 dots, 0 on catalogue)",
+   "sha256": "fd7c75df77cd653e9fbd97b436bd304e0c1fd6b7283a4f513cdf6a2041136de0",
+   "sha256_nan": "7b97ea874f70e4effc3c8e92c98c92fc650a366273c385f3bf70c0400e6dff7c",
+   "holdout_quick": 0.10344529178932375,
+   "holdout_evaluator": "quick-4quadrant-spatial (30px buffer)",
+   "overlap_vs_d28": 0.6500239018430977,
+   "overlap_pass": true,
+   "withheld_note": "4-quadrant spatial; not gems57-pooled-hide-v2",
+   "upload": "Not OK to submit. OK to download for inspection only. Portal format PASS \u2014 will not trigger 'Predicted values must be in range [0, 1]' error. All 12,279,160 pixels finite in [0,1], 0 on catalogue, correct CRS/shape/transform. Overlap 0.65 < 0.70 PASSES backbone-specific check, but universal dense witness (1.0 > 0.70) still blocks under Policy I17 (requires owner resolution). No organizer score exists for this file. Download for inspection; selector not approved to spend weekly slot.",
+   "why_primary": "NEW: Hybrid ML backbone \u00d7 geophysical selective displacement \u2014 35% of 37654 dots are far-field (>5px from any backbone dot) geophysics maxima filling inter-backbone gaps. Portal-valid (all finite [0,1], zeros outside footprint) \u2014 will NOT give the 'Predicted values must be in range [0, 1]' portal error. Overlap 0.65 vs H19-5 D2.8 backbone (PASSED: <0.70). See ago.html for full hypothesis ranking and validator output. This is a research artifact; no selector has approved a weekly slot.",
+   "beat_02778_summary": "HOLDOUT-DTI 0.103 (quick evaluator) vs D2.8 raw 0.167 on same folds \u2014 displacement trades accuracy for novelty. Not a 0.2778-beating claim; no organizer receipt exists."
+  },
+  {
+   "lane": "AGO-Hybrid50: ML backbone \u00d7 geophys displacement (37654 dots, overlap 0.50 PASS, holdout 0.089)",
+   "page": "ago.html",
+   "summary": "executive-summary.html",
+   "file": "downloads/gems77-ago-hybrid50-geophys-37654dots-11b45670-zeros.tif",
+   "file_nan": "downloads/gems77-ago-hybrid50-geophys-37654dots-11b45670-nan.tif",
+   "file_zip": "downloads/gems77-ago-hybrid50-geophys-37654dots-11b45670-zeros.zip",
+   "format_valid": true,
+   "protocol_unique": false,
+   "informative_unique": true,
+   "beats_holdout_best": false,
+   "verdict": "negative",
+   "primary": false,
+   "name": "gems77-ago-hybrid50-geophys-37654dots-11b45670",
+   "note": "AGO hybrid50: 50% far-field displacement for maximum uniqueness (37654 dots, 0 on catalogue)",
+   "sha256": "c027f571a45566a8cf10b081f7d00fa48242bc4dfbc7f832ba98c06a5aca194e",
+   "sha256_nan": "5a08bfa0cf69935a65c4a2cbab15d884e4de0e853b3a92e99d1973a16f81e737",
+   "holdout_quick": 0.0894009915954029,
+   "holdout_evaluator": "quick-4quadrant-spatial (30px buffer)",
+   "overlap_vs_d28": 0.5,
+   "overlap_pass": true,
+   "upload": "Not OK to submit. OK to download for inspection only. Portal format PASS \u2014 all finite [0,1], 0 on catalogue. Overlap 0.50 < 0.70 clearly passes backbone uniqueness (most distinct hybrid); universal dense witness still blocks under Policy I17. No organizer score; selector not approved.",
+   "why_primary": "50% displacement variant for maximum backbone-uniqueness (0.50); lower holdout (0.089) traded for spatial novelty.",
+   "beat_02778_summary": "HOLDOUT-DTI 0.089 (quick) \u2014 further displacement costs accuracy."
+  },
+  {
+   "lane": "AGO-Select: geophys-scored D2.8 subset (37654 dots, overlap 1.00 FAIL, holdout 0.144)",
+   "page": "ago.html",
+   "summary": "executive-summary.html",
+   "file": "downloads/gems77-ago-select-geophys-37654dots-909053c9-zeros.tif",
+   "file_nan": "downloads/gems77-ago-select-geophys-37654dots-909053c9-nan.tif",
+   "file_zip": "downloads/gems77-ago-select-geophys-37654dots-909053c9-zeros.zip",
+   "format_valid": true,
+   "protocol_unique": false,
+   "informative_unique": false,
+   "beats_holdout_best": false,
+   "verdict": "negative",
+   "primary": false,
+   "name": "gems77-ago-select-geophys-37654dots-909053c9",
+   "note": "AGO select: pure geophys-scored subset (no displacement; overlap 1.00 \u2014 not backbone-unique, but highest holdout 0.144)",
+   "sha256": "7b3f74a68e7d4b428accc1f24659f21796fcc337fc6bae06fc4e4ff0738e87ec",
+   "sha256_nan": "5f4cb8a76250884c38779c0a2a268c1ecc6ca576cca6ddcff720ff824183a3ed",
+   "holdout_quick": 0.1443636537096611,
+   "holdout_evaluator": "quick-4quadrant-spatial (30px buffer)",
+   "overlap_vs_d28": 1.0,
+   "upload": "Not OK to submit. OK to download for inspection only. Portal format PASS \u2014 all finite [0,1], 0 on catalogue. Overlap 1.00 > 0.70 is a pure subset (no spatial displacement), so it duplicates its backbone. Kept for holdout reference only; universal dense witness also blocks. Selector not approved.",
+   "why_primary": "Highest holdout (0.144) among AGO variants but overlap 1.00 duplicates D2.8 \u2014 kept for diagnostic comparison.",
+   "beat_02778_summary": "Best holdout in AGO family (0.144) but not unique \u2014 a strict subset, no displaced dots."
+  },
+  {
+   "lane": "H80-DB: cube-root implementation variant \u2014 buried-basement depth step \u00d7 conductivity/gravity edge (negative research-only surface)",
+   "page": "h80-depth.html",
+   "summary": "executive-summary.html",
+   "file": "downloads/gemsdoe77-h80-basement-cond-edge-RESEARCH-ONLY.tif",
+   "run_card": "evidence/run_card_h80_depth.json",
+   "format_valid": true,
+   "protocol_unique": false,
+   "informative_unique": true,
+   "beats_holdout_best": false,
+   "verdict": "negative",
+   "primary": true,
+   "name": "gemsdoe77-h80-basement-cond-edge-RESEARCH-ONLY",
+   "note": "H80 basement-depth x conductivity edge; surface overlap gate failed; research only; DO NOT SUBMIT",
+   "sha256": "320fc2917ce7971fee5035d7be15c838275c9c4e56a9afe69f0386f37fe3f150",
+   "holdout_dti_hide_v2": 0.045551549566249204,
+   "holdout_evaluator_version": "gems57-pooled-hide-v2",
+   "holdout_positive_pixels": 7582,
+   "holdout_ci95": [
+    0.03251161762604909,
+    0.06028325960072994
+   ],
+   "upload": "Not OK to submit. OK to download for inspection only. H80 HOLDOUT-DTI 0.045552 (95% CI 0.032512\u20130.060283; gems57-pooled-hide-v2; 7,582 withheld positives), below the same-run random control 0.061243; paired \u0394 \u22120.015691 (95% CI \u22120.027200 to \u22120.001015). Surface overlap 1.000 > 0.70 against dense registry witness; stopped before final dots. Like-for-like diagnostic passes only vs the one checked sparse H33 raster (not a complete registry certificate). Post-run audit found the executed cube-root blend differs from the preregistered square-root formula; result applies only to that variant. No selector approval.",
+   "why_primary": "Newest H80 implementation variant: under-cover basement-step / conductivity edge fusion; the executed cube-root blend differs from the preregistered square-root formula, failed same-run random comparison and surface-uniqueness gate. Research only.",
+   "beat_02778_summary": "No claim to beat leaderboard scores. The holdout is negative vs its matched random control; it is not an organizer score and cannot establish a result against H33's owner-reported 0.2778."
   }
  ]
 }

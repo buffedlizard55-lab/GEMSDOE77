@@ -1,0 +1,54 @@
+{
+  "registered_utc": "2026-10-21T22:00:00Z",
+  "lane": "H80 buried-basement step x conductivity lineament (depth_to_base + cond_surf + iso-gravity)",
+  "assignment_irregularity": "No single method paragraph identifiable in 2026-10-21 brief; autonomous narrow lane declared before any experiment, not a claimed assigned lane (same class as IR-77-06/IR-H77L/IR-XSEN).",
+  "hypothesis": "A buried basement normal fault under Quaternary basin fill, missing from the Quaternary catalogue, produces a multi-scale lateral step in depth-to-basement coincident with a conductivity lineament and a corroborating isostatic gravity edge.",
+  "mimic": "Basin range-front without fault, alluvial lithologic contact, or MT/GM survey footprint seam that juxtaposes resistive vs conductive fill without a fault.",
+  "inputs": [
+    "training_features.tif bands 15 depth_to_base_surf, 17 cond_surf, 13 iso_grav_anom, 5 iso_grav_anom_slope (SHA 4371c82e3b83..., 19 bands, EPSG:32611, 3730x3292, 100m)",
+    "sample_submission.tif only for footprint/grid (SHA 2176d08e48..., EPSG:32611)",
+    "existing_faults.tif only for splits/masks (SHA 7ba308ccdc..., byte-identical to labels.tif)",
+    "No catalogue-derived distance features, no prior submission raster, no SGMC"
+  ],
+  "signature": "Fill sentinel -3.4e38 -> footprint-median, then: gradmag(depth) sigma 1.5/3.0 px (Gaussian derivative), rank01 persistence = min(rank1.5, rank3.0); gradmag(cond) sigma 1.5 rank01; grav THDR magnitude rederived from iso_grav_anom (band13) via Gaussian pre-smooth 1.5 then gradmag, rank01; candidate = sqrt(persistence_depth * cond_edge * grav_edge) geometric mean; controls = individual rank edges. All rank01 over footprint only, finite only. No training.",
+  "physical_units_caveat": "depth_to_base_surf and cond_surf are smoothed inversions, not borehole truth; gradient is a proxy for basement offset, not measured throw; conductivity edge may reflect lithology not fluid.",
+  "candidate_parameters": {
+    "sigma_px_depth": [
+      1.5,
+      3
+    ],
+    "sigma_px_cond": 1.5,
+    "sigma_px_grav": 1.5,
+    "rank_method": "percentile rank01 over footprint finite cells",
+    "fusion": "geometric mean sqrt(depth_persist * cond_edge * grav_edge) blended as 0.5*geometric + 0.5*depth_persist to avoid zero dominance",
+    "footprint": "sample_submission.tif finite cells (5167373) intersect training_features finite",
+    "budget": 37654,
+    "min_sep_px": 2.8,
+    "exclusion_px": 2,
+    "feature_validity_erosion_px": 13,
+    "support": "sample_submission finite AND all three raw bands finite, eroded 13px for Gaussian derivative stencil; candidate zero outside this feature-safe support"
+  },
+  "controls": [
+    "depth_persist alone",
+    "cond_edge alone",
+    "grav_edge alone",
+    "constant 0.01"
+  ],
+  "canaries": [
+    "depth_persist",
+    "cond_edge",
+    "grav_edge",
+    "candidate_fused",
+    "geometric_only"
+  ],
+  "validation": "Unchanged gems57.buffered_component_draw seed 30, hide_frac=.2, whole 8-connected components, 80px quadrant boundary and 3px feature buffer; all catalogue-derived features absent. Score within sample footprint with known-fault pixels masked pixel-exactly. Pooled shared evaluator gems57-pooled-hide-v2, paired 20km-block bootstrap 1000 draws. Feature-only canary AUC on each fold: hidden known positives vs all active non-hidden pixels; symmetric AUC >0.90 means leakage.",
+  "promotion": "No weekly slot. Require canaries <=0.90, literal + like-for-like uniqueness reported (two_phase_summary), complete registry check attempted, improvement over matched controls with paired CI >0, before selector. Literal dense-witness overlap is expected to fail under current literal policy; this will be reported, not silently ignored.",
+  "registry_policy": "Unchanged template literal thresholds: Spearman rho >0.90 or forward 3px overlap >0.70. Both readings reported: literal (all rasters) and like-for-like (dot_fields only, support_fraction <=0.20). Stop on confirmed duplicate; partial scan proves rejection, never uniqueness. No density exemption beyond the reported split.",
+  "retention": "If surface gate fails on literal dense witness only, retain fused surface plus like-for-like reading; do not claim literal uniqueness. If candidate fails to beat controls, deliver as negative with inspection-only TIFF.",
+  "budget": {
+    "maximum_experiments": 3,
+    "maximum_hours": 2,
+    "planned_experiments": 3
+  },
+  "expected_improvement": "Unknown; hypotheses are ordinal priorities, never projected scores. Ranked moderate/uncertain vs low cost."
+}

@@ -1,0 +1,98 @@
+{
+  "evidence_class": "LEAKAGE-CANARY",
+  "seed": 20,
+  "withheld_positive_pixels": 11321,
+  "negative_proxy_pixels": 200000,
+  "threshold_symmetric_auc": 0.9,
+  "features_tested": 14,
+  "max_symmetric_auc": 0.6242318236021553,
+  "worst_feature": "h79_dem_orientation_coherence",
+  "any_flag": false,
+  "rows": [
+    {
+      "feature": "h79_rtp_edge_mean",
+      "auc": 0.5393281666813886,
+      "symmetric_auc": 0.5393281666813886,
+      "leakage_flag": false
+    },
+    {
+      "feature": "h79_rtp_edge_persistence",
+      "auc": 0.5393500892147337,
+      "symmetric_auc": 0.5393500892147337,
+      "leakage_flag": false
+    },
+    {
+      "feature": "h79_rtp_orientation_coherence",
+      "auc": 0.5346503608338486,
+      "symmetric_auc": 0.5346503608338486,
+      "leakage_flag": false
+    },
+    {
+      "feature": "h79_grav_edge_mean",
+      "auc": 0.5215105319759739,
+      "symmetric_auc": 0.5215105319759739,
+      "leakage_flag": false
+    },
+    {
+      "feature": "h79_grav_edge_persistence",
+      "auc": 0.522222747107146,
+      "symmetric_auc": 0.522222747107146,
+      "leakage_flag": false
+    },
+    {
+      "feature": "h79_grav_orientation_coherence",
+      "auc": 0.5247129155993286,
+      "symmetric_auc": 0.5247129155993286,
+      "leakage_flag": false
+    },
+    {
+      "feature": "h79_dem_edge_mean",
+      "auc": 0.581875086123134,
+      "symmetric_auc": 0.581875086123134,
+      "leakage_flag": false
+    },
+    {
+      "feature": "h79_dem_edge_persistence",
+      "auc": 0.5832775702234784,
+      "symmetric_auc": 0.5832775702234784,
+      "leakage_flag": false
+    },
+    {
+      "feature": "h79_dem_orientation_coherence",
+      "auc": 0.6242318236021553,
+      "symmetric_auc": 0.6242318236021553,
+      "leakage_flag": false
+    },
+    {
+      "feature": "h79_multisensor_persistence",
+      "auc": 0.594660220166063,
+      "symmetric_auc": 0.594660220166063,
+      "leakage_flag": false
+    },
+    {
+      "feature": "h79_multisensor_orientation_confluence",
+      "auc": 0.5276492604451902,
+      "symmetric_auc": 0.5276492604451902,
+      "leakage_flag": false
+    },
+    {
+      "feature": "h79_scale_survival",
+      "auc": 0.5627823111915908,
+      "symmetric_auc": 0.5627823111915908,
+      "leakage_flag": false
+    },
+    {
+      "feature": "h79_edge_disagreement",
+      "auc": 0.47235073867149546,
+      "symmetric_auc": 0.5276492613285045,
+      "leakage_flag": false
+    },
+    {
+      "feature": "h79_structural_persistence",
+      "auc": 0.5775737958219239,
+      "symmetric_auc": 0.5775737958219239,
+      "leakage_flag": false
+    }
+  ],
+  "warning": "AUC below 0.90 is a canary result, not proof of no leakage; negatives are unlabelled proxies."
+}
