@@ -1,0 +1,10 @@
+# Large cached rasters, intermediate memmaps, and virtual environments
+.cache/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+*.f32
+*.f16
+*.tmp

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Official Data Sources &amp; Provenance — GEMSDOE77</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">GEMSDOE77 · H77 Geothermal Fault Discovery</a>
+      <nav class="nav">
+        <a href="index.html">Download &amp; Verdict</a>
+        <a href="executive-summary.html">Executive Summary</a>
+        <a href="hypotheses.html">Hypotheses &amp; Ablation</a>
+        <a href="leaderboard.html">28-Run Leaderboard Audit</a>
+        <a class="active" href="sources.html">Official Sources</a>
+        <a href="irregularities.html">Irregularities &amp; Fixes</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="card">
+      <h1>Verified Official Public Data Sources &amp; SHA-256 Provenance</h1>
+      <p>Every layer used in <code>GEMSDOE77</code> originates from official U.S. federal / academic open-access repositories and is verified byte-for-byte via SHA-256 in <code>scripts/restore_data.py</code> and <code>evidence/data_receipt.json</code>.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Dataset / Artifact</th>
+            <th>Agency / Official Source Link</th>
+            <th>Grid / Records</th>
+            <th>SHA-256 / Verification Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>training_features.tif</code> (19 GeoDAWN Geophysical &amp; Geodetic Bands)</td>
+            <td><a href="https://www.drivendata.org/competitions/302/geothermal-fault-detection/" target="_blank" rel="noopener">DrivenData / DOE GTO GEMS Official Competition Dataset</a> &amp; <a href="https://www.usgs.gov/centers/gggsc/science/geodawn-geoscience-data-acquisition-western-nevada" target="_blank" rel="noopener">USGS GeoDAWN</a></td>
+            <td>19 bands · 3730&times;3292 · 100 m</td>
+            <td><code>4371c82e3b8339b8...3bc5</code> (Verified)</td>
+          </tr>
+          <tr>
+            <td><code>existing_faults.tif</code> &amp; <code>sample_submission.tif</code></td>
+            <td><a href="https://www.drivendata.org/competitions/302/geothermal-fault-detection/" target="_blank" rel="noopener">DrivenData Official GEMS Evaluation Grid</a> &amp; <a href="https://www.usgs.gov/programs/earthquake-hazards/faults" target="_blank" rel="noopener">USGS Quaternary Fault &amp; Fold Database</a></td>
+            <td>60,988 fault px · 5,167,373 valid px</td>
+            <td><code>7ba308cc...4093</code> &amp; <code>2176d08e...5cbc</code></td>
+          </tr>
+          <tr>
+            <td><code>lidar_scarp_features_u8.tif</code> &amp; <code>topo_10m_derived_100m_u8.tif</code></td>
+            <td><a href="https://www.usgs.gov/3d-elevation-program" target="_blank" rel="noopener">USGS 3D Elevation Program (3DEP) 1 m LiDAR &amp; 1/3 arc-sec Seamless DEM</a></td>
+            <td>75.4% 1 m LiDAR + 100% 10 m DEM</td>
+            <td>Native <code>NaN</code> outside 1 m LiDAR surveys</td>
+          </tr>
+          <tr>
+            <td><code>dem10_chi_100m_i16.tif</code> (Fluvial &chi; &amp; Channel Steepness <em>k<sub>sn</sub></em>)</td>
+            <td>Derived from <a href="https://www.usgs.gov/3d-elevation-program" target="_blank" rel="noopener">USGS 3DEP 10 m DEM</a> (Perron &amp; Royden 2013 integral method)</td>
+            <td>5 bands · 100% footprint</td>
+            <td><code>-32768</code> int16 nodata explicitly cleaned (<code>IRR-02</code>)</td>
+          </tr>
+          <tr>
+            <td><code>geodawn_rad_u8.tif</code> &amp; <code>geodawn_extensions_u8.tif</code></td>
+            <td><a href="https://www.sciencebase.gov/catalog/" target="_blank" rel="noopener">USGS GeoDAWN Airborne Radiometrics (K, eTh, eU) &amp; Aeromagnetics</a></td>
+            <td>8 bands · K/Th &amp; upward-cont. TMI</td>
+            <td>Verified finite in footprint</td>
+          </tr>
+          <tr>
+            <td><code>gdr_wellspring_in_footprint.csv</code>, <code>2m_temperature_probe</code>, <code>paleo_geothermal_regional.zip</code></td>
+            <td><a href="https://gdr.openei.org/submissions/1490" target="_blank" rel="noopener">DOE Geothermal Data Repository (GDR) — UNR INGENIOUS Great Basin Dataset</a> (Ayling et al. / Faulds et al.)</td>
+            <td>1,391 thermal wells/springs · 3,800 2 m probes · 709 opal sinters/tufas</td>
+            <td><code>dist_known_fault_px</code> strictly banned &amp; unit-tested</td>
+          </tr>
+          <tr>
+            <td><strong>Excluded:</strong> <code>sgmc_faults_100m.tif</code></td>
+            <td><a href="https://mrdata.usgs.gov/sgmc/" target="_blank" rel="noopener">USGS State Geologic Map Compilation (SGMC)</a></td>
+            <td>Excluded (<code>0.0%</code> weight)</td>
+            <td>Falsified live at <code>0.0492</code> in <code>GEMSDOE72</code> (<code>IRR-04</code>)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Irregularities &amp; Upstream Template Fixes — GEMSDOE77</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">GEMSDOE77 · H77 Geothermal Fault Discovery</a>
+      <nav class="nav">
+        <a href="index.html">Download &amp; Verdict</a>
+        <a href="executive-summary.html">Executive Summary</a>
+        <a href="hypotheses.html">Hypotheses &amp; Ablation</a>
+        <a href="leaderboard.html">28-Run Leaderboard Audit</a>
+        <a href="sources.html">Official Sources</a>
+        <a class="active" href="irregularities.html">Irregularities &amp; Fixes</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="card">
+      <h1>Flagged Irregularities, Data Sentinels &amp; Upstream Template Repair Log</h1>
+      <p>All six irregularities below were uncovered through line-by-line inspection during this investigation, documented in <code>evidence/irregularities.json</code>, and backed by regression tests in <code>tests/test_gems77_suite.py</code>.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Severity</th>
+            <th>Component</th>
+            <th>Forensic Finding</th>
+            <th>Verified Fix Applied</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>IRR-01</code></td>
+            <td><span class="badge-warn">HIGH</span></td>
+            <td><code>vendor/gems57/uniqueness.py</code></td>
+            <td>Upstream <code>summarize_registry_rows</code> checked <code>my_dot_count &gt; 0</code> even on continuous pre-placement surfaces in <code>[0, 1)</code> where <code>_dots</code> is empty by definition, returning <code>unique=False</code> despite <code>duplicate_count=0</code> and <code>&rho; = 0.4027 &le; 0.90</code>.</td>
+            <td>Repaired directly in <code>vendor/gems57/uniqueness.py</code> per Protocol Rule 2, documented in <code>vendor/README.md</code>, and regression-tested.</td>
+          </tr>
+          <tr>
+            <td><code>IRR-02</code></td>
+            <td><span class="badge-warn">HIGH</span></td>
+            <td><code>dem10_chi_100m_i16.tif</code></td>
+            <td>Signed <code>int16</code> nodata sentinels (<code>-32768</code>) inside valid footprint pixels created <code>&plusmn;32,189</code> derivative spikes under Gaussian filtering.</td>
+            <td>Explicitly masked <code>raw &gt; -32760</code> with nearest-valid EDT interpolation prior to all filtering.</td>
+          </tr>
+          <tr>
+            <td><code>IRR-03</code></td>
+            <td><span class="badge-warn">CRITICAL</span></td>
+            <td>Spatial PU Training</td>
+            <td>Computing distance/relay features directly from <code>V</code> sets <code>d(x, V) == 0</code> on 100% of positive pixels, collapsing tree splits (+0.0405 HOLDOUT-DTI loss).</td>
+            <td>Replaced with 5-bucket Voronoi Leave-Bucket-of-Components-Out (<code>V-LBCO</code>) directional <code>Pollard &amp; Segall</code> crack-tip cones; HOLDOUT-DTI rose <code>0.1122 &rarr; 0.1527</code>.</td>
+          </tr>
+          <tr>
+            <td><code>IRR-04</code></td>
+            <td><span class="badge-warn">CRITICAL</span></td>
+            <td><code>sgmc_faults_100m.tif</code></td>
+            <td><code>GEMSDOE72</code> live receipt proved off-catalogue <code>SGMC</code> bedrock contacts score <code>0.0492</code> live, explaining why <code>GEMSDOE70 P8</code> stalled at <code>0.2478</code>.</td>
+            <td>0% <code>SGMC</code> weight enforced across features and targets; asserted in unit tests.</td>
+          </tr>
+          <tr>
+            <td><code>IRR-05</code></td>
+            <td><span class="badge-warn">HIGH</span></td>
+            <td>Submodular Collar &amp; Border</td>
+            <td>Unzeroed <code>q_pad</code> in <code>d_cat &le; 2.0</code> dumped <code>6,415</code> halo dots in <code>P9</code>; <code>border12</code> truncated <code>4.1%</code> of edge faults in <code>P8</code>.</td>
+            <td>Zeroed <code>q_pad[~allowed] = 0</code> before kernel sum (<code>431</code> vs <code>6,415</code> dots, 15&times; cleaner) and restored 100% footprint.</td>
+          </tr>
+          <tr>
+            <td><code>IRR-06</code></td>
+            <td><span class="badge-holdout">MEDIUM</span></td>
+            <td>Historical Archive &amp; Range</td>
+            <td>Duplicate SHA-256 submission in <code>GEMSDOE31</code>; ground-truth <code>labels.tif</code> inside <code>GEMSDOE48</code>; prior outside-footprint <code>NaN</code> range rejections.</td>
+            <td>Filtered non-predictions from registry scan; enforced strict <code>[0, 1]</code> finite values across all <code>12,279,160</code> pixels.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</body>
+</html>
