@@ -159,7 +159,7 @@ print(f"\nHigh-holdout (0% displacement): overlap {high_overlap:.3f}, holdout {h
 def write_and_zip(mask, tag_base, footprint, labels):
     h8 = hashlib.sha256(mask.tobytes()).hexdigest()[:8]
     tag = f"{tag_base}-{h8}"
-    
+
     def _write_tif(arr, path, outside="zero"):
         out = arr.astype(np.float32)
         assert out.shape == (H, W)
@@ -186,7 +186,7 @@ def write_and_zip(mask, tag_base, footprint, labels):
     out_zeros = ROOT / f"docs/downloads/{tag}-zeros.tif"
     out_nan = ROOT / f"docs/downloads/{tag}-nan.tif"
     sub_zeros = ROOT / f"submissions/{tag}-zeros.tif"
-    
+
     _write_tif(mask.astype(np.float32), out_zeros, outside="zero")
     _write_tif(mask.astype(np.float32), out_nan, outside="nan")
     _write_tif(mask.astype(np.float32), sub_zeros, outside="zero")
@@ -205,7 +205,7 @@ def write_and_zip(mask, tag_base, footprint, labels):
         zip_path = tif_path.with_suffix(".zip")
         with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zf:
             zf.write(tif_path, arcname=tif_path.name)
-    
+
     # ZIPs for submissions too
     for tif_path in [sub_zeros]:
         zip_path = tif_path.with_suffix(".zip")
