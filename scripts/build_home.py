@@ -22,7 +22,7 @@ REPO = "https://github.com/buffedlizard55-lab/GEMSDOE77"
 LB = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
 PD = "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
-NAV = [("index.html", "Start here"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
+NAV = [("index.html", "Start here"), ("h82-texture.html", "H82 · texture negative"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
        ("h77e-knick.html", "H77E-Knick · 0/816 firings"), ("release-review.html", "Release safety review"), ("executive-summary.html", "How to submit"),
        ("h81.html", "H81 · slip-cone"),
        ("h80t.html", "H80T · tilt-persist"), ("h80t-executive-summary.html", "H80T guide"),
@@ -640,7 +640,7 @@ def _inject_h77e_knick_hero():
     if not rc77e:
         return
     sub = rc77e["submission_artifact"]
-    hero = f"""<section class="card dl"><h2>⬇ Latest H77E-Knick Research Deliverable (0 / 816 Informative Firings · Dual-Seed Positive Holdout)</h2>
+    hero = f"""<section class="card dl"><h2>⬇ Retained H77E-Knick Research Deliverable (0 / 816 Informative Firings · Dual-Seed Positive Holdout)</h2>
 <p class="verdict"><b>OK to download: YES</b> (15/15 <code>vendor/gems57</code> + 17/17 grid checks PASS, binary float32 in <code>[0, 1]</code>, <code>0</code> NaNs).<br>
 <b>Not OK to submit (NOT OK TO SUBMIT automatically — inspection only without human selector Policy I17 sign-off):</b>
 45 space-filling &ge;70%-halo archive heatmaps trigger literal overlap; across ALL <code>816</code> &lt;70%-halo portfolio rasters AND all <code>18</code> sparse GEMSDOE77 files, forward 3-px overlap has <b>0 firings</b> (<code>max = 0.66800 &le; 0.70</code>; local siblings <code>max = 0.42104 &le; 0.70</code>).<br>
@@ -742,3 +742,6 @@ if __name__ == "__main__":
     _write_h77e_knick()
     _inject_h77e_knick_hero()
     _write_h77g()
+
+    from build_h82_site import build as build_h82
+    build_h82(page)

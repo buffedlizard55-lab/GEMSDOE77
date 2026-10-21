@@ -6,3 +6,6 @@
 4. Distinguish HOLDOUT-DTI, ORGANIZER-CONFIRMED receipts, canary diagnostics, format/input measurements, and unverified claims. Never promise a leaderboard gain.
 5. Keep downloads and approval status unambiguous. Format PASS is not uniqueness or approval.
 6. Concurrent H77C code/artifacts are preserved for audit only; its generation entrypoint is quarantined. Do not use inherited unverified registry values or private holdout as clearance. See `evidence/inherited_h77c_review.json`.
+
+## H82-TEXTURE follow-up
+Read `docs/review-h82-texture.md` and `evidence/h82_texture/run_card.json`. H82 is closed/negative: one experiment, literal duplicate-stop BEFORE dots; research-only continuous TIFF. Do not retune or rerun. Historical `beats_holdout_best` flags on Step/D/H77E-Knick are not fresh matched-current-incumbent evidence; original flags retained separately. No slot is approved.

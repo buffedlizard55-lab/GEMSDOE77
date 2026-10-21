@@ -1,3 +1,10 @@
+> ## Current session H82-TEXTURE — download YES (inspection only); submit NO
+>
+> **[Download the newly generated research TIFF](docs/downloads/gems77-h82-texture-kt-bf0a3028b4fa-RESEARCH-ONLY.tif)** · [one-TIFF ZIP](docs/downloads/gems77-h82-texture-kt-bf0a3028b4fa-RESEARCH-ONLY.zip) · [report](docs/h82-texture.html) · [run card](evidence/h82_texture/run_card.json).
+> Format PASS: single-band float32, EPSG:32611, 3730×3292, exact sample transform, no NaN/Inf, values [0,0.02], no nodata tag. SHA-256 `c571af22cb08db9cb8cfd6edf0108364d95b0c3bec8316d09d3dfd116531790e`.
+> **0.005969 HOLDOUT-DTI** (`gems57-pooled-hide-v2`, 59,484 withheld positives; 95% CI `[0.005735,0.006192]`); below constant-output matched control (paired Δ `−0.011706`, CI `[−0.012237,−0.011117]`). No matched sparse-dot incumbent comparison. All 32 feature-fold leakage canaries below 0.90 (max symmetric AUC 0.618363).
+> New pixels differ from all 36 prior local download TIFFs checked, but **NOT protocol-unique**: literal support overlap 1.0 against pinned dense witness; stopped before placing dots. Negative deliverable; no slot, no selector approval, no organizer score. Historical banners below are not current authorization. [Three-pass review and remaining blockers](docs/review-h82-texture.md).
+
 <!-- H77E-KNICK PRIMARY STATUS BANNER -->
 > ## 🚦 IMMEDIATE DOWNLOAD & SUBMISSION STATUS AT A GLANCE (`H77E-Knick` Newest Primary Deliverable)
 >

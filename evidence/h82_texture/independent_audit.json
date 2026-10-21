@@ -1,0 +1,31 @@
+{
+  "evidence_class": "INDEPENDENT ARTIFACT READBACK, not a score or organizer acceptance",
+  "file": "docs/downloads/gems77-h82-texture-kt-bf0a3028b4fa-RESEARCH-ONLY.tif",
+  "sha256": "c571af22cb08db9cb8cfd6edf0108364d95b0c3bec8316d09d3dfd116531790e",
+  "checks": {
+    "single_band_float32": true,
+    "crs_shape_transform_equal_sample": true,
+    "nodata_none": true,
+    "all_cells_finite": true,
+    "no_nan_inside_footprint": true,
+    "all_values_0_1": true,
+    "outside_zero": true,
+    "catalogue_zero": true,
+    "sha256_matches_card": true,
+    "note_at_most_140": true,
+    "preregistration_pin": true,
+    "zip_exactly_one_identical_tiff": true,
+    "negative_not_approved_no_slot": true,
+    "duplicate_stop_before_dots": true,
+    "no_canary_leakage_flag": true
+  },
+  "passed": true,
+  "min": 0.0,
+  "max": 0.019999999552965164,
+  "nan_count": 0,
+  "shape": [
+    3730,
+    3292
+  ],
+  "positive_support_pixels": 5007344
+}

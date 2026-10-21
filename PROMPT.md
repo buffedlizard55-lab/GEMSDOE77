@@ -8,7 +8,7 @@ summarised with provenance at the end rather than re-transcribed hash-by-hash
 `docs/score-ledger.csv`; later entries below are OWNER-REPORT as supplied in
 the 2026-10-21 brief — no organizer receipts).*
 
-## 2026-10-21 H79 execution addendum (current session)
+## Historical 2026-10-21 H79 execution addendum
 
 This session's registered lane is **H79-ORIENT**, not the historical contact-physics
 lane mentioned in older repository notes. The operative preregistration is
@@ -16,6 +16,10 @@ lane mentioned in older repository notes. The operative preregistration is
 in `evidence/h79_orient_run_card.json`. The full request below remains preserved as the
 standing brief. H79's result is negative, safe to download for inspection, not
 approved to submit, and no weekly slot was selected.
+
+## 2026-10-21 H82-TEXTURE review addendum
+
+Latest review/experiment: `docs/review-h82-texture.md`, preregistration `registry/preregistration_h82_texture.json`, results `evidence/h82_texture/run_card.json`. One experiment, negative and closed; stopped before dots under literal registry overlap. New bounded continuous research-only TIFF is downloadable, NOT OK TO SUBMIT. No current leaderboard/weekly-cap or exact-file organizer receipt was authenticated here. No new experiment should bypass the unresolved universal-witness gate.
 
 ## Highest urgency
 
