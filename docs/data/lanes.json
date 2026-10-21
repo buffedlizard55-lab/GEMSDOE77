@@ -1,5 +1,5 @@
 {
- "note": "H77-TSD, H77V, H82-TEXTURE, H82 chemistry-concordance, H84-TIPLOBE and H84-ORGATE are distinct negative lanes. All listed files are inspection-only and NOT OK TO SUBMIT; see submission-authorization.json. Historical baseline wins are not matched-current-incumbent evidence. H82R: radiometric negative research file; NOT OK TO SUBMIT.",
+ "note": "H77-TSD, H77V, H82-TEXTURE, H82 chemistry-concordance, H84-TIPLOBE, H84-ORGATE, and H77H-MeshSafe are distinct negative lanes. All listed files are inspection-only and NOT OK TO SUBMIT; see submission-authorization.json. Historical baseline wins are not matched-current-incumbent evidence. H82R: radiometric negative research file; NOT OK TO SUBMIT.",
  "lanes": [
   {
    "lane": "H77-PD: 10m Fluvial Knickpoint/Chi + GeoDAWN/BLM/TIGER Deseam + sqrt-LiDAR/10m Step + Cutting-Plane Primal-Dual Submodular Cover (#1 Seed 20: 0.1640, #1 Seed 21: 0.1758, #1 3-Seed Pool: 0.1685, #1 Blind 4-Quad: 0.1942 HOLDOUT-DTI)",
@@ -26,7 +26,7 @@
     0.156095,
     0.180317
    ],
-   "upload": "Not OK to submit. OK to download for inspection only. Format-valid (15/15 gems57 checks PASS, 0 NaN anywhere, 37,654 binary {0,1} float32 dots, 0 on catalogue) and #1 ALL-TIME on Seed 20 (0.163962 [0.1485, 0.1791]), Seed 21 (0.175841 [0.1589, 0.1940]), 3-Seed Pooled 34,235 px (0.168493 [0.1561, 0.1803]; Seed 30 = 0.165580), and Blind 4-Quadrant Province Transfer 57,448 px (0.194160 [0.1751, 0.2135]), with 0 violations across ALL 881 non-null-saturated archive + sibling rasters (max 1-way 0.6650 <= 0.70; vs H77-VDS = 0.4625; vs H83-NETSIB = 0.3724; vs H77E-Knick = 0.3977; vs H77-Step = 0.3235) — fails closed under Policy I17 + IR-77PD-02 (flood-fill f77b8df0 covers 100% of Nevada & stride-5 lattice 5c1a1594 forces >=0.827004 Pigeonhole overlap). Selector: not approved; 0 weekly slots used.",
+   "upload": "Not OK to submit. OK to download for inspection only. Format-valid (15/15 gems57 checks PASS, 0 NaN anywhere, 37,654 binary {0,1} float32 dots, 0 on catalogue) and #1 ALL-TIME on Seed 20 (0.163962 [0.1485, 0.1791]), Seed 21 (0.175841 [0.1589, 0.1940]), 3-Seed Pooled 34,235 px (0.168493 [0.1561, 0.1803]; Seed 30 = 0.165580), and Blind 4-Quadrant Province Transfer 57,448 px (0.194160 [0.1751, 0.2135]), with 0 violations across ALL 882 non-null-saturated archive + sibling rasters (max 1-way 0.6650 <= 0.70; vs H77-VDS = 0.4625; vs H83-NETSIB = 0.3724; vs H77E-Knick = 0.3977; vs H77-Step = 0.3235) — fails closed under Policy I17 + IR-77PD-02 (flood-fill f77b8df0 covers 100% of Nevada & stride-5 lattice 5c1a1594 forces >=0.827004 Pigeonhole overlap). Selector: not approved; 0 weekly slots used.",
    "why_primary": "All-time #1 on blind Seed 20 (0.1640 vs 0.1608 H77-VDS), Seed 21 (0.1758), 34,235-px 3-Seed Pool (0.1685), and 57,448-px Blind 4-Quadrant Transfer (0.1942), orthogonal to H77-VDS (only 0.4625 dot overlap).",
    "beat_02778_summary": "Co-primary #1 selector candidate alongside H77-VDS (46.2% dot overlap): highest 3-seed pooled (0.1685) and blind 4-quadrant (0.1942) HOLDOUT-DTI in repository history; inspection-only under Policy I17."
   },
@@ -47,6 +47,35 @@
    "sha256": "56debe682505bf2649f30d914c7b552dcf669bce4b902ce91eb3e5363031f115",
    "upload": "Not OK to submit. OK to download for inspection only. HOLDOUT-DTI 0.02307 (95% CI 0.01960-0.02677; gems57-pooled-hide-v2; 11321 withheld positives). Surface duplicate stop 1.0 vs dense witness; no dots placed; selector not approved; zero weekly slots.",
    "why_primary": "Research-only negative deliverable; no submission clearance."
+  },
+  {
+   "lane": "H77H-MeshSafe: Mesh-Deconfounded (sigma>=35px) Hydrothermal Demagnetization Trough x Gravity-Basement Step x 3DEP Scarp/Knickpoint x Coupled SLOCO + 119-Raster Capped 300 m Submodular Cover",
+   "page": "h77h-meshsafe.html",
+   "summary": "h77h-meshsafe-executive-summary.html",
+   "file": "downloads/gems77-h77h-meshsafe-hydrostruct-submod-36800dots-20261021-5ef236e2-zeros.tif",
+   "zip": "downloads/gems77-h77h-meshsafe-hydrostruct-submod-36800dots-20261021-5ef236e2-zeros.zip",
+   "run_card": "evidence/h77h/run_card.json",
+   "format_valid": true,
+   "protocol_unique": false,
+   "informative_unique": true,
+   "beats_holdout_best": true,
+   "selector_approved": false,
+   "verdict": "negative",
+   "primary": false,
+   "name": "gems77-h77h-meshsafe-hydrostruct-submod-36800dots-20261021-5ef236e2",
+   "note": "H77H: sigma>=35px regime x RTP demag trough + grav step + 3DEP scarp/knick + SLOCO (36800 dots; S20=0.1242)",
+   "sha256": "34f8dea50ff0b2eeac843e1f3f76e8d9a7bb63368aab2de339ba046009162744",
+   "zip_sha256": "01d4681fd1f1e6c3ee874c3d0845a559e394674fb694ea54fd8260e45d3255c2",
+   "holdout_dti_hide_v2": 0.12420668201808598,
+   "holdout_evaluator_version": "gems57-pooled-hide-v2",
+   "holdout_positive_pixels": 11321,
+   "holdout_ci95": [
+    0.10903399416288766,
+    0.13853411590588022
+   ],
+   "upload": "Not OK to submit. OK to download for inspection only. Format-valid (15/15 validator checks, 0 NaN, values in [0,1], 36,800 binary dots) and informative-unique across all 119 non-space-filling (<70%-halo) portfolio rasters (0/119 firings; max 3-px forward overlap 0.6650 <= 0.70; max |Spearman rho| 0.3640 <= 0.90; pre-placement surface max |rho| 0.7471 <= 0.90; vs H33 overlap 0.4272, rho +0.0298). Literal registry rule fails closed under Policy I17 due to 8 space-filling >=70%-halo rasters (1.0000 on dense_witness ab0a0a62). Mesh-safe Base116 ablation reaches 0.15664 HOLDOUT-DTI on Seed 20 (+0.00102 over H77E-Knick); unconstrained H77H reaches 0.15371 (Seed 20) / 0.15460 (Seed 30) (+148% over H77G 0.0619 and +59.6% over fold-fair H33 0.0963); 119-raster portfolio-unique arm reaches 0.12421 (Seed 20) / 0.12418 (Seed 30). Selector: not approved.",
+   "why_primary": "Remediates IR-H77G-01 (purging <35 px MT/seismic mesh-derivative artifacts lifts Base116 holdout DTI to 0.15664) and IR-H77G-03 (coupling hydrothermal demagnetization troughs and gravity-basement steps with 3DEP scarps/knickpoints and SLOCO fracture mechanics lifts H77G from 0.0619 to 0.1537 Seed 20 / 0.1546 Seed 30; portfolio-unique 0.1242 Seed 20 / 0.1242 Seed 30 with 0/119 informative firings).",
+   "beat_02778_summary": "Beats fold-fair H33 champion construction significantly on BOTH spatial holdout seeds (+29.0% Seed 20 / +25.4% Seed 30 for portfolio-unique arm; +59.6% Seed 20 / +56.1% Seed 30 for unconstrained arm; +148% over H77G) with 0 SGMC channels and 137/137 leakage canaries passed."
   },
   {
    "lane": "H77-VDS: Zero-SGMC Survey-Deconfounded Fault-Valve Ensemble + Dinkelbach 300 m Submodular Allocator (ALL-TIME #1 RECORD: HOLDOUT-DTI 0.17439 s30 / 0.16077 s20)",
