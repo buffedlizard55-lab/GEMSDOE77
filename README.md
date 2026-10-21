@@ -1,3 +1,14 @@
+# Current review: NOT OK TO SUBMIT
+
+**OK to download existing files for inspection only. No new TIFF generated in this review.**
+[Inspection TIFF](docs/downloads/gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY.tif) ·
+[Submission guide](docs/executive-summary.html) · [Current review](docs/review-904a24d3.md) ·
+[Authorization receipt](docs/data/submission-authorization.json).
+The literal registry overlap rule blocks any nonempty new candidate; no slot was used.
+The H33 marginal-DTI explanation is corrected and regression-tested. Historical
+banners below do not override current NOT OK TO SUBMIT status.
+Start every session with this README, [PROMPT.md](PROMPT.md), and [AGENTS.md](AGENTS.md).
+
 <!-- CURRENT RELEASE STATUS: reconciled against docs/data/submission-authorization.json and evidence/h81_run_card.json -->
 > ## 🚦 Current download and submission status
 >
