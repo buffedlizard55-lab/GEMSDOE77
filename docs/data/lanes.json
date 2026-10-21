@@ -800,7 +800,7 @@
       "name": "gems77-h84-tiplobe-37654dots-20261021-b57c52b3-zeros",
       "note": "H84 tip-lobe 37654 dots; HOLDOUT-DTI 0.1209 [0.1068,0.1354] s30 vs random +0.073; tip AUC 0.79; NOT FOR UPLOAD without selector",
       "sha256": "2bff4b55cabe5a4eb7ab1aeff6b21e407a87a576d1d0c3c5f20ed3ddb1c279ba",
-      "zip_sha256": "",
+      "zip_sha256": "5fc768b4384e69858fbec4abd302a83c68bb56e2db5e50783420d50dca798b11",
       "holdout_dti_hide_v2": 0.120894,
       "holdout_evaluator_version": "gems57-pooled-hide-v2",
       "holdout_positive_pixels": 11342,
