@@ -12,9 +12,14 @@ the 2026-10-21 brief — no organizer receipts).*
 
 The latest readiness review (`docs/preflight-review.md`) generated no new TIFF and ran no geological experiment.
 A freshly pinned universal witness (`evidence/registry_preflight.json`) blocks every nonempty allowed candidate
-under the mandatory literal overlap rule. Run the preflight before any new experiment, preserve closed lanes,
-and do not treat older execution addenda as a new lane assignment. The original complete user request remains
-embedded in README.md. This addendum does not relax its gates or authorize a slot.
+under the mandatory literal overlap rule. H82 is the latest documented lane (`evidence/h82_run_card.json`):
+negative HOLDOUT-DTI 0.012184, duplicate overlap 1.000, incomplete two-witness scan, and three experiments
+used; do not resume it. H81 is also closed after 69 duplicate firings and an incomplete 832-raster scan.
+The site shows H82 as the newest inspection-only download and H80 as the evidence-complete featured negative;
+neither presentation is a promotion. Run the pinned preflight before future authorized research, preserve closed
+lanes, and do not treat older execution addenda as a new lane assignment. No TIF may be uploaded and no
+selector-approved slot exists. The original complete user request remains embedded in README.md. This addendum
+does not relax its gates or authorize a slot.
 
 ## Historical 2026-10-21 H79 execution addendum
 

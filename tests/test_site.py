@@ -144,7 +144,11 @@ def test_home_pages_put_download_and_per_file_status_first():
     assert len(prim)==1 and prim[0]['lane'].startswith('H80:')
     assert prim[0]['format_valid'] and prim[0]['protocol_unique'] is False
     assert prim[0]['name'] in home and prim[0]['note'] in home and len(prim[0]['note'])<=140
-    assert 'HOLDOUT-DTI 0.09579668 (gems57-pooled-hide-v2; 11,319 withheld positives; 95% CI 0.08818346–0.10324797)' in home
+    assert 'HOLDOUT-DTI 0.09579668' in home and 'H80' in head
+    assert 'H82 research GeoTIFF' in head and 'OK TO SUBMIT: NO' in head
+    assert 'Latest H77E-Knick Research Deliverable' not in home
+    assert 'H81: slip-budget fault-tip continuation cones' in home
+    assert 'HOLDOUT-DTI 0.06707' in home
     assert 'Will it beat 0.2778?</b> No claim that this file beats' in home
 
 
@@ -180,34 +184,56 @@ def test_new_research_raster_is_visible_but_never_called_a_submittable_entry():
     assert '68.4%' in detail and f"{audit['stats']['local_prior_tifs_checked']} other local TIFFs" in detail
     assert audit['all_checks_passed'] and audit['checks']['pixel_distinct_from_all_local_prior_tifs']
     assert audit['stats']['local_prior_tifs_checked']>=14
-    assert 'Unknown. H77L' not in home and 'Will it beat 0.2778?</b> No claim that this file beats' in home
+    assert 'Unknown. H77L' not in home
+    assert 'gems77-h81-slipcone-37654dots-20261021-0fbeaf41-zeros.tif' in home
+    assert 'Will it beat 0.2778?</b> No claim that this file beats' in home
 
 
-def test_h80_featured_homepage_is_generated_from_its_negative_run_card():
+def test_h81_remains_downloadable_but_is_not_promoted():
     import hashlib
     lanes=json.loads((DOC/'data/lanes.json').read_text())['lanes']
-    lane=next(x for x in lanes if x['lane'].startswith('H80:'))
-    card=json.loads((ROOT/'evidence/h80_run_card.json').read_text())
+    lane=next(x for x in lanes if x['lane'].startswith('H81:'))
+    card=json.loads((DOC/'evidence/h81_run_card.json').read_text())
     tif=DOC/lane['file']
     home=(DOC/'index.html').read_text()
-    assert lane['primary'] is True and lane['verdict']=='negative'
-    assert lane['file']==card['download'].removeprefix('docs/')
+    guide=(DOC/'executive-summary.html').read_text()
+    assert lane['primary'] is False and lane['verdict']=='negative'
+    assert lane['protocol_unique'] is False and lane['format_valid'] is True
+    assert lane['file']==f"downloads/{card['validator']['file']}"
     assert hashlib.sha256(tif.read_bytes()).hexdigest()==card['raster_sha256']==lane['sha256']
     hold=card['holdout_dti']
     assert hold['evidence_class']=='HOLDOUT-DTI'
     assert hold['evaluator_version']=='gems57-pooled-hide-v2'
-    assert hold['n_withheld_positives']==11319
-    assert hold['value'] < 0.152718
-    assert len(hold['ci95'])==2
-    assert card['validator']['ok'] and card['validator']['n_dots']==12000
+    assert hold['withheld_positives']==11321
+    assert hold['value']==lane['holdout_dti'] < 0.152718
+    assert hold['ci95']==lane['holdout_ci95']
+    assert card['validator']['validator']['all_checks_passed']
+    assert card['validator']['validator']['checks']['no_nan_anywhere']
+    assert card['validator']['validator']['checks']['range_0_1_guaranteed']
+    assert card['validator']['validator']['checks']['transform_matches_sample_submission']
     overlap=card['correlation_overlap_vs_registry']
-    assert overlap['n_compared']==19 and overlap['max_3px_overlap']>0.70
-    assert card['safe_to_submit'] is False
-    assert 'Can I submit it?</b> <b>No. NOT OK TO SUBMIT.' in home
-    assert 'HOLDOUT-DTI 0.09579668' in home and '11,319 withheld positives' in home
-    assert '0.981583' in home and '19 local rasters' in home
-    assert 'Pre-placement surface rank-correlation is not recorded' in home
-    assert 'Will it beat 0.2778?</b> No claim that this file beats' in home
+    assert overlap['surface_max_abs_spearman'] <= 0.90
+    assert overlap['final_dots_max_forward_overlap_3px'] == 1.0
+    assert overlap['duplicate_count']==69
+    assert overlap['registry_rasters_checked']==832
+    assert overlap['complete_accessible_scan'] is False
+    assert card['safe_to_submit'] is False and card['ok_to_download'] is True
+    assert lane['file'].split('/')[-1] in home
+    assert 'H81: slip-budget fault-tip continuation cones' in home
+    assert 'HOLDOUT-DTI 0.06707' in home and '11,321 withheld positives' in home
+    assert 'literal gate FAIL' in home
+    assert 'NOT OK TO SUBMIT any file here' in guide
+    assert 'H81' in (DOC/'h81.html').read_text()
+
+def test_h80_is_featured_as_evidence_complete_negative_not_approval():
+    lanes=json.loads((DOC/'data/lanes.json').read_text())['lanes']
+    lane=next(x for x in lanes if x['lane'].startswith('H80:'))
+    assert lane['primary'] is True
+    assert lane['verdict']=='negative' and lane['protocol_unique'] is False
+    home=(DOC/'index.html').read_text()
+    assert lane['file'].split('/')[-1] in home
+    assert 'Featured inspection artifact with complete pinned-evaluator evidence' in home
+    assert 'NOT OK TO SUBMIT' in home
 
 
 def test_ago_quick_proxy_is_not_promoted_as_a_score_or_submission():
