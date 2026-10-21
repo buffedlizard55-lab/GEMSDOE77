@@ -1,3 +1,15 @@
+# Current session status — `arena/e24c1d71-gemsdoe77` (2026-10-21)
+
+> **OK TO DOWNLOAD FOR INSPECTION: YES, for existing files only as individually marked. · OK TO SUBMIT: NO — no file is cleared.** This session generated no TIFF, ran no candidate holdout, and used no competition slot. There is no new submission file to download from this review.
+>
+> **Why we stopped:** the freshly restored, SHA-pinned registry witness covers the full allowed prediction domain after the required 3-pixel dilation. Under the literal protocol, every nonempty candidate would exceed the 0.70 overlap stop threshold. The feature cache is also absent from this checkout. We did not bypass the rule, copy an old raster, or fabricate a score.
+>
+> **Read first:** [current review](docs/review-2026-10-21-arena-e24c1d71.md) · [ranked untested hypotheses](research/hypotheses-arena-e24c1d71.md) · [run card](evidence/arena_e24c1d71_run_card.json) · [authorization receipt](docs/data/submission-authorization.json) · [registry preflight](evidence/registry_preflight.json).
+>
+> The branch-specific status banners below are retained as **historical lane records**. They are not current selector approval or permission to upload. The complete standing request remains below and in `PROMPT.md`; read both at the start of each session.
+
+---
+
 <!-- H77V-LDSA PRIMARY STATUS BANNER -->
 > **🚦 Current session — branch `arena/65c05dc9-gemsdoe77` (`H77V-LDSA`, 2026-10-21): ✅ OK TO DOWNLOAD FOR INSPECTION: YES · ⛔ OK TO SUBMIT: NO (`verdict: "negative"` under Policy `I17` dense witness; `0` weekly slots spent).**
 > - **Primary GeoTIFF (`145,365 B`, `36,500` `{0,1}` binary dots, `0` NaN, `0` on catalogue, $\min d_{\text{cat}} = 2.2361\text{ px}$):** [`docs/downloads/gemsdoe77-h77v-dealiased-vent-demag-knick-ldsa-20261021.tif`](docs/downloads/gemsdoe77-h77v-dealiased-vent-demag-knick-ldsa-20261021.tif) (`SHA-256 = 861c880e7a56203d197182075765480efaf224ad6cfde342fab511f5f908fa4c`) · **[Single-TIFF `.zip`](docs/downloads/gemsdoe77-h77v-dealiased-vent-demag-knick-ldsa-20261021.zip)** (`SHA-256 = efa45a7be334f80a3bccc548c2453394fe3b33dd27d50d834235255a1af7000d`) · **[Sidecar `.json`](docs/downloads/gemsdoe77-h77v-dealiased-vent-demag-knick-ldsa-20261021.json)** · **[Technical Report](docs/h77vldsa.html)** · **[Submission Guide](docs/h77vldsa-executive-summary.html)** · **[Run Card](evidence/run_card_h77vldsa.json)** · **[3-Pass Review](docs/review-2026-10-21-h77vldsa.md)**

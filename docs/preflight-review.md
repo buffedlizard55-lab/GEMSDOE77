@@ -1,5 +1,9 @@
 # Submission readiness review — 2026-10-21
 
+## Current branch addendum — `arena/e24c1d71-gemsdoe77`
+
+**Current status remains: OK TO DOWNLOAD FOR INSPECTION only · NOT OK TO SUBMIT · no new TIFF generated.** The latest review restored and re-ran the pinned preflight, reproduced `STOP_UNIVERSAL_DUPLICATE`, and screened five untested hypotheses without running a geological experiment. Read the [current branch review](review-2026-10-21-arena-e24c1d71.md), [ranked hypothesis screen](research/hypotheses-arena-e24c1d71.md), and [run card](evidence/arena_e24c1d71_run_card.json). The run card is a negative review result; it contains no holdout score or new raster.
+
 **OK TO DOWNLOAD FOR INSPECTION. NOT OK TO SUBMIT. No new TIFF generated in this review.**
 
 [Download an existing research TIFF](downloads/gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY.tif) ·

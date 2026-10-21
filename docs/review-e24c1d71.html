@@ -1,0 +1,104 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>Current session review — arena/e24c1d71 · GEMSDOE77</title>
+<meta name="description" content="GEMSDOE77 (DOE GEMS Prize): download the submission GeoTIFFs and see, per file, whether it is OK to upload.">
+<link rel="stylesheet" href="assets/lia.css"></head><body>
+<header><div class="wrap"><span class="brand">GEMSDOE77 · DOE GEMS Prize</span><a href="h77pd.html">H77-PD research</a> <a href="h77pd-executive-summary.html">H77-PD guide</a> <a href="h77vldsa.html">H77V-LDSA research</a> <a href="h77vldsa-executive-summary.html">H77V-LDSA guide</a> <a href="h77h-meshsafe.html">H77H-MeshSafe research</a> <a href="h77h-meshsafe-executive-summary.html">H77H-MeshSafe guide</a> <a href="h83netsib.html">H83-NETSIB · negative</a> <a href="h83netsib-executive-summary.html">H83-NETSIB guide</a> <a href="h77vds.html">H77-VDS research</a> <a href="h77vds-executive-summary.html">H77-VDS guide</a> <a href="review-e24c1d71.html" class=here>Current review · no new TIFF</a> <a href="review-latest.html">Historical review</a> <a href="review-arena-00397d44.html">Arena branch review</a> <a href="metric-review.html">Corrected H33 analysis</a> <a href="index.html">Start here</a> <a href="h77hdd.html">H77H-DD · downdip-bridge</a> <a href="h77hdd-executive-summary.html">H77H-DD guide</a> <a href="h77vc.html">H77VC (Vent+ClayCap)</a> <a href="h77vs.html">H77VS · negative</a> <a href="h77vs-executive-summary.html">H77VS guide</a> <a href="tsd.html">H77-TSD · inspection</a> <a href="h77v.html">H77V (Vent-Advect)</a> <a href="h82-texture.html">H82-TEXTURE · negative</a> <a href="h82rank.html">H82R · radiometric negative</a> <a href="preflight-review.html">Current readiness review</a> <a href="h82-executive-summary.html">H82 · cool-outlet negative</a> <a href="h77g.html">H77G · negative</a> <a href="h77g-executive-summary.html">H77G guide</a> <a href="h77e-knick.html">H77E-Knick research</a> <a href="release-review.html">Release safety review</a> <a href="executive-summary.html">How to submit</a> <a href="h81.html">H81 · slip-cone</a> <a href="h82.html">H82 · fault collar</a> <a href="h83.html">H83 · fault collar</a> <a href="h80t.html">H80T · tilt-persist</a> <a href="h80t-executive-summary.html">H80T guide</a> <a href="h80.html">H80 · negative</a> <a href="ago.html">AGO · negative proxies</a> <a href="h79-orient.html">H79-ORIENT · negative</a> <a href="h79-orient-executive-summary.html">H79-ORIENT guide</a> <a href="h79.html">H79-BB · research-only</a> <a href="h79-radhalo.html">H79-RH · negative</a> <a href="h77l.html">H77L · research-only</a> <a href="h77d.html">H77D (Zero-SGMC)</a> <a href="h77d-executive-summary.html">H77D guide</a> <a href="h77-step.html">H77-Step</a> <a href="h77e.html">H77E · negative</a> <a href="h78.html">H78 lane</a> <a href="lia.html">LIA lane</a> <a href="contactphys.html">Contact-physics lane</a> <a href="urank.html">Selective-U lane</a> <a href="lia-analysis.html">Why 0.2778</a> <a href="lia-sources.html">Sources</a>
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE77">GitHub</a></div></header><main><div class="wrap"><h1>GEMSDOE77 review — branch <code>arena/e24c1d71-gemsdoe77</code> — 2026-10-21</h1>
+<h2>Decision at a glance</h2>
+<p><strong>No new TIFF was generated. No candidate holdout was run. No competition slot was used. No file is cleared to submit.</strong> Historical files linked on the repository site are inspection-only under the current release gate. This review deliberately does not rename or repackage an old TIFF as new, bypass the duplicate stop, or create a meaningless all-zero raster.</p>
+<p>The request asks for a unique TIFF, but the binding parallel-run protocol says to stop if a candidate overlaps a registry raster beyond the stated threshold. A restored, SHA-pinned registry witness proves that <strong>every nonempty candidate in the allowed domain would exceed that threshold</strong>. The run stopped before calculating any candidate feature or placing dots. The failure is a representation/registry-policy contradiction, not evidence that all geological hypotheses are alike.</p>
+<p><strong>Submission status:</strong> <strong>OK TO DOWNLOAD FOR INSPECTION: existing files only, as individually marked. NOT OK TO SUBMIT: every file. No new submission TIFF is available from this review.</strong> The independent release receipt authorizes zero files; this is not an organizer score or portal receipt. See <a href="evidence/arena_e24c1d71_run_card.json"><code>evidence/arena_e24c1d71_run_card.json</code></a> and the <a href="data/submission-authorization.json">published authorization receipt</a>.</p>
+<h2>Pass 1 — inspect the checkout and establish the gate</h2>
+<ul>
+<li>Read the complete standing request in <code>README.md</code> and <code>PROMPT.md</code>, <code>AGENTS.md</code>, repository preregistrations, the active release/readiness material, the shared-template pin, and historical run cards. The request supplies the holdout protocol but does not assign a fresh scientific method paragraph. <code>registry/preregistration.json</code> describes the already-run H77 selective-U curvature lane; its negative run card is historical, not authorization to restart or retune it.</li>
+<li>Inspected actual files rather than relying on earlier restore receipts. <code>data/bridge/</code> contains the reference/grid bridge rasters, but this checkout has no <code>data/raw/training_features.tif</code>, <code>data/processed/stack.npy</code>, or <code>.cache/gems_data/training_features.tif</code>. The tracked <code>data/restore_receipt.json</code> is not proof that those raw/cache files are present now.</li>
+<li>Restored the two pinned rejection witnesses with <code>scripts/restore_registry.py</code>; their SHA-256 values matched <code>registry/witness_sources.json</code>. Ran the unchanged <code>scripts/preflight_registry.py</code>. It exited with the documented stop code <code>2</code> and wrote <code>evidence/registry_preflight.json</code>.</li>
+<li><strong>Preflight decision: <code>STOP_UNIVERSAL_DUPLICATE</code>.</strong> This is a candidate-independent registry rejection, not a geological score or a full-registry clearance.</li>
+<li><strong>REGISTRY-MEASUREMENT (not HOLDOUT-DTI):</strong> the finite allowed domain contains <code>5,106,385</code> cells; the pinned witness's three-pixel dilation covers all <code>5,106,385</code>. For any nonempty candidate subset <code>C</code> of that allowed domain <code>A</code>, the mandated forward overlap is therefore <code>|C ∩ dilation(W)| / |C| = 1.0</code>, strictly above the stop threshold <code>0.70</code>. This one-witness proof rejects a candidate before placement and would also reject any final dot set. It is a sufficient rejection witness, <strong>not a full-registry uniqueness pass</strong>.</li>
+<li>The shared-template source hashes for <code>evaluate_holdout.py</code>, <code>submission_writer.py</code>, and <code>uniqueness.py</code> match <code>registry/template_pin.json</code>. No shared template, evaluator, writer, or threshold was changed.</li>
+</ul>
+<h2>Pass 2 — investigate the H33 claim and screen candidates</h2>
+<h3>What the H33 bytes and source actually establish</h3>
+<p>I re-fetched the pinned owner-repository page for <a href="https://github.com/buffedlizard55-lab/GEMSDOE32/blob/f62038b54dcb7767d4d997f80b033cdc3d42bef9/docs/index.html">GEMSDOE32 at commit <code>f62038b</code></a>, and restored the H33 TIFF from its pinned GitHub source. That page explicitly says <strong>“NO ORGANISER SCORE EXISTS for this or any artifact in this repository.”</strong> It labels its own <code>0.2747</code> figure as a model projection, not a score. The user-supplied <code>0.2778</code> for H33 must therefore remain <strong>OWNER-REPORT</strong> unless an organizer receipt ties that exact score to that exact file. This is the principal irregularity: the premise that H33 received an organizer-confirmed <code>0.2778</code> is not established by the linked GEMSDOE32 source.</p>
+<p>I independently fetched the D2.8 owner-mirror raster pinned in <code>registry/data_manifest.json</code> and compared binary supports on the matching grid:</p>
+<ul>
+<li><strong>RASTER-MEASUREMENT:</strong> H33 has <code>37,654</code> positive cells; D2.8 has <code>44,090</code>.</li>
+<li><strong>RASTER-MEASUREMENT:</strong> H33 is an exact subset of D2.8: <code>6,436</code> positives were removed and none were added. Every removed positive was within <code>2</code> grid pixels of the mapped catalogue; the closest retained H33 positive is <code>√5</code> pixels from it.</li>
+<li>H33 SHA-256 is <code>c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9</code>; the fetched D2.8 mirror SHA-256 is <code>91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8</code>. These are owner-mirror byte measurements, not score receipts. The calculation is reproducible from the pinned sources and the bridge catalogue.</li>
+</ul>
+<p><strong>Scientific interpretation, explicitly conditional:</strong> if the owner-reported association is correct, the observed change is consistent with sparse-emission/pruning improving a distance-weighted overlap objective: deleting near-catalogue predictions can reduce redundant/false-positive mass while leaving most candidate support intact. It does <strong>not</strong> prove that the deleted pixels earned zero credit, that pruning caused any particular score, or that more aggressive pruning would help. A hidden fault may lie near a mapped fault; thinning can also remove useful coverage. The linked H33 page's live-model figure is not an organizer score. The prompt's <code>0.2778</code>, <code>0.3195</code>, and <code>0.4413</code> references are not used here as current confirmed leaderboard results.</p>
+<p>The local pinned metric and the user-provided protocol describe an asymmetric distance-weighted Tversky objective. Under that setup, sparse placement can improve the ratio only when removed mass contributes little unique truth coverage relative to the false-positive cost; it is not a universal consequence of dot thinning. This is a plausible mechanism for the <em>reported</em> result, not a verified explanation of an organizer score. Catalogue hide-and-recover remains a proxy for fault recovery, not direct validation of geothermal vents, reservoir productivity, or economic potential.</p>
+<h3>Candidate hypotheses</h3>
+<p>Five untested computational hypotheses, their target signatures, contrasts with repository implementations, named mimics, and source/availability caveats are recorded in <a href="research/hypotheses-arena-e24c1d71.md"><code>research/hypotheses-arena-e24c1d71.md</code></a>. They are proposals only; all expected HOLDOUT-DTI changes are unknown, no numerical score projection is made, and some ideas appeared in earlier written research but have not been run as the exact test described.</p>
+<p>The conditional rank-1 proposal is scale-dependent cross-wavelet phase coherence between magnetic RTP and isostatic gravity, with basement-depth-step corroboration. The exact cross-wavelet operator was not found in executable code, but related cross-sensor methods have been tested and this idea is not new to the repository's written backlog. It is the least expensive candidate in principle because it would use the competition feature stack rather than an external dataset. It is <strong>not currently viable</strong>: the raw/cached feature stack is absent, its existing mirrors are not organizer-authenticated, the current method paragraph is unassigned, and the universal registry witness stops all nonempty surfaces.</p>
+<p>The external-data candidates name official manual-review sources (USGS ComCat, USGS Landsat Collection 2, NASA LP DAAC ASTER, Copernicus Data Space / NASA ASF). Their source pages and Great Basin scene/product coverage were not fetched in this session because their hosts are outside the sandbox's outbound allowlist. They are explicitly <strong>blocked, not proposed as obtainable</strong>. No data were fabricated or represented as downloaded.</p>
+<h3>Required validation was not reached</h3>
+<p>The user requested a leakage canary for every feature and a spatially blocked holdout for the top candidate. Neither can be reported: the feature raster/cache is absent, and the protocol's universal duplicate preflight fires before feature generation. Therefore there is no new feature-alone AUC, no new HOLDOUT-DTI value or confidence interval, no candidate-specific rank correlation, no candidate surface, no final dots, and no new TIFF hash. No holdout number is projected or substituted.</p>
+<h2>Pass 3 — independent release, format, and software checks</h2>
+<ul>
+<li><code>scripts/audit_downloads.py</code> independently opened every primary TIFF listed in <code>docs/data/lanes.json</code>: <strong>FORMAT-INTEGRITY-MEASUREMENT:</strong> all <code>44</code> listed primary files passed the local single-band/range/grid readback against the tracked bridge reference. This does not establish complete-registry uniqueness, official input provenance, portal acceptance, or upload clearance.</li>
+<li><code>scripts/release_gate.py --verify-fail-closed</code> returned <strong>NOT OK TO SUBMIT</strong> and zero authorized files. A format PASS does not override the duplicate stop or separate selector approval.</li>
+<li>The full software suite completed: <strong>SOFTWARE-TEST MEASUREMENT (not a score):</strong> <code>307</code> tests passed. The immutable scientific inputs/evaluator were not modified.</li>
+<li>Only the candidate-independent registry preflight was executed; it is not a geological experiment. The experiment count for this review is zero and no weekly competition slot was spent.</li>
+<li>Existing historical TIFs remain individually identified for inspection. No file is newly designated “OK TO SUBMIT,” and the failed user upload's original root cause remains unknown because the rejected bytes and organizer diagnostics are not available here.</li>
+</ul>
+<h2>Verified facts, official links, and access limitations</h2>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Source</th>
+<th>Verification boundary in this review</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>H33 page / attribution</td>
+<td><a href="https://github.com/buffedlizard55-lab/GEMSDOE32/blob/f62038b54dcb7767d4d997f80b033cdc3d42bef9/docs/index.html">Pinned GEMSDOE32 source page</a></td>
+<td>Freshly retrieved from GitHub. It says the artifacts have no organizer score; this is an owner repository page, not an organizer receipt.</td>
+</tr>
+<tr>
+<td>H33 and D2.8 bytes</td>
+<td><a href="https://github.com/buffedlizard55-lab/60GEMSDOE/blob/b99591eede63c6d45c8a896255b8cd34824fa00b/registry/rasters/GEMSDOE32__h33-2-b2-zeros.tif">H33 pinned source</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE24/tree/07345ea0604953d7efb858d9cfbc21e20c7aca0b/docs/downloads">D2.8 pinned mirror directory</a></td>
+<td>Retrieved file <code>gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif</code> from the pinned owner mirror; SHA-256 checked. Not an official source.</td>
+</tr>
+<tr>
+<td>Problem/metric/official data</td>
+<td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DrivenData problem page</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">data tab</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">leaderboard</a></td>
+<td>Manual-review links supplied in the prompt. Not freshly fetched; no current leaderboard claim or organizer score is asserted.</td>
+</tr>
+<tr>
+<td>Public USGS geophysics</td>
+<td><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN release</a></td>
+<td>Official manual-review link; not freshly fetched in this session.</td>
+</tr>
+<tr>
+<td>External hypothesis sources</td>
+<td><a href="https://earthquake.usgs.gov/fdsnws/event/1/query">USGS ComCat FDSN</a> · <a href="https://www.usgs.gov/landsat-missions/landsat-collection-2">USGS Landsat Collection 2</a> · <a href="https://lpdaac.usgs.gov/products/ast_l1tv003/">NASA LP DAAC ASTER</a> · <a href="https://dataspace.copernicus.eu/">Copernicus Data Space</a> · <a href="https://search.asf.alaska.edu/">NASA ASF Search</a></td>
+<td>Official links for manual review, not live availability confirmations. Their hosts are outside the sandbox allowlist; the AOI coverage, licensing/access, and acquisition were not verified here.</td>
+</tr>
+<tr>
+<td>Shared method and artifact readiness</td>
+<td><code>registry/template_pin.json</code>, <code>vendor/gems57/</code>, <code>evidence/registry_preflight.json</code>, <code>docs/data/submission-authorization.json</code></td>
+<td>Locally verified hashes and receipts. These establish template identity, a rejection witness, and release-gate state—not organizer acceptance.</td>
+</tr>
+</tbody>
+</table>
+<h2>Limitations and next session's critical path</h2>
+<ol>
+<li>Do not generate or upload a candidate while the literal one-witness overlap rule remains binding. Have the protocol owner resolve whether dense continuous probability rasters are valid “dot” witnesses. Do not silently filter them, modify the shared gate locally, or reinterpret the threshold.</li>
+<li>Assign one new method paragraph. Do not restart the already-run selective-U lane or another negative lane.</li>
+<li>Restore the full feature stack only from an authorized source and record whether it is an organizer download or an owner mirror. Confirm the input SHA-256 and exact sample grid before feature work.</li>
+<li>After the first two blockers are resolved, preregister one candidate. Run each feature alone as a leakage canary; then use the pinned buffered whole-segment holdout and report evaluator version, withheld-positive count, and 95% CI. Compare with a fold-rebuilt matched incumbent. Do not spend a weekly slot before that result beats the incumbent and passes both surface and final-dot registry tests.</li>
+<li>Keep the submission writer unchanged. Require a byte-bound format receipt, complete uniqueness evidence, separate selector approval, and a submission-page receipt tied to the exact SHA before ever calling a file OK TO SUBMIT or reporting ORGANIZER-CONFIRMED.</li>
+<li>The official-source web pages and current live leaderboard were not accessible to this sandbox, and there is no DrivenData login/portal receipt here. These are access limitations, not reasons to infer a score.</li>
+</ol>
+<h2>Review run card</h2>
+<p>See <a href="evidence/arena_e24c1d71_run_card.json"><code>evidence/arena_e24c1d71_run_card.json</code></a> for the single machine-readable run card. It records a negative result, no new raster, no holdout value, the measured universal overlap blocker, local format-audit scope, and the absence of selector/portal approval.</p></div></main>
+<footer><div class="wrap">Selector status for every file on this site: <b>not approved</b>. Whether to spend a
+weekly slot is a separate selector decision, not this repository's. Generated by <code>scripts/build_home.py</code> from
+<code>docs/data/*.json</code> and <code>evidence/*.json</code>. Number labels: <b>ORGANIZER-CONFIRMED</b> (public
+submission-page receipt tied to an artifact), <b>HOLDOUT-DTI</b> (local hide-and-recover; evaluator version, withheld positives, 95% CI),
+<b>INSTRUMENT</b> (projection, never a score).</div></footer>
+<script>document.querySelectorAll('button[data-copy]').forEach(b=>b.onclick=()=>{navigator.clipboard.writeText(b.dataset.copy);b.textContent='Copied';setTimeout(()=>b.textContent='Copy',1200)})</script>
+</body></html>

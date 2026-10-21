@@ -24,8 +24,8 @@ REPO = "https://github.com/buffedlizard55-lab/GEMSDOE77"
 LB = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
 PD = "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
-NAV = [("h77pd.html", "H77-PD · 0.1685 3-Seed #1"), ("h77pd-executive-summary.html", "H77-PD guide"), ("h77vldsa.html", "H77V-LDSA · 0.1444/0.1530"), ("h77vldsa-executive-summary.html", "H77V-LDSA guide"), ("h77h-meshsafe.html", "H77H-MeshSafe · 0/119 firings"), ("h77h-meshsafe-executive-summary.html", "H77H-MeshSafe guide"), ("h83netsib.html", "H83-NETSIB · negative"), ("h83netsib-executive-summary.html", "H83-NETSIB guide"), ("h77vds.html", "H77-VDS · 0.1744 #1"), ("h77vds-executive-summary.html", "H77-VDS guide"), ("review-latest.html", "Latest review"), ("review-arena-00397d44.html", "Arena branch review"), ("metric-review.html", "Corrected H33 analysis"), ("index.html", "Start here"), ("h77hdd.html", "H77H-DD · downdip-bridge"), ("h77hdd-executive-summary.html", "H77H-DD guide"), ("h77vc.html", "H77VC (Vent+ClayCap)"), ("h77vs.html", "H77VS · negative"), ("h77vs-executive-summary.html", "H77VS guide"), ("tsd.html", "H77-TSD · inspection"), ("h77v.html", "H77V (Vent-Advect)"), ("h82-texture.html", "H82-TEXTURE · negative"), ("h82rank.html", "H82R · radiometric negative"), ("preflight-review.html", "Current readiness review"), ("h82-executive-summary.html", "H82 · cool-outlet negative"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
-       ("h77e-knick.html", "H77E-Knick · 0/816 firings"), ("release-review.html", "Release safety review"), ("executive-summary.html", "How to submit"),
+NAV = [("h77pd.html", "H77-PD research"), ("h77pd-executive-summary.html", "H77-PD guide"), ("h77vldsa.html", "H77V-LDSA research"), ("h77vldsa-executive-summary.html", "H77V-LDSA guide"), ("h77h-meshsafe.html", "H77H-MeshSafe research"), ("h77h-meshsafe-executive-summary.html", "H77H-MeshSafe guide"), ("h83netsib.html", "H83-NETSIB · negative"), ("h83netsib-executive-summary.html", "H83-NETSIB guide"), ("h77vds.html", "H77-VDS research"), ("h77vds-executive-summary.html", "H77-VDS guide"), ("review-e24c1d71.html", "Current review · no new TIFF"), ("review-latest.html", "Historical review"), ("review-arena-00397d44.html", "Arena branch review"), ("metric-review.html", "Corrected H33 analysis"), ("index.html", "Start here"), ("h77hdd.html", "H77H-DD · downdip-bridge"), ("h77hdd-executive-summary.html", "H77H-DD guide"), ("h77vc.html", "H77VC (Vent+ClayCap)"), ("h77vs.html", "H77VS · negative"), ("h77vs-executive-summary.html", "H77VS guide"), ("tsd.html", "H77-TSD · inspection"), ("h77v.html", "H77V (Vent-Advect)"), ("h82-texture.html", "H82-TEXTURE · negative"), ("h82rank.html", "H82R · radiometric negative"), ("preflight-review.html", "Current readiness review"), ("h82-executive-summary.html", "H82 · cool-outlet negative"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
+       ("h77e-knick.html", "H77E-Knick research"), ("release-review.html", "Release safety review"), ("executive-summary.html", "How to submit"),
        ("h81.html", "H81 · slip-cone"), ("h82.html", "H82 · fault collar"),
        ("h83.html", "H83 · fault collar"),
        ("h80t.html", "H80T · tilt-persist"), ("h80t-executive-summary.html", "H80T guide"),
@@ -80,8 +80,14 @@ def main():
     # Publish the current review from its source, not a hand-edited landing page.
     (D / "evidence").mkdir(exist_ok=True)
     for name in ("registry_preflight.json", "listed_download_audit.json", "preflight_sources.json",
-                 "readiness_review_run_card.json"):
+                 "readiness_review_run_card.json", "arena_e24c1d71_run_card.json"):
         shutil.copyfile(ROOT / "evidence" / name, D / "evidence" / name)
+    current_review = (D / "review-2026-10-21-arena-e24c1d71.md").read_text()
+    (D / "review-e24c1d71.html").write_text(page(
+        "review-e24c1d71.html", "Current session review — arena/e24c1d71",
+        markdown.markdown(current_review, extensions=["tables", "fenced_code"])))
+    shutil.copyfile(ROOT / "research/hypotheses-arena-e24c1d71.md",
+                    D / "research/hypotheses-arena-e24c1d71.md")
     review = (D / "preflight-review.md").read_text()
     (D / "preflight-review.html").write_text(page(
         "preflight-review.html", "Submission readiness review",
@@ -283,6 +289,15 @@ Format PASS, not organizer acceptance. <a href="h82rank.html">H82R sources and s
     pz = Path(primary["file"]).with_suffix(".zip").as_posix()
     zip_btn = f'<a class="btn alt" href="{e(pz)}" download>Same file as one-TIFF .zip</a>' if (D / pz).exists() else ""
     size_kb = (D / primary["file"]).stat().st_size / 1024
+    current_status_box = """<section class="card" style="border:3px solid #b91c1c;background:#fef2f2;">
+<h2>Current session: no new submission TIFF</h2>
+<p><b>OK TO DOWNLOAD FOR INSPECTION:</b> existing research files only, as individually marked.
+<b>NOT OK TO SUBMIT: every file.</b> No candidate TIFF was generated in this review. The pinned registry preflight
+stops every nonempty candidate before feature generation; do not upload a historical file or treat format validation
+as clearance.</p>
+<p><strong>Current branch review:</strong> <a class="btn" href="review-e24c1d71.html">Read this session's review and ranked hypotheses →</a>
+<a class="btn alt" href="data/submission-authorization.json">Current authorization receipt</a>
+<a class="btn alt" href="evidence/registry_preflight.json">Registry stop evidence</a></p></section>"""
     glance = """<p class="verdict"><b>Status at a glance.</b> <b>OK to download for inspection:</b> every linked file below.
 <b>NOT OK TO SUBMIT: every file.</b> In the shared literal registry test a prior continuous raster is positive across
 100% of allowed pixels, so every non-empty candidate has a 3 px forward overlap of 1.0 (limit 0.70). This is a
@@ -292,7 +307,8 @@ authorize an upload; the separate weekly-slot selector has approved none. The in
 <a href="data/submission-authorization.json">machine-readable authorization receipt</a> combines all required release
 gates and currently says <b>NOT OK TO SUBMIT — 0 authorized files</b>.</p>
 <p><b>Current review: no new TIFF generated.</b> A fresh hash-checked, candidate-independent proof confirms the universal
-blocker before any new experiment. <a href="preflight-review.html">Three-pass review, conditional hypotheses and next steps</a> ·
+blocker before any new experiment. <a href="review-e24c1d71.html">Current branch review and ranked hypotheses</a> ·
+<a href="preflight-review.html">Earlier readiness review and next steps</a> ·
 <a href="evidence/registry_preflight.json">Reproducible blocker receipt</a> ·
 <a href="evidence/listed_download_audit.json">Independent format readback of every listed primary TIFF</a>.
 These are registry/format measurements, not scores or portal acceptance.</p>"""
@@ -441,14 +457,16 @@ These are registry/format measurements, not scores or portal acceptance.</p>"""
 {copy("H77E-ACD Unique Submission Name (reference — DO NOT UPLOAD without human selector approval)", acd_sub["submission_name"])}
 {copy("H77E-ACD Short Note <= 140 chars (116 chars)", acd_sub["submission_note_le140"])}
 <p class="small">GeoTIFF SHA-256: <code>{e(acd_sub["primary_geotiff_sha256"])}</code> · ZIP SHA-256: <code>{e(acd_sub["primary_zip_sha256"])}</code> · <a href="evidence/run_card_h77e_acd.json">Machine-Readable Run Card (.json)</a></p></section>"""
-    body = f"""{acd_box}{vds_box}{h77vs_box}{tsd_box}{h82_banner}{rank_box}<h1>Start here</h1>
-<p><strong>Earlier review #49 generated no new TIFF; H82 above is a later negative research download. NOT OK TO SUBMIT.</strong> <a href="review-904a24d3.html">Earlier audit and corrected H33 analysis</a>.</p>
+    body = f"""{current_status_box}{acd_box}{vds_box}{h77vs_box}{tsd_box}{h82_banner}{rank_box}<h1>Start here</h1>
+<p><strong>Current session: no new TIFF generated; all files remain NOT OK TO SUBMIT.</strong>
+<a href="review-e24c1d71.html">Current review and ranked hypotheses</a> ·
+<a href="review-904a24d3.html">Earlier audit and corrected H33 analysis</a>.</p>
 <p>This repository builds and audits fault-probability GeoTIFFs for the <a href="{COMP}">DOE GEMS Prize</a>
 (DrivenData competition 306). The first box distinguishes downloading a file from permission to upload it. The table
 lists the reviewed research candidates, not every historical archived/NaN-twin file; see <a href="audit.html">archive audit</a>.</p>
 {glance}
 {dl}
-<p><a href="review-latest.html">Current branch review: no new TIFF; ranked hypotheses and duplicate-stop evidence</a> · <a href="review-arena-00397d44.html">This Arena branch review and run card</a> · <a href="metric-review.html">Corrected H33 analysis</a></p>
+<p><a href="review-e24c1d71.html">Current review: no new TIFF; ranked hypotheses and duplicate-stop evidence</a> · <a href="review-arena-00397d44.html">Earlier Arena branch review</a> · <a href="metric-review.html">Corrected H33 analysis</a></p>
 {orient_box}
 <h2>Reviewed downloadable candidates</h2>{table}
 <div class="values"><b>Score provenance and slot limits.</b> The supplied 0.2778 attribution to H33,
@@ -470,6 +488,7 @@ not proof that the specific file received that score or that another submission 
 
     # ---------------- general executive summary (how to submit)
     guide = f"""<h1>Executive summary: how to submit — only AFTER approval</h1>
+{current_status_box}
 {acd_box}
 {h77vs_box}{tsd_box}
 <p class="verdict"><b>NEW H82 file:</b> <a href="{e(h82['file'])}" download>Download the format-valid TIFF for inspection</a>;
@@ -483,7 +502,7 @@ condition is met merely by passing a format check.</p>
 {glance}
 {rank_box}
 {dl}
-<p><a href="review-latest.html">Current branch review: no new TIFF; ranked hypotheses and duplicate-stop evidence</a> · <a href="review-arena-00397d44.html">This Arena branch review and run card</a> · <a href="metric-review.html">Corrected H33 analysis</a></p>
+<p><a href="review-e24c1d71.html">Current review: no new TIFF; ranked hypotheses and duplicate-stop evidence</a> · <a href="review-arena-00397d44.html">Earlier Arena branch review</a> · <a href="metric-review.html">Corrected H33 analysis</a></p>
 {orient_box}
 <h2>What the DrivenData submission form asks for</h2>
 <table><tr><th>Field</th><th>What to give it only after clearance</th></tr>

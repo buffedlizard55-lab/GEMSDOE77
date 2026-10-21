@@ -380,6 +380,40 @@ def test_current_preflight_review_does_not_claim_a_new_submission():
     assert card["holdout_dti"]["value"] is None
 
 
+def test_current_e24_session_is_fail_closed_and_visible():
+    card = json.loads((ROOT / "evidence/arena_e24c1d71_run_card.json").read_text())
+    assert card["verdict"] == "negative"
+    assert card["experiments_run"] == 0 and card["weekly_slots_used"] == 0
+    assert card["raster_sha256"] is None and card["submission_name"] is None
+    assert card["holdout_dti"]["evidence_class"] == "HOLDOUT-DTI"
+    assert card["holdout_dti"]["value"] is None
+    assert card["holdout_dti"]["withheld_positive_count"] is None
+    assert card["holdout_dti"]["ci95"] is None
+    assert card["correlation_overlap_vs_registry"]["nonempty_candidate_forward_overlap_lower_bound"] == 1.0
+    assert card["validator_output"]["repository_release_gate_authorized_files"] == 0
+    assert len(card["submission_note"]) <= 140
+
+    hypotheses = (ROOT / "research/hypotheses-arena-e24c1d71.md").read_text()
+    for title in ("cross-wavelet", "Sentinel-1", "microseismic", "ASTER", "Landsat"):
+        assert title.lower() in hypotheses.lower()
+    assert "Expected HOLDOUT-DTI: unknown" in hypotheses
+    assert (DOC / "research/hypotheses-arena-e24c1d71.md").read_bytes() == (ROOT / "research/hypotheses-arena-e24c1d71.md").read_bytes()
+    assert (DOC / "evidence/arena_e24c1d71_run_card.json").read_bytes() == (ROOT / "evidence/arena_e24c1d71_run_card.json").read_bytes()
+
+    home = (DOC / "index.html").read_text()
+    current = home.index("Current session: no new submission TIFF")
+    history = home.index("H77E-ACD: Zero-SGMC")
+    assert current < history
+    assert "NOT OK TO SUBMIT: every file" in home
+    assert "review-e24c1d71.html" in home
+    guide = (DOC / "executive-summary.html").read_text()
+    assert guide.index("Current session: no new submission TIFF") < guide.index("H77E-ACD:")
+    page = (DOC / "review-e24c1d71.html").read_text()
+    assert "NO ORGANISER SCORE EXISTS" in page
+    assert "STOP_UNIVERSAL_DUPLICATE" in page
+    assert "No candidate holdout was run" in page
+
+
 def test_lia_and_parallel_h28_metadata_do_not_collide():
     lia = json.loads((DOC / "data/submission.json").read_text())
     h28 = json.loads((DOC / "data/h28-submission.json").read_text())

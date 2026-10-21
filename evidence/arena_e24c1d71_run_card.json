@@ -1,0 +1,42 @@
+{
+  "schema": "gems-session-run-card-v1",
+  "session_branch": "arena/e24c1d71-gemsdoe77",
+  "review_date_utc": "2026-10-21",
+  "hypothesis": "No geological hypothesis was experimentally tested. Conditional rank-1 proposal: scale-dependent magnetic–gravity cross-wavelet phase coherence, with basement-depth-step corroboration, may expose a buried contrast boundary; expected DTI change is unknown.",
+  "mechanism": "No feature surface was calculated. The proposed mechanism is persistent relative phase/coherence between magnetic and gravity spatial-frequency components where a fault juxtaposes magnetic and density contrasts beneath cover. This is a hypothesis only.",
+  "named_non_fault_process_that_could_mimic_it": "A lithologic or intrusive contact, basin-fill boundary, or flight-line/regridding seam can produce coincident magnetic/gravity structure without an active fault.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2 (not run in this review)",
+    "withheld_positive_count": null,
+    "value": null,
+    "ci95": null,
+    "status": "NOT RUN: current preflight stopped before feature generation; full training feature raster/cache is absent."
+  },
+  "correlation_overlap_vs_registry": {
+    "candidate_surface_rank_correlation": null,
+    "candidate_final_dot_forward_overlap_3px": null,
+    "evidence_class_for_blocker": "REGISTRY-MEASUREMENT; not a score",
+    "pinned_witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "allowed_pixels": 5106385,
+    "allowed_pixels_covered_by_witness_3px_dilation": 5106385,
+    "nonempty_candidate_forward_overlap_lower_bound": 1.0,
+    "stop_threshold_strictly_greater_than": 0.7,
+    "decision": "STOP_UNIVERSAL_DUPLICATE; no candidate surface or final dots built; this is a one-witness rejection proof, not a complete registry pass."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "new_candidate_tif": "NOT GENERATED",
+    "no_nan_inside_footprint": "NOT APPLICABLE; no candidate raster",
+    "values_in_0_1": "NOT APPLICABLE; no candidate raster",
+    "crs_shape_transform_match": "NOT APPLICABLE; no candidate raster",
+    "existing_listed_primary_tiff_audit": "FORMAT-INTEGRITY-MEASUREMENT: all 44 listed primary TIFFs passed local readback against the tracked bridge reference; this is not uniqueness or portal acceptance.",
+    "repository_release_gate_authorized_files": 0,
+    "portal_acceptance": "NOT CONFIRMED"
+  },
+  "submission_name": null,
+  "submission_note": "No new TIFF generated: the pinned registry preflight stopped before feature generation; do not submit historical files.",
+  "verdict": "negative",
+  "experiments_run": 0,
+  "weekly_slots_used": 0
+}
