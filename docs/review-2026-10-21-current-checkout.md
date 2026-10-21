@@ -18,7 +18,7 @@ The strongest historical local measurement described by the current README is **
 ### Tests and tools
 
 - The base interpreter initially lacked NumPy and pytest. Created the ignored `.venv` and installed the exact packages in `requirements.txt`; no dependency manifest or system Python was changed.
-- Full suite after reconciling the latest main and regenerating the site: **104 passed** (`.venv/bin/python -m pytest -q`).
+- Full suite after reconciling the latest main and regenerating the site: **106 passed** (`.venv/bin/python -m pytest -q`).
 - `scripts/verify_all.py` completed with `all_passed: true` for the selected frozen contact-physics artifact's readback, ZIP, and metric property checks. This is a selected-artifact verification, not an all-lane test or an organizer check.
 - `scripts/release_gate.py --out /tmp/gems77-review-release-final.json --verify-fail-closed` returned **NOT OK TO SUBMIT; 0 authorized files** with exit status 0 for the fail-closed verification. It did not rewrite the published receipt.
 - `git diff --check` passed. Static pages were rebuilt with the existing lane/home generators and link tests are included in the full suite.
