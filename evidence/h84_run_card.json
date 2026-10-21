@@ -1,39 +1,236 @@
 {
-  "run_id": "GEMSDOE77-H84-ORGATE-COLLAR",
-  "hypothesis": "Uncatalogued sub-parallel splays lie at kernel scale (peak 300 m, cutoff 1.2 km) from visible mapped faults AND offset basement, so coincident GeoDAWN magnetic (training_features band 3) + gravity (band 13 gradient) rank maxima gate the H83 collar.",
-  "mechanism": "score = collar(dist_to_visible) * gate; Exp1 gate=sqrt(rank(magHG)*rank(gravHG)), Exp2 gate=0.5+0.5*max(rank(magHG),rank(gravHG)) (shipped surface), Exp3 = wide collar (peak 600 m/cutoff 2 km, no gate). 37,654 dots, min_sep 2.8 px, catalogue-masked.",
-  "named_non_fault_mimicking_process": "Lithologic contacts parallel to range fronts; airborne survey seams; Lake Lahontan terrace risers in the collar band",
-  "holdout": {
+  "lane": "H84-TIPLOBE-RELAY",
+  "seed": 30,
+  "budget": 37654,
+  "R_px": 25,
+  "footprint_px": 5167373,
+  "catalogue_px": 60988,
+  "hidden_all_px": 11342,
+  "canary": {
+    "tip_lobe_AUC": 0.7946177228442957,
+    "worst": 0.7946177228442957,
+    "leakage_flag": false
+  },
+  "holdout_pooled_summary": {
     "evidence_class": "HOLDOUT-DTI",
     "evaluator_version": "gems57-pooled-hide-v2",
-    "withheld_positive_pixels": 11342,
-    "seed": 30,
-    "experiments": {
-      "Exp1_AND_gate": {"dti": 0.10858900749717218, "ci95": [0.09396680354758506, 0.12334783965949403], "evidence": "evidence/h84_holdout.json"},
-      "Exp2_OR_gate_SHIPPED": {"dti": 0.12148954698767672, "ci95": [0.10706251690747319, 0.13550906533658974], "evidence": "evidence/h84_exp2_holdout.json"},
-      "Exp3_wide_collar": {"dti": 0.11454159467432438, "ci95": [0.10178442929762366, 0.12892925069589], "evidence": "evidence/h84_exp3_holdout.json"},
-      "control_H83_collar_same_folds": {"dti": 0.1226552189170721, "ci95": [0.10799672421127436, 0.1372130738097347]},
-      "control_A0_random": {"dti": 0.04354439539374768, "ci95": [0.03848814649647956, 0.048275828859465915]},
-      "repository_incumbent_H77_Step": {"dti": 0.152718, "source": "evidence/h77/run_card.json"}
+    "alpha": 0.2,
+    "beta": 0.8,
+    "triangular_radius_m": 300.0,
+    "pooled": true,
+    "scores": {
+      "H84": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.12089361808734306,
+        "ci95": [
+          0.1067926809908466,
+          0.13535731296973777
+        ],
+        "withheld_positive_pixels": 11342,
+        "tpw": 2025.3538012025228,
+        "fpw": 36372.59816738066,
+        "fnw": 9316.646198797469
+      },
+      "A0_random": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.047577431650741145,
+        "ci95": [
+          0.04243814095510103,
+          0.052537331469091876
+        ],
+        "withheld_positive_pixels": 11342,
+        "tpw": 794.4617083348636,
+        "fpw": 37328.983791170955,
+        "fnw": 10547.538291665136
+      },
+      "H33_incumbent_approx": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.04123453799677807,
+        "ci95": [
+          0.0323697045310566,
+          0.051263470538926166
+        ],
+        "withheld_positive_pixels": 11342,
+        "tpw": 682.79853378493,
+        "fpw": 36743.694499977406,
+        "fnw": 10659.201466215065
+      }
     },
-    "leakage_canary_max_symmetric_auc": 0.7638,
-    "leakage_flag_gt_0p90": false,
-    "canary_note": "Exp3 gated_score canary 0.7638; Exp1/Exp2 gated canaries 0.7252/0.7256; all <=0.90"
+    "best_comparable_control": "A0_random",
+    "paired_differences": {
+      "A0_random": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.07331618643660191,
+        "ci95": [
+          0.05996226430541925,
+          0.08770152994979642
+        ],
+        "withheld_positive_pixels": 11342
+      },
+      "H33_incumbent_approx": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.079659080090565,
+        "ci95": [
+          0.061712388944992196,
+          0.09711922934672777
+        ],
+        "withheld_positive_pixels": 11342
+      }
+    },
+    "bootstrap": {
+      "method": "paired physical spatial-cluster percentile",
+      "clusters": 159,
+      "draws": 1000,
+      "seed": 520810,
+      "confidence": 0.95,
+      "caveat": "Conditional on fitted folds, catalogue labels and fixed budgets; not a leaderboard interval."
+    },
+    "implementation_sha256": {
+      "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+      "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+      "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+      "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+    }
   },
-  "registry_comparison": {
-    "scope": "48 locally present docs/downloads rasters only; full registry not accessible locally - not a complete-registry clearance",
-    "worst_spearman_sample": {"file": "gems77-h83-faultcollar-37553dots-20261021-a55f4c9c-zeros.tif", "rho": 0.3176},
-    "worst_sparse_dot_overlap_3px": {"file": "gems77-h83-faultcollar-37553dots-20261021-a55f4c9c-zeros.tif", "frac_my_dots_within_3px": 0.7863, "limit": 0.70, "status": "FAIL - duplicate drift into H83 collar lane"},
-    "evidence": "evidence/h84_uniqueness_local.json"
+  "per_fold": {
+    "H84": {
+      "NW": {
+        "dti": 0.14152633920797875,
+        "n_truth": 1919,
+        "emitted": 8456,
+        "coverage": 0.24015523812187517,
+        "tp": 460.85790195587845,
+        "fp": 8144.842894340026,
+        "fn": 1458.1420980441217
+      },
+      "NE": {
+        "dti": 0.09513521325151868,
+        "n_truth": 2356,
+        "emitted": 10482,
+        "coverage": 0.16180528489535795,
+        "tp": 381.2132512134633,
+        "fp": 10230.125830100771,
+        "fn": 1974.7867487865367
+      },
+      "SW": {
+        "dti": 0.11197310629325197,
+        "n_truth": 3805,
+        "emitted": 10340,
+        "coverage": 0.15184459728451927,
+        "tp": 577.7686926675958,
+        "fp": 10001.671538741562,
+        "fn": 3227.231307332404
+      },
+      "SE": {
+        "dti": 0.13984497157562142,
+        "n_truth": 3262,
+        "emitted": 8329,
+        "coverage": 0.18562659575891655,
+        "tp": 605.5139553655857,
+        "fp": 7995.9579041983025,
+        "fn": 2656.486044634414
+      }
+    },
+    "A0_random": {
+      "NW": {
+        "dti": 0.0463127348551532,
+        "n_truth": 1919
+      },
+      "NE": {
+        "dti": 0.04334552790187544,
+        "n_truth": 2356
+      },
+      "SW": {
+        "dti": 0.05067089655209574,
+        "n_truth": 3805
+      },
+      "SE": {
+        "dti": 0.0487683497888183,
+        "n_truth": 3262
+      }
+    }
   },
-  "raster_sha256": "9a5f5433cbfed4a1a8ac2587678aaa930c8ed93e948b9e94874c8febc549fd57",
-  "validator_output": "PASS all local checks: single-band float32, EPSG:32611, 3730x3292, transform (100,0,243350,0,-100,4508550), no NaN/Inf anywhere, values {0,1} in [0,1], zeros outside footprint, 0 dots on catalogue, 37,654 dots (docs/downloads/gems77-h84-orgate-collar-37654dots-20261021-2d0a731a-zeros.json). Local format PASS is not organizer acceptance.",
-  "submission_name": "gems77-h84-orgate-collar-37654dots-20261021-2d0a731a-zeros",
-  "submission_note": "H84 OR-gated second-strand collar 37654 dots; HOLDOUT-DTI 0.1215 vs incumbent 0.1527: NEGATIVE do not upload",
-  "submission_note_chars": 108,
-  "irregularities": ["IR-H84-01: first Exp2/Exp3 runs overwrote evidence/h84_* filenames (sed-derived scripts); fixed to exp-specific names and deterministically re-run - identical HOLDOUT-DTI reproduced (0.12148954698767672 / 0.11454159467432438).", "IR-H84-02: 78.6% of final dots within 3 px of H83 collar dots exceeds the 0.70 duplicate limit vs that sparse raster; dense continuous research rasters trivially cover the footprint and are excluded from the sparse reading per LIA precedent, but the sparse H83 firing alone blocks promotion."],
-  "verdict": "negative",
-  "ok_to_download": "YES - inspection only",
-  "ok_to_submit": "NO - NOT OK TO SUBMIT (holdout below incumbent and below its own collar control; duplicate overlap vs H83; selector not approved; 0 weekly slots used)",
-  "why_h33_reported_02778": "OWNER-REPORT only (no organizer receipt in this repo). Retained forensics: H33 is a 37,654-dot sparse dotted field pruned 6,436 near-catalogue dots from a 44,090-dot predecessor, 0 dots on catalogue - sparse mass reduces FP_w while the 300 m max-kernel preserves truth coverage (research/why-h33-scored-02778.md). No method in this repo has beaten it on an organizer receipt; H84 does not claim to."
+  "dots_holdout": 37654,
+  "dots_random": 37654,
+  "dots_incumbent": 37097,
+  "final_dots": 37654,
+  "final_dots_on_catalogue": 0,
+  "min_dot_distance_to_catalogue_px": 1.0,
+  "field_stats": {
+    "global_max": 0.9599999785423279,
+    "global_mean_in_footprint": 0.23320737481117249,
+    "positive_px": 2465886
+  },
+  "budget_split": {
+    "NW": 8461,
+    "NE": 10490,
+    "SW": 10357,
+    "SE": 8346
+  },
+  "submission": {
+    "name": "gems77-h84-tiplobe-37654dots-20261021-b57c52b3-zeros",
+    "note": "H84 tip-lobe 37654 dots; HOLDOUT-DTI 0.1209 [0.1068,0.1354] s30 vs random +0.073; tip AUC 0.79; NOT FOR UPLOAD without selector",
+    "note_chars": 127,
+    "tif_path": "docs/downloads/gems77-h84-tiplobe-37654dots-20261021-b57c52b3-zeros.tif",
+    "zip_path": "docs/downloads/gems77-h84-tiplobe-37654dots-20261021-b57c52b3-zeros.zip",
+    "tif_sha256": "2bff4b55cabe5a4eb7ab1aeff6b21e407a87a576d1d0c3c5f20ed3ddb1c279ba",
+    "zip_sha256": "5fc768b4384e69858fbec4abd302a83c68bb56e2db5e50783420d50dca798b11",
+    "tif_bytes": 133412,
+    "zip_bytes": 97294,
+    "validator": {
+      "path": "/home/user/GEMSDOE77/docs/downloads/gems77-h84-tiplobe-37654dots-20261021-b57c52b3-zeros.tif",
+      "bytes": 133412,
+      "sha256": "2bff4b55cabe5a4eb7ab1aeff6b21e407a87a576d1d0c3c5f20ed3ddb1c279ba",
+      "bands": 1,
+      "dtype": "float32",
+      "height": 3730,
+      "width": 3292,
+      "crs": "EPSG:32611",
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "res": [
+        100.0,
+        100.0
+      ],
+      "nodata": null,
+      "nodata_repr": "None",
+      "finite_pixels": 12279160,
+      "min": 0.0,
+      "max": 1.0,
+      "positive_pixels": 37654,
+      "nonzero_in_footprint": 37654,
+      "unique_values": 2
+    },
+    "ok_to_download": true,
+    "ok_to_submit": "NO - negative lane, duplicate overlap 0.787 >0.70 vs sparse registry, dense-witness gate FAIL, selector not approved, 0 slots used",
+    "verdict": "negative"
+  },
+  "number_labelling": "HOLDOUT-DTI evaluator gems57-pooled-hide-v2 11342 withheld positives 95% CI [0.1068,0.1354]; no ORGANIZER-CONFIRMED score; OWNER-REPORT 0.2778 not organizer receipt; projection never written as score",
+  "hypothesis": "Fault-tip crack-tip stress lobe + en-echelon relay breach: blind tip splay fans (22% geothermal) and relay breaching fractures (48% geothermal per Faulds 2010) under Quaternary cover, omitted from QFaults but dilational",
+  "mechanism": "Tip mask via 8-neighbour endpoint count, distance to nearest tip R=25px/2.5km isotropic field 1-d/R, off-catalogue emission 37654 dots min_sep 2.8px, visible-only per-fold features, masked visible pixel-exactly, pooled DTI",
+  "named_non_fault_mimic": "Lake Lahontan/Bonneville terrace risers fanning from tips, alluvial-fan apices, road/canal cuts; inter-fan swales mimicking relay corridors",
+  "correlation_overlap_vs_registry": "Sparse registry worst forward 3px overlap ~0.787 >0.70 vs H82 faultcollar/H77E-pure (38 sparse rasters, sampled Spearman max |rho| ~0.45); dense witness 5.16M positive gives universal overlap 1.0 (literal gate FAIL, reported separately). Informative sparse check shows duplicate by protocol.",
+  "raster_sha256": "2bff4b55cabe5a4eb7ab1aeff6b21e407a87a576d1d0c3c5f20ed3ddb1c279ba",
+  "validator_output": "no NaN inside footprint, values in [0,1] min 0.0 max 1.0, CRS EPSG:32611 shape 3730x3292 transform (100,0,243350,0,-100,4508550) match, 37654 dots 0 on catalogue",
+  "promotion_gates": {
+    "format_valid": true,
+    "leakage_canary_pass": true,
+    "holdout_vs_random_significant": true,
+    "holdout_vs_incumbent": "positive but below repository incumbent 0.1527, so not promotion",
+    "uniqueness_informative": "FAIL 0.787 >0.70 duplicate",
+    "uniqueness_dense_literal": "FAIL 1.0 universal blocker",
+    "selector_approved": false,
+    "verdict": "negative - inspection download only"
+  }
 }
