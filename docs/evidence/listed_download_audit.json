@@ -2,16 +2,16 @@
   "schema": "gems-listed-download-readback-v1",
   "evidence_class": "FORMAT-INTEGRITY-MEASUREMENT; NOT SCORE OR PORTAL ACCEPTANCE",
   "scope": "Every primary TIFF in docs/data/lanes.json; no archive or NaN twins, no uniqueness certification",
-  "manifest_sha256": "f9f36db7ce9a54d1dab8a35ec8edacffb1e24c07e5ad1cc481cc434c6cd441de",
+  "manifest_sha256": "9e37fdd84a5f00758a3191fc6238495de5e3ae13d11e0064245b7e746f937107",
   "reference_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
-  "listed_count": 30,
+  "listed_count": 31,
   "all_format_pass": true,
   "authorized_to_submit": false,
   "artifacts": [
     {
-      "lane": "H77-TSD: Transtensional strain-partitioning \u00d7 seismic swarm excess \u00d7 MT clay-cap margin + 12-bit LOCO relay & 300 m submod (0.1360 / 0.1337 HOLDOUT-DTI; negative under Policy I17)",
-      "file": "downloads/gems77-tsd-transtens-swarm-submod-37654dots-20261021-zeros.tif",
-      "sha256": "4ebb1da423d26d9823ad15c4f8a0e722edc3e79272c8e720adcd28e6224af68c",
+      "lane": "H77VS: tufa-deconfounded vent-sinter & multi-depth 2m conductive heat-flow strike-conduit coupling (HOLDOUT-DTI 0.0649 s20 / 0.0767 s30, pure 0.0502/0.0621; negative result)",
+      "file": "downloads/gems77-h77v-ventsinter-heatflow-37654dots-20261021-cc5e4cd9-zeros.tif",
+      "sha256": "2044447ff7d4df318c277846299815591211c83641a3beb20c90f9b33c2255bb",
       "checks": {
         "single_band": true,
         "crs_matches": true,
@@ -30,6 +30,24 @@
       "lane": "H82R: local ternary radiometric rank-mixture entropy (STOPPED; research only)",
       "file": "downloads/gems77-h82-ternaryentropy-20261021-RESEARCH-ONLY.tif",
       "sha256": "56debe682505bf2649f30d914c7b552dcf669bce4b902ce91eb3e5363031f115",
+      "checks": {
+        "single_band": true,
+        "crs_matches": true,
+        "shape_matches": true,
+        "transform_matches": true,
+        "finite_entire_raster": true,
+        "no_nan_inside_footprint": true,
+        "values_in_0_1": true,
+        "nodata_none": true,
+        "sha256_matches_manifest": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
+    {
+      "lane": "H77-TSD: Transtensional strain-partitioning \u00d7 seismic swarm excess \u00d7 MT clay-cap margin + 12-bit LOCO relay & 300 m submod (0.1360 / 0.1337 HOLDOUT-DTI; negative under Policy I17)",
+      "file": "downloads/gems77-tsd-transtens-swarm-submod-37654dots-20261021-zeros.tif",
+      "sha256": "4ebb1da423d26d9823ad15c4f8a0e722edc3e79272c8e720adcd28e6224af68c",
       "checks": {
         "single_band": true,
         "crs_matches": true,

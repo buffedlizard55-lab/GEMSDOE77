@@ -1,7 +1,7 @@
 {
   "schema": "review-verification-v1",
   "branch": "arena/05f9e6f8-gemsdoe77",
-  "checked_utc": "2026-10-21T17:58:44.470082+00:00",
+  "checked_utc": "2026-10-21T18:01:39.546842+00:00",
   "evidence_class": "SOFTWARE/BUILD CHECKS; NOT PERFORMANCE SCORES",
   "all_commands_passed": true,
   "commands": [
@@ -23,7 +23,7 @@
     {
       "command": ".venv/bin/python scripts/audit_downloads.py",
       "exit_code": 0,
-      "output_tail": "{\n  \"schema\": \"gems-listed-download-readback-v1\",\n  \"evidence_class\": \"FORMAT-INTEGRITY-MEASUREMENT; NOT SCORE OR PORTAL ACCEPTANCE\",\n  \"scope\": \"Every primary TIFF in docs/data/lanes.json; no archive or NaN twins, no uniqueness certification\",\n  \"manifest_sha256\": \"f9f36db7ce9a54d1dab8a35ec8edacffb1e24c07e5ad1cc481cc434c6cd441de\",\n  \"reference_sha256\": \"2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc\",\n  \"listed_count\": 30,\n  \"all_format_pass\": true,\n  \"authorized_to_submit\": false\n}\n"
+      "output_tail": "{\n  \"schema\": \"gems-listed-download-readback-v1\",\n  \"evidence_class\": \"FORMAT-INTEGRITY-MEASUREMENT; NOT SCORE OR PORTAL ACCEPTANCE\",\n  \"scope\": \"Every primary TIFF in docs/data/lanes.json; no archive or NaN twins, no uniqueness certification\",\n  \"manifest_sha256\": \"9e37fdd84a5f00758a3191fc6238495de5e3ae13d11e0064245b7e746f937107\",\n  \"reference_sha256\": \"2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc\",\n  \"listed_count\": 31,\n  \"all_format_pass\": true,\n  \"authorized_to_submit\": false\n}\n"
     },
     {
       "command": ".venv/bin/python scripts/build_home.py",
@@ -43,7 +43,7 @@
     {
       "command": ".venv/bin/python -m pytest -q",
       "exit_code": 0,
-      "output_tail": "........................................................................ [ 31%]\n........................................................................ [ 62%]\n........................................................................ [ 93%]\n...............                                                          [100%]\n231 passed in 55.28s\n"
+      "output_tail": "........................................................................ [ 30%]\n........................................................................ [ 60%]\n........................................................................ [ 91%]\n.....................                                                    [100%]\n237 passed in 57.64s\n"
     },
     {
       "command": ".venv/bin/python scripts/stage_pages.py",

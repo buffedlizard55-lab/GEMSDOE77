@@ -1,0 +1,27 @@
+{
+  "schema": "gems-support-semantics-sensitivity-v1",
+  "evidence_class": "REGISTRY-MEASUREMENT; NOT HOLDOUT-DTI OR ORGANIZER SCORE",
+  "allowed_pixels": 5106385,
+  "overlap_stop_threshold_strictly_greater_than": 0.7,
+  "top_n_binary_convention": 37654,
+  "witnesses": {
+    "dense_witness": {
+      "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+      "shared_definition_positive_pixels": 5167373,
+      "shared_definition_within_3px_fraction": 1.0,
+      "top_n_within_3px_fraction": 0.018870884196941672,
+      "top_n_dot_count": 37654,
+      "exceeds_0_70_under_shared_definition": true,
+      "exceeds_0_70_under_top_n_convention": false
+    },
+    "h33": {
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "shared_definition_positive_pixels": 37654,
+      "shared_definition_within_3px_fraction": 0.15188024404740338,
+      "top_n_within_3px_fraction": 0.15188024404740338,
+      "top_n_dot_count": 37654,
+      "exceeds_0_70_under_shared_definition": false,
+      "exceeds_0_70_under_top_n_convention": false
+    }
+  }
+}
