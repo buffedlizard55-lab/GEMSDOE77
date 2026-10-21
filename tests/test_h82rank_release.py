@@ -7,7 +7,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def test_h82_card_and_download_are_negative():
-    card = json.loads((ROOT/'evidence/h82_run_card.json').read_text())
+    card = json.loads((ROOT/'evidence/h82rank_run_card.json').read_text())
     art = ROOT/'docs'/'downloads'/f"{card['submission_name']}.tif"
     assert art.is_file()
     assert hashlib.sha256(art.read_bytes()).hexdigest() == card['raster_sha256']
@@ -28,9 +28,9 @@ def test_h82_card_and_download_are_negative():
 
 
 def test_h82_pages_and_manifest_fail_closed():
-    card = json.loads((ROOT/'evidence/h82_run_card.json').read_text())
+    card = json.loads((ROOT/'evidence/h82rank_run_card.json').read_text())
     lanes = json.loads((ROOT/'docs/data/lanes.json').read_text())['lanes']
-    row = next(r for r in lanes if r['lane'].startswith('H82:'))
+    row = next(r for r in lanes if r['lane'].startswith('H82R:'))
     assert row['sha256'] == card['raster_sha256']
     assert row['protocol_unique'] is False and row['verdict'] == 'negative'
     assert row['primary'] is False and row['beats_holdout_best'] is False
@@ -38,7 +38,7 @@ def test_h82_pages_and_manifest_fail_closed():
     assert receipt['repository_decision'] == 'NOT OK TO SUBMIT'
     matches = [r for r in receipt['artifacts'] if r['sha256'] == card['raster_sha256']]
     assert len(matches) == 1 and matches[0]['authorized_to_submit'] is False
-    for p in ('index.html','h82.html','executive-summary.html'):
+    for p in ('index.html','h82rank.html','executive-summary.html'):
         text = (ROOT/'docs'/p).read_text()
         assert 'NOT OK TO SUBMIT' in text and card['submission_name'] in text
 

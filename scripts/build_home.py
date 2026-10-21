@@ -23,7 +23,7 @@ REPO = "https://github.com/buffedlizard55-lab/GEMSDOE77"
 LB = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
 PD = "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
-NAV = [("index.html", "Start here"), ("h82.html", "H82 · new negative result"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
+NAV = [("index.html", "Start here"), ("h82rank.html", "H82R · radiometric negative"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
        ("h77e-knick.html", "H77E-Knick · 0/816 firings"), ("release-review.html", "Release safety review"), ("executive-summary.html", "How to submit"),
        ("h81.html", "H81 · slip-cone"),
        ("h80t.html", "H80T · tilt-persist"), ("h80t-executive-summary.html", "H80T guide"),
@@ -207,7 +207,7 @@ authorize an upload; the separate weekly-slot selector has approved none. The in
 gates and currently says <b>NOT OK TO SUBMIT — 0 authorized files</b>.</p>"""
     # The latest stopped lane is displayed before the historical featured file.
     # Never change H80's audited featured-file invariants to imply H82 approval.
-    h82 = jload("evidence/h82_run_card.json")
+    h82 = jload("evidence/h82rank_run_card.json")
     recent_box = ""
     if h82:
         art = D / "downloads" / (h82["submission_name"] + ".tif")
@@ -216,15 +216,15 @@ gates and currently says <b>NOT OK TO SUBMIT — 0 authorized files</b>.</p>"""
                 or h82["verdict"] != "negative" or h82["ok_to_submit"] is not False
                 or h82["protocol_unique"] is not False
                 or h82["surface_correlation_overlap_vs_registry"]["worst_forward_3px_overlap"] <= 0.70):
-            raise ValueError("H82 research file/card is absent or contradicts the negative status")
-        recent_box = f'''<section class="card dl research"><h2>⬇ New H82 research TIFF — inspection ONLY</h2>
+            raise ValueError("H82R research file/card is absent or contradicts the negative status")
+        recent_box = f'''<section class="card dl research"><h2>⬇ H82R radiometric research TIFF — inspection ONLY</h2>
 <p><b>OK to download: YES. NOT OK TO SUBMIT.</b> A pinned dense registry witness caused a surface duplicate stop;
 no dots were placed, no slot selected. This new TIFF is <em>not</em> a cleared competition submission.</p>
-<a class="btn" href="downloads/{e(art.name)}" download>Download H82 research .tif</a>
+<a class="btn" href="downloads/{e(art.name)}" download>Download H82R research .tif</a>
 <a class="btn alt" href="downloads/{e(art.stem)}.zip" download>Download one-TIFF research ZIP</a>
 <p><b>HOLDOUT-DTI {s['dti']:.5f}</b> (95% CI [{s['ci95'][0]:.5f}, {s['ci95'][1]:.5f}];
 {e(s['evaluator_version'])}; {s['withheld_positive_pixels']:,} withheld positives); below the spatial-random control.
-Format PASS, not organizer acceptance. <a href="h82.html">Method, sources, validator and stop evidence →</a></p>
+Format PASS, not organizer acceptance. <a href="h82rank.html">Method, sources, validator and stop evidence →</a></p>
 <p class="small">SHA-256: <code>{h82['raster_sha256']}</code> · <a href="executive-summary.html">Submission instructions (for a future cleared file)</a></p></section>'''
     beat_txt = primary.get(
         "beat_02778_summary",
@@ -276,7 +276,7 @@ Format PASS, not organizer acceptance. <a href="h82.html">Method, sources, valid
 <li><b>Verdict:</b> <b>{e(card["verdict"].upper())}</b> — {e(card["verdict_reason"])}</li>
 <li><a href="h78.html">Full H78 page: the hypotheses, the three experiments, uniqueness and the run card →</a></li></ul>"""
     body = f"""<h1>Start here</h1>
-<p><strong>Current status: new H82 research TIFF generated, NOT OK TO SUBMIT.</strong> The preceding parallel <a href="review-904a24d3.html">three-pass review and corrected H33 analysis</a> did not generate its own TIFF; H82 is a later, separately preregistered negative experiment. Every download remains inspection-only.</p>
+<p><strong>Current status: H82R radiometric research TIFF generated, NOT OK TO SUBMIT.</strong> The preceding parallel <a href="review-904a24d3.html">three-pass review and corrected H33 analysis</a> did not generate its own TIFF; H82R is a later, separately preregistered negative experiment. Every download remains inspection-only.</p>
 <p>This repository builds and audits fault-probability GeoTIFFs for the <a href="{COMP}">DOE GEMS Prize</a>
 (DrivenData competition 306). The first box distinguishes downloading a file from permission to upload it. The table
 lists the reviewed research candidates, not every historical archived/NaN-twin file; see <a href="audit.html">archive audit</a>.</p>

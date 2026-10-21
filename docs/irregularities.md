@@ -154,7 +154,7 @@ GitHub authenticated operations work. CPU scientific transforms, local validatio
 
 | ID | Verified observation | Consequence |
 |---|---|---|
-| IR-H82-01 | The user provided no identifiable single-method lane paragraph. | Self-declared narrow lane preregistered in `registry/preregistration_h82.json` before one experiment; not represented as an assigned lane. |
+| IR-H82-01 | The user provided no identifiable single-method lane paragraph. | Self-declared narrow lane preregistered in `registry/preregistration_h82rank.json` before one experiment; not represented as an assigned lane. |
 | IR-H82-02 | SHA-pinned USGS-derived K/Th/U mirror is independently uint8-quantized, with nodata=0; USGS does not endorse this entropy transform. | Treat rank-share as exploratory intensity only, exclude cells where any band=0, never claim calibrated chemistry. |
 | IR-H82-03 | Literal 3 px overlap vs pinned full-footprint raster = 1.0 on stopped H82 surface; rho max abs 0.01063 on two witnesses. | Mandatory duplicate stop before placement, no final-dot audit; research-only TIFF, zero authorized slots. Two witnesses suffice to reject, not to clear the complete registry. |
 | IR-H82-04 | One-ID mirror restore temporarily overwrote historical 23-file receipt with a one-file receipt. | Restored historical receipt unchanged; H82 directly checks the current mirror SHA against `registry/data_manifest.json`. Do not interpret historical receipt as proof 23 files are present in this checkout. |

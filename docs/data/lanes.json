@@ -1,12 +1,12 @@
 {
- "note": "H82 is the latest negative research-only raster; 23 listed TIFF lanes are inspection downloads only. NOT OK TO SUBMIT any file. The literal uniqueness rule and selector remain fail-closed.",
+ "note": "H82R is the latest negative research-only raster; 23 listed TIFF lanes are inspection downloads only. NOT OK TO SUBMIT any file. The literal uniqueness rule and selector remain fail-closed.",
  "lanes": [
   {
-   "lane": "H82: local ternary radiometric rank-mixture entropy (STOPPED; research only)",
-   "page": "h82.html",
+   "lane": "H82R: local ternary radiometric rank-mixture entropy (STOPPED; research only)",
+   "page": "h82rank.html",
    "summary": "executive-summary.html",
    "file": "downloads/gems77-h82-ternaryentropy-20261021-RESEARCH-ONLY.tif",
-   "run_card": "evidence/h82_run_card.json",
+   "run_card": "evidence/h82rank_run_card.json",
    "format_valid": true,
    "protocol_unique": false,
    "informative_unique": null,

@@ -30,7 +30,7 @@ def sha(p):
     return hashlib.sha256(Path(p).read_bytes()).hexdigest()
 
 def main():
-    prereg = json.loads((ROOT/'registry/preregistration_h82.json').read_text())
+    prereg = json.loads((ROOT/'registry/preregistration_h82rank.json').read_text())
     assert len(NOTE) <= 140
     manifest = json.loads((ROOT/'registry/data_manifest.json').read_text())
     pin = next(e for e in manifest['files'] if e['id']=='ext_geodawn_rad_u8')
@@ -151,7 +151,7 @@ def main():
           'irregularities':['Quantized channel ranks are not elemental concentrations',
                             'Dense witness makes literal gate unsatisfiable for any nonempty candidate',
                             'Two pinned rasters only: not full registry uniqueness clearance']}
-    out=ROOT/'evidence'/'h82_run_card.json'
+    out=ROOT/'evidence'/'h82rank_run_card.json'
     out.write_text(json.dumps(card,indent=2,allow_nan=False)+'\n')
     print('research artifact',OUT,receipt['sha256'],out,flush=True)
 
