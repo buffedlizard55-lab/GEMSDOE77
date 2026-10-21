@@ -1005,6 +1005,39 @@
    "weekly_slots_used": 0,
    "why_primary": "H83-NETSIB lane (2026-10-21); negative because the preregistered final-dot duplicate rule fired; clearance per release gate (not approved).",
    "beat_02778_summary": "Not known. HOLDOUT-DTI 0.1538/0.1637 is below the current repository holdout best (H77-VDS); no organizer score exists for this file and none may be inferred."
+  },
+  {
+   "lane": "H84-RAMP: B-LBCO deconfounded two-host en-echelon relay-ramp + GeoDAWN/basement stepover corridor (0.1366 s20 / 0.1446 s30 HOLDOUT-DTI; negative, inspection only)",
+   "page": "h84-ramp.html",
+   "exec_page": "h84-ramp-executive-summary.html",
+   "summary": "h84-ramp-executive-summary.html",
+   "file": "downloads/gems77-h84-ramp-relay-37654dots-20261021-1b76b4b7-zeros.tif",
+   "zip": "downloads/gems77-h84-ramp-relay-37654dots-20261021-1b76b4b7-zeros.zip",
+   "evidence": "evidence/h84ramp_run_card.json",
+   "run_card": "evidence/h84ramp_run_card.json",
+   "prereg": "registry/preregistration_h84ramp.json",
+   "format_valid": true,
+   "protocol_unique": false,
+   "informative_unique": true,
+   "beats_holdout_best": false,
+   "selector_approved": false,
+   "verdict": "negative",
+   "primary": false,
+   "name": "gems77-h84-ramp-relay-37654dots-20261021-1b76b4b7-zeros",
+   "note": "H84-RAMP B-LBCO two-host relay+geod+base LOQO 37654 dots; HOLDOUT-DTI 0.1366 s20/0.1446 s30; DO NOT UPLOAD",
+   "sha256": "f06ada5aa834ceaf65e8700e36bbd46eddb96929b42c9041c72c8369c1022838",
+   "zip_sha256": "8499c3427d4f48e6a2be8929693236a9e9d7555b52fc559df7260512bdd12de1",
+   "holdout_dti_hide_v2": 0.136572,
+   "holdout_evaluator_version": "gems57-pooled-hide-v2",
+   "holdout_positive_pixels": 11321,
+   "holdout_ci95": [
+    0.123687,
+    0.149983
+   ],
+   "upload": "Not OK to submit. OK to download for inspection only. Format-valid (15/15 checks, 0 NaN, {0,1} values, 37,654 binary dots, 0 on catalogue, min distance 5.00 px) and informative-unique across all sparse dot-field rasters checked (0 overlap firings, max 3-px forward overlap 0.5299 <= 0.70, max |Spearman rho| 0.0601 <= 0.90; vs H33 overlap 0.2265). B-LBCO deconfounding resolves IR-H84-01 (+0.0948 s20 / +0.1115 s30 over naive relay training; +0.0608 s20 / +0.0774 s30 over 19-band control; +0.0921 s20 / +0.0977 s30 over random), reaching 0.1366 [0.1237, 0.1500] HOLDOUT-DTI on Seed 20 and 0.1446 [0.1277, 0.1619] on Seed 30 (pure physics S_h84_physics = 0.1423 s20 / 0.1476 s30). Below 0.152718 H77-Step / 0.1744 H77-VDS repository best and literal Policy I17 fails closed vs dense_witness (ab0a0a62 -> 1.000). Selector: not approved; 0 weekly slots used.",
+   "weekly_slots_used": 0,
+   "why_primary": "H84-RAMP lane (2026-10-21); negative under Policy I17 and below repository holdout best; clearance per release gate (not approved).",
+   "beat_02778_summary": "Not known. HOLDOUT-DTI 0.1366 (s20) / 0.1446 (s30) is below the repository holdout best; no organizer score exists for this file and none may be inferred."
   }
  ]
 }
