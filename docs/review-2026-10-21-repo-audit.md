@@ -2,36 +2,36 @@
 
 ## Decision summary
 
-**Repository state: research-only; no file is authorized for competition upload.** The current release gate reports `NOT OK TO SUBMIT`, with zero authorized files. No new candidate was built in this audit, no competition slot was used, and no leaderboard outcome is claimed. The newest checked-in candidate selected for the H79-RH audit is retained at [`docs/downloads/gems77-h79-radhalo-lag3-37654-20261021-zeros.tif`](downloads/gems77-h79-radhalo-lag3-37654-20261021-zeros.tif); it is available for inspection only, not upload.
+**Repository state: research-only; no file is authorized for competition upload.** The current release gate reports `NOT OK TO SUBMIT`, with zero authorized files. No new candidate was built in this audit, no competition slot was used, and no leaderboard outcome is claimed. Following the parallel merge during review, the latest checked-in lane is H79-ORIENT; its TIFF is available for inspection only, not upload: [`gems79-orient-persistence-37654dots-20261021-4abff47886.tif`](downloads/gems79-orient-persistence-37654dots-20261021-4abff47886.tif).
 
-The apparent conflict between “generate a unique TIFF” and the run protocol is resolved conservatively: the H79-RH TIFF is a distinct raster artifact, but its final dots trip the protocol's >70% 3-pixel overlap stop against a full-support registry witness. “Unique bytes” or low rank correlation does not clear that rule. H79-RH also failed to beat the current local holdout best. Therefore a new submission build or weekly-slot recommendation would violate the stated gates. The protocol owner/selector must resolve the full-support-witness contradiction; do not create a private exemption.
+The apparent conflict between “generate a unique TIFF” and the run protocol is resolved conservatively: the H79-ORIENT TIFF is byte/pixel-distinct from files checked, but its final dots trip the protocol's >70% 3-pixel overlap stop against a full-support registry witness. “Unique bytes” or low rank correlation does not clear that rule. H79-ORIENT also failed to beat the current local holdout best. Therefore a new submission build or weekly-slot recommendation would violate the stated gates. The protocol owner/selector must resolve the full-support-witness contradiction; do not create a private exemption.
 
 ## Three-pass review
 
 ### Pass 1 — inventory and declared evidence
 
 - Read `README.md`, `PROMPT.md`, `AGENTS.md`, the irregularity ledger, template pin, preregistrations, run cards, release-gate receipt, site manifest, and the relevant artifact/build/test scripts.
-- The repository retains 12 lane entries in `docs/data/lanes.json`; they are all recorded negative, and none is selector-approved. These include H77L, H79-BB, H79-RH, D77, H77D/H77-Step, H78, LIA, contact-physics, selective-U, H77E, and XSEN. Historical “promote” fields in old run cards are superseded by the fail-closed authorization receipt and must not be used as current approval.
+- The merged repository retains 13 lane entries in `docs/data/lanes.json`; they are all recorded negative, and none is selector-approved. These include H77L, H79-BB, H79-RH, H79-ORIENT, D77, H77D/H77-Step, H78, LIA, contact-physics, selective-U, H77E, and XSEN. Historical “promote” fields in old run cards are superseded by the fail-closed authorization receipt and must not be used as current approval.
 - The local input bundle is a small `data/bridge/` set, not the full 19-band training stack. `registry/data_manifest.json` documents SHA-pinned owner mirrors and explicitly says they are not organizer-authenticated. No attempt was made to access the login-walled competition data page.
 - `docs/SESSION_REVIEW.md` is older than this repository snapshot: its branch identifier and “13 TIFF” audit scope are historical, and its earlier backlog is superseded by this report. It remains unchanged as an audit record.
 
 ### Pass 2 — executable and artifact checks
 
 - Installed the pinned `requirements.txt` in the ignored local `.venv` because the system Python had no project packages. No project or system dependency files were changed.
-- `.venv/bin/python -m pytest -q`: **95 passed**.
+- `.venv/bin/python -m pytest -q` after merging H79-ORIENT: **99 passed**.
 - `.venv/bin/python scripts/release_gate.py --verify-fail-closed`: **PASS; NOT OK TO SUBMIT; 0 authorized files**.
 - `.venv/bin/python scripts/verify_all.py`: completed successfully; its emitted artifact receipt reported all checks passed for the historical contact-physics TIFF. This does not establish authorization for that file or other candidates.
-- Independently read the H79-RH TIFF with Rasterio and compared it with `data/bridge/sample_submission.tif`: one `float32` band, `3730×3292`, EPSG:32611, matching shape/CRS/transform, no nodata tag, finite across the complete raster, minimum 0, maximum 1, and 37,654 positive cells. SHA-256: `c272025ee653187d09489d941613a86bfe4b88110fb455847a2256cf5699014b`. The ZIP contains exactly one TIFF. These checks establish local format only; bridge-file provenance is not organizer-authenticated and format validity is not upload permission.
-- The H79-RH run card records **0.047732657 HOLDOUT-DTI** (`gems57-pooled-hide-v2`, 11,321 withheld positive pixels, 95% CI `[0.039583359, 0.055575573]`), versus the recorded local best **0.152718 HOLDOUT-DTI** (`gems57-pooled-hide-v2`, 11,321 withheld positive pixels, 95% CI `[0.131548, 0.175185]`) in a separate run card. This is an unmatched comparison across candidate/fold evaluations, not evidence of a causal delta and not an organizer leaderboard score. H79-RH's paired delta against random is **+0.000310 HOLDOUT-DTI** (`gems57-pooled-hide-v2`, 11,321 withheld positives; 95% CI `[-0.008368, 0.008958]`), consistent with no improvement over random.
-- H79-RH's recorded surface maximum absolute Spearman correlation is 0.1203 (below the 0.90 threshold); final-dot maximum forward 3-pixel overlap is 1.000 (above the 0.70 stop threshold), with 49 duplicate firings. The registry scan checked 808 of 812 indexed rasters; four were unreadable or grid-invalid, so completeness is not established. One observed witness is sufficient to fail the rule; an incomplete scan cannot certify uniqueness.
-- Building the static pages and running the verifier rewrote generated HTML/receipts with a new timestamp and surfaced generated evidence files. Those generated diffs were reverted after inspection; the original tracked tree is clean apart from this report and the README pointer update. This confirms these commands are not read-only and should be run in a disposable checkout or followed by a deliberate generated-artifact review.
+- Independently read the merged H79-ORIENT TIFF with Rasterio and compared it with `data/bridge/sample_submission.tif`: one `float32` band, `3730×3292`, EPSG:32611, matching shape/CRS/transform, no nodata tag, finite across the complete raster, minimum 0, maximum 1, and 37,654 positive cells. SHA-256: `745dbaa427bc1edaf477b3d0b4847b8be8d30d396106a61b1318a8726599be8e`. The ZIP contains exactly one TIFF. These checks establish local format only; bridge-file provenance is not organizer-authenticated and format validity is not upload permission.
+- The merged H79-ORIENT run card records **0.094506956 HOLDOUT-DTI** (`gems57-pooled-hide-v2`, seed 30, 11,342 withheld positive pixels, 95% CI `[0.076558197, 0.112843654]`) and **0.089063297 HOLDOUT-DTI** (same evaluator, seed 20, 11,321 withheld positives, 95% CI `[0.072384221, 0.105355292]`). Its retained comparator is **0.152718 HOLDOUT-DTI** (`gems57-pooled-hide-v2`, 11,321 withheld positives, 95% CI `[0.131548, 0.175185]`) from H77-Step. These separate-seed measurements are not an organizer leaderboard score. On seed 20 the paired difference versus H79-only is **−0.005443 HOLDOUT-DTI** (same evaluator and 11,321 withheld positives; 95% CI `[-0.018072, 0.006909]`), providing no evidence that the added raw-context term improves the H79-only arm.
+- H79-ORIENT's recorded surface maximum absolute Spearman correlation is 0.003902, but the final-dot maximum forward 3-pixel overlap is 1.000, above the 0.70 stop threshold. Its registry audit accessed only 13 of 812 indexed rasters, so completeness is not established. One observed full-support witness is sufficient to fail the rule; an incomplete scan cannot certify uniqueness. The separate H79-RH lane also had a literal overlap stop; no lane is cleared by the diagnostic correlation value.
+- Static-site builders, release-gate generation, and verifier commands can rewrite generated HTML/receipts or create evidence output. Generated artifacts from the initial audit commands were reverted; files contributed by the origin/main merge, including the H79-ORIENT site and evidence, were preserved. Treat these commands as mutating, and review generated diffs before staging.
 
 ### Pass 3 — requirements and remaining blockers
 
 - The submission landing page has a prominent “download for inspection / NOT OK TO SUBMIT” message and a separate how-to-submit page. That is the correct safety state while authorization is zero; do not change it to “OK” based on a validator PASS.
-- The H79-RH note is 113 characters in its run card (under the portal's 140-character limit); local names and file paths are recorded there.
+- The H79-ORIENT submission note is 128 characters in its run card (under the stated 140-character limit); its file name and path are recorded there.
 - `README.md` retains the full project prompt as requested. Its curated primary link is H77L by `docs/data/lanes.json`; the individual lane writeups are historical evidence, and this report is the current repository review. No official non-GitHub page was freshly fetched in this audit, and no private submission receipt or authenticated competition data was available. Official-source links below are supplied for manual verification, not cited as newly checked facts.
-- User-provided score figures for individual family files are not organizer-confirmed receipts. The local H79-RH holdout is not a leaderboard score. The repo's reported top public leaderboard value must be checked on the official page before asserting it is current.
+- User-provided score figures for individual family files are not organizer-confirmed receipts. The H79-ORIENT and H79-RH values above are local HOLDOUT-DTI measurements, not leaderboard scores. The repo's reported top public leaderboard value must be checked on the official page before asserting it is current.
 
 ## New hypotheses to consider — not experimentally tested
 
@@ -62,29 +62,41 @@ The list below is a screening queue, not a claim of novelty or expected score ga
   "named_non_fault_process_that_could_mimic_it": "Not applicable to an audit. Proposed mimics are listed per untested hypothesis.",
   "holdout_dti": {
     "evidence_label": "HOLDOUT-DTI",
-    "evaluator_version": "gems57-pooled-hide-v2 (inherited H79-RH receipt; no new evaluation)",
-    "withheld_positive_pixels": 11321,
-    "score": 0.047732657,
-    "ci95": [0.039583359, 0.055575573],
-    "audit_status": "reported from evidence/h79_radhalo_run_card.json; not independently rerun and not a leaderboard score"
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "primary_seed": 30,
+    "withheld_positive_pixels": 11342,
+    "score": 0.094506956,
+    "ci95": [0.076558197, 0.112843654],
+    "secondary_seed20": {
+      "withheld_positive_pixels": 11321,
+      "score": 0.089063297,
+      "ci95": [0.072384221, 0.105355292]
+    },
+    "local_comparator": {
+      "evidence_label": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "withheld_positive_pixels": 11321,
+      "score": 0.152718,
+      "ci95": [0.131548, 0.175185],
+      "note": "separate H77-Step receipt; not a leaderboard score or matched fold comparison"
+    }
   },
   "correlation_overlap_vs_registry": {
-    "label": "REGISTRY-MEASUREMENT (inherited H79-RH receipt)",
-    "surface_max_abs_spearman": 0.120345725,
-    "final_dots_max_abs_spearman": 0.017314978,
+    "label": "REGISTRY-MEASUREMENT (inherited H79-ORIENT receipt)",
+    "surface_max_abs_spearman": 0.003901797,
     "final_dots_max_forward_3px_overlap": 1.0,
-    "registry_rasters_checked_of_expected": "808/812",
-    "verdict": "duplicate-stop; uniqueness not cleared"
+    "registry_rasters_checked_of_expected": "13/812",
+    "verdict": "duplicate-stop; scan incomplete; uniqueness not cleared"
   },
-  "raster_sha256": "c272025ee653187d09489d941613a86bfe4b88110fb455847a2256cf5699014b",
+  "raster_sha256": "745dbaa427bc1edaf477b3d0b4847b8be8d30d396106a61b1318a8726599be8e",
   "validator_output": {
     "local_readback": "PASS: one-band float32; no NaN/Inf; values [0,1]; CRS/shape/transform match data/bridge/sample_submission.tif; ZIP contains exactly one TIFF",
     "official_grid_provenance": "not authenticated in this audit",
     "portal_acceptance": "not confirmed",
     "submission_authorization": "NOT OK TO SUBMIT; 0 files authorized"
   },
-  "submission_name": "gems77-h79-radhalo-lag3-37654-20261021-zeros (existing research artifact; not generated in this audit)",
-  "submission_note": "H79 lag-3px U-residual halo paired to K-Th edge; 37654 spaced dots; HOLDOUT negative—research only, do not submit",
+  "submission_name": "gems79-orient-persistence-37654dots-20261021-4abff47886 (existing research artifact; not generated in this audit)",
+  "submission_note": "H79 cross-sensor scale-persistent orientation confluence; 3-field Gaussian edge axes, 37654 dots; HOLDOUT-DTI seed20/30 recorded",
   "verdict": "negative"
 }
 ```
