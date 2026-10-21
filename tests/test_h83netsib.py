@@ -184,3 +184,14 @@ def test_lanes_row_and_release_gate():
     auth = json.loads((ROOT / "docs/data/submission-authorization.json").read_text())
     assert "h83" in json.dumps(auth)
     assert auth["repository_authorized_file_count"] == 0 and auth["repository_decision"] == "NOT OK TO SUBMIT"
+
+
+def test_concurrent_repository_best_is_reported():
+    """IR-H83N-08: the card must not imply H83-NETSIB is the repository's best holdout."""
+    if not (ROOT / "evidence/run_card_h77vds.json").exists():
+        pytest.skip("H77-VDS card not present")
+    rb = CARD["repository_best_at_merge"]
+    assert CARD["beats_current_repository_best"] is rb["h83_netsib_beats_current_best"] is False
+    row = next(x for x in json.loads((ROOT / "docs/data/lanes.json").read_text())["lanes"]
+               if x["lane"].startswith("H83-NETSIB"))
+    assert row["beats_holdout_best"] is False

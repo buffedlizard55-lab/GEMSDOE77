@@ -24,7 +24,7 @@ REPO = "https://github.com/buffedlizard55-lab/GEMSDOE77"
 LB = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
 PD = "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
-NAV = [("h83netsib.html", "H83-NETSIB · newest (negative)"), ("h83netsib-executive-summary.html", "H83-NETSIB guide"), ("review-latest.html", "Latest review"), ("review-arena-00397d44.html", "Arena branch review"), ("metric-review.html", "Corrected H33 analysis"), ("index.html", "Start here"), ("h77hdd.html", "H77H-DD · downdip-bridge"), ("h77hdd-executive-summary.html", "H77H-DD guide"), ("h77vc.html", "H77VC (Vent+ClayCap)"), ("h77vs.html", "H77VS · negative"), ("h77vs-executive-summary.html", "H77VS guide"), ("tsd.html", "H77-TSD · inspection"), ("h77v.html", "H77V (Vent-Advect)"), ("h82-texture.html", "H82-TEXTURE · negative"), ("h82rank.html", "H82R · radiometric negative"), ("preflight-review.html", "Current readiness review"), ("h82-executive-summary.html", "H82 · cool-outlet negative"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
+NAV = [("h83netsib.html", "H83-NETSIB · negative"), ("h83netsib-executive-summary.html", "H83-NETSIB guide"), ("h77vds.html", "H77-VDS · 0.1744 #1"), ("h77vds-executive-summary.html", "H77-VDS guide"), ("review-latest.html", "Latest review"), ("review-arena-00397d44.html", "Arena branch review"), ("metric-review.html", "Corrected H33 analysis"), ("index.html", "Start here"), ("h77hdd.html", "H77H-DD · downdip-bridge"), ("h77hdd-executive-summary.html", "H77H-DD guide"), ("h77vc.html", "H77VC (Vent+ClayCap)"), ("h77vs.html", "H77VS · negative"), ("h77vs-executive-summary.html", "H77VS guide"), ("tsd.html", "H77-TSD · inspection"), ("h77v.html", "H77V (Vent-Advect)"), ("h82-texture.html", "H82-TEXTURE · negative"), ("h82rank.html", "H82R · radiometric negative"), ("preflight-review.html", "Current readiness review"), ("h82-executive-summary.html", "H82 · cool-outlet negative"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
        ("h77e-knick.html", "H77E-Knick · 0/816 firings"), ("release-review.html", "Release safety review"), ("executive-summary.html", "How to submit"),
        ("h81.html", "H81 · slip-cone"), ("h82.html", "H82 · fault collar"),
        ("h83.html", "H83 · fault collar"),
@@ -393,7 +393,33 @@ These are registry/format measurements, not scores or portal acceptance.</p>"""
 {copy("H77-TSD unique submission name (inspection reference — DO NOT UPLOAD)", tsub["name"])}
 {copy("H77-TSD short note <= 140 chars (inspection reference — DO NOT UPLOAD)", tsub["note"])}
 <p class="small">GeoTIFF SHA-256: <code>{e(tsub["tif_sha256"])}</code> · ZIP SHA-256: <code>{e(tsub["zip_sha256"])}</code> · <a href="evidence/run_card_tsd.json">Machine-readable Run Card (.json)</a></p></section>"""
-    body = f"""{h77vs_box}{tsd_box}{h82_banner}{rank_box}<h1>Start here</h1>
+    rc_vds = jload("evidence/run_card_h77vds.json")
+    vds_box = ""
+    if rc_vds:
+        vsub = rc_vds["submission_artifacts"]
+        vh30 = rc_vds["holdout_evaluation"]["seed30_primary_regcap_B44090"]
+        vh20 = rc_vds["holdout_evaluation"]["seed20_lockbox_regcap_B44090"]
+        vuq = rc_vds["uniqueness_audit"]
+        vds_box = f"""<section class="card dl research"><h2>⬇ New Session Candidate (<code>H77-VDS</code> · 0.1744 / 0.1608 HOLDOUT-DTI): OK to download for inspection — NOT OK TO SUBMIT</h2>
+<p class="small muted"><b>Zero-SGMC Survey-Deconfounded Fault-Valve Ensemble + Dinkelbach 300 m Submodular Allocator</b> (branch <code>arena/8d925533-gemsdoe77</code>; highest dual-seed holdout across all lanes).</p>
+<a class="btn" href="{e(vsub["primary_geotiff"].removeprefix("docs/"))}" download>⬇ Download H77-VDS Primary .tif ({vsub["primary_geotiff_bytes"]/1024:.0f} KB)</a>
+<a class="btn alt" href="{e(vsub["primary_zip"].removeprefix("docs/"))}" download>⬇ Download Single-TIFF Portal .zip ({vsub["primary_zip_bytes"]/1024:.0f} KB)</a>
+<a class="btn alt" href="h77vds.html">Full PhD Technical Report &amp; Figures →</a>
+<a class="btn alt" href="h77vds-executive-summary.html">Step-by-Step Guide →</a>
+<div class="chips"><span class="chip ok">OK to download: YES</span>
+<span class="chip ok">Portal format: PASS (15/15 gems57 + 17/17 LIA, 0 NaN)</span>
+<span class="chip ok">Sparse uniqueness ({vuq["sparse_discrete_witnesses_checked"]} rasters): PASS (max {vuq["sparse_max_forward_overlap_3px"]:.4f} &lt; 0.70)</span>
+<span class="chip bad">Unique, literal rule (Policy I17): FAIL (1.000 vs dense witness 0c42fc03/ab0a0a62)</span>
+<span class="chip ok">All-Time #1 on BOTH Seeds: YES</span>
+<span class="chip warn">Selector: Not approved (0 weekly slots used)</span></div>
+<p class="verdict"><b>Can I submit it?</b> <b>No. NOT OK TO SUBMIT (inspection download only until Policy I17 dense-witness policy is resolved by the protocol owner).</b><br>
+<b>Dual-Seed Holdout Evidence (<code>gems57-pooled-hide-v2</code>, 22,663 withheld positives):</b>
+<b>{vh30["dti"]:.6f} HOLDOUT-DTI</b> on Seed 30 (95% CI {vh30["ci95"][0]:.6f}–{vh30["ci95"][1]:.6f}; unconstrained {vh30["unconstrained_dti"]:.6f}; 11,342 withheld px) and
+<b>{vh20["dti"]:.6f} HOLDOUT-DTI</b> on blind lockbox Seed 20 (95% CI {vh20["ci95"][0]:.6f}–{vh20["ci95"][1]:.6f}; {vh20["parity_B37654_regcap_dti"]:.6f} @ 37,654; unconstrained {vh20["unconstrained_dti"]:.6f}; 11,321 withheld px).</p>
+{copy("H77-VDS Unique Reference Name (inspection reference — DO NOT UPLOAD)", rc_vds["submission_name"])}
+{copy("H77-VDS Short Note <= 140 chars (inspection reference — DO NOT UPLOAD)", rc_vds["submission_note"])}
+<p class="small">GeoTIFF SHA-256: <code>{e(rc_vds["raster_sha256"])}</code> · ZIP SHA-256: <code>{e(vsub["primary_zip_sha256"])}</code> · <a href="evidence/run_card_h77vds.json">Machine-readable Run Card (.json)</a></p></section>"""
+    body = f"""{vds_box}{h77vs_box}{tsd_box}{h82_banner}{rank_box}<h1>Start here</h1>
 <p><strong>Earlier review #49 generated no new TIFF; H82 above is a later negative research download. NOT OK TO SUBMIT.</strong> <a href="review-904a24d3.html">Earlier audit and corrected H33 analysis</a>.</p>
 <p>This repository builds and audits fault-probability GeoTIFFs for the <a href="{COMP}">DOE GEMS Prize</a>
 (DrivenData competition 306). The first box distinguishes downloading a file from permission to upload it. The table

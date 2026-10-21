@@ -133,6 +133,23 @@ def main():
             "Inputs are owner mirrors, SHA-pinned, not organizer-authenticated.",
         ],
     }
+    # A parallel lane (H77-VDS) merged to main while this lane ran. The
+    # preregistered rule (a) is frozen at 0.152718, but readers need the
+    # current repository best on the same evaluator, seeds and 37,654-dot budget.
+    vds_p = EV / "run_card_h77vds.json"
+    if vds_p.exists():
+        vh = json.loads(vds_p.read_text())["holdout_evaluation"]
+        par = vh["parity_B37654_summary"]
+        best = {"20": par["seed20_regcap_dti"], "30": par["seed30_regcap_dti"]}
+        mine = {s: card["holdout_dti"][s]["candidate_A_netsib_full"]["dti"] for s in ("20", "30")}
+        card["repository_best_at_merge"] = {
+            "lane": "H77-VDS (evidence/run_card_h77vds.json; merged to main concurrently, verdict negative under Policy I17)",
+            "evaluator_version": vh["evaluator_version"],
+            "dti_at_37654_dots": best,
+            "h83_netsib_minus_best": {s: round(mine[s] - best[s], 6) for s in best},
+            "h83_netsib_beats_current_best": all(mine[s] > best[s] for s in best),
+        }
+        card["beats_current_repository_best"] = card["repository_best_at_merge"]["h83_netsib_beats_current_best"]
     (EV / "h83netsib_run_card.json").write_text(json.dumps(card, indent=1) + "\n")
     print(json.dumps({k: card[k] for k in ("verdict", "ok_to_submit", "promotion_rule_results", "raster_sha256", "submission_name")}, indent=1))
 

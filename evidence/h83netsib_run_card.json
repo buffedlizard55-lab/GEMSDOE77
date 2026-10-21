@@ -1,7 +1,7 @@
 {
  "schema": "gems-parallel-run-card-v1",
  "lane": "H83-NETSIB",
- "generated_utc": "2026-10-21T18:24:49+00:00",
+ "generated_utc": "2026-10-21T18:39:08+00:00",
  "branch": "arena/e8283608-gemsdoe77",
  "preregistration": "registry/preregistration_h83_netsib.json",
  "hypothesis": "Unmapped faults belong to the same organised normal-fault arrays as mapped ones: they lie parallel to mapped traces at characteristic spacing, bridge collinear gaps, or continue along strike. A model trained on synthetic whole-component withholdings of the visible catalogue learns where an absent strand goes; fused with geophysical/topographic evidence it recovers withheld faults better than geophysics alone and better than the incumbent.",
@@ -378,5 +378,19 @@
   "Informational only (NOT the preregistered rule): against registry rasters with <= 2x our dot budget (75,308 dots), the max forward overlap is 0.6816805651458012.",
   "S_netsib_only (network geometry alone) scored marginally higher than the preregistered candidate on both seeds; paired CI includes 0. Not swapped post hoc.",
   "Inputs are owner mirrors, SHA-pinned, not organizer-authenticated."
- ]
+ ],
+ "repository_best_at_merge": {
+  "lane": "H77-VDS (evidence/run_card_h77vds.json; merged to main concurrently, verdict negative under Policy I17)",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "dti_at_37654_dots": {
+   "20": 0.16079518807544965,
+   "30": 0.1716247961760679
+  },
+  "h83_netsib_minus_best": {
+   "20": -0.00697,
+   "30": -0.007925
+  },
+  "h83_netsib_beats_current_best": false
+ },
+ "beats_current_repository_best": false
 }

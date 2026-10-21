@@ -1,13 +1,13 @@
 {
   "schema": "gems-submission-authorization-v2",
-  "generated_utc": "2026-10-21T18:35:31+00:00",
+  "generated_utc": "2026-10-21T18:39:55+00:00",
   "policy": "Authorization requires artifact existence, matching SHA-256, a readable run card with a promote verdict, matching raster_sha256 and explicit positive uniqueness, registry completeness, valid/improved holdout and selector declarations; actual shared-validator format readback PASS, literal protocol uniqueness (including <=0.70 real-model forward 3-px overlap and complete registry), improvement over the accepted holdout best, a promote verdict, and explicit selector approval. Missing fields or historical run-card uniqueness/completeness failures fail closed.",
   "repository_authorized_file_count": 0,
   "repository_decision": "NOT OK TO SUBMIT",
   "historical_run_card_reconciliation": [
     {
-      "lane": "H77H-DD (NEWEST): +500m Downdip-Lag Hanging-Wall Potential-Field Dipole \u00d7 Mesh-Notched sigma=36px MT/Strain/GDR1391 Gate \u00d7 Bilateral 4-Bucket LOCO Bridge (HOLDOUT-DTI 0.1150 s20 / 0.1149 s30 unique; 0.1301 s20 / 0.1298 s30 full; 0/54 info dupes; negative result)",
-      "run_card": "evidence/run_card_h77hdd.json",
+      "lane": "H77-VDS: Zero-SGMC Survey-Deconfounded Fault-Valve Ensemble + Dinkelbach 300 m Submodular Allocator (ALL-TIME #1 RECORD: HOLDOUT-DTI 0.17439 s30 / 0.16077 s20)",
+      "run_card": "evidence/run_card_h77vds.json",
       "recorded_verdict": "negative",
       "recorded_safe_to_submit": false,
       "historical_promotion_conflict": false,
@@ -17,6 +17,15 @@
     {
       "lane": "H82R: local ternary radiometric rank-mixture entropy (STOPPED; research only)",
       "run_card": "evidence/h82rank_run_card.json",
+      "recorded_verdict": "negative",
+      "recorded_safe_to_submit": false,
+      "historical_promotion_conflict": false,
+      "operative_decision": "NOT OK TO SUBMIT",
+      "reconciliation_note": "Historical run card and operative release gate both fail closed."
+    },
+    {
+      "lane": "H77H-DD (NEWEST): +500m Downdip-Lag Hanging-Wall Potential-Field Dipole \u00d7 Mesh-Notched sigma=36px MT/Strain/GDR1391 Gate \u00d7 Bilateral 4-Bucket LOCO Bridge (HOLDOUT-DTI 0.1150 s20 / 0.1149 s30 unique; 0.1301 s20 / 0.1298 s30 full; 0/54 info dupes; negative result)",
+      "run_card": "evidence/run_card_h77hdd.json",
       "recorded_verdict": "negative",
       "recorded_safe_to_submit": false,
       "historical_promotion_conflict": false,
@@ -294,7 +303,7 @@
       "reconciliation_note": "Historical run card and operative release gate both fail closed."
     },
     {
-      "lane": "H83-NETSIB: visible fault-network sibling/gap/continuation geometry, synthetic re-withholding HGB (0.1538 s20 / 0.1637 s30 HOLDOUT-DTI; duplicate rule fired; negative)",
+      "lane": "H83-NETSIB: visible fault-network sibling/gap/continuation geometry, synthetic re-withholding HGB (0.1538 s20 / 0.1637 s30 HOLDOUT-DTI; below H77-VDS; duplicate rule fired; negative)",
       "run_card": "evidence/h83netsib_run_card.json",
       "recorded_verdict": "negative",
       "recorded_safe_to_submit": false,
@@ -305,32 +314,32 @@
   ],
   "artifacts": [
     {
-      "lane": "H77H-DD (NEWEST): +500m Downdip-Lag Hanging-Wall Potential-Field Dipole \u00d7 Mesh-Notched sigma=36px MT/Strain/GDR1391 Gate \u00d7 Bilateral 4-Bucket LOCO Bridge (HOLDOUT-DTI 0.1150 s20 / 0.1149 s30 unique; 0.1301 s20 / 0.1298 s30 full; 0/54 info dupes; negative result)",
-      "file": "downloads/gems77-h77h-downdip-notch36-bridge-36500dots-20261021-0c05c2bc-zeros.tif",
-      "sha256": "d1e87159a8908f0051352c091d9343e8e5128e2c8eea0debdd17589a02692dad",
+      "lane": "H77-VDS: Zero-SGMC Survey-Deconfounded Fault-Valve Ensemble + Dinkelbach 300 m Submodular Allocator (ALL-TIME #1 RECORD: HOLDOUT-DTI 0.17439 s30 / 0.16077 s20)",
+      "file": "downloads/gems77-h77vds-valve-dinkelbach-44090dots-20261021-zeros.tif",
+      "sha256": "eaf1ed0cfe60922f96cb57929083e65b1b715acc9803f005a9e520cf1699006b",
       "checks": {
         "artifact_exists": true,
         "run_card_present": true,
         "format_valid": true,
         "format_readback_passed": true,
         "literal_protocol_unique": false,
-        "beats_accepted_holdout_best": false,
+        "beats_accepted_holdout_best": true,
         "scientific_verdict_promote": false,
         "selector_approved": false,
         "explicit_run_card_promotion_evidence": false,
         "sha256_matches": true,
         "format_readback_artifact_matches": true,
-        "run_card_artifact_matches": false
+        "run_card_artifact_matches": true
       },
       "run_card_audit": {
-        "run_card": "evidence/run_card_h77hdd.json",
+        "run_card": "evidence/run_card_h77vds.json",
         "present": true,
         "recorded_verdict": "negative",
-        "raster_sha256": null,
+        "raster_sha256": "eaf1ed0cfe60922f96cb57929083e65b1b715acc9803f005a9e520cf1699006b",
         "explicit_promotion_evidence": false,
         "recorded_safe_to_submit": false,
         "literal_duplicate_recorded": true,
-        "real_model_forward_overlap_3px": null,
+        "real_model_forward_overlap_3px": 0.649989,
         "real_model_forward_overlap_exceeds_070": false,
         "registry_incomplete": false,
         "holdout_invalid_for_promotion": false,
@@ -358,17 +367,15 @@
           "outside_footprint_zero": true,
           "zero_dots_on_mapped_catalogue": true
         },
-        "sha256": "d1e87159a8908f0051352c091d9343e8e5128e2c8eea0debdd17589a02692dad"
+        "sha256": "eaf1ed0cfe60922f96cb57929083e65b1b715acc9803f005a9e520cf1699006b"
       },
       "authorized_to_submit": false,
       "decision": "NOT OK TO SUBMIT",
       "failed_gates": [
         "literal_protocol_unique",
-        "beats_accepted_holdout_best",
         "scientific_verdict_promote",
         "selector_approved",
-        "explicit_run_card_promotion_evidence",
-        "run_card_artifact_matches"
+        "explicit_run_card_promotion_evidence"
       ]
     },
     {
@@ -435,6 +442,73 @@
         "scientific_verdict_promote",
         "selector_approved",
         "explicit_run_card_promotion_evidence"
+      ]
+    },
+    {
+      "lane": "H77H-DD (NEWEST): +500m Downdip-Lag Hanging-Wall Potential-Field Dipole \u00d7 Mesh-Notched sigma=36px MT/Strain/GDR1391 Gate \u00d7 Bilateral 4-Bucket LOCO Bridge (HOLDOUT-DTI 0.1150 s20 / 0.1149 s30 unique; 0.1301 s20 / 0.1298 s30 full; 0/54 info dupes; negative result)",
+      "file": "downloads/gems77-h77h-downdip-notch36-bridge-36500dots-20261021-0c05c2bc-zeros.tif",
+      "sha256": "d1e87159a8908f0051352c091d9343e8e5128e2c8eea0debdd17589a02692dad",
+      "checks": {
+        "artifact_exists": true,
+        "run_card_present": true,
+        "format_valid": true,
+        "format_readback_passed": true,
+        "literal_protocol_unique": false,
+        "beats_accepted_holdout_best": false,
+        "scientific_verdict_promote": false,
+        "selector_approved": false,
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": false
+      },
+      "run_card_audit": {
+        "run_card": "evidence/run_card_h77hdd.json",
+        "present": true,
+        "recorded_verdict": "negative",
+        "raster_sha256": null,
+        "explicit_promotion_evidence": false,
+        "recorded_safe_to_submit": false,
+        "literal_duplicate_recorded": true,
+        "real_model_forward_overlap_3px": null,
+        "real_model_forward_overlap_exceeds_070": false,
+        "registry_incomplete": false,
+        "holdout_invalid_for_promotion": false,
+        "historical_promotion_conflict": false,
+        "guardrail_clear": false
+      },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "d1e87159a8908f0051352c091d9343e8e5128e2c8eea0debdd17589a02692dad"
+      },
+      "authorized_to_submit": false,
+      "decision": "NOT OK TO SUBMIT",
+      "failed_gates": [
+        "literal_protocol_unique",
+        "beats_accepted_holdout_best",
+        "scientific_verdict_promote",
+        "selector_approved",
+        "explicit_run_card_promotion_evidence",
+        "run_card_artifact_matches"
       ]
     },
     {
@@ -2770,7 +2844,7 @@
       ]
     },
     {
-      "lane": "H83-NETSIB: visible fault-network sibling/gap/continuation geometry, synthetic re-withholding HGB (0.1538 s20 / 0.1637 s30 HOLDOUT-DTI; duplicate rule fired; negative)",
+      "lane": "H83-NETSIB: visible fault-network sibling/gap/continuation geometry, synthetic re-withholding HGB (0.1538 s20 / 0.1637 s30 HOLDOUT-DTI; below H77-VDS; duplicate rule fired; negative)",
       "file": "downloads/gems77-h83-netsib-37654dots-20261021-ed06b51d-zeros.tif",
       "sha256": "b2f89a83ffb1080c512bb46c6feae3a6211207cd619e0291bd2d767c002be87f",
       "checks": {
@@ -2779,7 +2853,7 @@
         "format_valid": true,
         "format_readback_passed": true,
         "literal_protocol_unique": false,
-        "beats_accepted_holdout_best": true,
+        "beats_accepted_holdout_best": false,
         "scientific_verdict_promote": false,
         "selector_approved": false,
         "explicit_run_card_promotion_evidence": false,
@@ -2829,6 +2903,7 @@
       "decision": "NOT OK TO SUBMIT",
       "failed_gates": [
         "literal_protocol_unique",
+        "beats_accepted_holdout_best",
         "scientific_verdict_promote",
         "selector_approved",
         "explicit_run_card_promotion_evidence"

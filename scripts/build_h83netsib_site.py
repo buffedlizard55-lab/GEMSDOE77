@@ -71,9 +71,9 @@ def build(page):
     else:
         head = "✅ OK TO DOWNLOAD FOR INSPECTION · ⛔ NOT OK TO SUBMIT"
         cls = "border:3px solid #b91c1c;background:#fef2f2;"
-        say = ("Do not upload. " + card.get("verdict_reason", "") + " The holdout result itself was positive (it beat the "
-               "0.152718 incumbent by point estimate on both seeds); "
-               "the only failed gate is the parallel-run duplicate rule. Changing that rule is the project owner's "
+        say = ("Do not upload. " + card.get("verdict_reason", "") + " The holdout result beat the preregistered 0.152718 incumbent by point estimate on both seeds, "
+               "but it is below H77-VDS, a parallel lane merged while this one ran (0.1608 s20 / 0.1716 s30 at the same "
+               "37,654-dot budget and evaluator), so it is not the repository's best holdout either. Changing that rule is the project owner's "
                "decision (docs/irregularities.md IR-H83N-01), not this session's.")
     hero = f"""<section class="card dl" style="{cls}"><h2>⬇ NEWEST (2026-10-21) · H83-NETSIB submission file — {e(head)}</h2>
 <p><b>{e(say)}</b></p>
@@ -83,7 +83,8 @@ def build(page):
 <a class="btn alt" href="h83netsib.html">How it was built &amp; verified →</a>
 <a class="btn alt" href="h83netsib-executive-summary.html">Step-by-step: how to submit →</a>
 <div class="chips"><span class="chip ok">Format: PASS (float32, EPSG:32611, 3730×3292, values only 0/1, 0 NaN)</span>
-<span class="chip {'ok' if card['beats_incumbent_point_estimate_both_seeds'] else 'bad'}">Beats holdout best 0.152718 (point estimate, both seeds): {'YES' if card['beats_incumbent_point_estimate_both_seeds'] else 'NO'}</span>
+<span class="chip {'ok' if card['beats_incumbent_point_estimate_both_seeds'] else 'bad'}">Beats preregistered incumbent 0.152718 (point estimate): {'YES' if card['beats_incumbent_point_estimate_both_seeds'] else 'NO'}</span>
+<span class="chip {'ok' if card.get('beats_current_repository_best') else 'bad'}">Beats current repository best (H77-VDS 0.1608/0.1716): {'YES' if card.get('beats_current_repository_best') else 'NO'}</span>
 <span class="chip {'ok' if not fd['duplicate'] else 'bad'}">Registry uniqueness (IR-H83N-01 reading): {'PASS' if not fd['duplicate'] else 'FAIL'}</span>
 <span class="chip warn">Weekly slots used: 0</span></div>
 <p class="small">HOLDOUT-DTI <b>{c20['dti']:.4f}</b> (seed 20; 95% CI {c20['ci95'][0]:.4f}–{c20['ci95'][1]:.4f}; {s20['withheld_positive_pixels']:,} withheld positives) and <b>{c30['dti']:.4f}</b> (seed 30; CI {c30['ci95'][0]:.4f}–{c30['ci95'][1]:.4f}; {s30['withheld_positive_pixels']:,}), evaluator <code>{e(s20['evaluator_version'])}</code>. Incumbent 0.152718 (same evaluator, seed 20). CIs overlap: an improvement in point estimate, not a statistically proven one. No leaderboard score is claimed or projected.</p>
