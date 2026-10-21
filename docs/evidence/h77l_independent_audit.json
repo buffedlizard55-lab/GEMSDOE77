@@ -35,7 +35,7 @@
     "eligible_pixels_reported_by_fold_regions": 3454589,
     "withheld_positive_pixels": 41732,
     "withheld_share_of_known_catalogue": 0.6842657571981373,
-    "local_prior_tifs_checked": 29,
+    "local_prior_tifs_checked": 35,
     "postwrite_positive_pixels": 25439,
     "dense_witness_positive_pixels": 5167373,
     "h33_positive_pixels": 37654,

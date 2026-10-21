@@ -1,0 +1,180 @@
+{
+  "path": "data/processed/stack33.npy",
+  "shape": [
+    3730,
+    3292,
+    33
+  ],
+  "channels": [
+    "mag_anom",
+    "rtp",
+    "tmi_hg",
+    "geod_2ndinv",
+    "iso_grav_anom_slope",
+    "tc_totalcount",
+    "geod_shearrate",
+    "geod_dilaterate",
+    "tmi_vg",
+    "deq_n100a15",
+    "iso_grav_anom_vg",
+    "det_elev",
+    "iso_grav_anom",
+    "tmi",
+    "depth_to_base_surf",
+    "ieq_n100a15",
+    "cond_surf",
+    "iso_grav_anom_hg_signed",
+    "det_elev_slope",
+    "dem_curv1",
+    "dem_curv25",
+    "dem_ridge1",
+    "dem_ridge2",
+    "dem_ridge3p5",
+    "dem_relief5",
+    "dem_tophat5",
+    "st_coherence",
+    "rad_K",
+    "rad_Th",
+    "rad_U",
+    "rad_TC",
+    "rad_ThK",
+    "rad_UK"
+  ],
+  "source": "raw+terrain copied from stack.npy after verification; rad computed per build_features.py",
+  "full_builder_failure": "scripts/build_features.py exit 137 (OOM) in FFT phase-congruency stage, evidence/h80_build_features.log",
+  "channel_stats_sampled": {
+    "mag_anom": {
+      "finite_frac_in_foot_sample": 0.9997349714621057,
+      "std_sample": 119.07979583740234
+    },
+    "rtp": {
+      "finite_frac_in_foot_sample": 0.9997349714621057,
+      "std_sample": 169.05593872070312
+    },
+    "tmi_hg": {
+      "finite_frac_in_foot_sample": 0.9997349714621057,
+      "std_sample": 40.888423919677734
+    },
+    "geod_2ndinv": {
+      "finite_frac_in_foot_sample": 0.9997349714621057,
+      "std_sample": 15.185842514038086
+    },
+    "iso_grav_anom_slope": {
+      "finite_frac_in_foot_sample": 0.9997349714621057,
+      "std_sample": 0.07755547016859055
+    },
+    "tc_totalcount": {
+      "finite_frac_in_foot_sample": 0.9997349714621057,
+      "std_sample": 4.41718053817749
+    },
+    "geod_shearrate": {
+      "finite_frac_in_foot_sample": 0.9997349714621057,
+      "std_sample": 9.920622825622559
+    },
+    "geod_dilaterate": {
+      "finite_frac_in_foot_sample": 0.9997349714621057,
+      "std_sample": 6.422763824462891
+    },
+    "tmi_vg": {
+      "finite_frac_in_foot_sample": 0.9997349714621057,
+      "std_sample": 0.25313395261764526
+    },
+    "deq_n100a15": {
+      "finite_frac_in_foot_sample": 0.9997349714621057,
+      "std_sample": 147764.75
+    },
+    "iso_grav_anom_vg": {
+      "finite_frac_in_foot_sample": 0.9997349714621057,
+      "std_sample": 1.6292591094970703
+    },
+    "det_elev": {
+      "finite_frac_in_foot_sample": 0.9997349714621057,
+      "std_sample": 241.6723175048828
+    },
+    "iso_grav_anom": {
+      "finite_frac_in_foot_sample": 0.9997349714621057,
+      "std_sample": 10.214529991149902
+    },
+    "tmi": {
+      "finite_frac_in_foot_sample": 0.9997349714621057,
+      "std_sample": 152.10235595703125
+    },
+    "depth_to_base_surf": {
+      "finite_frac_in_foot_sample": 0.9997349714621057,
+      "std_sample": 697.2283935546875
+    },
+    "ieq_n100a15": {
+      "finite_frac_in_foot_sample": 0.9997349714621057,
+      "std_sample": 950.4949340820312
+    },
+    "cond_surf": {
+      "finite_frac_in_foot_sample": 0.9997349714621057,
+      "std_sample": 0.6237316727638245
+    },
+    "iso_grav_anom_hg_signed": {
+      "finite_frac_in_foot_sample": 0.9997349714621057,
+      "std_sample": 2.0388641357421875
+    },
+    "det_elev_slope": {
+      "finite_frac_in_foot_sample": 0.9997349714621057,
+      "std_sample": 8.33715534210205
+    },
+    "dem_curv1": {
+      "finite_frac_in_foot_sample": 1.0,
+      "std_sample": 8.812429428100586
+    },
+    "dem_curv25": {
+      "finite_frac_in_foot_sample": 1.0,
+      "std_sample": 2.6724441051483154
+    },
+    "dem_ridge1": {
+      "finite_frac_in_foot_sample": 1.0,
+      "std_sample": 1.9309186935424805
+    },
+    "dem_ridge2": {
+      "finite_frac_in_foot_sample": 1.0,
+      "std_sample": 0.832832396030426
+    },
+    "dem_ridge3p5": {
+      "finite_frac_in_foot_sample": 1.0,
+      "std_sample": 0.4032168686389923
+    },
+    "dem_relief5": {
+      "finite_frac_in_foot_sample": 1.0,
+      "std_sample": 60.389129638671875
+    },
+    "dem_tophat5": {
+      "finite_frac_in_foot_sample": 1.0,
+      "std_sample": 14.112811088562012
+    },
+    "st_coherence": {
+      "finite_frac_in_foot_sample": 1.0,
+      "std_sample": 0.18766918778419495
+    },
+    "rad_K": {
+      "finite_frac_in_foot_sample": 1.0,
+      "std_sample": 0.2030051350593567
+    },
+    "rad_Th": {
+      "finite_frac_in_foot_sample": 1.0,
+      "std_sample": 0.18524324893951416
+    },
+    "rad_U": {
+      "finite_frac_in_foot_sample": 1.0,
+      "std_sample": 0.19113551080226898
+    },
+    "rad_TC": {
+      "finite_frac_in_foot_sample": 1.0,
+      "std_sample": 0.2007700651884079
+    },
+    "rad_ThK": {
+      "finite_frac_in_foot_sample": 1.0,
+      "std_sample": 0.17871369421482086
+    },
+    "rad_UK": {
+      "finite_frac_in_foot_sample": 1.0,
+      "std_sample": 0.1886480748653412
+    }
+  },
+  "seconds": 270.7
+}

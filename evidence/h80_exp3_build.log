@@ -1,0 +1,7 @@
+[16:11:23] OTA full diag: {"csv_rows": 27092, "tier_points_in_footprint": 1002, "tierA_points": 412, "tierB_points": 590, "orphan_points_gt10px_from_reference": 630, "pairs_within_5_40px": 4130, "orphans_vote_ge2": 499, "orphans_vote_ge3": 323, "vote_max": 18.0, "ota_line_nonzero_cells": 108480}
+[16:11:28] trained full-map pos=40000 neg=80000 (17s)
+[16:13:06] surface max=0.981 mean_fp=0.2181 (115s)
+[16:13:23] phase1: {"n": 24, "worst_spearman": 0.12722658370889628, "worst_spearman_submission": "downloads/gems77-xsen-coincide-hgb-37654dots-20261021-zeros.tif", "worst_forward_overlap_3px": 0.9803964219343175, "worst_overlap_submission": "downloads/gems77-h77-urank-curvature-0d868dc271bb-research.tif", "duplicate_firings_rho_or_overlap": 1, "identical_decoded": 0} sparse: {"n": 23, "worst_spearman": 0.12722658370889628, "worst_spearman_submission": "downloads/gems77-xsen-coincide-hgb-37654dots-20261021-zeros.tif", "worst_forward_overlap_3px": 0.18489356197046353, "worst_overlap_submission": "downloads/gems77-h79-radhalo-lag3-37654-20261021-zeros.tif", "duplicate_firings_rho_or_overlap": 0, "identical_decoded": 0}
+[16:13:25] dots=37654 on_cat=0 min_dist_cat=2.2360680103302
+[16:13:25] written /home/user/GEMSDOE77/submissions/gems77-h80-orphan-thermal-align-37654dots-20261021-zeros.tif sha256=703e7dee0a790572c2a9597ed210e04d4d45c93e8bae661aa117b34c0445f4d3
+[16:13:25] done build 134s
