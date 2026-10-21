@@ -1,0 +1,32 @@
+{
+  "lane": "H82",
+  "title": "H82-TCSTEP: radiometric total-count lithologic-offset step lineaments (core band 6), blind low-slope gated, as HGB channels over the shared 19-band core stack",
+  "written_utc": "2026-10-21T17:00:00Z",
+  "written_before_experiment": true,
+  "lane_assignment_note": "The session brief again contains no identifiable single assigned method paragraph (same irregularity as IR-77-06/IR-81-01), so this session declares one new narrow lane here BEFORE Experiment 1. It does not re-tune any stopped lane (H77/H77L/H77D/H77E/H77G/H78/H79/H79-ORIENT/H79-RH/H80/H80T/H81/AGO/LIA/contact-physics/XSEN/D77/selective-U/step). All stopped lanes stay stopped.",
+  "hypotheses_doc": "research/hypotheses-h82-2026-10-21.md",
+  "hypothesis": "A concealed (catalogue-missing) normal fault under basin fill laterally offsets radiometrically distinct lithologies, producing a sharp, strike-persistent step in airborne gamma total count (training_features band 6, measured in-repo to be radiometric total count: Spearman 0.99995 vs the external GeoDAWN TC grid, evidence/band_diagnostics.json) where the surface shows NO scarp (low det_elev_slope). The catalogue is scarp-led, so such blind TC steps are exactly the faults it misses.",
+  "mechanism": "Label-free channels from band 6 only (+ band 19 slope gate): tc_step2 = rank01(|grad log TC| at sigma=2), tc_step5 = rank01(|grad log TC| at sigma=5), tc_coh = structure-tensor coherence of log TC at sigma=3, tc_blind = sqrt(rank01(tc_step2 * (0.25+0.75*tc_coh)) * rank01(-det_elev_slope)). Ranks are tie-averaged over footprint pixels only. Candidate arm = HistGradientBoosting over the 19 core bands + these 4 channels; paired control = identical HGB over the 19 core bands alone; deterministic arm = tc_blind surface alone. Emission (fixed): greedy Poisson-disk min-separation 2.8 px, budget 37,654 dots, allowed = footprint AND distance-to-catalogue > 2.0 px (holdout: distance to masked_known > 2.0 px), binary {0,1}.",
+  "named_non_fault_mimics": [
+    "Alluvial-fan and playa-shoreline lithologic boundaries (pluvial Lake Lahontan benches) - also sharp TC steps on low slopes",
+    "Tertiary volcanic unit contacts and caliche/cemented-fan surfaces with contrasting gamma response",
+    "Airborne survey line-levelling seams in the GeoDAWN radiometric grids"
+  ],
+  "inputs": {
+    "training_features": {
+      "file": "data/raw/training_features.tif",
+      "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+      "bytes": 418912844,
+      "provenance": "owner-supplied GitHub mirror pinned in registry/data_manifest.json, restored 2026-10-21 in this session via scripts/restore_data.py --ids training_features (hash verified; NOT organizer-authenticated; DrivenData original is login-walled)"
+    },
+    "bridge": "data/bridge/sample_submission.tif + existing_faults.tif (committed, SHA-pinned in vendor/gems57/grid.py)",
+    "external_data": "NONE. No new external source is required or used."
+  },
+  "experiments": {
+    "exp1": "Leakage canaries: single-feature symmetric ROC-AUC of each of the 4 TCSTEP channels and each of the 19 core bands on withheld positives vs sampled negatives, seeds 20 and 30 (vendor buffered_component_draw, hide_frac=0.20, buffer_px=3). STOP if any > 0.90. Plus pre-placement surface Spearman vs every locally present registry/sibling raster (docs/downloads + submissions); STOP if |rho| > 0.90 vs any. The on-file dense-witness saturation certificate (docs/evidence/registry_saturation.json) already proves the literal 0.70 forward-overlap gate cannot pass for ANY non-empty candidate; that is reported, not relitigated.",
+    "exp2": "Paired hide-and-recover HOLDOUT-DTI with the unmodified vendor evaluator (gems57-pooled-hide-v2, alpha=0.2, beta=0.8, 300 m triangular kernel), seeds 20 and 30, LOQO HGB training on visible catalogue only (positives = visible; negatives > 3 px from visible, half within 15 px). Arms: A_std_plus_tcstep (candidate), A_std (paired control), S_tcstep_physics, A0_random. Same emission for every arm.",
+    "exp3": "Full-catalogue LOQO candidate surface, one 37,654-dot research GeoTIFF via unmodified vendor submission_writer (zeros mode), final-dot overlap vs locally present rasters, validator, run card. Verdict promote ONLY if candidate HOLDOUT-DTI 95% CI lower bound exceeds the accepted repo best 0.152718 (evidence/h81_e2_holdout.json current_holdout_best) on both seeds AND paired delta vs A_std CI excludes 0. Otherwise negative. Slot selection is a separate human step regardless."
+  },
+  "budget": {"experiments_max": 3, "hours_max": 2, "weekly_slots_used": 0},
+  "fixed_constants": {"budget_dots": 37654, "min_sep_px": 2.8, "catalogue_exclusion_px": 2.0, "hgb": {"max_iter": 160, "learning_rate": 0.075, "max_leaf_nodes": 45, "min_samples_leaf": 50, "l2_regularization": 2.5, "early_stopping": false, "random_state": 82082}, "train_pos_cap_per_fold": 40000, "neg_per_pos": 2}
+}

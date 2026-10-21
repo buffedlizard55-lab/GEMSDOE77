@@ -1,0 +1,100 @@
+{
+  "schema_version": "gems-run-card-v2",
+  "lane_id": "H82-TCSTEP",
+  "branch": "arena/0caf80c2-gemsdoe77",
+  "timestamp_utc": "2026-10-21T17:15:00Z",
+  "verdict": "negative",
+  "selector_status": "not approved — slot decision is a separate human selector step; 0 weekly slots used",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "weekly_slots_used": 0,
+  "organizer_confirmed_score": null,
+  "experiment_budget_used": "3 of 3 pre-registered experiments (registry/preregistration_h82.json)",
+  "hypothesis": "A concealed (catalogue-missing) normal fault under basin fill laterally offsets radiometrically distinct lithologies, producing a sharp, strike-persistent step in airborne gamma total count (training_features band 6, measured in-repo as radiometric TC, Spearman 0.99995 vs external GeoDAWN TC) where the surface shows no scarp (low det_elev_slope).",
+  "mechanism": "4 label-free channels (tc_step2, tc_step5 = tie-averaged ranks of |grad log TC| at sigma 2/5; tc_coh = structure-tensor coherence sigma 3; tc_blind = sqrt(rank(step2*(0.25+0.75*coh)) * rank(-slope))) added to the 19 core bands in a HistGradientBoosting LOQO model; paired control = identical HGB on the 19 core bands alone. Emission fixed for all arms: greedy Poisson-disk, min-sep 2.8 px, 37,654 binary dots, >2.0 px from catalogue.",
+  "named_non_fault_process_that_could_mimic_it": "Alluvial-fan and pluvial Lake Lahontan playa-shoreline lithologic boundaries (also sharp TC steps on low slopes); Tertiary volcanic unit contacts; airborne survey line-levelling seams. The holdout result (physics arm below random on both seeds) indicates these mimics dominate the blind TC-step population at 100 m scale.",
+  "leakage_canary": {
+    "evidence_class": "CANARY-DIAGNOSTIC",
+    "ceiling_symmetric_auc": 0.90,
+    "max_h82_symmetric_auc_seed20": 0.5181,
+    "max_h82_channel_seed20": "tc_blind",
+    "max_h82_symmetric_auc_seed30": 0.5031,
+    "max_h82_channel_seed30": "tc_step5",
+    "pass": true,
+    "detail": "evidence/h82_e1_canary_surface.json"
+  },
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "triangular_kernel_radius_m": 300,
+    "seed20": {
+      "withheld_positive_pixels": 11321,
+      "candidate_A_std_plus_tcstep": {"dti": 0.0688, "ci95": [0.0540, 0.0862]},
+      "control_A_std": {"dti": 0.0697, "ci95": [0.0545, 0.0862]},
+      "physics_S_tcstep": {"dti": 0.0242, "ci95": [0.0185, 0.0305]},
+      "random_A0": {"dti": 0.0445, "ci95": [0.0395, 0.0493]},
+      "paired_delta_candidate_minus_std": {"delta": -0.0009, "ci95": [-0.0069, 0.0054]}
+    },
+    "seed30": {
+      "withheld_positive_pixels": 11342,
+      "candidate_A_std_plus_tcstep": {"dti": 0.0700, "ci95": [0.0550, 0.0862]},
+      "control_A_std": {"dti": 0.0696, "ci95": [0.0558, 0.0853]},
+      "physics_S_tcstep": {"dti": 0.0261, "ci95": [0.0204, 0.0320]},
+      "random_A0": {"dti": 0.0469, "ci95": [0.0413, 0.0522]},
+      "paired_delta_candidate_minus_std": {"delta": 0.0004, "ci95": [-0.0074, 0.0081]}
+    },
+    "incumbent_repo_best": 0.152718,
+    "beats_incumbent": false,
+    "reading": "TCSTEP channels add nothing over the identical 19-band control (paired deltas straddle 0 on both seeds) and the deterministic TC-step surface scores BELOW random on both seeds (0.0242/0.0261 vs 0.0445/0.0469). Band-6 TC amplitude was already available to the control; its step/coherence geometry carries no additional withheld-fault signal. Exact unrounded values: evidence/h82_e2_holdout.json.",
+    "detail": "evidence/h82_e2_holdout.json"
+  },
+  "correlation_overlap_vs_registry": {
+    "scope": "locally present rasters only (docs/downloads + submissions, sha-deduped); complete accessible registry scan NOT performed",
+    "complete": false,
+    "surface_before_placement": {
+      "tc_blind_max_abs_spearman": 0.0628,
+      "tc_blind_worst": "docs/downloads/gems77-h79-crossgrad-ridge-37654dots-20261021-dd0dbf9c-nan.tif",
+      "candidate_oof_surface_max_abs_spearman": 0.0734,
+      "candidate_oof_worst": "docs/downloads/gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif",
+      "checked": 33,
+      "rho_gate_090": "PASS within checked scope"
+    },
+    "final_dots": {
+      "checked_excluding_self": 36,
+      "max_forward_overlap_3px_vs_sparse_rasters": 0.3914,
+      "worst_sparse": "docs/downloads/gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif",
+      "overlap_gate_070_sparse_scope": "PASS within checked sparse scope",
+      "literal_gate": "FAIL by construction — docs/evidence/registry_saturation.json (dense witness covers 100% of allowed pixels); the same degeneracy appears locally (urank research raster: 4,961,936 positive px, forward overlap 0.9641)",
+      "byte_unique_among_checked": true,
+      "irregularity": "IR-H82-01 in evidence/h82_e3_build.json (self-copy row in the first scan; corrected, originals retained)"
+    },
+    "protocol_unique": false
+  },
+  "raster_sha256": "2cc14ba3ec8a6ea114c821445ff0ee90f84c7a8e62720e80c533c05475f76860",
+  "validator": {
+    "tool": "vendor/gems57/validate.py via submission_writer (unmodified, template pin verified 2026-10-21) + independent rasterio re-read",
+    "all_checks_passed": true,
+    "single_band": true,
+    "dtype_float32": true,
+    "dimensions_3730x3292": true,
+    "crs_epsg_32611": true,
+    "transform_matches_sample_submission": true,
+    "no_nan_anywhere": true,
+    "no_inf_anywhere": true,
+    "values_binary_0_1_in_range_0_1": true,
+    "nodata": null,
+    "dots": 37654,
+    "dots_on_mapped_catalogue": 0,
+    "min_dot_distance_to_catalogue_px": 2.2361,
+    "zip_contains_exactly_one_tiff_byte_identical": true,
+    "note_on_portal_error": "All values are exactly 0.0/1.0 float32 with nodata=None and 0 non-finite cells, so the earlier portal error 'Predicted values must be in range [0, 1]' cannot be reproduced from value range on this file. Local format PASS is still not organizer acceptance."
+  },
+  "submission_name": "gems77-h82-tcstep-37654dots-20261021-2c501fd1-zeros",
+  "note": "H82-TCSTEP band6 TC step x coherence x low-slope + std19 HGB LOQO; 37654 dots sep2.8px >2px from catalogue",
+  "note_chars": 106,
+  "file": "submissions/gems77-h82-tcstep-37654dots-20261021-2c501fd1-zeros.tif",
+  "reason": "NEGATIVE: HOLDOUT-DTI 0.0688 (s20) / 0.0700 (s30) is far below the 0.152718 incumbent; paired gain over the identical-band control is null; the physics surface is below random; literal uniqueness gate fails by construction; registry scan incomplete; no selector approval. Byte-novel, format-valid research artifact for inspection only. Do not submit; do not re-tune (lane closed)."
+}
