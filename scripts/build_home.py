@@ -24,7 +24,7 @@ REPO = "https://github.com/buffedlizard55-lab/GEMSDOE77"
 LB = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
 PD = "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
-NAV = [("review-latest.html", "Latest review"), ("metric-review.html", "Corrected H33 analysis"), ("index.html", "Start here"), ("h77vs.html", "H77VS · negative"), ("h77vs-executive-summary.html", "H77VS guide"), ("tsd.html", "H77-TSD · inspection"), ("h77v.html", "H77V (Vent-Advect)"), ("h82-texture.html", "H82-TEXTURE · negative"), ("h82rank.html", "H82R · radiometric negative"), ("preflight-review.html", "Current readiness review"), ("h82-executive-summary.html", "H82 · cool-outlet negative"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
+NAV = [("review-latest.html", "Latest review"), ("review-arena-00397d44.html", "Arena branch review"), ("metric-review.html", "Corrected H33 analysis"), ("index.html", "Start here"), ("h77vs.html", "H77VS · negative"), ("h77vs-executive-summary.html", "H77VS guide"), ("tsd.html", "H77-TSD · inspection"), ("h77v.html", "H77V (Vent-Advect)"), ("h82-texture.html", "H82-TEXTURE · negative"), ("h82rank.html", "H82R · radiometric negative"), ("preflight-review.html", "Current readiness review"), ("h82-executive-summary.html", "H82 · cool-outlet negative"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
        ("h77e-knick.html", "H77E-Knick · 0/816 firings"), ("release-review.html", "Release safety review"), ("executive-summary.html", "How to submit"),
        ("h81.html", "H81 · slip-cone"), ("h82.html", "H82 · fault collar"),
        ("h83.html", "H83 · fault collar"),
@@ -400,7 +400,7 @@ These are registry/format measurements, not scores or portal acceptance.</p>"""
 lists the reviewed research candidates, not every historical archived/NaN-twin file; see <a href="audit.html">archive audit</a>.</p>
 {glance}
 {dl}
-<p><a href="review-latest.html">Latest review: no new TIFF; independently verified duplicate-stop blocker</a> · <a href="metric-review.html">Corrected H33 analysis</a></p>
+<p><a href="review-latest.html">Latest review: no new TIFF; independently verified duplicate-stop blocker</a> · <a href="review-arena-00397d44.html">This branch review and run card</a> · <a href="metric-review.html">Corrected H33 analysis</a></p>
 {orient_box}
 <h2>Reviewed downloadable candidates</h2>{table}
 <div class="values"><b>Score provenance and slot limits.</b> The supplied 0.2778 attribution to H33,
@@ -434,7 +434,7 @@ condition is met merely by passing a format check.</p>
 {glance}
 {rank_box}
 {dl}
-<p><a href="review-latest.html">Latest review: no new TIFF; independently verified duplicate-stop blocker</a> · <a href="metric-review.html">Corrected H33 analysis</a></p>
+<p><a href="review-latest.html">Latest review: no new TIFF; independently verified duplicate-stop blocker</a> · <a href="review-arena-00397d44.html">This branch review and run card</a> · <a href="metric-review.html">Corrected H33 analysis</a></p>
 {orient_box}
 <h2>What the DrivenData submission form asks for</h2>
 <table><tr><th>Field</th><th>What to give it only after clearance</th></tr>
@@ -973,12 +973,15 @@ Format-valid (15/15 checks, 0 NaN, values in [0,1], 37,654 binary dots) and info
 
 def write_review_pages():
     for source, output, title in (
-        ("docs/review-2026-10-21-arena-00397d44.md", "review-latest.html", "Latest repository review"),
+        ("docs/review-2026-10-21-05f9e6f8.md", "review-latest.html", "Latest repository review"),
+        ("docs/review-2026-10-21-arena-00397d44.md", "review-arena-00397d44.html", "Arena branch review"),
         ("research/why-h33-scored-02778.md", "metric-review.html", "Corrected H33 analysis"),
     ):
         body = markdown.markdown((ROOT / source).read_text(), extensions=["tables", "fenced_code"])
         (D / output).write_text(page(output, title, body))
-    for name in ("review_00397d44_run_card.json",):
+    for name in ("review_60aafd45_card.json", "review_60aafd45_verification.json",
+                 "review_05f9e6f8_card.json", "review_05f9e6f8_preflight.json",
+                 "review_05f9e6f8_verification.json", "review_00397d44_run_card.json"):
         shutil.copyfile(ROOT / "evidence" / name, D / "evidence" / name)
 
 
@@ -1274,7 +1277,7 @@ Every number on this page is <b>HOLDOUT-DTI</b> from local hide-and-recover; non
 <h2>Irregularities raised by this lane</h2>
 <p><b>IR-H82FMD-01 (shared tool, fixed upstream):</b> <code>vendor/gems57/uniqueness.py</code> could not report
 <em>which</em> registry comparators are too dense for a 3-px overlap test to carry information. Added
-<code>_disk_area()</code> and <code>space_filling_flags()</code> there — in the shared tool, not in a private fork —
+<code>_disk_area()</code> and <code>space_filling_flags()</code> as reporting helpers. Integration moved them to <code>gems82fmd.registry_diagnostics</code> to restore the pinned shared template; no gate is forked or changed —
 so both readings are always published. No threshold or verdict was changed.<br>
 <b>IR-H82FMD-02 (budget overrun, declared in advance):</b> E4 is a fourth experiment against a 3-experiment budget. It was
 preregistered in <code>registry/preregistration_h82fmd_amendment_e4.json</code> <em>before</em> it ran, and it is reported as

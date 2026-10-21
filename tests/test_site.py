@@ -333,9 +333,12 @@ def test_active_branch_review_records_stop_and_no_submission():
     assert card["validator_output"]["decision"] == "NOT OK TO SUBMIT"
     assert not card["validator_output"]["new_tiff_generated"]
     assert (DOC / "evidence/review_00397d44_run_card.json").read_bytes() == (ROOT / "evidence/review_00397d44_run_card.json").read_bytes()
-    latest = (DOC / "review-latest.html").read_text()
-    assert "arena/00397d44-gemsdoe77" in latest
-    assert "Resource not accessible by integration" in latest
+    branch_page = (DOC / "review-arena-00397d44.html").read_text()
+    assert "arena/00397d44-gemsdoe77" in branch_page
+    assert "Resource not accessible by integration" in branch_page
+    assert "review-arena-00397d44.html" in (ROOT / "README.md").read_text()
+    for name in ("index.html", "executive-summary.html"):
+        assert "review-arena-00397d44.html" in (DOC / name).read_text()
 
 
 def test_current_preflight_review_does_not_claim_a_new_submission():
