@@ -1,0 +1,73 @@
+{
+  "lane": "H77V-VENT-ADVECT-CONDUIT",
+  "short_id": "H77V",
+  "branch": "arena/a278fbd0-gemsdoe77",
+  "date_utc": "2026-10-21T00:00:00Z",
+  "protocol_rules": {
+    "rule_1_lane_and_uniqueness": {
+      "rho_limit": 0.90,
+      "overlap_3px_limit": 0.70,
+      "two_phase_check": true,
+      "policy_i17_dense_witness_sha256": "ab0a0a629ac2e5cfbe1ac4c6b7cd1dc12bf8b2a09fbcbde0f452d3de2fe86ab2"
+    },
+    "rule_2_reuse_template": {
+      "evaluator": "vendor/gems57/evaluate_holdout.py",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "submission_writer": "vendor/gems57/submission_writer.py",
+      "uniqueness": "vendor/gems57/uniqueness.py",
+      "alpha": 0.2,
+      "beta": 0.8,
+      "kernel_radius_m": 300.0,
+      "kernel_radius_px": 3
+    },
+    "rule_3_label_every_number": {
+      "allowed_labels": ["HOLDOUT-DTI", "ORGANIZER-CONFIRMED"],
+      "forbid_projected_scores": true
+    },
+    "rule_4_leakage_canary": {
+      "single_feature_auc_limit": 0.90,
+      "forbidden_columns": ["dist_known_fault_px"],
+      "forbidden_layers": ["existing_faults.tif", "labels.tif", "gdr_qfaults_traces.csv", "SGMC_bands_0_1"]
+    },
+    "rule_5_run_card": {
+      "output_path": "submissions/run_card_h77v_20261021.json"
+    },
+    "rule_6_budget": {
+      "max_experiments": 3,
+      "max_hours": 2.0,
+      "weekly_slots_to_spend": 0
+    }
+  },
+  "ranked_hypotheses": [
+    {
+      "rank": 1,
+      "id": "H77V-1",
+      "title": "Up-Gradient Topographic Advection Backtracking of Geothermometer Disequilibrium Plumes + Sinter/Tufa Sieve + Transtensional Dilational Conduit Tensor",
+      "status": "primary_tested"
+    },
+    {
+      "rank": 2,
+      "id": "H77V-2",
+      "title": "Steam-Heated Clay-Cap Breach Electrical Conductivity Annulus x Directional RTP Demagnetization Trough",
+      "status": "tested_feature_block"
+    },
+    {
+      "rank": 3,
+      "id": "H77V-3",
+      "title": "Upslope-Realigned Hanging-Wall Gravity Crest x Alluvial-Fan Piedmont Toe Concavity & 1 m LiDAR Face Polarity",
+      "status": "tested_feature_block"
+    },
+    {
+      "rank": 4,
+      "id": "H77V-4",
+      "title": "Azimuthal Cross-Spectral Phase Coherence of Gravity & Magnetic Complex Analytic Signals",
+      "status": "reserve_untested"
+    },
+    {
+      "rank": 5,
+      "id": "H77V-5",
+      "title": "3D Relocated Microseismicity Hypocentral Planar Lineaments Projected Up-Dip to Surface Trace",
+      "status": "blocked_external_egress"
+    }
+  ]
+}

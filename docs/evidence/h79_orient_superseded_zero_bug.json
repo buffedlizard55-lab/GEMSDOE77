@@ -1,0 +1,29 @@
+{
+  "evidence_class": "SUPERSEDED-RUNNER-ERROR",
+  "lane_id": "H79-ORIENT",
+  "status": "not a scientific score",
+  "discovered": "2026-10-21",
+  "reason": "The first runner placed holdout dots only where distance to the full catalogue exceeded 3 px. The hidden holdout component is part of that catalogue, so the placement rule excluded the hidden-positive credit halo and forced every arm's TPw to zero.",
+  "correction": "Use distance to visible catalogue cells for holdout placement; retain full-catalogue distance only for full-map emission. Keep visible catalogue cells masked pixel-exactly and use the shared gems57 evaluator/writer.",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "seed20": {
+    "withheld_positive_pixels": 11321,
+    "emitted_dots": 37654,
+    "arms": {
+      "H79_only": 0.0,
+      "H79_plus_raw": 0.0,
+      "raw_control": 0.0,
+      "random_control": 0.0
+    }
+  },
+  "seed30": {
+    "withheld_positive_pixels": 11342,
+    "emitted_dots": 37654,
+    "arms": {
+      "H79_plus_raw": 0.0,
+      "raw_control": 0.0,
+      "random_control": 0.0
+    }
+  },
+  "disposition": "Superseded; do not label these zeros HOLDOUT-DTI and do not compare them with the corrected run card."
+}

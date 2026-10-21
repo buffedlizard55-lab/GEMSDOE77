@@ -1,13 +1,94 @@
 {
-  "schema": "gems-submission-authorization-v1",
-  "generated_utc": "2026-10-21T17:27:46+00:00",
-  "policy": "Authorization requires artifact existence, matching SHA-256, local format PASS, literal protocol uniqueness (including <=0.70 real-model forward 3-px overlap and complete registry), improvement over the accepted holdout best, a promote verdict, and explicit selector approval. Missing fields or historical run-card uniqueness/completeness failures fail closed.",
+  "schema": "gems-submission-authorization-v2",
+  "generated_utc": "2026-10-21T17:32:16+00:00",
+  "policy": "Authorization requires artifact existence, matching SHA-256, a readable run card with a promote verdict, matching raster_sha256 and explicit positive uniqueness, registry completeness, valid/improved holdout and selector declarations; actual shared-validator format readback PASS, literal protocol uniqueness (including <=0.70 real-model forward 3-px overlap and complete registry), improvement over the accepted holdout best, a promote verdict, and explicit selector approval. Missing fields or historical run-card uniqueness/completeness failures fail closed.",
   "repository_authorized_file_count": 0,
   "repository_decision": "NOT OK TO SUBMIT",
   "historical_run_card_reconciliation": [
     {
-      "lane": "H77-TSD: Transtensional strain-partitioning \u00d7 seismic swarm excess \u00d7 MT clay-cap margin + 12-bit LOCO relay & 300 m submod (0.1360 / 0.1337 HOLDOUT-DTI)",
+      "lane": "H77-TSD: Transtensional strain-partitioning \u00d7 seismic swarm excess \u00d7 MT clay-cap margin + 12-bit LOCO relay & 300 m submod (0.1360 / 0.1337 HOLDOUT-DTI; negative under Policy I17)",
       "run_card": "evidence/run_card_tsd.json",
+      "recorded_verdict": "negative",
+      "recorded_safe_to_submit": false,
+      "historical_promotion_conflict": false,
+      "operative_decision": "NOT OK TO SUBMIT",
+      "reconciliation_note": "Historical run card and operative release gate both fail closed."
+    },
+    {
+      "lane": "H77V: up-gradient geothermal vent advection-backtracking, Lake Lahontan tufa sieve & dilational conduit tensor (HOLDOUT-DTI 0.1270 [0.1128, 0.1422] s30 / 0.1293 [0.1129, 0.1469] s20; negative under Policy I17)",
+      "run_card": "submissions/run_card_h77v_20261021.json",
+      "recorded_verdict": "negative",
+      "recorded_safe_to_submit": false,
+      "historical_promotion_conflict": false,
+      "operative_decision": "NOT OK TO SUBMIT",
+      "reconciliation_note": "Historical run card and operative release gate both fail closed."
+    },
+    {
+      "lane": "H82R: local ternary radiometric rank-mixture entropy (STOPPED; research only)",
+      "run_card": "evidence/h82rank_run_card.json",
+      "recorded_verdict": "negative",
+      "recorded_safe_to_submit": false,
+      "historical_promotion_conflict": false,
+      "operative_decision": "NOT OK TO SUBMIT",
+      "reconciliation_note": "Historical run card and operative release gate both fail closed."
+    },
+    {
+      "lane": "H82-TEXTURE: K/Th local second-moment boundary (negative, continuous research surface)",
+      "run_card": "evidence/h82_texture/run_card.json",
+      "recorded_verdict": "negative",
+      "recorded_safe_to_submit": false,
+      "historical_promotion_conflict": false,
+      "operative_decision": "NOT OK TO SUBMIT",
+      "reconciliation_note": "Historical run card and operative release gate both fail closed."
+    },
+    {
+      "lane": "H82: cool-outlet geothermometer concordance (negative)",
+      "run_card": "evidence/h82_run_card.json",
+      "recorded_verdict": "negative",
+      "recorded_safe_to_submit": false,
+      "historical_promotion_conflict": false,
+      "operative_decision": "NOT OK TO SUBMIT",
+      "reconciliation_note": "Historical run card and operative release gate both fail closed."
+    },
+    {
+      "lane": "H77G: hydrothermal magnetite-destruction trough \u00d7 gravity-basement step \u00d7 MT clay-cap margin (HOLDOUT-DTI 0.0619 s20 / 0.0618 s30, pure 0.0392/0.0471; negative result)",
+      "run_card": "evidence/run_card_h77g.json",
+      "recorded_verdict": "negative",
+      "recorded_safe_to_submit": false,
+      "historical_promotion_conflict": false,
+      "operative_decision": "NOT OK TO SUBMIT",
+      "reconciliation_note": "Historical run card and operative release gate both fail closed."
+    },
+    {
+      "lane": "H77E-Knick (NEWEST): 10m 3DEP Knickpoint + TIGER-Deconfounded Step + Up-Dip Seismicity + 4-Scale SLOCO + 816-Raster Capped 300 m Submodular Cover",
+      "run_card": "evidence/h77e/run_card.json",
+      "recorded_verdict": "negative",
+      "recorded_safe_to_submit": false,
+      "historical_promotion_conflict": false,
+      "operative_decision": "NOT OK TO SUBMIT",
+      "reconciliation_note": "Historical run card and operative release gate both fail closed."
+    },
+    {
+      "lane": "H80-OTA: orphan thermal alignment - collinear off-catalogue hot wells/springs (0.1039 HOLDOUT-DTI)",
+      "run_card": "evidence/run_card_h80.json",
+      "recorded_verdict": null,
+      "recorded_safe_to_submit": null,
+      "historical_promotion_conflict": false,
+      "operative_decision": "NOT OK TO SUBMIT",
+      "reconciliation_note": "Historical run card and operative release gate both fail closed."
+    },
+    {
+      "lane": "H80: Riedel R/R-prime wing-crack tips at degree-1 mapped-fault endpoints (negative)",
+      "run_card": "evidence/h80_run_card.json",
+      "recorded_verdict": "negative",
+      "recorded_safe_to_submit": false,
+      "historical_promotion_conflict": false,
+      "operative_decision": "NOT OK TO SUBMIT",
+      "reconciliation_note": "Historical run card and operative release gate both fail closed."
+    },
+    {
+      "lane": "H80T: Multi-Scale Tilt-Angle Persistence x AS-Weighted Zero Proximity + Signed Basement Throw (HOLDOUT-DTI 0.0060 [0.0048,0.0073]; E3 HGB +0.00026; negative)",
+      "run_card": "evidence/h80t_run_card.json",
       "recorded_verdict": "negative",
       "recorded_safe_to_submit": false,
       "historical_promotion_conflict": false,
@@ -35,6 +116,15 @@
     {
       "lane": "H79-RH: lagged radiometric U-halo pairing (parallel negative)",
       "run_card": "evidence/h79_radhalo_run_card.json",
+      "recorded_verdict": "negative",
+      "recorded_safe_to_submit": false,
+      "historical_promotion_conflict": false,
+      "operative_decision": "NOT OK TO SUBMIT",
+      "reconciliation_note": "Historical run card and operative release gate both fail closed."
+    },
+    {
+      "lane": "H79-ORIENT: label-blind cross-sensor orientation persistence (negative holdout)",
+      "run_card": "evidence/h79_orient_run_card.json",
       "recorded_verdict": "negative",
       "recorded_safe_to_submit": false,
       "historical_promotion_conflict": false,
@@ -103,26 +193,51 @@
       "historical_promotion_conflict": false,
       "operative_decision": "NOT OK TO SUBMIT",
       "reconciliation_note": "Historical run card and operative release gate both fail closed."
+    },
+    {
+      "lane": "H81: slip-budget fault-tip continuation cones (deterministic, catalogue-only)",
+      "run_card": "evidence/h81_run_card.json",
+      "recorded_verdict": "negative",
+      "recorded_safe_to_submit": false,
+      "historical_promotion_conflict": false,
+      "operative_decision": "NOT OK TO SUBMIT",
+      "reconciliation_note": "Historical run card and operative release gate both fail closed."
+    },
+    {
+      "lane": "H77-BGB: buried growth-wedge inflection x transtensional strain-partitioning x clay-cap breach (0.0584 lane / 0.1024 LOCO HOLDOUT-DTI)",
+      "run_card": "evidence/run_card_bgb.json",
+      "recorded_verdict": "negative",
+      "recorded_safe_to_submit": false,
+      "historical_promotion_conflict": false,
+      "operative_decision": "NOT OK TO SUBMIT",
+      "reconciliation_note": "Historical run card and operative release gate both fail closed."
     }
   ],
   "artifacts": [
     {
-      "lane": "H77-TSD: Transtensional strain-partitioning \u00d7 seismic swarm excess \u00d7 MT clay-cap margin + 12-bit LOCO relay & 300 m submod (0.1360 / 0.1337 HOLDOUT-DTI)",
+      "lane": "H77-TSD: Transtensional strain-partitioning \u00d7 seismic swarm excess \u00d7 MT clay-cap margin + 12-bit LOCO relay & 300 m submod (0.1360 / 0.1337 HOLDOUT-DTI; negative under Policy I17)",
       "file": "downloads/gems77-tsd-transtens-swarm-submod-37654dots-20261021-zeros.tif",
       "sha256": "4ebb1da423d26d9823ad15c4f8a0e722edc3e79272c8e720adcd28e6224af68c",
       "checks": {
         "artifact_exists": true,
+        "run_card_present": true,
         "format_valid": true,
+        "format_readback_passed": true,
         "literal_protocol_unique": false,
         "beats_accepted_holdout_best": false,
         "scientific_verdict_promote": false,
         "selector_approved": false,
-        "sha256_matches": true
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": false
       },
       "run_card_audit": {
         "run_card": "evidence/run_card_tsd.json",
         "present": true,
         "recorded_verdict": "negative",
+        "raster_sha256": null,
+        "explicit_promotion_evidence": false,
         "recorded_safe_to_submit": false,
         "literal_duplicate_recorded": true,
         "real_model_forward_overlap_3px": null,
@@ -132,66 +247,131 @@
         "historical_promotion_conflict": false,
         "guardrail_clear": false
       },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "4ebb1da423d26d9823ad15c4f8a0e722edc3e79272c8e720adcd28e6224af68c"
+      },
       "authorized_to_submit": false,
       "decision": "NOT OK TO SUBMIT",
       "failed_gates": [
         "literal_protocol_unique",
         "beats_accepted_holdout_best",
         "scientific_verdict_promote",
-        "selector_approved"
+        "selector_approved",
+        "explicit_run_card_promotion_evidence",
+        "run_card_artifact_matches"
       ]
     },
     {
-      "lane": "D77: blind-distance band 250m-1km off catalogue + greedy dots under the exact DTI bar (HOLDOUT-DTI 0.0000 [0.0000, 0.0000]; negative result)",
-      "file": "downloads/gems77-d77-blind-band-35106dots-20261021-926076f7-zeros.tif",
-      "sha256": "c971fcf8a05928e7cbd3c31f868b4e9342be805d8cdf15701c097c8949574fde",
+      "lane": "H77V: up-gradient geothermal vent advection-backtracking, Lake Lahontan tufa sieve & dilational conduit tensor (HOLDOUT-DTI 0.1270 [0.1128, 0.1422] s30 / 0.1293 [0.1129, 0.1469] s20; negative under Policy I17)",
+      "file": "downloads/gems77-h77v-vent-advect-conduit-37654dots-20261021-8910ea15-zeros.tif",
+      "sha256": "2cef6d5133bceaf5206b5ee3701abb66120ef35aedd8850ab21946c2176b0e10",
       "checks": {
         "artifact_exists": true,
+        "run_card_present": true,
         "format_valid": true,
+        "format_readback_passed": true,
         "literal_protocol_unique": false,
         "beats_accepted_holdout_best": false,
         "scientific_verdict_promote": false,
         "selector_approved": false,
-        "sha256_matches": true
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": false
       },
       "run_card_audit": {
-        "run_card": null,
-        "present": false,
-        "recorded_verdict": null,
-        "recorded_safe_to_submit": null,
+        "run_card": "submissions/run_card_h77v_20261021.json",
+        "present": true,
+        "recorded_verdict": "negative",
+        "raster_sha256": null,
+        "explicit_promotion_evidence": false,
+        "recorded_safe_to_submit": false,
         "literal_duplicate_recorded": false,
+        "real_model_forward_overlap_3px": null,
         "real_model_forward_overlap_exceeds_070": false,
         "registry_incomplete": false,
         "holdout_invalid_for_promotion": false,
         "historical_promotion_conflict": false,
         "guardrail_clear": true
       },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "2cef6d5133bceaf5206b5ee3701abb66120ef35aedd8850ab21946c2176b0e10"
+      },
       "authorized_to_submit": false,
       "decision": "NOT OK TO SUBMIT",
       "failed_gates": [
         "literal_protocol_unique",
         "beats_accepted_holdout_best",
         "scientific_verdict_promote",
-        "selector_approved"
+        "selector_approved",
+        "explicit_run_card_promotion_evidence",
+        "run_card_artifact_matches"
       ]
     },
     {
-      "lane": "H77L: 300 m lagged ThK / LiDAR scarp (RESEARCH ONLY)",
-      "file": "downloads/gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY.tif",
-      "sha256": "9d199f9fad93e234397a7a19a05eabf12fd77285be3007e6afe22d12a36dcbd1",
+      "lane": "H82R: local ternary radiometric rank-mixture entropy (STOPPED; research only)",
+      "file": "downloads/gems77-h82-ternaryentropy-20261021-RESEARCH-ONLY.tif",
+      "sha256": "56debe682505bf2649f30d914c7b552dcf669bce4b902ce91eb3e5363031f115",
       "checks": {
         "artifact_exists": true,
+        "run_card_present": true,
         "format_valid": true,
+        "format_readback_passed": true,
         "literal_protocol_unique": false,
         "beats_accepted_holdout_best": false,
         "scientific_verdict_promote": false,
         "selector_approved": false,
-        "sha256_matches": true
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": true
       },
       "run_card_audit": {
-        "run_card": "evidence/h77l_run_card.json",
+        "run_card": "evidence/h82rank_run_card.json",
         "present": true,
         "recorded_verdict": "negative",
+        "raster_sha256": "56debe682505bf2649f30d914c7b552dcf669bce4b902ce91eb3e5363031f115",
+        "explicit_promotion_evidence": false,
         "recorded_safe_to_submit": false,
         "literal_duplicate_recorded": true,
         "real_model_forward_overlap_3px": null,
@@ -201,13 +381,635 @@
         "historical_promotion_conflict": false,
         "guardrail_clear": false
       },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "56debe682505bf2649f30d914c7b552dcf669bce4b902ce91eb3e5363031f115"
+      },
       "authorized_to_submit": false,
       "decision": "NOT OK TO SUBMIT",
       "failed_gates": [
         "literal_protocol_unique",
         "beats_accepted_holdout_best",
         "scientific_verdict_promote",
-        "selector_approved"
+        "selector_approved",
+        "explicit_run_card_promotion_evidence"
+      ]
+    },
+    {
+      "lane": "H82-TEXTURE: K/Th local second-moment boundary (negative, continuous research surface)",
+      "file": "downloads/gems77-h82-texture-kt-bf0a3028b4fa-RESEARCH-ONLY.tif",
+      "sha256": "c571af22cb08db9cb8cfd6edf0108364d95b0c3bec8316d09d3dfd116531790e",
+      "checks": {
+        "artifact_exists": true,
+        "run_card_present": true,
+        "format_valid": true,
+        "format_readback_passed": true,
+        "literal_protocol_unique": false,
+        "beats_accepted_holdout_best": false,
+        "scientific_verdict_promote": false,
+        "selector_approved": false,
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": true
+      },
+      "run_card_audit": {
+        "run_card": "evidence/h82_texture/run_card.json",
+        "present": true,
+        "recorded_verdict": "negative",
+        "raster_sha256": "c571af22cb08db9cb8cfd6edf0108364d95b0c3bec8316d09d3dfd116531790e",
+        "explicit_promotion_evidence": false,
+        "recorded_safe_to_submit": false,
+        "literal_duplicate_recorded": true,
+        "real_model_forward_overlap_3px": null,
+        "real_model_forward_overlap_exceeds_070": false,
+        "registry_incomplete": true,
+        "holdout_invalid_for_promotion": false,
+        "historical_promotion_conflict": false,
+        "guardrail_clear": false
+      },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "c571af22cb08db9cb8cfd6edf0108364d95b0c3bec8316d09d3dfd116531790e"
+      },
+      "authorized_to_submit": false,
+      "decision": "NOT OK TO SUBMIT",
+      "failed_gates": [
+        "literal_protocol_unique",
+        "beats_accepted_holdout_best",
+        "scientific_verdict_promote",
+        "selector_approved",
+        "explicit_run_card_promotion_evidence"
+      ]
+    },
+    {
+      "lane": "H82: cool-outlet geothermometer concordance (negative)",
+      "file": "downloads/gems77-h82-cool-chemconcord-11185dots-20261021-245bb13136-zeros.tif",
+      "sha256": "84b50d05eaba578c398c4c7ab720dbf5a46de29d63f4254eb02a8ba02a4a43df",
+      "checks": {
+        "artifact_exists": true,
+        "run_card_present": true,
+        "format_valid": true,
+        "format_readback_passed": true,
+        "literal_protocol_unique": false,
+        "beats_accepted_holdout_best": false,
+        "scientific_verdict_promote": false,
+        "selector_approved": false,
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": true
+      },
+      "run_card_audit": {
+        "run_card": "evidence/h82_run_card.json",
+        "present": true,
+        "recorded_verdict": "negative",
+        "raster_sha256": "84b50d05eaba578c398c4c7ab720dbf5a46de29d63f4254eb02a8ba02a4a43df",
+        "explicit_promotion_evidence": false,
+        "recorded_safe_to_submit": false,
+        "literal_duplicate_recorded": true,
+        "real_model_forward_overlap_3px": null,
+        "real_model_forward_overlap_exceeds_070": false,
+        "registry_incomplete": true,
+        "holdout_invalid_for_promotion": false,
+        "historical_promotion_conflict": false,
+        "guardrail_clear": false
+      },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "84b50d05eaba578c398c4c7ab720dbf5a46de29d63f4254eb02a8ba02a4a43df"
+      },
+      "authorized_to_submit": false,
+      "decision": "NOT OK TO SUBMIT",
+      "failed_gates": [
+        "literal_protocol_unique",
+        "beats_accepted_holdout_best",
+        "scientific_verdict_promote",
+        "selector_approved",
+        "explicit_run_card_promotion_evidence"
+      ]
+    },
+    {
+      "lane": "H77G: hydrothermal magnetite-destruction trough \u00d7 gravity-basement step \u00d7 MT clay-cap margin (HOLDOUT-DTI 0.0619 s20 / 0.0618 s30, pure 0.0392/0.0471; negative result)",
+      "file": "downloads/gems77-h77g-demagtrough-gravstep-37654dots-20261021-08b78f3c-zeros.tif",
+      "sha256": "7b97596de2cacd1d5b5f99f8fc679dbd9cf6a2bd7ab316adea5bf60ad2bb30d0",
+      "checks": {
+        "artifact_exists": true,
+        "run_card_present": true,
+        "format_valid": true,
+        "format_readback_passed": true,
+        "literal_protocol_unique": false,
+        "beats_accepted_holdout_best": false,
+        "scientific_verdict_promote": false,
+        "selector_approved": false,
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": true
+      },
+      "run_card_audit": {
+        "run_card": "evidence/run_card_h77g.json",
+        "present": true,
+        "recorded_verdict": "negative",
+        "raster_sha256": "7b97596de2cacd1d5b5f99f8fc679dbd9cf6a2bd7ab316adea5bf60ad2bb30d0",
+        "explicit_promotion_evidence": false,
+        "recorded_safe_to_submit": false,
+        "literal_duplicate_recorded": true,
+        "real_model_forward_overlap_3px": null,
+        "real_model_forward_overlap_exceeds_070": false,
+        "registry_incomplete": false,
+        "holdout_invalid_for_promotion": false,
+        "historical_promotion_conflict": false,
+        "guardrail_clear": false
+      },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "7b97596de2cacd1d5b5f99f8fc679dbd9cf6a2bd7ab316adea5bf60ad2bb30d0"
+      },
+      "authorized_to_submit": false,
+      "decision": "NOT OK TO SUBMIT",
+      "failed_gates": [
+        "literal_protocol_unique",
+        "beats_accepted_holdout_best",
+        "scientific_verdict_promote",
+        "selector_approved",
+        "explicit_run_card_promotion_evidence"
+      ]
+    },
+    {
+      "lane": "H77E-Knick (NEWEST): 10m 3DEP Knickpoint + TIGER-Deconfounded Step + Up-Dip Seismicity + 4-Scale SLOCO + 816-Raster Capped 300 m Submodular Cover",
+      "file": "downloads/gems77-h77e-knick-deconf-submod-36500dots-20261021-101e200b-zeros.tif",
+      "sha256": "db0dd67da44b83bc47f05289c05e2e917118d04b03e4958076f64661b726fb6b",
+      "checks": {
+        "artifact_exists": true,
+        "run_card_present": true,
+        "format_valid": true,
+        "format_readback_passed": true,
+        "literal_protocol_unique": false,
+        "beats_accepted_holdout_best": false,
+        "scientific_verdict_promote": false,
+        "selector_approved": false,
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": false
+      },
+      "run_card_audit": {
+        "run_card": "evidence/h77e/run_card.json",
+        "present": true,
+        "recorded_verdict": "negative",
+        "raster_sha256": null,
+        "explicit_promotion_evidence": false,
+        "recorded_safe_to_submit": false,
+        "literal_duplicate_recorded": true,
+        "real_model_forward_overlap_3px": null,
+        "real_model_forward_overlap_exceeds_070": false,
+        "registry_incomplete": false,
+        "holdout_invalid_for_promotion": false,
+        "historical_promotion_conflict": false,
+        "guardrail_clear": false
+      },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "db0dd67da44b83bc47f05289c05e2e917118d04b03e4958076f64661b726fb6b"
+      },
+      "authorized_to_submit": false,
+      "decision": "NOT OK TO SUBMIT",
+      "failed_gates": [
+        "literal_protocol_unique",
+        "beats_accepted_holdout_best",
+        "scientific_verdict_promote",
+        "selector_approved",
+        "explicit_run_card_promotion_evidence",
+        "run_card_artifact_matches"
+      ]
+    },
+    {
+      "lane": "H80-OTA: orphan thermal alignment - collinear off-catalogue hot wells/springs (0.1039 HOLDOUT-DTI)",
+      "file": "downloads/gems77-h80-orphan-thermal-align-37654dots-20261021-zeros.tif",
+      "sha256": "703e7dee0a790572c2a9597ed210e04d4d45c93e8bae661aa117b34c0445f4d3",
+      "checks": {
+        "artifact_exists": true,
+        "run_card_present": false,
+        "format_valid": true,
+        "format_readback_passed": true,
+        "literal_protocol_unique": false,
+        "beats_accepted_holdout_best": false,
+        "scientific_verdict_promote": false,
+        "selector_approved": false,
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": false
+      },
+      "run_card_audit": {
+        "run_card": "evidence/run_card_h80.json",
+        "present": true,
+        "recorded_verdict": null,
+        "raster_sha256": null,
+        "explicit_promotion_evidence": false,
+        "recorded_safe_to_submit": null,
+        "literal_duplicate_recorded": false,
+        "real_model_forward_overlap_exceeds_070": false,
+        "registry_incomplete": true,
+        "holdout_invalid_for_promotion": false,
+        "historical_promotion_conflict": false,
+        "guardrail_clear": false,
+        "read_error": "registry must be an object"
+      },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "703e7dee0a790572c2a9597ed210e04d4d45c93e8bae661aa117b34c0445f4d3"
+      },
+      "authorized_to_submit": false,
+      "decision": "NOT OK TO SUBMIT",
+      "failed_gates": [
+        "run_card_present",
+        "literal_protocol_unique",
+        "beats_accepted_holdout_best",
+        "scientific_verdict_promote",
+        "selector_approved",
+        "explicit_run_card_promotion_evidence",
+        "run_card_artifact_matches"
+      ]
+    },
+    {
+      "lane": "H80: Riedel R/R-prime wing-crack tips at degree-1 mapped-fault endpoints (negative)",
+      "file": "downloads/gems77-h80-riedel-wingcrack-tips-20261021-zeros.tif",
+      "sha256": "bab170ed60ab7e1a8afbfad69386a8266191fa4864ac3abac5b6290b7d25bc57",
+      "checks": {
+        "artifact_exists": true,
+        "run_card_present": true,
+        "format_valid": true,
+        "format_readback_passed": true,
+        "literal_protocol_unique": false,
+        "beats_accepted_holdout_best": false,
+        "scientific_verdict_promote": false,
+        "selector_approved": false,
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": true
+      },
+      "run_card_audit": {
+        "run_card": "evidence/h80_run_card.json",
+        "present": true,
+        "recorded_verdict": "negative",
+        "raster_sha256": "bab170ed60ab7e1a8afbfad69386a8266191fa4864ac3abac5b6290b7d25bc57",
+        "explicit_promotion_evidence": false,
+        "recorded_safe_to_submit": false,
+        "literal_duplicate_recorded": false,
+        "real_model_forward_overlap_3px": null,
+        "real_model_forward_overlap_exceeds_070": false,
+        "registry_incomplete": false,
+        "holdout_invalid_for_promotion": false,
+        "historical_promotion_conflict": false,
+        "guardrail_clear": true
+      },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "bab170ed60ab7e1a8afbfad69386a8266191fa4864ac3abac5b6290b7d25bc57"
+      },
+      "authorized_to_submit": false,
+      "decision": "NOT OK TO SUBMIT",
+      "failed_gates": [
+        "literal_protocol_unique",
+        "beats_accepted_holdout_best",
+        "scientific_verdict_promote",
+        "selector_approved",
+        "explicit_run_card_promotion_evidence"
+      ]
+    },
+    {
+      "lane": "H80T: Multi-Scale Tilt-Angle Persistence x AS-Weighted Zero Proximity + Signed Basement Throw (HOLDOUT-DTI 0.0060 [0.0048,0.0073]; E3 HGB +0.00026; negative)",
+      "file": "downloads/gems77-h80t-tilt-persist-37654dots-20261021-7d5f7b11-zeros.tif",
+      "sha256": "19e92e4db42b0de59c558e95a52ee419fc81f4c187c4fd22e35f252e16a4446a",
+      "checks": {
+        "artifact_exists": true,
+        "run_card_present": true,
+        "format_valid": true,
+        "format_readback_passed": true,
+        "literal_protocol_unique": false,
+        "beats_accepted_holdout_best": false,
+        "scientific_verdict_promote": false,
+        "selector_approved": false,
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": true
+      },
+      "run_card_audit": {
+        "run_card": "evidence/h80t_run_card.json",
+        "present": true,
+        "recorded_verdict": "negative",
+        "raster_sha256": "19e92e4db42b0de59c558e95a52ee419fc81f4c187c4fd22e35f252e16a4446a",
+        "explicit_promotion_evidence": false,
+        "recorded_safe_to_submit": false,
+        "literal_duplicate_recorded": true,
+        "real_model_forward_overlap_3px": null,
+        "real_model_forward_overlap_exceeds_070": false,
+        "registry_incomplete": true,
+        "holdout_invalid_for_promotion": false,
+        "historical_promotion_conflict": false,
+        "guardrail_clear": false
+      },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "19e92e4db42b0de59c558e95a52ee419fc81f4c187c4fd22e35f252e16a4446a"
+      },
+      "authorized_to_submit": false,
+      "decision": "NOT OK TO SUBMIT",
+      "failed_gates": [
+        "literal_protocol_unique",
+        "beats_accepted_holdout_best",
+        "scientific_verdict_promote",
+        "selector_approved",
+        "explicit_run_card_promotion_evidence"
+      ]
+    },
+    {
+      "lane": "D77: blind-distance band 250m-1km off catalogue + greedy dots under the exact DTI bar (HOLDOUT-DTI 0.0000 [0.0000, 0.0000]; negative result)",
+      "file": "downloads/gems77-d77-blind-band-35106dots-20261021-926076f7-zeros.tif",
+      "sha256": "c971fcf8a05928e7cbd3c31f868b4e9342be805d8cdf15701c097c8949574fde",
+      "checks": {
+        "artifact_exists": true,
+        "run_card_present": false,
+        "format_valid": true,
+        "format_readback_passed": true,
+        "literal_protocol_unique": false,
+        "beats_accepted_holdout_best": false,
+        "scientific_verdict_promote": false,
+        "selector_approved": false,
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": false
+      },
+      "run_card_audit": {
+        "run_card": null,
+        "present": false,
+        "recorded_verdict": null,
+        "raster_sha256": null,
+        "explicit_promotion_evidence": false,
+        "recorded_safe_to_submit": null,
+        "literal_duplicate_recorded": false,
+        "real_model_forward_overlap_exceeds_070": false,
+        "registry_incomplete": false,
+        "holdout_invalid_for_promotion": false,
+        "historical_promotion_conflict": false,
+        "guardrail_clear": false
+      },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "c971fcf8a05928e7cbd3c31f868b4e9342be805d8cdf15701c097c8949574fde"
+      },
+      "authorized_to_submit": false,
+      "decision": "NOT OK TO SUBMIT",
+      "failed_gates": [
+        "run_card_present",
+        "literal_protocol_unique",
+        "beats_accepted_holdout_best",
+        "scientific_verdict_promote",
+        "selector_approved",
+        "explicit_run_card_promotion_evidence",
+        "run_card_artifact_matches"
+      ]
+    },
+    {
+      "lane": "H77L: 300 m lagged ThK / LiDAR scarp (RESEARCH ONLY)",
+      "file": "downloads/gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY.tif",
+      "sha256": "9d199f9fad93e234397a7a19a05eabf12fd77285be3007e6afe22d12a36dcbd1",
+      "checks": {
+        "artifact_exists": true,
+        "run_card_present": true,
+        "format_valid": true,
+        "format_readback_passed": true,
+        "literal_protocol_unique": false,
+        "beats_accepted_holdout_best": false,
+        "scientific_verdict_promote": false,
+        "selector_approved": false,
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": true
+      },
+      "run_card_audit": {
+        "run_card": "evidence/h77l_run_card.json",
+        "present": true,
+        "recorded_verdict": "negative",
+        "raster_sha256": "9d199f9fad93e234397a7a19a05eabf12fd77285be3007e6afe22d12a36dcbd1",
+        "explicit_promotion_evidence": false,
+        "recorded_safe_to_submit": false,
+        "literal_duplicate_recorded": true,
+        "real_model_forward_overlap_3px": null,
+        "real_model_forward_overlap_exceeds_070": false,
+        "registry_incomplete": true,
+        "holdout_invalid_for_promotion": false,
+        "historical_promotion_conflict": false,
+        "guardrail_clear": false
+      },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "9d199f9fad93e234397a7a19a05eabf12fd77285be3007e6afe22d12a36dcbd1"
+      },
+      "authorized_to_submit": false,
+      "decision": "NOT OK TO SUBMIT",
+      "failed_gates": [
+        "literal_protocol_unique",
+        "beats_accepted_holdout_best",
+        "scientific_verdict_promote",
+        "selector_approved",
+        "explicit_run_card_promotion_evidence"
       ]
     },
     {
@@ -216,17 +1018,24 @@
       "sha256": "67aafffc50637a6df9c4275bc2735a0a865ac73904f02667b05f4f257d97587c",
       "checks": {
         "artifact_exists": true,
+        "run_card_present": true,
         "format_valid": true,
+        "format_readback_passed": true,
         "literal_protocol_unique": false,
         "beats_accepted_holdout_best": false,
         "scientific_verdict_promote": false,
         "selector_approved": false,
-        "sha256_matches": true
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": false
       },
       "run_card_audit": {
         "run_card": "evidence/h79_run_card.json",
         "present": true,
         "recorded_verdict": "negative",
+        "raster_sha256": null,
+        "explicit_promotion_evidence": false,
         "recorded_safe_to_submit": false,
         "literal_duplicate_recorded": true,
         "real_model_forward_overlap_3px": null,
@@ -236,13 +1045,38 @@
         "historical_promotion_conflict": false,
         "guardrail_clear": false
       },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "67aafffc50637a6df9c4275bc2735a0a865ac73904f02667b05f4f257d97587c"
+      },
       "authorized_to_submit": false,
       "decision": "NOT OK TO SUBMIT",
       "failed_gates": [
         "literal_protocol_unique",
         "beats_accepted_holdout_best",
         "scientific_verdict_promote",
-        "selector_approved"
+        "selector_approved",
+        "explicit_run_card_promotion_evidence",
+        "run_card_artifact_matches"
       ]
     },
     {
@@ -251,17 +1085,24 @@
       "sha256": "c272025ee653187d09489d941613a86bfe4b88110fb455847a2256cf5699014b",
       "checks": {
         "artifact_exists": true,
+        "run_card_present": true,
         "format_valid": true,
+        "format_readback_passed": true,
         "literal_protocol_unique": false,
         "beats_accepted_holdout_best": false,
         "scientific_verdict_promote": false,
         "selector_approved": false,
-        "sha256_matches": true
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": true
       },
       "run_card_audit": {
         "run_card": "evidence/h79_radhalo_run_card.json",
         "present": true,
         "recorded_verdict": "negative",
+        "raster_sha256": "c272025ee653187d09489d941613a86bfe4b88110fb455847a2256cf5699014b",
+        "explicit_promotion_evidence": false,
         "recorded_safe_to_submit": false,
         "literal_duplicate_recorded": true,
         "real_model_forward_overlap_3px": null,
@@ -271,13 +1112,103 @@
         "historical_promotion_conflict": false,
         "guardrail_clear": false
       },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "c272025ee653187d09489d941613a86bfe4b88110fb455847a2256cf5699014b"
+      },
       "authorized_to_submit": false,
       "decision": "NOT OK TO SUBMIT",
       "failed_gates": [
         "literal_protocol_unique",
         "beats_accepted_holdout_best",
         "scientific_verdict_promote",
-        "selector_approved"
+        "selector_approved",
+        "explicit_run_card_promotion_evidence"
+      ]
+    },
+    {
+      "lane": "H79-ORIENT: label-blind cross-sensor orientation persistence (negative holdout)",
+      "file": "downloads/gems79-orient-persistence-37654dots-20261021-4abff47886.tif",
+      "sha256": "745dbaa427bc1edaf477b3d0b4847b8be8d30d396106a61b1318a8726599be8e",
+      "checks": {
+        "artifact_exists": true,
+        "run_card_present": true,
+        "format_valid": true,
+        "format_readback_passed": true,
+        "literal_protocol_unique": false,
+        "beats_accepted_holdout_best": false,
+        "scientific_verdict_promote": false,
+        "selector_approved": false,
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": true
+      },
+      "run_card_audit": {
+        "run_card": "evidence/h79_orient_run_card.json",
+        "present": true,
+        "recorded_verdict": "negative",
+        "raster_sha256": "745dbaa427bc1edaf477b3d0b4847b8be8d30d396106a61b1318a8726599be8e",
+        "explicit_promotion_evidence": false,
+        "recorded_safe_to_submit": false,
+        "literal_duplicate_recorded": true,
+        "real_model_forward_overlap_3px": null,
+        "real_model_forward_overlap_exceeds_070": false,
+        "registry_incomplete": true,
+        "holdout_invalid_for_promotion": false,
+        "historical_promotion_conflict": false,
+        "guardrail_clear": false
+      },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "745dbaa427bc1edaf477b3d0b4847b8be8d30d396106a61b1318a8726599be8e"
+      },
+      "authorized_to_submit": false,
+      "decision": "NOT OK TO SUBMIT",
+      "failed_gates": [
+        "literal_protocol_unique",
+        "beats_accepted_holdout_best",
+        "scientific_verdict_promote",
+        "selector_approved",
+        "explicit_run_card_promotion_evidence"
       ]
     },
     {
@@ -286,17 +1217,24 @@
       "sha256": "110e7c77ec7e7d201de0ae04ffd2bf3b9db786b4063d800cacb8ab1ded4fd1b9",
       "checks": {
         "artifact_exists": true,
+        "run_card_present": true,
         "format_valid": true,
+        "format_readback_passed": true,
         "literal_protocol_unique": false,
-        "beats_accepted_holdout_best": true,
+        "beats_accepted_holdout_best": false,
         "scientific_verdict_promote": false,
         "selector_approved": false,
-        "sha256_matches": true
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": false
       },
       "run_card_audit": {
         "run_card": "evidence/run_card_h77d.json",
         "present": true,
         "recorded_verdict": "promote",
+        "raster_sha256": null,
+        "explicit_promotion_evidence": false,
         "recorded_safe_to_submit": false,
         "literal_duplicate_recorded": true,
         "real_model_forward_overlap_3px": null,
@@ -306,12 +1244,38 @@
         "historical_promotion_conflict": true,
         "guardrail_clear": false
       },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "110e7c77ec7e7d201de0ae04ffd2bf3b9db786b4063d800cacb8ab1ded4fd1b9"
+      },
       "authorized_to_submit": false,
       "decision": "NOT OK TO SUBMIT",
       "failed_gates": [
         "literal_protocol_unique",
+        "beats_accepted_holdout_best",
         "scientific_verdict_promote",
-        "selector_approved"
+        "selector_approved",
+        "explicit_run_card_promotion_evidence",
+        "run_card_artifact_matches"
       ]
     },
     {
@@ -320,17 +1284,24 @@
       "sha256": "f55105a091281be14957fff2f5aad9a85fa5b1acc31558e9fcd2aae9fdd588b0",
       "checks": {
         "artifact_exists": true,
+        "run_card_present": true,
         "format_valid": true,
+        "format_readback_passed": true,
         "literal_protocol_unique": false,
-        "beats_accepted_holdout_best": true,
+        "beats_accepted_holdout_best": false,
         "scientific_verdict_promote": false,
         "selector_approved": false,
-        "sha256_matches": true
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": false
       },
       "run_card_audit": {
         "run_card": "evidence/h77/run_card.json",
         "present": true,
         "recorded_verdict": "promote",
+        "raster_sha256": null,
+        "explicit_promotion_evidence": false,
         "recorded_safe_to_submit": true,
         "literal_duplicate_recorded": false,
         "real_model_forward_overlap_3px": 0.734989,
@@ -340,12 +1311,38 @@
         "historical_promotion_conflict": true,
         "guardrail_clear": false
       },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "f55105a091281be14957fff2f5aad9a85fa5b1acc31558e9fcd2aae9fdd588b0"
+      },
       "authorized_to_submit": false,
       "decision": "NOT OK TO SUBMIT",
       "failed_gates": [
         "literal_protocol_unique",
+        "beats_accepted_holdout_best",
         "scientific_verdict_promote",
-        "selector_approved"
+        "selector_approved",
+        "explicit_run_card_promotion_evidence",
+        "run_card_artifact_matches"
       ]
     },
     {
@@ -354,17 +1351,24 @@
       "sha256": "4571e767757be95e3fb70b4afb05e45528b1cfd74147e168c36253b1247f1c47",
       "checks": {
         "artifact_exists": true,
+        "run_card_present": true,
         "format_valid": true,
+        "format_readback_passed": true,
         "literal_protocol_unique": false,
         "beats_accepted_holdout_best": false,
         "scientific_verdict_promote": false,
         "selector_approved": false,
-        "sha256_matches": true
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": true
       },
       "run_card_audit": {
         "run_card": "evidence/h78_run_card.json",
         "present": true,
         "recorded_verdict": "negative",
+        "raster_sha256": "4571e767757be95e3fb70b4afb05e45528b1cfd74147e168c36253b1247f1c47",
+        "explicit_promotion_evidence": false,
         "recorded_safe_to_submit": false,
         "literal_duplicate_recorded": true,
         "real_model_forward_overlap_3px": null,
@@ -374,13 +1378,37 @@
         "historical_promotion_conflict": false,
         "guardrail_clear": false
       },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "4571e767757be95e3fb70b4afb05e45528b1cfd74147e168c36253b1247f1c47"
+      },
       "authorized_to_submit": false,
       "decision": "NOT OK TO SUBMIT",
       "failed_gates": [
         "literal_protocol_unique",
         "beats_accepted_holdout_best",
         "scientific_verdict_promote",
-        "selector_approved"
+        "selector_approved",
+        "explicit_run_card_promotion_evidence"
       ]
     },
     {
@@ -389,17 +1417,24 @@
       "sha256": "a8bfb844ab44b5d4157f75ec914a51655c27ae54727f7b4a088eca9d6f396898",
       "checks": {
         "artifact_exists": true,
+        "run_card_present": true,
         "format_valid": true,
+        "format_readback_passed": true,
         "literal_protocol_unique": false,
         "beats_accepted_holdout_best": false,
         "scientific_verdict_promote": false,
         "selector_approved": false,
-        "sha256_matches": true
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": false
       },
       "run_card_audit": {
         "run_card": "docs/data/run-card.json",
         "present": true,
         "recorded_verdict": "negative",
+        "raster_sha256": null,
+        "explicit_promotion_evidence": false,
         "recorded_safe_to_submit": false,
         "literal_duplicate_recorded": true,
         "real_model_forward_overlap_3px": null,
@@ -409,13 +1444,38 @@
         "historical_promotion_conflict": false,
         "guardrail_clear": false
       },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "a8bfb844ab44b5d4157f75ec914a51655c27ae54727f7b4a088eca9d6f396898"
+      },
       "authorized_to_submit": false,
       "decision": "NOT OK TO SUBMIT",
       "failed_gates": [
         "literal_protocol_unique",
         "beats_accepted_holdout_best",
         "scientific_verdict_promote",
-        "selector_approved"
+        "selector_approved",
+        "explicit_run_card_promotion_evidence",
+        "run_card_artifact_matches"
       ]
     },
     {
@@ -424,17 +1484,24 @@
       "sha256": "20be05cc671c85484e4cfc8ea40d2fced71d7ec70f20ab915f36fcc68fcc4851",
       "checks": {
         "artifact_exists": true,
+        "run_card_present": true,
         "format_valid": true,
+        "format_readback_passed": true,
         "literal_protocol_unique": false,
         "beats_accepted_holdout_best": false,
         "scientific_verdict_promote": false,
         "selector_approved": false,
-        "sha256_matches": true
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": true
       },
       "run_card_audit": {
         "run_card": "evidence/run_card_contactphys.json",
         "present": true,
         "recorded_verdict": "negative",
+        "raster_sha256": "20be05cc671c85484e4cfc8ea40d2fced71d7ec70f20ab915f36fcc68fcc4851",
+        "explicit_promotion_evidence": false,
         "recorded_safe_to_submit": false,
         "literal_duplicate_recorded": false,
         "real_model_forward_overlap_3px": null,
@@ -444,13 +1511,37 @@
         "historical_promotion_conflict": false,
         "guardrail_clear": true
       },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "20be05cc671c85484e4cfc8ea40d2fced71d7ec70f20ab915f36fcc68fcc4851"
+      },
       "authorized_to_submit": false,
       "decision": "NOT OK TO SUBMIT",
       "failed_gates": [
         "literal_protocol_unique",
         "beats_accepted_holdout_best",
         "scientific_verdict_promote",
-        "selector_approved"
+        "selector_approved",
+        "explicit_run_card_promotion_evidence"
       ]
     },
     {
@@ -459,17 +1550,24 @@
       "sha256": "9489af2b7e1b06a249203d3c9d6dfe4ed469647f59ebe3a5ffe9c50c67e46b42",
       "checks": {
         "artifact_exists": true,
+        "run_card_present": true,
         "format_valid": true,
+        "format_readback_passed": true,
         "literal_protocol_unique": false,
         "beats_accepted_holdout_best": false,
         "scientific_verdict_promote": false,
         "selector_approved": false,
-        "sha256_matches": true
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": true
       },
       "run_card_audit": {
         "run_card": "evidence/run_card.json",
         "present": true,
         "recorded_verdict": "negative",
+        "raster_sha256": "9489af2b7e1b06a249203d3c9d6dfe4ed469647f59ebe3a5ffe9c50c67e46b42",
+        "explicit_promotion_evidence": false,
         "recorded_safe_to_submit": false,
         "literal_duplicate_recorded": true,
         "real_model_forward_overlap_3px": null,
@@ -479,13 +1577,37 @@
         "historical_promotion_conflict": false,
         "guardrail_clear": false
       },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "9489af2b7e1b06a249203d3c9d6dfe4ed469647f59ebe3a5ffe9c50c67e46b42"
+      },
       "authorized_to_submit": false,
       "decision": "NOT OK TO SUBMIT",
       "failed_gates": [
         "literal_protocol_unique",
         "beats_accepted_holdout_best",
         "scientific_verdict_promote",
-        "selector_approved"
+        "selector_approved",
+        "explicit_run_card_promotion_evidence"
       ]
     },
     {
@@ -494,17 +1616,24 @@
       "sha256": "2269b714c78262a8d45dbd5eb02290a27ec9b99afe02340e343f5cb1ac7c58f3",
       "checks": {
         "artifact_exists": true,
+        "run_card_present": true,
         "format_valid": true,
+        "format_readback_passed": true,
         "literal_protocol_unique": false,
         "beats_accepted_holdout_best": false,
         "scientific_verdict_promote": false,
         "selector_approved": false,
-        "sha256_matches": true
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": true
       },
       "run_card_audit": {
         "run_card": "evidence/run_card_h77e.json",
         "present": true,
         "recorded_verdict": "negative",
+        "raster_sha256": "2269b714c78262a8d45dbd5eb02290a27ec9b99afe02340e343f5cb1ac7c58f3",
+        "explicit_promotion_evidence": false,
         "recorded_safe_to_submit": false,
         "literal_duplicate_recorded": true,
         "real_model_forward_overlap_3px": null,
@@ -514,13 +1643,37 @@
         "historical_promotion_conflict": false,
         "guardrail_clear": false
       },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "2269b714c78262a8d45dbd5eb02290a27ec9b99afe02340e343f5cb1ac7c58f3"
+      },
       "authorized_to_submit": false,
       "decision": "NOT OK TO SUBMIT",
       "failed_gates": [
         "literal_protocol_unique",
         "beats_accepted_holdout_best",
         "scientific_verdict_promote",
-        "selector_approved"
+        "selector_approved",
+        "explicit_run_card_promotion_evidence"
       ]
     },
     {
@@ -529,24 +1682,325 @@
       "sha256": "e7c81754420b9a6b4126ad1d7239870ae680eaa61e97a6d3f16f644a620d1c6a",
       "checks": {
         "artifact_exists": true,
+        "run_card_present": false,
         "format_valid": true,
+        "format_readback_passed": true,
         "literal_protocol_unique": false,
         "beats_accepted_holdout_best": false,
         "scientific_verdict_promote": false,
         "selector_approved": false,
-        "sha256_matches": true
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": false
       },
       "run_card_audit": {
         "run_card": null,
         "present": false,
         "recorded_verdict": null,
+        "raster_sha256": null,
+        "explicit_promotion_evidence": false,
         "recorded_safe_to_submit": null,
         "literal_duplicate_recorded": false,
         "real_model_forward_overlap_exceeds_070": false,
         "registry_incomplete": false,
         "holdout_invalid_for_promotion": false,
         "historical_promotion_conflict": false,
-        "guardrail_clear": true
+        "guardrail_clear": false
+      },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "e7c81754420b9a6b4126ad1d7239870ae680eaa61e97a6d3f16f644a620d1c6a"
+      },
+      "authorized_to_submit": false,
+      "decision": "NOT OK TO SUBMIT",
+      "failed_gates": [
+        "run_card_present",
+        "literal_protocol_unique",
+        "beats_accepted_holdout_best",
+        "scientific_verdict_promote",
+        "selector_approved",
+        "explicit_run_card_promotion_evidence",
+        "run_card_artifact_matches"
+      ]
+    },
+    {
+      "lane": "AGO-Hybrid35: ML backbone \u00d7 geophys displacement (negative; quick proxy not comparable)",
+      "file": "downloads/gems77-ago-hybrid35-geophys-37654dots-dc66e42e-zeros.tif",
+      "sha256": "fd7c75df77cd653e9fbd97b436bd304e0c1fd6b7283a4f513cdf6a2041136de0",
+      "checks": {
+        "artifact_exists": true,
+        "run_card_present": false,
+        "format_valid": true,
+        "format_readback_passed": false,
+        "literal_protocol_unique": false,
+        "beats_accepted_holdout_best": false,
+        "scientific_verdict_promote": false,
+        "selector_approved": false,
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": false
+      },
+      "run_card_audit": {
+        "run_card": null,
+        "present": false,
+        "recorded_verdict": null,
+        "raster_sha256": null,
+        "explicit_promotion_evidence": false,
+        "recorded_safe_to_submit": null,
+        "literal_duplicate_recorded": false,
+        "real_model_forward_overlap_exceeds_070": false,
+        "registry_incomplete": false,
+        "holdout_invalid_for_promotion": false,
+        "historical_promotion_conflict": false,
+        "guardrail_clear": false
+      },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": false,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": false,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "fd7c75df77cd653e9fbd97b436bd304e0c1fd6b7283a4f513cdf6a2041136de0"
+      },
+      "authorized_to_submit": false,
+      "decision": "NOT OK TO SUBMIT",
+      "failed_gates": [
+        "run_card_present",
+        "format_readback_passed",
+        "literal_protocol_unique",
+        "beats_accepted_holdout_best",
+        "scientific_verdict_promote",
+        "selector_approved",
+        "explicit_run_card_promotion_evidence",
+        "run_card_artifact_matches"
+      ]
+    },
+    {
+      "lane": "AGO-Hybrid50: ML backbone \u00d7 geophys displacement (negative; quick proxy not comparable)",
+      "file": "downloads/gems77-ago-hybrid50-geophys-37654dots-11b45670-zeros.tif",
+      "sha256": "c027f571a45566a8cf10b081f7d00fa48242bc4dfbc7f832ba98c06a5aca194e",
+      "checks": {
+        "artifact_exists": true,
+        "run_card_present": false,
+        "format_valid": true,
+        "format_readback_passed": false,
+        "literal_protocol_unique": false,
+        "beats_accepted_holdout_best": false,
+        "scientific_verdict_promote": false,
+        "selector_approved": false,
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": false
+      },
+      "run_card_audit": {
+        "run_card": null,
+        "present": false,
+        "recorded_verdict": null,
+        "raster_sha256": null,
+        "explicit_promotion_evidence": false,
+        "recorded_safe_to_submit": null,
+        "literal_duplicate_recorded": false,
+        "real_model_forward_overlap_exceeds_070": false,
+        "registry_incomplete": false,
+        "holdout_invalid_for_promotion": false,
+        "historical_promotion_conflict": false,
+        "guardrail_clear": false
+      },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": false,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": false,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "c027f571a45566a8cf10b081f7d00fa48242bc4dfbc7f832ba98c06a5aca194e"
+      },
+      "authorized_to_submit": false,
+      "decision": "NOT OK TO SUBMIT",
+      "failed_gates": [
+        "run_card_present",
+        "format_readback_passed",
+        "literal_protocol_unique",
+        "beats_accepted_holdout_best",
+        "scientific_verdict_promote",
+        "selector_approved",
+        "explicit_run_card_promotion_evidence",
+        "run_card_artifact_matches"
+      ]
+    },
+    {
+      "lane": "AGO-Select: geophys-scored D2.8 subset (negative; quick proxy not comparable)",
+      "file": "downloads/gems77-ago-select-geophys-37654dots-909053c9-zeros.tif",
+      "sha256": "7b3f74a68e7d4b428accc1f24659f21796fcc337fc6bae06fc4e4ff0738e87ec",
+      "checks": {
+        "artifact_exists": true,
+        "run_card_present": false,
+        "format_valid": true,
+        "format_readback_passed": true,
+        "literal_protocol_unique": false,
+        "beats_accepted_holdout_best": false,
+        "scientific_verdict_promote": false,
+        "selector_approved": false,
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": false
+      },
+      "run_card_audit": {
+        "run_card": null,
+        "present": false,
+        "recorded_verdict": null,
+        "raster_sha256": null,
+        "explicit_promotion_evidence": false,
+        "recorded_safe_to_submit": null,
+        "literal_duplicate_recorded": false,
+        "real_model_forward_overlap_exceeds_070": false,
+        "registry_incomplete": false,
+        "holdout_invalid_for_promotion": false,
+        "historical_promotion_conflict": false,
+        "guardrail_clear": false
+      },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "7b3f74a68e7d4b428accc1f24659f21796fcc337fc6bae06fc4e4ff0738e87ec"
+      },
+      "authorized_to_submit": false,
+      "decision": "NOT OK TO SUBMIT",
+      "failed_gates": [
+        "run_card_present",
+        "literal_protocol_unique",
+        "beats_accepted_holdout_best",
+        "scientific_verdict_promote",
+        "selector_approved",
+        "explicit_run_card_promotion_evidence",
+        "run_card_artifact_matches"
+      ]
+    },
+    {
+      "lane": "H81: slip-budget fault-tip continuation cones (deterministic, catalogue-only)",
+      "file": "downloads/gems77-h81-slipcone-37654dots-20261021-0fbeaf41-zeros.tif",
+      "sha256": "f3eb9e5e3bf03da0285b48b5bb7d41f15b0e450d16bc6b8943aeaa63efadc1f7",
+      "checks": {
+        "artifact_exists": true,
+        "run_card_present": true,
+        "format_valid": true,
+        "format_readback_passed": true,
+        "literal_protocol_unique": false,
+        "beats_accepted_holdout_best": false,
+        "scientific_verdict_promote": false,
+        "selector_approved": false,
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": true
+      },
+      "run_card_audit": {
+        "run_card": "evidence/h81_run_card.json",
+        "present": true,
+        "recorded_verdict": "negative",
+        "raster_sha256": "f3eb9e5e3bf03da0285b48b5bb7d41f15b0e450d16bc6b8943aeaa63efadc1f7",
+        "explicit_promotion_evidence": false,
+        "recorded_safe_to_submit": false,
+        "literal_duplicate_recorded": true,
+        "real_model_forward_overlap_3px": null,
+        "real_model_forward_overlap_exceeds_070": false,
+        "registry_incomplete": true,
+        "holdout_invalid_for_promotion": false,
+        "historical_promotion_conflict": false,
+        "guardrail_clear": false
+      },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "f3eb9e5e3bf03da0285b48b5bb7d41f15b0e450d16bc6b8943aeaa63efadc1f7"
       },
       "authorized_to_submit": false,
       "decision": "NOT OK TO SUBMIT",
@@ -554,7 +2008,75 @@
         "literal_protocol_unique",
         "beats_accepted_holdout_best",
         "scientific_verdict_promote",
-        "selector_approved"
+        "selector_approved",
+        "explicit_run_card_promotion_evidence"
+      ]
+    },
+    {
+      "lane": "H77-BGB: buried growth-wedge inflection x transtensional strain-partitioning x clay-cap breach (0.0584 lane / 0.1024 LOCO HOLDOUT-DTI)",
+      "file": "downloads/gems77-bgb-growthwedge-transtens-37654dots-20261021-3c58975b-zeros.tif",
+      "sha256": "07da3f559dd5f6d7f3971092bcc3dde060cd97b551ad6077b02ed558679f8e54",
+      "checks": {
+        "artifact_exists": true,
+        "run_card_present": true,
+        "format_valid": true,
+        "format_readback_passed": true,
+        "literal_protocol_unique": false,
+        "beats_accepted_holdout_best": false,
+        "scientific_verdict_promote": false,
+        "selector_approved": false,
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": false
+      },
+      "run_card_audit": {
+        "run_card": "evidence/run_card_bgb.json",
+        "present": true,
+        "recorded_verdict": "negative",
+        "raster_sha256": null,
+        "explicit_promotion_evidence": false,
+        "recorded_safe_to_submit": false,
+        "literal_duplicate_recorded": true,
+        "real_model_forward_overlap_3px": null,
+        "real_model_forward_overlap_exceeds_070": false,
+        "registry_incomplete": false,
+        "holdout_invalid_for_promotion": false,
+        "historical_promotion_conflict": false,
+        "guardrail_clear": false
+      },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "07da3f559dd5f6d7f3971092bcc3dde060cd97b551ad6077b02ed558679f8e54"
+      },
+      "authorized_to_submit": false,
+      "decision": "NOT OK TO SUBMIT",
+      "failed_gates": [
+        "literal_protocol_unique",
+        "beats_accepted_holdout_best",
+        "scientific_verdict_promote",
+        "selector_approved",
+        "explicit_run_card_promotion_evidence",
+        "run_card_artifact_matches"
       ]
     }
   ]

@@ -1,0 +1,86 @@
+{
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "alpha": 0.2,
+  "beta": 0.8,
+  "triangular_radius_m": 300.0,
+  "pooled": true,
+  "scores": {
+    "baseline": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.01634102106526168,
+      "ci95": [
+        0.013927016204600899,
+        0.01883923456873424
+      ],
+      "withheld_positive_pixels": 22893,
+      "tpw": 6304.438034604179,
+      "fpw": 1831145.62534379,
+      "fnw": 16588.561965395824
+    },
+    "tilt": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.016604549057377634,
+      "ci95": [
+        0.01413991791307848,
+        0.019176171146537618
+      ],
+      "withheld_positive_pixels": 22893,
+      "tpw": 6405.9723184020295,
+      "fpw": 1831003.1449242148,
+      "fnw": 16487.02768159797
+    },
+    "random": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.0153148788206139,
+      "ci95": [
+        0.01315199716437194,
+        0.017490965615798118
+      ],
+      "withheld_positive_pixels": 22893,
+      "tpw": 15027.417579814539,
+      "fpw": 4799550.267257248,
+      "fnw": 7865.582420185461
+    }
+  },
+  "best_comparable_control": "baseline",
+  "paired_differences": {
+    "baseline": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.0002635279921159549,
+      "ci95": [
+        6.082339349057849e-05,
+        0.0004810950772558666
+      ],
+      "withheld_positive_pixels": 22893
+    },
+    "random": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.0012896702367637333,
+      "ci95": [
+        0.00010111891224645321,
+        0.0025573908968629013
+      ],
+      "withheld_positive_pixels": 22893
+    }
+  },
+  "bootstrap": {
+    "method": "paired physical spatial-cluster percentile",
+    "clusters": 159,
+    "draws": 2000,
+    "seed": 520810,
+    "confidence": 0.95,
+    "caveat": "Conditional on fitted folds, catalogue labels and fixed budgets; not a leaderboard interval."
+  },
+  "implementation_sha256": {
+    "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+    "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+    "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+    "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+  }
+}

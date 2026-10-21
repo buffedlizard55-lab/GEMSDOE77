@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "lane_id": "H77E-KNICK-DECONF-SUBMOD",
+  "session_branch": "arena/66740483-gemsdoe77",
+  "preregistered_date_utc": "2026-10-21",
+  "status_at_preregistration": "LOCKED_BEFORE_EXPERIMENTS",
+  "lane_declaration": "Self-declared preregistered lane H77E following AGENTS.md, PROMPT.md, and PR #13 review findings (docs/review-2026-10-21.md). Tests untouched USGS 3DEP 10 m fluvial knickpoint & drainage-divide physics (dem10_chi_100m_u8.tif + dem10_chi_100m_sig_i32.tif), TIGER road-deconfounded square-root de-quantized 1 m LiDAR & HW/FW dip-slip step purity, 4.5 km updip hanging-wall seismogenic fault projection, exact deterministic 12-bit LOCO multi-scale fracture mechanics, and Dinkelbach fractional-DTI crest-centered 300 m submodular dot allocation.",
+  "hard_invariants": {
+    "zero_sgmc_channels": true,
+    "forbidden_csv_columns": ["dist_known_fault_px", "known_fault", "label"],
+    "zero_prior_submission_rasters_in_features_or_training": true,
+    "single_feature_symmetric_auc_ceiling": 0.90,
+    "surface_spearman_abs_ceiling": 0.90,
+    "final_dots_informative_forward_3px_overlap_ceiling": 0.70,
+    "final_dots_mutual_3px_overlap_ceiling": 0.70,
+    "max_experiments": 3,
+    "max_wall_hours": 2.0,
+    "vendor_gems57_unmodified": true
+  },
+  "experiments": [
+    {
+      "id": "E1",
+      "description": "Build zero-SGMC 125-channel physical + 12-bit LOCO feature stack, run 125 single-feature leakage canaries (<=0.90), and evaluate H77E + ablations on official gems57-pooled-hide-v2 Seed 20 (11,321 withheld positive pixels)."
+    },
+    {
+      "id": "E2",
+      "description": "Independent zero-retuning replication of locked H77E pipeline on official gems57-pooled-hide-v2 Seed 30 (11,342 withheld positive pixels) with 2,000-draw 20 km paired block bootstrap."
+    },
+    {
+      "id": "E3",
+      "description": "Strictly out-of-fold full-Nevada surface build, pre-placement Spearman surface audit + post-placement 3-px dot overlap audit across all valid archive + GEMSDOE65/73/74/75/76/77 rasters, official submission_writer packaging, and 17-check validation."
+    }
+  ]
+}
