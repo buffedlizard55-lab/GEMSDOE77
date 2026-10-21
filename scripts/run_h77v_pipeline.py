@@ -48,21 +48,21 @@ from gems57 import submission_writer as writer_mod
 from gems57 import uniqueness as uniq_mod
 from gems57 import validate as validate_mod
 
-from gems77v import LANE_ID, VERSION
-from gems77v.allocate import (
+from gems77vldsa import LANE_ID, VERSION
+from gems77vldsa.allocate import (
     PortfolioCapacityIndex,
     allocate_ldsa_submodular,
     allocate_peak_nms_baseline,
     ensure_audit_index_built,
 )
-from gems77v.features import (
+from gems77vldsa.features import (
     H77V_DELTA_NAMES,
     H77V_SLOCO_MECH_NAMES,
     build_h77v_static_stack,
     compute_h77v_sloco_mechanics_fp,
     run_single_feature_leakage_canaries,
 )
-from gems77v.models import fit_predict_h77v_fold
+from gems77vldsa.models import fit_predict_h77v_fold
 
 DATA_DIR = ROOT / ".cache" / "data"
 CACHE_DIR = ROOT / ".cache" / "h77v_work"

@@ -8,8 +8,8 @@ from pathlib import Path
 import numpy as np
 import rasterio
 
-from src.gems77v.allocate import PortfolioCapacityIndex, allocate_ldsa_submodular
-from src.gems77v.features import _hyperbolic_saddle, _tubular_demag_trough
+from src.gems77vldsa.allocate import PortfolioCapacityIndex, allocate_ldsa_submodular
+from src.gems77vldsa.features import _hyperbolic_saddle, _tubular_demag_trough
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -23,15 +23,15 @@ def _sha256(path: Path) -> str:
 
 
 def test_h77v_run_card_and_preregistration_contract():
-    prereg = json.loads((ROOT / "registry" / "preregistration_h77v.json").read_text())
+    prereg = json.loads((ROOT / "registry" / "preregistration_h77vldsa.json").read_text())
     assert prereg["lane_id"] == "H77V-DEALIASED-VENT-DEMAG-KNICK-LDSA"
     assert prereg["hard_invariants"]["max_experiments"] == 3
     assert len(prereg["hypotheses"]) >= 4
 
     rc_paths = [
         ROOT / "evidence" / "h77v" / "run_card.json",
-        ROOT / "evidence" / "run_card_h77v.json",
-        ROOT / "docs" / "evidence" / "run_card_h77v.json",
+        ROOT / "evidence" / "run_card_h77vldsa.json",
+        ROOT / "docs" / "evidence" / "run_card_h77vldsa.json",
     ]
     for p in rc_paths:
         assert p.exists(), f"Missing run card at {p}"
@@ -139,7 +139,7 @@ def test_h77v_html_and_figures_exist():
         p = ROOT / "docs" / "figures" / "h77v" / fig
         assert p.exists() and p.stat().st_size > 20_000
 
-    for page in ["h77v.html", "h77v-executive-summary.html", "index.html", "executive-summary.html"]:
+    for page in ["h77vldsa.html", "h77vldsa-executive-summary.html", "index.html", "executive-summary.html"]:
         txt = (ROOT / "docs" / page).read_text()
         assert "gemsdoe77-h77v-dealiased-vent-demag-knick-ldsa-20261021.tif" in txt
         assert "861c880e7a56203d197182075765480efaf224ad6cfde342fab511f5f908fa4c" in txt
