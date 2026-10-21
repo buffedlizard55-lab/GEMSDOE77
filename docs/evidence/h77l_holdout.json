@@ -1,0 +1,495 @@
+{
+  "evidence_class": "HOLDOUT-DTI",
+  "scores": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "triangular_radius_m": 300.0,
+    "pooled": true,
+    "scores": {
+      "lidar_step": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.014378908970982717,
+        "ci95": [
+          0.01060233332023205,
+          0.01881227231384915
+        ],
+        "withheld_positive_pixels": 41732,
+        "tpw": 516.836074967168,
+        "fpw": 12275.36244988836,
+        "fnw": 41215.16392503283
+      },
+      "coh100": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.01739086370644917,
+        "ci95": [
+          0.013697976011026786,
+          0.02151927911985781
+        ],
+        "withheld_positive_pixels": 41732,
+        "tpw": 632.1275299190415,
+        "fpw": 14181.142078394128,
+        "fnw": 41099.87247008096
+      },
+      "ThK_rank": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "withheld_positive_pixels": 41732,
+        "tpw": 0.0,
+        "fpw": 0.0,
+        "fnw": 41732.0
+      },
+      "tensor_anisotropy": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.014784913844955888,
+        "ci95": [
+          0.010444745143931419,
+          0.01973244766060344
+        ],
+        "withheld_positive_pixels": 41732,
+        "tpw": 538.6458550706508,
+        "fpw": 14693.98785549321,
+        "fnw": 41193.35414492934
+      },
+      "lag_response": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.01867387146640189,
+        "ci95": [
+          0.014894129758880159,
+          0.022931332114424382
+        ],
+        "withheld_positive_pixels": 41732,
+        "tpw": 662.1421748453992,
+        "fpw": 9700.93965484591,
+        "fnw": 41069.857825154606
+      },
+      "same_pixel_edge": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.021088922999189345,
+        "ci95": [
+          0.017084931967319444,
+          0.02608579786043224
+        ],
+        "withheld_positive_pixels": 41732,
+        "tpw": 760.039768805598,
+        "fpw": 12510.770961076998,
+        "fnw": 40971.96023119442
+      },
+      "candidate": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.031168049469754704,
+        "ci95": [
+          0.02597034755270614,
+          0.036921180837349236
+        ],
+        "withheld_positive_pixels": 41732,
+        "tpw": 1102.7814423639477,
+        "fpw": 8878.17839390693,
+        "fnw": 40629.21855763605
+      }
+    },
+    "best_comparable_control": "same_pixel_edge",
+    "paired_differences": {
+      "lidar_step": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.016789140498771987,
+        "ci95": [
+          0.011887593751878549,
+          0.021990434435106905
+        ],
+        "withheld_positive_pixels": 41732
+      },
+      "coh100": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.013777185763305534,
+        "ci95": [
+          0.007031631080988325,
+          0.020747722102370122
+        ],
+        "withheld_positive_pixels": 41732
+      },
+      "ThK_rank": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.031168049469754704,
+        "ci95": [
+          0.02597034755270614,
+          0.036921180837349236
+        ],
+        "withheld_positive_pixels": 41732
+      },
+      "tensor_anisotropy": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.016383135624798817,
+        "ci95": [
+          0.011189187878009967,
+          0.022022717515651793
+        ],
+        "withheld_positive_pixels": 41732
+      },
+      "lag_response": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.012494178003352813,
+        "ci95": [
+          0.008560371274832074,
+          0.016472857467132545
+        ],
+        "withheld_positive_pixels": 41732
+      },
+      "same_pixel_edge": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.010079126470565358,
+        "ci95": [
+          0.005557292427268103,
+          0.014872163374307648
+        ],
+        "withheld_positive_pixels": 41732
+      }
+    },
+    "bootstrap": {
+      "method": "paired physical spatial-cluster percentile",
+      "clusters": 133,
+      "draws": 1000,
+      "seed": 77077,
+      "confidence": 0.95,
+      "caveat": "Conditional on fitted folds, catalogue labels and fixed budgets; not a leaderboard interval."
+    },
+    "implementation_sha256": {
+      "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+      "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+      "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+      "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+    }
+  },
+  "split_receipts": [
+    {
+      "fold": 0,
+      "split_version": "label-blind-quadrants-v2",
+      "evaluation_region_label_blind": true,
+      "truth_px": 20977,
+      "evaluation_px": 1730363,
+      "training_domain_px": 1568522,
+      "held_components": 1338,
+      "shared_train_truth_components": 0,
+      "buffer_px": 80,
+      "nearest_training_to_region_px": 80.00624975587844,
+      "held_pixels_without_feature_support": 1066,
+      "held_positive_pixels_outside_this_evaluation_region": 185
+    },
+    {
+      "fold": 1,
+      "split_version": "label-blind-quadrants-v2",
+      "evaluation_region_label_blind": true,
+      "truth_px": 5944,
+      "evaluation_px": 615997,
+      "training_domain_px": 2713376,
+      "held_components": 348,
+      "shared_train_truth_components": 0,
+      "buffer_px": 80,
+      "nearest_training_to_region_px": 80.00624975587844,
+      "held_pixels_without_feature_support": 364,
+      "held_positive_pixels_outside_this_evaluation_region": 0
+    },
+    {
+      "fold": 2,
+      "split_version": "label-blind-quadrants-v2",
+      "evaluation_region_label_blind": true,
+      "truth_px": 7348,
+      "evaluation_px": 466414,
+      "training_domain_px": 2808227,
+      "held_components": 310,
+      "shared_train_truth_components": 0,
+      "buffer_px": 80,
+      "nearest_training_to_region_px": 80.00624975587844,
+      "held_pixels_without_feature_support": 613,
+      "held_positive_pixels_outside_this_evaluation_region": 356
+    },
+    {
+      "fold": 3,
+      "split_version": "label-blind-quadrants-v2",
+      "evaluation_region_label_blind": true,
+      "truth_px": 7463,
+      "evaluation_px": 641815,
+      "training_domain_px": 2719678,
+      "held_components": 290,
+      "shared_train_truth_components": 0,
+      "buffer_px": 80,
+      "nearest_training_to_region_px": 80.00624975587844,
+      "held_pixels_without_feature_support": 1523,
+      "held_positive_pixels_outside_this_evaluation_region": 216
+    }
+  ],
+  "leakage_canaries": [
+    {
+      "feature": "lidar_step",
+      "fold": 0,
+      "auc": 0.5398018162341901,
+      "positive_pixels": 20977,
+      "negative_proxy_pixels": 1709386,
+      "leakage_flag": false,
+      "evidence_class": "LEAKAGE-CANARY (not a leaderboard score)"
+    },
+    {
+      "feature": "coh100",
+      "fold": 0,
+      "auc": 0.4797906453511368,
+      "positive_pixels": 20977,
+      "negative_proxy_pixels": 1709386,
+      "leakage_flag": false,
+      "evidence_class": "LEAKAGE-CANARY (not a leaderboard score)"
+    },
+    {
+      "feature": "ThK_rank",
+      "fold": 0,
+      "auc": 0.47913607039210737,
+      "positive_pixels": 20977,
+      "negative_proxy_pixels": 1709386,
+      "leakage_flag": false,
+      "evidence_class": "LEAKAGE-CANARY (not a leaderboard score)"
+    },
+    {
+      "feature": "tensor_anisotropy",
+      "fold": 0,
+      "auc": 0.5443817936656281,
+      "positive_pixels": 20977,
+      "negative_proxy_pixels": 1709386,
+      "leakage_flag": false,
+      "evidence_class": "LEAKAGE-CANARY (not a leaderboard score)"
+    },
+    {
+      "feature": "lag_response",
+      "fold": 0,
+      "auc": 0.4996773078050647,
+      "positive_pixels": 20977,
+      "negative_proxy_pixels": 1709386,
+      "leakage_flag": false,
+      "evidence_class": "LEAKAGE-CANARY (not a leaderboard score)"
+    },
+    {
+      "feature": "same_pixel_edge",
+      "fold": 0,
+      "auc": 0.5210366191539839,
+      "positive_pixels": 20977,
+      "negative_proxy_pixels": 1709386,
+      "leakage_flag": false,
+      "evidence_class": "LEAKAGE-CANARY (not a leaderboard score)"
+    },
+    {
+      "feature": "candidate",
+      "fold": 0,
+      "auc": 0.518295263700523,
+      "positive_pixels": 20977,
+      "negative_proxy_pixels": 1709386,
+      "leakage_flag": false,
+      "evidence_class": "LEAKAGE-CANARY (not a leaderboard score)"
+    },
+    {
+      "feature": "lidar_step",
+      "fold": 1,
+      "auc": 0.5889402233643936,
+      "positive_pixels": 5944,
+      "negative_proxy_pixels": 610053,
+      "leakage_flag": false,
+      "evidence_class": "LEAKAGE-CANARY (not a leaderboard score)"
+    },
+    {
+      "feature": "coh100",
+      "fold": 1,
+      "auc": 0.46536222806482586,
+      "positive_pixels": 5944,
+      "negative_proxy_pixels": 610053,
+      "leakage_flag": false,
+      "evidence_class": "LEAKAGE-CANARY (not a leaderboard score)"
+    },
+    {
+      "feature": "ThK_rank",
+      "fold": 1,
+      "auc": 0.5236059904346638,
+      "positive_pixels": 5944,
+      "negative_proxy_pixels": 610053,
+      "leakage_flag": false,
+      "evidence_class": "LEAKAGE-CANARY (not a leaderboard score)"
+    },
+    {
+      "feature": "tensor_anisotropy",
+      "fold": 1,
+      "auc": 0.6159326358884702,
+      "positive_pixels": 5944,
+      "negative_proxy_pixels": 610053,
+      "leakage_flag": false,
+      "evidence_class": "LEAKAGE-CANARY (not a leaderboard score)"
+    },
+    {
+      "feature": "lag_response",
+      "fold": 1,
+      "auc": 0.5176624017546969,
+      "positive_pixels": 5944,
+      "negative_proxy_pixels": 610053,
+      "leakage_flag": false,
+      "evidence_class": "LEAKAGE-CANARY (not a leaderboard score)"
+    },
+    {
+      "feature": "same_pixel_edge",
+      "fold": 1,
+      "auc": 0.5585723895215962,
+      "positive_pixels": 5944,
+      "negative_proxy_pixels": 610053,
+      "leakage_flag": false,
+      "evidence_class": "LEAKAGE-CANARY (not a leaderboard score)"
+    },
+    {
+      "feature": "candidate",
+      "fold": 1,
+      "auc": 0.5578277233459443,
+      "positive_pixels": 5944,
+      "negative_proxy_pixels": 610053,
+      "leakage_flag": false,
+      "evidence_class": "LEAKAGE-CANARY (not a leaderboard score)"
+    },
+    {
+      "feature": "lidar_step",
+      "fold": 2,
+      "auc": 0.604816893296263,
+      "positive_pixels": 7348,
+      "negative_proxy_pixels": 459066,
+      "leakage_flag": false,
+      "evidence_class": "LEAKAGE-CANARY (not a leaderboard score)"
+    },
+    {
+      "feature": "coh100",
+      "fold": 2,
+      "auc": 0.5050955603102492,
+      "positive_pixels": 7348,
+      "negative_proxy_pixels": 459066,
+      "leakage_flag": false,
+      "evidence_class": "LEAKAGE-CANARY (not a leaderboard score)"
+    },
+    {
+      "feature": "ThK_rank",
+      "fold": 2,
+      "auc": 0.5513059327762755,
+      "positive_pixels": 7348,
+      "negative_proxy_pixels": 459066,
+      "leakage_flag": false,
+      "evidence_class": "LEAKAGE-CANARY (not a leaderboard score)"
+    },
+    {
+      "feature": "tensor_anisotropy",
+      "fold": 2,
+      "auc": 0.527665658001042,
+      "positive_pixels": 7348,
+      "negative_proxy_pixels": 459066,
+      "leakage_flag": false,
+      "evidence_class": "LEAKAGE-CANARY (not a leaderboard score)"
+    },
+    {
+      "feature": "lag_response",
+      "fold": 2,
+      "auc": 0.5066844904178722,
+      "positive_pixels": 7348,
+      "negative_proxy_pixels": 459066,
+      "leakage_flag": false,
+      "evidence_class": "LEAKAGE-CANARY (not a leaderboard score)"
+    },
+    {
+      "feature": "same_pixel_edge",
+      "fold": 2,
+      "auc": 0.576896369092378,
+      "positive_pixels": 7348,
+      "negative_proxy_pixels": 459066,
+      "leakage_flag": false,
+      "evidence_class": "LEAKAGE-CANARY (not a leaderboard score)"
+    },
+    {
+      "feature": "candidate",
+      "fold": 2,
+      "auc": 0.5472195682966812,
+      "positive_pixels": 7348,
+      "negative_proxy_pixels": 459066,
+      "leakage_flag": false,
+      "evidence_class": "LEAKAGE-CANARY (not a leaderboard score)"
+    },
+    {
+      "feature": "lidar_step",
+      "fold": 3,
+      "auc": 0.5982565208082257,
+      "positive_pixels": 7463,
+      "negative_proxy_pixels": 634352,
+      "leakage_flag": false,
+      "evidence_class": "LEAKAGE-CANARY (not a leaderboard score)"
+    },
+    {
+      "feature": "coh100",
+      "fold": 3,
+      "auc": 0.4623062925289213,
+      "positive_pixels": 7463,
+      "negative_proxy_pixels": 634352,
+      "leakage_flag": false,
+      "evidence_class": "LEAKAGE-CANARY (not a leaderboard score)"
+    },
+    {
+      "feature": "ThK_rank",
+      "fold": 3,
+      "auc": 0.38893450114147343,
+      "positive_pixels": 7463,
+      "negative_proxy_pixels": 634352,
+      "leakage_flag": false,
+      "evidence_class": "LEAKAGE-CANARY (not a leaderboard score)"
+    },
+    {
+      "feature": "tensor_anisotropy",
+      "fold": 3,
+      "auc": 0.5541591781577337,
+      "positive_pixels": 7463,
+      "negative_proxy_pixels": 634352,
+      "leakage_flag": false,
+      "evidence_class": "LEAKAGE-CANARY (not a leaderboard score)"
+    },
+    {
+      "feature": "lag_response",
+      "fold": 3,
+      "auc": 0.5037672062595173,
+      "positive_pixels": 7463,
+      "negative_proxy_pixels": 634352,
+      "leakage_flag": false,
+      "evidence_class": "LEAKAGE-CANARY (not a leaderboard score)"
+    },
+    {
+      "feature": "same_pixel_edge",
+      "fold": 3,
+      "auc": 0.5613371976099909,
+      "positive_pixels": 7463,
+      "negative_proxy_pixels": 634352,
+      "leakage_flag": false,
+      "evidence_class": "LEAKAGE-CANARY (not a leaderboard score)"
+    },
+    {
+      "feature": "candidate",
+      "fold": 3,
+      "auc": 0.5426218333192001,
+      "positive_pixels": 7463,
+      "negative_proxy_pixels": 634352,
+      "leakage_flag": false,
+      "evidence_class": "LEAKAGE-CANARY (not a leaderboard score)"
+    }
+  ],
+  "canary_flagged": false,
+  "note": "Labels are public known faults hidden as whole components, not undiscovered organizer truth. Validity restricted to filter-safe LiDAR+ThK coverage. Not comparable to other lanes unless fold/positive masks match."
+}

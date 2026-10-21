@@ -1,0 +1,38 @@
+{
+  "registered_utc": "2026-10-21",
+  "lane": "H77L: LiDAR micro-scarp with strike-normal spatially lagged ThK rank-intensity flank contrast",
+  "assignment_irregularity": "The supplied brief has no identifiable standalone single method paragraph; this is a new self-declared narrow lane. Earlier H77, H77D, H77-Step, H78, LIA, contactphys are closed and are not retrained or edited.",
+  "ranked_hypotheses": "research/h77l_pre_experiment_hypotheses.md (written before experiment)",
+  "inputs": [
+    "data/raw/external/lidar_scarp_features_u8.tif: step_max band 3, coh100 band 10, valid band 12 (owner mirror of 3DEP derivatives)",
+    "data/raw/external/geodawn_extensions_u8.tif: ThK band 1 (owner quantized mirror of GeoDAWN data)",
+    "data/bridge/sample_submission.tif: footprint and grid ONLY",
+    "data/bridge/existing_faults.tif: component split, visible fault masking and final excluded catalogue ONLY"
+  ],
+  "input_pins": {
+    "lidar_scarp_features_u8_sha256": "d580bb8bdcdb941e32fefb8b38044bc5bf04e199bf2e83498c3576e6fc465568",
+    "geodawn_extensions_u8_sha256": "a35a9c6d2a14786f4dab85481ee59769213072f5dab5b2535ea82ae4d9bb7d9b"
+  },
+  "feature_units": "uint8 percentile-quantized, 0=missing: normalized rank-intensity response only, no chemical concentration or heat evidence",
+  "method": {
+    "gaussian_lidar_sigma_px": 1.3,
+    "tensor_sigma_px": 2.5,
+    "gaussian_thk_sigma_px": 1.2,
+    "boundary_chebyshev_erosion_px": 16,
+    "near_center_gradient_distance_px": 1.0,
+    "flank_sample_distance_px": 3.0,
+    "lag_response": "max(abs(ThK_smooth(x+3n)-ThK_smooth(x)), abs(ThK_smooth(x-3n)-ThK_smooth(x))) - 1.25 * (2*abs(grad_ThK_smooth dot n)); floor at 0; n = maximum-eigenvector of 2.5px-smoothed structure tensor of 1.3px-smoothed lidar step_max, with eigenvalue anisotropy as weight",
+    "raw_response": "max(0,lag_response) * (lidar_step_uint8/255) * (lidar_coh100_uint8/255) * tensor_anisotropy",
+    "surface_normalization": "For each tested arm independently: threshold 99th percentile of strictly positive responses in eligible non-catalogue-independent footprint and scale by 99.9th minus 99th percentile, clip to [0,1]. Threshold/scale use covariates only. Zero outside eligible. No other tuning on labels.",
+    "controlled_arms": ["lidar_step", "coh100", "ThK_rank", "tensor_anisotropy", "lag_response", "same_pixel_edge", "candidate"],
+    "mask_support": "eligible = sample-footprint & lidar_valid>0 & lidar_step>0 & ThK>0, then square 3x3 erosion 16 iterations. No full-catalogue mask or truth in the response itself. Filter and 3px interpolation stencils are contained in eroded domain."
+  },
+  "non_fault_mimic": "road/canal embankments and Pleistocene lake shoreline benches at alluvial compositional boundaries",
+  "experiment_plan": "One experiment: test every feature alone with AUC canaries and shared pooled hide-and-recover DTI on four fixed quadrant/whole-component folds; 80px training buffer; catalogue-derived quantities are only fold visible masks; negative proxies are unverified absence. Bootstrap aligned 20km blocks (1000 paired draws). Compare signal to control lidar_step with identical normalization. Surface uniqueness checked with unmodified pinned shared gate against at least two hash-verified pinned registry rasters. On first duplicate: STOP before placement, publish only the tested surface as a RESEARCH-ONLY file through unmodified shared writer with explicit NOT OK TO SUBMIT. Post-write compare exact decoded bytes to the same witnesses; do not present that as a dot-placement clearance.",
+  "promotion_rule": "No competition slot without (i) every canary AUC <=0.90 (ii) complete unique registry surface and dots <= limits (iii) paired 95% CI of comparable holdout improvement above zero AND beat the current comparable holdout best (iv) local writer PASS (v) separate selector approval. A full incumbent is not re-fit here: no claim of beatability if fold domains differ.",
+  "registry_policy": "Literal: correlation >0.90 or forward dot overlap >0.70 is a duplicate; no filtering of dense rasters, no density exemption, no private fork or reinterpretation. Partial scan proves rejection but cannot establish universal uniqueness.",
+  "budget": {"maximum_experiments": 3, "maximum_hours": 2, "planned_experiments": 1, "weekly_slots_used": 0},
+  "stop_if_first_gate_fails": true,
+  "organizer_authentication": "owner-mirrored inputs and known leaderboard mapping, not an organizer-authenticated H33 receipt",
+  "expected_improvement": "ordinal, uncertain; no projection or numerical score"
+}

@@ -1,0 +1,517 @@
+{
+  "schema": "gems-submission-authorization-v1",
+  "generated_utc": "2026-10-21T15:00:03+00:00",
+  "policy": "Authorization requires artifact existence, matching SHA-256, local format PASS, literal protocol uniqueness (including <=0.70 real-model forward 3-px overlap and complete registry), improvement over the accepted holdout best, a promote verdict, and explicit selector approval. Missing fields or historical run-card uniqueness/completeness failures fail closed.",
+  "repository_authorized_file_count": 0,
+  "repository_decision": "NOT OK TO SUBMIT",
+  "historical_run_card_reconciliation": [
+    {
+      "lane": "H77L: 300 m lagged ThK / LiDAR scarp (RESEARCH ONLY)",
+      "run_card": "evidence/h77l_run_card.json",
+      "recorded_verdict": "negative",
+      "recorded_safe_to_submit": false,
+      "historical_promotion_conflict": false,
+      "operative_decision": "NOT OK TO SUBMIT",
+      "reconciliation_note": "Historical run card and operative release gate both fail closed."
+    },
+    {
+      "lane": "H79-BB: basement potential-field step \u00d7 topographic curvature ridge (research TIFF; literal FAIL)",
+      "run_card": "evidence/h79_run_card.json",
+      "recorded_verdict": "negative",
+      "recorded_safe_to_submit": false,
+      "historical_promotion_conflict": false,
+      "operative_decision": "NOT OK TO SUBMIT",
+      "reconciliation_note": "Historical run card and operative release gate both fail closed."
+    },
+    {
+      "lane": "H79-RH: lagged radiometric U-halo pairing (parallel negative)",
+      "run_card": "evidence/h79_radhalo_run_card.json",
+      "recorded_verdict": "negative",
+      "recorded_safe_to_submit": false,
+      "historical_promotion_conflict": false,
+      "operative_decision": "NOT OK TO SUBMIT",
+      "reconciliation_note": "Historical run card and operative release gate both fail closed."
+    },
+    {
+      "lane": "H77D: Coupled Zero-SGMC Tectono-Hydrothermal Conduits + 12-Bit LOCO + 300 m Submodular Cover (0.15011 / 0.14030 HOLDOUT-DTI)",
+      "run_card": "evidence/run_card_h77d.json",
+      "recorded_verdict": "promote",
+      "recorded_safe_to_submit": false,
+      "historical_promotion_conflict": true,
+      "operative_decision": "NOT OK TO SUBMIT",
+      "reconciliation_note": "Frozen historical run card retains its original experiment fields for audit; superseded by fail-closed repository release gate."
+    },
+    {
+      "lane": "H77-Step: HW/FW dip-slip step tensor + V-LBCO crack-tip mechanics + Radon + flank-zeroed 300m submod (0.1527 HOLDOUT-DTI)",
+      "run_card": "evidence/h77/run_card.json",
+      "recorded_verdict": "promote",
+      "recorded_safe_to_submit": true,
+      "historical_promotion_conflict": true,
+      "operative_decision": "NOT OK TO SUBMIT",
+      "reconciliation_note": "Frozen historical run card retains its original experiment fields for audit; superseded by fail-closed repository release gate."
+    },
+    {
+      "lane": "H78: lidar scarp consensus, uniqueness-capped allocation",
+      "run_card": "evidence/h78_run_card.json",
+      "recorded_verdict": "negative",
+      "recorded_safe_to_submit": false,
+      "historical_promotion_conflict": false,
+      "operative_decision": "NOT OK TO SUBMIT",
+      "reconciliation_note": "Historical run card and operative release gate both fail closed."
+    },
+    {
+      "lane": "LIA: live-score inversion and allocation",
+      "run_card": "docs/data/run-card.json",
+      "recorded_verdict": "negative",
+      "recorded_safe_to_submit": false,
+      "historical_promotion_conflict": false,
+      "operative_decision": "NOT OK TO SUBMIT",
+      "reconciliation_note": "Historical run card and operative release gate both fail closed."
+    },
+    {
+      "lane": "Contact-physics + front-base",
+      "run_card": "evidence/run_card_contactphys.json",
+      "recorded_verdict": "negative",
+      "recorded_safe_to_submit": false,
+      "historical_promotion_conflict": false,
+      "operative_decision": "NOT OK TO SUBMIT",
+      "reconciliation_note": "Historical run card and operative release gate both fail closed."
+    },
+    {
+      "lane": "Selective-U curvature (research TIFF)",
+      "run_card": "evidence/run_card.json",
+      "recorded_verdict": "negative",
+      "recorded_safe_to_submit": false,
+      "historical_promotion_conflict": false,
+      "operative_decision": "NOT OK TO SUBMIT",
+      "reconciliation_note": "Historical run card and operative release gate both fail closed."
+    },
+    {
+      "lane": "H77E: upward-continuation persistence + Euler depth coherence + LOCO-ctx (0.1305/0.1342 HOLDOUT-DTI)",
+      "run_card": "evidence/run_card_h77e.json",
+      "recorded_verdict": "negative",
+      "recorded_safe_to_submit": false,
+      "historical_promotion_conflict": false,
+      "operative_decision": "NOT OK TO SUBMIT",
+      "reconciliation_note": "Historical run card and operative release gate both fail closed."
+    }
+  ],
+  "artifacts": [
+    {
+      "lane": "D77: blind-distance band 250m-1km off catalogue + greedy dots under the exact DTI bar (HOLDOUT-DTI 0.0000 [0.0000, 0.0000]; negative result)",
+      "file": "downloads/gems77-d77-blind-band-35106dots-20261021-926076f7-zeros.tif",
+      "sha256": "c971fcf8a05928e7cbd3c31f868b4e9342be805d8cdf15701c097c8949574fde",
+      "checks": {
+        "artifact_exists": true,
+        "format_valid": true,
+        "literal_protocol_unique": false,
+        "beats_accepted_holdout_best": false,
+        "scientific_verdict_promote": false,
+        "selector_approved": false,
+        "sha256_matches": true
+      },
+      "run_card_audit": {
+        "run_card": null,
+        "present": false,
+        "recorded_verdict": null,
+        "recorded_safe_to_submit": null,
+        "literal_duplicate_recorded": false,
+        "real_model_forward_overlap_exceeds_070": false,
+        "registry_incomplete": false,
+        "holdout_invalid_for_promotion": false,
+        "historical_promotion_conflict": false,
+        "guardrail_clear": true
+      },
+      "authorized_to_submit": false,
+      "decision": "NOT OK TO SUBMIT",
+      "failed_gates": [
+        "literal_protocol_unique",
+        "beats_accepted_holdout_best",
+        "scientific_verdict_promote",
+        "selector_approved"
+      ]
+    },
+    {
+      "lane": "H77L: 300 m lagged ThK / LiDAR scarp (RESEARCH ONLY)",
+      "file": "downloads/gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY.tif",
+      "sha256": "9d199f9fad93e234397a7a19a05eabf12fd77285be3007e6afe22d12a36dcbd1",
+      "checks": {
+        "artifact_exists": true,
+        "format_valid": true,
+        "literal_protocol_unique": false,
+        "beats_accepted_holdout_best": false,
+        "scientific_verdict_promote": false,
+        "selector_approved": false,
+        "sha256_matches": true
+      },
+      "run_card_audit": {
+        "run_card": "evidence/h77l_run_card.json",
+        "present": true,
+        "recorded_verdict": "negative",
+        "recorded_safe_to_submit": false,
+        "literal_duplicate_recorded": true,
+        "real_model_forward_overlap_3px": null,
+        "real_model_forward_overlap_exceeds_070": false,
+        "registry_incomplete": true,
+        "holdout_invalid_for_promotion": false,
+        "historical_promotion_conflict": false,
+        "guardrail_clear": false
+      },
+      "authorized_to_submit": false,
+      "decision": "NOT OK TO SUBMIT",
+      "failed_gates": [
+        "literal_protocol_unique",
+        "beats_accepted_holdout_best",
+        "scientific_verdict_promote",
+        "selector_approved"
+      ]
+    },
+    {
+      "lane": "H79-BB: basement potential-field step \u00d7 topographic curvature ridge (research TIFF; literal FAIL)",
+      "file": "downloads/gems77-h79-crossgrad-ridge-37654dots-20261021-dd0dbf9c-zeros.tif",
+      "sha256": "67aafffc50637a6df9c4275bc2735a0a865ac73904f02667b05f4f257d97587c",
+      "checks": {
+        "artifact_exists": true,
+        "format_valid": true,
+        "literal_protocol_unique": false,
+        "beats_accepted_holdout_best": false,
+        "scientific_verdict_promote": false,
+        "selector_approved": false,
+        "sha256_matches": true
+      },
+      "run_card_audit": {
+        "run_card": "evidence/h79_run_card.json",
+        "present": true,
+        "recorded_verdict": "negative",
+        "recorded_safe_to_submit": false,
+        "literal_duplicate_recorded": true,
+        "real_model_forward_overlap_3px": null,
+        "real_model_forward_overlap_exceeds_070": false,
+        "registry_incomplete": false,
+        "holdout_invalid_for_promotion": false,
+        "historical_promotion_conflict": false,
+        "guardrail_clear": false
+      },
+      "authorized_to_submit": false,
+      "decision": "NOT OK TO SUBMIT",
+      "failed_gates": [
+        "literal_protocol_unique",
+        "beats_accepted_holdout_best",
+        "scientific_verdict_promote",
+        "selector_approved"
+      ]
+    },
+    {
+      "lane": "H79-RH: lagged radiometric U-halo pairing (parallel negative)",
+      "file": "downloads/gems77-h79-radhalo-lag3-37654-20261021-zeros.tif",
+      "sha256": "c272025ee653187d09489d941613a86bfe4b88110fb455847a2256cf5699014b",
+      "checks": {
+        "artifact_exists": true,
+        "format_valid": true,
+        "literal_protocol_unique": false,
+        "beats_accepted_holdout_best": false,
+        "scientific_verdict_promote": false,
+        "selector_approved": false,
+        "sha256_matches": true
+      },
+      "run_card_audit": {
+        "run_card": "evidence/h79_radhalo_run_card.json",
+        "present": true,
+        "recorded_verdict": "negative",
+        "recorded_safe_to_submit": false,
+        "literal_duplicate_recorded": true,
+        "real_model_forward_overlap_3px": null,
+        "real_model_forward_overlap_exceeds_070": false,
+        "registry_incomplete": false,
+        "holdout_invalid_for_promotion": false,
+        "historical_promotion_conflict": false,
+        "guardrail_clear": false
+      },
+      "authorized_to_submit": false,
+      "decision": "NOT OK TO SUBMIT",
+      "failed_gates": [
+        "literal_protocol_unique",
+        "beats_accepted_holdout_best",
+        "scientific_verdict_promote",
+        "selector_approved"
+      ]
+    },
+    {
+      "lane": "H77D: Coupled Zero-SGMC Tectono-Hydrothermal Conduits + 12-Bit LOCO + 300 m Submodular Cover (0.15011 / 0.14030 HOLDOUT-DTI)",
+      "file": "downloads/gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.tif",
+      "sha256": "110e7c77ec7e7d201de0ae04ffd2bf3b9db786b4063d800cacb8ab1ded4fd1b9",
+      "checks": {
+        "artifact_exists": true,
+        "format_valid": true,
+        "literal_protocol_unique": false,
+        "beats_accepted_holdout_best": true,
+        "scientific_verdict_promote": false,
+        "selector_approved": false,
+        "sha256_matches": true
+      },
+      "run_card_audit": {
+        "run_card": "evidence/run_card_h77d.json",
+        "present": true,
+        "recorded_verdict": "promote",
+        "recorded_safe_to_submit": false,
+        "literal_duplicate_recorded": true,
+        "real_model_forward_overlap_3px": null,
+        "real_model_forward_overlap_exceeds_070": false,
+        "registry_incomplete": false,
+        "holdout_invalid_for_promotion": false,
+        "historical_promotion_conflict": true,
+        "guardrail_clear": false
+      },
+      "authorized_to_submit": false,
+      "decision": "NOT OK TO SUBMIT",
+      "failed_gates": [
+        "literal_protocol_unique",
+        "scientific_verdict_promote",
+        "selector_approved"
+      ]
+    },
+    {
+      "lane": "H77-Step: HW/FW dip-slip step tensor + V-LBCO crack-tip mechanics + Radon + flank-zeroed 300m submod (0.1527 HOLDOUT-DTI)",
+      "file": "downloads/gems77-step-propensity-submod300.tif",
+      "sha256": "f55105a091281be14957fff2f5aad9a85fa5b1acc31558e9fcd2aae9fdd588b0",
+      "checks": {
+        "artifact_exists": true,
+        "format_valid": true,
+        "literal_protocol_unique": false,
+        "beats_accepted_holdout_best": true,
+        "scientific_verdict_promote": false,
+        "selector_approved": false,
+        "sha256_matches": true
+      },
+      "run_card_audit": {
+        "run_card": "evidence/h77/run_card.json",
+        "present": true,
+        "recorded_verdict": "promote",
+        "recorded_safe_to_submit": true,
+        "literal_duplicate_recorded": false,
+        "real_model_forward_overlap_3px": 0.734989,
+        "real_model_forward_overlap_exceeds_070": true,
+        "registry_incomplete": false,
+        "holdout_invalid_for_promotion": false,
+        "historical_promotion_conflict": true,
+        "guardrail_clear": false
+      },
+      "authorized_to_submit": false,
+      "decision": "NOT OK TO SUBMIT",
+      "failed_gates": [
+        "literal_protocol_unique",
+        "scientific_verdict_promote",
+        "selector_approved"
+      ]
+    },
+    {
+      "lane": "H78: lidar scarp consensus, uniqueness-capped allocation",
+      "file": "downloads/gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros.tif",
+      "sha256": "4571e767757be95e3fb70b4afb05e45528b1cfd74147e168c36253b1247f1c47",
+      "checks": {
+        "artifact_exists": true,
+        "format_valid": true,
+        "literal_protocol_unique": false,
+        "beats_accepted_holdout_best": false,
+        "scientific_verdict_promote": false,
+        "selector_approved": false,
+        "sha256_matches": true
+      },
+      "run_card_audit": {
+        "run_card": "evidence/h78_run_card.json",
+        "present": true,
+        "recorded_verdict": "negative",
+        "recorded_safe_to_submit": false,
+        "literal_duplicate_recorded": true,
+        "real_model_forward_overlap_3px": null,
+        "real_model_forward_overlap_exceeds_070": false,
+        "registry_incomplete": true,
+        "holdout_invalid_for_promotion": false,
+        "historical_promotion_conflict": false,
+        "guardrail_clear": false
+      },
+      "authorized_to_submit": false,
+      "decision": "NOT OK TO SUBMIT",
+      "failed_gates": [
+        "literal_protocol_unique",
+        "beats_accepted_holdout_best",
+        "scientific_verdict_promote",
+        "selector_approved"
+      ]
+    },
+    {
+      "lane": "LIA: live-score inversion and allocation",
+      "file": "downloads/gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif",
+      "sha256": "a8bfb844ab44b5d4157f75ec914a51655c27ae54727f7b4a088eca9d6f396898",
+      "checks": {
+        "artifact_exists": true,
+        "format_valid": true,
+        "literal_protocol_unique": false,
+        "beats_accepted_holdout_best": false,
+        "scientific_verdict_promote": false,
+        "selector_approved": false,
+        "sha256_matches": true
+      },
+      "run_card_audit": {
+        "run_card": "docs/data/run-card.json",
+        "present": true,
+        "recorded_verdict": "negative",
+        "recorded_safe_to_submit": false,
+        "literal_duplicate_recorded": true,
+        "real_model_forward_overlap_3px": null,
+        "real_model_forward_overlap_exceeds_070": false,
+        "registry_incomplete": false,
+        "holdout_invalid_for_promotion": false,
+        "historical_promotion_conflict": false,
+        "guardrail_clear": false
+      },
+      "authorized_to_submit": false,
+      "decision": "NOT OK TO SUBMIT",
+      "failed_gates": [
+        "literal_protocol_unique",
+        "beats_accepted_holdout_best",
+        "scientific_verdict_promote",
+        "selector_approved"
+      ]
+    },
+    {
+      "lane": "Contact-physics + front-base",
+      "file": "downloads/gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif",
+      "sha256": "20be05cc671c85484e4cfc8ea40d2fced71d7ec70f20ab915f36fcc68fcc4851",
+      "checks": {
+        "artifact_exists": true,
+        "format_valid": true,
+        "literal_protocol_unique": false,
+        "beats_accepted_holdout_best": false,
+        "scientific_verdict_promote": false,
+        "selector_approved": false,
+        "sha256_matches": true
+      },
+      "run_card_audit": {
+        "run_card": "evidence/run_card_contactphys.json",
+        "present": true,
+        "recorded_verdict": "negative",
+        "recorded_safe_to_submit": false,
+        "literal_duplicate_recorded": false,
+        "real_model_forward_overlap_3px": null,
+        "real_model_forward_overlap_exceeds_070": false,
+        "registry_incomplete": false,
+        "holdout_invalid_for_promotion": false,
+        "historical_promotion_conflict": false,
+        "guardrail_clear": true
+      },
+      "authorized_to_submit": false,
+      "decision": "NOT OK TO SUBMIT",
+      "failed_gates": [
+        "literal_protocol_unique",
+        "beats_accepted_holdout_best",
+        "scientific_verdict_promote",
+        "selector_approved"
+      ]
+    },
+    {
+      "lane": "Selective-U curvature (research TIFF)",
+      "file": "downloads/gems77-h77-urank-curvature-0d868dc271bb-research.tif",
+      "sha256": "9489af2b7e1b06a249203d3c9d6dfe4ed469647f59ebe3a5ffe9c50c67e46b42",
+      "checks": {
+        "artifact_exists": true,
+        "format_valid": true,
+        "literal_protocol_unique": false,
+        "beats_accepted_holdout_best": false,
+        "scientific_verdict_promote": false,
+        "selector_approved": false,
+        "sha256_matches": true
+      },
+      "run_card_audit": {
+        "run_card": "evidence/run_card.json",
+        "present": true,
+        "recorded_verdict": "negative",
+        "recorded_safe_to_submit": false,
+        "literal_duplicate_recorded": true,
+        "real_model_forward_overlap_3px": null,
+        "real_model_forward_overlap_exceeds_070": false,
+        "registry_incomplete": true,
+        "holdout_invalid_for_promotion": true,
+        "historical_promotion_conflict": false,
+        "guardrail_clear": false
+      },
+      "authorized_to_submit": false,
+      "decision": "NOT OK TO SUBMIT",
+      "failed_gates": [
+        "literal_protocol_unique",
+        "beats_accepted_holdout_best",
+        "scientific_verdict_promote",
+        "selector_approved"
+      ]
+    },
+    {
+      "lane": "H77E: upward-continuation persistence + Euler depth coherence + LOCO-ctx (0.1305/0.1342 HOLDOUT-DTI)",
+      "file": "downloads/gems77-h77e-ucpeuler-ctx-37654dots-20261021-22873551-zeros.tif",
+      "sha256": "2269b714c78262a8d45dbd5eb02290a27ec9b99afe02340e343f5cb1ac7c58f3",
+      "checks": {
+        "artifact_exists": true,
+        "format_valid": true,
+        "literal_protocol_unique": false,
+        "beats_accepted_holdout_best": false,
+        "scientific_verdict_promote": false,
+        "selector_approved": false,
+        "sha256_matches": true
+      },
+      "run_card_audit": {
+        "run_card": "evidence/run_card_h77e.json",
+        "present": true,
+        "recorded_verdict": "negative",
+        "recorded_safe_to_submit": false,
+        "literal_duplicate_recorded": true,
+        "real_model_forward_overlap_3px": null,
+        "real_model_forward_overlap_exceeds_070": false,
+        "registry_incomplete": true,
+        "holdout_invalid_for_promotion": false,
+        "historical_promotion_conflict": false,
+        "guardrail_clear": false
+      },
+      "authorized_to_submit": false,
+      "decision": "NOT OK TO SUBMIT",
+      "failed_gates": [
+        "literal_protocol_unique",
+        "beats_accepted_holdout_best",
+        "scientific_verdict_promote",
+        "selector_approved"
+      ]
+    },
+    {
+      "lane": "H77-XSEN: magnetic analytic-signal x radiometric Th/K+U/K boundary coincidence (0.0994 HOLDOUT-DTI)",
+      "file": "downloads/gems77-xsen-coincide-hgb-37654dots-20261021-zeros.tif",
+      "sha256": "e7c81754420b9a6b4126ad1d7239870ae680eaa61e97a6d3f16f644a620d1c6a",
+      "checks": {
+        "artifact_exists": true,
+        "format_valid": true,
+        "literal_protocol_unique": false,
+        "beats_accepted_holdout_best": false,
+        "scientific_verdict_promote": false,
+        "selector_approved": false,
+        "sha256_matches": true
+      },
+      "run_card_audit": {
+        "run_card": null,
+        "present": false,
+        "recorded_verdict": null,
+        "recorded_safe_to_submit": null,
+        "literal_duplicate_recorded": false,
+        "real_model_forward_overlap_exceeds_070": false,
+        "registry_incomplete": false,
+        "holdout_invalid_for_promotion": false,
+        "historical_promotion_conflict": false,
+        "guardrail_clear": true
+      },
+      "authorized_to_submit": false,
+      "decision": "NOT OK TO SUBMIT",
+      "failed_gates": [
+        "literal_protocol_unique",
+        "beats_accepted_holdout_best",
+        "scientific_verdict_promote",
+        "selector_approved"
+      ]
+    }
+  ]
+}
