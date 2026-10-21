@@ -20,6 +20,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "vendor"))
 from gems57.grid import load_grid
 from gems57.validate import validate
+from gems57.uniqueness import RHO_LIMIT, OVERLAP_LIMIT
 
 DEFAULT_LANES = ROOT / "docs" / "data" / "lanes.json"
 DEFAULT_OUT = ROOT / "docs" / "data" / "submission-authorization.json"
@@ -60,6 +61,40 @@ def reject_json_constant(value: str):
     raise ValueError(f"non-finite JSON constant: {value}")
 
 
+# Read the shared evaluator's recorded measurements, including per-raster rows.
+# These are vetoes only: this does not recompute or certify registry uniqueness.
+RANK_MEASUREMENTS = frozenset({
+    "spearman_full_footprint", "worst_spearman_full_footprint",
+    "surface_max_spearman", "final_max_spearman", "max_spearman",
+    "postwrite_positive_support_max_spearman", "phase1_worst_rho", "phase2_worst_rho",
+})
+FORWARD_MEASUREMENTS = frozenset({
+    "my_dots_within_3px_of_theirs", "forward_overlap_3px", "worst_forward_overlap",
+    "max_forward_overlap_3px", "surface_max_forward_overlap_3px",
+    "final_dots_max_forward_overlap_3px", "final_max_forward_3px_overlap",
+    "postwrite_positive_support_max_forward_overlap_3px",
+})
+
+
+def recorded_duplicate_veto(value) -> bool:
+    """Contradictory measurements override green flags, at either phase.
+
+    Inspect known measurement keys only, not threshold declarations, reverse
+    overlap diagnostics or arbitrary prose. Signed rho follows the pinned
+    template (strictly greater than, not absolute correlation).
+    """
+    if isinstance(value, list):
+        return any(recorded_duplicate_veto(item) for item in value)
+    if not isinstance(value, dict):
+        return False
+    return any(
+        (key in RANK_MEASUREMENTS and item is not None and item > RHO_LIMIT)
+        or (key in FORWARD_MEASUREMENTS and item is not None and item > OVERLAP_LIMIT)
+        or recorded_duplicate_veto(item)
+        for key, item in value.items()
+    )
+
+
 def check_guardrail_types(card: dict) -> None:
     """Malformed nested guardrails must fail closed, not crash publication."""
     mapping_keys = {"uniqueness_audit", "registry_comparison", "uniqueness_vs_registry",
@@ -74,9 +109,18 @@ def check_guardrail_types(card: dict) -> None:
                     "holdout_valid_for_promotion", "beats_holdout_best", "approved_for_weekly_slot",
                     "safe_to_download_and_submit", "ok_to_submit"}
     def visit(obj):
+        if isinstance(obj, list):
+            for value in obj:
+                if isinstance(value, (dict, list)):
+                    visit(value)
+            return
         for key, value in obj.items():
             if value is None:
                 continue
+            if key in RANK_MEASUREMENTS | FORWARD_MEASUREMENTS:
+                lower = -1 if key in RANK_MEASUREMENTS else 0
+                if type(value) not in (int, float) or not math.isfinite(value) or not lower <= value <= 1:
+                    raise ValueError(f"{key} must be a finite number in [{lower},1]")
             if key in mapping_keys and not isinstance(value, dict):
                 raise ValueError(f"{key} must be an object")
             if key in numeric_keys and (type(value) not in (int, float) or not math.isfinite(value) or value < 0):
@@ -85,7 +129,7 @@ def check_guardrail_types(card: dict) -> None:
                 raise ValueError(f"{key} must be in [0,1]")
             if key in boolean_keys and type(value) is not bool:
                 raise ValueError(f"{key} must be a boolean")
-            if isinstance(value, dict):
+            if isinstance(value, (dict, list)):
                 visit(value)
     visit(card)
 
@@ -144,7 +188,8 @@ def audit_run_card(run_card_rel: str | None, root: Path = ROOT) -> dict:
     lit_read = rcmp.get("literal_reading") or {}
 
     literal_dup = bool(
-        card.get("protocol_unique") is False
+        recorded_duplicate_veto(card)
+        or card.get("protocol_unique") is False
         or card.get("policy_i17_literal_verdict") == "negative"
         or ua.get("template_literal_reading_duplicate") is True
         or rcmp.get("template_literal_reading_duplicate") is True

@@ -6,9 +6,9 @@
 
 Both hash-pinned registry witnesses were restored with `scripts/restore_registry.py`, then the pinned candidate-independent check was rerun. `evidence/registry_preflight.json` returns the expected exit code **2**, `STOP_UNIVERSAL_DUPLICATE`: the witness covers **5,106,385 of 5,106,385 allowed pixels**, leaving none uncovered. Under the unchanged literal rule, every nonempty candidate has a three-pixel forward-overlap lower bound of **1.0**, greater than the strict **0.70** stop threshold. This is a **REGISTRY MEASUREMENT**, not a score, not a complete registry scan, and not uniqueness clearance. Do not privately exempt the witness or generate a candidate before shared protocol semantics are resolved.
 
-The current independent readback covers **30/30 listed primary TIFFs** and passes local format/integrity checks; it does not establish portal acceptance or authorization. The fail-closed release receipt says **0 authorized files / NOT OK TO SUBMIT**. No new artifact, candidate-specific correlation result, canary, holdout DTI, or organizer receipt exists in this review. The machine-readable details are in `evidence/readiness_review_run_card.json`.
+The current independent readback covers **33/33 listed primary TIFFs** and passes local format/integrity checks; it does not establish portal acceptance or authorization. The fail-closed release receipt says **0 authorized files / NOT OK TO SUBMIT**. No new artifact, candidate-specific correlation result, canary, holdout DTI, or organizer receipt exists in this review. The machine-readable details are in `evidence/readiness_review_run_card.json`.
 
-The 3DEP, Landsat, ComCat, Copernicus/ASF, and USGS groundwater routes named in the conditional hypothesis slate are official-source links for manual review only. Their current service behavior, AOI coverage, licensing details, and data availability were not freshly checked from this sandbox. Several external hosts are outside the sandbox's egress allowlist; those proposals are **not viable here until access and source data are verified**. They are not an assigned lane.
+The USGS groundwater and Landsat routes named in the three-item conditional hypothesis slate are official-source links for manual review only. Their current service behavior, AOI coverage, licensing details, and data availability were not freshly checked from this sandbox. These external hosts are outside the sandbox's egress allowlist; those proposals are **not viable here until access and source data are verified**. The overlapping InSAR and ComCat concepts already documented in other lanes were screened out rather than presented as repository-distinct hypotheses. Nothing in the slate is an assigned lane.
 
 ## Historical readiness review (prior pass; figures below are retained as historical)
 
@@ -54,7 +54,7 @@ rejection, never a pass. The two restored witnesses have pinned owner-mirror pro
 
 Added `scripts/audit_downloads.py`, which independently opens every primary TIFF listed in `lanes.json`,
 not merely trusting the manifest format flag. The original review read 23/23 then-listed TIFFs; the current
-30-file readback above supersedes that historical count. This audit checks actual hashes and grid/range/finite
+33-file readback above supersedes that historical count. This audit checks actual hashes and grid/range/finite
 properties; it does not test portal acceptance, hidden performance, full-registry uniqueness or selector approval.
 
 Corrected [the H33 scientific analysis](metric-review.html).

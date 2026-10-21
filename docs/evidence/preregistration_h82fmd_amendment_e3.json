@@ -1,0 +1,17 @@
+{
+  "amends": "registry/preregistration_h82.json",
+  "amendment_id": "H82-AMEND-E3",
+  "written_utc": "2026-10-21T17:06:00Z",
+  "written_before_experiment": true,
+  "timing": "Written after E1 (canary) and E2 (both seeds) were complete and the primary hypothesis was refuted, and BEFORE any amendment arm was executed.",
+  "why": "E2 refuted the preregistered candidate on both seeds (A_fmd 0.066759 vs A_std 0.089519 on seed 20; 0.069948 vs 0.096903 on seed 30). Experiment 3 of the 3-experiment budget is therefore spent on a shared-tool question rather than on retuning the refuted lane: does the shared 300 m allocator lose credit because a per-pixel probability surface is blobby while the truth is 1-pixel linear?",
+  "amendment_hypothesis": "Restricting the ranking surface to its across-ridge non-maximum-suppressed crest (Steger 1998 ridge definition, implemented in src/gems82/fields.crest_mask) before the unchanged submodular allocator raises pooled HOLDOUT-DTI at equal dot budget, because a dot on a blob flank pays the same alpha penalty as a crest dot but earns less triangular-kernel credit from a linear truth trace.",
+  "arms": {
+    "A_std": "unthinned physics surface (reference, recomputed in the same run so the bootstrap is paired)",
+    "B_std_nms": "crest-restricted physics surface (candidate)",
+    "B_std_nms_sep3": "crest-restricted surface with min_sep_px 3.0 instead of 2.20 (secondary diagnostic, not the primary test)",
+    "B_fmd_nms": "crest-restricted surface multiplied by the mapping-deficit weight (re-test of the refuted lane hypothesis under the corrected geometry)"
+  },
+  "decision_rule": "B_std_nms is accepted as the build surface only if it beats A_std on seed 20 AND seed 30 with a paired bootstrap 95% CI excluding 0. Any arm whose final dots exceed 70% 3-px overlap with an informative registry raster, or 0.90 surface rank-correlation, is logged as a Rule 1 duplicate and stopped.",
+  "stop_rule": "This is experiment 3 of 3. No further arms will be run in this session regardless of outcome."
+}

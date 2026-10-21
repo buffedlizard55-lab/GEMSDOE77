@@ -30,7 +30,7 @@
   "leakage_canaries": {
     "new_canaries_run": false,
     "feature_alone_auc": null,
-    "alarm_threshold_strictly_greater_than": 0.90,
+    "alarm_threshold_strictly_greater_than": 0.9,
     "status": "NOT RUN: no feature or lane was authorized."
   },
   "correlation_overlap_vs_registry": {
@@ -43,10 +43,10 @@
     "allowed_pixels_within_3px": 5106385,
     "uncovered_allowed_pixels": 0,
     "nonempty_candidate_forward_overlap_lower_bound": 1.0,
-    "stop_threshold_strictly_greater_than": 0.70,
-    "surface_abs_spearman_limit": 0.90,
+    "stop_threshold_strictly_greater_than": 0.7,
+    "surface_abs_spearman_limit": 0.9,
     "surface_abs_spearman_measurement": null,
-    "final_dot_within_3px_fraction_limit": 0.70,
+    "final_dot_within_3px_fraction_limit": 0.7,
     "final_dot_within_3px_fraction_measurement": null,
     "candidate_specific_rank_correlation": null,
     "candidate_surface_comparison": "NOT RUN: no candidate surface was built.",
@@ -61,7 +61,7 @@
     "existing_listed_downloads": {
       "evidence_class": "FORMAT-INTEGRITY-MEASUREMENT; NOT UNIQUENESS OR PORTAL ACCEPTANCE",
       "receipt": "evidence/listed_download_audit.json",
-      "listed_count": 30,
+      "listed_count": 33,
       "all_format_pass": true,
       "sha256_manifest_bound": true,
       "single_band": true,

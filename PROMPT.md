@@ -10,9 +10,13 @@ the 2026-10-21 brief — no organizer receipts).*
 
 ## Current review continuation — arena/990a6ce3-gemsdoe77 (2026-10-21)
 
-No method paragraph was supplied and `AGENTS.md` assigns no lane. The pinned registry witnesses were restored and the candidate-independent preflight rerun: `STOP_UNIVERSAL_DUPLICATE`, with all 5,106,385 allowed cells covered by the pinned witness/dilation. No new TIFF, geological experiment, holdout, score, selector decision, or weekly slot is authorized by this review. Existing artifacts are inspection-only; the release receipt authorizes zero files. See `docs/review-2026-10-21-arena-990a6ce3.md` and `evidence/readiness_review_run_card.json`. The pre-existing H83 artifact is historical, not generated in this review.
+No method paragraph was supplied and `AGENTS.md` assigns no lane. The hash-pinned registry witnesses were restored and the candidate-independent preflight reproduced `STOP_UNIVERSAL_DUPLICATE`: all 5,106,385 allowed cells are within witness support/dilation. No new TIFF, geological experiment, holdout, score, selector decision, or weekly slot was produced. The fail-closed release gate authorizes zero files; the historical H83 artifact is not from this review. See `docs/review-2026-10-21-arena-990a6ce3.md` and `evidence/readiness_review_run_card.json`. This branch now contains mainline updates through `83463e8`; artifacts imported from other lane reviews remain historical and do not alter this review's no-candidate status.
 
-## Historical 2026-10-21 review addendum — arena/60aafd45-gemsdoe77
+## Current 05f9e6f8 review addendum — 2026-10-21
+
+The full standing request is retained in README. This invocation again assigns no identifiable method paragraph. Fresh hash-pinned preflight stops all nonempty candidates under the literal registry overlap rule. No new geological experiment, TIFF or slot was used. The new review fixes contradictory recorded measurement handling in the release adapter; it does not relax the shared protocol. See `docs/review-2026-10-21-05f9e6f8.md`. GitHub Pages exists in legacy mode; switching to Actions publishing was denied by the integration's permissions.
+
+## 2026-10-21 review addendum — arena/60aafd45-gemsdoe77
 
 No new method paragraph is assigned in this invocation. The freshly rechecked dense registry witness blocks every nonempty candidate under the binding literal rule. No new TIFF, model experiment or slot is authorized by this review. See `docs/review-2026-10-21-60aafd45.md` and the corrected H33 analysis. Superseded earlier leaderboard observations below are historical, not current submission-page receipts.
 

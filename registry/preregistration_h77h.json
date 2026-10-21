@@ -1,0 +1,89 @@
+{
+  "registered_utc": "2026-10-21T17:02:00Z",
+  "lane_id": "H77H",
+  "lane": "H77H: Piedmont-Bajada Alluvial-Fan Toe Pinchout, Synthetic/Antithetic Scarp Polarity & En-Echelon Sinter-Relay Bridge (H77H-PBF)",
+  "branch": "arena/2ebd0138-gemsdoe77",
+  "assignment_irregularity": "No separate single-method paragraph was supplied in the 2026-10-21 prompt (same class as IR-77-06, IR-78-01, IR-H77E-01, IR-77G-01); five untried geological hypotheses were formulated and ranked in research/h77h_hypotheses.md, and the top-ranked candidate H77H-1 (H77H-PBF) was preregistered here before Experiment 1 (IR-H77H-02).",
+  "single_method_paragraph": "From SHA-256-pinned competition and public USGS/GDR datasets (zero SGMC bedrock-contact inputs, zero prior submission rasters, zero dist_known_fault_px usage): (1) compute the sub-cell piedmont tail-slope anomaly (slope_max - slope_p90) * aspect_coherence inside the 1-12 deg alluvial-fan/bajada slope envelope (det_elev_slope) from 10 m USGS 3DEP DEM statistics (topo_10m_derived_100m_u8.tif), explicitly deconfounded for horizontal Pleistocene Lake Lahontan (~1332 m) and Lake Bonneville (~1463 m, ~1552 m) wave-cut shoreline berms; (2) compute the seamless 1 m LiDAR + 10 m DEM synthetic/antithetic scarp-to-wash polarity ratio log1p((downface_max + 1.25*upface_max)/(cross_max + 8)) * coh100 (respecting lidar_valid > 0 -> NaN outside 75.4% LiDAR coverage and bridging across the 24.6% gap via 10 m profile curvature * aspect_coherence / (slope_std + 1)) plus antithetic hanging-wall graben step fraction upface_max / (downface_max + upface_max + 5) * step_max; (3) compute the range-front footwall-to-bajada transition gradient |grad(steep_frac)| * aspect_coherence * log1p(relief_local), cross-break fluvial stream-power drop Delta(chi_ksn_max) * log1p(chi_log10_area), and buried bedrock bench |iso_grav_anom_hg_signed| * |grad(depth_to_base_surf)|; (4) fuse fossil silica-sinter (1.5x) and carbonate-travertine (1.0x) mound kernel density (paleo_geothermal_regional.zip) with 2-meter temperature probe F2mDAB/T2m plumes (2m_temperature_probe_INGENIOUS_regional_data.zip), chemical geothermometer disequilibrium (gdr_wellspring_in_footprint.csv), geodetic transtensional release (geod_dilaterate * geod_shearrate * geod_2ndinv), and weathering-normalized radiometric regolith provenance contrast |grad(Th/K)|; and (5) derive 3 fold-strict Leave-Own-Component-Out (LOCO) en-echelon structural relay channels strictly from fold['visible'] fault traces during holdout (elliptical tip-to-tip relay bridge potential, piedmont-corroborated continuation cone, and off-fault splay collar). Validate all 15 channels via single-feature ROC-AUC leakage canaries (<= 0.90) and dual-seed whole-component buffered hide-and-recover holdout (gems57-pooled-hide-v2, seeds 20 and 30, alpha=0.2, beta=0.8, 300 m triangular kernel), emit 37,654 discrete binary dots (> 3 px from catalogue) via capacity-guarded 300 m submodular cover, verify pre-placement surface and final-dot uniqueness via vendor/gems57/uniqueness.py, and write the single-band float32 GeoTIFF in [0,1] with nodata=None via unmodified vendor/gems57/submission_writer.py.",
+  "hypothesis": "In the Great Basin, unmapped Quaternary faults and blind geothermal conduits cluster in three geomorphic-structural settings systematically missed by 1:250,000 aerial mapping: (a) gentle (1-12 deg) coalescing alluvial fans (bajadas) where low-relief (<1.5 m) scarps leave the 100 m cell's 90th-percentile slope low while spiking the 10 m sub-cell tail slope (slope_max - slope_p90) with high strike aspect_coherence and low cross-wash incision (cross_max); (b) intrabasin antithetic graben faults 0.5-2.5 km basinward of the range-front bedrock-to-bajada pinchout (|grad steep_frac|) above buried gravity-basement benches; and (c) en-echelon fault step-over bridges where ascending geothermal fluids deposit opaline silica sinter or calcite travertine that self-seals and obscures brittle surface scarps.",
+  "named_non_fault_mimicking_process": "Pleistocene Lake Lahontan (~1332 m) and Lake Bonneville (~1463 m, ~1552 m) wave-cut shoreline berms around piedmont aprons (which follow flat equipotential elevation contours without subsurface gravity/basement steps), radial non-tectonic alluvial-fan channel terrace risers (high cross_max), and highway/railroad embankments.",
+  "inputs": [
+    "data/raw/training_features.tif (19 competition geophysical/geodetic/seismic/topographic bands)",
+    ".cache/data/data/external/topo_10m_derived_100m_u8.tif (10 m USGS 3DEP DEM sub-cell slope/curvature/aspect statistics)",
+    ".cache/data/data/external/lidar_scarp_features_u8.tif (1 m USGS 3DEP LiDAR synthetic/antithetic/cross-wash scarp descriptors; valid > 0 strictly enforced)",
+    ".cache/data/data/external/dem10_chi_100m_i16.tif (10 m DEM integral channel steepness k_sn and drainage area log10 A)",
+    ".cache/data/data/external/geodawn_extensions_u8.tif (USGS GeoDAWN Th/K ratio)",
+    ".cache/data/data/external/paleo_geothermal_regional.zip (709 USGS/GDR paleo-geothermal silica sinter and carbonate travertine deposits)",
+    ".cache/data/data/external/2m_temperature_probe_INGENIOUS_regional_data.zip (INGENIOUS 2-meter temperature probe T2m and F2mDAB stations)",
+    ".cache/data/data/external/gdr_wellspring_in_footprint.csv (GDR 1391 thermal wells/springs; dist_known_fault_px strictly excluded)",
+    "data/bridge/existing_faults.tif (used ONLY for holdout split, fold-strict LOCO visible-component relay features, pixel-exact visible-fault masking, and >3 px off-catalogue emission collar)",
+    "data/bridge/sample_submission.tif (used ONLY for EPSG:32611 grid, affine transform, and finite study footprint)"
+  ],
+  "new_static_channels": [
+    "h77h_piedmont_tail_slope",
+    "h77h_fan_scarp_polarity",
+    "h77h_antithetic_graben_step",
+    "h77h_rangefront_pinchout",
+    "h77h_fanhead_ksn_drop",
+    "h77h_buried_bench_grav_hg",
+    "h77h_lahontan_deconf_break",
+    "h77h_sinter_travertine_seal",
+    "h77h_probe2m_geotherm_halo",
+    "h77h_transtensional_release",
+    "h77h_rad_provenance_dipole",
+    "h77h_composite_surface"
+  ],
+  "new_loco_channels": [
+    "h77h_loco_elliptical_relay",
+    "h77h_loco_piedmont_bridge",
+    "h77h_loco_damage_collar"
+  ],
+  "parameters": {
+    "piedmont_slope_center_deg": 4.5,
+    "piedmont_slope_width_deg": 4.5,
+    "lahontan_bonneville_elevations_m": [1332.0, 1463.0, 1552.0],
+    "shoreline_elev_sigma_m": 18.0,
+    "relay_gap_min_px": 4.0,
+    "relay_gap_max_px": 36.0,
+    "relay_ellipse_decay_px": 2.2,
+    "budget_dots": 37654,
+    "catalogue_exclusion_px": 3.0,
+    "submodular_support_quantile": 0.968,
+    "submodular_gamma": 3.5,
+    "submodular_min_sep_px": 2.2,
+    "max_informative_3px_overlap": 0.65
+  },
+  "canaries": "Every new H77H static (12) and fold-strict LOCO (3) channel tested alone on withheld positives vs off-catalogue negatives on both Seed 20 and Seed 30 draws; symmetric ROC-AUC > 0.90 triggers an immediate leakage stop.",
+  "holdout_protocol": {
+    "evaluator": "vendor/gems57/evaluate_holdout.py (gems57-pooled-hide-v2)",
+    "split": "buffered_component_draw(grid, seed in {20, 30}, hide_frac=0.20, buffer_px=3)",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "kernel_radius_m": 300.0,
+    "bootstrap_draws": 1000,
+    "arms": [
+      "S_h77h_pure_physics",
+      "A_h77h_static",
+      "A_h77h_full",
+      "A_std19_control",
+      "A_h33_foldfair",
+      "A0_random"
+    ],
+    "incumbent_bar": {
+      "lane": "H77-Step",
+      "seed20_holdout_dti": 0.152718,
+      "withheld_positive_pixels": 11321
+    }
+  },
+  "uniqueness_protocol": {
+    "tool": "vendor/gems57/uniqueness.py compare_array_to_registry (unmodified)",
+    "phase1": "pre-placement continuous surface (|Spearman rho| <= 0.90)",
+    "phase2": "final placed binary dots (|Spearman rho| <= 0.90 and forward 3-px overlap <= 0.70 against all non-space-filling sparse/dot rasters; Policy I17 literal dense-witness firing reported fail-closed)"
+  },
+  "promotion_policy": "Fail-closed under Policy I17. Even if format checks, informative sparse-raster uniqueness, and dual-seed holdout comparisons pass, verdict is 'negative' and ok_to_submit is False until literal registry uniqueness passes on the complete registry and a human selector approves a weekly slot.",
+  "budget": {
+    "max_experiments": 3,
+    "max_hours": 2.0,
+    "weekly_slots_to_spend": 0
+  }
+}

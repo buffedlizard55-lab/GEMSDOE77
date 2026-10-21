@@ -1,0 +1,45 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>H84 · GEMSDOE77</title><link rel="stylesheet" href="assets/lia.css"></head><body>
+<header><div class="wrap"><span class="brand">GEMSDOE77 · DOE GEMS Prize</span> <a href="index.html">Start here</a> <a href="executive-summary.html">How to submit</a></div></header>
+<main><div class="wrap"><section class="card dl research">
+<h1>H84 — geophysics-gated second-strand collar: ⛔ NOT OK TO SUBMIT</h1>
+<p class="verdict"><b>OK TO DOWNLOAD: YES, for inspection only. OK TO SUBMIT: NO.</b> This is a unique, newly generated
+GeoTIFF (not a copy of any prior submission), but it failed validation for promotion: HOLDOUT-DTI below the
+repository incumbent and below its own ungated collar control, and 78.6% of its dots fall within 3 px of the
+H83 collar raster (duplicate limit 70%). Do not upload it. Selector: not approved; 0 weekly slots used.</p>
+<a class="btn" href="downloads/gems77-h84-orgate-collar-37654dots-20261021-2d0a731a-zeros.tif" download>Download H84 .tif — INSPECTION ONLY</a>
+<a class="btn alt" href="downloads/gems77-h84-orgate-collar-37654dots-20261021-2d0a731a-zeros.zip" download>One-TIFF ZIP</a>
+<p><b>Submission name (≤140):</b> <code>gems77-h84-orgate-collar-37654dots-20261021-2d0a731a-zeros</code><br>
+<b>Note (108/140 chars):</b> <code>H84 OR-gated second-strand collar 37654 dots; HOLDOUT-DTI 0.1215 vs incumbent 0.1527: NEGATIVE do not upload</code><br>
+<b>SHA-256:</b> <code>9a5f5433cbfed4a1a8ac2587678aaa930c8ed93e948b9e94874c8febc549fd57</code> · 37,654 binary dots · single-band float32 · EPSG:32611 · 3730×3292 · values {0,1} in [0,1] · 0 NaN · 0 dots on catalogue · local validator PASS (not organizer acceptance).</p>
+<h3>Results (HOLDOUT-DTI, gems57-pooled-hide-v2, seed 30, 11,342 withheld positives)</h3>
+<table>
+<tr><th>Experiment</th><th>HOLDOUT-DTI</th><th>95% CI</th></tr>
+<tr><td>Exp1 AND-gate collar</td><td>0.1086</td><td>[0.0940, 0.1233]</td></tr>
+<tr><td>Exp2 OR-gate collar (shipped)</td><td>0.1215</td><td>[0.1071, 0.1355]</td></tr>
+<tr><td>Exp3 wide collar (600 m peak)</td><td>0.1145</td><td>[0.1018, 0.1289]</td></tr>
+<tr><td>Control: H83 collar only (same folds)</td><td>0.1227</td><td>[0.1080, 0.1372]</td></tr>
+<tr><td>Control: random</td><td>0.0435</td><td>[0.0385, 0.0483]</td></tr>
+<tr><td>Repository incumbent (H77-Step)</td><td>0.152718</td><td>—</td></tr>
+</table>
+<p>Leakage canaries: max symmetric AUC 0.7638 ≤ 0.90 (no leakage flag). Conclusion: coincident
+magnetic+gravity gradients do <b>not</b> identify which collar strands are real withheld faults at 100 m —
+gating only removes good collar dots. Negative result; lane closed, do not retune.</p>
+<h3>Why did the reported 0.2778 (H33) score high, and can we beat it?</h3>
+<p>0.2778 is an <b>owner-report</b> for <code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</code>, with no organizer
+receipt in this repository (the GEMSDOE32 page itself states no organiser score exists for its artifacts).
+Retained byte forensics show H33 is a sparse 37,654-dot field pruned of 6,436 near-catalogue dots from a
+44,090-dot predecessor with zero dots on the catalogue: under DTI (α=0.2, β=0.8, 300 m triangular max-kernel),
+sparse dotted mass cuts false-positive weight while preserving per-truth-cell kernel coverage. That mechanism
+is plausible, not proven causal. H84 was designed to beat it via a new physical gate; on the only
+leakage-safe instrument available (hide-and-recover holdout) it did not beat even the local incumbent,
+so <b>no claim of beating 0.2778 is made</b> and no slot should be spent. Full analysis:
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE77/blob/main/research/why-h33-scored-02778.md">why-h33-scored-02778.md</a>;
+hypotheses: <a href="https://github.com/buffedlizard55-lab/GEMSDOE77/blob/main/research/h84_hypotheses.md">h84_hypotheses.md</a>;
+run card: <a href="https://github.com/buffedlizard55-lab/GEMSDOE77/blob/main/evidence/h84_run_card.json">h84_run_card.json</a>.</p>
+<p class="small">Sources for manual review: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">competition problem page</a> ·
+<a href="https://github.com/drivendataorg/gems-prize-reference-solution">official reference solution</a> ·
+<a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN</a> ·
+<a href="https://gdr.openei.org/submissions/1391">DOE GDR 1391 (INGENIOUS)</a> · <a href="https://epsg.io/32611">EPSG:32611</a> ·
+<a href="https://en.wikipedia.org/wiki/Tversky_index">Tversky index</a>. Training stack restored from the SHA-pinned owner mirror in registry/data_manifest.json (not organizer-authenticated); sandbox cannot reach DrivenData/USGS/GDR directly.</p>
+</section></div></main></body></html>
