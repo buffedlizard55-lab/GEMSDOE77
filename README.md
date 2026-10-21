@@ -3,6 +3,7 @@
 > **Existing downloads: inspection only.** Independent readback passes for all 46 listed TIFFs and their 46 single-TIFF ZIPs.
 > [This review](docs/review-2026-10-21-5999c8ab.md) · [Run card](evidence/review_5999c8ab_card.json) · [Archive audit](evidence/submission_archive_audit.json).
 > Historical H82-TEXTURE: **OK TO SUBMIT: NO**; SHA-256 `c571af22cb08db9cb8cfd6edf0108364d95b0c3bec8316d09d3dfd116531790e`.
+> [PR #102](https://github.com/buffedlizard55-lab/GEMSDOE77/pull/102) is **open, not merged**: later H85 mainline changes conflict with the literal protocol. This branch's evidence covers main through `3522e3a`, not later H85.
 > This operative status takes precedence over historical banners below. Read the standing prompt and the full README each session.
 
 <!-- H82-GMNS ALL-TIME #1 PRIMARY STATUS BANNER -->

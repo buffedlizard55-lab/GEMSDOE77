@@ -22,5 +22,14 @@
   "new_raster_generated": false,
   "experiments_run": 0,
   "weekly_slots_used": 0,
-  "merged_main_commit": "3522e3a"
+  "merged_main_commit": "3522e3a",
+  "pull_request": {
+    "number": 102,
+    "url": "https://github.com/buffedlizard55-lab/GEMSDOE77/pull/102",
+    "merged": false,
+    "merge_attempt": "gh pr merge 102 --merge",
+    "merge_exit_code": 1,
+    "blocker": "Concurrent main b0b2675 conflicts; H85 changes duplicate semantics and promotion status. Second integration aborted.",
+    "ci": "No checks reported when queried; local tests only"
+  }
 }
