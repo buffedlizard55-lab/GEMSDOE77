@@ -1130,6 +1130,34 @@
    "weekly_slots_used": 0,
    "why_primary": "H84-RAMP lane (2026-10-21); negative under Policy I17 and below repository holdout best; clearance per release gate (not approved).",
    "beat_02778_summary": "Not known. HOLDOUT-DTI 0.1366 (s20) / 0.1446 (s30) is below the repository holdout best; no organizer score exists for this file and none may be inferred."
+  },
+  {
+   "lane": "H83-PCD: Multi-Scale Poisson Pseudogravity-Gravity Discordance x Piedmont Scarp-Toe Asymmetry x 12-Bit LOCO Relay + 300 m Submodular Cover (0.132515 s30 / 0.123066 s20 HOLDOUT-DTI)",
+   "page": "h83pcd.html",
+   "summary": "h83pcd-executive-summary.html",
+   "file": "downloads/h83pcd-poisson-piedmont-loco-submod-20261021T183000Z-zeros.tif",
+   "file_zip": "downloads/h83pcd-poisson-piedmont-loco-submod-20261021T183000Z-zeros.zip",
+   "run_card": "evidence/run_card_h83pcd.json",
+   "format_valid": true,
+   "protocol_unique": false,
+   "informative_unique": true,
+   "beats_holdout_best": false,
+   "verdict": "negative",
+   "primary": false,
+   "name": "h83pcd-poisson-piedmont-loco-submod-20261021T183000Z-zeros",
+   "note": "H83-PCD: Poisson pseudogravity-gravity discord + 1m LiDAR piedmont toe + 12b LOCO relay + 300m submod 37654d (neg/I17)",
+   "sha256": "1ff7bc32563b56a6b18beb0d4500afa9bad814396485aaba39b2b8cbc8a9fa59",
+   "holdout_dti_hide_v2": 0.132515,
+   "holdout_evaluator_version": "gems57-pooled-hide-v2",
+   "holdout_positive_pixels": 11342,
+   "holdout_ci95": [
+    0.117209,
+    0.145631
+   ],
+   "selector_recommendation": "Not approved for live DrivenData upload (inspection only; 0 weekly slots spent): literal Policy I17 dense-witness check fails (1.000 > 0.70 against ab0a0a62) and HOLDOUT-DTI (0.132515 s30 / 0.123066 s20) is below the retained incumbent.",
+   "upload": "Not OK to submit. OK to download for inspection only. HOLDOUT-DTI 0.132515 [0.117209, 0.145631] (s30, 11,342 withheld positives) / 0.123066 [0.108735, 0.138706] (s20, 11,321 withheld positives) on gems57-pooled-hide-v2 beats the matched 41-channel standard control (0.086239 s30 / 0.087347 s20; paired delta +0.046276 s30 / +0.035720 s20, 95% CIs exclude zero) and passes 100% of sparse dot-field uniqueness checks (max sparse 3-px overlap 0.6400 <= 0.70; 0.3224 vs H33; max |Spearman rho| 0.2120 <= 0.90), but remains below the retained holdout ceiling and fails the literal Policy I17 all-raster check on space-filling continuous witness 17GEMSDOE_E-proba-multiscale (ab0a0a62). Selector: not approved; zero weekly slots spent.",
+   "why_primary": "H83-PCD lane (2026-10-21): Multi-scale Poisson pseudogravity-gravity gradient anti-concordance + missing-coverage-aware 1 m LiDAR piedmont scarp-toe dipole + 12-bit LOCO transfer relay + bitwise sparse-overlap-capped 300 m submodular cover; clearance per release gate (not approved).",
+   "beat_02778_summary": "No. HOLDOUT-DTI 0.132515 (s30) / 0.123066 (s20) is below the retained holdout incumbent and cannot be projected to an organizer score; no organizer score exists for this file."
   }
  ]
 }

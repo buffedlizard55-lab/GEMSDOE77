@@ -1,0 +1,277 @@
+{
+  "experiment_id": "H83-PCD-E1",
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "runtime_seconds": 22.65,
+  "static_feature_meta": {
+    "n_fp": 5167373,
+    "n_cols": 60,
+    "feature_names": [
+      "tmi",
+      "rtp",
+      "tmi_hg",
+      "geod_2ndinv",
+      "iso_grav_slope",
+      "tc_totalcount",
+      "geod_shearrate",
+      "geod_dilaterate",
+      "tmi_vg",
+      "deq_n100a15",
+      "iso_grav_anom_vg",
+      "det_elev",
+      "iso_grav_anom",
+      "boug_grav_anom",
+      "depth_to_base_surf",
+      "ieq_n100a15",
+      "cond_surf_log",
+      "fault_slip_rate_prior",
+      "det_elev_slope",
+      "dem_hess_ridge_s12",
+      "dem_hess_ridge_s25",
+      "dem_prof_concavity",
+      "dem_slope_break",
+      "dem_nne_strike_align",
+      "grav_tilt",
+      "mag_tilt",
+      "grav_mag_crossgrad",
+      "basement_grad_mag",
+      "cond_log_grad_s6",
+      "transtens_strain",
+      "seismic_swarm_excess",
+      "rad_K",
+      "rad_Th",
+      "rad_U",
+      "rad_TC",
+      "rad_Th_K",
+      "rad_U_K",
+      "rad_U_Th",
+      "mag_up150",
+      "rad_K_Th_grad",
+      "mag_shallow_resid",
+      "lidar_ex_max",
+      "lidar_step_max",
+      "lidar_lap_dipole",
+      "lidar_coh100",
+      "lidar_aniso",
+      "has_lidar",
+      "bridged_scarp_ridge",
+      "hydro_temp_plume_nne",
+      "hydro_geotherm_plume_nne",
+      "hydro_regional_halo",
+      "volc_vent_halo",
+      "pcd_poisson_anti_step",
+      "pcd_crossgrad_rot_ridge",
+      "pcd_basement_bench_inflect",
+      "pcd_piedmont_toe_scarp",
+      "pcd_transtens_swarm_gate",
+      "pcd_hydro_demag_conduit",
+      "pcd_rad_kth_discord",
+      "pcd_composite_surface"
+    ],
+    "pcd_static_names": [
+      "pcd_poisson_anti_step",
+      "pcd_crossgrad_rot_ridge",
+      "pcd_basement_bench_inflect",
+      "pcd_piedmont_toe_scarp",
+      "pcd_transtens_swarm_gate",
+      "pcd_hydro_demag_conduit",
+      "pcd_rad_kth_discord",
+      "pcd_composite_surface"
+    ],
+    "pcd_vis_names": [
+      "vis_dist_clipped",
+      "vis_cracktip_lobe",
+      "vis_stepover_corridor",
+      "vis_strain_deficit",
+      "vis_pcd_transfer_relay"
+    ],
+    "build_seconds": 225.77,
+    "sgmc_channels_included": 0,
+    "lidar_missing_coverage_handled": true,
+    "cond_surf_smoothed_sigma_px": 6.0
+  },
+  "leakage_canary": {
+    "threshold_symmetric_auc": 0.9,
+    "max_symmetric_auc": 0.812553,
+    "worst_feature": "vis_pcd_transfer_relay@seed20",
+    "passed": true,
+    "by_seed": {
+      "seed_30": {
+        "n_hidden_positives": 11342,
+        "max_symmetric_auc": 0.809939,
+        "passes_gate_le_0_90": true,
+        "features": {
+          "pcd_poisson_anti_step": {
+            "auc": 0.530234,
+            "symmetric_auc": 0.530234,
+            "leakage_flag": false
+          },
+          "pcd_crossgrad_rot_ridge": {
+            "auc": 0.518797,
+            "symmetric_auc": 0.518797,
+            "leakage_flag": false
+          },
+          "pcd_basement_bench_inflect": {
+            "auc": 0.532955,
+            "symmetric_auc": 0.532955,
+            "leakage_flag": false
+          },
+          "pcd_piedmont_toe_scarp": {
+            "auc": 0.53925,
+            "symmetric_auc": 0.53925,
+            "leakage_flag": false
+          },
+          "pcd_transtens_swarm_gate": {
+            "auc": 0.554389,
+            "symmetric_auc": 0.554389,
+            "leakage_flag": false
+          },
+          "pcd_hydro_demag_conduit": {
+            "auc": 0.489009,
+            "symmetric_auc": 0.510991,
+            "leakage_flag": false
+          },
+          "pcd_rad_kth_discord": {
+            "auc": 0.504944,
+            "symmetric_auc": 0.504944,
+            "leakage_flag": false
+          },
+          "pcd_composite_surface": {
+            "auc": 0.569595,
+            "symmetric_auc": 0.569595,
+            "leakage_flag": false
+          },
+          "vis_dist_clipped": {
+            "auc": 0.197694,
+            "symmetric_auc": 0.802306,
+            "leakage_flag": false
+          },
+          "vis_cracktip_lobe": {
+            "auc": 0.703537,
+            "symmetric_auc": 0.703537,
+            "leakage_flag": false
+          },
+          "vis_stepover_corridor": {
+            "auc": 0.809939,
+            "symmetric_auc": 0.809939,
+            "leakage_flag": false
+          },
+          "vis_strain_deficit": {
+            "auc": 0.418323,
+            "symmetric_auc": 0.581677,
+            "leakage_flag": false
+          },
+          "vis_pcd_transfer_relay": {
+            "auc": 0.808888,
+            "symmetric_auc": 0.808888,
+            "leakage_flag": false
+          }
+        }
+      },
+      "seed_20": {
+        "n_hidden_positives": 11321,
+        "max_symmetric_auc": 0.812553,
+        "passes_gate_le_0_90": true,
+        "features": {
+          "pcd_poisson_anti_step": {
+            "auc": 0.528243,
+            "symmetric_auc": 0.528243,
+            "leakage_flag": false
+          },
+          "pcd_crossgrad_rot_ridge": {
+            "auc": 0.517957,
+            "symmetric_auc": 0.517957,
+            "leakage_flag": false
+          },
+          "pcd_basement_bench_inflect": {
+            "auc": 0.495227,
+            "symmetric_auc": 0.504773,
+            "leakage_flag": false
+          },
+          "pcd_piedmont_toe_scarp": {
+            "auc": 0.568934,
+            "symmetric_auc": 0.568934,
+            "leakage_flag": false
+          },
+          "pcd_transtens_swarm_gate": {
+            "auc": 0.548814,
+            "symmetric_auc": 0.548814,
+            "leakage_flag": false
+          },
+          "pcd_hydro_demag_conduit": {
+            "auc": 0.510741,
+            "symmetric_auc": 0.510741,
+            "leakage_flag": false
+          },
+          "pcd_rad_kth_discord": {
+            "auc": 0.488279,
+            "symmetric_auc": 0.511721,
+            "leakage_flag": false
+          },
+          "pcd_composite_surface": {
+            "auc": 0.577931,
+            "symmetric_auc": 0.577931,
+            "leakage_flag": false
+          },
+          "vis_dist_clipped": {
+            "auc": 0.194809,
+            "symmetric_auc": 0.805191,
+            "leakage_flag": false
+          },
+          "vis_cracktip_lobe": {
+            "auc": 0.705813,
+            "symmetric_auc": 0.705813,
+            "leakage_flag": false
+          },
+          "vis_stepover_corridor": {
+            "auc": 0.81249,
+            "symmetric_auc": 0.81249,
+            "leakage_flag": false
+          },
+          "vis_strain_deficit": {
+            "auc": 0.406579,
+            "symmetric_auc": 0.593421,
+            "leakage_flag": false
+          },
+          "vis_pcd_transfer_relay": {
+            "auc": 0.812553,
+            "symmetric_auc": 0.812553,
+            "leakage_flag": false
+          }
+        }
+      }
+    }
+  },
+  "phase1_surface_uniqueness": {
+    "threshold_abs_spearman": 0.9,
+    "max_abs_spearman_all": 0.206252,
+    "max_abs_spearman_sparse": 0.074595,
+    "passed": true
+  },
+  "standalone_composite_screen_seed30": {
+    "emitted_dots": 37654,
+    "pooled_holdout_dti": 0.047905,
+    "per_fold": {
+      "NW": {
+        "dti": 0.0431409568690267,
+        "n_truth": 1919,
+        "emitted": 8585
+      },
+      "NE": {
+        "dti": 0.023385354382938737,
+        "n_truth": 2356,
+        "emitted": 10650
+      },
+      "SW": {
+        "dti": 0.05290843023514584,
+        "n_truth": 3805,
+        "emitted": 10201
+      },
+      "SE": {
+        "dti": 0.06862095914716984,
+        "n_truth": 3262,
+        "emitted": 8214
+      }
+    }
+  }
+}

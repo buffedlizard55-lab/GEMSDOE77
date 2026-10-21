@@ -1,6 +1,6 @@
 {
   "schema": "gems-submission-authorization-v2",
-  "generated_utc": "2026-10-21T19:38:38+00:00",
+  "generated_utc": "2026-10-21T19:41:25+00:00",
   "policy": "Authorization requires artifact existence, matching SHA-256, a readable run card with a promote verdict, matching raster_sha256 and explicit positive uniqueness, registry completeness, valid/improved holdout and selector declarations; actual shared-validator format readback PASS, literal protocol uniqueness (including <=0.70 real-model forward 3-px overlap and complete registry), improvement over the accepted holdout best, a promote verdict, and explicit selector approval. Missing fields or historical run-card uniqueness/completeness failures fail closed.",
   "repository_authorized_file_count": 0,
   "repository_decision": "NOT OK TO SUBMIT",
@@ -359,6 +359,15 @@
     {
       "lane": "H84-RAMP: B-LBCO deconfounded two-host en-echelon relay-ramp + GeoDAWN/basement stepover corridor (0.1366 s20 / 0.1446 s30 HOLDOUT-DTI; negative, inspection only)",
       "run_card": "evidence/h84ramp_run_card.json",
+      "recorded_verdict": "negative",
+      "recorded_safe_to_submit": false,
+      "historical_promotion_conflict": false,
+      "operative_decision": "NOT OK TO SUBMIT",
+      "reconciliation_note": "Historical run card and operative release gate both fail closed."
+    },
+    {
+      "lane": "H83-PCD: Multi-Scale Poisson Pseudogravity-Gravity Discordance x Piedmont Scarp-Toe Asymmetry x 12-Bit LOCO Relay + 300 m Submodular Cover (0.132515 s30 / 0.123066 s20 HOLDOUT-DTI)",
+      "run_card": "evidence/run_card_h83pcd.json",
       "recorded_verdict": "negative",
       "recorded_safe_to_submit": false,
       "historical_promotion_conflict": false,
@@ -3346,6 +3355,72 @@
           "zero_dots_on_mapped_catalogue": true
         },
         "sha256": "f06ada5aa834ceaf65e8700e36bbd46eddb96929b42c9041c72c8369c1022838"
+      },
+      "authorized_to_submit": false,
+      "decision": "NOT OK TO SUBMIT",
+      "failed_gates": [
+        "literal_protocol_unique",
+        "beats_accepted_holdout_best",
+        "scientific_verdict_promote",
+        "selector_approved",
+        "explicit_run_card_promotion_evidence"
+      ]
+    },
+    {
+      "lane": "H83-PCD: Multi-Scale Poisson Pseudogravity-Gravity Discordance x Piedmont Scarp-Toe Asymmetry x 12-Bit LOCO Relay + 300 m Submodular Cover (0.132515 s30 / 0.123066 s20 HOLDOUT-DTI)",
+      "file": "downloads/h83pcd-poisson-piedmont-loco-submod-20261021T183000Z-zeros.tif",
+      "sha256": "1ff7bc32563b56a6b18beb0d4500afa9bad814396485aaba39b2b8cbc8a9fa59",
+      "checks": {
+        "artifact_exists": true,
+        "run_card_present": true,
+        "format_valid": true,
+        "format_readback_passed": true,
+        "literal_protocol_unique": false,
+        "beats_accepted_holdout_best": false,
+        "scientific_verdict_promote": false,
+        "selector_approved": false,
+        "explicit_run_card_promotion_evidence": false,
+        "sha256_matches": true,
+        "format_readback_artifact_matches": true,
+        "run_card_artifact_matches": true
+      },
+      "run_card_audit": {
+        "run_card": "evidence/run_card_h83pcd.json",
+        "present": true,
+        "recorded_verdict": "negative",
+        "raster_sha256": "1ff7bc32563b56a6b18beb0d4500afa9bad814396485aaba39b2b8cbc8a9fa59",
+        "explicit_promotion_evidence": false,
+        "recorded_safe_to_submit": false,
+        "literal_duplicate_recorded": true,
+        "real_model_forward_overlap_3px": null,
+        "real_model_forward_overlap_exceeds_070": false,
+        "registry_incomplete": false,
+        "holdout_invalid_for_promotion": false,
+        "historical_promotion_conflict": false,
+        "guardrail_clear": false
+      },
+      "format_readback": {
+        "validator": "gems57.validate.validate",
+        "reference_pins_match": true,
+        "all_checks_passed": true,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "sha256": "1ff7bc32563b56a6b18beb0d4500afa9bad814396485aaba39b2b8cbc8a9fa59"
       },
       "authorized_to_submit": false,
       "decision": "NOT OK TO SUBMIT",
