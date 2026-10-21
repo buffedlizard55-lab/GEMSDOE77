@@ -22,7 +22,8 @@ REPO = "https://github.com/buffedlizard55-lab/GEMSDOE77"
 LB = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
 PD = "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
-NAV = [("index.html", "Start here"), ("h77e-knick.html", "H77E-Knick · 0/816 firings"), ("release-review.html", "Release safety review"), ("executive-summary.html", "How to submit"),
+NAV = [("index.html", "Start here"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
+       ("h77e-knick.html", "H77E-Knick · 0/816 firings"), ("release-review.html", "Release safety review"), ("executive-summary.html", "How to submit"),
        ("h81.html", "H81 · slip-cone"),
        ("h80t.html", "H80T · tilt-persist"), ("h80t-executive-summary.html", "H80T guide"),
        ("h80.html", "H80 · negative"), ("ago.html", "AGO · negative proxies"),
@@ -653,7 +654,91 @@ def _inject_h77e_knick_hero():
         ptxt = ptxt.replace("<h1>", hero + "<h1>", 1)
         (D / pname).write_text(ptxt)
 
+def _write_h77g():
+    h77g_card = jload("evidence/run_card_h77g.json")
+    h77g_e1 = jload("evidence/h77g_e1_canary_surface.json")
+    h77g_e2 = jload("evidence/h77g_e2_holdout.json")
+    h77g_e3 = jload("evidence/h77g_e3_uniqueness.json")
+    if not (h77g_card and h77g_e1 and h77g_e2 and h77g_e3):
+        return
+    tif = h77g_card["raster_path"].removeprefix("docs/")
+    zip_ = h77g_card["zip_path"].removeprefix("docs/")
+    s20 = h77g_card["holdout_dti"]["seed_20"]
+    s30 = h77g_card["holdout_dti"]["seed_30"]
+    uq = h77g_card["correlation_overlap_vs_registry"]
+    arm_order = [
+        ("A_std_plus_h77g (19 std + 10 H77G)", "A_std_plus_h77g"),
+        ("A_std (19 std control)", "A_std_control"),
+        ("A0_random (uniform random)", "A0_random"),
+        ("S_h77g_physics (pure composite)", "S_h77g_physics"),
+        ("A_h77g_only (10 H77G only)", "A_h77g_only"),
+    ]
+    arm_rows = "".join(
+        f"<tr><td>{e(label)}</td>"
+        f"<td><b>{s20[key]['dti']:.4f}</b> ({s20[key]['ci95'][0]:.4f}–{s20[key]['ci95'][1]:.4f})</td>"
+        f"<td><b>{s30[key]['dti']:.4f}</b> ({s30[key]['ci95'][0]:.4f}–{s30[key]['ci95'][1]:.4f})</td>"
+        f"<td><code>gems57-pooled-hide-v2</code> (11,321 / 11,342 withheld)</td></tr>"
+        for label, key in arm_order
+    )
+    can_s20 = h77g_e1["canaries_by_seed"]["20"]["h77g_canaries"]
+    can_s30 = h77g_e1["canaries_by_seed"]["30"]["h77g_canaries"]
+    can_rows = "".join(
+        f"<tr><td><code>{e(k)}</code></td><td>{can_s20[k]['symmetric_auc']:.4f}</td>"
+        f"<td>{can_s30[k]['symmetric_auc']:.4f}</td></tr>"
+        for k in can_s20
+    )
+    body = f"""<h1>H77G · hydrothermal magnetite-destruction trough × gravity-basement step × MT clay-cap margin</h1>
+<p class="verdict"><b>Verdict: NEGATIVE — OK TO DOWNLOAD FOR INSPECTION; NOT OK TO SUBMIT.</b>
+{e(h77g_card['verdict_reason'])}</p>
+<section class="card dl research"><h2>⬇ H77G inspection-only GeoTIFF (DO NOT SUBMIT)</h2>
+<a class="btn" href="{e(tif)}" download>Download .tif ({h77g_card['raster_bytes'] / 1024:.0f} KB)</a>
+<a class="btn alt" href="{e(zip_)}" download>Download one-TIFF .zip</a>
+<div class="chips"><span class="chip ok">OK to download: YES</span>
+<span class="chip ok">Portal format (15/15 checks): PASS</span>
+<span class="chip bad">Unique, literal rule (Policy I17): FAIL</span>
+<span class="chip ok">Unique, informative reading (48 sparse rasters): PASS</span>
+<span class="chip bad">Beat 0.1527 H77-Step incumbent: NO</span>
+<span class="chip warn">Selector: not approved (0 weekly slots used)</span></div>
+{copy('Submission name (for reference only — DO NOT UPLOAD)', h77g_card['submission_name'])}
+{copy('Short note <= 140 chars (for reference only — DO NOT UPLOAD)', h77g_card['submission_note'])}
+<p class="small">SHA-256 of .tif: <code>{e(h77g_card['raster_sha256'])}</code> ·
+SHA-256 of .zip: <code>{e(h77g_card['zip_sha256'])}</code> ·
+<a href="evidence/run_card_h77g.json">JSON run card</a> ·
+<a href="evidence/h77g_e1_canary_surface.json">Exp 1 canary/surface receipt</a> ·
+<a href="evidence/h77g_e2_holdout.json">Exp 2 dual-seed holdout receipt</a> ·
+<a href="evidence/h77g_e3_uniqueness.json">Exp 3 uniqueness receipt</a> ·
+<a href="evidence/preregistration_h77g.json">preregistration JSON</a> ·
+<a href="research/h77g_hypotheses.md">preregistered hypotheses</a></p></section>
+<h2>Diagnostic map &amp; dual-seed holdout benchmark</h2>
+<p><img src="figures/h77g_surface_and_dots.png" alt="H77G geophysical channels, emitted dots, and dual-seed holdout benchmark" style="max-width:100%;height:auto;border:1px solid #cbd5e1;border-radius:6px"></p>
+<h2>Dual-seed holdout evaluation (Exp 2 · <code>gems57-pooled-hide-v2</code>)</h2>
+<table><tr><th>Arm</th><th>Seed 20 HOLDOUT-DTI (95% CI)</th><th>Seed 30 HOLDOUT-DTI (95% CI)</th><th>Evaluator &amp; withheld positives</th></tr>{arm_rows}</table>
+<h2>Irregularities discovered: IR-H77G-01 &amp; IR-H77G-02</h2>
+<p><b>IR-H77G-01:</b> Band 17 (<code>cond_surf</code>, USGS Data Release doi:10.5066/P9TWT2LU) has 30.5% zero steps and sharp 1-D FFT peaks in <code>|∇cond_surf|</code> at <b>35.02 px (3.5 km) and 70.04 px (7.0 km)</b> from its coarse regional MT mesh.<br>
+<b>IR-H77G-02:</b> Fixing the upstream <code>F77.hessian_ridge</code> along-axis eigenvalue swap raises <code>h77g_composite_surface</code> single-feature AUC to <b>0.5618</b> and standalone <code>S_h77g_physics</code> HOLDOUT-DTI to <b>{s20['S_h77g_physics']['dti']:.4f}</b> (s20) / <b>{s30['S_h77g_physics']['dti']:.4f}</b> (s30, 0.0804 in SE).</p>
+<h2>Leakage canaries (Exp 1 · ceiling AUC ≤ 0.90)</h2>
+<table><tr><th>Channel</th><th>Seed 20 symmetric AUC</th><th>Seed 30 symmetric AUC</th></tr>{can_rows}</table>
+<h2>Registry uniqueness audit (Exp 3 · {uq['registry_rasters_checked']} checked rasters)</h2>
+<p>Phase 1 surface max |Spearman ρ| = {uq['surface_max_abs_spearman']:.4f} ≤ 0.90; Phase 2 final dots informative max 3-px overlap = {uq['final_dots_informative_max_forward_overlap_3px']:.4f} ≤ 0.70 and max |ρ| = {uq['final_dots_informative_max_abs_spearman']:.4f} ≤ 0.90 (vs H33 overlap {uq['vs_h33_champion']['forward_overlap_3px']:.4f}, ρ {uq['vs_h33_champion']['spearman_full_footprint']:+.5f}). Literal gate fails closed under Policy I17.</p>"""
+    exec_body = f"""<h1>H77G Executive Summary &amp; Submission Guide</h1>
+<p class="verdict"><b>Decision for <code>{e(h77g_card['submission_name'])}</code>: OK TO DOWNLOAD FOR INSPECTION · NOT OK TO SUBMIT.</b><br>
+Format-valid (15/15 checks, 0 NaN, values in [0,1], 37,654 binary dots) and informative-unique against all 48 sparse rasters checked, but HOLDOUT-DTI ({s20['A_std_plus_h77g']['dti']:.4f} s20 / {s30['A_std_plus_h77g']['dti']:.4f} s30) is below the 0.152718 incumbent and Policy I17 fails closed.</p>
+<section class="card dl research"><h2>⬇ H77G Artifact &amp; Metadata</h2>
+<a class="btn" href="{e(tif)}" download>Download .tif ({h77g_card['raster_bytes'] / 1024:.0f} KB)</a>
+<a class="btn alt" href="{e(zip_)}" download>Download one-TIFF .zip</a>
+{copy('Submission name (reference only — DO NOT SUBMIT)', h77g_card['submission_name'])}
+{copy('Short note <= 140 chars (reference only — DO NOT SUBMIT)', h77g_card['submission_note'])}
+<p class="small">TIFF SHA-256: <code>{e(h77g_card['raster_sha256'])}</code> · <a href="h77g.html">Full H77G report →</a> · <a href="evidence/run_card_h77g.json">JSON run card →</a></p></section>"""
+    (D / "h77g.html").write_text(page("h77g.html", "H77G · negative", body))
+    (D / "h77g-executive-summary.html").write_text(page("h77g-executive-summary.html", "H77G guide", exec_body))
+    for fname in ("run_card_h77g.json", "h77g_e1_canary_surface.json", "h77g_e2_holdout.json", "h77g_e3_uniqueness.json"):
+        shutil.copyfile(ROOT / "evidence" / fname, D / "evidence" / fname)
+    shutil.copyfile(ROOT / "registry/preregistration_h77g.json", D / "evidence/preregistration_h77g.json")
+    shutil.copyfile(ROOT / "research/h77g_hypotheses.md", D / "research/h77g_hypotheses.md")
+
+
 if __name__ == "__main__":
     main()
     _write_h77e_knick()
     _inject_h77e_knick_hero()
+    _write_h77g()

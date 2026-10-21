@@ -1,6 +1,32 @@
 {
- "note": "All 21 listed TIFF lanes are inspection downloads only; every file is NOT OK TO SUBMIT. H80 (Riedel) is featured because it has complete evidence from the pinned gems57 evaluator; the later AGO variants have only a different quick 4-quadrant proxy and are not comparable. H80-OTA (orphan thermal alignment, negative) was merged in parallel and is listed second. The literal uniqueness/selector gates remain fail-closed; see docs/data/submission-authorization.json. H81 (slip-cone, negative, research-only) is listed for inspection only.",
+ "note": "All 22 listed TIFF lanes are inspection downloads only; every file is NOT OK TO SUBMIT. H80 (Riedel) is featured because it has complete evidence from the pinned gems57 evaluator; the later AGO variants have only a different quick 4-quadrant proxy and are not comparable. H80-OTA (orphan thermal alignment, negative) was merged in parallel and is listed second. The literal uniqueness/selector gates remain fail-closed; see docs/data/submission-authorization.json. H81 (slip-cone, negative, research-only) and H77G (hydrothermal demagnetization trough, negative, research-only) are listed for inspection only.",
  "lanes": [
+  {
+   "lane": "H77G: hydrothermal magnetite-destruction trough × gravity-basement step × MT clay-cap margin (HOLDOUT-DTI 0.0619 s20 / 0.0618 s30, pure 0.0392/0.0471; negative result)",
+   "page": "h77g.html",
+   "summary": "h77g-executive-summary.html",
+   "file": "downloads/gems77-h77g-demagtrough-gravstep-37654dots-20261021-08b78f3c-zeros.tif",
+   "run_card": "evidence/run_card_h77g.json",
+   "format_valid": true,
+   "protocol_unique": false,
+   "informative_unique": true,
+   "beats_holdout_best": false,
+   "verdict": "negative",
+   "primary": false,
+   "name": "gems77-h77g-demagtrough-gravstep-37654dots-20261021-08b78f3c-zeros",
+   "note": "H77G demag-trough x grav-base step (37654d); HOLDOUT-DTI 0.0619(s20)/0.0618(s30) pure 0.0392 <0.1527: NEGATIVE",
+   "sha256": "7b97596de2cacd1d5b5f99f8fc679dbd9cf6a2bd7ab316adea5bf60ad2bb30d0",
+   "holdout_dti_hide_v2": 0.06194639507112526,
+   "holdout_evaluator_version": "gems57-pooled-hide-v2",
+   "holdout_positive_pixels": 11321,
+   "holdout_ci95": [
+    0.046978725387111155,
+    0.07836495924496793
+   ],
+   "upload": "Not OK to submit. OK to download for inspection only. Format-valid (15/15 validator checks, 0 NaN, values in [0,1], 37,654 dots) and informative-unique against all 48 non-space-filling sparse/dot rasters in the checked 50-raster set (worst 3-px forward overlap 0.6152 <= 0.70; worst |Spearman rho| 0.0216 <= 0.90; vs H33 overlap 0.1771, rho +0.0020), but the literal registry rule fails closed under Policy I17 (1.000 overlap on dense witness ab0a0a62) and full 812-raster REST scan was omitted. HOLDOUT-DTI 0.0619 (s20) / 0.0618 (s30) for A_std+H77G and 0.0392/0.0471 for standalone S_h77g_physics are below the 0.152718 H77-Step repository incumbent; selector: not approved.",
+   "why_primary": "New H77G hydrothermal magnetite-destruction trough x gravity-basement step lane: informative-unique research TIFF, negative overall verdict.",
+   "beat_02778_summary": "Not expected: HOLDOUT-DTI 0.0619 (Seed 20) / 0.0618 (Seed 30) for A_std+H77G and 0.0392/0.0471 for standalone S_h77g_physics are below the 0.152718 H77-Step repository incumbent, with no organizer score."
+  },
   {
    "lane": "H77E-Knick (NEWEST): 10m 3DEP Knickpoint + TIGER-Deconfounded Step + Up-Dip Seismicity + 4-Scale SLOCO + 816-Raster Capped 300 m Submodular Cover",
    "page": "h77e-knick.html",
