@@ -22,6 +22,7 @@ LB = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboa
 PD = "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
 NAV = [("index.html", "Start here"), ("executive-summary.html", "How to submit"),
+       ("h77v.html", "H77V (Geothermal Vent)"),
        ("h79.html", "H79 · research-only"),
        ("h79-radhalo.html", "H79-RH · negative"),
        ("h77l.html", "H77L · research-only"), ("h77d.html", "H77D (Zero-SGMC)"), ("h77d-executive-summary.html", "H77D guide"),
@@ -276,8 +277,91 @@ projection is labelled INSTRUMENT, never presented as a score.</li></ul>"""
     # ---------------- H78 lane page
     if card and sub:
         (D / "h78.html").write_text(page("h78.html", "H78 lane", h78_body(card, sub)))
-    print("wrote docs/index.html, docs/executive-summary.html, docs/h77l.html" +
+    # ---------------- H77V lane page
+    h77v_card = jload("evidence/run_card_h77v.json")
+    h77v_exp1 = jload("evidence/h77v_exp1_canary.json")
+    h77v_exp2 = jload("evidence/h77v_exp2_holdout.json")
+    h77v_exp3 = jload("evidence/h77v_exp3_uniqueness.json")
+    if h77v_card and h77v_exp1 and h77v_exp2 and h77v_exp3:
+        (D / "h77v.html").write_text(page("h77v.html", "H77V (Geothermal Vent)", h77v_body(h77v_card, h77v_exp1, h77v_exp2, h77v_exp3)))
+        shutil.copyfile(ROOT / "registry/preregistration_h77v.json", D / "evidence/preregistration_h77v.json")
+        shutil.copyfile(ROOT / "research/h77v_geothermal_vent_hypotheses.md", D / "research/h77v_geothermal_vent_hypotheses.md")
+    print("wrote docs/index.html, docs/executive-summary.html, docs/h77l.html, docs/h77v.html" +
           (", docs/h78.html" if card and sub else ""))
+
+
+def h77v_body(card, exp1, exp2, exp3):
+    sa = card["submission_artifacts"]
+    s30 = exp2["seed30"]["scores"]
+    s20 = exp2["seed20"]["scores"]
+    arms_order = [
+        ("h77v_submod300_lofo", "H77V-LOFO (300m Submodular Cover)"),
+        ("h77v_submod300_37654", "H77V-37654 (Matched 37,654 Submodular Cover)"),
+        ("h77v_submod300_36250", "H77V-36250 (36,250 Uniqueness-Constrained Submod)"),
+        ("h77v_submod300_lofo_strict_oof", "H77V Strict OOF Budget Calibration"),
+        ("h77v_nms_37654", "H77V Surface + 7x7 Greedy NMS (Ablation)"),
+        ("h33_fold_fair_reclipped", "H33 Champion Construction (Fold-Fair Re-clipped)"),
+        ("h33_live_static", "H33 Static Live Raster (Fold-Visible Masked)"),
+    ]
+    rows_s30 = "".join(
+        f'<tr><td>{e(lbl)}</td><td><b>HOLDOUT-DTI {s30[k]["dti"]:.6f}</b></td>'
+        f'<td>[{s30[k]["ci95"][0]:.6f}, {s30[k]["ci95"][1]:.6f}]</td>'
+        f'<td>{e(s30[k]["evaluator_version"])}</td><td>{s30[k]["withheld_positive_pixels"]:,}</td></tr>'
+        for k, lbl in arms_order
+    )
+    rows_s20 = "".join(
+        f'<tr><td>{e(lbl)}</td><td><b>HOLDOUT-DTI {s20[k]["dti"]:.6f}</b></td>'
+        f'<td>[{s20[k]["ci95"][0]:.6f}, {s20[k]["ci95"][1]:.6f}]</td>'
+        f'<td>{e(s20[k]["evaluator_version"])}</td><td>{s20[k]["withheld_positive_pixels"]:,}</td></tr>'
+        for k, lbl in arms_order
+    )
+    sib_rows = "".join(
+        f'<tr><td><code>{e(r["label"])}</code></td><td>{r["their_positive_px"]:,}</td>'
+        f'<td>{r["forward_overlap_3px"]:.5f}</td><td>{r["surface_spearman"]:.5f}</td><td>{r["dot_spearman"]:.5f}</td></tr>'
+        for r in exp3["gemsdoe77_sibling_overlaps"] if not r["is_space_filling_ge_0p70_halo"]
+    )
+    return f"""<h1>H77V lane: Strike-Aligned Geothermal Vent Upflow &amp; Smectite Clay-Cap Breach Mechanics</h1>
+<p class="verdict"><b>Operative Release Verdict: NEGATIVE — OK to download for inspection only; Not OK to submit.</b>
+Selector status: <b>not approved</b>. Although Lane H77V passes all 114 single-feature leakage canaries
+(<code>max AUC = {exp1["seed30_max_symmetric_auc"]:.5f} &lt;= 0.90</code>), achieves the highest dual-seed
+<code>HOLDOUT-DTI</code> in the repository (<b>0.168788</b> on Seed 30 [11,342 withheld positive px, 95% CI 0.145589–0.191380]
+and <b>0.149091</b> on Seed 20 [11,321 withheld positive px, 95% CI 0.128435–0.171099], two-seed mean <b>0.158628</b> vs
+H77D's 0.145203), and has <b>0 overlap firings across all {exp3["informative_rasters_audited"]} informative sparse-dot rasters</b>
+(<code>max forward_overlap_3px = {exp3["informative_max_forward_overlap_3px"]:.5f} &lt;= 0.70</code>), the shared literal
+uniqueness tool (<code>vendor/gems57/uniqueness.py</code>) fails closed against the full-footprint dense witness
+(<code>17GEMSDOE_E-proba-multiscale</code>, <code>forward_overlap_3px = 1.0</code>) under Policy I17.</p>
+<section class="card dl"><h2>⬇ H77V GeoTIFF &amp; Run Card (Inspection Only — Do Not Upload)</h2>
+<a class="btn" href="downloads/{e(sa["submission_name"])}.tif" download>Download .tif ({sa["primary_geotiff_bytes"] / 1024:.0f} KB)</a>
+<a class="btn alt" href="downloads/{e(sa["submission_name"])}.zip" download>One-TIFF .zip ({sa["primary_zip_bytes"] / 1024:.0f} KB)</a>
+<div class="chips"><span class="chip ok">OK to download: YES</span>
+<span class="chip ok">Portal format: PASS (all checks)</span>
+<span class="chip bad">Unique, literal rule: FAIL (Policy I17 dense witness)</span>
+<span class="chip ok">Unique, informative reading ({exp3["informative_rasters_audited"]} rasters): PASS (max {exp3["informative_max_forward_overlap_3px"]:.4f} &lt;= 0.70)</span>
+<span class="chip ok">Beat matched holdout best: YES (+0.0187 s30 / +0.0088 s20)</span>
+<span class="chip warn">Selector: not approved</span></div>
+{copy("Submission name (reference only)", sa["submission_name"])}
+{copy("Submission note (<=140 chars, reference only)", sa["submission_note_le140"])}
+<p class="small">SHA-256 of .tif: <code>{e(sa["primary_geotiff_sha256"])}</code> · {sa["dot_count"]:,} binary dots ·
+<a href="evidence/run_card_h77v.json">Full JSON Run Card</a> ·
+<a href="evidence/h77v_exp1_canary.json">Exp 1 Canary Receipt</a> ·
+<a href="evidence/h77v_exp2_holdout.json">Exp 2 Holdout Receipt</a> ·
+<a href="evidence/h77v_exp3_uniqueness.json">Exp 3 Uniqueness Receipt</a> ·
+<a href="research/h77v_geothermal_vent_hypotheses.md">Pre-Experiment Hypothesis Ranking</a></p></section>
+<h2>Diagnostic Benchmark Figure</h2>
+<p><img src="figures/h77v_holdout_and_uniqueness.svg" alt="H77V dual-seed HOLDOUT-DTI benchmark" style="max-width:100%;height:auto;border:1px solid #cbd5e1;border-radius:6px;"></p>
+<h2>Experiment 2: Dual-Seed Whole-Component Holdout Evaluation (<code>gems57-pooled-hide-v2</code>)</h2>
+<h3>Seed 30 Primary Benchmark (11,342 Withheld Positive Pixels, 1,000 Block-Bootstrap Draws)</h3>
+<table><tr><th>Arm</th><th>Pooled HOLDOUT-DTI</th><th>95% Block Bootstrap CI</th><th>Evaluator</th><th>Withheld Positives</th></tr>{rows_s30}</table>
+<h3>Seed 20 Confirmation Benchmark (11,321 Withheld Positive Pixels, 1,000 Block-Bootstrap Draws)</h3>
+<table><tr><th>Arm</th><th>Pooled HOLDOUT-DTI</th><th>95% Block Bootstrap CI</th><th>Evaluator</th><th>Withheld Positives</th></tr>{rows_s20}</table>
+<h2>Experiment 3: Uniqueness Audit Across {exp3["total_rasters_audited"]} Rasters ({exp3["informative_rasters_audited"]} Informative + {exp3["space_filling_rasters_ge_0p70_halo"]} Space-Filling)</h2>
+<p>Pre-placement continuous surface max <code>|Spearman rho| = {exp3["surface_max_spearman_abs"]:.5f} &lt;= 0.90</code>;
+final binary dot max <code>|Spearman rho| = {exp3["dot_max_spearman_abs"]:.5f} &lt;= 0.90</code>;
+informative sparse-dot max 3-px forward overlap = <code>{exp3["informative_max_forward_overlap_3px"]:.5f} &lt;= 0.70</code>
+(0 firings across all {exp3["informative_rasters_audited"]} informative rasters).</p>
+<h3>Pairwise Overlap vs. Informative GEMSDOE77 Sibling Rasters</h3>
+<table><tr><th>Sibling Raster</th><th>Their Dots</th><th>Forward 3-px Overlap</th><th>Surface Spearman</th><th>Dot Spearman</th></tr>{sib_rows}</table>
+"""
 
 
 def h77l_body(card, holdout, audit):

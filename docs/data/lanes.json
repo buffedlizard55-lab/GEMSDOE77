@@ -1,6 +1,33 @@
 {
- "note": "Eleven reviewed downloadable lanes are retained, including H77L (the featured research-only file), two concurrently merged H79 negative TIFFs, and the new D77 blind-distance band. Every listed artifact is for inspection only, Not OK to submit: the literal dense-witness gate blocks every nonempty candidate under Policy I17. See data/submission-authorization.json.",
+ "note": "Twelve reviewed downloadable lanes are retained, including H77L (the featured research-only file), H77V (geothermal vent upflow & clay-cap breach + uniqueness-constrained 300 m submodular cover), two concurrently merged H79 negative TIFFs, and the D77 blind-distance band. Every listed artifact is for inspection only, Not OK to submit: the literal dense-witness gate blocks every nonempty candidate under Policy I17. See data/submission-authorization.json.",
  "lanes": [
+  {
+   "lane": "H77V: Strike-Aligned Geothermal Vent Plume × Smectite Clay-Cap Breach + V-LBCO + Uniqueness-Constrained 300 m Submodular Cover (0.1688 / 0.1491 HOLDOUT-DTI)",
+   "page": "h77v.html",
+   "summary": "executive-summary.html",
+   "file": "downloads/gems77-h77v-geothermal-vent-submod-36250dots-20261021-zeros.tif",
+   "run_card": "evidence/run_card_h77v.json",
+   "format_valid": true,
+   "protocol_unique": false,
+   "informative_unique": true,
+   "beats_holdout_best": true,
+   "verdict": "negative",
+   "scientific_holdout_verdict": "promote",
+   "primary": false,
+   "name": "gems77-h77v-geothermal-vent-submod-36250dots-20261021-zeros",
+   "note": "H77V zero-SGMC geothermal vent+claycap breach+V-LBCO OOF + 300m submod (36250 dots); HOLDOUT-DTI 0.1688 (s30) / 0.1491 (s20)",
+   "sha256": "83df91facbe17d8fd7afae6c851c514317f1d763f61781af954eef9834c2f7d2",
+   "holdout_dti_hide_v2": 0.168788,
+   "holdout_evaluator_version": "gems57-pooled-hide-v2",
+   "holdout_positive_pixels": 11342,
+   "holdout_ci95": [
+    0.145589,
+    0.19138
+   ],
+   "upload": "Not OK to submit. OK to download for inspection only. Format-valid (single-band float32, EPSG:32611, 3730x3292, 0 NaN anywhere, values in [0,1]) and unique across all 674 informative sparse-dot rasters (max 3-px forward overlap 0.6350 <= 0.70; surface max |rho| 0.4247 <= 0.90; dot max |rho| 0.1500 <= 0.90) with HOLDOUT-DTI 0.1688 (Seed 30, 11,342 px) and 0.1491 (Seed 20, 11,321 px), but the binding literal registry gate fails closed on the full-footprint dense witness under Policy I17 and no selector slot is approved.",
+   "why_primary": "New H77V geothermal vent upflow & clay-cap breach lane; beats matched holdout benchmarks on both Seed 30 and Seed 20 while failing closed under the literal Policy I17 dense-witness gate.",
+   "beat_02778_summary": "No conclusion that this file beats the organizer-reported 0.2778 can be drawn from holdout measurements alone; the candidate is not cleared to submit."
+  },
   {
    "lane": "D77: blind-distance band 250m-1km off catalogue + greedy dots under the exact DTI bar (HOLDOUT-DTI 0.0000 [0.0000, 0.0000]; negative result)",
    "page": "downloads/gems77-d77-blind-band-35106dots-20261021-926076f7-zeros.tif",
