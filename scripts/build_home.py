@@ -22,7 +22,7 @@ REPO = "https://github.com/buffedlizard55-lab/GEMSDOE77"
 LB = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
 PD = "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
-NAV = [("index.html", "Start here"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
+NAV = [("index.html", "Start here"), ("h82.html", "H82 · new negative result"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
        ("h77e-knick.html", "H77E-Knick · 0/816 firings"), ("release-review.html", "Release safety review"), ("executive-summary.html", "How to submit"),
        ("h81.html", "H81 · slip-cone"),
        ("h80t.html", "H80T · tilt-persist"), ("h80t-executive-summary.html", "H80T guide"),
@@ -202,6 +202,27 @@ applied; the protocol owner must change the shared policy before any raster can 
 authorize an upload; the separate weekly-slot selector has approved none. The independent
 <a href="data/submission-authorization.json">machine-readable authorization receipt</a> combines all required release
 gates and currently says <b>NOT OK TO SUBMIT — 0 authorized files</b>.</p>"""
+    # The latest stopped lane is displayed before the historical featured file.
+    # Never change H80's audited featured-file invariants to imply H82 approval.
+    h82 = jload("evidence/h82_run_card.json")
+    recent_box = ""
+    if h82:
+        art = D / "downloads" / (h82["submission_name"] + ".tif")
+        s = h82["holdout_dti"]
+        if (not art.is_file() or hashlib.sha256(art.read_bytes()).hexdigest() != h82["raster_sha256"]
+                or h82["verdict"] != "negative" or h82["ok_to_submit"] is not False
+                or h82["protocol_unique"] is not False
+                or h82["surface_correlation_overlap_vs_registry"]["worst_forward_3px_overlap"] <= 0.70):
+            raise ValueError("H82 research file/card is absent or contradicts the negative status")
+        recent_box = f'''<section class="card dl research"><h2>⬇ New H82 research TIFF — inspection ONLY</h2>
+<p><b>OK to download: YES. NOT OK TO SUBMIT.</b> A pinned dense registry witness caused a surface duplicate stop;
+no dots were placed, no slot selected. This new TIFF is <em>not</em> a cleared competition submission.</p>
+<a class="btn" href="downloads/{e(art.name)}" download>Download H82 research .tif</a>
+<a class="btn alt" href="downloads/{e(art.stem)}.zip" download>Download one-TIFF research ZIP</a>
+<p><b>HOLDOUT-DTI {s['dti']:.5f}</b> (95% CI [{s['ci95'][0]:.5f}, {s['ci95'][1]:.5f}];
+{e(s['evaluator_version'])}; {s['withheld_positive_pixels']:,} withheld positives); below the spatial-random control.
+Format PASS, not organizer acceptance. <a href="h82.html">Method, sources, validator and stop evidence →</a></p>
+<p class="small">SHA-256: <code>{h82['raster_sha256']}</code> · <a href="executive-summary.html">Submission instructions (for a future cleared file)</a></p></section>'''
     beat_txt = primary.get(
         "beat_02778_summary",
         "No organizer-confirmed evidence of a gain and no clearance for a competition slot.",
@@ -256,6 +277,7 @@ gates and currently says <b>NOT OK TO SUBMIT — 0 authorized files</b>.</p>"""
 (DrivenData competition 306). The first box distinguishes downloading a file from permission to upload it. The table
 lists the reviewed research candidates, not every historical archived/NaN-twin file; see <a href="audit.html">archive audit</a>.</p>
 {glance}
+{recent_box}
 {dl}
 {orient_box}
 <h2>Reviewed downloadable candidates</h2>{table}
@@ -285,6 +307,7 @@ not proof that the specific file received that score or that another submission 
 be resolved, a candidate must beat a <em>matched</em> holdout incumbent, and a separate selector must approve it. No
 condition is met merely by passing a format check.</p>
 {glance}
+{recent_box}
 {dl}
 {orient_box}
 <h2>What the DrivenData submission form asks for</h2>
