@@ -33,7 +33,12 @@ plus engineering effort.
 | 4 | **H77-2 strain–catalogue deficit** | `geod_2ndinv` (band 4), `geod_shearrate` (band 7), catalogue density (~5 km Gaussian) | Rank(strain) − rank(mapped-fault density): a regional allocator, not a line detector | Strain must be accommodated by faults; where strain is high but few faults are mapped, the catalogue is incomplete | No GEMSDOE repo used a strain-versus-catalogue deficit. H19-1 used a fault length–frequency power-law deficit. | Small | Low |
 | 5 | **H77-5 tilted-block valley asymmetry** | `det_elev` (band 12), `det_elev_slope` (band 19) | Skewness of the cross-valley elevation profile; asymmetric valleys mark half-graben block tilting toward an unmapped bounding fault | Buried or degraded bounding faults leave a geomorphic asymmetry even without a scarp | Not found in any local reference repo | Unknown | High (not run: budget) |
 
-### Screening results available before this commit (E2, live inversion, LOO over 95 rasters)
+#**External data.** None of H77-1 to H77-5 needs new external data. They use only the official
+19-band `training_features.tif` and `labels.tif`, restored from sha256-pinned owner mirrors. If H77-5
+is ever run at higher resolution, the free official source is the USGS 3DEP 1 m DEM (named on page 968
+as the GeoDAWN lidar source).
+
+## Screening results available before this commit (E2, live inversion, LOO over 95 rasters)
 
 - Support × catalogue model (S0): LOO Spearman +0.917, LOO RMSE 0.0324. The null (mean) RMSE is 0.0853.
 - H77-1 added (S1): no LOO improvement. ΔMSE = −0.000024, 95% CI [−0.000059, +0.000007]. In-sample, the top 5% straight-edge cells 4–20 px from the catalogue get h = 0.089, the only positive off-support bin. **Inconclusive.**

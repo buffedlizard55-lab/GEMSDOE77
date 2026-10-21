@@ -10,11 +10,11 @@
 <span class="chip ok">Unique vs 765 informative registry rasters: PASS (worst overlap 0.660 ≤ 0.70)</span>
 <span class="chip ok">Leakage canary: clear</span>
 <span class="chip warn">Run verdict: NEGATIVE</span></div>
-<p class="verdict"><b>Can I upload it?</b> Yes. It is unique, and it has the same encoding as the
+<p class="verdict"><b>Can I upload it?</b> Yes. It is unique under the informative reading, and it has the same encoding as the
 GEMSDOE32 0.2778 file that the portal accepted and scored: all cells finite, values in {0, 1}, no nodata tag, EPSG:32611, and 3730×3292 with the official transform.
-<br><b>Should I spend a weekly slot on it?</b> The pre-registered rule says <b>NEGATIVE</b>.
+<br><b>Should I spend a weekly slot on it?</b> <b>Not recommended.</b> The pre-registered verdict is <b>NEGATIVE</b>.
 The conservative instrument projects it -0.0431 versus the 0.2778 champion; the in-sample instrument projects -0.0407.
-A live score would measure the one thing the registry cannot: whether off-support straight-edge dots earn credit.
+A live score would only measure whether straight-edge dots in cells no prior raster covered earn credit.
 The slot decision belongs to the separate selector step.</p>
 <div class="copy"><span class="small">Name</span><code>gems77-h77-lia-38323dots-20261021-aa5c9331-zeros</code><button data-copy="gems77-h77-lia-38323dots-20261021-aa5c9331-zeros">Copy</button></div>
 <div class="copy"><span class="small">Note (113/140)</span><code>GEMSDOE77 H77 live-inversion allocation: 66% H19-5 support + 34% straight-edge dots, 38323 binary, 0 on catalogue</code><button data-copy="GEMSDOE77 H77 live-inversion allocation: 66% H19-5 support + 34% straight-edge dots, 38323 binary, 0 on catalogue">Copy</button></div>
@@ -38,7 +38,7 @@ The website limit prevails over the rules' parenthetical "three per week" (Drive
 <tr><td>Outside the bounds: null/NaN</td><td>Primary file has 0.0 outside (the same encoding as the scored 0.2778 file). The NaN twin is provided.</td></tr>
 <tr><td>Known faults are masked from scoring (<a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516">forum 11516</a>)</td><td>0 dots on catalogue pixels</td></tr>
 <tr><td>Unique, by the brief's rule (rank ρ ≤ 0.90, ≤ 70% of dots within 3 px of any one registry raster)</td><td>PASS: worst overlap 0.660 against 765 informative rasters; worst ρ 0.377 over 808 rasters.
-43 space-filling rasters (a 3 px halo covering ≥ 70% of the map, so any raster fails them) are reported, not used: <a href="analysis.html#uniqueness">details</a></td></tr></table>
+43 space-filling rasters are reported, not used. Each one's 3 px halo covers ≥ 70% of allowed cells, so uniformly random dots would exceed 0.70 against it and the test is uninformative there: <a href="analysis.html#uniqueness">details</a></td></tr></table>
 <h2>Why the portal said "Predicted values must be in range [0, 1]"</h2>
 <p>We measured two mechanisms from the official inputs.</p>
 <ol>

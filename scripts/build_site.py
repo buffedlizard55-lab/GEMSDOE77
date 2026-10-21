@@ -54,11 +54,11 @@ def download_card(sub, card, uniq_ok):
 <span class="chip {'ok' if uniq_ok else 'bad'}">Unique vs {card['registry_comparison']['informative_rasters']} informative registry rasters: {'PASS' if uniq_ok else 'FAIL'} (worst overlap {card['registry_comparison']['worst_overlap_informative']:.3f} ≤ 0.70)</span>
 <span class="chip ok">Leakage canary: clear</span>
 <span class="chip {vchip}">Run verdict: {verdict}</span></div>
-<p class="verdict"><b>Can I upload it?</b> Yes. It is unique, and it has the same encoding as the
+<p class="verdict"><b>Can I upload it?</b> Yes. It is unique under the informative reading, and it has the same encoding as the
 GEMSDOE32 0.2778 file that the portal accepted and scored: all cells finite, values in {{0, 1}}, no nodata tag, EPSG:32611, and 3730×3292 with the official transform.
-<br><b>Should I spend a weekly slot on it?</b> The pre-registered rule says <b>{verdict}</b>.
+<br><b>Should I spend a weekly slot on it?</b> <b>Not recommended.</b> The pre-registered verdict is <b>{verdict}</b>.
 The conservative instrument projects it {f4(card['live_inversion_projection']['S0_delta'])} versus the 0.2778 champion; the in-sample instrument projects {f4(card['live_inversion_projection']['S1_delta'])}.
-A live score would measure the one thing the registry cannot: whether off-support straight-edge dots earn credit.
+A live score would only measure whether straight-edge dots in cells no prior raster covered earn credit.
 The slot decision belongs to the separate selector step.</p>
 <div class="copy"><span class="small">Name</span><code>{e(sub['name'])}</code><button data-copy="{e(sub['name'])}">Copy</button></div>
 <div class="copy"><span class="small">Note ({sub['note_chars']}/140)</span><code>{e(sub['note'])}</code><button data-copy="{e(sub['note'])}">Copy</button></div>
@@ -114,8 +114,8 @@ Uniqueness costs about 0.04 in projected score, and the verdict is <b>negative</
 </ol>
 <h2>Experiments (budget: 3 of 3 used)</h2>
 <table><tr><th>#</th><th>Experiment</th><th>Result</th></tr>
-<tr><td>E1</td><td>Calibrate instruments against organizer scores</td><td>Catalogue distance alone: LOO ρ +{m1['catalogue distance']['loo_spearman']:.2f}. H19-5 support alone: +{m1['H19-5 support distance']['loo_spearman']:.3f}. Support × catalogue: +{m1['catalogue x support']['loo_spearman']:.3f} (n = 95)</td></tr>
-<tr><td>E2</td><td>Test hypotheses H77-1, H77-2 and H77-4 by live inversion</td><td>None improves the LOO fit. H77-1: ΔMSE {S1['delta_mse_vs_S0_mean']:+.6f} (CI straddles 0). H77-2: {S2['delta_mse_vs_S0_mean']:+.6f}. H77-4 ring density 0. <b>Negative or inconclusive.</b></td></tr>
+<tr><td>E1</td><td>Calibrate instruments against organizer scores</td><td>Catalogue distance alone: LOO ρ +{m1['catalogue distance']['loo_spearman']:.2f}. H19-5 support alone: +{m1['H19-5 support distance']['loo_spearman']:.3f}. Support × catalogue: +{m1['catalogue x support']['loo_spearman']:.3f} with 30 bins and +{S0['loo_spearman']:.3f} with the 9-bin S0 (n = 95)</td></tr>
+<tr><td>E2</td><td>Test hypotheses H77-1, H77-2 and H77-4 by live inversion</td><td>None improves the LOO fit. H77-1: ΔMSE {S1['delta_mse_vs_S0_mean']:+.6f} (CI straddles 0). H77-2: identical fit (all its bins get h = 0). H77-4 ring density 0. <b>Negative or inconclusive.</b></td></tr>
 <tr><td>E3</td><td>Build the unique candidate; holdout, canary, uniqueness, validator</td><td>The first build was <b>logged as a DUPLICATE</b> by the template audit (it was not shipped). The repaired build stays within a per-raster overlap budget of 0.66. Candidate − champion rule (HOLDOUT-DTI) {hold['pooled']['A0']['paired_differences']['A0']['delta']:+.4f} [{hold['pooled']['A0']['paired_differences']['A0']['ci95'][0]:+.4f}, {hold['pooled']['A0']['paired_differences']['A0']['ci95'][1]:+.4f}]. S0 Δ {lp['S0_delta']:+.4f}. Verdict <b>{card['verdict']}</b></td></tr></table>
 <p>Start with the <a href="executive-summary.html">executive summary (how to submit)</a>. The full brief is in the <a href="{REPO}#readme">README</a>.</p>"""
     (D / "index.html").write_text(page("index.html", "Overview", body))
@@ -139,7 +139,7 @@ The website limit prevails over the rules' parenthetical "three per week" (Drive
 <tr><td>Outside the bounds: null/NaN</td><td>Primary file has 0.0 outside (the same encoding as the scored 0.2778 file). The NaN twin is provided.</td></tr>
 <tr><td>Known faults are masked from scoring (<a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516">forum 11516</a>)</td><td>0 dots on catalogue pixels</td></tr>
 <tr><td>Unique, by the brief's rule (rank ρ ≤ 0.90, ≤ 70% of dots within 3 px of any one registry raster)</td><td>{'PASS' if uniq_ok else 'FAIL'}: worst overlap {rc['worst_overlap_informative']:.3f} against {rc['informative_rasters']} informative rasters; worst ρ {rc['phase2_dots_worst_spearman']:.3f} over {rc['registry_rasters_checked']} rasters.
-{rc['space_filling_rasters_excluded']} space-filling rasters (a 3 px halo covering ≥ 70% of the map, so any raster fails them) are reported, not used: <a href="analysis.html#uniqueness">details</a></td></tr></table>
+{rc['space_filling_rasters_excluded']} space-filling rasters are reported, not used. Each one's 3 px halo covers ≥ 70% of allowed cells, so uniformly random dots would exceed 0.70 against it and the test is uninformative there: <a href="analysis.html#uniqueness">details</a></td></tr></table>
 <h2>Why the portal said "Predicted values must be in range [0, 1]"</h2>
 <p>We measured two mechanisms from the official inputs.</p>
 <ol>

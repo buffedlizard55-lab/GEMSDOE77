@@ -117,7 +117,11 @@ def main():
                            "0.2778 champion (same instrument). Valid, unique (informative reading) and safe to upload; "
                            "not projected to beat the champion. Slot decision: selector."
                            if verdict == "negative" else "All pre-registered criteria met; selector decides the slot."),
-        "budget": {"experiments_used": 3, "limit": 3, "weekly_slots_used_by_this_run": 0},
+        "budget": {"experiments_used": 3, "limit": 3, "weekly_slots_used_by_this_run": 0,
+                   "disclosure": ("E3 included a uniqueness repair: the first build was logged DUPLICATE, rebuilt under an "
+                                  "explicit per-raster overlap budget, re-audited and re-holdout-tested. No new hypothesis "
+                                  "was tested. Wall time for the experiments exceeded the 2-hour budget, mainly because "
+                                  "of two ~1 h template registry audits over 812 rasters.")},
         "champion_reference": {"submission": "GEMSDOE32 h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
                                "owner_reported_score": 0.2778, "sha256": why["champion_bytes"]["sha256"]},
     }

@@ -12,7 +12,7 @@
 |---|---|
 | OK to download? | **Yes** |
 | Will the portal accept it? | **Yes.** It passes 17/17 checks against the official grid and footprint, using the same encoding as the 0.2778 file the portal accepted and scored: all cells finite, binary {0, 1}, no nodata tag, EPSG:32611, 3730×3292 with the official transform. |
-| Unique? | **Yes.** Worst ρ 0.377; worst overlap 0.660 against 765 informative registry rasters. 43 space-filling rasters, which any raster fails, are reported. The first build was logged as a duplicate and not shipped. |
+| Unique? | **Yes.** Worst ρ 0.377; worst overlap 0.660 against 765 informative registry rasters. 43 space-filling rasters are reported, not used: each one's 3 px halo covers ≥ 70% of allowed cells, so even random dots exceed 0.70 against it. The first build was logged as a duplicate and not shipped. |
 | Spend a weekly slot? | **Not recommended. Run verdict: NEGATIVE** (pre-registered rule). INSTRUMENT Δ versus the 0.2778 champion is S0 -0.043 and S1 -0.041. HOLDOUT-DTI is 0.0706 against 0.0958 for the fold-fair champion construction (Δ -0.0252, 95% CI [-0.0303, -0.0203]). **The selector decides.** |
 
 **Form fields**
@@ -75,6 +75,13 @@ submission page), **HOLDOUT-DTI** (local hide-and-recover), **INSTRUMENT** (proj
 
 Experiments: **3 of 3 used** (E1 instrument calibration, E2 hypothesis tests by live inversion,
 E3 candidate, holdout, canary, uniqueness and validator).
+
+**Budget disclosure.**
+
+- E3 included a uniqueness repair. The first build was logged as a duplicate, rebuilt under a
+  per-raster overlap budget, then re-audited and re-tested on the holdout. No new hypothesis was tested.
+- Wall time for the experiments exceeded the 2-hour budget, mainly because of two ~1 h template
+  registry audits.
 
 ---
 
