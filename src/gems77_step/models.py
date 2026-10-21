@@ -9,7 +9,6 @@ Architectural Firewall:
 from __future__ import annotations
 
 import gc
-import lightgbm as lgb
 import numpy as np
 from sklearn.ensemble import HistGradientBoostingClassifier
 
