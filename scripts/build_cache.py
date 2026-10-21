@@ -4,8 +4,8 @@
   scored_sparse.npz  sparse (index, value) copies of the 95 distinct organizer-scored rasters,
                      catalogue pixels zeroed (organizer masks them, forum 11516)
   d_h195.npy         Euclidean distance (px) to the H19-5 line set (19GEMSDOE, scored 0.1922)
-  f_sef.npy          H77-1 straight-edge field  (gems77.fields.straight_edge_field)
-  f_scd.npy          H77-2 strain-catalogue deficit (gems77.fields.strain_catalogue_deficit)
+  f_sef.npy          H77-1 straight-edge field  (gems77lia.fields.straight_edge_field)
+  f_scd.npy          H77-2 strain-catalogue deficit (gems77lia.fields.strain_catalogue_deficit)
 """
 from __future__ import annotations
 
@@ -18,7 +18,7 @@ from scipy import ndimage
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
-from gems77 import core, fields  # noqa: E402
+from gems77lia import core, fields  # noqa: E402
 
 H19_5 = "h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan"
 

@@ -1,8 +1,8 @@
-"""The fast metric in gems77.core must equal the shared template metric and the literal formula."""
+"""The fast metric in gems77lia.core must equal the shared template metric and the literal formula."""
 import numpy as np
 
 from gems.metric import tversky_terms, tversky_terms_bruteforce  # vendored template (byte-identical)
-from gems77 import core
+from gems77lia import core
 
 
 def test_official_cross_example_tp_fn():

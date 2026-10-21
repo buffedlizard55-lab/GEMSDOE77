@@ -2,7 +2,7 @@
 """E3 holdout of the FINAL (uniqueness-repaired) rule: fold-fair, template tools only.
 
 Identical to scripts/e3_holdout.py except that arm C is rebuilt per fold with the per-raster
-overlap budget (gems77.allocate.budgeted_selection, budget 0.66 vs every informative registry
+overlap budget (gems77lia.allocate.budgeted_selection, budget 0.66 vs every informative registry
 raster).  Registry membership does not depend on the fold, so it is computed once for a
 catalogue-distance-free pool; every catalogue-derived input (catalogue distance, the S0/S1
 bins, the B-px prune) is recomputed from the VISIBLE catalogue of each fold.
@@ -24,7 +24,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 from gems57 import evaluate_holdout as eh  # noqa: E402
 from gems57.grid import load_grid  # noqa: E402
 from gems57.holdout import buffered_component_draw  # noqa: E402
-from gems77 import allocate as al, core  # noqa: E402
+from gems77lia import allocate as al, core  # noqa: E402
 from e3_build_candidate import bins_like_e2  # noqa: E402
 from e3_holdout import auc  # noqa: E402
 

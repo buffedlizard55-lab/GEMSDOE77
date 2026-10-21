@@ -1,7 +1,7 @@
 """Synthetic checks of the live-score inversion and the allocation primitives (no data needed)."""
 import numpy as np
 
-from gems77 import allocate as al, inversion as inv
+from gems77lia import allocate as al, inversion as inv
 
 
 def test_inversion_recovers_known_density():
@@ -29,7 +29,7 @@ def test_loo_predictions_track_truth():
 
 
 def test_greedy_select_respects_min_separation():
-    import gems77.core as core
+    import gems77lia.core as core
     rng = np.random.default_rng(3)
     cand = rng.choice(core.H * core.W, 20_000, replace=False)
     sel = al.greedy_select(cand, 3.0)
@@ -40,7 +40,7 @@ def test_greedy_select_respects_min_separation():
 
 
 def test_overlap_fraction_euclidean_3px():
-    import gems77.core as core
+    import gems77lia.core as core
     theirs = np.zeros((core.H, core.W), bool)
     theirs[100, 100] = True
     mine = np.array([100 * core.W + 103, 100 * core.W + 104, 102 * core.W + 102])  # d = 3, 4, 2.83

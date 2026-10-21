@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Experiment 2 (part a): live-score inversion over 95 organizer-scored registry rasters.
 
-Fits the truth-density model of gems77.inversion for several bin systems and reports
+Fits the truth-density model of gems77lia.inversion for several bin systems and reports
 leave-one-out (LOO) and leave-one-family-out predictive accuracy against the
 organizer scores.  Writes evidence/e2_inversion.json.
 Every output is an INSTRUMENT value (projection), never a score.
@@ -17,7 +17,7 @@ from scipy.stats import pearsonr, spearmanr
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
-from gems77 import core, inversion as inv  # noqa: E402
+from gems77lia import core, inversion as inv  # noqa: E402
 
 CAT_EDGES = [0, 2, 4, 8, 20, 60, 1e9]          # px from catalogue
 SUP_EDGES = [-1, 0, 1.5, 3, 6, 1e9]           # px from H19-5 line set (explanatory only)

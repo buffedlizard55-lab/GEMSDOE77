@@ -33,7 +33,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-MANIFEST = ROOT / "registry" / "data_manifest.json"
+MANIFEST = ROOT / "registry" / "lia_data_manifest.json"
 DEST = ROOT / ".cache" / "gems_data"
 
 

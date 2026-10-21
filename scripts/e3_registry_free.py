@@ -24,7 +24,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT / "vendor" / "template66"))
 from gems57.uniqueness import _near  # noqa: E402  (template halo definition, Euclidean 3 px)
-from gems77 import core  # noqa: E402
+from gems77lia import core  # noqa: E402
 
 
 def main():

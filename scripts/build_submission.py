@@ -8,7 +8,7 @@ Outputs (docs/downloads/):
   <name>-nan.tif     Twin with bit-identical in-footprint values and NaN outside the official
                      footprint, written by the shared template writer (gems.submission_writer).
   <name>-zeros.zip   One-member zip of the primary TIF (form accepts a .zip with one GeoTIFF).
-Validation: gems77.validate (official sample_submission footprint) + the template validator.
+Validation: gems77lia.validate (official sample_submission footprint) + the template validator.
 """
 from __future__ import annotations
 
@@ -23,7 +23,7 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT / "vendor" / "template66"))
-from gems77 import core, validate as v77  # noqa: E402
+from gems77lia import core, validate as v77  # noqa: E402
 from gems import submission_writer as tw, validate_submission as tv  # noqa: E402  (template)
 
 STAMP = "20261021"

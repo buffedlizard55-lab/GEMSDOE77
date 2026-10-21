@@ -19,7 +19,7 @@ from scipy.stats import spearmanr
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT / "scripts"))
-from gems77 import core, inversion as inv  # noqa: E402
+from gems77lia import core, inversion as inv  # noqa: E402
 from e2_inversion import load, cover_design  # noqa: E402
 
 CAT3 = [0, 4, 20, 1e9]

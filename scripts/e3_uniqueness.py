@@ -22,7 +22,7 @@ sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT / "vendor" / "template66"))
 sys.path.insert(0, str(ROOT / "scripts"))
 from gems57 import uniqueness as U  # noqa: E402
-from gems77 import allocate as al, core  # noqa: E402
+from gems77lia import allocate as al, core  # noqa: E402
 from e3_build_candidate import bins_like_e2  # noqa: E402
 
 

@@ -18,7 +18,7 @@ def _sub():
 
 
 def test_shipped_primary_and_twin_pass():
-    from gems77 import validate as v
+    from gems77lia import validate as v
     s = _sub()
     p = v.validate(ROOT / "docs/downloads" / s["primary"]["file"], mode="zeros", name=s["name"], note=s["note"])
     t = v.validate(ROOT / "docs/downloads" / s["twin_nan"]["file"], mode="nan", name=s["name"], note=s["note"])
@@ -39,7 +39,7 @@ def _write(tmp_path, arr):
 
 
 def test_nan_inside_footprint_is_rejected(tmp_path):
-    from gems77 import core, validate as v
+    from gems77lia import core, validate as v
     a = np.zeros((core.H, core.W), np.float32)
     fp = core.grid().footprint
     r, c = np.argwhere(fp)[0]
@@ -48,7 +48,7 @@ def test_nan_inside_footprint_is_rejected(tmp_path):
 
 
 def test_feature_sentinel_is_rejected(tmp_path):
-    from gems77 import core, validate as v
+    from gems77lia import core, validate as v
     a = np.zeros((core.H, core.W), np.float32)
     r, c = np.argwhere(core.grid().footprint)[0]
     a[r, c] = -3.4028235e38

@@ -22,7 +22,7 @@ from scipy import ndimage, spatial
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
-from gems77 import core  # noqa: E402
+from gems77lia import core  # noqa: E402
 
 BANDS = [0, 1, 2, 3, 4, 6, 8, 12, 20, 35, 60, 100, 1e9]  # catalogue-distance band edges (px)
 

@@ -25,7 +25,7 @@ import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
-from gems77 import allocate as al, core  # noqa: E402
+from gems77lia import allocate as al, core  # noqa: E402
 
 CAT3 = [0, 4, 20, 1e9]
 ON_SHARE_MAX = 0.65
