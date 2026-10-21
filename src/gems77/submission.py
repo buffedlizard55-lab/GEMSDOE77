@@ -39,7 +39,14 @@ def audit_geotiff(
     labels: np.ndarray,
     mode: str = "zeros",
 ) -> dict:
-    """Strict 12-point DrivenData submission validator audit."""
+    """Strict all-pixel local preflight; ``mode='nan'`` is diagnostic-only.
+
+    A NaN-outside raster is never reported as submission-valid, even when the
+    study-footprint cells themselves are bounded. The organizer's treatment of
+    outside-footprint NaNs is not asserted here.
+    """
+    if mode not in {"zeros", "nan"}:
+        raise ValueError("mode must be 'zeros' or 'nan'")
     with rasterio.open(tif_path) as src:
         arr = src.read(1)
         crs_str = str(src.crs)
@@ -63,15 +70,11 @@ def audit_geotiff(
         and np.all((in_foot >= 0.0) & (in_foot <= 1.0))
     )
 
-    if mode == "zeros":
-        full_grid_in_01 = bool(
-            (int(np.isfinite(arr).sum()) == EXPECTED_TOTAL_PIXELS)
-            and np.all((arr >= 0.0) & (arr <= 1.0))
-        )
-        out_foot_ok = bool(np.all(out_foot == 0.0))
-    else:
-        full_grid_in_01 = in_foot_in_01
-        out_foot_ok = bool(np.all(np.isnan(out_foot)))
+    full_grid_in_01 = bool(
+        (int(np.isfinite(arr).sum()) == EXPECTED_TOTAL_PIXELS)
+        and np.all((arr >= 0.0) & (arr <= 1.0))
+    )
+    out_foot_ok = bool(np.all(out_foot == 0.0))
 
     emitted_dots = int((in_foot > 0.5).sum())
     on_catalogue_dots = int(((arr > 0.5) & labels).sum())
@@ -86,12 +89,13 @@ def audit_geotiff(
         "in_footprint_zero_inf": in_foot_inf == 0,
         "in_footprint_zero_sentinel": in_foot_sentinel == 0,
         "in_footprint_range_0_1": in_foot_in_01,
-        "outside_footprint_compliant": out_foot_ok,
+        "outside_footprint_zero": out_foot_ok,
+        "nan_mode_not_submittable": mode == "zeros",
         "zero_on_catalogue_leakage": on_catalogue_dots == 0,
         "validator_range_0_1_guaranteed": full_grid_in_01,
     }
     all_passed = all(checks.values())
-    if not all_passed:
+    if not all_passed and mode == "zeros":
         failed = [k for k, v in checks.items() if not v]
         raise ValueError(f"Submission audit failed for {tif_path.name}: {failed}")
 

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "verified_files_count": 23,
-  "storage_root": ".cache/gems_data",
+  "storage_root": "/home/user/GEMSDOE77/data/raw",
   "files": [
     {
       "id": "training_features",
@@ -76,7 +76,7 @@
     {
       "id": "ext_gdr_volcanic_vents_in_footprint",
       "dest": "external/gdr_volcanic_vents_in_footprint.csv",
-      "status": "present",
+      "status": "restored",
       "bytes": 672,
       "sha256": "f91bafbaccaaf2754e71d60434fc0f9eb2c7b880c6e714883f4974542ff6a0bf"
     },
