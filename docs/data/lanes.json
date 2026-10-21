@@ -1,6 +1,29 @@
 {
- "note": "Status of every submission file in this repository, copied from each lane's own run card. Under Policy I17 (unfiltered literal registry check where dense witness ab0a0a62... has positive values on 100.0% of allowed Nevada pixels), automatic literal clearance fails closed ('Not OK to submit' automatically without selector policy sign-off). H77D (0.15011 [s30] / 0.14030 [s20] HOLDOUT-DTI, 100% zero-SGMC) and H77-Step (0.15272 HOLDOUT-DTI) are orthogonal (only 0.4068 3-px dot overlap) top candidates for human selector review.",
+ "note": "Status of every submission file in this repository, copied from each lane's own run card. Under Policy I17 (unfiltered literal registry check where dense witness ab0a0a62... has positive values on 100.0% of allowed Nevada pixels), automatic literal clearance fails closed ('Not OK to submit' automatically without selector policy sign-off). H79 is the newest UNIQUE TIF of this lane (format-valid, informative-unique, holdout-negative, deliverable). Prior best holdouts remain H77D 0.15011 [s30]/0.1403[s20] & H77-Step 0.15272.",
  "lanes": [
+  {
+   "lane": "H79-BB: Basement potential-field step \u00d7 topographic curvature ridge (NEWEST, UNIQUE TIF \u2014 17/17 PASS)",
+   "page": "h79.html",
+   "summary": "executive-summary.html",
+   "file": "downloads/gems77-h79-crossgrad-ridge-37654dots-20261021-dd0dbf9c-zeros.tif",
+   "format_valid": true,
+   "protocol_unique": false,
+   "beats_holdout_best": false,
+   "verdict": "negative",
+   "name": "gems77-h79-crossgrad-ridge-37654dots-20261021-dd0dbf9c-zeros",
+   "note": "H79 cross-gradient confluence x ridge (mag+grav tile zero x Hessian ridge) 37654dots; zero-SGMC, no lidar, no H19-5 reuse",
+   "sha256": "67aafffc50637a6df9c4275bc2735a0a865ac73904f02667b05f4f257d97587c",
+   "s0_projection": null,
+   "informative_unique": true,
+   "holdout_dti": 0.03232838588730809,
+   "holdout_ci95": [
+    0.028377191340547874,
+    0.03645024878150852
+   ],
+   "upload": "Not OK to submit automatically under Policy I17 dense-witness gate (ab0a0a62 covers 100% footprint); SAFE TO DOWNLOAD (17/17 PASS, 0 NaN, 37654 dots) \u2014 INFORMATIVE unique 0.14 overlap, HOLDOUT-DTI 0.0323 negative vs random 0.0353; inspection download only, selector: not approved.",
+   "primary": true,
+   "why_primary": "Newest unique TIF of this parallel lane (2026-10-21): distinct physics (mag-grav cross-gradient confluence \u00d7 Hessian ridge coherence) vs H77D (0.1501) & H77-Step (0.1527); byte-unique (overlap 0.11\u20130.14 vs siblings, |\u03c1| 0.004), 0 SGMC, 0 H19-5 reuse, all-finite zeros encoding that fixes 'Predicted values must be in range [0,1]' (17/17 PASS)."
+  },
   {
    "lane": "H77D: Coupled Zero-SGMC Tectono-Hydrothermal Conduits + 12-Bit LOCO + 300 m Submodular Cover (0.15011 / 0.14030 HOLDOUT-DTI)",
    "page": "h77d.html",
@@ -16,8 +39,8 @@
    "sha256": "110e7c77ec7e7d201de0ae04ffd2bf3b9db786b4063d800cacb8ab1ded4fd1b9",
    "informative_unique": true,
    "upload": "Not OK to submit automatically under Policy I17 unfiltered dense-witness gate (ab0a0a62 covers 100% of footprint); SAFE TO DOWNLOAD (17/17 checks, 0 NaN) & RECOMMENDED FOR HUMAN SELECTOR SIGN-OFF: 100% zero-SGMC, HOLDOUT-DTI 0.15011 (s30) / 0.14030 (s20) (+54.5% / +46.5% vs fold-fair H33; +38.8% / +28.4% vs prior best), unique vs all 709 sparse rasters (max 0.6883 <= 0.70; vs H77-Step = 0.4068; vs H78 = 0.3517). Selector: not approved.",
-   "primary": true,
-   "why_primary": "Newest session (Lane H77D, 100% zero-SGMC). Eliminates Paleozoic/Mesozoic SGMC bedrock false positives (0.036-0.051 live), fixes q==0 missing-LiDAR across 24.6% of Nevada, and beats fold-fair H33 on both spatial seeds (0.15011 vs 0.09715 on Seed 30; 0.14030 vs 0.09574 on Seed 20) while overlapping H77-Step by only 40.7%.",
+   "primary": false,
+   "why_primary": "Prior primary before H79 (H77D remains co-primary candidate for selector review, orthogonal to H79 with only 0.11 overlap).",
    "beat_02778_summary": "Strong candidate once human selector grants dense-witness policy sign-off: beats fold-fair H33 champion construction on BOTH spatial seeds (+0.0530 [95% CI +0.0378, +0.0680] on Seed 30; +0.0446 [+0.0303, +0.0586] on Seed 20) with 0 SGMC channels and unweighted DTI live-inversion support (12.1x bar on scarps)."
   },
   {
@@ -34,7 +57,7 @@
    "holdout_dti_blind_4quad": 0.185834,
    "verdict": "negative",
    "selector_recommendation": "CO-PRIMARY CANDIDATE FOR HUMAN SELECTOR SIGN-OFF (orthogonal to zero-SGMC H77D with only 0.4068 dot overlap; 0.1527 HOLDOUT-DTI)",
-   "upload": "Not OK to submit automatically under unfiltered dense-witness literal gate (ab0a0a62 covers 100% of footprint); PASSES gems57 symmetric gate (max mutual 0.493 <= 0.70, max |rho| 0.403 <= 0.90) & all discrete model checks (H33 fwd 0.586, GEMSDOE70 fwd 0.438, H77D fwd 0.394) — recommended co-primary file once human selector confirms non-submission dense-witness exemption (selector: not approved)."
+   "upload": "Not OK to submit automatically under unfiltered dense-witness literal gate (ab0a0a62 covers 100% of footprint); PASSES gems57 symmetric gate (max mutual 0.493 <= 0.70, max |rho| 0.403 <= 0.90) & all discrete model checks (H33 fwd 0.586, GEMSDOE70 fwd 0.438, H77D fwd 0.394) \u2014 recommended co-primary file once human selector confirms non-submission dense-witness exemption (selector: not approved)."
   },
   {
    "lane": "H78: lidar scarp consensus, uniqueness-capped allocation",
