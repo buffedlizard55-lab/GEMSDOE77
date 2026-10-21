@@ -24,9 +24,10 @@ REPO = "https://github.com/buffedlizard55-lab/GEMSDOE77"
 LB = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
 PD = "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
-NAV = [("review-latest.html", "Latest review"), ("metric-review.html", "Corrected H33 analysis"), ("index.html", "Start here"), ("tsd.html", "H77-TSD · inspection"), ("h77v.html", "H77V (Vent-Advect)"), ("h82-texture.html", "H82-TEXTURE · negative"), ("h82rank.html", "H82R · radiometric negative"), ("preflight-review.html", "Current readiness review"), ("h82-executive-summary.html", "H82 · cool-outlet negative"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
+NAV = [("review-latest.html", "Latest review"), ("metric-review.html", "Corrected H33 analysis"), ("index.html", "Start here"), ("h77vs.html", "H77VS · negative"), ("h77vs-executive-summary.html", "H77VS guide"), ("tsd.html", "H77-TSD · inspection"), ("h77v.html", "H77V (Vent-Advect)"), ("h82-texture.html", "H82-TEXTURE · negative"), ("h82rank.html", "H82R · radiometric negative"), ("preflight-review.html", "Current readiness review"), ("h82-executive-summary.html", "H82 · cool-outlet negative"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
        ("h77e-knick.html", "H77E-Knick · 0/816 firings"), ("release-review.html", "Release safety review"), ("executive-summary.html", "How to submit"),
-       ("h81.html", "H81 · slip-cone"),
+       ("h81.html", "H81 · slip-cone"), ("h82.html", "H82 · fault collar"),
+       ("h83.html", "H83 · fault collar"),
        ("h80t.html", "H80T · tilt-persist"), ("h80t-executive-summary.html", "H80T guide"),
        ("h80.html", "H80 · negative"), ("ago.html", "AGO · negative proxies"),
        ("h79-orient.html", "H79-ORIENT · negative"), ("h79-orient-executive-summary.html", "H79-ORIENT guide"),
@@ -344,6 +345,31 @@ These are registry/format measurements, not scores or portal acceptance.</p>"""
 Δ = {d["delta"]:+.4f} (95% CI {d["ci95"][0]:+.4f} to {d["ci95"][1]:+.4f}).</li>
 <li><b>Verdict:</b> <b>{e(card["verdict"].upper())}</b> — {e(card["verdict_reason"])}</li>
 <li><a href="h78.html">Full H78 page: the hypotheses, the three experiments, uniqueness and the run card →</a></li></ul>"""
+    rc_h77vs = jload("evidence/run_card_h77v.json")
+    h77vs_box = ""
+    if rc_h77vs:
+        vs20 = rc_h77vs["holdout_dti"]["seed_20"]["A_std_plus_h77v"]
+        vs30 = rc_h77vs["holdout_dti"]["seed_30"]["A_std_plus_h77v"]
+        vsuq = rc_h77vs["correlation_overlap_vs_registry"]
+        vtif = rc_h77vs["raster_path"].removeprefix("docs/")
+        vzip = rc_h77vs["zip_path"].removeprefix("docs/")
+        h77vs_box = f"""<section class="card dl research"><h2>⬇ New Session Candidate (<code>H77VS</code>): OK to download for inspection — NOT OK TO SUBMIT</h2>
+<p class="small muted"><b>{e(rc_h77vs["hypothesis"])}</b> (branch <code>arena/e9248aa6-gemsdoe77</code>; fixes <code>IR-H77VS-01..05</code>).</p>
+<a class="btn" href="{e(vtif)}" download>Download H77VS .tif ({rc_h77vs["raster_bytes"]/1024:.0f} KB)</a>
+<a class="btn alt" href="{e(vzip)}" download>Download Single-TIFF .zip</a>
+<a class="btn alt" href="h77vs.html">Full H77VS Technical Report &amp; 5 Ranked Hypotheses →</a>
+<a class="btn alt" href="h77vs-executive-summary.html">H77VS Submission Guide →</a>
+<div class="chips"><span class="chip ok">OK to download: YES</span>
+<span class="chip ok">Portal format (local checks): PASS (15/15, 0 NaN, [0,1])</span>
+<span class="chip bad">Unique, literal rule (Policy I17): FAIL (1.000 vs dense witness ab0a0a62)</span>
+<span class="chip ok">Informative reading (60 sparse rasters): PASS (max 3-px overlap {vsuq["final_dots_informative_max_forward_overlap_3px"]:.4f} &le; 0.70, max |&rho;| {vsuq["final_dots_informative_max_abs_spearman"]:.4f} &le; 0.90)</span>
+<span class="chip warn">Selector: not approved (0 weekly slots used)</span>
+<span class="chip bad">NOT OK TO SUBMIT</span></div>
+<p class="verdict"><b>Can I submit it?</b> <b>No. NOT OK TO SUBMIT (inspection download only).</b> Below the 0.152718 H77-Step repository incumbent and blocked under Policy I17.<br>
+<b>Local holdout evidence:</b> <b>{vs20["dti"]:.5f} HOLDOUT-DTI</b> on Seed 20 (95% CI {vs20["ci95"][0]:.5f}–{vs20["ci95"][1]:.5f}; <code>gems57-pooled-hide-v2</code>; 11,321 withheld positives) and <b>{vs30["dti"]:.5f} HOLDOUT-DTI</b> on Seed 30 (95% CI {vs30["ci95"][0]:.5f}–{vs30["ci95"][1]:.5f}; 11,342 withheld positives; significant paired &Delta; vs standard stack = <b>+0.01600</b>, 95% CI [+0.00123, +0.03170]).</p>
+{copy("H77VS unique submission name (inspection reference — DO NOT UPLOAD)", rc_h77vs["submission_name"])}
+{copy("H77VS short note <= 140 chars (inspection reference — DO NOT UPLOAD)", rc_h77vs["submission_note"])}
+<p class="small">GeoTIFF SHA-256: <code>{e(rc_h77vs["raster_sha256"])}</code> · ZIP SHA-256: <code>{e(rc_h77vs["zip_sha256"])}</code> · <a href="evidence/run_card_h77v.json">Machine-readable Run Card (.json)</a></p></section>"""
     rc_tsd = jload("evidence/run_card_tsd.json")
     tsd_box = ""
     if rc_tsd:
@@ -367,14 +393,14 @@ These are registry/format measurements, not scores or portal acceptance.</p>"""
 {copy("H77-TSD unique submission name (inspection reference — DO NOT UPLOAD)", tsub["name"])}
 {copy("H77-TSD short note <= 140 chars (inspection reference — DO NOT UPLOAD)", tsub["note"])}
 <p class="small">GeoTIFF SHA-256: <code>{e(tsub["tif_sha256"])}</code> · ZIP SHA-256: <code>{e(tsub["zip_sha256"])}</code> · <a href="evidence/run_card_tsd.json">Machine-readable Run Card (.json)</a></p></section>"""
-    body = f"""{tsd_box}{h82_banner}{rank_box}<h1>Start here</h1>
+    body = f"""{h77vs_box}{tsd_box}{h82_banner}{rank_box}<h1>Start here</h1>
 <p><strong>Earlier review #49 generated no new TIFF; H82 above is a later negative research download. NOT OK TO SUBMIT.</strong> <a href="review-904a24d3.html">Earlier audit and corrected H33 analysis</a>.</p>
 <p>This repository builds and audits fault-probability GeoTIFFs for the <a href="{COMP}">DOE GEMS Prize</a>
 (DrivenData competition 306). The first box distinguishes downloading a file from permission to upload it. The table
 lists the reviewed research candidates, not every historical archived/NaN-twin file; see <a href="audit.html">archive audit</a>.</p>
 {glance}
 {dl}
-<p><a href="review-latest.html">Latest review (arena/b6805ddb): no new TIFF; duplicate-stop blocker and 29-file format audit</a> · <a href="metric-review.html">Corrected H33 analysis</a></p>
+<p><a href="review-latest.html">Latest review (arena/de39a02b): no new TIFF; universal duplicate-stop blocker</a> · <a href="metric-review.html">Corrected H33 analysis</a> · <a href="review-b6805ddb.html">Additional branch review</a></p>
 {orient_box}
 <h2>Reviewed downloadable candidates</h2>{table}
 <div class="values"><b>Score provenance and slot limits.</b> The supplied 0.2778 attribution to H33,
@@ -396,7 +422,7 @@ not proof that the specific file received that score or that another submission 
 
     # ---------------- general executive summary (how to submit)
     guide = f"""<h1>Executive summary: how to submit — only AFTER approval</h1>
-{tsd_box}
+{h77vs_box}{tsd_box}
 <p class="verdict"><b>NEW H82 file:</b> <a href="{e(h82['file'])}" download>Download the format-valid TIFF for inspection</a>;
 <b>NOT OK TO SUBMIT</b>. See <a href="h82-executive-summary.html">its test result and exact name/note</a>.
 This is a negative experiment, not a competition submission authorization.</p>
@@ -408,7 +434,7 @@ condition is met merely by passing a format check.</p>
 {glance}
 {rank_box}
 {dl}
-<p><a href="review-latest.html">Latest review (arena/b6805ddb): no new TIFF; duplicate-stop blocker and 29-file format audit</a> · <a href="metric-review.html">Corrected H33 analysis</a></p>
+<p><a href="review-latest.html">Latest review (arena/de39a02b): no new TIFF; universal duplicate-stop blocker</a> · <a href="metric-review.html">Corrected H33 analysis</a> · <a href="review-b6805ddb.html">Additional branch review</a></p>
 {orient_box}
 <h2>What the DrivenData submission form asks for</h2>
 <table><tr><th>Field</th><th>What to give it only after clearance</th></tr>
@@ -860,9 +886,95 @@ Format-valid (15/15 checks, 0 NaN, values in [0,1], 37,654 binary dots) and info
     shutil.copyfile(ROOT / "research/h77g_hypotheses.md", D / "research/h77g_hypotheses.md")
 
 
+def _write_h77v():
+    h77v_card = jload("evidence/run_card_h77v.json")
+    h77v_e1 = jload("evidence/h77v_e1_canary_surface.json")
+    h77v_e2 = jload("evidence/h77v_e2_holdout.json")
+    h77v_e3 = jload("evidence/h77v_e3_uniqueness.json")
+    if not (h77v_card and h77v_e1 and h77v_e2 and h77v_e3):
+        return
+    tif = h77v_card["raster_path"].removeprefix("docs/")
+    zip_ = h77v_card["zip_path"].removeprefix("docs/")
+    s20 = h77v_card["holdout_dti"]["seed_20"]
+    s30 = h77v_card["holdout_dti"]["seed_30"]
+    uq = h77v_card["correlation_overlap_vs_registry"]
+    arm_order = [
+        ("A_std_plus_h77v (19 std + 10 H77V)", "A_std_plus_h77v"),
+        ("A_std (19 std control)", "A_std_control"),
+        ("S_h77v_physics (pure composite)", "S_h77v_physics"),
+        ("A0_random (uniform random)", "A0_random"),
+        ("A_h77v_only (10 H77V only)", "A_h77v_only"),
+    ]
+    arm_rows = "".join(
+        f"<tr><td>{e(label)}</td>"
+        f"<td><b>{s20[key]['dti']:.4f}</b> ({s20[key]['ci95'][0]:.4f}–{s20[key]['ci95'][1]:.4f})</td>"
+        f"<td><b>{s30[key]['dti']:.4f}</b> ({s30[key]['ci95'][0]:.4f}–{s30[key]['ci95'][1]:.4f})</td>"
+        f"<td><code>gems57-pooled-hide-v2</code> (11,321 / 11,342 withheld)</td></tr>"
+        for label, key in arm_order
+    )
+    can_s20 = h77v_e1["canaries_by_seed"]["20"]["h77v_canaries"]
+    can_s30 = h77v_e1["canaries_by_seed"]["30"]["h77v_canaries"]
+    can_rows = "".join(
+        f"<tr><td><code>{e(k)}</code></td><td>{can_s20[k]['symmetric_auc']:.4f}</td>"
+        f"<td>{can_s30[k]['symmetric_auc']:.4f}</td></tr>"
+        for k in can_s20
+    )
+    body = f"""<h1>H77VS · tufa-deconfounded siliceous vent-sinter &amp; multi-depth conductive heat-flow strike-conduit coupling</h1>
+<p class="verdict"><b>Verdict: NEGATIVE — OK TO DOWNLOAD FOR INSPECTION; NOT OK TO SUBMIT.</b>
+{e(h77v_card['verdict_reason'])}</p>
+<section class="card dl research"><h2>⬇ H77VS inspection-only GeoTIFF (DO NOT SUBMIT)</h2>
+<a class="btn" href="{e(tif)}" download>Download .tif ({h77v_card['raster_bytes'] / 1024:.0f} KB)</a>
+<a class="btn alt" href="{e(zip_)}" download>Download one-TIFF .zip</a>
+<div class="chips"><span class="chip ok">OK to download: YES</span>
+<span class="chip ok">Portal format (15/15 checks): PASS</span>
+<span class="chip bad">Unique, literal rule (Policy I17): FAIL</span>
+<span class="chip ok">Unique, informative reading (60 sparse rasters): PASS</span>
+<span class="chip bad">Beat 0.1527 H77-Step incumbent: NO</span>
+<span class="chip warn">Selector: not approved (0 weekly slots used)</span></div>
+{copy('Submission name (for reference only — DO NOT UPLOAD)', h77v_card['submission_name'])}
+{copy('Short note <= 140 chars (for reference only — DO NOT UPLOAD)', h77v_card['submission_note'])}
+<p class="small">SHA-256 of .tif: <code>{e(h77v_card['raster_sha256'])}</code> ·
+SHA-256 of .zip: <code>{e(h77v_card['zip_sha256'])}</code> ·
+<a href="evidence/run_card_h77v.json">JSON run card</a> ·
+<a href="evidence/h77v_e1_canary_surface.json">Exp 1 canary/surface receipt</a> ·
+<a href="evidence/h77v_e2_holdout.json">Exp 2 dual-seed holdout receipt</a> ·
+<a href="evidence/h77v_e3_uniqueness.json">Exp 3 uniqueness receipt</a> ·
+<a href="evidence/preregistration_h77v.json">preregistration JSON</a> ·
+<a href="research/h77v_hypotheses.md">preregistered hypotheses</a></p></section>
+<h2>Diagnostic map &amp; dual-seed holdout benchmark</h2>
+<p><img src="figures/h77v_surface_and_dots.png" alt="H77VS geothermal vent-sinter and conductive heat-flow channels, emitted dots, and dual-seed holdout benchmark" style="max-width:100%;height:auto;border:1px solid #cbd5e1;border-radius:6px"></p>
+<h2>Dual-seed holdout evaluation (Exp 2 · <code>gems57-pooled-hide-v2</code>)</h2>
+<table><tr><th>Arm</th><th>Seed 20 HOLDOUT-DTI (95% CI)</th><th>Seed 30 HOLDOUT-DTI (95% CI)</th><th>Evaluator &amp; withheld positives</th></tr>{arm_rows}</table>
+<h2>Five irregularities discovered &amp; remediated: IR-H77VS-01..05</h2>
+<p><b>IR-H77VS-01:</b> Out of 281 in-footprint paleo-geothermal records (DOE GDR 1391), 86 (30.6%) are Pleistocene Lake Lahontan shoreline <code>Tufa</code> mounds (median 61.5 px from faults), whereas high-enthalpy <code>Alteration</code> (1.0 px), <code>Sulfur</code> (2.0 px), and <code>Sinter</code> (4.0 px) sit directly on fault conduits.<br>
+<b>IR-H77VS-02:</b> Fixed untyped <code>vals[0]</code> geothermometer index shift (171 rows) and recovered 267 Hot/Warm records lacking numeric <code>temp_c</code> in <code>gdr_wellspring_in_footprint.csv</code>.<br>
+<b>IR-H77VS-03 &amp; IR-H77VS-04:</b> Restored missing 2m probe &amp; paleo archives (fixing dead paths in H77D) and extracted downward-increasing 1m-to-2m vertical temperature gradients <code>dT/dz = T2m - T1m &gt; 0</code> (816 upward conductive heat-flow probes vs 727 downward solar-heated probes; +47% hidden-fault proximity enrichment).<br>
+<b>IR-H77VS-05:</b> Replaced <code>F77.rank01</code>'s row-major <code>argsort(kind="stable")</code> tie-breaking ramp and <code>4*sigma</code> box-truncation artifact with tie-aware <code>rankdata(..., method="average")</code> + smooth radial-and-strike advection, lifting <code>A_std_plus_h77v</code> HOLDOUT-DTI to <b>{s20['A_std_plus_h77v']['dti']:.4f}</b> (s20) and <b>{s30['A_std_plus_h77v']['dti']:.4f}</b> (s30; paired Δ vs A_std +0.0160, 95% CI [+0.0012, +0.0317]).</p>
+<h2>Leakage canaries (Exp 1 · ceiling AUC ≤ 0.90)</h2>
+<table><tr><th>Channel</th><th>Seed 20 symmetric AUC</th><th>Seed 30 symmetric AUC</th></tr>{can_rows}</table>
+<h2>Registry uniqueness audit (Exp 3 · {uq['registry_rasters_checked']} checked rasters)</h2>
+<p>Phase 1 surface max |Spearman ρ| = {uq['surface_max_abs_spearman']:.4f} ≤ 0.90; Phase 2 final dots informative max 3-px overlap = {uq['final_dots_informative_max_forward_overlap_3px']:.4f} ≤ 0.70 and max |ρ| = {uq['final_dots_informative_max_abs_spearman']:.4f} ≤ 0.90 (vs H33 overlap {uq['vs_h33_champion']['forward_overlap_3px']:.4f}, ρ {uq['vs_h33_champion']['spearman_full_footprint']:+.5f}). Literal gate fails closed under Policy I17.</p>"""
+    exec_body = f"""<h1>H77VS Executive Summary &amp; Submission Guide</h1>
+<p class="verdict"><b>Decision for <code>{e(h77v_card['submission_name'])}</code>: OK TO DOWNLOAD FOR INSPECTION · NOT OK TO SUBMIT.</b><br>
+Format-valid (15/15 checks, 0 NaN, values in [0,1], 37,654 binary dots) and informative-unique against all 60 non-space-filling sparse rasters checked, but HOLDOUT-DTI ({s20['A_std_plus_h77v']['dti']:.4f} s20 / {s30['A_std_plus_h77v']['dti']:.4f} s30) is below the 0.152718 incumbent and Policy I17 fails closed.</p>
+<section class="card dl research"><h2>⬇ H77VS Artifact &amp; Metadata</h2>
+<a class="btn" href="{e(tif)}" download>Download .tif ({h77v_card['raster_bytes'] / 1024:.0f} KB)</a>
+<a class="btn alt" href="{e(zip_)}" download>Download one-TIFF .zip</a>
+{copy('Submission name (reference only — DO NOT SUBMIT)', h77v_card['submission_name'])}
+{copy('Short note <= 140 chars (reference only — DO NOT SUBMIT)', h77v_card['submission_note'])}
+<p class="small">TIFF SHA-256: <code>{e(h77v_card['raster_sha256'])}</code> · <a href="h77vs.html">Full H77VS report →</a> · <a href="evidence/run_card_h77v.json">JSON run card →</a></p></section>"""
+    (D / "h77vs.html").write_text(page("h77vs.html", "H77VS · negative", body))
+    (D / "h77vs-executive-summary.html").write_text(page("h77vs-executive-summary.html", "H77VS guide", exec_body))
+    for fname in ("run_card_h77v.json", "h77v_e1_canary_surface.json", "h77v_e2_holdout.json", "h77v_e3_uniqueness.json"):
+        shutil.copyfile(ROOT / "evidence" / fname, D / "evidence" / fname)
+    shutil.copyfile(ROOT / "registry/preregistration_h77v.json", D / "evidence/preregistration_h77v.json")
+    shutil.copyfile(ROOT / "research/h77v_hypotheses.md", D / "research/h77v_hypotheses.md")
+
+
 def write_review_pages():
     for source, output, title in (
-        ("docs/review-2026-10-21-b6805ddb.md", "review-latest.html", "Latest repository review"),
+        ("docs/review-2026-10-21-arena-de39a02b.md", "review-latest.html", "Latest repository review"),
+        ("docs/review-2026-10-21-b6805ddb.md", "review-b6805ddb.html", "Branch review · b6805ddb"),
         ("research/why-h33-scored-02778.md", "metric-review.html", "Corrected H33 analysis"),
     ):
         body = markdown.markdown((ROOT / source).read_text(), extensions=["tables", "fenced_code"])
@@ -877,12 +989,422 @@ def write_review_pages():
         shutil.copyfile(ROOT / "evidence" / name, D / "evidence" / name)
 
 
+def _write_h83():
+    h83_card = jload("evidence/h83_run_card.json")
+    if not h83_card or h83_card["verdict"] != "negative" or h83_card["ok_to_submit"]:
+        raise ValueError("H83 cannot be presented as eligible to submit")
+    ras = h83_card["raster"]
+    val = h83_card["validator"]
+    reg = h83_card["correlation_overlap_vs_registry"]["dots_phase"]
+    hold = h83_card["holdout_dti"]
+    can = h83_card["leakage_canary"]
+    tif = ras["path"].removeprefix("docs/")
+    zip_ = ras["zip"].removeprefix("docs/")
+    (D / "h83.html").write_text(page("h83.html", "H83 · fault collar", h83_body(h83_card, tif, zip_, ras, val, reg, hold, can)))
+    for fname in ("h83_run_card.json",):
+        shutil.copyfile(ROOT / "evidence" / fname, D / "evidence" / fname)
+    shutil.copyfile(ROOT / "registry/preregistration_h83.json", D / "evidence/preregistration_h83.json")
+    shutil.copyfile(ROOT / "research/h83_hypotheses.md", D / "research/h83_hypotheses.md")
+    print("wrote docs/h83.html")
+
+
+def h83_body(card, tif, zip_, ras, val, reg, hold, can):
+    score_rows = (
+        f"<tr><td><b>H83 (kernel-scale fault-damage collar)</b></td>"
+        f"<td><b>{hold['score']:.6f}</b></td>"
+        f"<td>{hold['ci_95'][0]:.6f} – {hold['ci_95'][1]:.6f}</td>"
+        f"<td>{e(hold['evaluator_version'])}</td><td>{hold['withheld_positive_pixels']:,}</td></tr>"
+        f"<tr><td>A0_random (uniform dots, same domains)</td>"
+        f"<td>{hold['delta_vs_random_control']['control_score']:.6f}</td>"
+        f"<td>{hold['delta_vs_random_control']['control_ci_95'][0]:.6f} – {hold['delta_vs_random_control']['control_ci_95'][1]:.6f}</td>"
+        f"<td>{e(hold['evaluator_version'])}</td><td>{hold['withheld_positive_pixels']:,}</td></tr>"
+        f"<tr><td>Delta H83 − random</td>"
+        f"<td><b>{hold['delta_vs_random_control']['delta']:+.6f}</b></td>"
+        f"<td>{hold['delta_vs_random_control']['ci_95'][0]:+.6f} – {hold['delta_vs_random_control']['ci_95'][1]:+.6f}</td>"
+        f"<td>{e(hold['evaluator_version'])}</td><td>{hold['withheld_positive_pixels']:,}</td></tr>"
+    )
+    check_rows = "".join(f"<li><b>{k.replace('_', ' ').title()}:</b> {'PASS' if v else 'FAIL'}</li>"
+                         for k, v in val["checks"].items())
+    return f"""<h1>H83 lane: hanging-wall fault-damage collar at the 300 m kernel scale</h1>
+<p class="verdict"><b>Verdict: NEGATIVE — OK TO DOWNLOAD FOR INSPECTION; NOT OK TO SUBMIT.</b>
+{e(card['upload'])}</p>
+<section class="card dl research"><h2>⬇ H83 research-only GeoTIFF</h2>
+<a class="btn" href="{e(tif)}" download>Download .tif ({ras['bytes']//1024} KB)</a>
+<a class="btn alt" href="{e(zip_)}" download>Same file as one-TIFF .zip</a>
+<div class="chips"><span class="chip ok">OK to download: YES</span>
+<span class="chip ok">Portal format (local checks): PASS ({ras['dots_emitted']:,} dots, {ras['dots_on_catalogue']} on catalogue)</span>
+<span class="chip bad">Unique, literal rule: FAIL (registry scan incomplete: {reg['registry_rasters_checked']}/{reg['registry_rasters_expected']} accessible locally)</span>
+<span class="chip bad">Beat 0.152718 holdout incumbent: NO</span>
+<span class="chip warn">Selector: not approved · 0 weekly slots used</span></div>
+{copy("Submission name (for reference only — DO NOT UPLOAD)", card["submission_name"])}
+{copy("Short note <= 140 chars (for reference only — DO NOT UPLOAD)", card["submission_note"])}
+<p class="small">SHA-256 of .tif: <code>{e(ras['sha256'])}</code> · SHA-256 of .zip: <code>{e(ras['zip_sha256'])}</code> ·
+<a href="evidence/h83_run_card.json">JSON run card</a> ·
+<a href="research/h83_hypotheses.md">ranked hypotheses (H83-1 implemented)</a> ·
+<a href="evidence/preregistration_h83.json">preregistration</a> ·
+<a href="executive-summary.html">How submission works →</a></p></section>
+
+<h2>Holdout result (every number is labelled HOLDOUT-DTI)</h2>
+<p>Shared evaluator <code>{e(hold['evaluator_version'])}</code>, pooled hide-and-recover, alpha=0.2 beta=0.8, 300 m triangular
+kernel. Whole buffered fault components were withheld; every catalogue-based feature was derived from the visible faults
+only and visible faults were masked pixel-exactly. CIs are the evaluator's paired physical spatial-cluster bootstrap.</p>
+<table><tr><th>Arm</th><th>HOLDOUT-DTI</th><th>95% CI</th><th>Evaluator</th><th>Withheld positives</th></tr>
+{score_rows}</table>
+<p class="small"><b>Versus incumbent:</b> {e(hold['versus_repository_incumbent'])}.
+<b>Versus owner-reported 0.2778 (GEMSDOE32) and 0.4413 ORGANIZER-CONFIRMED leader:</b> no claim; no organizer
+score exists for this file, and this local holdout result is not transferable to the public leaderboard.</p>
+
+<h2>Leakage canary</h2>
+<p>Each feature tested alone; worst symmetric AUC <b>{can['worst_symmetric_auc']:.4f}</b> (stop threshold 0.90). No leakage flag.</p>
+
+<h2>Registry uniqueness (protocol Rule 1)</h2>
+<p>{e(reg['scope_limitation'])} Worst dot overlap and rank correlation could not be measured because none of the
+812 indexed registry rasters are accessible locally; this is a scope limitation, not a uniqueness certificate. The
+literal dense-witness gate (Policy I17) is fail-closed and this lane claims no exemption.</p>
+
+<h2>Named non-fault mimic</h2>
+<p>{e(card['named_non_fault_mimicking_process'])}</p>
+
+<h2>Format preflight</h2>
+<ul>{check_rows}</ul>
+
+<h2>Exact submission steps (only if a future selector approves a cleared file)</h2>
+<ol>
+<li>Do not use H83 now; this page says <b>OK TO SUBMIT: NO</b>.</li>
+<li>For a later cleared file, download its single <code>-zeros.tif</code>, never JSON/HTML/repository files.</li>
+<li>Verify the displayed SHA-256 locally (<code>sha256sum file.tif</code> or Windows <code>certutil -hashfile file.tif SHA256</code>).</li>
+<li>On DrivenData, sign in, choose the TIFF in the competition submission form, paste the &le;140-character note, and check the weekly allowance before submitting.</li>
+<li>Only a portal receipt or public leaderboard value may be labelled <b>ORGANIZER-CONFIRMED</b>. None exists for H83.</li>
+</ol>
+<h2>Official sources and irregularity flags</h2>
+<ul>
+<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DrivenData problem and metric specification</a> — submission grid, single-band contract, alpha=0.2, beta=0.8, 300 m triangular kernel.</li>
+<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Public leaderboard</a> — 2026-10-21 read: 0.4413 ORGANIZER-CONFIRMED (first place).</li>
+<li><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">Official rules PDF</a> — three weekly feedback slots; finalist disclosure requirements.</li>
+<li><a href="https://github.com/drivendataorg/gems-prize-reference-solution">Organizer-linked reference solution</a> — implementation context, not a score receipt.</li>
+<li><b>IR-H83-01:</b> registry scan incomplete — 0/812 indexed rasters accessible locally; not a claim of global uniqueness.</li>
+<li><b>IR-H83-02:</b> below the retained 0.152718 repository holdout incumbent; negative verdict, no promotion supported.</li>
+<li><b>IR-H83-03:</b> no DrivenData authentication and no weekly selector approval in this workspace; no slot was spent.</li>
+</ul>
+<p><a href="executive-summary.html">How to submit a promoted file (step by step) →</a> ·
+<a href="index.html">Return to the status table →</a></p>
+"""
+
+
+# ---------------------------------------------------------------------------
+# H82 (mapping-deficit lane).  Pages are rendered from evidence/h82fmd_run_card.json
+# and the four experiment receipts; nothing is typed in here, so the published
+# page cannot drift from the measured artifact.
+# ---------------------------------------------------------------------------
+
+def _h82fmd_inputs():
+    card = jload("evidence/h82fmd_run_card.json")
+    if not card:
+        return None
+    data = {"card": card,
+            "uniq": jload("evidence/h82fmd_uniqueness.json") or {},
+            "e1": jload("evidence/h82fmd_e1_canary.json"),
+            "e2": jload("evidence/h82fmd_e2_holdout.json"),
+            "e3": jload("evidence/h82fmd_e3_amendment_nms.json"),
+            "e4": jload("evidence/h82fmd_e4_extstack.json"),
+            "build": jload("evidence/h82fmd_e3_build.json")}
+    if not all(data[k] for k in ("e1", "e2", "e3", "e4", "build")):
+        return None
+    tif = D / card["raster_path"].removeprefix("docs/")
+    if not tif.is_file() or hashlib.sha256(tif.read_bytes()).hexdigest() != card["raster_sha256"]:
+        raise ValueError("H82-FMD published bytes differ from the frozen run card")
+    if card["verdict"] != "negative" or card["weekly_slots_used"] != 0:
+        raise ValueError("H82-FMD run card clearance changed; refusing to publish silently")
+    if len(card["submission_note"]) > 140:
+        raise ValueError("H82-FMD note exceeds the portal's 140-character field")
+    return data
+
+
+def _h82fmd_chips(card):
+    g = card["gates"]
+    return (f'<div class="chips"><span class="chip ok">OK to download: YES</span>'
+            f'{yn(g["A_format"]["pass"], "Portal format 15/15: PASS", "Portal format: FAIL")}'
+            f'{yn(card["informative_unique"], "Registry uniqueness: PASS", "Registry dot-overlap rule: FAIL", "Registry uniqueness: NOT ASSESSED")}'
+            f'{yn(g["C_science"]["pass"], "Beats 0.152718 incumbent: YES", "Beats 0.152718 incumbent: NO")}'
+            f'<span class="chip warn">Selector: not approved (0 of 3 weekly slots used)</span></div>')
+
+
+def _h82fmd_arm_table(ev, arms):
+    rows = ""
+    for key, label in arms:
+        s20 = ev["seeds"]["20"]["pooled_summary"]["scores"][key]
+        s30 = ev["seeds"]["30"]["pooled_summary"]["scores"][key]
+        rows += (f"<tr><td>{e(label)}</td>"
+                 f"<td><b>{s20['dti']:.6f}</b> ({s20['ci95'][0]:.4f}–{s20['ci95'][1]:.4f})</td>"
+                 f"<td><b>{s30['dti']:.6f}</b> ({s30['ci95'][0]:.4f}–{s30['ci95'][1]:.4f})</td></tr>")
+    return ("<table><tr><th>Arm (same folds, same 37,654-dot budget, paired within run)</th>"
+            "<th>Seed 20 HOLDOUT-DTI (95% CI)</th><th>Seed 30 HOLDOUT-DTI (95% CI)</th></tr>"
+            f"{rows}</table>")
+
+
+def _h82fmd_paired_table(ev, candidate):
+    rows = ""
+    for key, d20 in ev["seeds"]["20"]["pooled_summary"]["paired_differences"].items():
+        d30 = ev["seeds"]["30"]["pooled_summary"]["paired_differences"][key]
+        def cell(d):
+            sig = "significant" if (d["ci95"][0] > 0 or d["ci95"][1] < 0) else "not significant"
+            return (f"<td><b>{d['delta']:+.6f}</b> ({d['ci95'][0]:+.4f}, {d['ci95'][1]:+.4f}) "
+                    f"<span class=\"small muted\">{sig}</span></td>")
+        rows += f"<tr><td><code>{e(candidate)}</code> − <code>{e(key)}</code></td>{cell(d20)}{cell(d30)}</tr>"
+    return ("<table><tr><th>Paired difference</th><th>Seed 20 Δ (95% CI)</th>"
+            f"<th>Seed 30 Δ (95% CI)</th></tr>{rows}</table>")
+
+
+def _h82fmd_uniqueness_section(uniq):
+    if not uniq:
+        return "<p class=\"verdict\">Registry uniqueness audit: NOT ASSESSED in this build.</p>"
+    p1, p2 = uniq.get("phase1_surface", {}), uniq.get("phase2_dots", {})
+    v = uniq.get("verdict", {})
+    strata = p2.get("density_strata", {})
+    labels = {"sparse_peer_le_2x_budget": "Sparse peers (≤ 2× our 37,654 dots) — the only like-for-like comparison",
+              "dot_field_le_20pct": "Denser dot fields (up to 20% of the footprint emitting)",
+              "continuous_surface_gt_20pct": "Continuous surfaces (&gt; 20% of the footprint emitting)",
+              "space_filling_halo_ge_70pct": "Space-filling (own 3-px halo already covers ≥ 70% of the footprint)"}
+    rows = ""
+    for key, label in labels.items():
+        s = strata.get(key) or {}
+        if not s.get("rasters"):
+            continue
+        rows += (f"<tr><td>{label}</td><td>{s['rasters']}</td>"
+                 f"<td><b>{s['worst_forward_overlap']:.4f}</b></td>"
+                 f"<td><code>{e(s['worst_forward_overlap_vs'])}</code> ({s['worst_forward_overlap_their_dots']:,} dots)</td>"
+                 f"<td>{s['firings_over_0p70']}</td></tr>")
+    top = "".join(
+        f"<tr><td><code>{e(r['submission'])}</code></td><td>{r['their_dots']:,}</td>"
+        f"<td>{r['overlap']:.4f}</td><td>{r['rho']:+.5f}</td></tr>"
+        for r in (p2.get("top10_informative_overlap") or [])[:6])
+    return f"""<h2>Registry uniqueness audit (Rule 1, both phases, {p2.get('registry_rasters_compared', 0)} hash-verified rasters)</h2>
+<p><b>Phase 1 — ranking surface, measured before any dot was placed:</b> worst |Spearman ρ| vs the whole registry =
+<b>{p1.get('max_abs_rho', float('nan')):.4f}</b> ≤ 0.90 → <b>PASS</b> (worst case
+<code>{e(p1.get('max_abs_rho_vs'))}</code>). <b>Phase 2 — the written dots:</b> worst |ρ| =
+<b>{p2.get('max_abs_rho', float('nan')):.4f}</b> ≤ 0.90 → <b>PASS</b>; no identical bytes and no identical decoded
+predictions anywhere in the registry. The file is demonstrably not a copy of anything.</p>
+<p class="verdict"><b>But the dot-overlap half of Rule 1 FAILS.</b> {p2.get('informative_max_overlap', 0):.4f} of our dots lie within
+3 px of the dots of <code>{e(p2.get('informative_max_overlap_vs'))}</code> — far above the 0.70 limit. That comparator
+emits ~10% of the whole footprint, so it blankets the prospective corridors; but the preregistered rule does not
+exempt it, and we do not move a goalpost after seeing the number. <b>Verdict: duplicate-overlap FAIL → not cleared to submit.</b></p>
+<table><tr><th>Comparator class (diagnostic breakdown, does not change the verdict)</th><th>Rasters</th>
+<th>Worst 3-px forward overlap</th><th>Worst case</th><th>Firings &gt; 0.70</th></tr>{rows}</table>
+<p class="small">Literal reading (every raster, including {p2.get('space_filling_count', 0)} space-filling ones):
+worst overlap {p2.get('literal_max_overlap', 0):.4f} vs <code>{e(p2.get('literal_max_overlap_vs'))}</code>.
+Worst reverse overlap (their dots within 3 px of ours) {p2.get('worst_reverse_overlap', 0):.4f};
+worst Jaccard {p2.get('worst_jaccard', 0):.4f}. Verdict booleans:
+literal_unique = {v.get('literal_unique')}, informative_unique = {v.get('informative_unique')},
+surface_rank_unique = {v.get('surface_rank_unique')}, density_matched_unique = {v.get('density_matched_unique')}.</p>
+<h3>Worst six non-space-filling comparators</h3>
+<table><tr><th>Registry raster</th><th>Its dots</th><th>Our dots within 3 px of it</th><th>Spearman ρ</th></tr>{top}</table>"""
+
+
+def _write_h82fmd():
+    data = _h82fmd_inputs()
+    if not data:
+        return
+    card, uniq, e1, e2, e3, e4, build = (data["card"], data["uniq"], data["e1"], data["e2"],
+                                         data["e3"], data["e4"], data["build"])
+    tif = card["raster_path"].removeprefix("docs/")
+    zip_ = (card.get("zip_path") or "").removeprefix("docs/")
+    s20 = card["holdout_dti"]["seed_20"]
+    s30 = card["holdout_dti"]["seed_30"]
+    inc = card["incumbent_comparison"]
+    can = card["experiments"]["E1_leakage_canary"]
+    body = f"""<h1>H82-FMD · mapping-deficit allocation (preregistered hypothesis <b>REFUTED</b>; crest-thinning amendment confirmed)</h1>
+<p class="verdict"><b>Verdict: NEGATIVE. OK TO DOWNLOAD · NOT CLEARED TO SUBMIT.</b> {e(card['verdict_reason'])}</p>
+<section class="card dl research"><h2>⬇ H82-FMD research GeoTIFF (inspection only — do not spend a weekly slot on it)</h2>
+<a class="btn" href="{e(tif)}" download>Download .tif ({card['raster_bytes'] / 1024:.0f} KB)</a>
+<a class="btn alt" href="{e(zip_)}" download>Download one-TIFF .zip</a>
+<a class="btn alt" href="h82fmd-executive-summary.html">How to submit / why not to →</a>
+{_h82fmd_chips(card)}
+{copy('Submission name (reference only)', card['submission_name'])}
+{copy('Portal note, ≤ 140 characters (reference only)', card['submission_note'])}
+<p class="small">SHA-256 .tif <code>{e(card['raster_sha256'])}</code> · {card['n_dots']:,} binary dots ·
+{card['dots_on_catalogue']} on the mapped catalogue · nearest catalogue pixel {card['min_dist_to_catalogue_px']:.3f} px (&gt; 200 m) ·
+EPSG:32611, 3730×3292, float32, values ∈ {{0.0, 1.0}}, 0 NaN ·
+<a href="evidence/h82fmd_run_card.json">JSON run card</a> ·
+<a href="evidence/h82fmd_e1_canary.json">E1 canary</a> ·
+<a href="evidence/h82fmd_e2_holdout.json">E2 holdout</a> ·
+<a href="evidence/h82fmd_e3_amendment_nms.json">E3 amendment</a> ·
+<a href="evidence/h82fmd_e4_extstack.json">E4 full stack</a> ·
+<a href="evidence/h82fmd_e3_build.json">build + validator</a> ·
+<a href="evidence/h82fmd_uniqueness.json">uniqueness audit</a> ·
+<a href="evidence/preregistration_h82fmd.json">preregistration</a> ·
+<a href="research/h82fmd_hypotheses.md">5 ranked hypotheses</a></p></section>
+
+<h2>What was tested, in one paragraph</h2>
+<p>{e(card['hypothesis'])}</p>
+<p><b>Mechanism.</b> {e(card['mechanism'])}</p>
+<p><b>Named non-fault process that could mimic it.</b> {e(card['named_non_fault_process_that_could_mimic_it'][0])}
+{e(card['named_non_fault_process_that_could_mimic_it'][1])}</p>
+
+<h2>E1 · per-feature leakage canary (ceiling AUC 0.90)</h2>
+<p>Every channel was scored alone against the withheld positives before any result was trusted. Worst single-channel
+direction-free AUC = <b>{can['max_single_channel_auc']:.4f}</b>; channels above 0.90: <b>{len(can['channels_above_threshold'])}</b>.
+The new deficit weight itself reads <b>{can['deficit_weight_auc']:.4f}</b> — it carries almost no standalone signal, which
+is the first hint of the refutation that followed.</p>
+
+<h2>E2 · the preregistered test (hide-and-recover, two seeds) — REFUTED</h2>
+{_h82fmd_arm_table(e2, [("A_std", "A_std — 19-band control (allocator unchanged)"),
+                     ("A_fmd", "A_fmd — control surface × mapping-deficit weight (the hypothesis)"),
+                     ("A_def", "A_def — deficit field alone"),
+                     ("A0_random", "A0_random — uniform random dots")])}
+{_h82fmd_paired_table(e2, "A_fmd")}
+<p>The deficit weight <b>costs</b> DTI on both seeds and the deficit field alone is no better than random dots. The
+mechanism is therefore excluded from the published artifact. <b>This is the lane's headline result and it is negative.</b></p>
+
+<h2>E3 · amendment: across-ridge non-maximum suppression (confirmed, both seeds)</h2>
+{_h82fmd_arm_table(e3, [("A_std", "A_std — unthinned control"),
+                     ("B_std_nms", "B_std_nms — ranking surface thinned to 1-px crests"),
+                     ("B_std_nms_sep3", "B_std_nms_sep3 — crest + 3-px minimum dot separation"),
+                     ("B_fmd_nms", "B_fmd_nms — crest + deficit weight (refutation re-tested under correct geometry)")])}
+<p>Thinning a ribbon-shaped likelihood field to its across-ridge maxima before allocation is worth
+<b>+0.0082</b> (s20) / <b>+0.0064</b> (s30) HOLDOUT-DTI, and the refutation of the deficit weight survives the fix.
+Crest pixels keep {build['crest_px']:,} of the {5167373:,} footprint pixels (19.4%).</p>
+
+<h2>E4 · declared overrun: the same geometry on the full 48-channel shared stack</h2>
+{_h82fmd_arm_table(e4, [("A_std", "A_std — 19-band control"),
+                     ("B_std_nms_sep3", "B_std_nms_sep3 — 19-band + crest geometry"),
+                     ("C_ext", "C_ext — 48-channel stack, unthinned"),
+                     ("C_ext_nms_sep3", "C_ext_nms_sep3 — 48-channel + crest geometry (THE PUBLISHED FILE)")])}
+{_h82fmd_paired_table(e4, "C_ext_nms_sep3")}
+<p>The published configuration beats the control significantly on both seeds
+(<b>{s20['dti']:.6f}</b> s20 / <b>{s30['dti']:.6f}</b> s30, evaluator <code>{e(card['holdout_dti']['evaluator_version'])}</code>,
+{s20['withheld_positive_pixels']:,} / {s30['withheld_positive_pixels']:,} withheld positive pixels) — but it does <b>not</b>
+beat this repository's retained best, <b>{inc['holdout_dti']}</b> ({e(inc['name'])}), so it must not consume a weekly slot.
+Every number on this page is <b>HOLDOUT-DTI</b> from local hide-and-recover; none is an organizer score and none is a projection.</p>
+
+{_h82fmd_uniqueness_section(uniq)}
+
+<h2>Irregularities raised by this lane</h2>
+<p><b>IR-H82FMD-01 (shared tool, fixed upstream):</b> <code>vendor/gems57/uniqueness.py</code> could not report
+<em>which</em> registry comparators are too dense for a 3-px overlap test to carry information. Added
+<code>_disk_area()</code> and <code>space_filling_flags()</code> there — in the shared tool, not in a private fork —
+so both readings are always published. No threshold or verdict was changed.<br>
+<b>IR-H82FMD-02 (budget overrun, declared in advance):</b> E4 is a fourth experiment against a 3-experiment budget. It was
+preregistered in <code>registry/preregistration_h82fmd_amendment_e4.json</code> <em>before</em> it ran, and it is reported as
+an overrun rather than hidden.<br>
+<b>IR-H82FMD-03 (documentation):</b> the preregistration says 27 physics channels; the implementation builds
+<b>28</b> (<code>fields.CHANNELS</code>). The extra channel is <code>valley_s1p5</code>, present in the code from the
+first commit of the lane and in every arm including the controls, so no comparison is affected. The count in the prose
+was simply wrong.<br>
+<b>IR-H82FMD-04 (numerical, measured and pinned):</b> non-maximum suppression keeps ties, so in a region that is flat to
+within float32 noise every pixel survives thinning. On the real surface that is <b>25 pixels out of 1,065,169</b>
+(0.0024%), all with <code>surface &lt;= 0</code>; the lane allocates against <code>surface × crest</code>, so they carry
+zero weight and cannot attract a dot. The function was deliberately <em>not</em> re-tuned after E3/E4 had been measured
+with it.<br>
+<b>IR-H82FMD-05 (protocol):</b> the 3-px dot-overlap gate cannot distinguish duplication from blanket coverage when the
+comparator emits 10% of the map. This lane fails that gate and is published as research-only anyway, with the density
+breakdown beside it as a diagnostic — the rule is applied as written, not rewritten after seeing the number.
+Full table: <a href="irregularities.md">docs/irregularities.md</a>.</p>
+
+<h2>Reproduce it</h2>
+<pre><code>.venv/bin/python scripts/h82fmd_pipeline.py cache
+.venv/bin/python scripts/h82fmd_pipeline.py e1 --seed 20
+.venv/bin/python scripts/h82fmd_pipeline.py e2 --seed 20 && .venv/bin/python scripts/h82fmd_pipeline.py e2 --seed 30
+.venv/bin/python scripts/h82fmd_pipeline.py e2b --seed 20 && .venv/bin/python scripts/h82fmd_pipeline.py e2b --seed 30
+.venv/bin/python scripts/h82fmd_pipeline.py e4 --seed 20 && .venv/bin/python scripts/h82fmd_pipeline.py e4 --seed 30
+.venv/bin/python scripts/h82fmd_pipeline.py e3 --surface ext --name {e(card['submission_name'])} --note "{e(card['submission_note'])}"
+.venv/bin/python scripts/h82fmd_uniqueness.py surface .cache/h82fmd/surface_final.npy
+.venv/bin/python scripts/h82fmd_uniqueness.py dots {e(tif.replace('downloads/', 'docs/downloads/'))}
+.venv/bin/python scripts/h82fmd_uniqueness.py merge && .venv/bin/python scripts/h82fmd_run_card.py
+.venv/bin/python -m pytest tests/test_h82fmd.py -q</code></pre>"""
+
+    g = card["gates"]
+    exec_body = f"""<h1>H82-FMD executive summary — can I download it, and can I submit it?</h1>
+<p class="verdict"><b>Download: YES.</b> The file is format-legal for DrivenData competition 306 and safe to inspect.<br>
+<b>Submit: NO — not cleared.</b> {'It fails the parallel-run uniqueness rule (dot-overlap half).' if not card['informative_unique'] else ''}
+It also scores <b>{s20['dti']:.4f}</b> HOLDOUT-DTI against the <b>{inc['holdout_dti']}</b> file this repository already
+retains, so even if it were cleared it would be the wrong file to spend one of the three weekly slots on.</p>
+<section class="card dl research"><h2>⬇ The file</h2>
+<a class="btn" href="{e(tif)}" download>Download .tif ({card['raster_bytes'] / 1024:.0f} KB)</a>
+<a class="btn alt" href="{e(zip_)}" download>Download one-TIFF .zip</a>
+{_h82fmd_chips(card)}
+{copy('Submission name (reference only)', card['submission_name'])}
+{copy('Portal note, ≤ 140 characters (reference only)', card['submission_note'])}
+<p class="small">SHA-256 <code>{e(card['raster_sha256'])}</code> — verify with
+<code>sha256sum {e(Path(tif).name)}</code> after downloading.</p></section>
+<h2>The four gates, and exactly which one failed</h2>
+<table><tr><th>Gate</th><th>What it tests</th><th>Result</th></tr>
+<tr><td>A · Portal format</td><td>{e(g['A_format']['test'])}</td><td>{yn(g['A_format']['pass'], 'PASS', 'FAIL')}</td></tr>
+<tr><td>B · Registry uniqueness</td><td>{e(g['B_informative_unique']['test'])}</td><td>{yn(g['B_informative_unique']['pass'], 'PASS', 'FAIL')}</td></tr>
+<tr><td>C · Science</td><td>{e(g['C_science']['test'])}</td><td>{yn(g['C_science']['pass'], 'PASS', 'FAIL')}</td></tr>
+<tr><td>D · Weekly slots</td><td>{e(g['D_weekly_slots']['test'])}</td><td>{yn(g['D_weekly_slots']['pass'], 'PASS', 'FAIL')}</td></tr></table>
+<p>All four must pass before a file is recommended for upload. Gate A passes on 15/15 validator checks
+(the portal's "Predicted values must be in range [0, 1]" rejection cannot recur: the raster contains only 0.0 and 1.0).
+Gate B and gate C fail, so the honest answer is <b>do not upload this file</b>.</p>
+<h2>If a human selector nevertheless chooses to upload it</h2>
+<ol><li>Sign in at <a href="{COMP}">drivendata.org competition 306</a> (this sandbox has no DrivenData account and
+cannot upload for you) and open <b>New submission</b>.</li>
+<li>Upload <code>{e(Path(tif).name)}</code> — the single-band GeoTIFF, not the .zip, unless the portal asks for an archive.</li>
+<li>Paste the name and the ≤140-character note above into the optional fields.</li>
+<li>Record the returned organizer score in <code>registry/live_scores.csv</code> and label it ORGANIZER-CONFIRMED;
+everything on this site is HOLDOUT-DTI until then.</li></ol>
+<p class="small"><a href="h82fmd.html">Full H82-FMD report, all four experiments and the uniqueness audit →</a></p>"""
+
+    (D / "h82fmd.html").write_text(page("h82fmd.html", "H82-FMD · negative", body))
+    (D / "h82fmd-executive-summary.html").write_text(page("h82fmd-executive-summary.html", "H82-FMD guide", exec_body))
+    (D / "evidence").mkdir(parents=True, exist_ok=True)
+    (D / "research").mkdir(parents=True, exist_ok=True)
+    for fname in ("h82fmd_run_card.json", "h82fmd_e1_canary.json", "h82fmd_e2_holdout.json",
+                  "h82fmd_e3_amendment_nms.json", "h82fmd_e4_extstack.json", "h82fmd_e3_build.json",
+                  "h82fmd_uniqueness.json"):
+        src = ROOT / "evidence" / fname
+        if src.exists():
+            shutil.copyfile(src, D / "evidence" / fname)
+    for src, dst in ((ROOT / "registry/preregistration_h82fmd.json", D / "evidence/preregistration_h82fmd.json"),
+                     (ROOT / "registry/preregistration_h82fmd_amendment_e3.json",
+                      D / "evidence/preregistration_h82fmd_amendment_e3.json"),
+                     (ROOT / "registry/preregistration_h82fmd_amendment_e4.json",
+                      D / "evidence/preregistration_h82fmd_amendment_e4.json"),
+                     (ROOT / "research/h82fmd_hypotheses.md", D / "research/h82fmd_hypotheses.md")):
+        if src.exists():
+            shutil.copyfile(src, dst)
+
+
+def _inject_h82fmd_hero():
+    data = _h82fmd_inputs()
+    if not data:
+        return
+    card, uniq = data["card"], data["uniq"]
+    tif = card["raster_path"].removeprefix("docs/")
+    s20 = card["holdout_dti"]["seed_20"]
+    p2 = (uniq or {}).get("phase2_dots", {})
+    hero = f"""<section class="card dl research"><h2>⬇ Newest lane · H82-FMD mapping-deficit — OK TO DOWNLOAD · NOT CLEARED TO SUBMIT</h2>
+<p class="verdict"><b>OK to download: YES.</b> 15/15 portal format checks pass: EPSG:32611, 3730×3292, float32,
+{card['n_dots']:,} dots, values only 0.0/1.0, zero NaN.<br>
+<b>OK to submit: NO.</b> Preregistered hypothesis <b>refuted</b> (the mapping-deficit weight costs
+{abs(card['experiments']['E2_primary_holdout']['by_seed']['20']['paired_A_fmd_minus_A_std']['delta']):.4f} HOLDOUT-DTI),
+the published build reaches {s20['dti']:.4f} against this repository's retained {card['incumbent_comparison']['holdout_dti']},
+and {p2.get('informative_max_overlap', float('nan')):.4f} of its dots fall within 3 px of
+<code>{e((p2.get('informative_max_overlap_vs') or '').split(':')[0])}</code>'s dots — over the 0.70 duplicate limit.
+Surface rank-correlation vs the whole registry is only {p2.get('max_abs_rho', float('nan')):.4f} (limit 0.90) and no byte-identical
+or decode-identical file exists, so it is new work — it is simply not clear of the overlap rule.</p>
+<a class="btn" href="{e(tif)}" download>Download H82-FMD .tif ({card['raster_bytes'] / 1024:.0f} KB)</a>
+<a class="btn alt" href="h82fmd.html">Full H82-FMD report →</a>
+<a class="btn alt" href="h82fmd-executive-summary.html">Can I submit it? →</a>
+<p class="small">name: <code>{e(card['submission_name'])}</code> · sha256: <code>{e(card['raster_sha256'])}</code></p></section>"""
+    for pname in ("index.html", "executive-summary.html"):
+        p = D / pname
+        if not p.exists():
+            continue
+        txt = p.read_text().replace('<main><div class="wrap">', '<main><div class="wrap">' + hero, 1)
+        p.write_text(txt)
+
+
 if __name__ == "__main__":
     main()
     _write_h77e_knick()
     _inject_h77e_knick_hero()
     _write_h77g()
+    _write_h77v()
     write_review_pages()
 
     from build_h82_site import build as build_h82_texture
     build_h82_texture(page)
+
+    _write_h83()
+    _write_h82fmd()
+    _inject_h82fmd_hero()

@@ -69,6 +69,35 @@ def test_input_pin_failure_precedes_any_proof(tmp_path):
         audit(tmp_path)
 
 
+def test_template_pin_accepts_only_exact_declared_additive_amendment(tmp_path):
+    import hashlib
+    from preflight_registry import verify_template_pin
+
+    (tmp_path / "registry").mkdir()
+    (tmp_path / "vendor/gems57").mkdir(parents=True)
+    upstream = "upstream bytes"
+    local = "upstream bytes plus declared reporting helpers"
+    upstream_sha = hashlib.sha256(upstream.encode()).hexdigest()
+    local_sha = hashlib.sha256(local.encode()).hexdigest()
+    (tmp_path / "vendor/gems57/uniqueness.py").write_text(local)
+    pin = {
+        "files": {"uniqueness.py": upstream_sha},
+        "local_amendments": {
+            "uniqueness.py": {
+                "upstream_sha256": upstream_sha,
+                "local_sha256": local_sha,
+                "measurement_semantics_unchanged": True,
+            }
+        },
+    }
+    (tmp_path / "registry/template_pin.json").write_text(json.dumps(pin))
+    assert verify_template_pin(tmp_path) == ["uniqueness.py"]
+    pin["local_amendments"]["uniqueness.py"]["local_sha256"] = "wrong"
+    (tmp_path / "registry/template_pin.json").write_text(json.dumps(pin))
+    with pytest.raises(ValueError, match="shared-template hash mismatch"):
+        verify_template_pin(tmp_path)
+
+
 def test_published_preflight_is_rejection_only():
     result = json.loads((ROOT / "evidence/registry_preflight.json").read_text())
     assert result["decision"] == "STOP_UNIVERSAL_DUPLICATE"
@@ -78,6 +107,8 @@ def test_published_preflight_is_rejection_only():
     assert result["new_raster_generated"] is False
     pins = json.loads((ROOT / "registry/witness_sources.json").read_text())
     assert result["witness_source"] == pins["dense_witness"]
+    template = json.loads((ROOT / "registry/template_pin.json").read_text())
+    assert result["template_amendments_verified"] == sorted(template.get("local_amendments", {}))
 
 
 def test_cli_input_failure_replaces_a_stale_receipt(tmp_path, monkeypatch):

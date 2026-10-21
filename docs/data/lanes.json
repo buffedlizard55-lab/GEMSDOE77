@@ -2,6 +2,78 @@
   "note": "H77-TSD (transtensional strain-partitioning \u00d7 seismic swarm excess \u00d7 MT clay-cap margin + 12-bit LOCO relay & 300 m submod), H77V, H82-TEXTURE, and H82 chemistry-concordance are distinct negative lanes. All listed files are inspection-only and NOT OK TO SUBMIT; see submission-authorization.json. Historical baseline wins are not matched-current-incumbent evidence. H82R: radiometric negative research file; NOT OK TO SUBMIT.",
   "lanes": [
     {
+      "lane": "H82-FMD: mapping-deficit allocation (HOLDOUT-DTI 0.1121 s20 / 0.1093 s30 for the crest-thinned 48-channel build; the preregistered deficit weight itself is REFUTED; negative result)",
+      "page": "h82fmd.html",
+      "summary": "h82fmd-executive-summary.html",
+      "file": "downloads/gems77-h82-crestthin-fullstack-37654dots-20261021-zeros.tif",
+      "run_card": "evidence/h82fmd_run_card.json",
+      "format_valid": true,
+      "protocol_unique": false,
+      "informative_unique": false,
+      "beats_holdout_best": false,
+      "verdict": "negative",
+      "primary": false,
+      "name": "gems77-h82-crestthin-fullstack-37654dots-20261021-zeros",
+      "note": "H82: 48-ch OOF physics, across-ridge NMS crest, 300m submodular, 37654 dots, >200m off catalogue",
+      "sha256": "4f69c9fa0187cfb61394b558d9866794ef15ad7066d135fde8acef4349faac13",
+      "holdout_dti_hide_v2": 0.11210383115657278,
+      "holdout_evaluator_version": "gems57-pooled-hide-v2",
+      "holdout_positive_pixels": 11321,
+      "holdout_ci95": [
+        0.09480183543479849,
+        0.12940478566327987
+      ],
+      "upload": "Not OK to submit. OK to download for inspection only. Format-valid (15/15 validator checks, 0 NaN, values in [0,1], 37,654 binary dots, 0 on the mapped catalogue). It FAILS the duplicate rule: 0.9189 of its dots lie within 3 px of GEMSDOE22:docs/downloads/gems22-h23-b-dti-optimal-emission-10pct-20261002-86176698-allfinite.tif (limit 0.70), although the ranking surface is uncorrelated with every registry raster (worst |Spearman rho| 0.1021 <= 0.90) and no byte-identical or decode-identical file exists; against the 647 registry rasters of comparable dot density (<= 2x this budget) the worst overlap is 0.6745 with 0 firings, so every firing comes from rasters that emit 3-100% of the footprint. Preregistered hypothesis REFUTED on both seeds (mapping-deficit weight costs 0.0228 HOLDOUT-DTI, 95% CI excludes 0); the published build is the confirmed crest-thinning amendment on the full 48-channel stack at HOLDOUT-DTI 0.112104 (s20) / 0.109317 (s30), below the 0.152718 H77-Step repository incumbent. Selector: not approved; 0 weekly slots used.",
+      "why_primary": "Newest lane; clean preregistered refutation plus a replicated allocator-geometry gain, published as a research artifact only.",
+      "beat_02778_summary": "No. HOLDOUT-DTI 0.1121 (s20) / 0.1093 (s30) is below the 0.152718 retained repository best, and local hide-and-recover numbers are not comparable to the 0.2778 organizer score in any case."
+    },
+    {
+      "lane": "H82R: local ternary radiometric rank-mixture entropy (STOPPED; research only)",
+      "page": "h82rank.html",
+      "summary": "executive-summary.html",
+      "file": "downloads/gems77-h82-ternaryentropy-20261021-RESEARCH-ONLY.tif",
+      "run_card": "evidence/h82rank_run_card.json",
+      "format_valid": true,
+      "protocol_unique": false,
+      "informative_unique": null,
+      "beats_holdout_best": false,
+      "verdict": "negative",
+      "primary": false,
+      "name": "gems77-h82-ternaryentropy-20261021-RESEARCH-ONLY",
+      "note": "H82 radiometric ternary rank-mixture entropy deficit; research only; NOT APPROVED for submission",
+      "sha256": "56debe682505bf2649f30d914c7b552dcf669bce4b902ce91eb3e5363031f115",
+      "upload": "Not OK to submit. OK to download for inspection only. HOLDOUT-DTI 0.02307 (95% CI 0.01960-0.02677; gems57-pooled-hide-v2; 11321 withheld positives). Surface duplicate stop 1.0 vs dense witness; no dots placed; selector not approved; zero weekly slots.",
+      "why_primary": "Research-only negative deliverable; no submission clearance."
+    },
+    {
+      "lane": "H77VS: tufa-deconfounded vent-sinter & multi-depth 2m conductive heat-flow strike-conduit coupling (HOLDOUT-DTI 0.0649 s20 / 0.0767 s30, pure 0.0502/0.0621; negative result)",
+      "page": "h77vs.html",
+      "summary": "h77vs-executive-summary.html",
+      "file": "downloads/gems77-h77v-ventsinter-heatflow-37654dots-20261021-cc5e4cd9-zeros.tif",
+      "zip": "downloads/gems77-h77v-ventsinter-heatflow-37654dots-20261021-cc5e4cd9-zeros.zip",
+      "run_card": "evidence/run_card_h77v.json",
+      "format_valid": true,
+      "protocol_unique": false,
+      "informative_unique": true,
+      "beats_holdout_best": false,
+      "selector_approved": false,
+      "verdict": "negative",
+      "primary": false,
+      "name": "gems77-h77v-ventsinter-heatflow-37654dots-20261021-cc5e4cd9-zeros",
+      "note": "H77V vent-sinter+2m dT/dz+diseq (37654d); HOLDOUT-DTI 0.0649(s20)/0.0767(s30) H77V-only 0.0420 <0.1527: NEGATIVE",
+      "sha256": "2044447ff7d4df318c277846299815591211c83641a3beb20c90f9b33c2255bb",
+      "holdout_dti_hide_v2": 0.06487971341171275,
+      "holdout_evaluator_version": "gems57-pooled-hide-v2",
+      "holdout_positive_pixels": 11321,
+      "holdout_ci95": [
+        0.0514460185450327,
+        0.07880516791372676
+      ],
+      "upload": "Not OK to submit. OK to download for inspection only. Format-valid (15/15 validator checks, 0 NaN, values in [0,1], 37,654 dots) and informative-unique against all 60 non-space-filling sparse/dot rasters in the checked 70-raster set (worst 3-px forward overlap 0.3285 <= 0.70; worst |Spearman rho| 0.0123 <= 0.90; vs H33 overlap 0.2357, rho +0.0079), but the literal registry rule fails closed under Policy I17 (1.000 overlap on dense witness ab0a0a62) and full 812-raster REST scan was omitted. HOLDOUT-DTI 0.0649 (s20) / 0.0767 (s30, +0.0160 over A_std, 95% CI [+0.0012, +0.0317]) for A_std+H77V and 0.0502/0.0621 for standalone S_h77v_physics are below the 0.152718 H77-Step repository incumbent; selector: not approved.",
+      "why_primary": "New H77VS tufa-deconfounded vent-sinter & multi-depth 2m conductive heat-flow conduit lane: fixes IR-H77VS-01..05 and IR-H77G-01, informative-unique research TIFF, negative overall verdict.",
+      "beat_02778_summary": "Not expected: HOLDOUT-DTI 0.0649 (Seed 20) / 0.0767 (Seed 30) for A_std+H77V and 0.0502/0.0621 for standalone S_h77v_physics are below the 0.152718 H77-Step repository incumbent, with no organizer score."
+    },
+    {
       "lane": "H77-TSD: Transtensional strain-partitioning \u00d7 seismic swarm excess \u00d7 MT clay-cap margin + 12-bit LOCO relay & 300 m submod (0.1360 / 0.1337 HOLDOUT-DTI; negative under Policy I17)",
       "page": "tsd.html",
       "summary": "executive-summary.html",
@@ -28,24 +100,6 @@
       "upload": "Not OK to submit. OK to download for inspection only. Passes format validation (15/15 checks, 0 NaN, values in [0,1]), beats standard/ablation controls on both holdout seeds (0.13602 [0.1213, 0.1494] s30, +0.03699 vs std; 0.13371 [0.1180, 0.1492] s20, +0.02578 vs std), and passes sparse dot-field uniqueness across all sparse rasters (max 3-px forward overlap 0.6917 <= 0.70, max |rho| 0.4526 <= 0.90), but fails literal uniqueness (1.000 > 0.70) against the full-footprint continuous witness ab0a0a62 under Policy I17 and is below the 0.1527 repo holdout ceiling; selector: not approved.",
       "why_primary": "Session H77-TSD lane built strictly from SHA-256-pinned manifest inputs.",
       "beat_02778_summary": "Not authorized for submission: passes informative sparse uniqueness and beats standard/ablation controls on both seeds, but below the 0.1527 H77-Step holdout best and blocked under Policy I17."
-    },
-    {
-      "lane": "H82R: local ternary radiometric rank-mixture entropy (STOPPED; research only)",
-      "page": "h82rank.html",
-      "summary": "executive-summary.html",
-      "file": "downloads/gems77-h82-ternaryentropy-20261021-RESEARCH-ONLY.tif",
-      "run_card": "evidence/h82rank_run_card.json",
-      "format_valid": true,
-      "protocol_unique": false,
-      "informative_unique": null,
-      "beats_holdout_best": false,
-      "verdict": "negative",
-      "primary": false,
-      "name": "gems77-h82-ternaryentropy-20261021-RESEARCH-ONLY",
-      "note": "H82 radiometric ternary rank-mixture entropy deficit; research only; NOT APPROVED for submission",
-      "sha256": "56debe682505bf2649f30d914c7b552dcf669bce4b902ce91eb3e5363031f115",
-      "upload": "Not OK to submit. OK to download for inspection only. HOLDOUT-DTI 0.02307 (95% CI 0.01960-0.02677; gems57-pooled-hide-v2; 11321 withheld positives). Surface duplicate stop 1.0 vs dense witness; no dots placed; selector not approved; zero weekly slots.",
-      "why_primary": "Research-only negative deliverable; no submission clearance."
     },
     {
       "lane": "H77V: up-gradient geothermal vent advection-backtracking, Lake Lahontan tufa sieve & dilational conduit tensor (HOLDOUT-DTI 0.1270 [0.1128, 0.1422] s30 / 0.1293 [0.1129, 0.1469] s20; negative under Policy I17)",
@@ -673,6 +727,32 @@
       "upload": "Not OK to submit. OK to download for inspection only. HOLDOUT-DTI 0.0688 [0.0540,0.0862] (s20, 11,321 withheld) / 0.0700 (s30) below 0.152718 incumbent; paired gain vs identical 19-band control null both seeds (physics below random); literal uniqueness FAIL by construction (dense witness); worst sparse local overlap 0.391, surface |rho| 0.073 in checked scope; selector not approved; zero weekly slots.",
       "why_primary": "H82-TCSTEP lane (2026-10-21; namespaced at merge to preserve parallel H82-COOL/H82-RRD lanes); negative, clearance per release gate (not approved).",
       "beat_02778_summary": "No. HOLDOUT-DTI 0.0688/0.0700 does not beat the 0.152718 holdout incumbent; no organizer score exists for this file and none may be inferred."
+    },
+    {
+      "lane": "H83: hanging-wall fault-damage collar at the 300 m kernel scale (negative result)",
+      "page": "h83.html",
+      "summary": "h83.html",
+      "file": "downloads/gems77-h83-faultcollar-37553dots-20261021-a55f4c9c-zeros.tif",
+      "zip": "downloads/gems77-h83-faultcollar-37553dots-20261021-a55f4c9c-zeros.zip",
+      "run_card": "evidence/h83_run_card.json",
+      "format_valid": true,
+      "protocol_unique": false,
+      "informative_unique": null,
+      "beats_holdout_best": false,
+      "selector_approved": false,
+      "verdict": "negative",
+      "primary": false,
+      "name": "gems77-h83-faultcollar-37553dots-20261021-a55f4c9c-zeros",
+      "note": "H83 fault-damage collar 37553 dots; HOLDOUT-DTI 0.1227 [0.1080,0.1372] s30; below 0.152718 incumbent: NEGATIVE, do not upload",
+      "sha256": "7f71739a2804bf2fa7199d30d512e0a267e4cfa2fdd0d32304b962db65b98662",
+      "holdout_dti_hide_v2": 0.1226552189170721,
+      "holdout_evaluator_version": "gems57-pooled-hide-v2",
+      "holdout_positive_pixels": 11342,
+      "holdout_ci95": [
+        0.10799672421127436,
+        0.1372130738097347
+      ],
+      "upload": "Not OK to submit. OK to download for inspection only. Format-valid (17/17 local checks: single float32 band, EPSG:32611, 3730x3292, pinned transform, values exactly {0,1}, 0 NaN anywhere, zeros outside footprint, 0 dots on catalogue). Registry scan incomplete (0/812 locally accessible) and literal dense-witness gate fail-closed. HOLDOUT-DTI 0.1227 [0.1080, 0.1372] seed 30 vs random 0.0435 (delta +0.079, CI excludes 0) but below the 0.152718 repository incumbent. Selector: not approved; zero weekly slots used."
     }
   ]
 }

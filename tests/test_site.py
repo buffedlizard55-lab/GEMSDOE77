@@ -316,11 +316,13 @@ def test_current_review_and_metric_correction_are_linked():
     assert 'ΔT=k' in analysis and 'only when' in analysis
     assert 'does <strong>not</strong> always increase' in analysis
     review = (DOC / 'review-latest.html').read_text()
-    assert 'NOT OK TO SUBMIT' in review
-    assert 'No new TIFF was generated' in review
-    assert 'arena/b6805ddb-gemsdoe77' in review
-    assert '5,106,385' in review and '29/29' in review
-    assert 'evidence/review_b6805ddb_run_card.json' in review
+    assert 'NONE are OK TO SUBMIT' in review
+    assert 'No new TIFF generated' in review
+    assert 'arena/de39a02b-gemsdoe77' in review
+    branch_review = (DOC / 'review-b6805ddb.html').read_text()
+    assert 'arena/b6805ddb-gemsdoe77' in branch_review
+    assert '5,106,385' in branch_review and '29/29' in branch_review
+    assert 'evidence/review_b6805ddb_run_card.json' in branch_review
 
 
 def test_current_preflight_review_does_not_claim_a_new_submission():

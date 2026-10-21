@@ -2,6 +2,7 @@
   "schema": "gems-review-run-card-v1",
   "branch": "arena/b6805ddb-gemsdoe77",
   "date": "2026-10-21",
+  "scope": "This branch snapshot before concurrent main updates merged during PR review; no concurrent-lane artifact was generated or evaluated here.",
   "hypothesis": "Repository review only. Top conditional hypothesis: multiscale cross-wavelet phase-jump coherence between GeoDAWN RTP/TMI and isostatic gravity to identify buried, cross-sensor coherent offsets; no new lane was assigned or tested.",
   "mechanism": "No mechanism was implemented or evaluated. Proposed signature would be a locally detrended, scale-persistent cross-sensor phase discontinuity, not a standalone amplitude edge.",
   "named_non_fault_process_that_could_mimic_it": "Intrusive/lithologic contacts, survey gridding seams, or unrelated juxtaposed magnetic and density sources.",
@@ -42,5 +43,16 @@
   "experiments_run": 0,
   "new_raster_generated": false,
   "weekly_slots_used": 0,
-  "organizer_confirmed_score": null
+  "organizer_confirmed_score": null,
+  "post_merge_reconciliation": {
+    "evidence_class": "REPOSITORY / REGISTRY / FORMAT MEASUREMENTS; NOT PERFORMANCE SCORES",
+    "template_amendment_verified": "uniqueness.py local hash matches explicit registry/template_pin.json amendment; threshold rules unchanged",
+    "preflight_decision": "STOP_UNIVERSAL_DUPLICATE",
+    "preflight_expected_process_exit": 2,
+    "allowed_pixels_covered_within_3px": 5106385,
+    "allowed_pixels": 5106385,
+    "merged_main_listed_tiff_audit": "32/32 local format/integrity checks PASS; not uniqueness or portal acceptance",
+    "release_authorized_files": 0,
+    "concurrent_lanes_preserved_not_evaluated_here": ["H77VS", "H82-FMD", "H83"]
+  }
 }
