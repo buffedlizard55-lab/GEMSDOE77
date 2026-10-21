@@ -58,7 +58,6 @@ Do not upload these artifacts.</p>
 <p>
 <a class="btn" href="downloads/{p['tag']}-zeros.tif" download>Download .tif for inspection — zeros outside</a>
 <a class="btn alt" href="downloads/{p['tag']}-zeros.zip" download>Inspection copy as one-TIFF .zip</a>
-<a class="btn alt" href="downloads/{p['tag']}-nan.tif" download>NaN-outside reference variant (inspection only)</a>
 </p>
 <div class="chips">
 <span class="chip ok">Local format preflight: PASS (all 12,279,160 pixels finite in [0,1])</span>
@@ -148,6 +147,7 @@ No organizer-confirmed score exists for any AGO TIFF.</p>
 <h2>Technical supplements</h2>
 <ul>
 <li><a href="evidence/ago_run_card.json">Full JSON run card (hypothesis, mechanism, holdout, registry, validator, SHA, verdict)</a></li>
+<li>The run card's historical <code>ok_to_submit_competition</code> field is superseded: local format checks are not portal acceptance, and this lane remains NOT OK TO SUBMIT.</li>
 <li><a href="downloads/{p['tag']}.json">Primary file receipt (SHA, bytes, CRS, validator checks)</a></li>
 <li><a href="evidence/prior_forensics.json">Prior H33 forensics (why thinning helped the metric)</a></li>
 </ul>

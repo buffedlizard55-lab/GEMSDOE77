@@ -175,7 +175,7 @@ run_card = {
     "selector_approved": False,
     "ok_to_download": True,
     "ok_to_submit_portal_format": True,
-    "ok_to_submit_competition": "Portal format PASS — will not trigger 'Predicted values must be in range [0, 1]' error. Competition scoring/leaderboard placement is not guaranteed; no organizer score exists.",
+    "ok_to_submit_competition": "Local all-pixel finite/[0,1] check passed; this is not portal acceptance. The earlier range-error cause is unverified. NOT OK TO SUBMIT: registry gate fails and no selector approved a slot.",
     "byte_distinct_vs_checked": True,
     "five_hypotheses_ranked": [
         {"rank": 1, "hypothesis": "ML backbone × geophysical selective displacement (THIS LANE: combines H19-5 ML pattern with grav-mag polarity infill)", "expected_gain": "moderate", "cost": "low", "status": "TESTED — 0.103 holdout, overlap 0.65 PASS"},

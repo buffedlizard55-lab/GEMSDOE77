@@ -51,7 +51,7 @@ def compute_tilt_field():
     grid = load_grid57(ROOT/"data/raw")
     footprint = grid.footprint
     log(f"footprint {footprint.sum()} catalogue {grid.catalogue.sum()}")
-    
+
     log("reading bands")
     with rasterio.open(ROOT/"data/raw/training_features.tif") as src:
         tmi = clean_band(src.read(BAND_TMI), footprint)
@@ -59,7 +59,7 @@ def compute_tilt_field():
         grav = clean_band(src.read(BAND_GRAV), footprint)
         grav_vg = clean_band(src.read(BAND_GRAVVV), footprint)
         depth = clean_band(src.read(BAND_DEPTH), footprint)
-    
+
     log("computing tilt persistence")
     # Helper to compute Z for one field at one sigma
     def tilt_zero_weighted(field, vg, sigma):
@@ -81,13 +81,13 @@ def compute_tilt_field():
         # Z = zero * logAS
         Z = (zero * as_log).astype(np.float32)
         return Z, tilt, thdr, as_log
-    
+
     # Mag field at two scales
     Zmag_1p5, _, _, _ = tilt_zero_weighted(tmi, tmi_vg, sigma=1.5)
     Zmag_3p0, _, _, _ = tilt_zero_weighted(tmi, tmi_vg, sigma=3.0)
     Zgrav_1p5, _, _, _ = tilt_zero_weighted(grav, grav_vg, sigma=1.5)
     Zgrav_3p0, _, _, _ = tilt_zero_weighted(grav, grav_vg, sigma=3.0)
-    
+
     # rank normalize each Z inside footprint to [0,1] for comparability
     def rank01(arr):
         out = np.zeros_like(arr, dtype=np.float32)
@@ -107,22 +107,22 @@ def compute_tilt_field():
         tmp[order] = np.linspace(0,1, v.size, dtype=np.float32)
         out[footprint] = tmp
         return out
-    
+
     # Normalize each
     Zmag_1p5_n = rank01(Zmag_1p5)
     Zmag_3p0_n = rank01(Zmag_3p0)
     Zgrav_1p5_n = rank01(Zgrav_1p5)
     Zgrav_3p0_n = rank01(Zgrav_3p0)
-    
+
     # Persistence = min across scales (requires coherence at both short and longer wavelength)
     # This suppresses shallow noise (decorrelates) and deep pluton edges that are broad only
     mag_persist = np.minimum(Zmag_1p5_n, Zmag_3p0_n)
     grav_persist = np.minimum(Zgrav_1p5_n, Zgrav_3p0_n)
-    
+
     # Cross-field coincidence: product (both must be high)
     cross = (mag_persist * grav_persist).astype(np.float32)
     cross_n = rank01(cross)
-    
+
     # Basement throw gating
     # Compute depth gradient and grav gradient at sigma 2.0
     sm_depth = gf(depth, sigma=2.0)
@@ -144,7 +144,7 @@ def compute_tilt_field():
     base_grad_log = np.log1p(np.maximum(db_norm, 0)).astype(np.float32)
     base_gate = (align_pos * base_grad_log).astype(np.float32)
     base_gate_n = rank01(base_gate)
-    
+
     # Final field: cross * (0.5 + 0.5*base_gate) to allow cross alone but boost where throw consistent
     # Use 70% cross + 30% basement-gated
     final = (cross_n * (0.6 + 0.4*base_gate_n)).astype(np.float32)
@@ -152,7 +152,7 @@ def compute_tilt_field():
     # Also rank overall final for emission (greedy needs monotonic ranking)
     final_ranked = rank01(final)
     final_ranked[~footprint] = 0
-    
+
     # Save intermediates for audit
     out_dict = {
         "Zmag_1p5": Zmag_1p5,
@@ -269,7 +269,7 @@ def holdout_evaluation(surface, footprint, grid):
     folds2, receipts2 = buffered_component_draw(grid, seed=21, hide_frac=0.20, buffer_px=3)
     all_folds = folds + folds2
     log(f" total folds {len(all_folds)}")
-    
+
     # Generate emitted masks globally
     # Candidate: greedy on surface ranking
     def make_greedy(surf, n=N_DOTS):
@@ -291,7 +291,7 @@ def holdout_evaluation(surface, footprint, grid):
         mask = np.zeros(footprint.size, dtype=bool)
         mask[sel] = True
         return mask.reshape(H,W)
-    
+
     cand_global = make_greedy(surface, N_DOTS)
     log(f"candidate dots {cand_global.sum()}")
     # Random control same n
@@ -327,7 +327,7 @@ def holdout_evaluation(surface, footprint, grid):
     grav_rank[footprint] = ranks
     ctrl_global = make_greedy(grav_rank, N_DOTS)
     log(f"control grav dots {ctrl_global.sum()}")
-    
+
     # Evaluate each arm per fold, collect terms
     from gems57.evaluate_holdout import evaluate as EH_eval, pooled_summary
     terms_by_arm = {"candidate": [], "random": [], "grav_control": []}
@@ -338,7 +338,7 @@ def holdout_evaluation(surface, footprint, grid):
             # terms is (n_blocks,4) array
             terms_by_arm[name].append(terms)
         log(f" fold {fold['receipt']['fold'] if 'receipt' in fold else fold.get('name','?')} truth {fold['truth'].sum() if 'truth' in fold else '?'}")
-    
+
     # Pool sums
     # Stack terms per arm: sum over folds then pool
     arms_summed = {k: np.sum(np.stack(v, axis=0), axis=0) if len(v)>1 else np.stack(v,axis=0)[0] for k,v in terms_by_arm.items()}
@@ -358,7 +358,7 @@ def main():
     # save surface for quick inspection
     Path(".cache").mkdir(exist_ok=True)
     np.save(".cache/h80_surface.npy", surface)
-    
+
     # E1 canary
     log("E1 canary")
     canaries = leakage_canary(intermediates, footprint, grid.catalogue)
@@ -371,7 +371,7 @@ def main():
     if max_sym > 0.90:
         log("LEAKAGE FLAG >0.90 hard stop")
         sys.exit(2)
-    
+
     # E2 holdout
     log("E2 holdout")
     summary, masks = holdout_evaluation(surface, footprint, grid)
@@ -379,7 +379,7 @@ def main():
     # write out
     Path("evidence/h80_e2_holdout.json").write_text(json.dumps(summary, indent=2))
     # also save canaries already
-    
+
     # decide promotion: candidate must beat random and grav_control with CI >0 and beat repo best 0.1527
     cand = summary["scores"]["candidate"]
     rand = summary["scores"]["random"]
