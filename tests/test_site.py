@@ -323,7 +323,7 @@ def test_current_review_and_metric_correction_are_linked():
     assert 'New TIFF / experiment / slot' in review and 'none generated or used' in review
     assert 'arena/2c503e77-gemsdoe77' in review
     assert 'STOP_UNIVERSAL_DUPLICATE' in review
-    assert '31/31 listed files pass' in review
+    assert '32/32 listed files pass' in review
 
 
 def test_current_preflight_review_does_not_claim_a_new_submission():
