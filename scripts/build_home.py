@@ -2,11 +2,11 @@
 """Repository-wide entry pages for GitHub Pages - generated, never hand-edited.
 
 Writes docs/index.html ("Start here": the download + per-file status table first),
-docs/executive-summary.html (how to submit any file from this repository) and docs/h78.html
-(the H78 lane page).  Inputs: docs/data/lanes.json, docs/data/h78_submission.json,
-evidence/h78_run_card.json.  Runs in CI after scripts/build_site.py (which now writes the
-selective-U lane pages to urank*.html), so CI no longer overwrites the entry page with one
-lane's view (IR-78-06).
+docs/executive-summary.html (how to submit any file from this repository), the H78 lane page,
+and the H79-ORIENT technical report/submission guide. Inputs: docs/data/lanes.json,
+docs/data/h78_submission.json, evidence/h78_run_card.json and evidence/h79_run_card.json.
+Runs in CI after scripts/build_site.py (which writes the selective-U lane pages to urank*.html),
+so CI no longer overwrites the entry page with one lane's view (IR-78-06).
 """
 from __future__ import annotations
 
@@ -21,6 +21,7 @@ LB = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboa
 PD = "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
 NAV = [("index.html", "Start here"), ("executive-summary.html", "How to submit"),
+       ("h79.html", "H79-ORIENT"), ("h79-executive-summary.html", "H79 guide"),
        ("h77d.html", "H77D (Zero-SGMC)"), ("h77d-executive-summary.html", "H77D guide"),
        ("h77-step.html", "H77-Step"), ("h78.html", "H78 lane"),
        ("lia.html", "LIA lane"), ("contactphys.html", "Contact-physics lane"), ("urank.html", "Selective-U lane"),
@@ -68,6 +69,7 @@ def main():
     lanes = jload("docs/data/lanes.json")
     card = jload("evidence/h78_run_card.json")
     sub = jload("docs/data/h78_submission.json")
+    h79_card = jload("evidence/h79_run_card.json")
     primary = next((x for x in lanes["lanes"] if x.get("primary")), lanes["lanes"][0])
     # ---------------- status table (every file in the repository)
     def holdout_cell(x):
@@ -84,8 +86,11 @@ def main():
 
     rows = ""
     for x in lanes["lanes"]:
+        sha = f'<br><span class="small">sha256 <code>{e(x["sha256"])}</code></span>' if x.get("sha256") else ''
+        xzip = Path(x["file"]).with_suffix(".zip").as_posix()
+        zip_link = f'<br><a download href="{e(xzip)}">one-TIFF .zip</a>' if (D / xzip).exists() else ''
         rows += (f'<tr><td><a href="{e(x["page"])}">{e(x["lane"])}</a></td>'
-                 f'<td><a download href="{e(x["file"])}">{e(Path(x["file"]).name)}</a></td>'
+                 f'<td><a download href="{e(x["file"])}">{e(Path(x["file"]).name)}</a>{zip_link}{sha}</td>'
                  f'<td>{yn(x.get("format_valid"), "PASS", "FAIL")}</td>'
                  f'<td>{yn(x.get("protocol_unique"), "PASS", "FAIL")}</td>'
                  f'<td>{info_cell(x)}</td>'
@@ -201,7 +206,72 @@ which differs from <code>sample_submission.tif</code> by 4,601 cells. The <code>
     # ---------------- H78 lane page
     if card and sub:
         (D / "h78.html").write_text(page("h78.html", "H78 lane", h78_body(card, sub)))
-    print("wrote docs/index.html, docs/executive-summary.html" + (", docs/h78.html" if card and sub else ""))
+    if h79_card:
+        (D / "h79.html").write_text(page("h79.html", "H79-ORIENT lane", h79_body(h79_card, False)))
+        (D / "h79-executive-summary.html").write_text(page("h79-executive-summary.html", "H79 submission guide", h79_body(h79_card, True)))
+    generated = ", ".join(x for x, ok in (("docs/h78.html", bool(card and sub)), ("docs/h79.html", bool(h79_card)), ("docs/h79-executive-summary.html", bool(h79_card))) if ok)
+    print("wrote docs/index.html, docs/executive-summary.html" + ((", " + generated) if generated else ""))
+
+
+def h79_body(card, guide=False):
+    """Render H79's negative, downloadable artifact with score provenance explicit."""
+    h20 = card["holdout"]["seed20"]
+    h30 = card["holdout"]["seed30"]
+    incumbent = card["holdout"]["incumbent"]
+    reg1 = card["correlation_overlap_vs_registry"]["surface_before_placement"]
+    reg2 = card["correlation_overlap_vs_registry"]["final_dots"]
+    ver = h30["scores"]["H79_plus_raw"]
+    file_path = card["file"].replace("docs/", "")
+    zip_path = card["zip"].replace("docs/", "")
+    title = "Executive submission guide" if guide else "Technical lane report"
+    intro = ("This is a submission guide for a future selector decision. Do not upload this file now: the scientific and "
+             "registry gates are negative. Downloading it is safe for inspection; that is not approval.") if guide else (
+             "H79-ORIENT is a genuinely distinct, label-blind research construction. It is format-valid and downloadable, "
+             "but its blocked holdout is negative versus the retained incumbent and its literal registry gate is fail-closed.")
+    score_rows = []
+    for label, h, arms in (("Seed 20", h20, h20["scores"]), ("Seed 30", h30, h30["scores"])):
+        for arm in ("H79_only", "H79_plus_raw", "raw_control", "random_control"):
+            if arm not in arms:
+                continue
+            s = arms[arm]
+            score_rows.append(f"<tr><td>{e(label)}</td><td><code>{e(arm)}</code></td><td><b>{s['dti']:.6f}</b></td>"
+                              f"<td>{s['ci95'][0]:.6f}–{s['ci95'][1]:.6f}</td><td>{s['withheld_positive_pixels']:,}</td>"
+                              f"<td><code>{e(h['evaluator_version'])}</code></td></tr>")
+    check_rows = "".join(f"<li><b>{e(k.replace('_', ' '))}:</b> {e(v)}</li>" for k, v in card["validator_output"]["checks"].items())
+    gate_rows = f"""<tr><td>Before placement</td><td>{reg1['checked_local_rasters']} of {reg1['expected_registry_rasters']}</td>
+<td>{reg1['max_abs_surface_spearman']:.6f}</td><td>{reg1['max_forward_overlap_3px']:.6f}</td>
+<td>{reg1['surface_duplicate_count']}/{reg1['dot_duplicate_count']}</td><td><b>FAIL</b></td></tr>
+<tr><td>Final dots</td><td>{reg2['checked_local_rasters']} of {reg2['expected_registry_rasters']}</td>
+<td>{reg2['max_abs_surface_spearman']:.6f}</td><td>{reg2['max_forward_overlap_3px']:.6f}</td>
+<td>{reg2['surface_duplicate_count']}/{reg2['dot_duplicate_count']}</td><td><b>FAIL</b></td></tr>"""
+    return f"""<h1>{e(title)}: H79-ORIENT</h1>
+<p class="verdict"><b>OK TO DOWNLOAD: YES.</b> <b>OK TO SUBMIT: NO.</b> {e(intro)}</p>
+<section class="card dl"><h2>⬇ Download the single-band GeoTIFF</h2>
+<p><b>{e(card['submission_name'])}</b> · 37,654 emitted dots · one float32 band · SHA-256 <code>{e(card['raster_sha256'])}</code></p>
+<a class="btn" href="{e(file_path)}" download>Download H79 .tif</a>
+<a class="btn alt" href="{e(zip_path)}" download>Download one-TIFF .zip</a>
+<div class="chips"><span class="chip ok">OK TO DOWNLOAD</span><span class="chip bad">OK TO SUBMIT: NO</span>
+<span class="chip ok">Format preflight: PASS</span><span class="chip bad">Holdout gate: FAIL</span><span class="chip bad">Registry gate: FAIL</span><span class="chip warn">Weekly slots used: 0</span></div>
+{copy('Submission name (reference only)', card['submission_name'])}
+{copy('Submission note (reference only; ≤140 characters)', card['note'])}
+<p class="small"><a href="evidence/h79_run_card.json">Open the machine-readable JSON run card</a> · no organizer receipt exists for this artifact.</p></section>
+<h2>Decision</h2><p><b>Negative; no promotion.</b> The retained incumbent is <b>HOLDOUT-DTI {incumbent['dti']:.6f}</b>
+(95% CI {incumbent['ci95'][0]:.6f}–{incumbent['ci95'][1]:.6f}; {e(incumbent['evaluator_version'])}; {incumbent['withheld_positive_pixels']:,}
+withheld positives). H79's pre-registered primary <code>H79_plus_raw</code> is <b>HOLDOUT-DTI {ver['dti']:.6f}</b>
+(95% CI {ver['ci95'][0]:.6f}–{ver['ci95'][1]:.6f}; {ver['withheld_positive_pixels']:,} withheld positives) on seed 30,
+and <b>HOLDOUT-DTI {h20['scores']['H79_plus_raw']['dti']:.6f}</b> (95% CI {h20['scores']['H79_plus_raw']['ci95'][0]:.6f}–{h20['scores']['H79_plus_raw']['ci95'][1]:.6f}; {h20['scores']['H79_plus_raw']['withheld_positive_pixels']:,}
+withheld positives) on seed 20. These are local hide-and-recover measurements, not leaderboard scores.</p>
+<h2>What was tested</h2><p><b>Hypothesis:</b> {e(card['hypothesis'])}</p><p><b>Mechanism:</b> {e(card['mechanism'])}</p><p><b>Named non-fault mimic:</b> {e(card['named_non_fault_process'])}</p>
+<p>Layers were RTP, isostatic gravity anomaly, detrended elevation, and depth to basement, transformed into multi-scale Gaussian derivative edge axes, persistence, doubled-angle orientation confluence, and cross-sensor agreement. The stack is label-blind and contains no prior prediction or catalogue feature.</p>
+<h2>Holdout scores (every value is labelled HOLDOUT-DTI)</h2><p>Shared evaluator <code>gems57-pooled-hide-v2</code>, pooled α=0.2 and β=0.8, 300 m triangular kernel. Whole buffered fault components were hidden; catalogue features were derived from visible faults only and visible faults were masked pixel-exactly. CIs are the evaluator's 2,000-draw paired physical spatial-cluster bootstrap.</p>
+<table><tr><th>Seed</th><th>Arm</th><th>HOLDOUT-DTI</th><th>95% CI</th><th>Withheld positives</th><th>Evaluator</th></tr>{''.join(score_rows)}</table>
+<h2>Leakage canary</h2><p>Every one of the 14 features was tested alone. Maximum symmetric AUC was <b>0.6242</b> for <code>h79_dem_orientation_coherence</code>, below the preregistered 0.90 leakage stop threshold. This is a canary, not proof of no leakage. See <a href="evidence/h79_canary.json">the full canary</a>.</p>
+<h2>Registry uniqueness: checked before placement and on final dots</h2><p>The shared <code>gems57.uniqueness</code> definitions were run before placement and after emission. Stop rule: surface |Spearman ρ| &gt; 0.90 or forward 3-pixel overlap &gt; 0.70. The dense witness <code>ab0a0a62…</code> covers the allowed footprint and fires the overlap rule; the inaccessible 812-raster snapshot means this is never upgraded to a clearance.</p>
+<table><tr><th>Phase</th><th>Local rasters checked</th><th>Max |surface ρ|</th><th>Max forward dot overlap</th><th>Surface / dot firings</th><th>Protocol result</th></tr>{gate_rows}</table>
+<h2>Format preflight</h2><p>All local checks passed: single band, float32, 3730×3292, EPSG:32611, official transform, finite values everywhere, values in [0,1], no nodata, and zero dots on mapped catalogue pixels.</p><ul>{check_rows}</ul>
+<h2>Exact submission steps (only if a future selector approves a file)</h2><ol><li>Do not use H79 now; this page says <b>OK TO SUBMIT: NO</b>.</li><li>For a later cleared file, download its single <code>-zeros.tif</code>, not JSON/HTML/repository files.</li><li>Verify the displayed SHA-256 locally (<code>sha256sum file.tif</code> or Windows <code>certutil -hashfile file.tif SHA256</code>).</li><li>On DrivenData, sign in, choose the TIFF in the competition submission form, paste the ≤140-character note, and check the weekly allowance before submitting.</li><li>Only a portal receipt or public leaderboard value may be labelled <b>ORGANIZER-CONFIRMED</b>. No such receipt exists for H79.</li></ol>
+<h2>Official sources and irregularity flags</h2><ul><li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DrivenData problem and metric specification</a> — submission grid, single-band contract, α=0.2, β=0.8 and 300 m triangular kernel.</li><li><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN</a> — official magnetic/radiometric/LiDAR source context; DOI 10.5066/P93LGLVQ.</li><li><a href="https://gdr.openei.org/submissions/1391">DOE/NREL GDR INGENIOUS submission 1391</a> — official Great Basin geothermal compilation used for hypothesis availability review, not as an H79 feature.</li><li><a href="https://github.com/drivendataorg/gems-prize-reference-solution">Organizer-linked reference solution</a> — implementation context, not a score receipt.</li><li><b>IR-79-01:</b> the first zero DTI log was a runner placement bug: holdout dots were excluded using distance to the full catalogue, which also excluded withheld positives. It was corrected to use visible-catalogue distance only; the zero results are superseded and are not reported as H79 scores. See the <a href="evidence/h79_superseded_zero_bug.json">superseded-run receipt</a>.</li><li><b>IR-79-02:</b> GitHub API rate limiting left 13 comparable local TIFFs versus 812 expected; owner mirrors are not organizer-authenticated. This is a fail-closed limitation, not evidence of global uniqueness.</li><li><b>IR-79-03:</b> no DrivenData authentication or weekly selector approval is available here. No organizer-confirmed H79 score is claimed.</li></ul>
+<h2>Remaining blockers</h2><ul><li>H79 is below the retained incumbent; no promotion decision is supported.</li><li>The registry API snapshot is incomplete (13 local comparison rasters versus 812 expected); the dense witness alone forces a literal fail.</li><li>DrivenData authentication is unavailable in this workspace; no weekly slot was selected or spent.</li></ul>"""
 
 
 def h78_body(card, sub):

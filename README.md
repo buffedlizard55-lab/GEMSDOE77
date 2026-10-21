@@ -1,10 +1,21 @@
 # GEMSDOE77: DOE GEMS Geothermal Fault Detection — Audited Research Portfolio
 
-**Current review (2026-10-21): no GeoTIFF in this repository is approved to submit.** Files can be downloaded for inspection, but the literal registry-uniqueness gate is not cleared and no selector has approved a weekly slot. The best retained result is `H77-Step` at **0.152718 HOLDOUT-DTI** (evaluator `gems57-pooled-hide-v2`, 11,321 withheld positive pixels, 95% CI `[0.131548, 0.175185]`); this is a local spatial holdout result, **not** a leaderboard score. The site start page is the authoritative current per-file download/submit status: [docs/index.html](docs/index.html). See the [repository review](docs/review-2026-10-21.md) for verified issues, contradictions and next steps. Do not infer promotion or organizer acceptance from older run cards or historical report wording.
+**Current review (2026-10-21): no GeoTIFF in this repository is approved to submit.** The new H79-ORIENT artifact is safe to download for inspection, but it is **not OK TO SUBMIT**: its pre-registered primary scored **0.094507 HOLDOUT-DTI** on seed 30 (95% CI `[0.076558, 0.112844]`, `gems57-pooled-hide-v2`, 11,342 withheld positives) and **0.089063 HOLDOUT-DTI** on seed 20 (95% CI `[0.072384, 0.105355]`, 11,321 withheld positives), below the retained `H77-Step` **0.152718 HOLDOUT-DTI**. The binding registry gate also fires on the dense witness; no weekly slot was selected or spent. The site start page is the authoritative current per-file download/submit status: [docs/index.html](docs/index.html). See the [H79 technical report](docs/h79.html), [H79 submission guide](docs/h79-executive-summary.html), and [JSON run card](evidence/h79_run_card.json). These are local holdout/registry measurements, **not organizer scores**; do not infer promotion or organizer acceptance from older run cards or historical report wording.
 
 **Read this README, including the original request at the end of this file, at the beginning of every session.**
 
-## Submission Files in This Repository (All 7 Parallel Lanes)
+## Current H79-ORIENT artifact (latest lane; negative, downloadable)
+
+- **[Download the single-band float32 GeoTIFF](docs/downloads/gems79-orient-persistence-37654dots-20261021-4abff47886.tif)** · [one-TIFF ZIP](docs/downloads/gems79-orient-persistence-37654dots-20261021-4abff47886.zip)
+- **Status:** **OK TO DOWNLOAD: YES** · **OK TO SUBMIT: NO** · weekly slots used: `0` · verdict: `negative`
+- **SHA-256:** `745dbaa427bc1edaf477b3d0b4847b8be8d30d396106a61b1318a8726599be8e`
+- **Format:** local preflight PASS — one `float32` band, `3730 × 3292`, `EPSG:32611`, matching transform, finite values in `[0,1]`, no nodata, 37,654 emitted dots, zero mapped-catalogue dots.
+- **Primary score label:** `HOLDOUT-DTI 0.094507` (seed 30; 95% CI `[0.076558, 0.112844]`; evaluator `gems57-pooled-hide-v2`; 11,342 withheld positives). Seed 20: `HOLDOUT-DTI 0.089063` (95% CI `[0.072384, 0.105355]`; 11,321 withheld positives). These are not organizer-confirmed scores.
+- **Why not submit:** the result is below the retained `0.152718 HOLDOUT-DTI` incumbent, the registry uniqueness audit is incomplete (`13/812` local rasters), and the dense witness makes the literal overlap gate fail. The file is byte/pixel-distinct from checked files but is **not protocol-cleared**.
+- **Technical report:** [H79 lane](docs/h79.html) · **submission mechanics:** [H79 guide](docs/h79-executive-summary.html) · **machine-readable receipt:** [evidence/h79_run_card.json](evidence/h79_run_card.json) · [preregistration](registry/preregistration_h79.json).
+- **Retained comparison candidate:** H78 [`gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros`](docs/downloads/gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros.tif), SHA-256 `4571e767757be95e3fb70b4afb05e45528b1cfd74147e168c36253b1247f1c47`; it remains **Not OK to submit**.
+
+## Submission Files in This Repository (All 8 Tracked Lanes)
 
 > ### Core values
 > **Maximize P(Win).** "Maximize the Probability of Winning" is our decision-making framework. In every

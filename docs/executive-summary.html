@@ -2,7 +2,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1"><title>How to submit · GEMSDOE77</title>
 <meta name="description" content="GEMSDOE77 (DOE GEMS Prize): download the submission GeoTIFFs and see, per file, whether it is OK to upload.">
 <link rel="stylesheet" href="assets/lia.css"></head><body>
-<header><div class="wrap"><span class="brand">GEMSDOE77 · DOE GEMS Prize</span><a href="index.html">Start here</a> <a href="executive-summary.html" class=here>How to submit</a> <a href="h77d.html">H77D (Zero-SGMC)</a> <a href="h77d-executive-summary.html">H77D guide</a> <a href="h77-step.html">H77-Step</a> <a href="h78.html">H78 lane</a> <a href="lia.html">LIA lane</a> <a href="contactphys.html">Contact-physics lane</a> <a href="urank.html">Selective-U lane</a> <a href="lia-analysis.html">Why 0.2778</a> <a href="lia-sources.html">Sources</a>
+<header><div class="wrap"><span class="brand">GEMSDOE77 · DOE GEMS Prize</span><a href="index.html">Start here</a> <a href="executive-summary.html" class=here>How to submit</a> <a href="h79.html">H79-ORIENT</a> <a href="h79-executive-summary.html">H79 guide</a> <a href="h77d.html">H77D (Zero-SGMC)</a> <a href="h77d-executive-summary.html">H77D guide</a> <a href="h77-step.html">H77-Step</a> <a href="h78.html">H78 lane</a> <a href="lia.html">LIA lane</a> <a href="contactphys.html">Contact-physics lane</a> <a href="urank.html">Selective-U lane</a> <a href="lia-analysis.html">Why 0.2778</a> <a href="lia-sources.html">Sources</a>
 <a href="https://github.com/buffedlizard55-lab/GEMSDOE77">GitHub</a></div></header><main><div class="wrap"><h1>Executive summary: how to submit a file from this repository</h1>
 <p class="verdict"><b>Bottom line.</b> <b>No file in this repository is cleared to submit today</b> (Not OK to submit).
 Every file is OK to download for inspection. The steps below are how to submit once a file is cleared: it must pass the
@@ -15,22 +15,22 @@ to beat 0.2778.</p>
 dots exceed 0.70 against them, so <b>no non-empty file can pass the literal rule</b>. Only the protocol owner can resolve
 this, with one shared registry policy. Until then, spending a slot is a selector decision outside this repository.</p>
 <section class="card dl"><h2>⬇ Newest file: download</h2>
-<p class="small muted"><b>H77D: Coupled Zero-SGMC Tectono-Hydrothermal Conduits + 12-Bit LOCO + 300 m Submodular Cover (0.15011 / 0.14030 HOLDOUT-DTI).</b> Newest session (Lane H77D, 100% zero-SGMC). Eliminates Paleozoic/Mesozoic SGMC bedrock false positives (0.036-0.051 live), fixes q==0 missing-LiDAR across 24.6% of Nevada, and beats fold-fair H33 on both spatial seeds (0.15011 vs 0.09715 on Seed 30; 0.14030 vs 0.09574 on Seed 20) while overlapping H77-Step by only 40.7%.</p>
-<a class="btn" href="downloads/gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.tif" download>Download .tif (138 KB)</a><a class="btn alt" href="downloads/gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.zip" download>Same file as one-TIFF .zip</a>
+<p class="small muted"><b>H79-ORIENT: label-blind cross-sensor orientation persistence (negative holdout).</b> Latest preregistered research artifact. It tests a genuinely different, label-blind orientation/persistence mechanism from prior lineament, lidar, and catalogue-mechanics lanes; it is packaged for inspection only.</p>
+<a class="btn" href="downloads/gems79-orient-persistence-37654dots-20261021-4abff47886.tif" download>Download .tif (113 KB)</a><a class="btn alt" href="downloads/gems79-orient-persistence-37654dots-20261021-4abff47886.zip" download>Same file as one-TIFF .zip</a>
 <div class="chips"><span class="chip ok">OK to download: YES</span>
 <span class="chip ok">Portal format (local checks): PASS</span>
 <span class="chip bad">Unique, literal rule: FAIL</span>
-<span class="chip ok">Unique, informative reading: PASS</span>
-<span class="chip ok">Beat the champion construction on the holdout: YES</span>
+<span class="chip bad">Unique, informative reading: FAIL</span>
+<span class="chip bad">Beat the champion construction on the holdout: NO</span>
 <span class="chip warn">Selector: not approved</span></div>
-<p class="verdict"><b>Can I submit it?</b> <b>No.</b> Not OK to submit automatically under Policy I17 unfiltered dense-witness gate (ab0a0a62 covers 100% of footprint); SAFE TO DOWNLOAD (17/17 checks, 0 NaN) &amp; RECOMMENDED FOR HUMAN SELECTOR SIGN-OFF: 100% zero-SGMC, HOLDOUT-DTI 0.15011 (s30) / 0.14030 (s20) (+54.5% / +46.5% vs fold-fair H33; +38.8% / +28.4% vs prior best), unique vs all 709 sparse rasters (max 0.6883 &lt;= 0.70; vs H77-Step = 0.4068; vs H78 = 0.3517). Selector: not approved.<br>
+<p class="verdict"><b>Can I submit it?</b> <b>No.</b> Not OK to submit: local format PASS, but primary HOLDOUT-DTI is 0.0945 s30 (95% CI 0.0766–0.1128; 11,342 withheld positives) / 0.0891 s20 (95% CI 0.0724–0.1054; 11,321) below the 0.1527 incumbent, and the binding registry gate fails on the dense witness. SAFE TO DOWNLOAD; no weekly slot used.<br>
 <b>Would the portal accept the format?</b> Probably. It passes 17 local checks against the official grid and footprint:
 every cell finite, values exactly 0 or 1, no nodata tag, EPSG:32611, 3730×3292, the official transform. That is the
 encoding of the GEMSDOE32 file that the owner reports scored 0.2778. Local checks are not an organizer receipt.<br>
-<b>Will it beat 0.2778?</b> Strong candidate once human selector grants dense-witness policy sign-off: beats fold-fair H33 champion construction on BOTH spatial seeds (+0.0530 [95% CI +0.0378, +0.0680] on Seed 30; +0.0446 [+0.0303, +0.0586] on Seed 20) with 0 SGMC channels and unweighted DTI live-inversion support (12.1x bar on scarps). (See the <a href="h77d.html">lane technical report</a> &amp; <a href="h77d-executive-summary.html">submission guide</a>.)</p>
-<p class="small muted">Submission name (for reference) (62 characters)</p><div class="copy"><code>gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros</code><button data-copy="gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros">Copy</button></div>
-<p class="small muted">Note (for reference) (138 characters)</p><div class="copy"><code>H77D zero-SGMC scarp+hydro+LOCO mechanics OOF + 300m submodular (37654 dots); HOLDOUT-DTI 0.1501 (s30) / 0.1403 (s20) vs 0.1093 prior best</code><button data-copy="H77D zero-SGMC scarp+hydro+LOCO mechanics OOF + 300m submodular (37654 dots); HOLDOUT-DTI 0.1501 (s30) / 0.1403 (s20) vs 0.1093 prior best">Copy</button></div>
-<p class="small">sha256 of the .tif: <code>110e7c77ec7e7d201de0ae04ffd2bf3b9db786b4063d800cacb8ab1ded4fd1b9</code> · <a href="executive-summary.html">How submission works, step by step →</a></p></section>
+<b>Will it beat 0.2778?</b> No. The validated primary is HOLDOUT-DTI 0.0945 on seed 30 and 0.0891 on seed 20, both below the retained 0.152718 HOLDOUT-DTI incumbent; it does not support a 0.2778 projection. (See the <a href="h79.html">lane technical report</a> &amp; <a href="h79-executive-summary.html">submission guide</a>.)</p>
+<p class="small muted">Submission name (for reference) (55 characters)</p><div class="copy"><code>gems79-orient-persistence-37654dots-20261021-4abff47886</code><button data-copy="gems79-orient-persistence-37654dots-20261021-4abff47886">Copy</button></div>
+<p class="small muted">Note (for reference) (101 characters)</p><div class="copy"><code>H79 orientation persistence; HOLDOUT-DTI 0.0945 s30 / 0.0891 s20; registry gate failed; research only</code><button data-copy="H79 orientation persistence; HOLDOUT-DTI 0.0945 s30 / 0.0891 s20; registry gate failed; research only">Copy</button></div>
+<p class="small">sha256 of the .tif: <code>745dbaa427bc1edaf477b3d0b4847b8be8d30d396106a61b1318a8726599be8e</code> · <a href="executive-summary.html">How submission works, step by step →</a></p></section>
 <h2>What the submission form asks for</h2>
 <table><tr><th>Field</th><th>What to give it</th></tr>
 <tr><td>File</td><td>The <code>…-zeros.tif</code> file, or the <code>…-zeros.zip</code> that contains only that one GeoTIFF.
