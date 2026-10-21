@@ -1,6 +1,6 @@
 {
   "schema": "gems-submission-authorization-v2",
-  "generated_utc": "2026-10-21T18:59:43+00:00",
+  "generated_utc": "2026-10-21T19:08:01+00:00",
   "policy": "Authorization requires artifact existence, matching SHA-256, a readable run card with a promote verdict, matching raster_sha256 and explicit positive uniqueness, registry completeness, valid/improved holdout and selector declarations; actual shared-validator format readback PASS, literal protocol uniqueness (including <=0.70 real-model forward 3-px overlap and complete registry), improvement over the accepted holdout best, a promote verdict, and explicit selector approval. Missing fields or historical run-card uniqueness/completeness failures fail closed.",
   "repository_authorized_file_count": 0,
   "repository_decision": "NOT OK TO SUBMIT",
@@ -33,8 +33,8 @@
       "reconciliation_note": "Historical run card and operative release gate both fail closed."
     },
     {
-      "lane": "H82R: local ternary radiometric rank-mixture entropy (STOPPED; research only)",
-      "run_card": "evidence/h82rank_run_card.json",
+      "lane": "H77-VDS: Zero-SGMC Survey-Deconfounded Fault-Valve Ensemble + Dinkelbach 300 m Submodular Allocator (ALL-TIME #1 RECORD: HOLDOUT-DTI 0.17439 s30 / 0.16077 s20)",
+      "run_card": "evidence/run_card_h77vds.json",
       "recorded_verdict": "negative",
       "recorded_safe_to_submit": false,
       "historical_promotion_conflict": false,

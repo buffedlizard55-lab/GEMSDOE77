@@ -2,9 +2,9 @@
   "schema": "gems-listed-download-readback-v1",
   "evidence_class": "FORMAT-INTEGRITY-MEASUREMENT; NOT SCORE OR PORTAL ACCEPTANCE",
   "scope": "Every primary TIFF in docs/data/lanes.json; no archive or NaN twins, no uniqueness certification",
-  "manifest_sha256": "e7a81a67129e543ea005f39e961d85fe2aa6d9575138bf6d395e0e0bd0ef6d4e",
+  "manifest_sha256": "41313e8ee61ed213f6c08ae0d2473ff2a1f7e99f4ce056bce26cb88e2be5f120",
   "reference_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
-  "listed_count": 41,
+  "listed_count": 42,
   "all_format_pass": true,
   "authorized_to_submit": false,
   "artifacts": [
