@@ -48,14 +48,14 @@ untestable without organizer receipts; if they earned credit the arithmetic abov
 Only rank 1 (H83-NETSIB) is run, three experiments maximum (see
 `registry/preregistration_h83_netsib.json`). Ranks 2–4 are recorded for future lanes.
 
-## 3. Outcome (2026-10-21; numbers from `evidence/h83_run_card.json`)
+## 3. Outcome (2026-10-21; numbers from `evidence/h83netsib_run_card.json`)
 
 - **Exp1 PASS.** Leakage canaries max AUC 0.8054 (s20) / 0.8092 (s30), below the 0.90 limit. The deterministic network surface reached max |ρ| 0.820 vs the registry.
 - **Exp2 HOLDOUT-DTI** (`gems57-pooled-hide-v2`):
   - A_netsib_full: 0.1538 [0.1357, 0.1726] (s20, 11,321 withheld) and 0.1637 [0.1447, 0.1847] (s30, 11,342).
   - A_base: 0.0780 / 0.0840. S_netsib_only: 0.1577 / 0.1658. Random: 0.0445 / 0.0469.
   - The network geometry roughly doubles recovery over the geophysical/topographic stack (paired Δ +0.076 / +0.080, CIs exclude 0). The geophysics adds nothing measurable on top of the network.
-- **Exp3.** The TIFF passes the validator and is byte- and rank-unique (max |ρ| 0.089). The final dots fall >70 % within 3 px of 16 wide dot rasters, so the duplicate rule fired and the verdict is **negative** (IR-83-01).
+- **Exp3.** The TIFF passes the validator and is byte- and rank-unique (max |ρ| 0.089). The final dots fall >70 % within 3 px of 16 wide dot rasters, so the duplicate rule fired and the verdict is **negative** (IR-H83N-01).
 - **Interpretation.** On this holdout, "where does a missing strand of a mapped array go" is a strong signal: about 2× its own base control and above the incumbent by point estimate. Its own failure mode is spatial: it places dots in the near-network zone that every wide coverage product also covers. If the hidden test set is a withheld subset of the catalogue style (§0, conditional), this is the right signal to chase. If the test set is truly unmapped faults, the mapping-density mimic (prereg) may dominate, and this holdout cannot tell those two cases apart.
 
 ## Sources (manual review)

@@ -102,7 +102,7 @@ def main():
             "surface_rasters_compared": e3["surface_scan_before_placement"]["rasters_compared_unique_decoded"],
             "final_dots": {k: v for k, v in u.items() if k != "errors"},
             "scan_errors": u["errors"],
-            "interpretation": "IR-83-01: dot-overlap applied where informative (their 3-px cover < 70% of allowed domain) plus matched-budget top-37,654 for dense rasters; literal all-raster value reported alongside.",
+            "interpretation": "IR-H83N-01: dot-overlap applied where informative (their 3-px cover < 70% of allowed domain) plus matched-budget top-37,654 for dense rasters; literal all-raster value reported alongside.",
             "scope": "Every raster in registry/registry_index.json (812 entries, built 2026-10-21T02:30Z) fetched and SHA-verified this session, plus both pinned witnesses and every local TIFF; deduplicated by decoded pixels. Not a complete organizer registry.",
         },
         "raster_sha256": b["file_sha256"],
@@ -133,7 +133,7 @@ def main():
             "Inputs are owner mirrors, SHA-pinned, not organizer-authenticated.",
         ],
     }
-    (EV / "h83_run_card.json").write_text(json.dumps(card, indent=1) + "\n")
+    (EV / "h83netsib_run_card.json").write_text(json.dumps(card, indent=1) + "\n")
     print(json.dumps({k: card[k] for k in ("verdict", "ok_to_submit", "promotion_rule_results", "raster_sha256", "submission_name")}, indent=1))
 
 

@@ -173,7 +173,7 @@
     "skipped": "grid mismatch"
    }
   ],
-  "interpretation": "IR-83-01: dot-overlap applied where informative (their 3-px cover < 70% of allowed domain) plus matched-budget top-37,654 for dense rasters; literal all-raster value reported alongside.",
+  "interpretation": "IR-H83N-01: dot-overlap applied where informative (their 3-px cover < 70% of allowed domain) plus matched-budget top-37,654 for dense rasters; literal all-raster value reported alongside.",
   "scope": "Every raster in registry/registry_index.json (812 entries, built 2026-10-21T02:30Z) fetched and SHA-verified this session, plus both pinned witnesses and every local TIFF; deduplicated by decoded pixels. Not a complete organizer registry."
  },
  "raster_sha256": "b2f89a83ffb1080c512bb46c6feae3a6211207cd619e0291bd2d767c002be87f",

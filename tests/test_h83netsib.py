@@ -15,7 +15,7 @@ sys.path.insert(0, str(ROOT / "vendor"))
 
 from gems83 import netsib as NS  # noqa: E402
 
-CARD = json.loads((ROOT / "evidence/h83_run_card.json").read_text())
+CARD = json.loads((ROOT / "evidence/h83netsib_run_card.json").read_text())
 
 
 def _toy():
@@ -141,14 +141,14 @@ def test_verdict_is_mechanical_and_negative_because_duplicate_fired():
 
 
 def test_self_comparison_removed_from_registry_rows():
-    """IR-83-02 regression: the candidate must never be compared with itself."""
+    """IR-H83N-02 regression: the candidate must never be compared with itself."""
     rows = json.loads((ROOT / "evidence/h83_e3_registry_rows.json").read_text())
     name = CARD["submission_name"]
     assert not any(name in r["raster"] for r in rows)
     assert not any(name in str(r.get("same_decoded_as", "")) for r in rows)
     assert not any(r.get("identical_pixels") for r in rows)
     src = (ROOT / "scripts/h83_build.py").read_text()
-    assert "exclude=" in src and "IR-83-02" in src
+    assert "exclude=" in src and "IR-H83N-02" in src
 
 
 def test_holdout_numbers_labelled_and_consistent():
@@ -167,12 +167,12 @@ def test_holdout_numbers_labelled_and_consistent():
 # ---------------------------------------------------------------- site wiring
 
 def test_site_hero_and_guide_fail_closed():
-    for f in ("index.html", "executive-summary.html", "h83.html"):
+    for f in ("index.html", "executive-summary.html", "h83netsib.html"):
         s = (ROOT / "docs" / f).read_text()
         assert s.count("NEWEST (2026-10-21) · H83-NETSIB") == 1
         assert "NOT OK TO SUBMIT" in s
         assert "OK TO DOWNLOAD · ✅ OK TO SUBMIT" not in s
-    g = (ROOT / "docs/h83-executive-summary.html").read_text()
+    g = (ROOT / "docs/h83netsib-executive-summary.html").read_text()
     assert "Predicted values must be in range [0, 1]" in g and "single-band GeoTIFF" in g
 
 

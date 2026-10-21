@@ -8,7 +8,7 @@ Reported per registry raster (REGISTRY-MEASUREMENT, not a score):
                      (vendor ``_near(_dots(theirs))[mine].mean()``, literal reading);
 * informative      = their 3-px dilated support covers < 70 % of the allowed domain
                      (if it covers more, uniformly random dots would exceed 0.70, so
-                     the test cannot discriminate drift - see IR-83-01);
+                     the test cannot discriminate drift - see IR-H83N-01);
 * matched-budget overlap for dense rasters = overlap with their top-37,654
                      allowed pixels (a dot-equivalent at our budget);
 * exact Spearman (full footprint) of my binary dots vs their values.
@@ -53,7 +53,7 @@ def registry_dot_scan(p, foot, cat, exclude=()):
     excl = {Path(x).resolve() for x in exclude}
     for label, path, _sha in registry_files():
         if Path(path).resolve() in excl:
-            continue  # never compare the candidate with itself (IR-83-02)
+            continue  # never compare the candidate with itself (IR-H83N-02)
         try:
             with rasterio.open(path) as src:
                 if src.count != 1 or src.shape != foot.shape:
