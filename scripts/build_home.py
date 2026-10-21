@@ -208,8 +208,12 @@ credit there (H78 E1/E2 and the LIA lane). The full analysis is on <a href="lia-
 <p class="verdict"><b>Bottom line.</b> {'<b>' + str(n_cleared) + ' file(s) are CLEARED FOR SELECTOR</b>: OK to submit if the selector picks one of them (the newest is in the box below).' if n_cleared else '<b>No file in this repository is cleared to submit today</b> (Not OK to submit).'}
 Every file is OK to download for inspection. A cleared file has passed the portal-format checks, the published uniqueness rule
 (like-for-like reading, literal reading disclosed) and a fold-fair holdout win over the controls. Whether it will beat 0.2778 is
-not known: no file here has an organizer score, and HOLDOUT-DTI (≈0.15–0.17 for the best lanes, catalogue hide-and-recover) is a
-different quantity from the public leaderboard's Tversky index on expert-mapped new faults.</p>
+not known: no file here has an organizer score, and HOLDOUT-DTI (0.131 / 0.141 for the cleared H79 file; ≈0.15–0.17 for the
+uncapped surfaces that fail the uniqueness rule; catalogue hide-and-recover) is a different quantity from the public leaderboard's
+Tversky index on expert-mapped new faults.</p>
+<p class="small"><b>Do not confuse the two H79 files.</b> Submit only <code>…-capped066-…-zeros.tif</code>. The twin
+<code>…-greedy37654-…-zeros.tif</code> is the uncapped emission of the same surface: higher holdout, but a logged duplicate of 26 earlier
+corridor rasters (IR-79-11) — DOWNLOAD ONLY.</p>
 {glance}
 {dl}
 <h2>What the submission form asks for</h2>
