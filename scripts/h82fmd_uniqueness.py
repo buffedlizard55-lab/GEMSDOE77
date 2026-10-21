@@ -16,9 +16,9 @@ the informative reading are both reported.
 
 Usage::
 
-    python scripts/h82_uniqueness.py surface <surface.npy>
-    python scripts/h82_uniqueness.py dots <submission.tif>
-    python scripts/h82_uniqueness.py merge
+    python scripts/h82fmd_uniqueness.py surface <surface.npy>
+    python scripts/h82fmd_uniqueness.py dots <submission.tif>
+    python scripts/h82fmd_uniqueness.py merge
 """
 from __future__ import annotations
 
@@ -38,7 +38,7 @@ from gems57 import grid as G            # noqa: E402
 from gems57 import uniqueness as U      # noqa: E402
 
 REG = ROOT / ".cache" / "registry"
-WORK = ROOT / ".cache" / "h82"
+WORK = ROOT / ".cache" / "h82fmd"
 
 
 def registry_rows() -> list[dict]:
@@ -112,7 +112,7 @@ def main() -> int:
                             ">= 70 % of the scored footprint, against which even a uniformly random dot field "
                             "'fires'; literal_unique applies the limit to every raster including those."),
         }
-        (ROOT / "evidence" / "h82_uniqueness.json").write_text(json.dumps(out, indent=2) + "\n")
+        (ROOT / "evidence" / "h82fmd_uniqueness.json").write_text(json.dumps(out, indent=2) + "\n")
         print(json.dumps(out.get("verdict", {}), indent=2))
         return 0
 

@@ -9,11 +9,11 @@ ranking surface is new (``src/gems82``).
 
 Usage::
 
-    python scripts/h82_pipeline.py cache
-    python scripts/h82_pipeline.py e1
-    python scripts/h82_pipeline.py e2 --seed 20
-    python scripts/h82_pipeline.py e2 --seed 30 --arms A_std,A_fmd
-    python scripts/h82_pipeline.py e3
+    python scripts/h82fmd_pipeline.py cache
+    python scripts/h82fmd_pipeline.py e1
+    python scripts/h82fmd_pipeline.py e2 --seed 20
+    python scripts/h82fmd_pipeline.py e2 --seed 30 --arms A_std,A_fmd
+    python scripts/h82fmd_pipeline.py e3
 """
 from __future__ import annotations
 
@@ -37,12 +37,12 @@ from gems57 import evaluate_holdout as EH            # noqa: E402
 from gems57 import holdout as HO                     # noqa: E402
 from gems57 import grid as G                         # noqa: E402
 from gems77d.submodular import allocate_submodular_300m  # noqa: E402
-from gems82 import deficit as DEF                    # noqa: E402
-from gems82 import fields as F                       # noqa: E402
+from gems82fmd import deficit as DEF                    # noqa: E402
+from gems82fmd import fields as F                       # noqa: E402
 
 RAW = ROOT / "data" / "raw"
 TF = RAW / "training_features.tif"
-CACHE = ROOT / ".cache" / "h82"
+CACHE = ROOT / ".cache" / "h82fmd"
 EVID = ROOT / "evidence"
 
 BUDGET = 37654
@@ -104,7 +104,7 @@ def cmd_cache(_args):
             for i, n in enumerate(F.CHANNELS)},
         "elapsed_s": round(time.time() - t0, 1),
     }
-    (EVID / "h82_cache.json").write_text(json.dumps(out, indent=2) + "\n")
+    (EVID / "h82fmd_cache.json").write_text(json.dumps(out, indent=2) + "\n")
     log(f"cache ready {stack.shape} in {out['elapsed_s']}s")
     return 0
 
@@ -175,7 +175,7 @@ def cmd_e1(args):
            "auc_single_channel_direction_free": aucs,
            "leakage_threshold": 0.90, "channels_above_threshold": flagged,
            "verdict": "no leakage" if not flagged else "LEAKAGE SUSPECTED"}
-    (EVID / "h82_e1_canary.json").write_text(json.dumps(out, indent=2) + "\n")
+    (EVID / "h82fmd_e1_canary.json").write_text(json.dumps(out, indent=2) + "\n")
     log(f"E1 done. max AUC = {max(v for v in aucs.values() if v is not None):.4f}; flagged={list(flagged)}")
     return 0
 
@@ -312,7 +312,7 @@ def cmd_e2(args):
 
     pooled = EH.pooled_summary(terms_by_arm, draws=2000, seed=520810,
                                candidate="A_fmd" if "A_fmd" in terms_by_arm else arms[0])
-    out_path = EVID / "h82_e2_holdout.json"
+    out_path = EVID / "h82fmd_e2_holdout.json"
     out = json.loads(out_path.read_text()) if out_path.exists() else {
         "experiment": "H82-E2", "evidence_class": "HOLDOUT-DTI",
         "evaluator_version": EH.VERSION, "evaluator_hashes": EH.implementation_hashes(),
@@ -333,10 +333,10 @@ def cmd_e2(args):
 def cmd_e2b(args):
     """Amendment E3: shared allocation-geometry fix (across-ridge NMS crests).
 
-    Declared in registry/preregistration_h82_amendment_e3.json BEFORE running.
+    Declared in registry/preregistration_h82fmd_amendment_e3.json BEFORE running.
     Every arm uses the identical allocator, budget and exclusion; the only
     change is that the ranking surface is restricted to its across-ridge crest
-    (``gems82.fields.crest_mask``).  ``B_fmd_nms`` re-tests the refuted lane
+    (``gems82fmd.fields.crest_mask``).  ``B_fmd_nms`` re-tests the refuted lane
     hypothesis under the corrected geometry.
     """
     grid = load_grid()
@@ -391,7 +391,7 @@ def cmd_e2b(args):
 
     pooled = EH.pooled_summary(terms_by_arm, draws=2000, seed=520810,
                                candidate="B_std_nms" if "B_std_nms" in terms_by_arm else wanted[0])
-    out_path = EVID / "h82_e3_amendment_nms.json"
+    out_path = EVID / "h82fmd_e3_amendment_nms.json"
     out = json.loads(out_path.read_text()) if out_path.exists() else {
         "experiment": "H82-E3-amendment", "evidence_class": "HOLDOUT-DTI",
         "evaluator_version": EH.VERSION, "budget_dots": BUDGET,
@@ -413,7 +413,7 @@ def cmd_e4(args):
     scarp morphology, GeoDAWN radiometrics).  This run adds them to the
     identical pipeline so the lane's conclusion is not an artefact of a
     deliberately thin feature stack.  Declared in
-    registry/preregistration_h82_amendment_e4.json before execution.
+    registry/preregistration_h82fmd_amendment_e4.json before execution.
     """
     grid = load_grid()
     foot = grid.footprint
@@ -478,7 +478,7 @@ def cmd_e4(args):
     pooled = EH.pooled_summary(terms_by_arm, draws=2000, seed=520810,
                                candidate="C_ext_nms_sep3" if "C_ext_nms_sep3" in terms_by_arm
                                else args.arms.split(",")[0])
-    out_path = EVID / "h82_e4_extstack.json"
+    out_path = EVID / "h82fmd_e4_extstack.json"
     out = json.loads(out_path.read_text()) if out_path.exists() else {
         "experiment": "H82-E4-full-stack", "evidence_class": "HOLDOUT-DTI",
         "evaluator_version": EH.VERSION, "budget_dots": BUDGET,
@@ -570,7 +570,7 @@ def cmd_e3(args):
                "writer_receipt": receipt, "validator": rec,
                "exclusion_px": EXCL_FINAL_PX, "budget_dots": BUDGET,
                "allocator_kw": {**ALLOC_KW, "min_sep_px": 3.0}}
-    (EVID / "h82_e3_build.json").write_text(json.dumps(summary, indent=2, default=str) + "\n")
+    (EVID / "h82fmd_e3_build.json").write_text(json.dumps(summary, indent=2, default=str) + "\n")
     log(f"E3 wrote {out_tif} ({n_dots} dots, {d_on_cat} on catalogue)")
     return 0
 

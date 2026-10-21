@@ -98,7 +98,7 @@ reported separately" in a preregistration is legitimate; doing it after seeing 0
 1. **Crest thinning everywhere.** Re-run the retained `H77-Step` 0.152718 pipeline with `crest_mask` + `min_sep_px=3`
    in front of its allocator. Cost: one experiment. Expected: +0.01 … +0.02 on the same harness, which would be the
    first thing in this repository to move the incumbent.
-2. **C2 geodetic slip-budget deficit** (parked in `research/h82_hypotheses.md`): the same "missing fault" logic but
+2. **C2 geodetic slip-budget deficit** (parked in `research/h82fmd_hypotheses.md`): the same "missing fault" logic but
    anchored to a *physical* budget (strain rate vs catalogue slip) instead of a statistical residual — it fails for
    different reasons if it fails, which makes it informative.
 3. **Preregister the uniqueness exclusion rule** before the next audit so a clean artifact can actually clear Rule 1.

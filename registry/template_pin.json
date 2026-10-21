@@ -35,14 +35,14 @@
     "_disk_area",
     "space_filling_flags"
    ],
-   "reason": "IR-H82-01: the shared audit could not report which registry comparators have a 3 px halo covering >= 70 % of the footprint, against which even a uniformly random dot field fires. Added two pure reporting helpers so both the literal and the informative reading are always available.",
+   "reason": "IR-H82FMD-01: the shared audit could not report which registry comparators have a 3 px halo covering >= 70 % of the footprint, against which even a uniformly random dot field fires. Added two pure reporting helpers so both the literal and the informative reading are always available.",
    "measurement_semantics_unchanged": true,
    "thresholds_unchanged": {
     "RHO_LIMIT": 0.9,
     "OVERLAP_LIMIT": 0.7,
     "JACCARD_LIMIT": 0.5
    },
-   "reported_in": "docs/irregularities.md (IR-H82-01)",
+   "reported_in": "docs/irregularities.md (IR-H82FMD-01)",
    "fork_policy": "Amended in the shared module in place and declared here; no private copy of the tool exists anywhere in this repository."
   }
  }

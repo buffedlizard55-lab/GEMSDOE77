@@ -14,8 +14,8 @@ import pytest
 import rasterio
 from affine import Affine
 
-from gems82 import deficit as DEF
-from gems82 import fields as F
+from gems82fmd import deficit as DEF
+from gems82fmd import fields as F
 
 ROOT = Path(__file__).resolve().parents[1]
 SUBMISSION = ROOT / "docs" / "downloads" / "gems77-h82-crestthin-fullstack-37654dots-20261021-zeros.tif"
@@ -185,24 +185,24 @@ def test_submission_artifact_is_portal_legal_and_matches_its_receipt():
     assert set(np.unique(a).tolist()) == {0.0, 1.0}
     assert int((a > 0).sum()) == 37654
 
-    build = json.loads((ROOT / "evidence" / "h82_e3_build.json").read_text())
+    build = json.loads((ROOT / "evidence" / "h82fmd_e3_build.json").read_text())
     assert build["n_dots"] == 37654
     assert build["dots_on_catalogue"] == 0
     assert build["min_dist_to_catalogue_px"] > 2.0
     digest = hashlib.sha256(SUBMISSION.read_bytes()).hexdigest()
-    card = json.loads((ROOT / "evidence" / "h82_run_card.json").read_text())
+    card = json.loads((ROOT / "evidence" / "h82fmd_run_card.json").read_text())
     assert card["raster_sha256"] == digest
     assert len(card["submission_note"]) <= 140
     assert len(card["submission_name"]) <= 140
 
 
-@pytest.mark.skipif(not (ROOT / "evidence" / "h82_e2_holdout.json").exists(),
+@pytest.mark.skipif(not (ROOT / "evidence" / "h82fmd_e2_holdout.json").exists(),
                     reason="holdout evidence not present")
 def test_primary_hypothesis_is_recorded_as_refuted_on_both_seeds():
-    e2 = json.loads((ROOT / "evidence" / "h82_e2_holdout.json").read_text())
+    e2 = json.loads((ROOT / "evidence" / "h82fmd_e2_holdout.json").read_text())
     for seed in ("20", "30"):
         arms = e2["seeds"][seed]["arms"]
         assert arms["A_fmd"]["pooled_holdout_dti"] < arms["A_std"]["pooled_holdout_dti"]
-    card = json.loads((ROOT / "evidence" / "h82_run_card.json").read_text())
+    card = json.loads((ROOT / "evidence" / "h82fmd_run_card.json").read_text())
     assert card["verdict"] == "negative"
     assert card["weekly_slots_used"] == 0

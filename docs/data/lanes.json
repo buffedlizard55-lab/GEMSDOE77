@@ -2,11 +2,11 @@
  "note": "All 23 listed TIFF lanes are inspection downloads only; every file is NOT OK TO SUBMIT. H80 (Riedel) is featured because it has complete evidence from the pinned gems57 evaluator; the later AGO variants have only a different quick 4-quadrant proxy and are not comparable. H80-OTA (orphan thermal alignment, negative) was merged in parallel and is listed second. The literal uniqueness/selector gates remain fail-closed; see docs/data/submission-authorization.json. H81 (slip-cone, negative, research-only) and H77G (hydrothermal demagnetization trough, negative, research-only) are listed for inspection only.",
  "lanes": [
   {
-   "lane": "H82: mapping-deficit allocation (HOLDOUT-DTI 0.1121 s20 / 0.1093 s30 for the crest-thinned 48-channel build; the preregistered deficit weight itself is REFUTED; negative result)",
-   "page": "h82.html",
-   "summary": "h82-executive-summary.html",
+   "lane": "H82-FMD: mapping-deficit allocation (HOLDOUT-DTI 0.1121 s20 / 0.1093 s30 for the crest-thinned 48-channel build; the preregistered deficit weight itself is REFUTED; negative result)",
+   "page": "h82fmd.html",
+   "summary": "h82fmd-executive-summary.html",
    "file": "downloads/gems77-h82-crestthin-fullstack-37654dots-20261021-zeros.tif",
-   "run_card": "evidence/h82_run_card.json",
+   "run_card": "evidence/h82fmd_run_card.json",
    "format_valid": true,
    "protocol_unique": false,
    "informative_unique": false,

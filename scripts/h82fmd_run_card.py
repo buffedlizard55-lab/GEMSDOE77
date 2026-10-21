@@ -2,7 +2,7 @@
 """Assemble the single JSON run card required by the parallel-run protocol.
 
 Everything in the card is read back from the evidence files produced by
-``scripts/h82_pipeline.py`` and ``scripts/h82_uniqueness.py`` and from the
+``scripts/h82fmd_pipeline.py`` and ``scripts/h82fmd_uniqueness.py`` and from the
 written GeoTIFF itself; nothing is typed in by hand, so the card cannot drift
 from the artifact.  Run after E1-E4, the build and both uniqueness phases.
 """
@@ -32,13 +32,13 @@ def jload(rel):
 
 def _registry_summary(uniq):
     """Compact audit summary for the card; the full 844-row table stays in
-    evidence/h82_uniqueness.json and .cache/h82/uniq_phase2_dots.json."""
+    evidence/h82fmd_uniqueness.json and .cache/h82fmd/uniq_phase2_dots.json."""
     if not uniq:
         return {"status": "not run"}
     p1, p2 = uniq.get("phase1_surface", {}), uniq.get("phase2_dots", {})
     return {
         "evidence_class": "REGISTRY-MEASUREMENT",
-        "full_table": "evidence/h82_uniqueness.json",
+        "full_table": "evidence/h82fmd_uniqueness.json",
         "rasters_compared": p2.get("registry_rasters_compared"),
         "read_errors": p2.get("registry_read_errors"),
         "limits": uniq.get("limits"),
@@ -98,12 +98,12 @@ def _upsert_lane_row(card, uniq):
               f"full 48-channel stack at HOLDOUT-DTI {s20['dti']:.6f} (s20) / {s30['dti']:.6f} (s30), below the "
               f"{INCUMBENT['holdout_dti']} H77-Step repository incumbent. Selector: not approved; 0 weekly slots used.")
     row = {
-        "lane": (f"H82: mapping-deficit allocation (HOLDOUT-DTI {s20['dti']:.4f} s20 / {s30['dti']:.4f} s30 for the "
+        "lane": (f"H82-FMD: mapping-deficit allocation (HOLDOUT-DTI {s20['dti']:.4f} s20 / {s30['dti']:.4f} s30 for the "
                  f"crest-thinned 48-channel build; the preregistered deficit weight itself is REFUTED; negative result)"),
-        "page": "h82.html",
-        "summary": "h82-executive-summary.html",
+        "page": "h82fmd.html",
+        "summary": "h82fmd-executive-summary.html",
         "file": card["raster_path"].removeprefix("docs/"),
-        "run_card": "evidence/h82_run_card.json",
+        "run_card": "evidence/h82fmd_run_card.json",
         "format_valid": card["format_valid"],
         "protocol_unique": card["protocol_unique"],
         "informative_unique": card["informative_unique"],
@@ -124,7 +124,7 @@ def _upsert_lane_row(card, uniq):
                                f"{INCUMBENT['holdout_dti']} retained repository best, and local hide-and-recover "
                                f"numbers are not comparable to the 0.2778 organizer score in any case."),
     }
-    doc["lanes"] = [x for x in doc["lanes"] if not x["lane"].startswith("H82")]
+    doc["lanes"] = [x for x in doc["lanes"] if not x["lane"].startswith("H82-FMD")]
     doc["lanes"].insert(0, row)
     import re
     doc["note"] = re.sub(r"All \d+ listed TIFF lanes", f"All {len(doc['lanes'])} listed TIFF lanes", doc["note"])
@@ -132,12 +132,12 @@ def _upsert_lane_row(card, uniq):
 
 
 def main() -> int:
-    e1 = jload("evidence/h82_e1_canary.json")
-    e2 = jload("evidence/h82_e2_holdout.json")
-    e3a = jload("evidence/h82_e3_amendment_nms.json")
-    e4 = jload("evidence/h82_e4_extstack.json")
-    build = jload("evidence/h82_e3_build.json")
-    uniq = jload("evidence/h82_uniqueness.json")
+    e1 = jload("evidence/h82fmd_e1_canary.json")
+    e2 = jload("evidence/h82fmd_e2_holdout.json")
+    e3a = jload("evidence/h82fmd_e3_amendment_nms.json")
+    e4 = jload("evidence/h82fmd_e4_extstack.json")
+    build = jload("evidence/h82fmd_e3_build.json")
+    uniq = jload("evidence/h82fmd_uniqueness.json")
     if not all((e1, e2, e3a, e4, build)):
         raise SystemExit("missing evidence; run the pipeline first")
 
@@ -180,9 +180,9 @@ def main() -> int:
         "lane_id": "H82-FMD",
         "session_branch": "arena/ff72e371-gemsdoe77",
         "generated_utc": "2026-10-21T17:30:00Z",
-        "preregistration": ["registry/preregistration_h82.json",
-                            "registry/preregistration_h82_amendment_e3.json",
-                            "registry/preregistration_h82_amendment_e4.json"],
+        "preregistration": ["registry/preregistration_h82fmd.json",
+                            "registry/preregistration_h82fmd_amendment_e3.json",
+                            "registry/preregistration_h82fmd_amendment_e4.json"],
 
         "hypothesis": ("The scored truth set is faults ABSENT from the USGS/INGENIOUS catalogue, so allocating the "
                        "dot budget by the positive residual of a censored catalogue-intensity model (predicted "
@@ -201,7 +201,7 @@ def main() -> int:
 
         "experiments": {
             "E1_leakage_canary": {
-                "evidence": "evidence/h82_e1_canary.json",
+                "evidence": "evidence/h82fmd_e1_canary.json",
                 "max_single_channel_auc": max(v for v in e1["auc_single_channel_direction_free"].values()
                                               if v is not None),
                 "threshold": 0.90,
@@ -209,15 +209,15 @@ def main() -> int:
                 "deficit_weight_auc": e1["auc_single_channel_direction_free"]["mapping_deficit_weight"],
                 "verdict": e1["verdict"],
             },
-            "E2_primary_holdout": {"evidence": "evidence/h82_e2_holdout.json", "by_seed": primary,
+            "E2_primary_holdout": {"evidence": "evidence/h82fmd_e2_holdout.json", "by_seed": primary,
                                    "verdict": "REFUTED on both seeds"},
-            "E3_amendment_crest_nms": {"evidence": "evidence/h82_e3_amendment_nms.json",
+            "E3_amendment_crest_nms": {"evidence": "evidence/h82fmd_e3_amendment_nms.json",
                                        "seed20": {k: e3a["seeds"]["20"]["arms"][k]["pooled_holdout_dti"]
                                                   for k in e3a["seeds"]["20"]["arms"]},
                                        "seed30": {k: e3a["seeds"]["30"]["arms"][k]["pooled_holdout_dti"]
                                                   for k in e3a["seeds"]["30"]["arms"]},
                                        "verdict": "crest thinning CONFIRMED on both seeds"},
-            "E4_full_shared_stack": {"evidence": "evidence/h82_e4_extstack.json", "by_seed": build_arm,
+            "E4_full_shared_stack": {"evidence": "evidence/h82fmd_e4_extstack.json", "by_seed": build_arm,
                                      "verdict": "best arm; still below the retained incumbent"},
         },
 
@@ -286,7 +286,7 @@ def main() -> int:
         "evidence_class_policy": ("Every number here is HOLDOUT-DTI or a format/canary diagnostic. No ORGANIZER-CONFIRMED "
                                   "receipt exists for any file in this lane; no projection is written as a score."),
     }
-    (ROOT / "evidence" / "h82_run_card.json").write_text(json.dumps(card, indent=2) + "\n")
+    (ROOT / "evidence" / "h82fmd_run_card.json").write_text(json.dumps(card, indent=2) + "\n")
     _upsert_lane_row(card, uniq)
     print(json.dumps({k: card[k] for k in ("lane_id", "format_valid", "informative_unique", "protocol_unique",
                                            "beats_holdout_best", "ok_to_download", "ok_to_submit", "verdict")},

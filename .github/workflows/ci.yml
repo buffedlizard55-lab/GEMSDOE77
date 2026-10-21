@@ -59,11 +59,11 @@ jobs:
               else:
                   assert x['verdict'] == 'negative', f"{x['lane']}: uncleared row must be a negative verdict"
 
-          # The H82 lane card and its published row must agree byte-for-byte.
+          # The H82-FMD lane card and its published row must agree byte-for-byte.
           import hashlib, os
-          card = json.load(open('evidence/h82_run_card.json'))
-          row = [x for x in lanes if x['lane'].startswith('H82')]
-          assert len(row) == 1, 'H82 lane row missing or duplicated'
+          card = json.load(open('evidence/h82fmd_run_card.json'))
+          row = [x for x in lanes if x['lane'].startswith('H82-FMD')]
+          assert len(row) == 1, 'H82-FMD lane row missing or duplicated'
           row = row[0]
           assert row['sha256'] == card['raster_sha256']
           assert row['name'] == card['submission_name']
