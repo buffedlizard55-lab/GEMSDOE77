@@ -1,0 +1,43 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>Sources &amp; limits · GEMSDOE77</title>
+<link rel="stylesheet" href="assets/style.css"></head><body>
+<header><div class="wrap"><span class="brand">GEMSDOE77 · DOE GEMS Prize</span><a href="index.html">Overview</a> <a href="executive-summary.html">How to submit</a> <a href="analysis.html">Why 0.2778</a> <a href="sources.html" class=here>Sources & limits</a>
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE77">GitHub</a></div></header><main><div class="wrap"><h1>Sources, irregularities, limitations</h1>
+<h2>Official sources (each one opened and read on 2026-10-21)</h2>
+<table><tr><th>Source</th><th>What we used</th></tr>
+<tr><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Problem description (page 967)</a></td><td>Metric (α 0.2, β 0.8, 300 m triangular kernel), submission format, test labels = new faults not in USGS, public/private chunks</td></tr>
+<tr><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/">About (page 968)</a></td><td>Data: GeoDAWN magnetics/radiometrics + 3DEP lidar. "Many [faults] are hidden below the surface, requiring geophysical data to detect." It cites Mattéo et al. 2021 (<a href="https://doi.org/10.1029/2020JB021269">JGR</a>) and Hermant et al. 2025 (<a href="https://pangea.stanford.edu/ERE/db/GeoConf/papers/SGW/2025/Hermant.pdf">Stanford Geothermal Workshop</a>, deep learning for Quaternary faults in the western USA). The latter is a possibly overlooked method source.</td></tr>
+<tr><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Public leaderboard</a></td><td>#1 xiaofanhu 0.4413; #47 extradr19 0.2778 (read 2026-10-21)</td></tr>
+<tr><td><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">Official rules PDF (NLR, Sept 2026)</a></td><td>A single entry is scored in both phases; 3 per week, subject to the website; generative-AI use must be disclosed</td></tr>
+<tr><td><a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516">Forum 11516 (staff)</a></td><td>Known USGS/INGENIOUS pixels are masked from evaluation</td></tr>
+<tr><td><a href="https://community.drivendata.org/t/where-do-you-draw-the-line/11536">Forum 11536 (staff)</a></td><td>"New fault" = any fault pixel not already captured by USGS/INGENIOUS, including new geometry of existing systems</td></tr>
+<tr><td><a href="https://community.drivendata.org/t/leaderboard-aggregation-pooled-over-public-test-pixels-or-mean-of-per-chunk-scores/11550">Forum 11550 (staff)</a></td><td>Pooled single Tversky index; chunking undisclosed; final evaluation over the entire GeoDAWN area</td></tr>
+<tr><td><a href="https://community.drivendata.org/t/questions-about-the-final-round-rules/11556">Forum 11556 (staff)</a></td><td>Phase-2 labels may be added, removed or changed; same exclusion mask; no extra weighting</td></tr>
+<tr><td><a href="https://community.drivendata.org/t/how-were-the-new-test-faults-identified-data-sources-and-fault-types/11527">Forum 11527 (staff)</a></td><td>Organizers will not disclose how test faults were identified</td></tr>
+<tr><td><a href="https://community.drivendata.org/t/submission-amount-question/11553">Forum 11553 (staff)</a></td><td>The website's submission limit prevails</td></tr>
+<tr><td><a href="https://community.drivendata.org/t/units-and-very-large-values-in-deq-n100a15-and-meaning-of-ieq-n100a15/11557">Forum 11557 (staff)</a></td><td>deq/ieq bands are INGENIOUS earthquake rate-density layers (<a href="https://gdr.openei.org/submissions/1391">GDR 1391</a>)</td></tr>
+<tr><td><a href="https://github.com/drivendataorg/gems-prize-reference-solution">Reference solution</a></td><td>The official notebook (cell 19) writes the model output with rasterio and <b>no <code>nodata</code> argument</b>, so the file has no nodata tag. That matches the encoding of our primary file.</td></tr>
+<tr><td><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN</a> · <a href="https://doi.org/10.5066/P93LGLVQ">doi:10.5066/P93LGLVQ</a></td><td>Feature provenance (cited in the rules)</td></tr>
+<tr><td><a href="https://gbcge.org/current-projects/ingenious/">INGENIOUS</a> · <a href="https://epsg.io/32611">EPSG:32611</a> · <a href="https://en.wikipedia.org/wiki/Tversky_index">Tversky index</a></td><td>Background links from the brief</td></tr></table>
+<h2>Irregularities flagged</h2>
+<ol>
+<li><b>IR-77-01:</b> the brief's "single method paragraph below" (the lane) is missing. The lane was self-assigned and disclosed.</li>
+<li><b>IR-77-02:</b> the brief cites both 0.4413 and 0.3195 as the leaderboard high. 0.4413 is verified (ORGANIZER-CONFIRMED #1); 0.3195 is stale.</li>
+<li><b>IR-77-03:</b> scores in <code>registry/live_scores.csv</code> are OWNER-REPORTED. Only 0.2778 is corroborated on the leaderboard, by row #47 (extradr19), whose ownership is inferred, not verified.</li>
+<li><b>IR-77-04:</b> under the literal reading, the 70% overlap rule fires on any raster when the registry contains space-filling surfaces. The template's like-for-like reading (dot fields only) is applied, and both readings are reported in <code>evidence/e3_uniqueness.json</code>.</li>
+<li><b>IR-77-05:</b> the shared template validator uses a band-1 footprint (see the analysis, §7). Patch proposed; vendored bytes untouched.</li>
+<li><b>IR-77-06:</b> GEMSDOE71's vendored template has a locally modified <code>grid.py</code>; this repo re-vendored the upstream bytes.</li>
+<li><b>IR-77-07:</b> the hide-and-recover holdout measures recovery of catalogue faults, and it mis-ranked live outcomes in earlier runs (GEMSDOE66/70/71). It is used as a required gate, not as a score predictor.</li>
+<li><b>IR-77-08:</b> <code>sample_submission.tif</code> carries 1.0 on the 60,988 catalogue pixels. It is not the "total absence" example the page describes. Only its grid is used.</li>
+<li><b>IR-77-09:</b> GEMSDOE73–82 were empty at the start of this session. Some have since gained files (parallel sessions) and are not in the registry snapshot.</li></ol>
+<h2>Limitations and access needs</h2>
+<ul><li>The DrivenData data page and submissions are login-gated. Inputs come from the owner's GitHub mirrors and are sha256-pinned (<code>registry/data_manifest.json</code>, <code>evidence/restore_receipt.json</code>). A pin proves mirror consistency, not organizer authenticity.</li>
+<li>Raw <code>raw.githubusercontent.com</code>, Dropbox and drivendata.org downloads are blocked in this sandbox. Files are fetched through the GitHub blob API.</li>
+<li>The live inversion assumes the public chunks are a spatially random subset, and it cannot evaluate locations that no scored raster covered.</li>
+<li>No weekly slot was used. A human (the selector) must upload.</li></ul></div></main>
+<footer><div class="wrap">Generated by <code>scripts/build_site.py</code> from <code>docs/data/*.json</code> and
+<code>evidence/*.json</code>. Labels: <b>ORGANIZER-CONFIRMED</b> (public leaderboard), <b>OWNER-REPORTED</b>
+(transcribed from the submission page), <b>HOLDOUT-DTI</b> (local hide-and-recover), <b>INSTRUMENT</b>
+(projection, never a score).</div></footer>
+<script>document.querySelectorAll('button[data-copy]').forEach(b=>b.onclick=()=>{navigator.clipboard.writeText(b.dataset.copy);b.textContent='Copied';setTimeout(()=>b.textContent='Copy',1200)})</script>
+</body></html>

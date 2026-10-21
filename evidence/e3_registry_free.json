@@ -1,0 +1,234 @@
+{
+ "allowed_cells": 5106385,
+ "space_filling_threshold_positives": 123258,
+ "informative_rasters": 765,
+ "space_filling_rasters": [
+  {
+   "raster": "GEMSDOE68:registry/rasters/rasters/gems61-lane-buried-step-gravinversion-hgm-r3-k400k-b2zeros.tif",
+   "positives": 311617,
+   "coverage_3px": 0.969626262022938
+  },
+  {
+   "raster": "60GEMSDOE:registry/rasters/calib_r13lattice_00904.tif",
+   "positives": 206895,
+   "coverage_3px": 0.9987243421716145
+  },
+  {
+   "raster": "60GEMSDOE:registry/rasters/r11_greedy_mp.tif",
+   "positives": 272853,
+   "coverage_3px": 0.7366226792535228
+  },
+  {
+   "raster": "60GEMSDOE:registry/rasters/r14_union_tips10_lat6.tif",
+   "positives": 192231,
+   "coverage_3px": 0.7621148816628593
+  },
+  {
+   "raster": "GEMSDOE48:docs/downloads/GEMSDOE48-unassigned-mass-20261006.tif",
+   "positives": 5167373,
+   "coverage_3px": 1.0
+  },
+  {
+   "raster": "GEMSDOE48:docs/downloads/diagnostics/GEMSDOE48-H56-OWDS-B2xH33D-20261007-1f7b5a4f18db-plausibility.tif",
+   "positives": 5167373,
+   "coverage_3px": 1.0
+  },
+  {
+   "raster": "GEMSDOE48:docs/downloads/diagnostics/GEMSDOE48-H56-OWDS-B2xH33D-20261007-1f7b5a4f18db-unassigned-mtheta.tif",
+   "positives": 5167373,
+   "coverage_3px": 1.0
+  },
+  {
+   "raster": "GEMSDOE48:docs/downloads/diagnostics/gemsdoe48-h48-1-unassigned_yager_mTheta_incl_conflict.tif",
+   "positives": 5167373,
+   "coverage_3px": 1.0
+  },
+  {
+   "raster": "GEMSDOE48:docs/downloads/diagnostics/gemsdoe48-h50-plausibility-20261007-5b59e106.tif",
+   "positives": 5167373,
+   "coverage_3px": 1.0
+  },
+  {
+   "raster": "GEMSDOE48:docs/downloads/diagnostics/gemsdoe48-h50-unassigned-mTheta-20261007-5b59e106.tif",
+   "positives": 5167373,
+   "coverage_3px": 1.0
+  },
+  {
+   "raster": "GEMSDOE48:docs/downloads/diagnostics/gemsdoe48-h54-unassigned-mtheta-dedc43dc0167.tif",
+   "positives": 5167373,
+   "coverage_3px": 1.0
+  },
+  {
+   "raster": "GEMSDOE48:docs/downloads/diagnostics/gemsdoe48-h55-mtheta-055da9855353.tif",
+   "positives": 5167373,
+   "coverage_3px": 1.0
+  },
+  {
+   "raster": "GEMSDOE48:docs/downloads/diagnostics/gemsdoe48-h55-plausibility-055da9855353.tif",
+   "positives": 5167373,
+   "coverage_3px": 1.0
+  },
+  {
+   "raster": "GEMSDOE48:docs/downloads/diagnostics/gemsdoe48-h56-mtheta-9ec0d605c45b.tif",
+   "positives": 5167373,
+   "coverage_3px": 1.0
+  },
+  {
+   "raster": "GEMSDOE48:docs/downloads/diagnostics/gemsdoe48-h56-plausibility-9ec0d605c45b.tif",
+   "positives": 5167373,
+   "coverage_3px": 1.0
+  },
+  {
+   "raster": "GEMSDOE48:docs/downloads/diagnostics/gemsdoe48-h56b-mtheta-126ca59c2801.tif",
+   "positives": 5167373,
+   "coverage_3px": 1.0
+  },
+  {
+   "raster": "GEMSDOE48:docs/downloads/diagnostics/gemsdoe48-h56b-noflank-mtheta-5bb2c03c981e.tif",
+   "positives": 5167373,
+   "coverage_3px": 1.0
+  },
+  {
+   "raster": "GEMSDOE48:docs/downloads/diagnostics/gemsdoe48-h56b-noflank-plausibility-5bb2c03c981e.tif",
+   "positives": 5167373,
+   "coverage_3px": 1.0
+  },
+  {
+   "raster": "GEMSDOE48:docs/downloads/diagnostics/gemsdoe48-h56b-plausibility-126ca59c2801.tif",
+   "positives": 5167373,
+   "coverage_3px": 1.0
+  },
+  {
+   "raster": "GEMSDOE48:docs/downloads/gemsdoe48-ds-plausibility-20261006T201749Z-95897e3f8125.tif",
+   "positives": 5167373,
+   "coverage_3px": 1.0
+  },
+  {
+   "raster": "GEMSDOE48:docs/downloads/gemsdoe48-ds-unassigned-mass-20261006T201749Z-95897e3f8125.tif",
+   "positives": 5167373,
+   "coverage_3px": 1.0
+  },
+  {
+   "raster": "GEMSDOE48:docs/downloads/gemsdoe48-ds48-mtheta.tif",
+   "positives": 5167373,
+   "coverage_3px": 1.0
+  },
+  {
+   "raster": "GEMSDOE48:docs/downloads/gemsdoe48-h48-ds-yager-conflict-20261006-unassigned-diagnostic.tif",
+   "positives": 5167373,
+   "coverage_3px": 1.0
+  },
+  {
+   "raster": "GEMSDOE48:docs/downloads/gemsdoe48-h49-ds-conflict-balanced-20261006-unassigned-diagnostic.tif",
+   "positives": 5167373,
+   "coverage_3px": 1.0
+  },
+  {
+   "raster": "GEMSDOE48:docs/downloads/gemsdoe48-h58-continuous-pignistic-20261008T175914Z-e58.tif",
+   "positives": 5167373,
+   "coverage_3px": 1.0
+  },
+  {
+   "raster": "GEMSDOE48:docs/downloads/gemsdoe48-h58-diag-mtheta-20261008T175914Z-e58.tif",
+   "positives": 5167373,
+   "coverage_3px": 1.0
+  },
+  {
+   "raster": "GEMSDOE48:docs/downloads/gemsdoe48-h58-diag-plausibility-20261008T175914Z-e58.tif",
+   "positives": 5167373,
+   "coverage_3px": 1.0
+  },
+  {
+   "raster": "13GEMSDOE:docs/downloads/13gems_20261001_r11-greedy-mp_v2_zerofill.tif",
+   "positives": 272853,
+   "coverage_3px": 0.7366226792535228
+  },
+  {
+   "raster": "13GEMSDOE:docs/downloads/13gems_20261001_r13-lattice-s5_v2_zerofill.tif",
+   "positives": 206895,
+   "coverage_3px": 0.9987243421716145
+  },
+  {
+   "raster": "13GEMSDOE:docs/downloads/13gems_20261001_r14-union-tips10-lat6_zerofill.tif",
+   "positives": 192231,
+   "coverage_3px": 0.7621148816628593
+  },
+  {
+   "raster": "13GEMSDOE:docs/downloads/archive/13gems-composite-20260928T040920Z.tif",
+   "positives": 338755,
+   "coverage_3px": 0.7211207145563838
+  },
+  {
+   "raster": "13GEMSDOE:docs/downloads/archive/13gems-composite-20260928T040920Z_allfinite.tif",
+   "positives": 338755,
+   "coverage_3px": 0.7211207145563838
+  },
+  {
+   "raster": "13GEMSDOE:docs/downloads/archive/13gems-composite-20260929T183221Z.tif",
+   "positives": 507776,
+   "coverage_3px": 0.8594541931327152
+  },
+  {
+   "raster": "13GEMSDOE:docs/downloads/archive/13gems-composite-20260929T183221Z_allfinite.tif",
+   "positives": 507776,
+   "coverage_3px": 0.8594541931327152
+  },
+  {
+   "raster": "13GEMSDOE:docs/downloads/archive/13gems-composite-plus-20260929T183249Z.tif",
+   "positives": 380365,
+   "coverage_3px": 0.8329651994512752
+  },
+  {
+   "raster": "13GEMSDOE:docs/downloads/archive/13gems-composite-plus-20260929T183249Z_allfinite.tif",
+   "positives": 380365,
+   "coverage_3px": 0.8329651994512752
+  },
+  {
+   "raster": "13GEMSDOE:docs/downloads/archive/13gems-r11-greedy-mp.tif",
+   "positives": 272853,
+   "coverage_3px": 0.7366226792535228
+  },
+  {
+   "raster": "13GEMSDOE:docs/downloads/archive/13gems-r11-greedy-mp_allfinite.tif",
+   "positives": 272853,
+   "coverage_3px": 0.7366226792535228
+  },
+  {
+   "raster": "13GEMSDOE:docs/downloads/archive/13gems-r8-ensemble-20260930T014614Z.tif",
+   "positives": 452679,
+   "coverage_3px": 0.7560328882369818
+  },
+  {
+   "raster": "13GEMSDOE:docs/downloads/archive/13gems-r8-ensemble-20260930T014614Z_allfinite.tif",
+   "positives": 452679,
+   "coverage_3px": 0.7560328882369818
+  },
+  {
+   "raster": "15GEMSDOE:docs/downloads/gems-cleanup-a-20260928T195952Z-curv_scarp.tif",
+   "positives": 362327,
+   "coverage_3px": 0.8885693107746478
+  },
+  {
+   "raster": "GEMSDOE3:docs/downloads/pindrop-v4-discovery-20260925T152423Z-37f9d5b855.tif",
+   "positives": 155021,
+   "coverage_3px": 0.7344514759462908
+  },
+  {
+   "raster": "GEMSDOE3:docs/downloads/pindrop-v4-nodes-20260925T152420Z-f347b70daa.tif",
+   "positives": 155021,
+   "coverage_3px": 0.7346140175486181
+  }
+ ],
+ "unreadable_rasters": [
+  {
+   "raster": "GEMSDOE63:docs/downloads/smoke.tif",
+   "error": "89ffb2d61840859392a758928ffdbae4260f2918.tif: MissingRequired:TIFF directory is missing required \"StripOffsets\" field"
+  },
+  {
+   "raster": "GEMSDOE36:docs/downloads/GEMS36_FORMAT_TEST_NOT_SUBMISSION.tif",
+   "error": "/home/user/GEMSDOE77/.cache/registry/a97c7b2a513225c9f9f2b35736afe5abf4d2a491.tif: shape (32, 48) != (3730, 3292)"
+  }
+ ],
+ "free_cells": 0,
+ "free_fraction_of_allowed": 0.0
+}

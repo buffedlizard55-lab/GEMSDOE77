@@ -1,0 +1,68 @@
+{
+ "label": "INSTRUMENT projections; overlap measured on pool membership (Euclidean 3 px)",
+ "budget": 0.66,
+ "informative_rasters": 765,
+ "B_px": 4,
+ "on_frac_of_greedy": 0.85,
+ "n_on": 25293,
+ "n_off": 13030,
+ "dots": 38323,
+ "on_share": 0.6599953030817003,
+ "worst_overlap": 0.6599953030817003,
+ "worst_rasters": [
+  {
+   "raster": "GEMSDOE31:docs/downloads/gemsdoe31-add-arm-d28-20261004-8acb75e1-allfinite.tif",
+   "overlap": 0.6599953030817003
+  },
+  {
+   "raster": "GEMSDOE68:registry/rasters/rasters/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+   "overlap": 0.6599953030817003
+  },
+  {
+   "raster": "GEMSDOE68:registry/rasters/rasters/GEMSDOE36__anderson-geothermal-pinn-38854.tif",
+   "overlap": 0.6599953030817003
+  },
+  {
+   "raster": "GEMSDOE68:registry/rasters/rasters/GEMSDOE33__h33d-analog-tip-stepover-r30.tif",
+   "overlap": 0.6599953030817003
+  },
+  {
+   "raster": "GEMSDOE31:docs/downloads/gemsdoe31-union-b-p060-20261004-8acb75e1-nan.tif",
+   "overlap": 0.6599953030817003
+  },
+  {
+   "raster": "GEMSDOE31:docs/downloads/gemsdoe31-union-b-p060-20261004-8acb75e1-allfinite.tif",
+   "overlap": 0.6599953030817003
+  },
+  {
+   "raster": "GEMSDOE31:docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+   "overlap": 0.6599953030817003
+  },
+  {
+   "raster": "GEMSDOE31:docs/downloads/gemsdoe31-add-arm-d28-20261004-8acb75e1-nan.tif",
+   "overlap": 0.6599953030817003
+  },
+  {
+   "raster": "GEMSDOE29:docs/downloads/gems29-wormrank-d28-20261003-59dcaf6dd11d-nan.tif",
+   "overlap": 0.6599953030817003
+  },
+  {
+   "raster": "GEMSDOE29:evidence/history/pre_nearest_fill_2026-10-03/downloads/gems29-wormrank-b4643d3622d5-nan.tif",
+   "overlap": 0.6599953030817003
+  }
+ ],
+ "S0": {
+  "T": 4007.57421875,
+  "S": 38323.0,
+  "K": 10366.1923828125,
+  "dti_projection": 0.2449870367645919,
+  "credit_per_dot": 0.10457360380841792
+ },
+ "S1": {
+  "T": 4037.091064453125,
+  "S": 38323.0,
+  "K": 10359.330078125,
+  "dti_projection": 0.2468297293409733,
+  "credit_per_dot": 0.10534381610137841
+ }
+}

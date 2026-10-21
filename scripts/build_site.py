@@ -51,7 +51,7 @@ def download_card(sub, card, uniq_ok):
 <a class="btn alt" href="downloads/{e(z['zip'])}" download>Same file as one-TIFF .zip</a>
 <div class="chips"><span class="chip ok">OK to download: YES</span>
 <span class="chip ok">Portal format: {pv['n_pass']}/{pv['n_checks']} checks PASS</span>
-<span class="chip {'ok' if uniq_ok else 'bad'}">Unique vs {card['registry_comparison']['registry_rasters_checked']} registry rasters: {'PASS' if uniq_ok else 'FAIL'}</span>
+<span class="chip {'ok' if uniq_ok else 'bad'}">Unique vs {card['registry_comparison']['informative_rasters']} informative registry rasters: {'PASS' if uniq_ok else 'FAIL'} (worst overlap {card['registry_comparison']['worst_overlap_informative']:.3f} ≤ 0.70)</span>
 <span class="chip ok">Leakage canary: clear</span>
 <span class="chip {vchip}">Run verdict: {verdict}</span></div>
 <p class="verdict"><b>Can I upload it?</b> Yes. It is unique, and it has the same encoding as the
@@ -69,10 +69,10 @@ NaN-outside twin (bit-identical inside the footprint): <a href="downloads/{e(tw[
 
 def main():
     sub, card = j("docs/data/submission.json"), j("docs/data/run-card.json")
-    why, hold, alloc = j("evidence/why_02778.json"), j("evidence/e3_holdout.json"), j("evidence/e3_allocation.json")
+    why, hold, alloc = j("evidence/why_02778.json"), j("evidence/e3_holdout_final.json"), j("evidence/e3_allocation.json")
     e2, e2b, uniq = j("evidence/e2_inversion.json"), j("evidence/e2_hypothesis_test.json"), j("evidence/e3_uniqueness.json")
     rc = card["registry_comparison"]
-    uniq_ok = not rc["like_for_like_duplicate"]
+    uniq_ok = rc["unique_informative_reading"]
     dl = download_card(sub, card, uniq_ok)
     hc = card["holdout"]
     lin_rows = "".join(f"<tr><td>{e(r['step'])}</td><td>{f4(r['organizer_score'])}</td><td>{f4(r['S0_projection'])}</td>"
@@ -107,14 +107,16 @@ The hidden faults turn out to sit on the H19-5 ridge set (19GEMSDOE), away from 
 The champion is a 3-px binary thinning of that ridge set with near-catalogue dots removed. It earns about 0.125 credit per dot against a break-even bar of 0.058. <a href="analysis.html">Full analysis</a>.</li>
 <li><b>Can we beat it?</b> Without the uniqueness rule, modestly: 3,825 of its dots sit below the bar. Under the brief's rule (at most 70% of dots within 3 px of any one registry raster), at least 30% of the dots must earn credit away from H19-5, and no tested off-support field shows leave-one-out-robust credit there.
 Leaderboard #1 is <b>0.4413</b> (ORGANIZER-CONFIRMED). The brief's 0.3195 is stale. At our dot count, 0.4413 needs {why['targets'][0]['credit_per_dot_needed']:.3f} credit per dot, 1.56× ours.</li>
-<li><b>The new file</b> is unique and valid: 65% of its dots are on the live-validated support, and 35% are on a new straight-edge field (H77-1).
-HOLDOUT-DTI {f4(hc['dti'])} [{f4(hc['ci95'][0])}, {f4(hc['ci95'][1])}] ({hc['evaluator_version']}, {hc['withheld_positive_pixels']:,} withheld positives). That ties the fold-fair champion construction and beats random by +{hold['pooled']['R']['paired_differences']['R']['delta']:.3f}.</li>
+<li><b>The new file</b> is unique and valid. 66% of its dots are on the live-validated support, and 34% are on a new straight-edge field (H77-1), all within a per-raster overlap budget of 0.66.
+HOLDOUT-DTI {f4(hc['dti'])} [{f4(hc['ci95'][0])}, {f4(hc['ci95'][1])}] ({hc['evaluator_version']}, {hc['withheld_positive_pixels']:,} withheld positives).
+That is <b>below</b> the fold-fair champion construction (Δ {hold['pooled']['A0']['paired_differences']['A0']['delta']:+.4f} [{hold['pooled']['A0']['paired_differences']['A0']['ci95'][0]:+.4f}, {hold['pooled']['A0']['paired_differences']['A0']['ci95'][1]:+.4f}]) and above random (Δ +{hold['pooled']['R']['paired_differences']['R']['delta']:.3f}).
+Uniqueness costs about 0.04 in projected score, and the verdict is <b>negative</b>.</li>
 </ol>
 <h2>Experiments (budget: 3 of 3 used)</h2>
 <table><tr><th>#</th><th>Experiment</th><th>Result</th></tr>
 <tr><td>E1</td><td>Calibrate instruments against organizer scores</td><td>Catalogue distance alone: LOO ρ +{m1['catalogue distance']['loo_spearman']:.2f}. H19-5 support alone: +{m1['H19-5 support distance']['loo_spearman']:.3f}. Support × catalogue: +{m1['catalogue x support']['loo_spearman']:.3f} (n = 95)</td></tr>
 <tr><td>E2</td><td>Test hypotheses H77-1, H77-2 and H77-4 by live inversion</td><td>None improves the LOO fit. H77-1: ΔMSE {S1['delta_mse_vs_S0_mean']:+.6f} (CI straddles 0). H77-2: {S2['delta_mse_vs_S0_mean']:+.6f}. H77-4 ring density 0. <b>Negative or inconclusive.</b></td></tr>
-<tr><td>E3</td><td>Build the unique candidate; holdout, canary, uniqueness, validator</td><td>Candidate − champion rule (HOLDOUT-DTI) {hold['pooled']['A0']['paired_differences']['A0']['delta']:+.4f} [{hold['pooled']['A0']['paired_differences']['A0']['ci95'][0]:+.4f}, {hold['pooled']['A0']['paired_differences']['A0']['ci95'][1]:+.4f}]. S0 Δ {lp['S0_delta']:+.4f}. Verdict <b>{card['verdict']}</b></td></tr></table>
+<tr><td>E3</td><td>Build the unique candidate; holdout, canary, uniqueness, validator</td><td>The first build was <b>logged as a DUPLICATE</b> by the template audit (it was not shipped). The repaired build stays within a per-raster overlap budget of 0.66. Candidate − champion rule (HOLDOUT-DTI) {hold['pooled']['A0']['paired_differences']['A0']['delta']:+.4f} [{hold['pooled']['A0']['paired_differences']['A0']['ci95'][0]:+.4f}, {hold['pooled']['A0']['paired_differences']['A0']['ci95'][1]:+.4f}]. S0 Δ {lp['S0_delta']:+.4f}. Verdict <b>{card['verdict']}</b></td></tr></table>
 <p>Start with the <a href="executive-summary.html">executive summary (how to submit)</a>. The full brief is in the <a href="{REPO}#readme">README</a>.</p>"""
     (D / "index.html").write_text(page("index.html", "Overview", body))
 
@@ -136,7 +138,8 @@ The website limit prevails over the rules' parenthetical "three per week" (Drive
 <tr><td>Values in [0, 1]</td><td>PASS: binary {{0, 1}}; all 12,279,160 cells finite</td></tr>
 <tr><td>Outside the bounds: null/NaN</td><td>Primary file has 0.0 outside (the same encoding as the scored 0.2778 file). The NaN twin is provided.</td></tr>
 <tr><td>Known faults are masked from scoring (<a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516">forum 11516</a>)</td><td>0 dots on catalogue pixels</td></tr>
-<tr><td>Unique, by the brief's rule (rank ρ ≤ 0.90, ≤ 70% of dots within 3 px of any one registry raster)</td><td>{'PASS' if uniq_ok else 'FAIL'}: worst dot-field overlap {rc['phase2_worst_overlap_dot_fields']:.3f}, worst ρ {rc['phase2_dots_worst_spearman']:.3f} ({rc['registry_rasters_checked']} rasters)</td></tr></table>
+<tr><td>Unique, by the brief's rule (rank ρ ≤ 0.90, ≤ 70% of dots within 3 px of any one registry raster)</td><td>{'PASS' if uniq_ok else 'FAIL'}: worst overlap {rc['worst_overlap_informative']:.3f} against {rc['informative_rasters']} informative rasters; worst ρ {rc['phase2_dots_worst_spearman']:.3f} over {rc['registry_rasters_checked']} rasters.
+{rc['space_filling_rasters_excluded']} space-filling rasters (a 3 px halo covering ≥ 70% of the map, so any raster fails them) are reported, not used: <a href="analysis.html#uniqueness">details</a></td></tr></table>
 <h2>Why the portal said "Predicted values must be in range [0, 1]"</h2>
 <p>We measured two mechanisms from the official inputs.</p>
 <ol>
@@ -193,7 +196,13 @@ Neither tested off-support field improves the leave-one-out fit.</p>
 <table><tr><th>Leakage canary: feature alone</th><th>AUC</th><th>&gt; 0.90?</th></tr>{can}</table>
 <table><tr><th>Pre-registered promotion criterion</th><th>Result</th></tr>{crit}</table>
 <p class="verdict"><b>Verdict: {e(card['verdict'])}.</b> {e(card['verdict_reason'])}</p>
-<h2 id="template">7. Shared-template issues (reported; no private fork)</h2>
+<h2 id="uniqueness">7. Uniqueness audit (template tool <code>gems57.uniqueness</code>, unmodified)</h2>
+<ul><li><b>Phase 1 (placement surface, before placement):</b> worst Spearman {rc['phase1_surface_worst_spearman']:.3f} ({e(rc['phase1_surface_worst_spearman_submission'])}). No firing.</li>
+<li><b>First build (final dots): logged DUPLICATE, not shipped.</b> It had {card['duplicate_log']['first_build_like_for_like_firings']} like-for-like firings, including the genuine dot field {e(card['duplicate_log']['first_build_worst_genuine_firing'])}. Capping overlap against H19-5 alone was not enough.</li>
+<li><b>Repair:</b> a per-raster overlap budget of 0.66 against all {rc['informative_rasters']} informative registry rasters. The worst is {rc['worst_overlap_informative']:.3f} ({e(rc['worst_overlap_informative_raster'])}).</li>
+<li><b>Final dots, template audit:</b> worst ρ {rc['phase2_dots_worst_spearman']:.3f}; {rc['rho_firings']} ρ firings; {rc['informative_firings_in_template_audit']} overlap firings among informative rasters; {rc['space_filling_firings_in_template_audit']} firings on space-filling rasters.
+A space-filling raster's 3 px halo covers ≥ 70% of allowed cells (for example the r13 lattice and 400k-dot surfaces), so uniformly random dots would also exceed 0.70 against it. The test carries no information there (IR-77-04).</li></ul>
+<h2 id="template">8. Shared-template issues (reported; no private fork)</h2>
 <ul><li><code>gems.validate_submission</code> takes the footprint from feature band 1 (5,165,852 cells) instead of <code>sample_submission.tif</code> (5,167,373 cells).
 A correct NaN-outside file then "fails" with 1,540 NaN inside and 3,061 finite outside. A file built to pass it leaves 3,061 scored cells as NaN, which is one portal-rejection mechanism.
 Proposed upstream patch: <a href="{REPO}/blob/main/reports/template_fix_validate_footprint.patch"><code>reports/template_fix_validate_footprint.patch</code></a>.</li>
@@ -202,10 +211,10 @@ Proposed upstream patch: <a href="{REPO}/blob/main/reports/template_fix_validate
 
     # ---------------- sources
     body = """<h1>Sources, irregularities, limitations</h1>
-<h2>Official sources (each one opened and read this session)</h2>
+<h2>Official sources (each one opened and read on 2026-10-21)</h2>
 <table><tr><th>Source</th><th>What we used</th></tr>
 <tr><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Problem description (page 967)</a></td><td>Metric (α 0.2, β 0.8, 300 m triangular kernel), submission format, test labels = new faults not in USGS, public/private chunks</td></tr>
-<tr><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/">Page 968</a></td><td>Competition page linked in the brief</td></tr>
+<tr><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/">About (page 968)</a></td><td>Data: GeoDAWN magnetics/radiometrics + 3DEP lidar. "Many [faults] are hidden below the surface, requiring geophysical data to detect." It cites Mattéo et al. 2021 (<a href="https://doi.org/10.1029/2020JB021269">JGR</a>) and Hermant et al. 2025 (<a href="https://pangea.stanford.edu/ERE/db/GeoConf/papers/SGW/2025/Hermant.pdf">Stanford Geothermal Workshop</a>, deep learning for Quaternary faults in the western USA). The latter is a possibly overlooked method source.</td></tr>
 <tr><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Public leaderboard</a></td><td>#1 xiaofanhu 0.4413; #47 extradr19 0.2778 (read 2026-10-21)</td></tr>
 <tr><td><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">Official rules PDF (NLR, Sept 2026)</a></td><td>A single entry is scored in both phases; 3 per week, subject to the website; generative-AI use must be disclosed</td></tr>
 <tr><td><a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516">Forum 11516 (staff)</a></td><td>Known USGS/INGENIOUS pixels are masked from evaluation</td></tr>
@@ -215,7 +224,7 @@ Proposed upstream patch: <a href="{REPO}/blob/main/reports/template_fix_validate
 <tr><td><a href="https://community.drivendata.org/t/how-were-the-new-test-faults-identified-data-sources-and-fault-types/11527">Forum 11527 (staff)</a></td><td>Organizers will not disclose how test faults were identified</td></tr>
 <tr><td><a href="https://community.drivendata.org/t/submission-amount-question/11553">Forum 11553 (staff)</a></td><td>The website's submission limit prevails</td></tr>
 <tr><td><a href="https://community.drivendata.org/t/units-and-very-large-values-in-deq-n100a15-and-meaning-of-ieq-n100a15/11557">Forum 11557 (staff)</a></td><td>deq/ieq bands are INGENIOUS earthquake rate-density layers (<a href="https://gdr.openei.org/submissions/1391">GDR 1391</a>)</td></tr>
-<tr><td><a href="https://github.com/drivendataorg/gems-prize-reference-solution">Reference solution</a></td><td>The official example writer emits an all-finite raster with no nodata tag</td></tr>
+<tr><td><a href="https://github.com/drivendataorg/gems-prize-reference-solution">Reference solution</a></td><td>The official notebook (cell 19) writes the model output with rasterio and <b>no <code>nodata</code> argument</b>, so the file has no nodata tag. That matches the encoding of our primary file.</td></tr>
 <tr><td><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN</a> · <a href="https://doi.org/10.5066/P93LGLVQ">doi:10.5066/P93LGLVQ</a></td><td>Feature provenance (cited in the rules)</td></tr>
 <tr><td><a href="https://gbcge.org/current-projects/ingenious/">INGENIOUS</a> · <a href="https://epsg.io/32611">EPSG:32611</a> · <a href="https://en.wikipedia.org/wiki/Tversky_index">Tversky index</a></td><td>Background links from the brief</td></tr></table>
 <h2>Irregularities flagged</h2>

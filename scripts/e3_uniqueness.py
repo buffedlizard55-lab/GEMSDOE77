@@ -55,8 +55,16 @@ def main():
     surf = surf + 1e-3 * sef           # within-bin tie-break used by the placement
     surf[~valid] = 0
     surf = (surf / surf.max()).astype(np.float32)
+    prev = ROOT / "evidence" / "e3_uniqueness.json"
     out = {}
-    for phase, arr in (("phase1_surface_before_placement", surf), ("phase2_final_dots", final)):
+    phases = (("phase1_surface_before_placement", surf), ("phase2_final_dots", final))
+    if "--phase2-only" in sys.argv and prev.exists():
+        old = json.loads(prev.read_text())
+        out["phase1_surface_before_placement"] = old["phase1_surface_before_placement"]
+        out["first_build_logged_duplicate"] = {"phase2_final_dots": old["phase2_final_dots"],
+                                               "candidate": old.get("candidate")}
+        phases = phases[1:]
+    for phase, arr in phases:
         r = U.compare_array_to_registry(arr, reg, g.footprint, include_reverse=(phase.startswith("phase2")))
         rows = r.get("rows") or r.get("comparisons") or []
         summ = U.two_phase_summary(rows, int(g.footprint.sum()), expected_rasters=n_expected) if rows else None

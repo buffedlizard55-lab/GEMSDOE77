@@ -2,24 +2,23 @@
 
 ## ⬇ Download the submission file
 
-**[Download `gems77-h77-lia-38913dots-20261021-a8428bf0-zeros.tif`](docs/downloads/gems77-h77-lia-38913dots-20261021-a8428bf0-zeros.tif)**
-(150,161 B)
+**[Download `gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif`](docs/downloads/gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif)** (151,009 B)
 
-- sha256 `af0fa0c21e3c9f50b7420965097a26f1566fe3639346bacb315ad451618ac911`
-- Same file as a one-TIFF zip: [`…-zeros.zip`](docs/downloads/gems77-h77-lia-38913dots-20261021-a8428bf0-zeros.zip)
-- NaN-outside twin, bit-identical inside the footprint: [`…-nan.tif`](docs/downloads/gems77-h77-lia-38913dots-20261021-a8428bf0-nan.tif)
+- sha256 `a8bfb844ab44b5d4157f75ec914a51655c27ae54727f7b4a088eca9d6f396898`
+- Same file as a one-TIFF zip: [`…-zeros.zip`](docs/downloads/gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.zip)
+- NaN-outside twin, bit-identical inside the footprint: [`…-nan.tif`](docs/downloads/gems77-h77-lia-38323dots-20261021-aa5c9331-nan.tif)
 
 | Question | Answer |
 |---|---|
 | OK to download? | **Yes** |
 | Will the portal accept it? | **Yes.** It passes 17/17 checks against the official grid and footprint, using the same encoding as the 0.2778 file the portal accepted and scored: all cells finite, binary {0, 1}, no nodata tag, EPSG:32611, 3730×3292 with the official transform. |
-| Unique? | **Yes**, by the brief's rule (like-for-like reading). See [`docs/data/run-card.json`](docs/data/run-card.json). |
-| Spend a weekly slot? | **Run verdict: NEGATIVE** (pre-registered rule). The conservative live-calibrated instrument projects it below the 0.2778 champion; the in-sample instrument projects it slightly above. A score would measure whether off-support straight-edge dots earn credit. **The selector decides.** |
+| Unique? | **Yes.** Worst ρ 0.377; worst overlap 0.660 against 765 informative registry rasters. 43 space-filling rasters, which any raster fails, are reported. The first build was logged as a duplicate and not shipped. |
+| Spend a weekly slot? | **Not recommended. Run verdict: NEGATIVE** (pre-registered rule). INSTRUMENT Δ versus the 0.2778 champion is S0 -0.043 and S1 -0.041. HOLDOUT-DTI is 0.0706 against 0.0958 for the fold-fair champion construction (Δ -0.0252, 95% CI [-0.0303, -0.0203]). **The selector decides.** |
 
 **Form fields**
 
-- **Name:** `gems77-h77-lia-38913dots-20261021-a8428bf0-zeros`
-- **Note** (113/140): `GEMSDOE77 H77 live-inversion allocation: 65% H19-5 support + 35% straight-edge dots, 38913 binary, 0 on catalogue`
+- **Name:** `gems77-h77-lia-38323dots-20261021-aa5c9331-zeros`
+- **Note** (113/140): `GEMSDOE77 H77 live-inversion allocation: 66% H19-5 support + 34% straight-edge dots, 38323 binary, 0 on catalogue`
 
 **Links:** site at <https://buffedlizard55-lab.github.io/GEMSDOE77/> ·
 [executive summary: how to submit](https://buffedlizard55-lab.github.io/GEMSDOE77/executive-summary.html)
@@ -63,13 +62,16 @@ submission page), **HOLDOUT-DTI** (local hide-and-recover), **INSTRUMENT** (proj
    - Leaderboard #1 is **0.4413** (ORGANIZER-CONFIRMED, read 2026-10-21). The brief's 0.3195 is stale.
      At our dot count, 0.4413 needs 0.194 credit per dot (1.56× ours), which requires a better field,
      not better thinning.
-3. **The GEMSDOE77 file.** 25,293 dots on the live-validated support (> 400 m from the catalogue) plus
-   13,620 dots on a new straight-edge field (H77-1).
-   - **HOLDOUT-DTI 0.0941** [0.0818, 0.1056] (`gems57-pooled-hide-v2`, 11,321 withheld positives).
-   - It **ties** the fold-fair champion construction (Δ −0.0017 [−0.0085, +0.0053]) and beats random
-     by +0.046.
-   - Leakage canary clear (max AUC 0.755).
-   - INSTRUMENT Δ versus the champion: S0 −0.034, S1 +0.013.
+3. **The GEMSDOE77 file.**
+   - **Composition.** 25,293 dots on the live-validated support (> 400 m from the catalogue) plus
+     13,030 dots on a new straight-edge field (H77-1), within a per-raster overlap budget of 0.66.
+   - **HOLDOUT-DTI 0.0706** [0.0599, 0.0815] (`gems57-pooled-hide-v2`,
+     11,321 withheld positives).
+   - **Below** the fold-fair champion construction (Δ -0.0252
+     [-0.0303, -0.0203])
+     and above random (+0.023). Leakage canary clear (max AUC 0.755).
+   - INSTRUMENT Δ versus the champion: S0 -0.043, S1 -0.041.
+   - **Uniqueness costs ≈ 0.04.** With today's fields, "unique" and "beat 0.2778" are in tension.
 
 Experiments: **3 of 3 used** (E1 instrument calibration, E2 hypothesis tests by live inversion,
 E3 candidate, holdout, canary, uniqueness and validator).

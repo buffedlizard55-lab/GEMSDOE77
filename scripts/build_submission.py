@@ -39,7 +39,10 @@ def main():
     digest = hashlib.sha256(pred.tobytes()).hexdigest()
     n = int(dots.sum())
     base = f"gems77-h77-lia-{n}dots-{STAMP}-{digest[:8]}"
-    note = f"GEMSDOE77 H77 live-inversion allocation: 65% H19-5 support + 35% straight-edge dots, {n} binary, 0 on catalogue"
+    dsup = np.load(core.WORK / "d_h195.npy")
+    on_pct = round(100 * float((dots & (dsup == 0)).sum()) / n)
+    note = (f"GEMSDOE77 H77 live-inversion allocation: {on_pct}% H19-5 support + {100 - on_pct}% straight-edge dots, "
+            f"{n} binary, 0 on catalogue")
     assert len(note) <= 140, len(note)
     out = ROOT / "docs" / "downloads"
     out.mkdir(parents=True, exist_ok=True)
