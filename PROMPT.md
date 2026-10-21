@@ -8,6 +8,17 @@ summarised with provenance at the end rather than re-transcribed hash-by-hash
 `docs/score-ledger.csv`; later entries below are OWNER-REPORT as supplied in
 the 2026-10-21 brief — no organizer receipts).*
 
+## Current session status note — 2026-10-21
+
+The current assignment still has no identifiable single method paragraph. Do
+not treat a repository hypothesis ranking as an assignment or self-authorize a
+new experiment. The review-only finding and ranked untested candidates are in
+[`docs/review-2026-10-21-h33-and-next-lane.md`](docs/review-2026-10-21-h33-and-next-lane.md).
+No data restoration, new holdout, TIFF build, selector action, or slot has
+occurred in this review-only scope. A documentation-only PR does not authorize
+a method lane. A dense registry witness remains a literal uniqueness stop until
+the shared protocol owner resolves that policy.
+
 ## Highest urgency
 
 MUST GENERATE A UNIQUE TIF SUBMISSION FOR THE COMPETITION. DO NOT COPY A
