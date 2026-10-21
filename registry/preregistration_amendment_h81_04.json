@@ -1,0 +1,17 @@
+{
+  "amends": "registry/preregistration_h81.json",
+  "amendment_id": "IR-81-04",
+  "written_utc": "2026-10-21T16:00:00Z",
+  "timing": "Written after observing E1 intermediate design diagnostics (tip/support counts) but BEFORE any experimental outcome: the frozen E1 run was STOPPED before completing canaries/uniqueness/holdout, and no outcome number from it is recorded anywhere. The frozen attempt (record-level tips + 10px footprint-edge guard) is preserved in git history, not in evidence/.",
+  "diagnostic_observed": "2,221 record-level tips, of which only ~737 fall inside the footprint (1,484 within 10px of the footprint edge, mostly outside the survey area; 477 more excluded by record-LOCO), leaving 260 usable tips and 50,302 support px (capacity ~5.5k dots vs 37,654 budget).",
+  "conceptual_error": "record_id groups fault ZONES/systems, not single fault traces. Evidence from the CSV alone (no outcome data): the same zone name ('Agai Pah Hills fault zone') spans record_ids 4 and 5; record length p50 6.9 km / p90 37.1 km / max 380.1 km; 16 records exceed 100 km; 48 records span outside the computation grid. Zone-ends outside the survey area are not testable tips. Related error: the 10px footprint-edge guard guarded the survey footprint boundary, but Qfault mapping extends beyond it, so footprint-edge proximity does not identify mapping cut-ends; the real grid artifact is records truncated BY the grid.",
+  "fix": {
+    "tips": "degree-1 nodes of each CONNECTED COMPONENT of the per-record segment graph (1 m endpoint rounding) = trace ends + splay tips + gap-bounded strand ends. Segment joints (degree-2 nodes) remain excluded. Closed loops yield no tips.",
+    "tangent": "outward direction from a greedy up-to-5-vertex walk into the component from the tip (single-segment components: the other endpoint).",
+    "slip_sense": "component-level: max slip_mm_yr and modal sense over the component's segments (not the whole record).",
+    "loco": "component-LOCO: a component is usable iff NO vertex lies within 5 px of any hidden-truth pixel (same 500 m discipline, scoped to the trace, not the zone).",
+    "edge_guard": "the 10px footprint-edge buffer is REPLACED by the grid-truncation rule: components with any vertex outside the grid are dropped (their chain ends are grid artifacts); usable tips must lie inside the footprint.",
+    "unchanged": "cone geometry (20px, 30deg, linear decay), slip-rank weighting, folds (seed 20), arms, budget 37654 + identical fallback rule, canary/uniqueness/promotion gates, emission method"
+  },
+  "credibility_note": "This amendment changes the hypothesis unit (zone-ends -> strand-ends) on conceptual grounds demonstrable from the input CSV alone. It was motivated in time by the observed support counts, which are design diagnostics, not experimental outcomes; no canary, holdout, or uniqueness number exists for either design at amendment time. Both the frozen text and this amendment are committed, so a reviewer can rerun either."
+}
