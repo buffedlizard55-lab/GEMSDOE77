@@ -402,7 +402,7 @@ informative reading, but it fails the binding literal rule. It is not expected t
 <section class="card dl"><h2>⬇ H78 file</h2>
 <a class="btn" href="downloads/{e(sub["primary"]["file"])}" download>Download .tif</a>
 <a class="btn alt" href="downloads/{e(sub["zip"]["zip"])}" download>One-TIFF .zip</a>
-<a class="btn alt" href="downloads/{e(sub["twin_nan"]["file"])}" download>NaN-outside twin (reference only)</a>
+<p class="small warning"><strong>NaN-outside diagnostic is not a submission file.</strong> It contains NaN pixels outside the study footprint and fails the all-pixel [0,1] preflight.</p>
 <div class="chips"><span class="chip {'ok' if sub['download_ok_format_valid'] else 'bad'}">Portal format: {sub["primary"]["n_pass"]}/{sub["primary"]["n_checks"]} PASS</span>
 <span class="chip {'ok' if card['protocol_unique'] else 'bad'}">Unique, literal rule ({rc["registry_files"]} rasters): {'PASS' if card['protocol_unique'] else 'FAIL'}</span>
 <span class="chip {'ok' if card['protocol_unique_informative_reading'] else 'bad'}">Unique, informative reading: {'PASS' if card['protocol_unique_informative_reading'] else 'FAIL'}</span>

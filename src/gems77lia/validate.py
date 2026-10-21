@@ -1,11 +1,10 @@
-"""Portal-equivalence validator for GEMSDOE77 submissions (fails closed).
+"""Strict local GeoTIFF preflight for GEMSDOE77 (not portal acceptance).
 
-Checks the published rules (problem page 967 "Submission format"; rules PDF section 3.2)
-against the OFFICIAL footprint = finite cells of sample_submission.tif, not a feature band.
-Why: the template validator derives the footprint from feature band 1, which differs from
-the official footprint by 3,061 + 1,540 cells (measured); a file built on that footprint
-leaves NaN inside the scored region - one of the two mechanisms behind the portal message
-"Predicted values must be in range [0, 1]".
+Use the finite cells of the pinned sample_submission.tif as the study footprint,
+but conservatively require every raster cell—including cells outside that footprint—
+to be finite and in [0, 1], with zeros outside. A NaN-outside diagnostic raster is
+not a compliant submission artifact under this all-pixel preflight. The cause of any
+past portal error remains unverified; local PASS is not organizer acceptance.
 """
 from __future__ import annotations
 
@@ -43,13 +42,13 @@ def validate(path: str | Path, *, mode: str, name: str, note: str) -> dict:
         a = src.read(1)
     fin = np.isfinite(a)
     chk("no NaN/inf inside official footprint", bool(fin[g.footprint].all()), f"nonfinite_inside={int((~fin & g.footprint).sum())}")
-    if mode == "zeros":
-        chk("all 12,279,160 cells finite (no NaN anywhere)", bool(fin.all()), f"nonfinite={int((~fin).sum())}")
-        chk("zeros outside footprint", bool((a[~g.footprint] == 0).all()), "")
-    else:
-        chk("NaN exactly outside footprint", bool(np.isnan(a[~g.footprint]).all()), f"finite_outside={int(fin[~g.footprint].sum())}")
+    chk("all raster cells finite", bool(fin.all()), f"nonfinite_anywhere={int((~fin).sum())}")
+    chk("zeros outside official footprint", bool((a[~g.footprint] == 0).all()), "")
+    if mode == "nan":
+        chk("NaN-outside diagnostic identified (not submittable)", False,
+            f"outside_nan={int(np.isnan(a[~g.footprint]).sum())}; diagnostic only")
     v = a[fin]
-    chk("values within [0, 1]", bool(v.size and v.min() >= 0 and v.max() <= 1), f"min={float(v.min())} max={float(v.max())}")
+    chk("all finite values within [0, 1]", bool(v.size and v.min() >= 0 and v.max() <= 1), f"min={float(v.min())} max={float(v.max())}")
     inside = a[g.footprint]
     chk("binary values {0,1} inside footprint", bool(np.isin(inside, [0.0, 1.0]).all()), "")
     chk("0 dots on masked catalogue pixels", int((a[g.catalogue] > 0).sum()) == 0, f"on_catalogue={int((a[g.catalogue] > 0).sum())}")

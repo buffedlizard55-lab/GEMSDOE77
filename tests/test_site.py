@@ -1,4 +1,5 @@
 import json
+import re
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlparse, unquote
@@ -19,6 +20,14 @@ def test_no_broken_local_html_links():
             u=urlparse(link)
             if not u.scheme and not u.netloc and u.path:
                 assert (path.parent/unquote(u.path)).exists(),(path,link)
+
+
+def test_nan_outside_diagnostics_are_not_published_as_downloads():
+    for path in DOC.glob('*.html'):
+        parser=Links();parser.feed(path.read_text())
+        assert not any(urlparse(link).path.lower().endswith('-nan.tif') for link in parser.links), path
+    readme=(ROOT/'README.md').read_text()
+    assert not re.search(r'\]\([^)]*-nan\.tif\)', readme, re.I)
 
 
 def test_unambiguous_download_status_and_accessibility_basics():
