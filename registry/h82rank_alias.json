@@ -1,0 +1,11 @@
+{
+  "integration_date_utc": "2026-10-21",
+  "alias": "H82R",
+  "original_preregistered_lane": "H82 local ternary radiometric rank-mixture entropy deficit",
+  "reason": "A concurrent session separately preregistered H82 cool-outlet chemistry and merged to main; alias differentiates archival paths without rerunning or changing this lane's frozen parameters, score or TIFF bytes.",
+  "frozen_preregistration": "registry/preregistration_h82rank.json",
+  "frozen_hypotheses": "research/h82rank_hypotheses.md",
+  "frozen_run_card": "evidence/h82rank_run_card.json",
+  "research_tiff": "docs/downloads/gems77-h82-ternaryentropy-20261021-RESEARCH-ONLY.tif",
+  "verdict": "negative; NOT OK TO SUBMIT"
+}

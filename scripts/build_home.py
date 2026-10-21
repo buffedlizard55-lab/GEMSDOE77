@@ -13,7 +13,9 @@ from __future__ import annotations
 import hashlib
 import html
 import json
+import markdown
 import shutil
+
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -22,7 +24,7 @@ REPO = "https://github.com/buffedlizard55-lab/GEMSDOE77"
 LB = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
 PD = "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
-NAV = [("index.html", "Start here"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
+NAV = [("index.html", "Start here"), ("h82-texture.html", "H82-TEXTURE · negative"), ("h82rank.html", "H82R · radiometric negative"), ("preflight-review.html", "Current readiness review"), ("h82-executive-summary.html", "H82 · cool-outlet negative"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
        ("h77e-knick.html", "H77E-Knick · research-only"), ("release-review.html", "Release safety review"), ("executive-summary.html", "How to submit"),
        ("h81.html", "H81 · slip-cone"),
        ("h80t.html", "H80T · tilt-persist"), ("h80t-executive-summary.html", "H80T guide"),
@@ -74,11 +76,39 @@ def copy(label, text):
 
 
 def main():
+    # Publish the current review from its source, not a hand-edited landing page.
+    (D / "evidence").mkdir(exist_ok=True)
+    for name in ("registry_preflight.json", "listed_download_audit.json", "preflight_sources.json",
+                 "readiness_review_run_card.json"):
+        shutil.copyfile(ROOT / "evidence" / name, D / "evidence" / name)
+    review = (D / "preflight-review.md").read_text()
+    (D / "preflight-review.html").write_text(page(
+        "preflight-review.html", "Submission readiness review",
+        markdown.markdown(review, extensions=["tables", "fenced_code"])))
+
+    review = markdown.markdown((D / "review-904a24d3.md").read_text(), extensions=["tables"])
+    (D / "review-904a24d3.html").write_text(page("review-904a24d3.html", "Current repository review", review))
     lanes = jload("docs/data/lanes.json")
     card = jload("evidence/h78_run_card.json")
     sub = jload("docs/data/h78_submission.json")
     lag_card = jload("evidence/h77l_run_card.json")
     orient_card = jload("evidence/h79_orient_run_card.json")
+    h82_card = jload("evidence/h82_run_card.json")
+    h82_rows = [x for x in lanes["lanes"] if x["lane"].startswith("H82:")]
+    if len(h82_rows) != 1 or not h82_card or h82_card["verdict"] != "negative" or h82_card["ok_to_submit"]:
+        raise ValueError("H82 research lane missing or incorrectly authorized")
+    h82 = h82_rows[0]
+    h82_file = D / h82["file"]
+    if (h82["name"] != h82_card["submission_name"] or
+        h82["sha256"] != h82_card["raster_sha256"] or
+        h82["note"] != h82_card["note"] or
+        h82["protocol_unique"] is not False or
+        hashlib.sha256(h82_file.read_bytes()).hexdigest() != h82["sha256"]):
+        raise ValueError("H82 manifest/bytes/run-card disagreement")
+    for fname in ("h82_run_card.json", "h82_e1.json", "h82_e2.json", "h82_e3.json"):
+        shutil.copyfile(ROOT / "evidence" / fname, D / "evidence" / fname)
+    shutil.copyfile(ROOT / "registry/preregistration_h82.json", D / "evidence/preregistration_h82.json")
+    shutil.copyfile(ROOT / "research/h82_hypotheses.md", D / "research/h82_hypotheses.md")
     orient_rows = [x for x in lanes["lanes"] if x["lane"].startswith("H79-ORIENT:")]
     if len(orient_rows) != 1 or not orient_card or orient_card["verdict"] != "negative" or orient_card["ok_to_submit"]:
         raise ValueError("H79-ORIENT research lane missing from manifest/card or wrong clearance")
@@ -130,6 +160,23 @@ def main():
     primary = next(x for x in lanes["lanes"] if x.get("primary"))
     # ---------------- status table (every file in the repository)
     def holdout_cell(x):
+        if x["lane"].startswith("H82R:"):
+            h = jload("evidence/h82rank_run_card.json")["holdout_dti"]
+            return (f'<span class="chip bad">HOLDOUT-DTI {h["dti"]:.6f} '
+                    f'(95% CI {h["ci95"][0]:.6f}–{h["ci95"][1]:.6f}; '
+                    f'{e(h["evaluator_version"])}; {h["withheld_positive_pixels"]:,} withheld); '
+                    'NO</span>')
+        if x["lane"].startswith("H82:"):
+            h = h82_card["holdout_dti"]
+            return (f'<span class="chip bad">HOLDOUT-DTI {h["dti"]:.6f} '
+                    f'(95% CI {h["ci95"][0]:.6f}–{h["ci95"][1]:.6f}; '
+                    f'{e(h["evaluator_version"])}; {h["withheld_positive_pixels"]:,} withheld); '
+                    'NO</span>')
+        if x["lane"].startswith("H81:"):
+            h = jload("evidence/h81_run_card.json")["holdout_dti"]
+            return (f'<span class="chip warn">HOLDOUT-DTI {h["value"]:.5f} '
+                    f'(95% CI {h["ci95"][0]:.5f}–{h["ci95"][1]:.5f}; '
+                    f'{e(h["evaluator_version"])}; {h["withheld_positive_pixels"]:,} withheld positives); NO</span>')
         if x["lane"].startswith("H77L:"):
             h = lag_card["holdout_dti"]
             return (f'<span class="chip warn">HOLDOUT-DTI {h["dti"]:.4f} '
@@ -195,6 +242,43 @@ def main():
              f'<th>Unique, literal rule (binding)</th><th>Unique, informative reading (diagnostic)</th>'
              f'<th>Beat the champion construction on the holdout?</th><th>Selector</th>'
              f'<th>Can I submit it?</th></tr>{rows}</table><p class="small muted">{e(lanes["note"])}</p>')
+    h82_score = h82_card["holdout_dti"]
+    h82_banner = (f'<section class="card dl research"><h2>⬇ New H82 research GeoTIFF — DOWNLOAD FOR INSPECTION ONLY</h2>'
+        f'<p class="verdict"><b>OK TO DOWNLOAD: YES.</b> <b>OK TO SUBMIT: NO.</b> '
+        f'Format preflight PASS (all finite, [0,1], sample grid), but H82 has only '
+        f'<b>HOLDOUT-DTI {h82_score["dti"]:.6f}</b> (gems57-pooled-hide-v2; '
+        f'{h82_score["withheld_positive_pixels"]:,} withheld positives; 95% CI '
+        f'{h82_score["ci95"][0]:.6f}–{h82_score["ci95"][1]:.6f}) and 1.0 forward '
+        f'3-pixel overlap with a SHA-pinned continuous prior. Scientific/uniqueness gates FAIL; '
+        f'no organizer receipt and zero weekly slots used.</p>'
+        f'<a class="btn" download href="{e(h82["file"])}">Download H82 .tif — INSPECTION ONLY</a> '
+        f'<a class="btn alt" download href="{e(h82["zip"])}">One-TIFF ZIP</a> '
+        f'<a href="h82-executive-summary.html">H82 executive summary / submission guide</a>'
+        f'<p class="small">SHA-256 <code>{e(h82["sha256"])}</code>. '
+        f'This is byte-distinct from checked H33, but NOT unique under the required overlap gate.</p></section>')
+    # Independent radiometric H82 (now post-run alias H82R) is a second negative
+    # method. Preserve both archived cards; never conflate the two holdouts.
+    rank_card = jload("evidence/h82rank_run_card.json")
+    rank_rows = [x for x in lanes["lanes"] if x["lane"].startswith("H82R:")]
+    if len(rank_rows) != 1 or not rank_card or rank_card["verdict"] != "negative" or rank_card["ok_to_submit"] is not False:
+        raise ValueError("H82R research lane missing or incorrectly authorized")
+    rank_row = rank_rows[0]
+    rank_file = D / rank_row["file"]
+    if (not rank_file.is_file() or hashlib.sha256(rank_file.read_bytes()).hexdigest() != rank_card["raster_sha256"]
+            or rank_row["sha256"] != rank_card["raster_sha256"]
+            or rank_row["protocol_unique"] is not False
+            or rank_card["surface_correlation_overlap_vs_registry"]["worst_forward_3px_overlap"] <= .70):
+        raise ValueError("H82R stopped surface / manifest / file disagree")
+    rh = rank_card["holdout_dti"]
+    rank_box = f'''<section class="card dl research"><h2>⬇ Separate H82R radiometric research TIFF — INSPECTION ONLY</h2>
+<p class="verdict"><b>OK TO DOWNLOAD: YES. NOT OK TO SUBMIT.</b> Separate preregistered rank-mixture method,
+post-run aliased H82R after the concurrent cool-outlet H82 merge. Literal surface overlap 1.0: no dots placed.</p>
+<a class="btn" download href="{e(rank_row['file'])}">Download H82R research .tif</a>
+<a class="btn alt" download href="{e(Path(rank_row['file']).with_suffix('.zip').as_posix())}">One-TIFF ZIP</a>
+<p><b>HOLDOUT-DTI {rh['dti']:.5f}</b> (95% CI [{rh['ci95'][0]:.5f}, {rh['ci95'][1]:.5f}];
+{e(rh['evaluator_version'])}; {rh['withheld_positive_pixels']:,} withheld positives), below shuffled control.
+Format PASS, not organizer acceptance. <a href="h82rank.html">H82R sources and stop evidence →</a></p>
+<p class="small">SHA-256 <code>{rank_card['raster_sha256']}</code> · Both H82 lanes negative; no slot used.</p></section>'''
     pz = Path(primary["file"]).with_suffix(".zip").as_posix()
     zip_btn = f'<a class="btn alt" href="{e(pz)}" download>Same file as one-TIFF .zip</a>' if (D / pz).exists() else ""
     size_kb = (D / primary["file"]).stat().st_size / 1024
@@ -205,7 +289,12 @@ representation-policy contradiction, not proof that every geological hypothesis 
 applied; the protocol owner must change the shared policy before any raster can pass. Format validation alone does not
 authorize an upload; the separate weekly-slot selector has approved none. The independent
 <a href="data/submission-authorization.json">machine-readable authorization receipt</a> combines all required release
-gates and currently says <b>NOT OK TO SUBMIT — 0 authorized files</b>.</p>"""
+gates and currently says <b>NOT OK TO SUBMIT — 0 authorized files</b>.</p>
+<p><b>Current review: no new TIFF generated.</b> A fresh hash-checked, candidate-independent proof confirms the universal
+blocker before any new experiment. <a href="preflight-review.html">Three-pass review, conditional hypotheses and next steps</a> ·
+<a href="evidence/registry_preflight.json">Reproducible blocker receipt</a> ·
+<a href="evidence/listed_download_audit.json">Independent format readback of every listed primary TIFF</a>.
+These are registry/format measurements, not scores or portal acceptance.</p>"""
     beat_txt = primary.get(
         "beat_02778_summary",
         "No organizer-confirmed evidence of a gain and no clearance for a competition slot.",
@@ -239,7 +328,7 @@ gates and currently says <b>NOT OK TO SUBMIT — 0 authorized files</b>.</p>"""
     o20 = orient_card["holdout"]["seed20"]["scores"]["H79_plus_raw"]
     o30 = orient_card["holdout"]["seed30"]["scores"]["H79_plus_raw"]
     orient_box = f"""<section class="card" style="border:2px solid #b45309;background:#fffbeb;"><h2>⬇ H79-ORIENT: earlier negative lane</h2>
-<p><b>OK TO DOWNLOAD: YES.</b> <b>NOT OK TO SUBMIT.</b> The label-blind orientation/persistence artifact is a distinct research lane. Seed 30 HOLDOUT-DTI is {o30['dti']:.6f} (evaluator {e(o30['evaluator_version'])}; {o30['withheld_positive_pixels']:,} withheld positives; 95% CI [{o30['ci95'][0]:.6f}, {o30['ci95'][1]:.6f}]); Seed 20 HOLDOUT-DTI is {o20['dti']:.6f} (evaluator {e(o20['evaluator_version'])}; {o20['withheld_positive_pixels']:,} withheld positives; 95% CI [{o20['ci95'][0]:.6f}, {o20['ci95'][1]:.6f}]). The retained comparator is 0.152718 HOLDOUT-DTI (evaluator <code>gems57-pooled-hide-v2</code>; 11,321 withheld positives; 95% CI [0.131548, 0.175185]). The registry gate is also fail-closed.</p>
+<p><b>OK TO DOWNLOAD: YES.</b> <b>OK TO SUBMIT: NO.</b> The label-blind orientation/persistence artifact is a distinct research lane, but its primary is HOLDOUT-DTI {o30['dti']:.6f} on seed 30 (95% CI {o30['ci95'][0]:.6f}–{o30['ci95'][1]:.6f}; {o30['withheld_positive_pixels']:,} withheld positives) and {o20['dti']:.6f} on seed 20. The retained incumbent is 0.152718 HOLDOUT-DTI. The registry gate is also fail-closed.</p>
 <a class="btn" href="{e(orient['file'])}" download>Download H79-ORIENT .tif</a> <a class="btn alt" href="{e(orient['zip'])}" download>One-TIFF ZIP</a>
 <div class="chips"><span class="chip ok">Format preflight: PASS</span><span class="chip bad">Holdout: NEGATIVE</span><span class="chip bad">Registry: FAIL</span><span class="chip warn">Slots used: 0</span></div>
 <p class="small">SHA-256 <code>{e(orient['sha256'])}</code> · <a href="h79-orient.html">technical report</a> · <a href="h79-orient-executive-summary.html">H79-ORIENT guide</a> · <a href="evidence/h79_orient_run_card.json">run card</a></p></section>"""
@@ -255,7 +344,8 @@ gates and currently says <b>NOT OK TO SUBMIT — 0 authorized files</b>.</p>"""
 Δ = {d["delta"]:+.4f} (95% CI {d["ci95"][0]:+.4f} to {d["ci95"][1]:+.4f}).</li>
 <li><b>Verdict:</b> <b>{e(card["verdict"].upper())}</b> — {e(card["verdict_reason"])}</li>
 <li><a href="h78.html">Full H78 page: the hypotheses, the three experiments, uniqueness and the run card →</a></li></ul>"""
-    body = f"""<h1>Start here</h1>
+    body = f"""{h82_banner}{rank_box}<h1>Start here</h1>
+<p><strong>Earlier review #49 generated no new TIFF; H82 above is a later negative research download. NOT OK TO SUBMIT.</strong> <a href="review-904a24d3.html">Earlier audit and corrected H33 analysis</a>.</p>
 <p>This repository builds and audits fault-probability GeoTIFFs for the <a href="{COMP}">DOE GEMS Prize</a>
 (DrivenData competition 306). The first box distinguishes downloading a file from permission to upload it. The table
 lists the reviewed research candidates, not every historical archived/NaN-twin file; see <a href="audit.html">archive audit</a>.</p>
@@ -263,7 +353,8 @@ lists the reviewed research candidates, not every historical archived/NaN-twin f
 {dl}
 {orient_box}
 <h2>Reviewed downloadable candidates</h2>{table}
-<div class="values"><b>The target, labelled.</b> On 2026-10-21 the <a href="{LB}">public leaderboard</a> showed
+<div class="values"><b>Historical target snapshot — not freshly verified in the current readiness review.</b>
+An earlier 2026-10-21 review reported that the <a href="{LB}">public leaderboard</a> showed
 <b>0.4413 ORGANIZER-CONFIRMED</b> for first place and <b>0.2778 ORGANIZER-CONFIRMED</b> for participant extradr19
 (at row #48 in this read). Neither public row identifies the underlying raster. The owner's claim that the specific
 <code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</code> file achieved 0.2778 is <b>OWNER-REPORT, not a submission
@@ -283,12 +374,16 @@ not proof that the specific file received that score or that another submission 
 
     # ---------------- general executive summary (how to submit)
     guide = f"""<h1>Executive summary: how to submit — only AFTER approval</h1>
+<p class="verdict"><b>NEW H82 file:</b> <a href="{e(h82['file'])}" download>Download the format-valid TIFF for inspection</a>;
+<b>NOT OK TO SUBMIT</b>. See <a href="h82-executive-summary.html">its test result and exact name/note</a>.
+This is a negative experiment, not a competition submission authorization.</p>
 <p class="verdict"><b>Today: NOT OK TO SUBMIT any file here.</b> The featured H80 file is explicitly
 <b>RESEARCH ONLY</b>. Download is for inspection, not permission to upload. Before spending one of the official
 <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">three weekly feedback slots</a>, the shared uniqueness policy must
 be resolved, a candidate must beat a <em>matched</em> holdout incumbent, and a separate selector must approve it. No
 condition is met merely by passing a format check.</p>
 {glance}
+{rank_box}
 {dl}
 {orient_box}
 <h2>What the DrivenData submission form asks for</h2>
@@ -605,16 +700,27 @@ def h77e_knick_body(rc77e):
         f'<td><code>{item["forward_3px_overlap"]:.5f}</code></td><td><code>{item["memmap_vs_vendor_abs_diff"]:.1e}</code></td></tr>'
         for item in uq["top_15_vendor_verified_matches"]
     )
-    return f"""<h1>H77E-Knick lane: Statewide 10 m 3DEP Knickpoint + TIGER-Deconfounded Step + Up-Dip Seismicity + 4-Scale SLOCO + 816-Raster Capped 300 m Submodular Cover</h1>
-<p class="verdict"><b>Existing research artifact; this review did not generate it.</b> <b>OK to download for inspection: YES</b> (its frozen local validator receipt reports all checks passed: single-band float32, <code>EPSG:32611</code>, <code>3730×3292</code>, values in <code>[0, 1]</code>, and no NaNs). This is not organizer acceptance.<br>
-<b>NOT OK TO SUBMIT.</b> The frozen run card fails the literal Policy I17 gate: a registry snapshot recorded <code>45</code> space-filling heatmaps with 3-px halos covering at least <code>70%</code> of allowed cells (maximum <code>100%</code>). No selector has approved this artifact.<br>
-<b>Informative-subset diagnostic only, not protocol clearance:</b> the archived comparison recorded <code>0</code> firings across <code>816</code> informative rasters (maximum forward 3-px overlap <code>0.66800</code>), but the separate literal scan recorded <code>45</code> firings across <code>861</code> valid rasters. This historical comparison is not a fresh full-registry uniqueness certificate.</p>
-<section class="card dl"><h2>⬇ Existing H77E-Knick research GeoTIFFs — download for inspection only</h2>
+    score20 = s20["scores"]["h77e_portfolio_unique_submodular"]
+    score30 = s30["scores"]["h77e_portfolio_unique_submodular"]
+    if any(x.get("evidence_class") != "HOLDOUT-DTI" for x in (score20, score30)):
+        raise ValueError("H77E lane score does not have HOLDOUT-DTI evidence class")
+    validator = sub["validator_receipt"]
+    if not validator.get("all_checks_passed") or rc77e.get("verdict") != "negative":
+        raise ValueError("H77E page requires passing local format checks and a negative lane verdict")
+    surface = uq["phase1_pre_placement_surface"]
+    informative = uq["phase2_post_placement_final_dots"]["informative_reading_lt_0p70_bg"]
+    literal = uq["phase2_post_placement_final_dots"]["literal_unfiltered_reading_policy_I17"]
+
+    return f"""<h1>H77E-Knick — historical research artifact</h1>
+<p class="verdict"><b>Existing artifact; this review did not generate it.</b> <b>OK TO DOWNLOAD FOR INSPECTION: YES.</b>
+The frozen local validator receipt passed its format checks; this is not organizer acceptance.<br>
+<b>NOT OK TO SUBMIT.</b> The archived literal registry scan recorded <code>{literal["firings_gt_0p70"]}/{literal["rasters_checked"]}</code> overlap firings. The separate informative-subset diagnostic was <code>{informative["firings_gt_0p70"]}/{informative["rasters_checked"]}</code> (maximum <code>{informative["max_forward_3px_overlap"]:.5f}</code>); it does not clear the literal failure. The archived pre-placement maximum absolute Spearman correlation was <code>{surface["max_abs_spearman"]:.4f}</code>. These are historical measurements, not a fresh complete-registry check.</p>
+<section class="card dl"><h2>⬇ Existing H77E-Knick research files — download for inspection only</h2>
 <a class="btn" href="downloads/{e(Path(sub["primary_geotiff"]).name)}" download>Download H77E research .tif ({sub["file_bytes"]//1024} KB)</a>
 <a class="btn alt" href="downloads/{e(Path(sub["primary_zip"]).name)}" download>Same research file as single-TIFF .zip ({sub["zip_bytes"]//1024} KB)</a>
-<a class="btn alt" href="downloads/{e(Path(sub["companion_pure_geotiff"]).name)}" download>Download unconstrained research companion .tif</a>
-{copy("Submission name", sub["submission_name"])}
-{copy("Submission note (<= 140 chars)", sub["submission_note"])}
+<a class="btn alt" href="downloads/{e(Path(sub["companion_pure_geotiff"]).name)}" download>Download pure companion research .tif</a>
+{copy("Submission name (reference only; not approved)", sub["submission_name"])}
+{copy("Submission note (reference only; not approved)", sub["submission_note"])}
 <p class="small">Primary <code>.tif</code> SHA-256: <code>{e(sub["primary_geotiff_sha256"])}</code> · ZIP SHA-256: <code>{e(sub["primary_zip_sha256"])}</code> · Pure companion SHA-256: <code>{e(sub["companion_pure_sha256"])}</code></p>
 </section>
 <h2>Visual overview of dual-seed holdout benchmark, blind Central Nevada fault recovery &amp; 861-raster audit</h2>
@@ -629,7 +735,7 @@ def h77e_knick_body(rc77e):
 <table><tr><th>Comparison</th><th>Paired &Delta; HOLDOUT-DTI</th><th>95% CI</th></tr>{diff_rows}</table>
 <h2>Leakage canary audit (<code>{can["n_features_checked"]}/{can["n_features_checked"]}</code> passed &le; 0.90)</h2>
 <table><tr><th>Top 12 Single-Feature Canaries</th><th>Holdout AUC</th><th>Feature Group</th></tr>{can_rows}</table>
-<h2>Archived registry uniqueness scan: <code>0 / 816</code> informative-subset firings, but <code>45</code> literal firings across <code>861</code> valid rasters</h2>
+<h2>Archived registry audit: <code>{informative["firings_gt_0p70"]}/{informative["rasters_checked"]}</code> informative-subset firings; <code>{literal["firings_gt_0p70"]}/{literal["rasters_checked"]}</code> literal firings</h2>
 <table><tr><th>Closest Informative Raster (&lt;70% 3-px halo)</th><th>Halo Fraction</th><th>Exact Forward 3-px Overlap</th><th>Abs Diff vs Vendor</th></tr>{top_ov_rows}</table>
 """
 
@@ -655,10 +761,10 @@ def _inject_h77e_knick_hero():
     informative = uq["phase2_post_placement_final_dots"]["informative_reading_lt_0p70_bg"]
     literal = uq["phase2_post_placement_final_dots"]["literal_unfiltered_reading_policy_I17"]
     if any(x.get("evidence_class") != "HOLDOUT-DTI" for x in (score20, score30)):
-        raise ValueError("H77E landing-page score does not have HOLDOUT-DTI evidence class")
+        raise ValueError("H77E landing-page scores lack HOLDOUT-DTI evidence class")
     validator = sub["validator_receipt"]
     if not validator.get("all_checks_passed") or rc77e.get("verdict") != "negative":
-        raise ValueError("H77E landing page requires a passing local receipt and a negative lane verdict")
+        raise ValueError("H77E landing page requires passing local format checks and a negative lane verdict")
 
     def holdout_line(seed_name, score):
         lo, hi = score["ci95"]
@@ -670,16 +776,16 @@ def _inject_h77e_knick_hero():
         )
 
     hero = f"""<section class="card dl"><h2>⬇ Existing H77E-Knick research file — download for inspection only</h2>
-<p class="verdict"><b>This is an existing historical artifact; this review did not generate it.</b><br>
-<b>OK to download for inspection: YES.</b> Its frozen local validator receipt reports all checks passed (single-band float32, <code>EPSG:32611</code>, <code>3730×3292</code>, values in <code>[0,1]</code>, no NaNs). This is not organizer acceptance.<br>
-<b>NOT OK TO SUBMIT.</b> The archived registry measurement records <code>{literal["firings_gt_0p70"]}</code> literal overlap firings among <code>{literal["rasters_checked"]}</code> valid rasters, so the protocol-unique flag is false; no selector has approved it. In the narrower diagnostic subset, <code>{informative["firings_gt_0p70"]}/{informative["rasters_checked"]}</code> overlaps fired (maximum <code>{informative["max_forward_3px_overlap"]:.5f}</code> against the <code>0.70</code> limit), but that does not override the literal failure. The archived pre-placement surface check recorded maximum absolute Spearman correlation <code>{surface["max_abs_spearman"]:.4f}</code> against the <code>0.90</code> limit; none of these are fresh registry checks.<br>
+<p class="verdict"><b>Existing historical artifact; this review did not generate it.</b><br>
+<b>OK TO DOWNLOAD FOR INSPECTION: YES.</b> Its frozen local validator receipt reports passing format checks; this is not organizer acceptance.<br>
+<b>NOT OK TO SUBMIT.</b> The archived literal registry scan recorded <code>{literal["firings_gt_0p70"]}/{literal["rasters_checked"]}</code> overlap firings. In the narrower informative-subset diagnostic, <code>{informative["firings_gt_0p70"]}/{informative["rasters_checked"]}</code> fired (maximum forward overlap <code>{informative["max_forward_3px_overlap"]:.5f}</code>); it does not override the literal failure. The archived pre-placement maximum absolute Spearman correlation was <code>{surface["max_abs_spearman"]:.4f}</code>. These are historical measurements, not a fresh complete-registry check.<br>
 {holdout_line("Seed 20", score20)}<br>
 {holdout_line("Seed 30", score30)}<br>
 These are local HOLDOUT-DTI measurements, not organizer-confirmed scores or submission approval.</p>
 <a class="btn" href="downloads/{e(Path(sub["primary_geotiff"]).name)}" download>Download H77E research .tif ({sub["file_bytes"]//1024} KB)</a>
 <a class="btn alt" href="downloads/{e(Path(sub["primary_zip"]).name)}" download>Same research file as single-TIFF .zip ({sub["zip_bytes"]//1024} KB)</a>
 <a class="btn alt" href="h77e-knick.html">Full H77E-Knick report &amp; figures →</a>
-<p class="small">submission name (reference only): <code>{e(sub["submission_name"])}</code> · sha256: <code>{e(sub["primary_geotiff_sha256"])}</code> · note (not approved): <code>{e(sub["submission_note"])}</code></p></section>"""
+<p class="small">Submission name (reference only): <code>{e(sub["submission_name"])}</code> · SHA-256: <code>{e(sub["primary_geotiff_sha256"])}</code> · note (not approved): <code>{e(sub["submission_note"])}</code></p></section>"""
     for pname in ("index.html", "executive-summary.html"):
         ptxt = (D / pname).read_text()
         if "<h1>" in ptxt and "Existing H77E-Knick research file" not in ptxt:
@@ -774,3 +880,6 @@ if __name__ == "__main__":
     _write_h77e_knick()
     _inject_h77e_knick_hero()
     _write_h77g()
+
+    from build_h82_site import build as build_h82_texture
+    build_h82_texture(page)
