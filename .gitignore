@@ -1,6 +1,7 @@
-__pycache__/
-*.pyc
 .venv/
-data/training_features.tif
-/tmp/
-.DS_Store
+.cache/
+__pycache__/
+.pytest_cache/
+*.pyc
+data/*
+!data/README.md

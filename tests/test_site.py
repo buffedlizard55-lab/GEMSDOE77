@@ -1,0 +1,57 @@
+import json
+from html.parser import HTMLParser
+from pathlib import Path
+from urllib.parse import urlparse, unquote
+ROOT=Path(__file__).resolve().parents[1]
+DOC=ROOT/'docs'
+
+class Links(HTMLParser):
+    def __init__(self): super().__init__();self.links=[]
+    def handle_starttag(self,tag,attrs):
+        for k,v in attrs:
+            if k in ('href','src'):self.links.append(v)
+
+
+def test_no_broken_local_html_links():
+    for path in DOC.glob('*.html'):
+        parser=Links();parser.feed(path.read_text())
+        for link in parser.links:
+            u=urlparse(link)
+            if not u.scheme and not u.netloc and u.path:
+                assert (path.parent/unquote(u.path)).exists(),(path,link)
+
+
+def test_unambiguous_download_status_and_accessibility_basics():
+    for path in DOC.glob('*.html'):
+        s=path.read_text()
+        assert 'lang="en"' in s and 'name="viewport"' in s and '<h1>' in s
+        assert 'Not approved' in s or 'not approved' in s
+    for name in ['index.html','executive-summary.html']:
+        s=(DOC/name).read_text()
+        assert 'Not OK to submit' in s and 'download href="downloads/' in s
+        assert 'Do not' in s and 'research TIFF' in s
+
+
+def test_feed_is_not_score_verification():
+    feed=json.loads((DOC/'source-health.json').read_text())
+    assert len(feed['repos'])==78
+    assert feed['checked_utc']
+    assert all(not r.get('authenticated_score_receipt',False) for r in feed['repos'])
+    assert not any(r['score_verified'] for r in feed['official_sources'])
+
+
+def test_all_published_scores_have_version_count_ci():
+    hold=json.loads((ROOT/'evidence/holdout.json').read_text())
+    for r in hold['scores'].values():
+        assert r['evidence_class']=='HOLDOUT-DTI' and r['evaluator_version']
+        assert r['withheld_positive_pixels']>0 and len(r['ci95'])==2
+        assert 0<=r['ci95'][0]<=r['dti']<=r['ci95'][1]<=1
+
+
+def test_original_prompt_preserved_and_postrun_caveat_visible():
+    assert (ROOT/'README.md').read_text().endswith((DOC/'PROJECT_PROMPT.md').read_text())
+    for name in ['index.html','research.html']:
+        s=(DOC/name).read_text()
+        assert 'confound' in s and ('not valid for promotion' in s or 'not valid promotion' in s)
+    card=json.loads((ROOT/'evidence/run_card.json').read_text())
+    assert not card['holdout_valid_for_promotion']

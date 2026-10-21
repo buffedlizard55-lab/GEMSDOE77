@@ -37,4 +37,3 @@ def test_validator_nan_twin():
         assert (a[foot]>=0).all() and (a[foot]<=1).all()
         # outside nan (at least mostly)
         assert np.isnan(a[~foot]).all() or (a[~foot]==0).all()
-

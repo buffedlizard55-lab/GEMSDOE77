@@ -56,4 +56,3 @@ All links official & verified, no hallucinations. This page is the knowledge bas
 ## Irregularities flagged
 
 See registry/submission_build.json and sibling irregularities registers (35 flagged in GEMSDOE32) — we keep the audit trail and fix one defect per repo (e.g., catalogue masking bug fixed here).
-

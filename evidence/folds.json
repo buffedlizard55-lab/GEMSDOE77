@@ -1,0 +1,62 @@
+{
+  "split": "label-blind-quadrants-v2",
+  "folds": [
+    {
+      "fold": 0,
+      "split_version": "label-blind-quadrants-v2",
+      "evaluation_region_label_blind": true,
+      "truth_px": 28786,
+      "evaluation_px": 2404137,
+      "training_domain_px": 2413850,
+      "held_components": 1797,
+      "shared_train_truth_components": 0,
+      "buffer_px": 80,
+      "nearest_training_to_region_px": 80.00624975587844,
+      "held_pixels_without_feature_support": 273,
+      "held_positive_pixels_outside_this_evaluation_region": 244
+    },
+    {
+      "fold": 1,
+      "split_version": "label-blind-quadrants-v2",
+      "evaluation_region_label_blind": true,
+      "truth_px": 12103,
+      "evaluation_px": 1314387,
+      "training_domain_px": 3544400,
+      "held_components": 663,
+      "shared_train_truth_components": 0,
+      "buffer_px": 80,
+      "nearest_training_to_region_px": 80.00624975587844,
+      "held_pixels_without_feature_support": 289,
+      "held_positive_pixels_outside_this_evaluation_region": 82
+    },
+    {
+      "fold": 2,
+      "split_version": "label-blind-quadrants-v2",
+      "evaluation_region_label_blind": true,
+      "truth_px": 8493,
+      "evaluation_px": 538988,
+      "training_domain_px": 4268639,
+      "held_components": 349,
+      "shared_train_truth_components": 0,
+      "buffer_px": 80,
+      "nearest_training_to_region_px": 80.00624975587844,
+      "held_pixels_without_feature_support": 537,
+      "held_positive_pixels_outside_this_evaluation_region": 483
+    },
+    {
+      "fold": 3,
+      "split_version": "label-blind-quadrants-v2",
+      "evaluation_region_label_blind": true,
+      "truth_px": 9349,
+      "evaluation_px": 763155,
+      "training_domain_px": 4146277,
+      "held_components": 318,
+      "shared_train_truth_components": 0,
+      "buffer_px": 80,
+      "nearest_training_to_region_px": 80.00624975587844,
+      "held_pixels_without_feature_support": 202,
+      "held_positive_pixels_outside_this_evaluation_region": 306
+    }
+  ],
+  "catalogue_features": "none; buffered train masks not used for label-free transforms"
+}

@@ -31,4 +31,3 @@ def test_metric_identity():
     T, S, M, K = 1000, 40000, 8000, 50000
     dti = T / (0.2*(T+S-M) + 0.8*K)
     assert 0 < dti < 1
-

@@ -1,181 +1,21 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>GEMSDOE77 — Dilational Intersection &amp; Clay-Cap Breach for DOE GEMS Prize</title>
-<link rel="stylesheet" href="assets/site.css">
-</head>
-<body>
-<header class="top"><div class="wrap">
-<h1>GEMSDOE77</h1>
-<nav>
-<a href="index.html" class="active">Home</a>
-<a href="executive-summary.html">Make a submission</a>
-<a href="hypotheses.html">Hypotheses</a>
-<a href="sources.html">Sources</a>
-<a href="knowledge/01_geothermal-vents.html">Knowledge</a>
-</nav>
-<div class="dlbtn"><a class="btn" href="downloads/gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-zeros.tif">⬇ Download the submission GeoTIFF</a> <a class="btn alt" href="downloads/gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-zeros.zip">.zip</a></div>
-</div></header>
-
-<div class="values">
-<b>Core Values.</b> <b>Maximize P(Win)</b> — every weekly submission slot is an experiment, not a lottery ticket. <b>Own the Outcome</b> — every claim here carries an evidence class, and a negative holdout is published, not hidden.
-</div>
-
-<main class="wrap">
-
-<div class="card" style="border-left:4px solid #2ecc71">
-<h2 style="margin-top:0;border:none;padding:0">⬇ ONE-CLICK SUBMISSION FILE — Portal-Ready ✅</h2>
-<p class="mut">This file <b>will be accepted</b> by the DrivenData portal. It has been re-read from the bytes on disk and passes all 12 validator checks below. No manual fixing needed.</p>
-<div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:12px 0">
-<a class="btn" style="background:#2ecc71;color:#0a0e14;padding:12px 20px;border-radius:8px;font-weight:800;text-decoration:none" href="downloads/gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-zeros.tif">⬇ Download gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-zeros.tif (137 KB)</a>
-<a class="btn alt" href="downloads/gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-zeros.zip">.zip (single GeoTIFF inside, 93 KB)</a>
-</div>
-<table>
-<tr><th>File</th><td><code>gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-zeros.tif</code></td></tr>
-<tr><th>Unique submission name</th><td><code>GEMSDOE77-H77C-CLAYCAP-BREACH</code> — paste into DrivenData “Note (optional)” field's name is <code>GEMSDOE77-H77C-CLAYCAP-BREACH</code></td></tr>
-<tr><th>Note (104/200 chars)</th><td><code>GEMSDOE77 H77-C claycap_breach | 44090 dots, 0 on catalogue, holdout 0.020+/-0.014, 0.020 greedy vs thin</code></td></tr>
-<tr><th>Also available</th><td><a href="downloads/gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-nan.tif">NaN-outside twin</a> (identical values inside footprint, NaN outside — competition's historic format) · <a href="downloads/gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-audit.json">audit JSON</a></td></tr>
-<tr><th>Format</th><td>single-band <b>float32</b> GeoTIFF · <b>EPSG:32611</b> · 100 m · 3730×3292 · <b>every cell finite</b> · no nodata tag · <b>values in [0,1]</b></td></tr>
-<tr><th>Content</th><td><b>44,090 predicted pixels</b> · 0 on published catalogue (2 px buffer) · footprint fraction 0.008532</td></tr>
-<tr><th>Validator</th><td><span class="badge ok">12/12 PASS — portal will ACCEPT</span> — see receipt below</td></tr>
-<tr><th>sha256</th><td><code>0f86bf205eff2522fad4253d88dbd62220d06408deafb25a9672cc2e7ea0acab</code></td></tr>
-<tr><th>Bytes</th><td>139,412</td></tr>
-</table>
-<p class="mut">If you previously saw <code>"Predicted values must be in range [0,1]"</code> — that was caused by a float32 sentinel <code>-3.4028235e+38</code> or a <code>nodata=NaN</code> sentinel leaking outside range. This file has <b>zero</b> sentinel cells, <b>zero</b> NaN inside the footprint, and <code>nodata=None</code> with outside = 0.0, so every one of 12,279,160 cells satisfies <code>0 ≤ v ≤ 1</code>. Re-read receipt is below.</p>
-</div>
-
-<div class="card" style="border-left:4px solid #f39c12">
-<h3 style="margin-top:0">⚠️ Executive Summary — Is it OK to download and submit?</h3>
-<p><b>YES — it is OK to download and submit this file.</b> The file is a <b>unique, portal-ready, single-band float32 GeoTIFF</b> on the exact competition grid (EPSG:32611, 100 m, 3292×3730, transform <code>[100,0,243350,0,-100,4508550]</code>). It has passed the <b>12-point validator</b> by re-reading the written bytes: every value finite, every value in [0,1], 0 on-catalogue, no NaN. The portal error you saw before is fixed by this file.</p>
-<p><b>But will it beat the leaderboard?</b> Our <b>HOLDOUT-DTI</b> (evaluator v1, 4 quadrants, 30 px buffer, off-catalogue truth) is <b>0.0196 ±0.0142</b> vs random <b>0.0184</b> — a <b>negative result (no meaningful gain)</b>. This means the current clay-cap field is not meaningfully better than random on the catalogue proxy, and likely <b>will not beat 0.2778/0.3195 on the hidden test</b>. We publish it anyway because <b>negative results are deliverables</b> and the file is still a valid, unique lane (correlation 0.001 vs registry, overlap 18.7% &lt; thresholds). <b>Do not spend a weekly slot expecting a leaderboard gain from this file alone</b> — see Hypotheses for the next viable path (radiometric Th/K via free GeoDAWN data, DOI 10.5066/P93LGLVQ).</p>
-<p class="mut">Full run card, evidence class labels, and leakage canary are below. No ORGANIZER-CONFIRMED score exists for this file.</p>
-</div>
-
-<h2>Validator receipt (re-read from written bytes)</h2>
-<table>
-<tr><th>Check</th><th>Result</th><th>Detail</th></tr>
-<tr><td>single_band</td><td><span class="badge ok">PASS</span></td><td>count == 1</td></tr>
-<tr><td>dtype_float32</td><td><span class="badge ok">PASS</span></td><td>float32</td></tr>
-<tr><td>dimensions_3730x3292</td><td><span class="badge ok">PASS</span></td><td>3730×3292 matches template</td></tr>
-<tr><td>crs_epsg_32611</td><td><span class="badge ok">PASS</span></td><td>EPSG:32611 UTM 11N</td></tr>
-<tr><td>in_footprint_all_finite</td><td><span class="badge ok">PASS</span></td><td>5,167,373 finite inside footprint</td></tr>
-<tr><td>in_footprint_zero_nan</td><td><span class="badge ok">PASS</span></td><td>0 NaN inside</td></tr>
-<tr><td>in_footprint_zero_inf</td><td><span class="badge ok">PASS</span></td><td>0 Inf inside</td></tr>
-<tr><td>in_footprint_zero_sentinel</td><td><span class="badge ok">PASS</span></td><td>0 cells with &lt;-1e30 sentinel</td></tr>
-<tr><td>in_footprint_range_0_1</td><td><span class="badge ok">PASS</span></td><td>min 0.0, max 1.0, all in [0,1]</td></tr>
-<tr><td>outside_footprint_compliant</td><td><span class="badge ok">PASS</span></td><td>all outside == 0.0 (zeros variant) / NaN (nan twin)</td></tr>
-<tr><td>zero_on_catalogue_leakage</td><td><span class="badge ok">PASS</span></td><td>0 dots on published Qfaults/INGENIOUS catalogue (2 px =200m buffer)</td></tr>
-<tr><td>validator_range_0_1_guaranteed</td><td><span class="badge ok">PASS</span></td><td>all 12,279,160 cells finite and in [0,1] — portal ACCEPTs</td></tr>
-</table>
-<p class="mut">Independent re-read via <code>src/gems77/submission.py::audit_geotiff</code> and <code>scripts/generate_submission.py</code> 12-point audit. Full JSON: <a href="downloads/gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-audit.json">audit JSON</a>. Also see <a href="downloads/gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-nan.tif">nan twin</a> (outside=NaN, nodata=NaN, same inside values — competition's historic format).</p>
-
-<h2>Why the portal error happened — and how we fixed it</h2>
-<p>DrivenData rejects a submission whose values fall outside <code>[0,1]</code>, and it also rejects a raster whose <b>nodata tag</b> is a large negative sentinel such as <code>-3.4028234663852886e+38</code>, because that sentinel is not a value in <code>[0,1]</code>. Two mechanisms produced the same message:</p>
-<ul>
-<li><b>Mechanism 1 — float32 sentinel:</b> <code>training_features.tif</code> uses <code>-3.4028234663852886e+38</code> as nodata: 7,113,308 cells, 3,061 inside footprint if written through unchanged.</li>
-<li><b>Mechanism 2 — NaN sentinel:</b> a raster with <code>nodata=NaN</code> and NaN outside footprint is legal per spec but one validator change away from the same rejection.</li>
-</ul>
-<p><b>Fix verified by re-reading written bytes:</b> every GeoTIFF offered here is single-band float32, EPSG:32611, 100 m, 3730×3292, every cell finite, min 0.0 max 1.0, zero NaN, no nodata tag (zeros variant) or nodata=NaN with NaN outside (nan twin). Each ships a <code>-audit.json</code> receipt from re-opening the file.</p>
-
-<h2>Run card (one JSON, all numbers labeled)</h2>
-<pre>{
-  "hypothesis": "H77-C claycap_breach: Conductivity gradient ridge coincident with magnetic low (demagnetized alteration clay cap breach)",
-  "mechanism": "Triple intersection — positive dilatation gates basement step ridge and gravity ridge with strike alignment; dilational relay ramps offset basement without surface scarp, invisible to catalogue.",
-  "non_fault_mimicker": "Glacial terraces and paleo-shorelines produce basement-step anomalies without fault; they are dilatationally quiescent and misaligned, gated out by dilatation positivity and alignment, but pediment scarps could still mimic.",
-  "holdout_DTI": {
-    "mean": 0.0196,
-    "ci95_half_width": 0.0142,
-    "ci95_interval": [0.0055, 0.0338],
-    "n_withheld_positives": 57407,
-    "n_folds": 4,
-    "label": "HOLDOUT-DTI (evaluator v1, 4 quadrants 30px buffer, DTI alpha0.2 beta0.8 R=300m, catalogue truth proxy)"
-  },
-  "live_projection": "PROJECTION — never written as score; no ORGANIZER-CONFIRMED score exists",
-  "correlation_overlap_vs_registry": {
-    "correlation": 0.001,
-    "overlap_3px": 0.187,
-    "thresholds": {"correlation": 0.9, "overlap": 0.7},
-    "verdict": "PASS — unique lane"
-  },
-  "raster": {
-    "filename_zeros": "gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-zeros.tif",
-    "sha256_zeros": "0f86bf205eff2522fad4253d88dbd62220d06408deafb25a9672cc2e7ea0acab",
-    "shape": [3730, 3292],
-    "dtype": "float32",
-    "crs": "EPSG:32611",
-    "emitted_positive_pixels": 44090,
-    "on_catalogue": 0
-  },
-  "validator_output": {
-    "no_NaN_inside_footprint": true,
-    "values_in_0_1": true,
-    "crs_shape_transform_match": true,
-    "all_checks_passed": true
-  },
-  "submission": {
-    "name": "GEMSDOE77-H77C-CLAYCAP-BREACH",
-    "note_140_chars": "GEMSDOE77 H77-C claycap_breach | 44090 dots, 0 on catalogue, holdout 0.020+/-0.014, 0.020 greedy vs thin",
-    "portal_ready": true,
-    "verdict_download_ok": "YES — portal will ACCEPT"
-  },
-  "verdict": "negative",
-  "budget": "1/3 experiments used, <2h",
-  "lane": "H77-C claycap_breach (cond_surf + mag_anom) — Conductivity ridge × magnetic low"
-}</pre>
-<p class="mut">Verdict <b>negative</b> means this candidate did not beat the holdout threshold and is not promoted as a leaderboard-beating submission. The file is still a valid, unique, portal-acceptable artifact (negative results are deliverables per lane protocol). Full machine-readable bundle: <a href="downloads/gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-audit.json">audit JSON</a> and <a href="../registry/submission_build.json">registry/submission_build.json</a>.</p>
-
-<h2>Holdout — does the emission rule beat the incumbent?</h2>
-<p>Four spatially-blocked quadrants; detector never sees withheld block; every geometry re-emitted at same pixel count (8000) so contrast cannot be won by emitting more mass. Detector is geophysics-only (no catalogue-derived features), visible faults masked pixel-exactly via 30 px buffer. Metric: pooled DTI α=0.2 β=0.8, 300 m triangular kernel.</p>
-<table>
-<tr><th>Fold (truth px)</th><th>Greedy H77-C</th><th>Thin (incumbent-like)</th><th>Random</th></tr>
-<tr><td>NW (28,112)</td><td>0.0237</td><td>0.0142</td><td>0.0186</td></tr>
-<tr><td>NE (12,033)</td><td>0.0032</td><td>0.0002</td><td>0.0179</td></tr>
-<tr><td>SW (8,445)</td><td>0.0373</td><td>0.0201</td><td>0.0188</td></tr>
-<tr><td>SE (8,817)</td><td>0.0144</td><td>0.0025</td><td>0.0184</td></tr>
-<tr><td><b>Mean</b></td><td><b>0.0196</b></td><td>0.0093</td><td>0.0184</td></tr>
-</table>
-<p><b>Leakage canary:</b> each feature alone AUC 0.500–0.551, all below 0.90 — no leakage flag.</p>
-<p><b>Promotion rule:</b> mean paired contrast >0 on ≥3/4 folds and mean_greedy &gt; baseline 0.05. Here Δ greedy−thin = +0.0103 on 4/4 folds (pass), but mean_greedy 0.0196 &lt; 0.05 and barely above random (0.0184) — <b>negative, not promoted</b>.</p>
-<p class="mut">Proxy truth is visible catalogue, so it cannot reward genuinely new fault (IR-32-PROXY-01). Live mirror would require identification-pack three-slot experiment.</p>
-
-<h2>Hypotheses — ranked by measured holdout (not argument)</h2>
-<table>
-<tr><th>#</th><th>Hypothesis</th><th>Layers (official band names)</th><th>Holdout mean_greedy</th><th>Cost</th><th>Why it catches a missing fault</th><th>Differs from prior</th><th>Status</th></tr>
-<tr><td>1</td><td><b>H77-C clay-cap breach</b></td><td>cond_surf (17) + mag_anom (1)</td><td>0.0196</td><td>low</td><td>Clay cap = subsurface alteration, invisible to field mapping; breach = permeability window without scarp, geothermal</td><td>H32c used MT resistivity inversion; this uses airborne cond_surf gradient × mag low directly, no MT model</td><td>negative (winner, still weak)</td></tr>
-<tr><td>2</td><td>H77-E seismic relay</td><td>deq (10) + ieq (16) + grav_hg (18) + depth_to_base (15)</td><td>0.0179</td><td>low</td><td>Catalogue maps discrete segments; relay ramps are soft-linked gaps with distributed strain, unmapped</td><td>Prior discarded n100a15 as autocorrelated 0.9935 at 3km; this gates relay gaps, not fault-scale detector</td><td>negative</td></tr>
-<tr><td>3</td><td>H77-A dilational intersection</td><td>geod_dilaterate (8) + depth_to_base (15) + iso_grav_hg (18) + tmi_hg (3) orient</td><td>0.0163</td><td>low-medium</td><td>Blind relay ramps offset basement + gravity but no scarp; dilatational = active, geothermal</td><td>No prior used dilatation positivity × dual-ridge × alignment as multiplicative gate (H62-3 used shear raw, H61a basement alone)</td><td>negative</td></tr>
-<tr><td>4</td><td>H77-B blind saddle</td><td>det_elev (12) + det_elev_slope (19)</td><td>0.0132</td><td>low</td><td>Blind faults make subtle drainage saddles with no scarp; mapped faults require step</td><td>H62-4 used LoG curvature ridge; this uses Hessian saddle (λ1&gt;0, λ2&lt;0) + low-slope gating</td><td>negative</td></tr>
-<tr><td>5</td><td>H77-D radiometric alteration</td><td>K,Th,U GeoDAWN external (DOI 10.5066/P93LGLVQ) + tmi (14)</td><td>— not measured</td><td>medium</td><td>Alteration halos extend 100s m beyond fault, K-depletion marks paleo-flow</td><td>r11f used bulk K concordance; this uses Th/K ratio chemistry along lineaments</td><td><b>Blocked: needs free external rad grids — obtainable (ScienceBase item 657e1d85d34e23d3533209f7, ~26 MB)</b></td></tr>
-</table>
-<p class="mut">External data for H77-D: USGS GeoDAWN radiometric K/Th/U/TC grids (DOI 10.5066/P93LGLVQ, ScienceBase item 657e1d85d34e23d3533209f7). Free, official, verified reachable (HTTP 200 in CI). Not fetched in this sandbox due to egress to sciencebase.gov only via CI. Next experiment should integrate this.</p>
-
-<h2>Parallel-run lane check</h2>
-<p>Our raster's rank-correlation with any registry raster <b>0.001</b> (threshold 0.90) and max overlap within 3 px <b>18.7%</b> (threshold 70%) — <b>PASS, unique lane</b>. Checked on surface before placement AND on final dots against 10+ registry rasters including <a href="https://buffedlizard55-lab.github.io/GEMSDOE32/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif">H33-2-B2 (0.2778)</a> and <a href="https://buffedlizard55-lab.github.io/GEMSDOE25/">H25 dotted H19-5 (0.2600)</a>. Method: Pearson on footprint for correlation (proxy for Spearman rank) and Euclidean distance transform for 3 px overlap. Logs in <code>registry/submission_build.json</code>.</p>
-
-<h2>Leaderboard — current high scores (verified 2026-10-04)</h2>
-<table>
-<tr><th>Site</th><th>File (hash prefix)</th><th>Score</th><th>Our gap</th></tr>
-<tr><td>GEMSDOE32</td><td>h33-h33-2-b2-zeros (c55bafc4…)</td><td>0.2778 (group internal best)</td><td>our holdout 0.0196 → negative, not yet beating</td></tr>
-<tr><td>DrivenData #306 public</td><td>nchuzhoy</td><td>0.3262</td><td>requires +25% credit density vs our field; needs better detector + two-round objective</td></tr>
-<tr><td>DrivenData</td><td>DARD</td><td>0.3195</td><td>current public #2 at snapshot</td></tr>
-<tr><td>GEMSDOE group best owner-claim</td><td>dotted-h19-5-d2-8 (91eae1ca…)</td><td>0.2600 (owner-claim, not organizer-confirmed for that hash)</td><td>our holdout barely beats random, not yet beating this baseline</td></tr>
-</table>
-<p class="mut">Why did dotted H19-5 score highest in group? Metric is a budget: Thinning a thick surface while keeping geometry removes mass already covered, raises credit per emitted pixel to break-even <code>k &gt; α·s</code> (0.052 at 0.26). To beat public #1 need +25% mean credit per pixel at constant mass — requires new detector, not just thinner packing. Our H77 lane is a step toward that detector.</p>
-
-<h2>What still needs to be done (limitations)</h2>
-<ul>
-<li><b>Data placement is solved:</b> training_features.tif (19 bands), labels.tif, sample_submission.tif are pinned (sha256 4371c82e…, 7ba308cc…, 2176d08e…) and present in <code>data/</code>.</li>
-<li><b>Stronger detector:</b> our hand-crafted ridges are weak (0.0196 vs random 0.0184, vs prior GB CV 0.1250). Next experiment should train a cross-validated gradient-boosted field (like GEMSDOE32 Candidate A) on 35 derived channels, then emit with greedy_maxcov — expected to reach 0.12+ holdout and beat incumbent.</li>
-<li><b>External radiometric:</b> H77-D (Th/K ratio) is viable, free, official (DOI 10.5066/P93LGLVQ) — fetch via <code>scripts/fetch_geodawn_rad.sh</code> in CI (not in sandbox).</li>
-<li><b>Identification pack:</b> to calibrate live projection, run three-slot experiment (S1 anchor bit-identical to 0.2600, S2 halved values, S3 null-add 2000 px far from faults) — see GEMSDOE32 docs/research/identification_pack.</li>
-<li><b>Do not spend weekly slot on H77-C alone</b> — it is negative. Next slot should be GB-field + claycap ensemble.</li>
-</ul>
-
-</main>
-<footer><div class="wrap">
-Site generated 2026-10-21 from <code>registry/submission_build.json</code> by <code>scripts/build_site.py</code>. Claim vs measurement: HOLDOUT-DTI labeled, no ORGANIZER-CONFIRMED score claimed for this file. <a href="https://github.com/buffedlizard55-lab/GEMSDOE77">Repository</a> · <a href="registry/submission_build.json">feed.json</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE77/issues">report irregularity</a>
-</div></footer>
-</body>
-</html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Overview · GEMS / 77</title><meta name="description" content="Auditable fault-detection research. Download the locally validated research GeoTIFF. Not approved for competition submission.">
+<link rel="stylesheet" href="assets/site.css"><script defer src="assets/site.js"></script></head><body>
+<header><div class="header"><a class="brand" href="index.html">GEMS / 77 <span>Structural discovery lab</span></a><nav aria-label="Main"><a href="index.html" aria-current="page">Overview</a><a href="executive-summary.html">Submission guide</a><a href="research.html">Research</a><a href="sources.html">Source feed</a><a href="audit.html">Audit trail</a></nav></div></header>
+<main><div class="eyebrow">DOE GEMS research · H77 · 21 October 2026</div><h1>Find structure.<br>Keep the evidence honest.</h1>
+<p class="intro">A reproducible, independently generated fault-detection pilot. Download its GeoTIFF below—and see exactly why it is <strong>not approved for submission</strong>.</p>
+<div class="hero-grid"><div class="panel download-panel"><span class="badge negative">Not OK to submit</span>
+<h2>A new TIFF. A clear stop.</h2><p>Generated from cached radiometric features—not a copied submission. Local format checks pass, but the literal uniqueness gate fails.</p>
+<div class="buttons"><a class="button" download href="downloads/gems77-h77-urank-curvature-0d868dc271bb-research.tif">↓ Download research TIFF</a><a class="button secondary" download href="downloads/gems77-h77-urank-curvature-0d868dc271bb-research.zip">Single-TIFF ZIP</a></div>
+<p class="fine">18.5 MB · float32 · single band · values in [0, 1]<br>Safe to download for inspection. <strong>Do not upload to the competition.</strong></p>
+<div class="file-label">SHA-256 / actual TIFF bytes</div><div class="hash">9489af2b7e1b06a249203d3c9d6dfe4ed469647f59ebe3a5ffe9c50c67e46b42</div>
+<p class="fine"><a href="downloads/gems77-h77-urank-curvature-0d868dc271bb-research.json">Writer receipt</a> · <a href="evidence/run_card.json">JSON run card</a> · <a href="executive-summary.html">Submission instructions</a></p></div><div class="panel"><span class="eyebrow">Experiment 01 / stopped</span><h2>Selective-U curvature</h2><p>Subtract the K/Th common mode from U rank-intensity, then emphasize narrow, directional curvature. A test of concealed structure—not a claimed geothermal-vent discovery.</p>
+<img class="preview" src="assets/surface.png" alt="Downsampled H77 radiometric curvature surface over the irregular study-area footprint">
+<p class="fine">Research surface, not calibrated probabilities. Brighter = higher response. Image uses pixel coordinates, not a basemap.</p></div></div>
+<div class="metrics"><div class="metric"><span>HOLDOUT-DTI</span><strong>0.06804</strong><small>95% CI 0.06223–0.07415</small></div>
+<div class="metric"><span>Hidden positive pixels</span><strong>58,731</strong><small>gems57-pooled-hide-v2 · pooled four-fold</small></div>
+<div class="metric"><span>Real submission slots used</span><strong>0</strong><small>Weekly cap not observed. Selector approval required.</small></div></div>
+<div class="notice"><strong>Negative result, useful evidence.</strong> The paired gain over the strongest ablation is not statistically clear. A post-run audit also found potential diagonal nodata-stencil contact; the historical holdout result is confounded and not valid for promotion. A dense registry surface also forces 100% forward overlap under the literal shared rule. We stopped before dot placement; a new filename is not uniqueness clearance.</div>
+<div class="two"><section><h2>What was verified</h2><ul><li>Shared evaluator and writer copied byte-for-byte from a pinned template.</li><li>Whole-component hide/recover, buffered spatial folds and per-feature canaries.</li><li>Actual TIFF readback: no NaN/Inf, bounded values, matching CRS, shape and transform.</li><li>ZIP contains exactly the same single TIFF.</li></ul></section>
+<section><h2>What remains unverified</h2><ul><li>No authenticated organizer receipt or current leaderboard.</li><li>Mirror integrity is not proof of official input origin.</li><li>Full-family novelty and the current weekly cap are not established.</li><li>Official portal, PDF and science-host access is restricted here.</li></ul></section></div>
+<p class="fine"><strong>Concurrent artifact notice:</strong> inherited H77C files are preserved but also NOT approved. Their earlier registry PASS was not measured clearance; the shared recheck rejects the artifact. <a href="evidence/inherited_h77c_review.json">Inherited-artifact review</a>.</p><div class="buttons"><a class="button secondary" href="research.html">Read the scientific assessment →</a><a class="button secondary" href="sources.html">Explore the source feed →</a></div></main><footer><span>Evidence before optimism. Maximize P(Win) · Own the Outcome.</span><span>Research, not a resource assessment. <a href="PROJECT_PROMPT.md">Standing request</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE77">Repository</a></span></footer></body></html>
