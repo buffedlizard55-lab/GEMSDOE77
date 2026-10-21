@@ -115,7 +115,7 @@ def test_home_pages_put_download_and_per_file_status_first():
     """docs/index.html is the repository-wide entry page (scripts/build_home.py), not one lane's view."""
     lanes=json.loads((DOC/'data/lanes.json').read_text())['lanes']
     home=(DOC/'index.html').read_text()
-    head=home[:home.index('Every file in this repository')]
+    head=home[:home.index('Reviewed downloadable candidates')]
     assert 'Download .tif' in head and 'Can I submit it?' in head and 'Will it beat 0.2778?' in head
     assert 'Not OK to submit' in head and 'OK to download' in head
     assert 'Can I submit it?</b> Yes' not in home and 'Can I upload it?</b> Yes' not in home
@@ -124,8 +124,43 @@ def test_home_pages_put_download_and_per_file_status_first():
         assert Path(x['file']).name in home
         assert (DOC/x['page']).exists(), x['page']
     guide=(DOC/'executive-summary.html').read_text()
-    assert 'single GeoTIFF' in guide and 'Note' in guide and 'EPSG:32611' in guide and '[0, 1]' in guide
+    assert 'single-band float32 GeoTIFF' in guide and 'Note' in guide and 'EPSG:32611' in guide and '[0, 1]' in guide
     assert 'Not OK to submit' in guide
     prim=[x for x in lanes if x.get('primary')]
     assert len(prim)==1 and prim[0]['format_valid'] and prim[0]['protocol_unique'] is False
     assert prim[0]['name'] in home and prim[0]['note'] in home and len(prim[0]['note'])<=140
+
+
+def test_new_research_raster_is_visible_but_never_called_a_submittable_entry():
+    import hashlib
+    card=json.loads((ROOT/'evidence/h77l_run_card.json').read_text())
+    lane=next(x for x in json.loads((DOC/'data/lanes.json').read_text())['lanes']
+              if x['lane'].startswith('H77L:'))
+    tif=ROOT/card['raster_path']
+    home=(DOC/'index.html').read_text()
+    guide=(DOC/'executive-summary.html').read_text()
+    detail=(DOC/'h77l.html').read_text()
+    assert tif.is_file() and tif.stat().st_size>1000
+    assert hashlib.sha256(tif.read_bytes()).hexdigest()==card['raster_sha256']==lane['sha256']
+    assert lane['primary'] and lane['protocol_unique'] is False and lane['verdict']=='negative'
+    assert card['validator']['all_checks_passed'] and not card['ok_to_submit']
+    assert card['registry']['surface_max_forward_overlap_3px']>0.70
+    assert card['registry']['final_dot_placement_audit'].startswith('NOT RUN')
+    assert card['holdout_dti']['withheld_positive_pixels']>0
+    assert card['holdout_dti']['evaluator_version']=='gems57-pooled-hide-v2'
+    assert len(card['holdout_dti']['ci95'])==2
+    assert card['leakage_canary']['flagged'] is False
+    assert card['leakage_canary']['highest_auc']<card['leakage_canary']['threshold_auc']==0.90
+    assert card['organizer_confirmed_score_for_this_tif'] is None and card['weekly_slots_spent']==0
+    assert card['note_length']==len(card['submission_note'])<=140
+    assert tif.name in home and tif.name in detail and 'RESEARCH ONLY' in guide
+    assert 'NOT OK TO SUBMIT' in home and 'NOT OK TO SUBMIT' in detail
+    assert '0.0 or 1.0' not in home[:home.index('Reviewed downloadable candidates')]
+    assert 'row #48' in home and 'OWNER-REPORT' in home
+    assert (DOC/'evidence/h77l_run_card.json').is_file()
+    assert 'independent re-read audit' in detail and 'three-pass review' in detail
+    assert '68.4%' in detail and '11 other local TIFFs' in detail
+    audit=json.loads((DOC/'evidence/h77l_independent_audit.json').read_text())
+    assert audit['all_checks_passed'] and audit['checks']['pixel_distinct_from_all_local_prior_tifs']
+    assert audit['stats']['local_prior_tifs_checked']>=11
+    assert 'Unknown. H77L' in home and 'Will it beat 0.2778?</b> No' not in home

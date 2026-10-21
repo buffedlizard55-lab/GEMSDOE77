@@ -6,6 +6,7 @@ header a{color:#cfe0ff;text-decoration:none;font-weight:500}header a.here{color:
 h1{font-size:1.65rem;margin:.2em 0 .4em}h2{font-size:1.25rem;margin:1.8em 0 .5em;border-bottom:1px solid var(--line);padding-bottom:.25em}h3{font-size:1.05rem;margin:1.3em 0 .4em}
 .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin:14px 0}
 .dl{border:2px solid var(--ok);background:var(--okbg)}.dl h2{border:0;margin:.1em 0 .4em}
+.dl.research{border-color:var(--warn);background:var(--warnbg)}.dl.research .btn{background:#654800;color:#fff!important}.dl.research .btn.alt{background:#fff;color:#654800!important;border-color:#654800}
 .btn{display:inline-block;background:var(--ok);color:#fff!important;padding:11px 18px;border-radius:8px;font-weight:700;text-decoration:none;margin:4px 8px 4px 0}
 .btn.alt{background:#fff;color:var(--ok)!important;border:1px solid var(--ok)}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.chip{padding:4px 10px;border-radius:999px;font-size:.88rem;font-weight:600;border:1px solid}

@@ -1,5 +1,7 @@
 # Irregularities and next-session handoff
 
+> Historical lane ledger. Its early I08/“Access and capability boundaries” text reflects an earlier session: on 2026-10-21 official competition/USGS/GDR/NLR **public pages were independently read via the web fetch tool** (not sandbox `bash`). Organizer-only training downloads, the private entry receipts, and authenticated portal submissions remain unavailable. [Current H77L three-pass review](review-2026-10-21-h77l.md) supersedes the old next-session guidance; do not rewrite old run cards.
+
 | ID | Finding | Action / consequence |
 |---|---|---|
 | I01 | Repository contained only `# GEMSDOE77` at base commit. No previous-session scripts or data existed here. | Built a minimal reproducible pilot; did not assert an inherited ready GPU pipeline. |
@@ -46,3 +48,16 @@
 ## Access and capability boundaries
 
 GitHub authenticated operations work. CPU scientific transforms, local validation and a static Pages deployment are available. No DrivenData session, no organizer receipts, no verified current weekly cap, no private registry, and no unrestricted official-source internet are available. A publication or externally authenticated-data claim needs those sources first. There is no guarantee of leaderboard improvement, physical fault validity or a prize.
+
+## H77L updates — 2026-10-21 (current; earlier rows retained verbatim as history)
+
+| ID | Measured finding | Action / consequence |
+|---|---|---|
+| IR-L-01 | The user's “single method paragraph below” is missing; no assigned H77L lane appears in the current prompt. | Self-declared a new LiDAR–ThK spatial-lag lane; four ranked hypotheses and a frozen first plan were written before the only run. Do not claim an assigned method. |
+| IR-L-02 | Public leaderboard shows `extradr19` at #48 with 0.2778, but does not name the file. Old README described H33 as `ORGANIZER-CONFIRMED`/row #47 without a matching receipt. | Corrected README and current site: H33’s file-to-0.2778 claim is **OWNER-REPORT**, the leaderboard value is **ORGANIZER-CONFIRMED for the row only**. Mechanism is plausible, not proven causal. Older historical text/receipts remain for audit, not as current status. |
+| IR-L-03 | Dense witness SHA `ab0a0a62…` has a positive pixel at all 5,106,385 allowed cells. H77L has 100% forward overlap with it both pre-placement and after unchanged-file re-read. | No final dots placed, no promotion, no slot. A low rank correlation or difference from 11 local files cannot waive a literal >0.70 duplicate-stop. Only the shared protocol owner can resolve this universal representation blocker. |
+| IR-L-04 | H77L float32 pixels pass readback `[0,1]`; the earlier range-error upload had unknown cause. The local `validate_submission.py` pointed to a missing grid location, while shared writer was correct. | Fixed the local CLI to read tracked `data/bridge` and added a clean-checkout CLI regression. **Local format PASS ≠ portal acceptance**. Never claim this negative artifact was submitted. |
+| IR-L-05 | The new H77L holdout with 41,732 withheld positives spans a different footprint/label distribution from H77-Step’s 11,321-positive holdout; H77L covers only 68.4% of the mapped-fault pixels. | Display full HOLDOUT-DTI version/positives/CI for both, but **do not rank them by unmatched scores**. Paired comparisons to same-fold controls are diagnostic only. No claimed improvement over incumbent or public 0.2778. |
+| IR-L-06 | Pin-checked `data/raw/external` u8 files come from an owner mirror; LiDAR coverage is incomplete and radiometric quantization saturates the top tail. No organizer-authenticated originals or specific H33 submission receipt. | Disclose provenance, valid support, saturated tail, and missing data. For H77L, 16px eroded square equals 5px LiDAR Gaussian + 1px gradient + 10px tensor stencil under the pinned SciPy semantics; shared template hashes unchanged. |
+| IR-L-07 | During review, GitHub REST API returned 403 rate limit on an extra registry-info query; existing two SHA-pinned witnesses were already restored locally. | Do not assert a new all-registry scan. Keep cached witness/readback receipts and deterministic evidence; GitHub PR work may use GraphQL separately if available, otherwise report the specific API limitation. |
+| IR-L-08 | Official competition page asks for **all** faults while this local preregistration masks visible faults; the user seeks geothermal vents but the challenge scores fault pixels. | Treat masked catalogue hide-and-recover as **a local estimator** only. Do not claim final-round masking or a LiDAR+ThK candidate proves geothermal vents. Resolve task/support choice with organizer/selector before any future slot. |
