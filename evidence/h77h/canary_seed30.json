@@ -1,0 +1,113 @@
+{
+  "n_features_checked": 137,
+  "n_static_checked": 128,
+  "n_mech_checked": 9,
+  "ceiling": 0.9,
+  "passed": true,
+  "violator_count": 0,
+  "violators": [],
+  "max_overall": {
+    "feature": "sloco_relay_x_saddle_scarp",
+    "group": "sloco_mechanics",
+    "auc": 0.809454,
+    "symmetric_auc": 0.809454
+  },
+  "max_static_physics": {
+    "feature": "h77h_scarp_x_gravstep_coupled",
+    "group": "static_physics",
+    "auc": 0.618394,
+    "symmetric_auc": 0.618394
+  },
+  "top_15_features": [
+    {
+      "feature": "sloco_relay_x_saddle_scarp",
+      "group": "sloco_mechanics",
+      "auc": 0.809454,
+      "symmetric_auc": 0.809454
+    },
+    {
+      "feature": "sloco_relay_corridor_2comp",
+      "group": "sloco_mechanics",
+      "auc": 0.809181,
+      "symmetric_auc": 0.809181
+    },
+    {
+      "feature": "sloco_d1_trunc80",
+      "group": "sloco_mechanics",
+      "auc": 0.196421,
+      "symmetric_auc": 0.803579
+    },
+    {
+      "feature": "sloco_d1_log1p",
+      "group": "sloco_mechanics",
+      "auc": 0.196421,
+      "symmetric_auc": 0.803579
+    },
+    {
+      "feature": "sloco_collar_ring_450m",
+      "group": "sloco_mechanics",
+      "auc": 0.802267,
+      "symmetric_auc": 0.802267
+    },
+    {
+      "feature": "sloco_tip_x_demag_grav",
+      "group": "sloco_mechanics",
+      "auc": 0.730204,
+      "symmetric_auc": 0.730204
+    },
+    {
+      "feature": "sloco_pollard_tip_3800m",
+      "group": "sloco_mechanics",
+      "auc": 0.727467,
+      "symmetric_auc": 0.727467
+    },
+    {
+      "feature": "sloco_pollard_tip_1500m",
+      "group": "sloco_mechanics",
+      "auc": 0.704276,
+      "symmetric_auc": 0.704276
+    },
+    {
+      "feature": "sloco_orphan_reg35_strain",
+      "group": "sloco_mechanics",
+      "auc": 0.338916,
+      "symmetric_auc": 0.661084
+    },
+    {
+      "feature": "h77h_scarp_x_gravstep_coupled",
+      "group": "static_physics",
+      "auc": 0.618394,
+      "symmetric_auc": 0.618394
+    },
+    {
+      "feature": "pluvial_shoreline_elev_dist_m",
+      "group": "static_physics",
+      "auc": 0.406173,
+      "symmetric_auc": 0.593827
+    },
+    {
+      "feature": "det_elev_lrm",
+      "group": "static_physics",
+      "auc": 0.409596,
+      "symmetric_auc": 0.590404
+    },
+    {
+      "feature": "lidar_strike_vec_coh_250m",
+      "group": "static_physics",
+      "auc": 0.588999,
+      "symmetric_auc": 0.588999
+    },
+    {
+      "feature": "hwfw_strike_coh",
+      "group": "static_physics",
+      "auc": 0.588479,
+      "symmetric_auc": 0.588479
+    },
+    {
+      "feature": "hwfw_anderson_fav",
+      "group": "static_physics",
+      "auc": 0.585838,
+      "symmetric_auc": 0.585838
+    }
+  ]
+}
