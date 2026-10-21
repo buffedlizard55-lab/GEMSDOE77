@@ -24,7 +24,7 @@ REPO = "https://github.com/buffedlizard55-lab/GEMSDOE77"
 LB = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
 PD = "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
-NAV = [("h83netsib.html", "H83-NETSIB · negative"), ("h83netsib-executive-summary.html", "H83-NETSIB guide"), ("h77vds.html", "H77-VDS · 0.1744 #1"), ("h77vds-executive-summary.html", "H77-VDS guide"), ("review-latest.html", "Latest review"), ("review-arena-00397d44.html", "Arena branch review"), ("metric-review.html", "Corrected H33 analysis"), ("index.html", "Start here"), ("h77hdd.html", "H77H-DD · downdip-bridge"), ("h77hdd-executive-summary.html", "H77H-DD guide"), ("h77vc.html", "H77VC (Vent+ClayCap)"), ("h77vs.html", "H77VS · negative"), ("h77vs-executive-summary.html", "H77VS guide"), ("tsd.html", "H77-TSD · inspection"), ("h77v.html", "H77V (Vent-Advect)"), ("h82-texture.html", "H82-TEXTURE · negative"), ("h82rank.html", "H82R · radiometric negative"), ("preflight-review.html", "Current readiness review"), ("h82-executive-summary.html", "H82 · cool-outlet negative"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
+NAV = [("h77h-meshsafe.html", "H77H-MeshSafe · 0/119 firings"), ("h77h-meshsafe-executive-summary.html", "H77H-MeshSafe guide"), ("h83netsib.html", "H83-NETSIB · negative"), ("h83netsib-executive-summary.html", "H83-NETSIB guide"), ("h77vds.html", "H77-VDS · 0.1744 #1"), ("h77vds-executive-summary.html", "H77-VDS guide"), ("review-latest.html", "Latest review"), ("review-arena-00397d44.html", "Arena branch review"), ("metric-review.html", "Corrected H33 analysis"), ("index.html", "Start here"), ("h77hdd.html", "H77H-DD · downdip-bridge"), ("h77hdd-executive-summary.html", "H77H-DD guide"), ("h77vc.html", "H77VC (Vent+ClayCap)"), ("h77vs.html", "H77VS · negative"), ("h77vs-executive-summary.html", "H77VS guide"), ("tsd.html", "H77-TSD · inspection"), ("h77v.html", "H77V (Vent-Advect)"), ("h82-texture.html", "H82-TEXTURE · negative"), ("h82rank.html", "H82R · radiometric negative"), ("preflight-review.html", "Current readiness review"), ("h82-executive-summary.html", "H82 · cool-outlet negative"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
        ("h77e-knick.html", "H77E-Knick · 0/816 firings"), ("release-review.html", "Release safety review"), ("executive-summary.html", "How to submit"),
        ("h81.html", "H81 · slip-cone"), ("h82.html", "H82 · fault collar"),
        ("h83.html", "H83 · fault collar"),
@@ -1695,6 +1695,174 @@ Across all <code>54</code> informative (&lt;70%-halo) registry rasters, forward 
             p.write_text(txt)
 
 
+def _write_h77h_meshsafe():
+    rc77h = jload("evidence/h77h/run_card.json")
+    if not rc77h:
+        return
+    sub = rc77h["candidate_artifact"]
+    s20 = rc77h["holdout_evaluation"]["seed20"]["scores"]
+    s30 = rc77h["holdout_evaluation"]["seed30"]["scores"]
+    diffs20 = rc77h["holdout_evaluation"]["seed20"]["paired_delta_pure_vs_baselines"]
+    can20 = rc77h["leakage_canary_audit"]["seed20"]
+    can30 = rc77h["leakage_canary_audit"]["seed30"]
+    uq = rc77h["uniqueness_audit"]
+    p1 = uq["phase1_pre_placement_surface"]
+    p2_inf = uq["phase2_post_placement_final_dots"]["informative_reading_lt_0p70_bg"]
+    tif_name = Path(sub["tif_path"]).name
+    zip_name = Path(sub["zip_path"]).name
+
+    arm_order = [
+        ("ablation_base116_without_h77h_channels", "Base116 Mesh-Safe (purging 4 <35 px MT/Seismic mesh channels per IR-H77G-01)"),
+        ("h77h_pure_submodular", "H77H Unconstrained Submodular (128 mesh-safe static + 9 coupled SLOCO)"),
+        ("h77h_portfolio_unique_submodular", "H77H Portfolio-Unique Submodular (0/119 informative firings <= 0.70)"),
+        ("h77h_pure_physics_no_mechanics", "H77H Pure Physics Only (0 catalogue / 0 SLOCO features)"),
+        ("h77h_peak_nms_control", "H77H Greedy Peak-NMS Control (same OOF surface, no Dinkelbach cover)"),
+        ("h33_foldfair", "H33 Champion Construction (fold-fair hide-and-recover baseline)"),
+        ("random_uniform_dots", "Random Uniform Sparse Dots Control"),
+    ]
+    arm_rows = []
+    for key, label in arm_order:
+        a20 = s20.get(key)
+        a30 = s30.get(key)
+        c20 = (
+            f"<b>{a20['dti']:.5f}</b> ({a20['ci95'][0]:.4f}–{a20['ci95'][1]:.4f})"
+            if a20
+            else "<i>Seed 20 ablation only</i>"
+        )
+        c30 = (
+            f"<b>{a30['dti']:.5f}</b> ({a30['ci95'][0]:.4f}–{a30['ci95'][1]:.4f})"
+            if a30
+            else "<i>Seed 20 ablation only</i>"
+        )
+        arm_rows.append(
+            f"<tr><td>{e(label)}<br><span class='small muted'><code>{e(key)}</code></span></td>"
+            f"<td>{c20}</td><td>{c30}</td>"
+            f"<td><code>gems57-pooled-hide-v2</code> (11,321 / 11,342 withheld)</td></tr>"
+        )
+    arm_rows_html = "".join(arm_rows)
+
+    diff_rows_html = "".join(
+        f"<tr><td><code>h77h_pure_submodular vs {e(k)}</code></td><td><b>{v['delta']:+.5f}</b></td>"
+        f"<td><code>[{v['ci95'][0]:+.5f}, {v['ci95'][1]:+.5f}]</code></td></tr>"
+        for k, v in diffs20.items()
+    )
+
+    can30_rows = "".join(
+        f"<tr><td><code>{e(item['feature'])}</code></td><td><code>{item['symmetric_auc']:.4f}</code></td>"
+        f"<td><code>{e(item['group'])}</code></td></tr>"
+        for item in can30["top_15_features"]
+    )
+
+    top_ov_rows = "".join(
+        f"<tr><td><code>{e(item['tag'] + ':' + item['name'][:48])}</code></td><td><code>{item['halo3_bg_frac']:.4f}</code></td>"
+        f"<td><code>{item['forward_3px_overlap']:.5f}</code></td><td><code>{item['memmap_vs_vendor_abs_diff']:.1e}</code></td></tr>"
+        for item in uq["top_15_vendor_verified_matches"]
+    )
+
+    body = f"""<h1>H77H-MeshSafe · Mesh-Deconfounded (σ ≥ 35 px) Hydrothermal Demagnetization Trough × Gravity-Basement Step × 3DEP Scarp/Knickpoint × Coupled SLOCO + 119-Raster Capped 300 m Submodular Cover</h1>
+<p class="verdict"><b>Verdict: NEGATIVE under literal Policy I17 — OK TO DOWNLOAD FOR INSPECTION; NOT OK TO SUBMIT WITHOUT SELECTOR APPROVAL.</b><br>
+1. <b>OK to download locally: YES</b> — Passes <code>15/15</code> <code>vendor/gems57/validate.py</code> checks (<code>float32</code>, <code>3730×3292</code>, <code>EPSG:32611</code>, exact transform, <code>nodata=None</code>, <code>0</code> NaN, <code>0</code> Inf, finite values strictly in <code>[0.0, 1.0]</code>, <code>36,800</code> binary dots inside the data footprint, <code>0</code> on mapped faults).<br>
+2. <b>OK to submit automatically: NO (Not approved)</b> — Under Policy I17, the unfiltered 127-raster audit includes <code>8</code> space-filling rasters (&ge;70% 3-px halo, including <code>dense_witness.tif</code> <code>ab0a0a62</code> covering 100.0% of Nevada). Selector status: <b>not approved</b> (<code>0</code> weekly slots spent).<br>
+3. <b>Informative uniqueness across ALL 119 non-space-filling (&lt;70% halo) portfolio rasters: PASS with ZERO firings</b> — Exact worst forward 3-px overlap = <code>{p2_inf['max_forward_3px_overlap']:.5f} &le; 0.70</code> (<code>0.0e+00</code> discrepancy vs <code>vendor/gems57/uniqueness.py</code>), max |Spearman &rho;| = <code>{p2_inf['max_abs_spearman']:.4f} &le; 0.90</code>, pre-placement surface max |&rho;| = <code>{p1['max_abs_spearman']:.4f} &le; 0.90</code>.<br>
+4. <b>Dual-seed official hide-and-recover benchmark (<code>gems57-pooled-hide-v2</code>):</b> Remediating <code>IR-H77G-01</code> (purging the 4 &lt;35 px MT/seismic mesh-derivative features) lifts <code>Base116</code> to <b>0.15664 HOLDOUT-DTI</b> on Seed 20 (+0.00102 over H77E-Knick). Remediating <code>IR-H77G-03</code> (coupling RTP demagnetization troughs and gravity-basement steps with 3DEP scarps/knickpoints and SLOCO mechanics) lifts unconstrained H77H to <b>0.15371</b> (Seed 20) / <b>0.15460</b> (Seed 30) (+148% over H77G 0.0619 and +59.6% over fold-fair H33 0.0963), and the 119-raster portfolio-unique arm to <b>0.12421</b> (Seed 20) / <b>0.12418</b> (Seed 30).</p>
+<section class="card dl research"><h2>⬇ Download H77H-MeshSafe Inspection-Only GeoTIFF &amp; Single-TIFF ZIP (DO NOT SUBMIT)</h2>
+<a class="btn" href="downloads/{e(tif_name)}" download>Download H77H .tif ({sub['tif_bytes'] // 1024} KB)</a>
+<a class="btn alt" href="downloads/{e(zip_name)}" download>Download One-TIFF .zip ({sub['zip_bytes'] // 1024} KB)</a>
+<div class="chips"><span class="chip ok">OK to download: YES</span>
+<span class="chip ok">Portal format (15/15 checks, [0,1], 0 NaN): PASS</span>
+<span class="chip bad">OK to submit (Policy I17 literal rule): NO</span>
+<span class="chip ok">Unique, informative reading (0/119 firings, max 0.6650): PASS</span>
+<span class="chip ok">Beats fold-fair H33 (+59.6% pure / +29.0% unique): YES</span>
+<span class="chip warn">Selector: not approved (0 weekly slots used)</span></div>
+{copy('Submission name (for reference only — DO NOT UPLOAD)', sub['submission_name'])}
+{copy('Short note <= 140 chars (for reference only — DO NOT UPLOAD)', sub['submission_note'])}
+<p class="small">SHA-256 of .tif: <code>{e(sub['tif_sha256'])}</code> ·
+SHA-256 of .zip: <code>{e(sub['zip_sha256'])}</code> ·
+Decoded float32 SHA-256: <code>{e(sub['decoded_float32_sha256'])}</code> ·
+<a href="evidence/h77h/run_card.json">JSON run card</a> ·
+<a href="evidence/h77h/exp1_seed20_holdout.json">Exp 1 Seed 20 holdout</a> ·
+<a href="evidence/h77h/exp2_seed30_holdout.json">Exp 2 Seed 30 holdout</a> ·
+<a href="evidence/h77h/uniqueness_audit.json">Exp 3 uniqueness audit</a> ·
+<a href="evidence/h77h/canary_seed20.json">Seed 20 canaries</a> ·
+<a href="evidence/h77h/canary_seed30.json">Seed 30 canaries</a> ·
+<a href="evidence/preregistration_h77h_meshsafe.json">preregistration JSON</a> ·
+<a href="research/h77h_meshsafe_hypotheses.md">PhD forensic &amp; hypotheses report</a></p></section>
+
+<h2>Diagnostic figures: Dual-seed holdout benchmark, 119-raster uniqueness audit &amp; blind Central Nevada fault recovery</h2>
+<p><img src="assets/h77h/fig1_h77h_holdout_and_uniqueness.png" alt="H77H dual-seed HOLDOUT-DTI benchmark and 119-raster uniqueness audit" style="max-width:100%;height:auto;border:1px solid #cbd5e1;border-radius:6px"></p>
+<p><img src="assets/h77h/fig2_h77h_nevada_surface_and_zoom.png" alt="H77H cross-fitted Nevada propensity surface and 45x45 km Central Nevada Basin-and-Range blind fault recovery zoom" style="max-width:100%;height:auto;border:1px solid #cbd5e1;border-radius:6px"></p>
+
+<h2>3. Dual-Seed Official Holdout Evaluation (Exp 1 &amp; Exp 2 · <code>gems57-pooled-hide-v2</code>)</h2>
+<table><tr><th>Evaluation Arm</th><th>Seed 20 HOLDOUT-DTI (95% CI)</th><th>Seed 30 HOLDOUT-DTI (95% CI)</th><th>Evaluator &amp; Withheld Positives</th></tr>{arm_rows_html}</table>
+
+<h3>Paired Block-Bootstrap Differences on Seed 20 (<code>2,000</code> Replicates)</h3>
+<table><tr><th>Paired Comparison</th><th>&Delta; HOLDOUT-DTI</th><th>95% Bootstrap CI</th></tr>{diff_rows_html}</table>
+
+<h2>4. Single-Feature Leakage Canary Audit (<code>137 / 137</code> Passed &le; 0.90 Ceiling)</h2>
+<p>Every one of the 137 channels (128 mesh-safe static physics channels + 9 fold-recomputed SLOCO fracture-mechanics channels) was tested individually against the withheld holdout faults before model fitting. All 137 passed the <code>0.90</code> symmetric AUC ceiling on both Seed 20 (max overall <code>{can20['max_overall']['symmetric_auc']:.4f}</code>, max static physics <code>{can20['max_static_physics']['symmetric_auc']:.4f}</code>) and Seed 30 (max overall <code>{can30['max_overall']['symmetric_auc']:.4f}</code>, max static physics <b><code>{can30['max_static_physics']['symmetric_auc']:.4f}</code> for <code>{e(can30['max_static_physics']['feature'])}</code> — #1 static physics feature across all 128 channels</b>):</p>
+<table><tr><th>Top 15 Channels (Seed 30 Holdout)</th><th>Symmetric Holdout AUC</th><th>Feature Group</th></tr>{can30_rows}</table>
+
+<h2>5. Exact 127-Raster Portfolio Uniqueness Audit (Exp 3 · <code>0 / 119</code> Informative Firings)</h2>
+<p>Verified against <code>vendor/gems57/uniqueness.py:dot_overlap</code> with <code>0.0e+00</code> discrepancy across the top 15 closest rasters:</p>
+<table><tr><th>Closest Informative Raster (&lt;70% 3-px halo)</th><th>3-px Halo Fraction</th><th>Exact Forward 3-px Overlap</th><th>Abs Diff vs Vendor</th></tr>{top_ov_rows}</table>
+"""
+
+    exec_body = f"""<h1>H77H-MeshSafe Executive Summary &amp; Submission Guide</h1>
+<p class="verdict"><b>Decision for <code>{e(sub['submission_name'])}</code>: OK TO DOWNLOAD FOR INSPECTION · NOT OK TO SUBMIT WITHOUT SELECTOR APPROVAL.</b><br>
+Format-valid (15/15 validator checks, <code>0</code> NaN, finite <code>float32</code> values in <code>[0, 1]</code>, <code>36,800</code> binary dots) and informative-unique across all <code>119</code> non-space-filling portfolio rasters (<code>0/119</code> firings, max overlap <code>{p2_inf['max_forward_3px_overlap']:.4f} &le; 0.70</code>), beating fold-fair H33 on both spatial holdout seeds (<b>0.15371</b> Seed 20 / <b>0.15460</b> Seed 30 unconstrained; <b>0.12421</b> Seed 20 / <b>0.12418</b> Seed 30 portfolio-unique; <code>Base116</code> mesh-deconfounded ablation <b>0.15664</b>). Under Policy I17, the literal unfiltered registry rule fails closed on 8 space-filling rasters (<code>1.0000</code> on <code>dense_witness.tif</code>). Selector status: <b>not approved</b> (<code>0</code> weekly slots spent).</p>
+<section class="card dl research"><h2>⬇ H77H-MeshSafe Artifact &amp; Metadata</h2>
+<a class="btn" href="downloads/{e(tif_name)}" download>Download .tif ({sub['tif_bytes'] // 1024} KB)</a>
+<a class="btn alt" href="downloads/{e(zip_name)}" download>Download one-TIFF .zip ({sub['zip_bytes'] // 1024} KB)</a>
+{copy('Submission name (reference only — DO NOT SUBMIT)', sub['submission_name'])}
+{copy('Short note <= 140 chars (reference only — DO NOT SUBMIT)', sub['submission_note'])}
+<p class="small">TIFF SHA-256: <code>{e(sub['tif_sha256'])}</code> · ZIP SHA-256: <code>{e(sub['zip_sha256'])}</code> · <a href="h77h-meshsafe.html">Full H77H-MeshSafe report &amp; figures →</a> · <a href="evidence/h77h/run_card.json">JSON run card →</a></p></section>"""
+
+    (D / "h77h-meshsafe.html").write_text(page("h77h-meshsafe.html", "H77H-MeshSafe · 0/119 firings", body))
+    (D / "h77h-meshsafe-executive-summary.html").write_text(page("h77h-meshsafe-executive-summary.html", "H77H-MeshSafe guide", exec_body))
+
+    (D / "evidence" / "h77h").mkdir(parents=True, exist_ok=True)
+    for fname in (
+        "run_card.json",
+        "exp1_seed20_holdout.json",
+        "exp2_seed30_holdout.json",
+        "uniqueness_audit.json",
+        "canary_seed20.json",
+        "canary_seed30.json",
+    ):
+        src = ROOT / "evidence" / "h77h" / fname
+        if src.exists():
+            shutil.copyfile(src, D / "evidence" / "h77h" / fname)
+    if (ROOT / "evidence" / "run_card_h77h_meshsafe.json").exists():
+        shutil.copyfile(ROOT / "evidence" / "run_card_h77h_meshsafe.json", D / "evidence" / "run_card_h77h_meshsafe.json")
+    if (ROOT / "registry" / "preregistration_h77h_meshsafe.json").exists():
+        shutil.copyfile(ROOT / "registry" / "preregistration_h77h_meshsafe.json", D / "evidence" / "preregistration_h77h_meshsafe.json")
+    if (ROOT / "research" / "h77h_meshsafe_hypotheses.md").exists():
+        (D / "research").mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(ROOT / "research" / "h77h_meshsafe_hypotheses.md", D / "research" / "h77h_meshsafe_hypotheses.md")
+
+
+def _inject_h77h_meshsafe_hero():
+    rc77h = jload("evidence/h77h/run_card.json")
+    if not rc77h:
+        return
+    sub = rc77h["candidate_artifact"]
+    tif_name = Path(sub["tif_path"]).name
+    zip_name = Path(sub["zip_path"]).name
+    hero = f"""<section class="card dl"><h2>⬇ Newest Lane H77H-MeshSafe Deliverable (0 / 119 Informative Firings · Dual-Seed Positive Holdout · IR-H77G-01/03 Remediated)</h2>
+<p class="verdict"><b>OK to download: YES</b> (15/15 <code>vendor/gems57/validate.py</code> checks PASS, binary <code>float32</code> strictly in <code>[0, 1]</code>, <code>0</code> NaNs across all <code>12,279,160</code> cells, <code>36,800</code> positive dots).<br>
+<b>Not OK to submit (NOT OK TO SUBMIT automatically — inspection only without human selector Policy I17 sign-off):</b>
+8 space-filling &ge;70%-halo rasters (including <code>dense_witness.tif</code> <code>ab0a0a62</code>) trigger literal overlap; across ALL <code>119</code> &lt;70%-halo portfolio rasters, forward 3-px overlap has <b>0 firings</b> (<code>max = 0.66500 &le; 0.70</code>; pre-placement surface max |&rho;| = <code>0.7471 &le; 0.90</code>).<br>
+<b>Official HOLDOUT-DTI (<code>gems57-pooled-hide-v2</code>):</b> Mesh-safe <code>Base116</code> ablation reaches <code>0.15664</code> on Seed 20 (+0.00102 over H77E-Knick); unconstrained H77H reaches <code>0.15371</code> on Seed 20 / <code>0.15460</code> on Seed 30 (+148% over H77G 0.0619 and +59.6% over fold-fair H33); portfolio-unique H77H reaches <code>0.12421</code> (Seed 20) / <code>0.12418</code> (Seed 30).</p>
+<a class="btn" href="downloads/{e(tif_name)}" download>Download H77H .tif ({sub["tif_bytes"]//1024} KB)</a>
+<a class="btn alt" href="downloads/{e(zip_name)}" download>Single-TIFF .zip ({sub["zip_bytes"]//1024} KB)</a>
+<a class="btn alt" href="h77h-meshsafe.html">Full H77H-MeshSafe report &amp; figures →</a>
+<p class="small">name: <code>{e(sub["submission_name"])}</code> · sha256: <code>{e(sub["tif_sha256"])}</code> · note: <code>{e(sub["submission_note"])}</code></p></section>"""
+    for pname in ("index.html", "executive-summary.html"):
+        ptxt = (D / pname).read_text()
+        ptxt = ptxt.replace("<h1>", hero + "<h1>", 1)
+        (D / pname).write_text(ptxt)
+
+
 if __name__ == "__main__":
     main()
     _write_h77e_knick()
@@ -1713,6 +1881,8 @@ if __name__ == "__main__":
 
     _write_h77h()
     _write_h77hdd()
+    _write_h77h_meshsafe()
+    _inject_h77h_meshsafe_hero()
 
     from build_h83netsib_site import build as build_h83netsib
     build_h83netsib(page)
