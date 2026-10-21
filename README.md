@@ -1,3 +1,9 @@
+> ## New H82 experiment (2026-10-21): download for inspection — **NOT OK TO SUBMIT**
+>
+> [Download the newly generated research GeoTIFF](docs/downloads/gems77-h82-cool-chemconcord-11185dots-20261021-245bb13136-zeros.tif) · [one-TIFF ZIP](docs/downloads/gems77-h82-cool-chemconcord-11185dots-20261021-245bb13136-zeros.zip) · [H82 executive summary and future submission steps](docs/h82-executive-summary.html) · [JSON run card](evidence/h82_run_card.json). It is a **new pixel/byte-distinct candidate, NOT unique under the mandatory registry-overlap rule**. SHA-256 `84b50d05eaba578c398c4c7ab720dbf5a46de29d63f4254eb02a8ba02a4a43df`; 11,185 binary dots; local writer validator PASS: float32 EPSG:32611, 3730×3292, sample transform, no NaN anywhere, range [0,1], zero outside footprint/on mapped faults. **HOLDOUT-DTI 0.012184** (gems57-pooled-hide-v2; 11,321 withheld positives; spatial-block bootstrap 95% CI [0.003700, 0.022844]), below the repository 0.152718 historical local incumbent. Surface max |ρ| 0.04651 vs 2 pinned witnesses; final 3-pixel forward overlap **1.000** vs the SHA-pinned full-footprint witness (duplicate >0.70); full registry unavailable. E1–E3 then STOP, negative. **No selector authorization, no organizer score, no competition slot spent.** Mirrored input is not organizer-authenticated. This is a negative *research deliverable*, not an approved competition submission.
+>
+> Re-read the complete standing user request at the end of this README and [PROMPT.md](PROMPT.md) each session. The release [authorization receipt](docs/data/submission-authorization.json) is binding; individual format PASS receipts never authorize an upload.
+>
 <!-- H77E-KNICK PRIMARY STATUS BANNER -->
 > ## 🚦 IMMEDIATE DOWNLOAD & SUBMISSION STATUS AT A GLANCE (`H77E-Knick` Newest Primary Deliverable)
 >
