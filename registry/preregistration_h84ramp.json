@@ -1,0 +1,106 @@
+{
+  "lane_id": "H84-RAMP",
+  "title": "Deconfounded Two-Host En-Echelon Relay-Ramp & Geodetic-Geophysical Stepover Transfer Corridor (B-LBCO Bitplane Two-Host Relay Frame x Transtensional Geodetic Strain x Potential-Field Basement Bridge)",
+  "preregistered_utc": "2026-10-21T20:00:00Z",
+  "branch": "arena/693062aa-gemsdoe77",
+  "status": "preregistered_before_exp1",
+  "shared_evaluator": {
+    "module": "vendor/gems57/evaluate_holdout.py",
+    "version": "gems57-pooled-hide-v2",
+    "holdout_module": "vendor/gems57/holdout.py",
+    "holdout_protocol": "buffered_component_draw(hide_frac=0.20, buffer_px=3)",
+    "seeds": [20, 30],
+    "withheld_positive_pixels": {
+      "seed_20": 11321,
+      "seed_30": 11342
+    },
+    "alpha": 0.2,
+    "beta": 0.8,
+    "triangular_kernel_radius_m": 300.0,
+    "bootstrap_draws": 2000
+  },
+  "shared_writer_and_validators": {
+    "writer": "vendor/gems57/submission_writer.py",
+    "validator": "vendor/gems57/validate.py",
+    "uniqueness": "vendor/gems57/uniqueness.py",
+    "relay_anatomy": "vendor/gems57/relay_bend_anatomy.py"
+  },
+  "ranked_hypotheses": [
+    {
+      "rank": 1,
+      "id": "H84-1 (H84-RAMP)",
+      "implemented_in_pass_1": true,
+      "name": "Deconfounded Two-Host En-Echelon Relay-Ramp & Geodetic-Geophysical Stepover Transfer Corridor",
+      "layers": [
+        "data/bridge/existing_faults.tif (visible fold subset only in holdout; 60,988 full-catalogue pixels)",
+        "training_features.tif Band 7 (geod_shearrate), Band 8 (geod_dilaterate), Band 4 (geod_2ndinv)",
+        "training_features.tif Band 18 (iso_grav_anom_hg), Band 3 (tmi_hg), Band 15 (depth_to_base_surf), Band 12 (det_elev), Band 19 (det_elev_slope)"
+      ],
+      "physical_signature": "In Walker Lane and Great Basin extensional/transtensional systems (Peacock & Sanderson 1994; Faulds & Varga 1998; Curewitz & Karson 1997; Faulds et al. 2006), displacement between two stepping-over fault segments C1 != C2 is transferred across a tilted relay ramp bounded by synthetic/antithetic breaching cross-faults and tip splays. Using vendor/gems57/relay_bend_anatomy.py (two_host_frame exact bitplane second-host EDT and host_bend_fields spin-2 multi-scale turning) coupled with geodetic transtensional strain (geod_shearrate x |geod_dilaterate|) and across-ramp basement-depth/gravity transfer gradients (|grad(depth_to_base_surf)| x iso_grav_anom_hg), and deconfounded on training positives via 5-bucket Buffered-Component Leave-Bucket-Out (B-LBCO) to eliminate the d1=0 self-collapse tautology (IR-H84-01).",
+      "named_non_fault_mimic": "Coalescing alluvial-fan interfluve sutures (bajada saddles between adjacent range-front canyons) and buried paleochannel or volcanic dike bridges between neighboring bedrock spurs can produce intermediate gravity/magnetic gradients inside a morphological gap between two mapped fault segments without brittle relay breaching.",
+      "how_it_differs_from_repo": "First lane in GEMSDOE77 to execute vendor/gems57/relay_bend_anatomy.py (two_host_frame bitplane two-host geometry and host_bend_fields spin-2 multi-scale turning) and solve the Relay-Stepover Self-Collapse Tautology (IR-H84-01) via 5-bucket B-LBCO deconfounding coupled with geodetic strain and basement-step transfer."
+    },
+    {
+      "rank": 2,
+      "id": "H84-2",
+      "implemented_in_pass_1": false,
+      "name": "Upward-Continuation Vertical Derivative Ratio (Depth-Selective Magnetic/Gravity Spectral Decay Index)",
+      "layers": [
+        "training_features.tif Band 2 (rtp), Band 9 (tmi_vg), Band 13 (iso_grav_anom), Band 11 (iso_grav_anom_vg)"
+      ],
+      "physical_signature": "Ratio of vertical gradient to upward-continued horizontal gradient (TMI_VG / |grad U_dz(RTP)|) isolating shallow-to-intermediate brittle fault offsets (0.2-1.5 km depth) from deep plutonic roots (>4 km) and superficial float noise (<50 m).",
+      "named_non_fault_mimic": "Shallow basaltic lava flow margins and terraced pediment gravel caps.",
+      "how_it_differs_from_repo": "H77G used raw TMI demagnetization troughs; H84-2 uses the spectral depth-decay ratio between vertical gradient and upward-continued RTP."
+    },
+    {
+      "rank": 3,
+      "id": "H84-3",
+      "implemented_in_pass_1": false,
+      "name": "Seismic b-Value & Depth-Stratified Microseismic Swarm Asymmetry Projected Up Dip-Slip Hanging Walls",
+      "layers": [
+        "training_features.tif Band 10 (deq_n100a15), Band 16 (ieq_n100a15), Band 15 (depth_to_base_surf)"
+      ],
+      "physical_signature": "Cross-strike offset between earthquake density (deq_n100a15) and potency/intensity (ieq_n100a15) projected up a 60-degree normal-fault dip plane from brittle-ductile basement depth to the surface trace.",
+      "named_non_fault_mimic": "Geothermal injection/production induced seismicity clusters and volcanic caldera swarm clouds.",
+      "how_it_differs_from_repo": "H77-TSD used isotropic scalar difference z(deq) - z(ieq); H84-3 projects seismic swarm asymmetry up the hanging-wall dip vector to the surface trace."
+    },
+    {
+      "rank": 4,
+      "id": "H84-4",
+      "implemented_in_pass_1": false,
+      "name": "Radiometric Uranium-to-Thorium Redox Mobilization Front (U/Th x MT Conductance Gradient)",
+      "layers": [
+        "external/geodawn_rad_u8.tif (rad_u, rad_th, rad_u_th)",
+        "training_features.tif Band 17 (cond_surf)"
+      ],
+      "physical_signature": "Hexavalent uranium (U6+) is soluble in oxidizing meteoric/geothermal fluids while thorium (Th4+) is immobile in resistate phases; redox fronts along active fluid-conducting faults create sharp cross-strike U/Th step anomalies paired with smectite clay-cap conductance margins (|grad cond_surf|).",
+      "named_non_fault_mimic": "Evaporitic playa uranium concentration and felsic ash-flow tuff outcrops.",
+      "how_it_differs_from_repo": "H79-RH used K/Th illitization halos and H82-TCSTEP used total-count radiometrics; H84-4 targets redox-sensitive U/Th fractionation across MT conductance boundaries."
+    },
+    {
+      "rank": 5,
+      "id": "H84-5",
+      "implemented_in_pass_1": false,
+      "name": "Geomorphic Piedmont Fan-Head Trenching & Drainage-Spacing Spectral Periodicity Deficit",
+      "layers": [
+        "training_features.tif Band 12 (det_elev), Band 19 (det_elev_slope)",
+        "external/lidar_scarp_features_u8.tif"
+      ],
+      "physical_signature": "Active range-front and piedmont normal faults disrupt regular Wallace (1978) / Hovius (1996) along-strike canyon-spacing periodicity and cause fan-head incision waves measurable via local 1-D wavelet variance along range-front contours.",
+      "named_non_fault_mimic": "Lithologic sill resistance steps and Pleistocene pluvial lake highstand wave-cut notches.",
+      "how_it_differs_from_repo": "H77E-Knick used stream chi and k_sn knickpoints; H84-5 measures along-strike drainage spacing regularity breakdown on alluvial fans."
+    }
+  ],
+  "gates_and_budget": {
+    "max_experiments": 3,
+    "max_wallclock_hours": 2.0,
+    "leakage_canary_max_symmetric_auc": 0.90,
+    "surface_spearman_max_abs_rho": 0.90,
+    "final_dots_3px_forward_overlap_max": 0.70,
+    "repository_holdout_incumbent": 0.152718,
+    "dot_budget": 37654,
+    "min_dot_separation_px": 2.8,
+    "catalogue_exclusion_moat_px": 2.0,
+    "promotion_rule": "Fail-closed: promote ONLY if format_valid AND leakage_pass AND surface_spearman_pass AND literal_registry_unique AND beats_holdout_incumbent (0.152718) on both seeds with 95% CI excluding 0 vs matched controls. Under Policy I17, the restored dense witness (.cache/registry/dense_witness.tif, sha256 ab0a0a62...) covers 100% of allowed pixels within 3 px, so literal_registry_unique is False by construction and the lane verdict must be reported as negative / inspection-only."
+  }
+}

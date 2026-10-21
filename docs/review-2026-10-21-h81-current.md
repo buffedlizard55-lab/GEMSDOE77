@@ -48,7 +48,7 @@ These links are anchors from the project brief/prior evidence; **not freshly fet
 - USGS 3DEP: https://www.usgs.gov/3d-elevation-program
 - DOE GDR INGENIOUS submission: https://gdr.openei.org/submissions/1391
 - INGENIOUS project: https://gbcge.org/current-projects/ingenious/
-- H81 preregistration/evidence: [`registry/preregistration_h81.json`](../registry/preregistration_h81.json), [`research/h81_hypotheses.md`](../research/h81_hypotheses.md), [`docs/evidence/h81_data_receipt.json`](evidence/h81_data_receipt.json), [`docs/evidence/h81_run_card.json`](evidence/h81_run_card.json).
+- H81 preregistration/evidence: [`registry/preregistration_h81.json`](registry/preregistration_h81.json), [`research/h81_hypotheses.md`](research/h81_hypotheses.md), [`docs/evidence/h81_data_receipt.json`](evidence/h81_data_receipt.json), [`docs/evidence/h81_run_card.json`](evidence/h81_run_card.json).
 
 ## Recommended next steps
 

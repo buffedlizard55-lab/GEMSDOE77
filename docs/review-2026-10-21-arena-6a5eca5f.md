@@ -68,7 +68,7 @@ After saving this review, I fetched and merged remote `main` at `077f3c1` into t
 - [Official reference solution on GitHub](https://github.com/drivendataorg/gems-prize-reference-solution) (the pinned local source receipt covers a commit and CPU/GPU support, not score verification)
 - [USGS GeoDAWN release](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and) · [USGS ComCat](https://earthquake.usgs.gov/fdsnws/event/1/query) · [USGS Landsat Collection 2](https://www.usgs.gov/landsat-missions/landsat-collection-2)
 - [DOE/NREL GDR 1391](https://gdr.openei.org/submissions/1391) · [NLR competition PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf) · [EPSG:32611](https://epsg.io/32611)
-- Project evidence: [corrected H33 forensics](../research/why-h33-scored-02778.md) · [preflight JSON](../evidence/registry_preflight.json) · [shared template pin](../registry/template_pin.json) · [submission authorization](data/submission-authorization.json)
+- Project evidence: [corrected H33 forensics](research/why-h33-scored-02778.md) · [preflight JSON](evidence/registry_preflight.json) · [shared template pin](registry/template_pin.json) · [submission authorization](data/submission-authorization.json)
 
 Links above are for review; this report does **not** claim fresh retrieval of non-GitHub official sources, organizer authentication, current leaderboard rank, source AOI product availability, or portal acceptance.
 

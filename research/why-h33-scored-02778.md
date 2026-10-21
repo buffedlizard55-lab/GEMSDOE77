@@ -56,4 +56,19 @@ Existing files remain downloadable **for inspection only**. There is no new cand
 
 ## Parallel-session reconciliation
 
-The concurrent readiness review and [904a24d3 review](../docs/review-904a24d3.md) independently found the same marginal-credit error. Their additional tests (`tests/test_h33_reasoning.py`, `tests/test_marginal_dti_review.py`) and candidate-independent [preflight certificate](../evidence/registry_preflight.json) are preserved. Neither review authorizes a candidate.
+The concurrent readiness review and [904a24d3 review](../docs/review-904a24d3.md) independently found the same marginal-credit error. Their additional tests (`tests/test_h33_reasoning.py`, `tests/test_marginal_dti_review.py`) and candidate-independent [preflight certificate](evidence/registry_preflight.json) are preserved. Neither review authorizes a candidate.
+
+## H83 addendum (2026-10-21, branch arena/e8283608-gemsdoe77)
+
+**Byte facts (re-verified from the files; no organizer receipt).**
+- The D2.8 raster (`data/raw/scored/gems24-h25-1-dotted-h19-5-d2-8-…-nan.tif`) has 44,090 dots.
+- H33 (`h33-2-b2`) has 37,654 dots and is an **exact subset** of D2.8.
+- All 6,436 removed dots lie 1.0–2.0 px from the catalogue. The closest kept dot is √5 px away.
+- Distance from the H33 dots to the catalogue, by percentile: p10 4, p25 8.1, p50 19.6, p75 42.4, p90 68.0 px.
+- The owner reports D2.8 = 0.2600 and H33 = 0.2778.
+
+**Conditional inference.** This holds *only if* the 6,436 removed dots earned zero credit. Under that assumption, α = 0.2 / β = 0.8 algebra over the two reported scores gives a hidden-truth size K ≈ 13,200–14,100 px, about 22–23 % of the 60,988-px catalogue. H33 would then cover ≈ 37–40 % of the truth. The derivation is in `research/h83_netsib_hypotheses.md` §0.
+
+If the removed dots did earn credit, K is not identified and this inference fails. If the inference holds, the hidden target looks like a roughly 20 % withheld subset in the catalogue's own mapping style. That matches the repository holdout's `hide_frac = 0.20` and motivated the H83 lane: predict *where a missing strand of a mapped array goes*.
+
+**Result.** H83-NETSIB reached HOLDOUT-DTI 0.1538 (s20, 95 % CI 0.1357–0.1726, 11,321 withheld) and 0.1637 (s30, CI 0.1447–0.1847, 11,342 withheld), evaluator `gems57-pooled-hide-v2`. The incumbent is 0.152718 and the fold-fair H33 comparator 0.096086, both on the same evaluator. H83 beats the incumbent by point estimate only. It is below H77-VDS, a parallel lane merged while H83 ran (0.1608 s20 / 0.1716 s30 at 37,654 dots). The final-dot duplicate rule fired, so the verdict is negative and the file is NOT OK TO SUBMIT (`evidence/h83netsib_run_card.json`). None of these numbers is a leaderboard projection, and whether H83 would beat 0.2778 on the leaderboard is unknown.

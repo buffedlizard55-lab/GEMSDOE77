@@ -1,0 +1,799 @@
+{
+  "evidence_class": "REGISTRY-MEASUREMENT",
+  "unique_valid_rasters_checked": 127,
+  "unreadable_or_off_grid_logged": [],
+  "informative_rasters_checked_lt_0p70_bg": 119,
+  "space_filling_rasters_ge_0p70_bg": 8,
+  "phase1_pre_placement_surface": {
+    "max_abs_spearman": 0.747126,
+    "worst_raster": "archive_registry:06c2e93680efb5106acd46aad60fca571ea33975.tif",
+    "firings_gt_0p90": 0,
+    "pass_le_0p90": true
+  },
+  "phase2_post_placement_final_dots": {
+    "informative_reading_lt_0p70_bg": {
+      "rasters_checked": 119,
+      "max_forward_3px_overlap": 0.665,
+      "worst_raster": "archive_registry:06c2e93680efb5106acd46aad60fca571ea33975.tif",
+      "worst_aliases": [
+        "archive_registry:06c2e93680efb5106acd46aad60fca571ea33975.tif"
+      ],
+      "firings_gt_0p70": 0,
+      "max_abs_spearman": 0.364045,
+      "rho_firings_gt_0p90": 0,
+      "identical_bytes_count": 0,
+      "informative_unique": true
+    },
+    "literal_unfiltered_reading_policy_I17": {
+      "rasters_checked": 127,
+      "max_forward_3px_overlap": 1.0,
+      "worst_raster": "archive_registry:0c42fc03b2c1830b4bbbd09e3a58a7f31c310118.tif",
+      "firings_gt_0p70": 8,
+      "protocol_unique": false,
+      "reason": "Space-filling heatmaps in archive registry (including dense_witness ab0a0a62...) cover >=70% (up to 100.0%) of allowed Nevada cells within 3 px; Policy I17 requires fail-closed human selector review."
+    }
+  },
+  "top_15_vendor_verified_matches": [
+    {
+      "index": 56,
+      "name": "06c2e93680efb5106acd46aad60fca571ea33975.tif",
+      "tag": "archive_registry",
+      "path": "/home/user/GEMSDOE77/.cache/h77e_registry/06c2e93680efb5106acd46aad60fca571ea33975.tif",
+      "sha256": "90fb7dc0fc1f6e7d3dbb20927417c6af7d110ca41167329d792c75c145f75b6a",
+      "aliases": [
+        "archive_registry:06c2e93680efb5106acd46aad60fca571ea33975.tif"
+      ],
+      "their_pos_allow": 1767711,
+      "halo3_bg_frac": 0.401782,
+      "is_space_filling": false,
+      "forward_3px_overlap": 0.665,
+      "surface_spearman_rho": 0.747126,
+      "dots_spearman_rho": 0.073725,
+      "identical_bytes": false,
+      "vendor_exact_forward_3px_overlap": 0.665,
+      "reverse_3px_overlap": 0.319573,
+      "mutual_3px_overlap": 0.319573,
+      "jaccard_dot_sets": 0.013151,
+      "memmap_vs_vendor_abs_diff": 0.0
+    },
+    {
+      "index": 63,
+      "name": "221a40c120365a42e36371e0c89a0a2ca21fe5c4.tif",
+      "tag": "archive_registry",
+      "path": "/home/user/GEMSDOE77/.cache/h77e_registry/221a40c120365a42e36371e0c89a0a2ca21fe5c4.tif",
+      "sha256": "28adc53bcaca11329c807baa5659079c25f225c5908f7874762a034cf70cab05",
+      "aliases": [
+        "archive_registry:221a40c120365a42e36371e0c89a0a2ca21fe5c4.tif"
+      ],
+      "their_pos_allow": 162888,
+      "halo3_bg_frac": 0.543736,
+      "is_space_filling": false,
+      "forward_3px_overlap": 0.665,
+      "surface_spearman_rho": 0.077919,
+      "dots_spearman_rho": 0.006525,
+      "identical_bytes": false,
+      "vendor_exact_forward_3px_overlap": 0.665,
+      "reverse_3px_overlap": 0.227641,
+      "mutual_3px_overlap": 0.227641,
+      "jaccard_dot_sets": 0.008327,
+      "memmap_vs_vendor_abs_diff": 0.0
+    },
+    {
+      "index": 64,
+      "name": "306ee1b1deebc9a0a9f437e501cd0965ee37f25e.tif",
+      "tag": "archive_registry",
+      "path": "/home/user/GEMSDOE77/.cache/h77e_registry/306ee1b1deebc9a0a9f437e501cd0965ee37f25e.tif",
+      "sha256": "0ac095a7ed6c8a142cdd8f686e001dfdec765f9a0e21ee53ddc69ae4cc4cddbf",
+      "aliases": [
+        "archive_registry:306ee1b1deebc9a0a9f437e501cd0965ee37f25e.tif"
+      ],
+      "their_pos_allow": 624025,
+      "halo3_bg_frac": 0.609668,
+      "is_space_filling": false,
+      "forward_3px_overlap": 0.665,
+      "surface_spearman_rho": 0.134834,
+      "dots_spearman_rho": 0.018482,
+      "identical_bytes": false,
+      "vendor_exact_forward_3px_overlap": 0.665,
+      "reverse_3px_overlap": 0.201481,
+      "mutual_3px_overlap": 0.201481,
+      "jaccard_dot_sets": 0.009706,
+      "memmap_vs_vendor_abs_diff": 0.0
+    },
+    {
+      "index": 65,
+      "name": "3e93916f747c6e512467590be42b46a064860d39.tif",
+      "tag": "archive_registry",
+      "path": "/home/user/GEMSDOE77/.cache/h77e_registry/3e93916f747c6e512467590be42b46a064860d39.tif",
+      "sha256": "8624c5a58c681f57a6d26cab0652cfe654bcd46dc8ba68a7d5a4c0feaa29bc89",
+      "aliases": [
+        "archive_registry:3e93916f747c6e512467590be42b46a064860d39.tif",
+        "archive_registry:GEMSDOE67__gemsdoe67-ovtr-ml-cover-tau3p0-20261012-nan.tif"
+      ],
+      "their_pos_allow": 162888,
+      "halo3_bg_frac": 0.543736,
+      "is_space_filling": false,
+      "forward_3px_overlap": 0.665,
+      "surface_spearman_rho": 0.077919,
+      "dots_spearman_rho": 0.006525,
+      "identical_bytes": false,
+      "vendor_exact_forward_3px_overlap": 0.665,
+      "reverse_3px_overlap": 0.227641,
+      "mutual_3px_overlap": 0.227641,
+      "jaccard_dot_sets": 0.008327,
+      "memmap_vs_vendor_abs_diff": 0.0
+    },
+    {
+      "index": 73,
+      "name": "6d69c94d9c59cf518fe9d6d34463444348aa88ad.tif",
+      "tag": "archive_registry",
+      "path": "/home/user/GEMSDOE77/.cache/h77e_registry/6d69c94d9c59cf518fe9d6d34463444348aa88ad.tif",
+      "sha256": "88976dc5b2504838b193d41b718df95eb1e237b870b94a6443dc3bee65e98e06",
+      "aliases": [
+        "archive_registry:6d69c94d9c59cf518fe9d6d34463444348aa88ad.tif"
+      ],
+      "their_pos_allow": 185481,
+      "halo3_bg_frac": 0.675962,
+      "is_space_filling": false,
+      "forward_3px_overlap": 0.665,
+      "surface_spearman_rho": 0.018956,
+      "dots_spearman_rho": 0.002729,
+      "identical_bytes": false,
+      "vendor_exact_forward_3px_overlap": 0.665,
+      "reverse_3px_overlap": 0.178749,
+      "mutual_3px_overlap": 0.178749,
+      "jaccard_dot_sets": 0.004575,
+      "memmap_vs_vendor_abs_diff": 0.0
+    },
+    {
+      "index": 74,
+      "name": "6ef080a1067db86fa70924252fdb777ec4b94b7a.tif",
+      "tag": "archive_registry",
+      "path": "/home/user/GEMSDOE77/.cache/h77e_registry/6ef080a1067db86fa70924252fdb777ec4b94b7a.tif",
+      "sha256": "e050b1ec627e8207c1fe5f7530f015d0cf2feb6bb98c5bce225e5db806afb0e3",
+      "aliases": [
+        "archive_registry:6ef080a1067db86fa70924252fdb777ec4b94b7a.tif"
+      ],
+      "their_pos_allow": 185481,
+      "halo3_bg_frac": 0.675962,
+      "is_space_filling": false,
+      "forward_3px_overlap": 0.665,
+      "surface_spearman_rho": 0.018956,
+      "dots_spearman_rho": 0.002729,
+      "identical_bytes": false,
+      "vendor_exact_forward_3px_overlap": 0.665,
+      "reverse_3px_overlap": 0.178749,
+      "mutual_3px_overlap": 0.178749,
+      "jaccard_dot_sets": 0.004575,
+      "memmap_vs_vendor_abs_diff": 0.0
+    },
+    {
+      "index": 79,
+      "name": "9f9dccae710f3011ec8ab925d06a1357e65cec9b.tif",
+      "tag": "archive_registry",
+      "path": "/home/user/GEMSDOE77/.cache/h77e_registry/9f9dccae710f3011ec8ab925d06a1357e65cec9b.tif",
+      "sha256": "bd1e3d056e83e792aed8c77b3249f833d119320779b94d2eb7c5b65ac5161428",
+      "aliases": [
+        "archive_registry:9f9dccae710f3011ec8ab925d06a1357e65cec9b.tif"
+      ],
+      "their_pos_allow": 283053,
+      "halo3_bg_frac": 0.64134,
+      "is_space_filling": false,
+      "forward_3px_overlap": 0.665,
+      "surface_spearman_rho": 0.103622,
+      "dots_spearman_rho": 0.006676,
+      "identical_bytes": false,
+      "vendor_exact_forward_3px_overlap": 0.665,
+      "reverse_3px_overlap": 0.249915,
+      "mutual_3px_overlap": 0.249915,
+      "jaccard_dot_sets": 0.007777,
+      "memmap_vs_vendor_abs_diff": 0.0
+    },
+    {
+      "index": 96,
+      "name": "d27383bdc316a4e87913445bc9f178663e711334.tif",
+      "tag": "archive_registry",
+      "path": "/home/user/GEMSDOE77/.cache/h77e_registry/d27383bdc316a4e87913445bc9f178663e711334.tif",
+      "sha256": "c9a83c6c8f230ae85b829933a127b65b3832b03b5eaccd8a687ce8bbf1858d5b",
+      "aliases": [
+        "archive_registry:d27383bdc316a4e87913445bc9f178663e711334.tif"
+      ],
+      "their_pos_allow": 924504,
+      "halo3_bg_frac": 0.380849,
+      "is_space_filling": false,
+      "forward_3px_overlap": 0.665,
+      "surface_spearman_rho": 0.350411,
+      "dots_spearman_rho": 0.013235,
+      "identical_bytes": false,
+      "vendor_exact_forward_3px_overlap": 0.665,
+      "reverse_3px_overlap": 0.315393,
+      "mutual_3px_overlap": 0.315393,
+      "jaccard_dot_sets": 0.009096,
+      "memmap_vs_vendor_abs_diff": 0.0
+    },
+    {
+      "index": 100,
+      "name": "f11a0f27760003208c8a1df16b49a969a8f427ec.tif",
+      "tag": "archive_registry",
+      "path": "/home/user/GEMSDOE77/.cache/h77e_registry/f11a0f27760003208c8a1df16b49a969a8f427ec.tif",
+      "sha256": "70c4ccd5dd51c6cbf1c0b8019738885a357dde7be64c17b4fb278a12f073e1e4",
+      "aliases": [
+        "archive_registry:f11a0f27760003208c8a1df16b49a969a8f427ec.tif"
+      ],
+      "their_pos_allow": 283053,
+      "halo3_bg_frac": 0.64134,
+      "is_space_filling": false,
+      "forward_3px_overlap": 0.665,
+      "surface_spearman_rho": 0.103622,
+      "dots_spearman_rho": 0.006676,
+      "identical_bytes": false,
+      "vendor_exact_forward_3px_overlap": 0.665,
+      "reverse_3px_overlap": 0.249915,
+      "mutual_3px_overlap": 0.249915,
+      "jaccard_dot_sets": 0.007777,
+      "memmap_vs_vendor_abs_diff": 0.0
+    },
+    {
+      "index": 111,
+      "name": "gems77-h77e-knick-deconf-submod-36500dots-20261021-101e200b-zeros.tif",
+      "tag": "local_gems77",
+      "path": "/home/user/GEMSDOE77/docs/downloads/gems77-h77e-knick-deconf-submod-36500dots-20261021-101e200b-zeros.tif",
+      "sha256": "db0dd67da44b83bc47f05289c05e2e917118d04b03e4958076f64661b726fb6b",
+      "aliases": [
+        "local_gems77:gems77-h77e-knick-deconf-submod-36500dots-20261021-101e200b-zeros.tif",
+        "local_submissions:gems77-h77e-knick-deconf-submod-zeros.tif"
+      ],
+      "their_pos_allow": 36500,
+      "halo3_bg_frac": 0.16298,
+      "is_space_filling": false,
+      "forward_3px_overlap": 0.665,
+      "surface_spearman_rho": 0.090086,
+      "dots_spearman_rho": 0.34435,
+      "identical_bytes": false,
+      "vendor_exact_forward_3px_overlap": 0.665,
+      "reverse_3px_overlap": 0.692082,
+      "mutual_3px_overlap": 0.665,
+      "jaccard_dot_sets": 0.218721,
+      "memmap_vs_vendor_abs_diff": 0.0
+    },
+    {
+      "index": 112,
+      "name": "gems77-h77e-pure-submod-36500dots-20261021-e106c72c-zeros.tif",
+      "tag": "local_gems77",
+      "path": "/home/user/GEMSDOE77/docs/downloads/gems77-h77e-pure-submod-36500dots-20261021-e106c72c-zeros.tif",
+      "sha256": "abb0cb1349c9745a27156ebd95b435dec6086d38d9be3ec637400001d9fa33a0",
+      "aliases": [
+        "local_gems77:gems77-h77e-pure-submod-36500dots-20261021-e106c72c-zeros.tif"
+      ],
+      "their_pos_allow": 36500,
+      "halo3_bg_frac": 0.1416,
+      "is_space_filling": false,
+      "forward_3px_overlap": 0.665,
+      "surface_spearman_rho": 0.129533,
+      "dots_spearman_rho": 0.364045,
+      "identical_bytes": false,
+      "vendor_exact_forward_3px_overlap": 0.665,
+      "reverse_3px_overlap": 0.832055,
+      "mutual_3px_overlap": 0.665,
+      "jaccard_dot_sets": 0.222115,
+      "memmap_vs_vendor_abs_diff": 0.0
+    },
+    {
+      "index": 68,
+      "name": "509be169fe6253f94bf8b7323398e1b80e972c96.tif",
+      "tag": "archive_registry",
+      "path": "/home/user/GEMSDOE77/.cache/h77e_registry/509be169fe6253f94bf8b7323398e1b80e972c96.tif",
+      "sha256": "d0c5fd6825b544eb08672303c11292eb99d6105e42a41eac0e5a211a3fdc69e5",
+      "aliases": [
+        "archive_registry:509be169fe6253f94bf8b7323398e1b80e972c96.tif"
+      ],
+      "their_pos_allow": 516738,
+      "halo3_bg_frac": 0.531152,
+      "is_space_filling": false,
+      "forward_3px_overlap": 0.663614,
+      "surface_spearman_rho": 0.201212,
+      "dots_spearman_rho": 0.039899,
+      "identical_bytes": false,
+      "vendor_exact_forward_3px_overlap": 0.663614,
+      "reverse_3px_overlap": 0.26868,
+      "mutual_3px_overlap": 0.26868,
+      "jaccard_dot_sets": 0.016324,
+      "memmap_vs_vendor_abs_diff": 0.0
+    },
+    {
+      "index": 58,
+      "name": "0c42fc03b2c1830b4bbbd09e3a58a7f31c310118.tif",
+      "tag": "archive_registry",
+      "path": "/home/user/GEMSDOE77/.cache/h77e_registry/0c42fc03b2c1830b4bbbd09e3a58a7f31c310118.tif",
+      "sha256": "cd0e07fb882927d528a6708044e4f88e63ea21ffa9e6af4b41f045f186a930e0",
+      "aliases": [
+        "archive_registry:0c42fc03b2c1830b4bbbd09e3a58a7f31c310118.tif"
+      ],
+      "their_pos_allow": 5106385,
+      "halo3_bg_frac": 1.0,
+      "is_space_filling": true,
+      "forward_3px_overlap": 1.0,
+      "surface_spearman_rho": 0.19989,
+      "dots_spearman_rho": 0.032476,
+      "identical_bytes": false,
+      "vendor_exact_forward_3px_overlap": 1.0,
+      "reverse_3px_overlap": 0.163596,
+      "mutual_3px_overlap": 0.163596,
+      "jaccard_dot_sets": 0.007122,
+      "memmap_vs_vendor_abs_diff": 0.0
+    },
+    {
+      "index": 59,
+      "name": "1102512580ae652c866e0cf5754afd1531fac952.tif",
+      "tag": "archive_registry",
+      "path": "/home/user/GEMSDOE77/.cache/h77e_registry/1102512580ae652c866e0cf5754afd1531fac952.tif",
+      "sha256": "eb0411b295be3282b119597a0b52a277ea9aff3bd3d5a853b1ca788975b2b879",
+      "aliases": [
+        "archive_registry:1102512580ae652c866e0cf5754afd1531fac952.tif"
+      ],
+      "their_pos_allow": 5106385,
+      "halo3_bg_frac": 1.0,
+      "is_space_filling": true,
+      "forward_3px_overlap": 1.0,
+      "surface_spearman_rho": -0.350317,
+      "dots_spearman_rho": -0.022784,
+      "identical_bytes": false,
+      "vendor_exact_forward_3px_overlap": 1.0,
+      "reverse_3px_overlap": 0.163596,
+      "mutual_3px_overlap": 0.163596,
+      "jaccard_dot_sets": 0.007122,
+      "memmap_vs_vendor_abs_diff": 0.0
+    },
+    {
+      "index": 60,
+      "name": "1cb4f016b4876391236f4960822171a3820a7597.tif",
+      "tag": "archive_registry",
+      "path": "/home/user/GEMSDOE77/.cache/h77e_registry/1cb4f016b4876391236f4960822171a3820a7597.tif",
+      "sha256": "0707aea945e02d2eb601d7d25456bf624261ab583a8d49f9988fed2de04409a4",
+      "aliases": [
+        "archive_registry:1cb4f016b4876391236f4960822171a3820a7597.tif"
+      ],
+      "their_pos_allow": 5106385,
+      "halo3_bg_frac": 1.0,
+      "is_space_filling": true,
+      "forward_3px_overlap": 1.0,
+      "surface_spearman_rho": 0.062273,
+      "dots_spearman_rho": 0.018102,
+      "identical_bytes": false,
+      "vendor_exact_forward_3px_overlap": 1.0,
+      "reverse_3px_overlap": 0.163596,
+      "mutual_3px_overlap": 0.163596,
+      "jaccard_dot_sets": 0.007122,
+      "memmap_vs_vendor_abs_diff": 0.0
+    }
+  ],
+  "top_25_informative_rasters": [
+    {
+      "index": 56,
+      "name": "06c2e93680efb5106acd46aad60fca571ea33975.tif",
+      "tag": "archive_registry",
+      "path": "/home/user/GEMSDOE77/.cache/h77e_registry/06c2e93680efb5106acd46aad60fca571ea33975.tif",
+      "sha256": "90fb7dc0fc1f6e7d3dbb20927417c6af7d110ca41167329d792c75c145f75b6a",
+      "aliases": [
+        "archive_registry:06c2e93680efb5106acd46aad60fca571ea33975.tif"
+      ],
+      "their_pos_allow": 1767711,
+      "halo3_bg_frac": 0.401782,
+      "is_space_filling": false,
+      "forward_3px_overlap": 0.665,
+      "surface_spearman_rho": 0.747126,
+      "dots_spearman_rho": 0.073725,
+      "identical_bytes": false
+    },
+    {
+      "index": 63,
+      "name": "221a40c120365a42e36371e0c89a0a2ca21fe5c4.tif",
+      "tag": "archive_registry",
+      "path": "/home/user/GEMSDOE77/.cache/h77e_registry/221a40c120365a42e36371e0c89a0a2ca21fe5c4.tif",
+      "sha256": "28adc53bcaca11329c807baa5659079c25f225c5908f7874762a034cf70cab05",
+      "aliases": [
+        "archive_registry:221a40c120365a42e36371e0c89a0a2ca21fe5c4.tif"
+      ],
+      "their_pos_allow": 162888,
+      "halo3_bg_frac": 0.543736,
+      "is_space_filling": false,
+      "forward_3px_overlap": 0.665,
+      "surface_spearman_rho": 0.077919,
+      "dots_spearman_rho": 0.006525,
+      "identical_bytes": false
+    },
+    {
+      "index": 64,
+      "name": "306ee1b1deebc9a0a9f437e501cd0965ee37f25e.tif",
+      "tag": "archive_registry",
+      "path": "/home/user/GEMSDOE77/.cache/h77e_registry/306ee1b1deebc9a0a9f437e501cd0965ee37f25e.tif",
+      "sha256": "0ac095a7ed6c8a142cdd8f686e001dfdec765f9a0e21ee53ddc69ae4cc4cddbf",
+      "aliases": [
+        "archive_registry:306ee1b1deebc9a0a9f437e501cd0965ee37f25e.tif"
+      ],
+      "their_pos_allow": 624025,
+      "halo3_bg_frac": 0.609668,
+      "is_space_filling": false,
+      "forward_3px_overlap": 0.665,
+      "surface_spearman_rho": 0.134834,
+      "dots_spearman_rho": 0.018482,
+      "identical_bytes": false
+    },
+    {
+      "index": 65,
+      "name": "3e93916f747c6e512467590be42b46a064860d39.tif",
+      "tag": "archive_registry",
+      "path": "/home/user/GEMSDOE77/.cache/h77e_registry/3e93916f747c6e512467590be42b46a064860d39.tif",
+      "sha256": "8624c5a58c681f57a6d26cab0652cfe654bcd46dc8ba68a7d5a4c0feaa29bc89",
+      "aliases": [
+        "archive_registry:3e93916f747c6e512467590be42b46a064860d39.tif",
+        "archive_registry:GEMSDOE67__gemsdoe67-ovtr-ml-cover-tau3p0-20261012-nan.tif"
+      ],
+      "their_pos_allow": 162888,
+      "halo3_bg_frac": 0.543736,
+      "is_space_filling": false,
+      "forward_3px_overlap": 0.665,
+      "surface_spearman_rho": 0.077919,
+      "dots_spearman_rho": 0.006525,
+      "identical_bytes": false
+    },
+    {
+      "index": 73,
+      "name": "6d69c94d9c59cf518fe9d6d34463444348aa88ad.tif",
+      "tag": "archive_registry",
+      "path": "/home/user/GEMSDOE77/.cache/h77e_registry/6d69c94d9c59cf518fe9d6d34463444348aa88ad.tif",
+      "sha256": "88976dc5b2504838b193d41b718df95eb1e237b870b94a6443dc3bee65e98e06",
+      "aliases": [
+        "archive_registry:6d69c94d9c59cf518fe9d6d34463444348aa88ad.tif"
+      ],
+      "their_pos_allow": 185481,
+      "halo3_bg_frac": 0.675962,
+      "is_space_filling": false,
+      "forward_3px_overlap": 0.665,
+      "surface_spearman_rho": 0.018956,
+      "dots_spearman_rho": 0.002729,
+      "identical_bytes": false
+    },
+    {
+      "index": 74,
+      "name": "6ef080a1067db86fa70924252fdb777ec4b94b7a.tif",
+      "tag": "archive_registry",
+      "path": "/home/user/GEMSDOE77/.cache/h77e_registry/6ef080a1067db86fa70924252fdb777ec4b94b7a.tif",
+      "sha256": "e050b1ec627e8207c1fe5f7530f015d0cf2feb6bb98c5bce225e5db806afb0e3",
+      "aliases": [
+        "archive_registry:6ef080a1067db86fa70924252fdb777ec4b94b7a.tif"
+      ],
+      "their_pos_allow": 185481,
+      "halo3_bg_frac": 0.675962,
+      "is_space_filling": false,
+      "forward_3px_overlap": 0.665,
+      "surface_spearman_rho": 0.018956,
+      "dots_spearman_rho": 0.002729,
+      "identical_bytes": false
+    },
+    {
+      "index": 79,
+      "name": "9f9dccae710f3011ec8ab925d06a1357e65cec9b.tif",
+      "tag": "archive_registry",
+      "path": "/home/user/GEMSDOE77/.cache/h77e_registry/9f9dccae710f3011ec8ab925d06a1357e65cec9b.tif",
+      "sha256": "bd1e3d056e83e792aed8c77b3249f833d119320779b94d2eb7c5b65ac5161428",
+      "aliases": [
+        "archive_registry:9f9dccae710f3011ec8ab925d06a1357e65cec9b.tif"
+      ],
+      "their_pos_allow": 283053,
+      "halo3_bg_frac": 0.64134,
+      "is_space_filling": false,
+      "forward_3px_overlap": 0.665,
+      "surface_spearman_rho": 0.103622,
+      "dots_spearman_rho": 0.006676,
+      "identical_bytes": false
+    },
+    {
+      "index": 96,
+      "name": "d27383bdc316a4e87913445bc9f178663e711334.tif",
+      "tag": "archive_registry",
+      "path": "/home/user/GEMSDOE77/.cache/h77e_registry/d27383bdc316a4e87913445bc9f178663e711334.tif",
+      "sha256": "c9a83c6c8f230ae85b829933a127b65b3832b03b5eaccd8a687ce8bbf1858d5b",
+      "aliases": [
+        "archive_registry:d27383bdc316a4e87913445bc9f178663e711334.tif"
+      ],
+      "their_pos_allow": 924504,
+      "halo3_bg_frac": 0.380849,
+      "is_space_filling": false,
+      "forward_3px_overlap": 0.665,
+      "surface_spearman_rho": 0.350411,
+      "dots_spearman_rho": 0.013235,
+      "identical_bytes": false
+    },
+    {
+      "index": 100,
+      "name": "f11a0f27760003208c8a1df16b49a969a8f427ec.tif",
+      "tag": "archive_registry",
+      "path": "/home/user/GEMSDOE77/.cache/h77e_registry/f11a0f27760003208c8a1df16b49a969a8f427ec.tif",
+      "sha256": "70c4ccd5dd51c6cbf1c0b8019738885a357dde7be64c17b4fb278a12f073e1e4",
+      "aliases": [
+        "archive_registry:f11a0f27760003208c8a1df16b49a969a8f427ec.tif"
+      ],
+      "their_pos_allow": 283053,
+      "halo3_bg_frac": 0.64134,
+      "is_space_filling": false,
+      "forward_3px_overlap": 0.665,
+      "surface_spearman_rho": 0.103622,
+      "dots_spearman_rho": 0.006676,
+      "identical_bytes": false
+    },
+    {
+      "index": 111,
+      "name": "gems77-h77e-knick-deconf-submod-36500dots-20261021-101e200b-zeros.tif",
+      "tag": "local_gems77",
+      "path": "/home/user/GEMSDOE77/docs/downloads/gems77-h77e-knick-deconf-submod-36500dots-20261021-101e200b-zeros.tif",
+      "sha256": "db0dd67da44b83bc47f05289c05e2e917118d04b03e4958076f64661b726fb6b",
+      "aliases": [
+        "local_gems77:gems77-h77e-knick-deconf-submod-36500dots-20261021-101e200b-zeros.tif",
+        "local_submissions:gems77-h77e-knick-deconf-submod-zeros.tif"
+      ],
+      "their_pos_allow": 36500,
+      "halo3_bg_frac": 0.16298,
+      "is_space_filling": false,
+      "forward_3px_overlap": 0.665,
+      "surface_spearman_rho": 0.090086,
+      "dots_spearman_rho": 0.34435,
+      "identical_bytes": false
+    },
+    {
+      "index": 112,
+      "name": "gems77-h77e-pure-submod-36500dots-20261021-e106c72c-zeros.tif",
+      "tag": "local_gems77",
+      "path": "/home/user/GEMSDOE77/docs/downloads/gems77-h77e-pure-submod-36500dots-20261021-e106c72c-zeros.tif",
+      "sha256": "abb0cb1349c9745a27156ebd95b435dec6086d38d9be3ec637400001d9fa33a0",
+      "aliases": [
+        "local_gems77:gems77-h77e-pure-submod-36500dots-20261021-e106c72c-zeros.tif"
+      ],
+      "their_pos_allow": 36500,
+      "halo3_bg_frac": 0.1416,
+      "is_space_filling": false,
+      "forward_3px_overlap": 0.665,
+      "surface_spearman_rho": 0.129533,
+      "dots_spearman_rho": 0.364045,
+      "identical_bytes": false
+    },
+    {
+      "index": 68,
+      "name": "509be169fe6253f94bf8b7323398e1b80e972c96.tif",
+      "tag": "archive_registry",
+      "path": "/home/user/GEMSDOE77/.cache/h77e_registry/509be169fe6253f94bf8b7323398e1b80e972c96.tif",
+      "sha256": "d0c5fd6825b544eb08672303c11292eb99d6105e42a41eac0e5a211a3fdc69e5",
+      "aliases": [
+        "archive_registry:509be169fe6253f94bf8b7323398e1b80e972c96.tif"
+      ],
+      "their_pos_allow": 516738,
+      "halo3_bg_frac": 0.531152,
+      "is_space_filling": false,
+      "forward_3px_overlap": 0.663614,
+      "surface_spearman_rho": 0.201212,
+      "dots_spearman_rho": 0.039899,
+      "identical_bytes": false
+    },
+    {
+      "index": 71,
+      "name": "5ae4b6b4324c19727f8304eb63fc5610ad23b9d9.tif",
+      "tag": "archive_registry",
+      "path": "/home/user/GEMSDOE77/.cache/h77e_registry/5ae4b6b4324c19727f8304eb63fc5610ad23b9d9.tif",
+      "sha256": "789dd56c4287cd50c8d2d5e3f063828a8d25a275d82bd8418a4cf971d908b8a6",
+      "aliases": [
+        "archive_registry:5ae4b6b4324c19727f8304eb63fc5610ad23b9d9.tif"
+      ],
+      "their_pos_allow": 516738,
+      "halo3_bg_frac": 0.531152,
+      "is_space_filling": false,
+      "forward_3px_overlap": 0.663614,
+      "surface_spearman_rho": 0.201212,
+      "dots_spearman_rho": 0.039899,
+      "identical_bytes": false
+    },
+    {
+      "index": 67,
+      "name": "4dd494d3c85b41f082a4949ea0b7037df4098816.tif",
+      "tag": "archive_registry",
+      "path": "/home/user/GEMSDOE77/.cache/h77e_registry/4dd494d3c85b41f082a4949ea0b7037df4098816.tif",
+      "sha256": "ad9750be86acf6b8c253dcd8f1ee6487c2ea8327a582a8c9e6a765d16037d319",
+      "aliases": [
+        "archive_registry:4dd494d3c85b41f082a4949ea0b7037df4098816.tif"
+      ],
+      "their_pos_allow": 180000,
+      "halo3_bg_frac": 0.636451,
+      "is_space_filling": false,
+      "forward_3px_overlap": 0.623478,
+      "surface_spearman_rho": 0.016385,
+      "dots_spearman_rho": 0.000491,
+      "identical_bytes": false
+    },
+    {
+      "index": 78,
+      "name": "93baa81db8295cf7fee042dd2c753465d2d73a3c.tif",
+      "tag": "archive_registry",
+      "path": "/home/user/GEMSDOE77/.cache/h77e_registry/93baa81db8295cf7fee042dd2c753465d2d73a3c.tif",
+      "sha256": "0c7d00e879e7f54e3019de185b252e5faad2983c754c9030273ad333688acb69",
+      "aliases": [
+        "archive_registry:93baa81db8295cf7fee042dd2c753465d2d73a3c.tif"
+      ],
+      "their_pos_allow": 180000,
+      "halo3_bg_frac": 0.636451,
+      "is_space_filling": false,
+      "forward_3px_overlap": 0.623478,
+      "surface_spearman_rho": 0.016385,
+      "dots_spearman_rho": 0.000491,
+      "identical_bytes": false
+    },
+    {
+      "index": 98,
+      "name": "d65e1309cd8f7095a7660169ce19210e8f7e554a.tif",
+      "tag": "archive_registry",
+      "path": "/home/user/GEMSDOE77/.cache/h77e_registry/d65e1309cd8f7095a7660169ce19210e8f7e554a.tif",
+      "sha256": "d4a5de924057eec12c4e4ee9bdb5de361754b7bc9ace8691f86cb1ace51e57e2",
+      "aliases": [
+        "archive_registry:d65e1309cd8f7095a7660169ce19210e8f7e554a.tif"
+      ],
+      "their_pos_allow": 216519,
+      "halo3_bg_frac": 0.279734,
+      "is_space_filling": false,
+      "forward_3px_overlap": 0.605842,
+      "surface_spearman_rho": 0.181775,
+      "dots_spearman_rho": 0.020266,
+      "identical_bytes": false
+    },
+    {
+      "index": 66,
+      "name": "4934bb73380487247f9abc273bbc3bba7f5d83c1.tif",
+      "tag": "archive_registry",
+      "path": "/home/user/GEMSDOE77/.cache/h77e_registry/4934bb73380487247f9abc273bbc3bba7f5d83c1.tif",
+      "sha256": "e5f3684e9b49e8f11019f87e047017c5ab8a46294935bc0c7c80859ca7d2b1ce",
+      "aliases": [
+        "archive_registry:4934bb73380487247f9abc273bbc3bba7f5d83c1.tif"
+      ],
+      "their_pos_allow": 335879,
+      "halo3_bg_frac": 0.409443,
+      "is_space_filling": false,
+      "forward_3px_overlap": 0.601957,
+      "surface_spearman_rho": 0.202124,
+      "dots_spearman_rho": 0.044638,
+      "identical_bytes": false
+    },
+    {
+      "index": 95,
+      "name": "c61719ffe62dd7533c43f2f1f76054efaabeceee.tif",
+      "tag": "archive_registry",
+      "path": "/home/user/GEMSDOE77/.cache/h77e_registry/c61719ffe62dd7533c43f2f1f76054efaabeceee.tif",
+      "sha256": "c36696693639749791286bcd58e48a78ff79d4651b63fc33d273aab8191df0d4",
+      "aliases": [
+        "archive_registry:c61719ffe62dd7533c43f2f1f76054efaabeceee.tif"
+      ],
+      "their_pos_allow": 335879,
+      "halo3_bg_frac": 0.409443,
+      "is_space_filling": false,
+      "forward_3px_overlap": 0.601957,
+      "surface_spearman_rho": 0.202124,
+      "dots_spearman_rho": 0.044638,
+      "identical_bytes": false
+    },
+    {
+      "index": 99,
+      "name": "e6431a1221e320ba4beb62dea71dd3890420e89f.tif",
+      "tag": "archive_registry",
+      "path": "/home/user/GEMSDOE77/.cache/h77e_registry/e6431a1221e320ba4beb62dea71dd3890420e89f.tif",
+      "sha256": "10bf2c4d3885d06116664226705712c3656a7a21364ec8559b4ec8200efd1f5e",
+      "aliases": [
+        "archive_registry:e6431a1221e320ba4beb62dea71dd3890420e89f.tif"
+      ],
+      "their_pos_allow": 191519,
+      "halo3_bg_frac": 0.276724,
+      "is_space_filling": false,
+      "forward_3px_overlap": 0.596875,
+      "surface_spearman_rho": 0.154221,
+      "dots_spearman_rho": 0.016534,
+      "identical_bytes": false
+    },
+    {
+      "index": 94,
+      "name": "a720f827d5db0b77334fae36e00935ca182207ae.tif",
+      "tag": "archive_registry",
+      "path": "/home/user/GEMSDOE77/.cache/h77e_registry/a720f827d5db0b77334fae36e00935ca182207ae.tif",
+      "sha256": "cb755e0b91642a085c74bb70eeeb6d89018287226aea93e02d45e9e779df3341",
+      "aliases": [
+        "archive_registry:a720f827d5db0b77334fae36e00935ca182207ae.tif"
+      ],
+      "their_pos_allow": 176519,
+      "halo3_bg_frac": 0.276565,
+      "is_space_filling": false,
+      "forward_3px_overlap": 0.592989,
+      "surface_spearman_rho": 0.133935,
+      "dots_spearman_rho": 0.020141,
+      "identical_bytes": false
+    },
+    {
+      "index": 57,
+      "name": "0c1b5547e970fee995a953382e94d4f1342444b9.tif",
+      "tag": "archive_registry",
+      "path": "/home/user/GEMSDOE77/.cache/h77e_registry/0c1b5547e970fee995a953382e94d4f1342444b9.tif",
+      "sha256": "7b6010637ae341b56f7d211eaf892b239822b0668d3f5556af0eecb505a228d3",
+      "aliases": [
+        "archive_registry:0c1b5547e970fee995a953382e94d4f1342444b9.tif"
+      ],
+      "their_pos_allow": 339120,
+      "halo3_bg_frac": 0.389062,
+      "is_space_filling": false,
+      "forward_3px_overlap": 0.591984,
+      "surface_spearman_rho": 0.169775,
+      "dots_spearman_rho": 0.011767,
+      "identical_bytes": false
+    },
+    {
+      "index": 72,
+      "name": "68a333a12c59ee5badaf4f6d08897534db91b471.tif",
+      "tag": "archive_registry",
+      "path": "/home/user/GEMSDOE77/.cache/h77e_registry/68a333a12c59ee5badaf4f6d08897534db91b471.tif",
+      "sha256": "542eaf30766ba57b122cc85fb239e407294a282e1259dcceae0c55575ee19f95",
+      "aliases": [
+        "archive_registry:68a333a12c59ee5badaf4f6d08897534db91b471.tif"
+      ],
+      "their_pos_allow": 174899,
+      "halo3_bg_frac": 0.275699,
+      "is_space_filling": false,
+      "forward_3px_overlap": 0.591902,
+      "surface_spearman_rho": 0.132649,
+      "dots_spearman_rho": 0.017045,
+      "identical_bytes": false
+    },
+    {
+      "index": 76,
+      "name": "79e2526186e4c5636dc17ab6754f45a51db2c791.tif",
+      "tag": "archive_registry",
+      "path": "/home/user/GEMSDOE77/.cache/h77e_registry/79e2526186e4c5636dc17ab6754f45a51db2c791.tif",
+      "sha256": "f11c8684b152c2ccefc51c1f725491e31499bbef2091a0284b47cc35d785f93e",
+      "aliases": [
+        "archive_registry:79e2526186e4c5636dc17ab6754f45a51db2c791.tif"
+      ],
+      "their_pos_allow": 176519,
+      "halo3_bg_frac": 0.275463,
+      "is_space_filling": false,
+      "forward_3px_overlap": 0.59144,
+      "surface_spearman_rho": 0.134178,
+      "dots_spearman_rho": 0.016491,
+      "identical_bytes": false
+    },
+    {
+      "index": 101,
+      "name": "fec7d59fa6a5a10e9f45154abef19a6013158714.tif",
+      "tag": "archive_registry",
+      "path": "/home/user/GEMSDOE77/.cache/h77e_registry/fec7d59fa6a5a10e9f45154abef19a6013158714.tif",
+      "sha256": "629800b15ca54906b1bfcbde8811273a47b90d112038b86aea6701460070e1ed",
+      "aliases": [
+        "archive_registry:fec7d59fa6a5a10e9f45154abef19a6013158714.tif"
+      ],
+      "their_pos_allow": 173441,
+      "halo3_bg_frac": 0.276705,
+      "is_space_filling": false,
+      "forward_3px_overlap": 0.590951,
+      "surface_spearman_rho": 0.127505,
+      "dots_spearman_rho": 0.018846,
+      "identical_bytes": false
+    },
+    {
+      "index": 75,
+      "name": "730d3348cc15e084a7f4cba0946405b2a3833c9b.tif",
+      "tag": "archive_registry",
+      "path": "/home/user/GEMSDOE77/.cache/h77e_registry/730d3348cc15e084a7f4cba0946405b2a3833c9b.tif",
+      "sha256": "2b06d45c5b5726be60ed7f953accda58919999a99b442bb87410377e0c4c034a",
+      "aliases": [
+        "archive_registry:730d3348cc15e084a7f4cba0946405b2a3833c9b.tif"
+      ],
+      "their_pos_allow": 514067,
+      "halo3_bg_frac": 0.196509,
+      "is_space_filling": false,
+      "forward_3px_overlap": 0.58981,
+      "surface_spearman_rho": 0.468074,
+      "dots_spearman_rho": 0.079705,
+      "identical_bytes": false
+    }
+  ]
+}

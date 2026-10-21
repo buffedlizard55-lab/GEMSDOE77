@@ -5,7 +5,7 @@ ROOT = Path(__file__).resolve().parents[1]
 NAME = "gems77-h84-orgate-collar-37654dots-20261021-2d0a731a-zeros"
 
 def test_h84_artifact_negative_and_valid():
-    card = json.loads((ROOT/"evidence/h84_run_card.json").read_text())
+    card = json.loads((ROOT/"evidence/h84_orgate_run_card.json").read_text())
     assert card["verdict"] == "negative" and "NOT OK TO SUBMIT" in card["ok_to_submit"]
     assert len(card["submission_note"]) <= 140
     p = ROOT/"docs"/"downloads"/f"{NAME}.tif"

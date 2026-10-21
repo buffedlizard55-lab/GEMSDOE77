@@ -1,0 +1,1012 @@
+{
+  "ceiling": 0.9,
+  "n_features_checked": 140,
+  "n_static_checked": 132,
+  "n_h77v_new_checked": 12,
+  "n_mechanics_checked": 8,
+  "passed": true,
+  "violators": [],
+  "max_overall": {
+    "feature": "sloco_stepover_relay",
+    "group": "sloco_fold_visible_mechanics",
+    "raw_auc": 0.814044,
+    "symmetric_auc": 0.814044,
+    "pass_le_0p90": true
+  },
+  "max_static_physics": {
+    "feature": "lidar_upface_max",
+    "group": "h77_base_physics",
+    "raw_auc": 0.607066,
+    "symmetric_auc": 0.607066,
+    "pass_le_0p90": true
+  },
+  "max_h77v_new_physics": {
+    "feature": "h77v_grav_base_step_concord",
+    "group": "h77v_new_physics",
+    "raw_auc": 0.545416,
+    "symmetric_auc": 0.545416,
+    "pass_le_0p90": true
+  },
+  "rows": [
+    {
+      "feature": "mag_anom",
+      "group": "h77_base_physics",
+      "raw_auc": 0.510883,
+      "symmetric_auc": 0.510883,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "rtp",
+      "group": "h77_base_physics",
+      "raw_auc": 0.520467,
+      "symmetric_auc": 0.520467,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "tmi_hg",
+      "group": "h77_base_physics",
+      "raw_auc": 0.531163,
+      "symmetric_auc": 0.531163,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "geod_2ndinv",
+      "group": "h77_base_physics",
+      "raw_auc": 0.568429,
+      "symmetric_auc": 0.568429,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "iso_grav_anom_slope",
+      "group": "h77_base_physics",
+      "raw_auc": 0.523652,
+      "symmetric_auc": 0.523652,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "tc",
+      "group": "h77_base_physics",
+      "raw_auc": 0.465004,
+      "symmetric_auc": 0.534996,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "geod_shearrate",
+      "group": "h77_base_physics",
+      "raw_auc": 0.56853,
+      "symmetric_auc": 0.56853,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "geod_dilaterate",
+      "group": "h77_base_physics",
+      "raw_auc": 0.516098,
+      "symmetric_auc": 0.516098,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "tmi_vg",
+      "group": "h77_base_physics",
+      "raw_auc": 0.487491,
+      "symmetric_auc": 0.512509,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "deq_n100a15",
+      "group": "h77_base_physics",
+      "raw_auc": 0.539441,
+      "symmetric_auc": 0.539441,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "iso_grav_anom_vg",
+      "group": "h77_base_physics",
+      "raw_auc": 0.516794,
+      "symmetric_auc": 0.516794,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "det_elev",
+      "group": "h77_base_physics",
+      "raw_auc": 0.514601,
+      "symmetric_auc": 0.514601,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "iso_grav_anom",
+      "group": "h77_base_physics",
+      "raw_auc": 0.459258,
+      "symmetric_auc": 0.540742,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "tmi",
+      "group": "h77_base_physics",
+      "raw_auc": 0.510398,
+      "symmetric_auc": 0.510398,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "depth_to_base_surf",
+      "group": "h77_base_physics",
+      "raw_auc": 0.525329,
+      "symmetric_auc": 0.525329,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "ieq_n100a15",
+      "group": "h77_base_physics",
+      "raw_auc": 0.544437,
+      "symmetric_auc": 0.544437,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "cond_surf",
+      "group": "h77_base_physics",
+      "raw_auc": 0.478983,
+      "symmetric_auc": 0.521017,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "iso_grav_anom_hg",
+      "group": "h77_base_physics",
+      "raw_auc": 0.492358,
+      "symmetric_auc": 0.507642,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "det_elev_slope",
+      "group": "h77_base_physics",
+      "raw_auc": 0.569175,
+      "symmetric_auc": 0.569175,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "grav_hg_worm",
+      "group": "h77_base_physics",
+      "raw_auc": 0.461865,
+      "symmetric_auc": 0.538135,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "mag_hg_worm",
+      "group": "h77_base_physics",
+      "raw_auc": 0.497217,
+      "symmetric_auc": 0.502783,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "basement_grad",
+      "group": "h77_base_physics",
+      "raw_auc": 0.540303,
+      "symmetric_auc": 0.540303,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "basement_curv",
+      "group": "h77_base_physics",
+      "raw_auc": 0.480452,
+      "symmetric_auc": 0.519548,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "cond_grad",
+      "group": "h77_base_physics",
+      "raw_auc": 0.520302,
+      "symmetric_auc": 0.520302,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "det_elev_lrm",
+      "group": "h77_base_physics",
+      "raw_auc": 0.420944,
+      "symmetric_auc": 0.579056,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "lidar_has_coverage",
+      "group": "h77_base_physics",
+      "raw_auc": 0.534745,
+      "symmetric_auc": 0.534745,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "lidar_ex_max",
+      "group": "h77_base_physics",
+      "raw_auc": 0.589362,
+      "symmetric_auc": 0.589362,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "lidar_ex_mean",
+      "group": "h77_base_physics",
+      "raw_auc": 0.582863,
+      "symmetric_auc": 0.582863,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "lidar_step_max",
+      "group": "h77_base_physics",
+      "raw_auc": 0.590827,
+      "symmetric_auc": 0.590827,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "lidar_lapneg_max",
+      "group": "h77_base_physics",
+      "raw_auc": 0.593416,
+      "symmetric_auc": 0.593416,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "lidar_lappos_max",
+      "group": "h77_base_physics",
+      "raw_auc": 0.595584,
+      "symmetric_auc": 0.595584,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "lidar_downface_max",
+      "group": "h77_base_physics",
+      "raw_auc": 0.602786,
+      "symmetric_auc": 0.602786,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "lidar_upface_max",
+      "group": "h77_base_physics",
+      "raw_auc": 0.607066,
+      "symmetric_auc": 0.607066,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "lidar_cross_max",
+      "group": "h77_base_physics",
+      "raw_auc": 0.601841,
+      "symmetric_auc": 0.601841,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "lidar_relief",
+      "group": "h77_base_physics",
+      "raw_auc": 0.589873,
+      "symmetric_auc": 0.589873,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "lidar_coh100",
+      "group": "h77_base_physics",
+      "raw_auc": 0.527271,
+      "symmetric_auc": 0.527271,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "lidar_strike",
+      "group": "h77_base_physics",
+      "raw_auc": 0.543513,
+      "symmetric_auc": 0.543513,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "lidar_crest_toe_dipole",
+      "group": "h77_base_physics",
+      "raw_auc": 0.595278,
+      "symmetric_auc": 0.595278,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "lidar_scarp_sharpness",
+      "group": "h77_base_physics",
+      "raw_auc": 0.563142,
+      "symmetric_auc": 0.563142,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "topo10_slope_p90",
+      "group": "h77_base_physics",
+      "raw_auc": 0.573336,
+      "symmetric_auc": 0.573336,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "topo10_slope_max",
+      "group": "h77_base_physics",
+      "raw_auc": 0.57629,
+      "symmetric_auc": 0.57629,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "topo10_steep_frac",
+      "group": "h77_base_physics",
+      "raw_auc": 0.554703,
+      "symmetric_auc": 0.554703,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "topo10_slope_std",
+      "group": "h77_base_physics",
+      "raw_auc": 0.592048,
+      "symmetric_auc": 0.592048,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "topo10_relief_local",
+      "group": "h77_base_physics",
+      "raw_auc": 0.570717,
+      "symmetric_auc": 0.570717,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "topo10_curv_prof_absmax",
+      "group": "h77_base_physics",
+      "raw_auc": 0.588481,
+      "symmetric_auc": 0.588481,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "topo10_aspect_coherence",
+      "group": "h77_base_physics",
+      "raw_auc": 0.491322,
+      "symmetric_auc": 0.508678,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "topo10_hs_lineament",
+      "group": "h77_base_physics",
+      "raw_auc": 0.580265,
+      "symmetric_auc": 0.580265,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "topo10_dem_mean",
+      "group": "h77_base_physics",
+      "raw_auc": 0.53037,
+      "symmetric_auc": 0.53037,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "topo10_hs_dog",
+      "group": "h77_base_physics",
+      "raw_auc": 0.507683,
+      "symmetric_auc": 0.507683,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "topo10_curv_dog",
+      "group": "h77_base_physics",
+      "raw_auc": 0.511212,
+      "symmetric_auc": 0.511212,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "chi_step_max",
+      "group": "h77_base_physics",
+      "raw_auc": 0.511607,
+      "symmetric_auc": 0.511607,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "chi_step_min",
+      "group": "h77_base_physics",
+      "raw_auc": 0.515317,
+      "symmetric_auc": 0.515317,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "chi_ksn_max",
+      "group": "h77_base_physics",
+      "raw_auc": 0.55391,
+      "symmetric_auc": 0.55391,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "chi_log10_area",
+      "group": "h77_base_physics",
+      "raw_auc": 0.489301,
+      "symmetric_auc": 0.510699,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "chi_zmean_m",
+      "group": "h77_base_physics",
+      "raw_auc": 0.527367,
+      "symmetric_auc": 0.527367,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "chi_ksn_dog",
+      "group": "h77_base_physics",
+      "raw_auc": 0.495937,
+      "symmetric_auc": 0.504063,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "pluvial_shoreline_elev_dist_m",
+      "group": "h77_base_physics",
+      "raw_auc": 0.431589,
+      "symmetric_auc": 0.568411,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "zmean_std_300m",
+      "group": "h77_base_physics",
+      "raw_auc": 0.574381,
+      "symmetric_auc": 0.574381,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "zmean_lrm_400m",
+      "group": "h77_base_physics",
+      "raw_auc": 0.420409,
+      "symmetric_auc": 0.579591,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "rad_K",
+      "group": "h77_base_physics",
+      "raw_auc": 0.458898,
+      "symmetric_auc": 0.541102,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "rad_Th",
+      "group": "h77_base_physics",
+      "raw_auc": 0.474411,
+      "symmetric_auc": 0.525589,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "rad_U",
+      "group": "h77_base_physics",
+      "raw_auc": 0.468426,
+      "symmetric_auc": 0.531574,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "rad_TC",
+      "group": "h77_base_physics",
+      "raw_auc": 0.46502,
+      "symmetric_auc": 0.53498,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "ext_ThK",
+      "group": "h77_base_physics",
+      "raw_auc": 0.499858,
+      "symmetric_auc": 0.500142,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "ext_UK",
+      "group": "h77_base_physics",
+      "raw_auc": 0.510413,
+      "symmetric_auc": 0.510413,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "ext_UTh",
+      "group": "h77_base_physics",
+      "raw_auc": 0.51382,
+      "symmetric_auc": 0.51382,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "ext_TMI_up150",
+      "group": "h77_base_physics",
+      "raw_auc": 0.511103,
+      "symmetric_auc": 0.511103,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "rad_K_alteration_halo",
+      "group": "h77_base_physics",
+      "raw_auc": 0.440254,
+      "symmetric_auc": 0.559746,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "tmi_demagnetization_trough",
+      "group": "h77_base_physics",
+      "raw_auc": 0.513711,
+      "symmetric_auc": 0.513711,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "hydro_upflow_near_400m",
+      "group": "h77_base_physics",
+      "raw_auc": 0.504564,
+      "symmetric_auc": 0.504564,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "hydro_upflow_far_1400m",
+      "group": "h77_base_physics",
+      "raw_auc": 0.513776,
+      "symmetric_auc": 0.513776,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "probe_2m_density_600m",
+      "group": "h77_base_physics",
+      "raw_auc": 0.532251,
+      "symmetric_auc": 0.532251,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "paleo_sinter_seal_800m",
+      "group": "h77_base_physics",
+      "raw_auc": 0.486297,
+      "symmetric_auc": 0.513703,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "quat_vent_halo_1200m",
+      "group": "h77_base_physics",
+      "raw_auc": 0.494779,
+      "symmetric_auc": 0.505221,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "hwfw_strike_coh",
+      "group": "h77_base_physics",
+      "raw_auc": 0.564468,
+      "symmetric_auc": 0.564468,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "hwfw_anderson_fav",
+      "group": "h77_base_physics",
+      "raw_auc": 0.576176,
+      "symmetric_auc": 0.576176,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "hwfw_step_purity_300m",
+      "group": "h77_base_physics",
+      "raw_auc": 0.540043,
+      "symmetric_auc": 0.540043,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "hwfw_step_purity_900m",
+      "group": "h77_base_physics",
+      "raw_auc": 0.558307,
+      "symmetric_auc": 0.558307,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "hwfw_signed_relief_step_500m",
+      "group": "h77_base_physics",
+      "raw_auc": 0.585724,
+      "symmetric_auc": 0.585724,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "hwfw_dip_basement_concord",
+      "group": "h77_base_physics",
+      "raw_auc": 0.538401,
+      "symmetric_auc": 0.538401,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "hwfw_dip_grav_concord",
+      "group": "h77_base_physics",
+      "raw_auc": 0.541161,
+      "symmetric_auc": 0.541161,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "hwfw_chi_ksn_concord",
+      "group": "h77_base_physics",
+      "raw_auc": 0.538296,
+      "symmetric_auc": 0.538296,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "hwfw_along_strike_elev_std_1600m",
+      "group": "h77_base_physics",
+      "raw_auc": 0.57375,
+      "symmetric_auc": 0.57375,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "hwfw_cross_strike_crest",
+      "group": "h77_base_physics",
+      "raw_auc": 0.535258,
+      "symmetric_auc": 0.535258,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "radon_scarp_1500m",
+      "group": "h77_base_physics",
+      "raw_auc": 0.550245,
+      "symmetric_auc": 0.550245,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "radon_scarp_3500m",
+      "group": "h77_base_physics",
+      "raw_auc": 0.540586,
+      "symmetric_auc": 0.540586,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "radon_grav_2500m",
+      "group": "h77_base_physics",
+      "raw_auc": 0.504743,
+      "symmetric_auc": 0.504743,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "radon_mag_2500m",
+      "group": "h77_base_physics",
+      "raw_auc": 0.52231,
+      "symmetric_auc": 0.52231,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "radon_joint_scarp_geophys",
+      "group": "h77_base_physics",
+      "raw_auc": 0.549204,
+      "symmetric_auc": 0.549204,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "hessian_scarp_ridge_120m",
+      "group": "h77_base_physics",
+      "raw_auc": 0.560006,
+      "symmetric_auc": 0.560006,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "hessian_scarp_ridge_260m",
+      "group": "h77_base_physics",
+      "raw_auc": 0.556433,
+      "symmetric_auc": 0.556433,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "ctx2d_scarp_mean_300m",
+      "group": "h77_base_physics",
+      "raw_auc": 0.58428,
+      "symmetric_auc": 0.58428,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "ctx2d_scarp_mean_1km",
+      "group": "h77_base_physics",
+      "raw_auc": 0.584926,
+      "symmetric_auc": 0.584926,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "ctx2d_scarp_contrast_1km",
+      "group": "h77_base_physics",
+      "raw_auc": 0.566168,
+      "symmetric_auc": 0.566168,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "ctx2d_grav_mean_2km",
+      "group": "h77_base_physics",
+      "raw_auc": 0.516187,
+      "symmetric_auc": 0.516187,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "hydro_scarp_coupled_upflow",
+      "group": "h77_base_physics",
+      "raw_auc": 0.531947,
+      "symmetric_auc": 0.531947,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "chi_chan_density",
+      "group": "h77e_delta_physics",
+      "raw_auc": 0.502653,
+      "symmetric_auc": 0.502653,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "chi_knick_rate",
+      "group": "h77e_delta_physics",
+      "raw_auc": 0.49948,
+      "symmetric_auc": 0.50052,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "chi_knick_count_log",
+      "group": "h77e_delta_physics",
+      "raw_auc": 0.49948,
+      "symmetric_auc": 0.50052,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "chi_raised_impound_frac",
+      "group": "h77e_delta_physics",
+      "raw_auc": 0.485354,
+      "symmetric_auc": 0.514646,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "chi_signed_step_asym",
+      "group": "h77e_delta_physics",
+      "raw_auc": 0.499833,
+      "symmetric_auc": 0.500167,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "chi_step_span_log",
+      "group": "h77e_delta_physics",
+      "raw_auc": 0.501087,
+      "symmetric_auc": 0.501087,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "chi_branch_boundary_3x3",
+      "group": "h77e_delta_physics",
+      "raw_auc": 0.527518,
+      "symmetric_auc": 0.527518,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "radon_knick_1500m",
+      "group": "h77e_delta_physics",
+      "raw_auc": 0.523104,
+      "symmetric_auc": 0.523104,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "radon_knick_3100m",
+      "group": "h77e_delta_physics",
+      "raw_auc": 0.517923,
+      "symmetric_auc": 0.517923,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "tiger_road_dist_log",
+      "group": "h77e_delta_physics",
+      "raw_auc": 0.50192,
+      "symmetric_auc": 0.50192,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "lidar_step_m_deconf",
+      "group": "h77e_delta_physics",
+      "raw_auc": 0.588927,
+      "symmetric_auc": 0.588927,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "lidar_dipole_m_deconf",
+      "group": "h77e_delta_physics",
+      "raw_auc": 0.591937,
+      "symmetric_auc": 0.591937,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "lidar_strike_vec_coh_250m",
+      "group": "h77e_delta_physics",
+      "raw_auc": 0.605254,
+      "symmetric_auc": 0.605254,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "seamfree_scarp_deconf",
+      "group": "h77e_delta_physics",
+      "raw_auc": 0.578762,
+      "symmetric_auc": 0.578762,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "radon_scarp_deconf_2100m",
+      "group": "h77e_delta_physics",
+      "raw_auc": 0.561097,
+      "symmetric_auc": 0.561097,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "openness_lrm_1m_deconf",
+      "group": "h77e_delta_physics",
+      "raw_auc": 0.5,
+      "symmetric_auc": 0.5,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "pot_crossgrad_par_s2",
+      "group": "h77e_delta_physics",
+      "raw_auc": 0.523518,
+      "symmetric_auc": 0.523518,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "pot_crossgrad_par_s5_net",
+      "group": "h77e_delta_physics",
+      "raw_auc": 0.503253,
+      "symmetric_auc": 0.503253,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "mag_shallow_breccia_diff",
+      "group": "h77e_delta_physics",
+      "raw_auc": 0.51239,
+      "symmetric_auc": 0.51239,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "miller_singh_grav_tilt_edge",
+      "group": "h77e_delta_physics",
+      "raw_auc": 0.525773,
+      "symmetric_auc": 0.525773,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "hydro_chem_claycap_coupled",
+      "group": "h77e_delta_physics",
+      "raw_auc": 0.523434,
+      "symmetric_auc": 0.523434,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "seism_updip_proj_35px",
+      "group": "h77e_delta_physics",
+      "raw_auc": 0.497224,
+      "symmetric_auc": 0.502776,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "seism_updip_proj_50px",
+      "group": "h77e_delta_physics",
+      "raw_auc": 0.49908,
+      "symmetric_auc": 0.50092,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "upthrown_impound_step_500m",
+      "group": "h77e_delta_physics",
+      "raw_auc": 0.510801,
+      "symmetric_auc": 0.510801,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "h77v_mt_dealiased_3p6km",
+      "group": "h77v_new_physics",
+      "raw_auc": 0.466948,
+      "symmetric_auc": 0.533052,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "h77v_mt_claycap_margin_3p6km",
+      "group": "h77v_new_physics",
+      "raw_auc": 0.505369,
+      "symmetric_auc": 0.505369,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "h77v_transtensional_regime_3p6km",
+      "group": "h77v_new_physics",
+      "raw_auc": 0.54064,
+      "symmetric_auc": 0.54064,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "h77v_demag_trough_s1p5",
+      "group": "h77v_new_physics",
+      "raw_auc": 0.516832,
+      "symmetric_auc": 0.516832,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "h77v_demag_persistence_3scale",
+      "group": "h77v_new_physics",
+      "raw_auc": 0.503169,
+      "symmetric_auc": 0.503169,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "h77v_grav_base_step_concord",
+      "group": "h77v_new_physics",
+      "raw_auc": 0.545416,
+      "symmetric_auc": 0.545416,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "h77v_grav_relay_saddle",
+      "group": "h77v_new_physics",
+      "raw_auc": 0.526999,
+      "symmetric_auc": 0.526999,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "h77v_scarp_x_demag_conduit",
+      "group": "h77v_new_physics",
+      "raw_auc": 0.534334,
+      "symmetric_auc": 0.534334,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "h77v_knick_x_grav_base_step",
+      "group": "h77v_new_physics",
+      "raw_auc": 0.531268,
+      "symmetric_auc": 0.531268,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "h77v_vent_x_dealiased_mt_margin",
+      "group": "h77v_new_physics",
+      "raw_auc": 0.523378,
+      "symmetric_auc": 0.523378,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "h77v_scarp_x_transtensional_regime",
+      "group": "h77v_new_physics",
+      "raw_auc": 0.536617,
+      "symmetric_auc": 0.536617,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "h77v_blm_mining_deconf_dist_log",
+      "group": "h77v_new_physics",
+      "raw_auc": 0.47883,
+      "symmetric_auc": 0.52117,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "sloco_dist_other_px",
+      "group": "sloco_fold_visible_mechanics",
+      "raw_auc": 0.193668,
+      "symmetric_auc": 0.806332,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "sloco_log_dist_other",
+      "group": "sloco_fold_visible_mechanics",
+      "raw_auc": 0.193644,
+      "symmetric_auc": 0.806356,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "sloco_splay_band_2_8px",
+      "group": "sloco_fold_visible_mechanics",
+      "raw_auc": 0.805331,
+      "symmetric_auc": 0.805331,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "sloco_pollard_tip_1p5km",
+      "group": "sloco_fold_visible_mechanics",
+      "raw_auc": 0.705943,
+      "symmetric_auc": 0.705943,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "sloco_pollard_tip_3p8km",
+      "group": "sloco_fold_visible_mechanics",
+      "raw_auc": 0.728566,
+      "symmetric_auc": 0.728566,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "sloco_stepover_relay",
+      "group": "sloco_fold_visible_mechanics",
+      "raw_auc": 0.814044,
+      "symmetric_auc": 0.814044,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "sloco_strain_deficit",
+      "group": "sloco_fold_visible_mechanics",
+      "raw_auc": 0.296909,
+      "symmetric_auc": 0.703091,
+      "pass_le_0p90": true
+    },
+    {
+      "feature": "sloco_hydro_demag_tip_bridge",
+      "group": "sloco_fold_visible_mechanics",
+      "raw_auc": 0.805317,
+      "symmetric_auc": 0.805317,
+      "pass_le_0p90": true
+    }
+  ]
+}
