@@ -193,6 +193,7 @@ gates and currently says <b>NOT OK TO SUBMIT — 0 authorized files</b>.</p>"""
 <li><b>Verdict:</b> <b>{e(card["verdict"].upper())}</b> — {e(card["verdict_reason"])}</li>
 <li><a href="h78.html">Full H78 page: the hypotheses, the three experiments, uniqueness and the run card →</a></li></ul>"""
     body = f"""<h1>Start here</h1>
+<p><a href="review-release-gate-2026-10-21.md">Latest repository review: verified format, release-gate fixes, and remaining blockers</a></p>
 <p>This repository builds and audits fault-probability GeoTIFFs for the <a href="{COMP}">DOE GEMS Prize</a>
 (DrivenData competition 306). The first box distinguishes downloading a file from permission to upload it. The table
 lists the reviewed research candidates, not every historical archived/NaN-twin file; see <a href="audit.html">archive audit</a>.</p>
