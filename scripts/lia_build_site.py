@@ -69,6 +69,8 @@ NaN-outside twin is diagnostic only and fails the all-pixel [0,1] preflight ·
 
 def main():
     sub, card = j("docs/data/submission.json"), j("docs/data/run-card.json")
+    if sub.get("name") != card.get("submission_name"):
+        raise ValueError("LIA metadata/run-card identity mismatch; do not overwrite submission.json with another lane")
     why, hold, alloc = j("evidence/why_02778.json"), j("evidence/e3_holdout_final.json"), j("evidence/e3_allocation.json")
     e2, e2b, uniq = j("evidence/e2_inversion.json"), j("evidence/e2_hypothesis_test.json"), j("evidence/e3_uniqueness.json")
     rc = card["registry_comparison"]

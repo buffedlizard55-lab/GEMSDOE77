@@ -1,5 +1,5 @@
 {
- "note": "All listed lanes are inspection-only and NOT OK TO SUBMIT. H82-TEXTURE is this review\u2019s new negative feasibility experiment; no dot placement or weekly slot. Historical flags are not current matched-incumbent evidence. See submission-authorization.json.",
+ "note": "H82-TEXTURE and H82 chemistry-concordance are distinct parallel negative lanes. All listed files are inspection-only and NOT OK TO SUBMIT; see submission-authorization.json. Historical baseline wins are not matched-current-incumbent evidence.",
  "lanes": [
   {
    "lane": "H82-TEXTURE: K/Th local second-moment boundary (negative, continuous research surface)",
@@ -28,6 +28,31 @@
    "upload": "Not OK to submit. OK to download for inspection only. Literal overlap 1.0 exceeds 0.70; stopped before dot placement. Below matched constant-output control on fixed-quadrant holdout; no matched incumbent win, no selector approval, no slot.",
    "why_primary": "New H82 negative feasibility experiment, not selected for upload.",
    "beat_02778_summary": "No evidence of beating owner-reported H33 result; HOLDOUT-DTI is not a leaderboard projection."
+  },
+  {
+   "lane": "H82: cool-outlet geothermometer concordance (negative)",
+   "page": "h82-executive-summary.html",
+   "summary": "h82-executive-summary.html",
+   "file": "downloads/gems77-h82-cool-chemconcord-11185dots-20261021-245bb13136-zeros.tif",
+   "zip": "downloads/gems77-h82-cool-chemconcord-11185dots-20261021-245bb13136-zeros.zip",
+   "run_card": "evidence/h82_run_card.json",
+   "format_valid": true,
+   "protocol_unique": false,
+   "informative_unique": null,
+   "beats_holdout_best": false,
+   "verdict": "negative",
+   "primary": false,
+   "name": "gems77-h82-cool-chemconcord-11185dots-20261021-245bb13136-zeros",
+   "note": "H82 cool-outlet concordant geothermometers; research-only, NOT APPROVED",
+   "sha256": "84b50d05eaba578c398c4c7ab720dbf5a46de29d63f4254eb02a8ba02a4a43df",
+   "holdout_dti_hide_v2": 0.012183573151637725,
+   "holdout_evaluator_version": "gems57-pooled-hide-v2",
+   "holdout_positive_pixels": 11321,
+   "holdout_ci95": [
+    0.0036995165161437336,
+    0.022843915166265796
+   ],
+   "upload": "Not OK to submit. HOLDOUT-DTI 0.012184 (gems57-pooled-hide-v2; 11,321 withheld; 95% CI 0.003700\u20130.022844); 1.0 forward overlap with pinned dense witness; only 2 of 812+ registry rasters checked; selector not approved. Download for inspection only."
   },
   {
    "lane": "H77G: hydrothermal magnetite-destruction trough \u00d7 gravity-basement step \u00d7 MT clay-cap margin (HOLDOUT-DTI 0.0619 s20 / 0.0618 s30, pure 0.0392/0.0471; negative result)",

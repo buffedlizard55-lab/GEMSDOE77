@@ -8,6 +8,14 @@ summarised with provenance at the end rather than re-transcribed hash-by-hash
 `docs/score-ledger.csv`; later entries below are OWNER-REPORT as supplied in
 the 2026-10-21 brief — no organizer receipts).*
 
+## Current review addendum — 2026-10-21
+
+The latest readiness review (`docs/preflight-review.md`) generated no new TIFF and ran no geological experiment.
+A freshly pinned universal witness (`evidence/registry_preflight.json`) blocks every nonempty allowed candidate
+under the mandatory literal overlap rule. Run the preflight before any new experiment, preserve closed lanes,
+and do not treat older execution addenda as a new lane assignment. The original complete user request remains
+embedded in README.md. This addendum does not relax its gates or authorize a slot.
+
 ## Historical 2026-10-21 H79 execution addendum
 
 This session's registered lane is **H79-ORIENT**, not the historical contact-physics
@@ -16,10 +24,6 @@ lane mentioned in older repository notes. The operative preregistration is
 in `evidence/h79_orient_run_card.json`. The full request below remains preserved as the
 standing brief. H79's result is negative, safe to download for inspection, not
 approved to submit, and no weekly slot was selected.
-
-## 2026-10-21 H82-TEXTURE review addendum
-
-Latest review/experiment: `docs/review-h82-texture.md`, preregistration `registry/preregistration_h82_texture.json`, results `evidence/h82_texture/run_card.json`. One experiment, negative and closed; stopped before dots under literal registry overlap. New bounded continuous research-only TIFF is downloadable, NOT OK TO SUBMIT. No current leaderboard/weekly-cap or exact-file organizer receipt was authenticated here. No new experiment should bypass the unresolved universal-witness gate.
 
 ## Highest urgency
 
@@ -132,3 +136,6 @@ listed sites ≤0.1461 down to 0.0000. GEMSDOE77 (this repo): no organizer score
 verdict negative (see README).
 
 *Post-merge namespacing note (PR #5): this lane's files that collided with concurrently merged lanes were renamed — `registry/preregistration_contactphys.json`, `evidence/run_card_contactphys.json`, `docs/contactphys*.html`, `scripts/build_site_contactphys.py`. Frozen receipts (`registry/preregistration_amendment_exp3.json`, `evidence/*.json`) retain their original internal path strings as historical record.*
+
+## H82-TEXTURE historical execution addendum
+One narrow texture-boundary feasibility experiment was completed before the parallel universal-preflight review merged. This is distinct from H82 chemistry-concordance. Results: `evidence/h82_texture/run_card.json`; review: `docs/review-h82-texture.md`. Negative, closed, no dots/slot, inspection-only TIFF. Preflight now blocks any new experiment; this addendum grants no exception.

@@ -162,6 +162,11 @@
       "identical_footprint_values": false
     },
     {
+      "file": "gems77-h82-cool-chemconcord-11185dots-20261021-245bb13136-zeros.tif",
+      "same_grid": true,
+      "identical_footprint_values": false
+    },
+    {
       "file": "gems77-step-propensity-submod300.tif",
       "same_grid": true,
       "identical_footprint_values": false
@@ -187,7 +192,7 @@
       "identical_footprint_values": false
     }
   ],
-  "current_local_inventory_count": 37,
+  "current_local_inventory_count": 38,
   "file": "docs/downloads/gems77-h82-texture-kt-bf0a3028b4fa-RESEARCH-ONLY.tif",
   "sha256": "c571af22cb08db9cb8cfd6edf0108364d95b0c3bec8316d09d3dfd116531790e",
   "checks": {
