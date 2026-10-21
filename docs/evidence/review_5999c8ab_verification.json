@@ -5,10 +5,10 @@
   "passes": {
     "pass1": "Implemented archive readback, ran baseline full suite (317 passed)",
     "pass2": "Added archive integration and first-screen checks; fixed README banner pushing historical H82 hash outside legacy test window; no scientific gate relaxed",
-    "pass3": "Final complete suite: 319 passed; build/verify_all and staging pass; archive readback 44/44 and primary TIFF readback 44/44 pass"
+    "pass3": "Final post-merge full suite: 327 passed; build/verify_all and staging pass; archive and primary TIFF readback 46/46 pass"
   },
   "pytest": {
-    "passed": 319,
+    "passed": 327,
     "failed": 0
   },
   "preflight": {
@@ -21,5 +21,6 @@
   },
   "new_raster_generated": false,
   "experiments_run": 0,
-  "weekly_slots_used": 0
+  "weekly_slots_used": 0,
+  "merged_main_commit": "3522e3a"
 }

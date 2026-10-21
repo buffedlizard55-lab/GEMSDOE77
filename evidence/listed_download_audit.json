@@ -2,9 +2,9 @@
   "schema": "gems-listed-download-readback-v1",
   "evidence_class": "FORMAT-INTEGRITY-MEASUREMENT; NOT SCORE OR PORTAL ACCEPTANCE",
   "scope": "Every primary TIFF in docs/data/lanes.json; no archive or NaN twins, no uniqueness certification",
-  "manifest_sha256": "f8035a50a2d7ae5b62fe33846f3a351e6c338b954d7cc53815df689d290fea26",
+  "manifest_sha256": "5188c699687e5c2d8381d3e5b3e849216c8c98f81a1bcea90acc3d3c365fb5b5",
   "reference_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
-  "listed_count": 44,
+  "listed_count": 46,
   "all_format_pass": true,
   "authorized_to_submit": false,
   "artifacts": [
@@ -30,6 +30,24 @@
       "lane": "H82R: local ternary radiometric rank-mixture entropy (STOPPED; research only)",
       "file": "downloads/gems77-h82-ternaryentropy-20261021-RESEARCH-ONLY.tif",
       "sha256": "56debe682505bf2649f30d914c7b552dcf669bce4b902ce91eb3e5363031f115",
+      "checks": {
+        "single_band": true,
+        "crs_matches": true,
+        "shape_matches": true,
+        "transform_matches": true,
+        "finite_entire_raster": true,
+        "no_nan_inside_footprint": true,
+        "values_in_0_1": true,
+        "nodata_none": true,
+        "sha256_matches_manifest": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
+    {
+      "lane": "H82-GMNS: Whole-component network mechanics + contour/antithetic scarp & lapse-rate thermal deconfounding + KKT 940-raster solver (0.1811 Dual-Seed #1: 0.1721 S20 / 0.1900 S30 HOLDOUT-DTI; 0/940 firings across 1,007 rasters)",
+      "file": "downloads/gems77-h82gmns-lagrangian-36500dots-20261021-1c9a641b-zeros.tif",
+      "sha256": "e6f8d6ebbaa28fd758d7c744e4f9bc4928a70b18a0d06d3e51041ad1e3b52257",
       "checks": {
         "single_band": true,
         "crs_matches": true,
@@ -786,6 +804,24 @@
       "lane": "H84-RAMP: B-LBCO deconfounded two-host en-echelon relay-ramp + GeoDAWN/basement stepover corridor (0.1366 s20 / 0.1446 s30 HOLDOUT-DTI; negative, inspection only)",
       "file": "downloads/gems77-h84-ramp-relay-37654dots-20261021-1b76b4b7-zeros.tif",
       "sha256": "f06ada5aa834ceaf65e8700e36bbd46eddb96929b42c9041c72c8369c1022838",
+      "checks": {
+        "single_band": true,
+        "crs_matches": true,
+        "shape_matches": true,
+        "transform_matches": true,
+        "finite_entire_raster": true,
+        "no_nan_inside_footprint": true,
+        "values_in_0_1": true,
+        "nodata_none": true,
+        "sha256_matches_manifest": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
+    {
+      "lane": "H83-PCD: Multi-Scale Poisson Pseudogravity-Gravity Discordance x Piedmont Scarp-Toe Asymmetry x 12-Bit LOCO Relay + 300 m Submodular Cover (0.132515 s30 / 0.123066 s20 HOLDOUT-DTI)",
+      "file": "downloads/h83pcd-poisson-piedmont-loco-submod-20261021T183000Z-zeros.tif",
+      "sha256": "1ff7bc32563b56a6b18beb0d4500afa9bad814396485aaba39b2b8cbc8a9fa59",
       "checks": {
         "single_band": true,
         "crs_matches": true,

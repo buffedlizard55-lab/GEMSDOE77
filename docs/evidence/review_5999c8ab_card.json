@@ -26,8 +26,8 @@
   "raster_sha256": null,
   "validator_output": {
     "new_candidate": "NOT RUN \u2014 no raster generated",
-    "existing_listed_primaries": "44 PASS: finite [0,1], no NaN inside footprint, CRS/shape/transform match",
-    "existing_sibling_archives": "44 PASS: exactly one matching TIFF",
+    "existing_listed_primaries": "46 PASS: finite [0,1], no NaN inside footprint, CRS/shape/transform match",
+    "existing_sibling_archives": "46 PASS: exactly one matching TIFF",
     "receipt": "evidence/submission_archive_audit.json"
   },
   "submission_name": null,

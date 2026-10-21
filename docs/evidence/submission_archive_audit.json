@@ -2,9 +2,9 @@
   "schema": "gems-sibling-archive-readback-v1",
   "evidence_class": "FORMAT-INTEGRITY-MEASUREMENT; NOT SCORE OR PORTAL ACCEPTANCE",
   "scope": "Present sibling ZIPs of primary TIFFs in lanes.json; not all site ZIP links",
-  "manifest_sha256": "f8035a50a2d7ae5b62fe33846f3a351e6c338b954d7cc53815df689d290fea26",
+  "manifest_sha256": "5188c699687e5c2d8381d3e5b3e849216c8c98f81a1bcea90acc3d3c365fb5b5",
   "reference_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
-  "checked_archive_count": 44,
+  "checked_archive_count": 46,
   "primaries_without_sibling_zip": [],
   "all_primary_format_pass": true,
   "all_archive_pass": true,
@@ -46,6 +46,25 @@
       },
       "archive_pass": true,
       "archive_sha256": "2eef765a0eb0406f169a79822acd9eb61598ef1ca415e4e52605bf757dae618b",
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-h82gmns-lagrangian-36500dots-20261021-1c9a641b-zeros.zip",
+      "primary_format_pass": true,
+      "checks": {
+        "primary_sha256_matches": true,
+        "exactly_one_member": true,
+        "member_name_matches": true,
+        "member_is_tiff": true,
+        "member_not_directory": true,
+        "member_not_symlink": true,
+        "member_not_encrypted": true,
+        "member_size_matches": true,
+        "read_size_matches": true,
+        "member_sha256_matches": true
+      },
+      "archive_pass": true,
+      "archive_sha256": "2aaca8ef9c5c6a33e2b61fa15c40d53785e90b00b26f52ac6b2253aa44e3bb45",
       "authorized_to_submit": false
     },
     {
@@ -844,6 +863,25 @@
       },
       "archive_pass": true,
       "archive_sha256": "8499c3427d4f48e6a2be8929693236a9e9d7555b52fc559df7260512bdd12de1",
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/h83pcd-poisson-piedmont-loco-submod-20261021T183000Z-zeros.zip",
+      "primary_format_pass": true,
+      "checks": {
+        "primary_sha256_matches": true,
+        "exactly_one_member": true,
+        "member_name_matches": true,
+        "member_is_tiff": true,
+        "member_not_directory": true,
+        "member_not_symlink": true,
+        "member_not_encrypted": true,
+        "member_size_matches": true,
+        "read_size_matches": true,
+        "member_sha256_matches": true
+      },
+      "archive_pass": true,
+      "archive_sha256": "cc85430ca8eb272cf7988fbce740a9c86f011a5eadb7fedb8d9cc3fccaa95c61",
       "authorized_to_submit": false
     }
   ]
