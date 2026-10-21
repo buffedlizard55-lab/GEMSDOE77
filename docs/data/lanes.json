@@ -1,5 +1,5 @@
 {
-  "note": "H77-TSD (transtensional strain-partitioning \u00d7 seismic swarm excess \u00d7 MT clay-cap margin + 12-bit LOCO relay & 300 m submod), H77V, H82-TEXTURE, and H82 chemistry-concordance are distinct negative lanes. All listed files are inspection-only and NOT OK TO SUBMIT; see submission-authorization.json. Historical baseline wins are not matched-current-incumbent evidence. H82R: radiometric negative research file; NOT OK TO SUBMIT.",
+  "note": "H77-TSD, H77V, H82-TEXTURE, H82 chemistry-concordance, H84-TIPLOBE and H84-ORGATE are distinct negative lanes. All listed files are inspection-only and NOT OK TO SUBMIT; see submission-authorization.json. Historical baseline wins are not matched-current-incumbent evidence.",
   "lanes": [
     {
       "lane": "H77H (NEWEST): Piedmont-Bajada Alluvial-Fan Toe Pinchout \u00d7 Synthetic/Antithetic Scarp Polarity \u00d7 En-Echelon Sinter-Relay Bridge (HOLDOUT-DTI 0.1579 s20 / 0.1570 s30 deliverable, 0.1709 / 0.1684 unguarded; Policy I17 negative)",
@@ -782,6 +782,60 @@
         0.1372130738097347
       ],
       "upload": "Not OK to submit. OK to download for inspection only. Format-valid (17/17 local checks: single float32 band, EPSG:32611, 3730x3292, pinned transform, values exactly {0,1}, 0 NaN anywhere, zeros outside footprint, 0 dots on catalogue). Registry scan incomplete (0/812 locally accessible) and literal dense-witness gate fail-closed. HOLDOUT-DTI 0.1227 [0.1080, 0.1372] seed 30 vs random 0.0435 (delta +0.079, CI excludes 0) but below the 0.152718 repository incumbent. Selector: not approved; zero weekly slots used."
+    },
+    {
+      "lane": "H84-TIPLOBE: fault-tip crack-tip stress lobe + en-echelon relay breach (HOLDOUT-DTI 0.1209 [0.1068,0.1354] s30; negative, inspection only)",
+      "page": "h84.html",
+      "summary": "h84-executive-summary.html",
+      "file": "downloads/gems77-h84-tiplobe-37654dots-20261021-b57c52b3-zeros.tif",
+      "zip": "downloads/gems77-h84-tiplobe-37654dots-20261021-b57c52b3-zeros.zip",
+      "run_card": "evidence/h84_run_card.json",
+      "format_valid": true,
+      "protocol_unique": false,
+      "informative_unique": false,
+      "beats_holdout_best": false,
+      "selector_approved": false,
+      "verdict": "negative",
+      "primary": false,
+      "name": "gems77-h84-tiplobe-37654dots-20261021-b57c52b3-zeros",
+      "note": "H84 tip-lobe 37654 dots; HOLDOUT-DTI 0.1209 [0.1068,0.1354] s30 vs random +0.073; tip AUC 0.79; NOT FOR UPLOAD without selector",
+      "sha256": "2bff4b55cabe5a4eb7ab1aeff6b21e407a87a576d1d0c3c5f20ed3ddb1c279ba",
+      "zip_sha256": "",
+      "holdout_dti_hide_v2": 0.120894,
+      "holdout_evaluator_version": "gems57-pooled-hide-v2",
+      "holdout_positive_pixels": 11342,
+      "holdout_ci95": [
+        0.10679,
+        0.13535
+      ],
+      "upload": "Not OK to submit. OK to download for inspection only. HOLDOUT-DTI 0.1209 [0.1068,0.1354] (gems57-pooled-hide-v2, 11,342 withheld, seed 30) vs random 0.0476 delta +0.0733 [0.0600,0.0877] significant and vs H33-approx 0.0412 delta +0.0797 significant, but below repository incumbent 0.152718; informative sparse overlap 0.787 >0.70 duplicate vs H82/H77E-pure, literal dense-witness 1.0 >0.70 FAIL; selector not approved; 0 weekly slots used. Format-valid (17/17: float32 EPSG:32611 3730\u00d73292 {0,1} 0 NaN zeros-outside)."
+    },
+    {
+      "lane": "H84-ORGATE: geophysics-gated second-strand collar (HOLDOUT-DTI 0.1215 [0.1071,0.1355] s30; negative, inspection only)",
+      "page": "h84-orgate.html",
+      "summary": "h84-orgate.html",
+      "file": "downloads/gems77-h84-orgate-collar-37654dots-20261021-2d0a731a-zeros.tif",
+      "zip": "downloads/gems77-h84-orgate-collar-37654dots-20261021-2d0a731a-zeros.zip",
+      "run_card": "evidence/h84-orgate_run_card.json",
+      "format_valid": true,
+      "protocol_unique": false,
+      "informative_unique": false,
+      "beats_holdout_best": false,
+      "selector_approved": false,
+      "verdict": "negative",
+      "primary": false,
+      "name": "gems77-h84-orgate-collar-37654dots-20261021-2d0a731a-zeros",
+      "note": "H84 OR-gated second-strand collar 37654 dots; HOLDOUT-DTI 0.1215 vs incumbent 0.1527: NEGATIVE do not upload",
+      "sha256": "9a5f5433cbfed4a1a8ac2587678aaa930c8ed93e948b9e94874c8febc549fd57",
+      "zip_sha256": "91a72265e5d87f4a4e1dc2730fac484162ac0d33604e892f44184d9a93ce448f",
+      "holdout_dti_hide_v2": 0.12148954698767672,
+      "holdout_evaluator_version": "gems57-pooled-hide-v2",
+      "holdout_positive_pixels": 11342,
+      "holdout_ci95": [
+        0.10706251690747319,
+        0.13550906533658974
+      ],
+      "upload": "Not OK to submit. OK to download for inspection only. HOLDOUT-DTI 0.1215 [0.1071,0.1355] (gems57-pooled-hide-v2, 11,342 withheld) vs random 0.0476 but below 0.152718 incumbent; 78.6% overlap vs H83 collar duplicate >0.70, literal dense-witness 1.0 >0.70 FAIL; selector not approved; 0 slots used. Format-valid (17/17: float32 EPSG:32611 3730\u00d73292 {0,1} 0 NaN zeros-outside)."
     }
   ]
 }
