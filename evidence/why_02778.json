@@ -1,0 +1,126 @@
+{
+ "label": "INSTRUMENT (S0 live inversion, in-sample) unless marked ORGANIZER",
+ "lineage": [
+  {
+   "step": "H19-5 solid ridges (19GEMSDOE)",
+   "submission": "h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan",
+   "organizer_score": 0.1922,
+   "dots": 121131,
+   "S0_projection": 0.19466593648961375,
+   "S0_T": 6456.048828125,
+   "S0_credit_per_dot": 0.05329807256709678
+  },
+  {
+   "step": "dotted d=1.5 px (GEMSDOE24)",
+   "submission": "h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan",
+   "organizer_score": 0.2477,
+   "dots": 60069,
+   "S0_projection": 0.2594157838723975,
+   "S0_T": 5408.189453125,
+   "S0_credit_per_dot": 0.09003295298947876
+  },
+  {
+   "step": "dotted d=2.8 px (GEMSDOE25)",
+   "submission": "dotted-h19-5-d2-8-20261002-e56ea318af89-nan",
+   "organizer_score": 0.26,
+   "dots": 44090,
+   "S0_projection": 0.27354739106183407,
+   "S0_T": 4812.2958984375,
+   "S0_credit_per_dot": 0.1091471058842708
+  },
+  {
+   "step": "d2.8 minus dots <=1 px from catalogue (GEMSDOE28/31)",
+   "submission": "h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan",
+   "organizer_score": 0.2708,
+   "dots": 40199,
+   "S0_projection": 0.282576578648518,
+   "S0_T": 4749.46240234375,
+   "S0_credit_per_dot": 0.11814876992820095
+  },
+  {
+   "step": "d2.8 minus dots <=2 px (200 m) from catalogue (GEMSDOE32)",
+   "submission": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
+   "organizer_score": 0.2778,
+   "dots": 37654,
+   "S0_projection": 0.28812012469079895,
+   "S0_T": 4694.39697265625,
+   "S0_credit_per_dot": 0.12467193319849816
+  }
+ ],
+ "champion_bytes": {
+  "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+  "dots": 37654,
+  "dots_on_catalogue": 0,
+  "nn_spacing_px_quantiles": {
+   "0.05": 2.8284271247461903,
+   "0.25": 2.8284271247461903,
+   "0.5": 3.0,
+   "0.75": 3.605551275463989,
+   "0.95": 7.211102550927978
+  },
+  "min_catalogue_distance_px": 2.2360680103302,
+  "share_dots_by_catalogue_distance_km": {
+   "0.2-0.4": 0.10158283316513518,
+   "0.4-2": 0.40646412067775006,
+   "2-6": 0.3504010198119722,
+   ">6": 0.1415520263451426
+  },
+  "share_dots_on_h19_5_lines": 1.0
+ },
+ "champion_S0": {
+  "T": 4694.39697265625,
+  "S": 37654.0,
+  "K": 10366.1923828125,
+  "dti_projection": 0.28812012469079895,
+  "credit_per_dot": 0.12467193319849816,
+  "bar_alpha_dti": 0.057624024938159796,
+  "by_bin": [
+   {
+    "bin": "on/cat<=0.4km",
+    "dots": 3825,
+    "mean_isolated_credit": 0.04903631657361984,
+    "h": 0.009767996196068399
+   },
+   {
+    "bin": "on/cat0.4-2km",
+    "dots": 15305,
+    "mean_isolated_credit": 0.09966225177049637,
+    "h": 0.0
+   },
+   {
+    "bin": "on/cat>2km",
+    "dots": 18524,
+    "mean_isolated_credit": 0.20809386670589447,
+    "h": 0.07589511813167368
+   }
+  ]
+ },
+ "break_even_unique": {
+  "candidate_dots": 38913,
+  "on_support_dots": 25293,
+  "off_support_dots": 13620,
+  "S0_T_on_support": 4007.56640625,
+  "T_needed_to_tie_champion_S0": 4769.09790422521,
+  "credit_per_off_support_dot_needed": 0.05591273847101396,
+  "S1_estimated_credit_per_off_support_dot": null
+ },
+ "targets": [
+  {
+   "target": 0.4413,
+   "label": "leaderboard #1 (ORGANIZER-CONFIRMED public LB, 2026-10-21)",
+   "dots": 37654,
+   "T_needed": 7305.41035792328,
+   "credit_per_dot_needed": 0.19401419126582248,
+   "recall_needed": 0.7047342059786483
+  },
+  {
+   "target": 0.3195,
+   "label": "user-quoted 0.3195 (not on current leaderboard top 20)",
+   "dots": 37654,
+   "T_needed": 5222.549840449228,
+   "credit_per_dot_needed": 0.13869840761802804,
+   "recall_needed": 0.5038059923630583
+  }
+ ],
+ "max_possible_at_champion_dots": 0.6148257985722474
+}

@@ -1,0 +1,8 @@
+{
+ "patched_validator_results": {
+  "primary_zeros": true,
+  "twin_nan": true,
+  "band1_footprint_nan_file": false
+ },
+ "note": "patched = reports/template_fix_validate_footprint.patch applied to a temp copy; vendor/ untouched"
+}
