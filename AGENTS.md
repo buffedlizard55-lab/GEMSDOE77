@@ -10,6 +10,7 @@ Read `README.md` from the top (current status first, then the preserved standing
 - The local feature stack (`data/raw/training_features.tif`, `data/processed/stack.npy`, `.cache/gems_data/training_features.tif`) is absent. Do not treat owner-mirror receipts as organizer provenance. No new feature, experiment, candidate raster, holdout score, or TIFF was generated in this review.
 - Current release authorization is `NOT OK TO SUBMIT` with zero authorized files. Existing listed artifacts can be downloaded for inspection only; format validity or byte novelty is not submission approval. No weekly slot is selected or authorized.
 - Latest report: `docs/review-2026-10-21-arena-d40f78d1.md`; run card: `evidence/review_d40f78d1_card.json`; source receipt: `evidence/review_sources_d40f78d1.json`.
+- During PR preparation `origin/main` advanced to `d61253b`; that parallel-branch history was merged into this branch solely to make the PR mergeable. Its lane artifacts are inherited records, not experiments or selections in d40. Current audit coverage is 41/41 listed TIFFs for format/integrity only; the release gate still authorizes zero files.
 
 ## Scientific and scoring protocol
 

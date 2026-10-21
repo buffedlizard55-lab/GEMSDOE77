@@ -81,7 +81,7 @@ These are manual-review links, not newly verified availability or scientific val
 ## Pass 3 — end-to-end requirements and source boundaries
 
 - Software regression tests cover finite-positive support, Euclidean-radius boundaries, empty/invalid grids,
-  input pin failure, format/range/hash failure, and the exact metric algebra. The final local suite reported **265 tests passed** (software tests, not a performance score); the CI-equivalent builds and release checks also passed.
+  input pin failure, format/range/hash failure, and the exact metric algebra. The final local suite reported **297 tests passed** (software tests, not a performance score); the CI-equivalent builds and release checks also passed.
 - Entry page retains one-click TIFF/ZIP downloads and explicit NOT OK TO SUBMIT status. Evidence links and
   submission instructions remain visible. Current release authorization grants no uploads.
 - Restored only pinned witnesses; no new TIFF, copied submission, trained model, geological experiment,
@@ -127,4 +127,4 @@ release-gate NaN/type hardening, and retained both regression suites. All combin
 repeated; no shared-template source or raster bytes were changed.
 
 PR #52 later merged the independent H82 chemistry lane while that earlier PR was under reconciliation. Its TIFFs, negative
-status, source code and tests are preserved without rerunning its experiment or claiming authorship. The earlier review then re-read **23** listed primary TIFFs. The current branch readback covers **37/37** listed primary TIFFs (FORMAT/INTEGRITY-MEASUREMENT) and still authorizes zero uploads; see the linked current audit receipt.
+status, source code and tests are preserved without rerunning its experiment or claiming authorship. The earlier review then re-read **23** listed primary TIFFs. The current branch readback covers **41/41** listed primary TIFFs (FORMAT/INTEGRITY-MEASUREMENT) and still authorizes zero uploads; see the linked current audit receipt.

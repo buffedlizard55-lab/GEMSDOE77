@@ -1,0 +1,59 @@
+{
+  "schema": "gems-repository-review-run-card-v1",
+  "branch": "arena/00397d44-gemsdoe77",
+  "date": "2026-10-21",
+  "hypothesis": "Repository audit only; no candidate was tested. Conditional research priority 1 is cross-wavelet phase-jump continuity across detrended GeoDAWN magnetic anomaly and isostatic-gravity layers, but it is blocked before feature generation by the universal registry overlap preflight and absent cached feature stack.",
+  "mechanism": "Not implemented or evaluated. Proposed mechanism: a multi-wavelength, cross-sensor phase discontinuity may indicate a buried contact offset under basin cover; no score or benefit is projected.",
+  "named_non_fault_process_that_could_mimic_it": "Intrusive/lithologic contacts and airborne survey flight-line or gridding seams.",
+  "holdout_dti": {
+    "evidence_class": "NO NEW HOLDOUT-DTI RESULT",
+    "evaluator_version": "gems57-pooled-hide-v2 (required shared evaluator; not run)",
+    "withheld_positive_pixels": null,
+    "ci95": null,
+    "reason": "No candidate surface was generated; registry preflight stopped first."
+  },
+  "correlation_overlap_vs_registry": {
+    "new_surface_rank_correlation": null,
+    "new_surface_rank_correlation_reason": "No new surface generated.",
+    "new_final_dots_overlap": null,
+    "registry_measurement": {
+      "evidence_class": "REGISTRY-MEASUREMENT",
+      "pinned_witness": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+      "allowed_pixels": 5106385,
+      "within_3px_of_witness": 5106385,
+      "nonempty_candidate_forward_overlap_lower_bound": 1.0,
+      "stop_threshold_strictly_greater_than": 0.70,
+      "complete_registry_scan": false
+    }
+  },
+  "review_validation": {
+    "listed_primary_tiffs": {
+      "evidence_class": "FORMAT/INTEGRITY MEASUREMENT",
+      "count": 32,
+      "all_pass": true,
+      "portal_acceptance": false,
+      "uniqueness_clearance": false
+    },
+    "software_tests": {
+      "evidence_class": "TEST RESULT",
+      "passed": 236,
+      "failed": 0
+    },
+    "preflight_exit_code": 2,
+    "preflight_decision": "STOP_UNIVERSAL_DUPLICATE",
+    "release_authorized_file_count": 0
+  },
+  "shared_tool_repair": "scripts/preflight_registry.py now verifies an exact declared local amendment hash only when its upstream hash matches the pinned file hash and measurement_semantics_unchanged is true. No overlap threshold or measurement changed.",
+  "raster_sha256": null,
+  "validator_output": {
+    "new_tiff_generated": false,
+    "no_nan_inside_footprint": "not applicable; no artifact",
+    "values_in_0_1": "not applicable; no artifact",
+    "crs_shape_transform_match": "not applicable; no artifact",
+    "current_repository_authorized_files": 0,
+    "decision": "NOT OK TO SUBMIT"
+  },
+  "submission_name": null,
+  "submission_note": "No new TIFF generated; no file is authorized to submit. Current artifacts are inspection-only.",
+  "verdict": "negative"
+}

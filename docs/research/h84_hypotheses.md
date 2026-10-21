@@ -68,4 +68,3 @@ All external sources below are official, free, and verified with links for manua
 - **Obtainability:** gdr.openei.org not in sandbox allowlist but owner mirror ext_gdr_wellspring_in_footprint.csv (2.1 MB, SHA 122718e...) exists in manifest, so obtainable next session via restore. Not implemented now.
 
 Ranking by expected DTI improvement ÷ implementation cost: Rank1 H84 tip-lobe > Rank2 intersections > Rank3 K/Th > Rank4 curvature > Rank5 thermal alignment. Exp1 validates Rank1 on spatially blocked holdout before any submission-slot consideration. No budget tuning after holdout peek.
-

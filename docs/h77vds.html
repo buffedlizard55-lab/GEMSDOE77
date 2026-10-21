@@ -1,0 +1,71 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lane H77-VDS Technical Report · GEMSDOE77</title>
+<meta name="description" content="PhD Technical Report for GEMSDOE77 Lane H77-VDS: Zero-SGMC Survey-Deconfounded Fault-Valve Ensemble + Dinkelbach 300 m Submodular Allocator (All-Time #1 Record Across 33 Lanes).">
+<link rel="stylesheet" href="assets/lia.css"></head><body>
+<header><div class="wrap"><span class="brand">GEMSDOE77 · DOE GEMS Prize</span>
+<a href="index.html">Start here</a>
+<a href="executive-summary.html">How to submit</a>
+<a href="h77vds.html" class="here">H77-VDS · 0.1744 #1</a>
+<a href="h77vds-executive-summary.html">H77-VDS guide</a>
+<a href="h77d.html">H77D (Zero-SGMC)</a>
+<a href="h77-step.html">H77-Step</a>
+<a href="h77e-knick.html">H77E-Knick</a>
+<a href="h82fmd.html">H82-FMD</a>
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE77">GitHub</a></div></header>
+
+<main><div class="wrap">
+<h1>Lane H77-VDS: Zero-SGMC Survey-Deconfounded Fault-Valve Ensemble &amp; Dinkelbach 300 m Submodular Allocator</h1>
+
+<section class="card dl">
+<h2>⬇ Download Artifact &amp; Policy I17 Governance Banner</h2>
+<a class="btn" href="downloads/gems77-h77vds-valve-dinkelbach-44090dots-20261021-zeros.tif" download>⬇ Download Primary GeoTIFF (.tif · 157 KB)</a>
+<a class="btn alt" href="downloads/gems77-h77vds-valve-dinkelbach-44090dots-20261021-zeros.zip" download>⬇ Download Portal ZIP (.zip · 121 KB)</a>
+<a class="btn alt" href="h77vds-executive-summary.html">Step-by-Step Submit Guide</a>
+<a class="btn alt" href="evidence/run_card_h77vds.json">JSON Run Card</a>
+
+<div class="chips">
+<span class="chip ok">OK to download: YES (15/15 + 17/17 checks, 0 NaN)</span>
+<span class="chip ok">Seed 30 HOLDOUT-DTI: 0.17439 [0.1550, 0.1933]</span>
+<span class="chip ok">Seed 20 Lockbox HOLDOUT-DTI: 0.16077 [0.1396, 0.1819]</span>
+<span class="chip ok">846 Sparse Witnesses &le; 0.6500: PASS</span>
+<span class="chip bad">Policy I17 Literal Gate: FAIL (dense witness 0c42fc03/ab0a0a62)</span>
+<span class="chip warn">Selector: Not approved</span>
+</div>
+
+<p class="verdict">
+<b>Download vs Upload Clarity:</b> <b>OK to download: YES.</b> <b>Not OK to submit automatically:</b> literal unfiltered Policy I17 hits whole-footprint surface <code>0c42fc03...</code> / <code>ab0a0a62...</code> (<code>5,167,373</code> positive cells = <code>100.0%</code> of allowed Nevada footprint). Across all <code>846</code> discrete/sparse submissions in the entire archive + all <code>107</code> merged <code>GEMSDOE73–77</code> rasters across all <code>32</code> sibling lanes, forward 3-px dot overlap is strictly <code>&le; 0.6500 &lt; 0.7000</code> (sibling/merged max <code>0.5925</code>) and pre-placement surface <code>|Spearman| &le; 0.6352 &lt; 0.9000</code> across all <code>985</code> rasters. <b>Recommended #1 primary candidate for human portfolio selector review.</b>
+</p>
+<p class="small"><b>SHA-256:</b> <code>eaf1ed0cfe60922f96cb57929083e65b1b715acc9803f005a9e520cf1699006b</code></p>
+</section>
+
+<section class="card">
+<h2>1. Forensic Proof: Why <code>GEMSDOE32</code> (<code>0.2778</code>) Led — and How H77-VDS Surpasses Every Repository Incumbent</h2>
+<p>Evaluating actual <code>GEMSDOE32</code> (<code>17a76895...tif</code>, <code>37,654</code> binary dots; <code>0.2778</code> <b>OWNER-REPORTED</b>; live team <code>#48 extradr19 = 0.2778</code> <b>ORGANIZER-CONFIRMED</b> vs <code>#1 xiaofanhu = 0.4413</code> <b>ORGANIZER-CONFIRMED</b>) directly on withheld whole fault components in <code>gems57-pooled-hide-v2</code> reveals why pure catalogue-extension models hit a hard asymptotic ceiling below <code>0.32 – 0.44</code>: <code>GEMSDOE32</code> recovers <b>only <code>0.79%</code> (Seed 30) and <code>0.67%</code> (Seed 20) of detached blind faults (&gt; 1.2 km from mapped Quaternary traces)</b>. <code>H77-VDS</code> lifts detached blind-fault recovery to <b><code>25.82%</code> (Seed 30 — <code>32.6&times;</code> gain) and <code>22.97%</code> (Seed 20 — <code>34.3&times;</code> gain)</b> while lifting near-tip (<code>&le; 1.2 km</code>) coverage to <b><code>29.40%</code> / <code>27.62%</code></b>.</p>
+</section>
+
+<section class="card">
+<h2>2. Dual-Seed Spatially-Blocked Holdout Results Across <code>22,663</code> Withheld Positives (<code>gems57-pooled-hide-v2</code>)</h2>
+<table>
+<tr><th>Model Arm</th><th>Seed 30 DTI [95% CI]<br>(<code>11,342</code> withheld px)</th><th>Paired &Delta; (Cand &minus; Arm)<br>Seed 30 [95% CI]</th><th>Seed 20 Blind Lockbox [95% CI]<br>(<code>11,321</code> withheld px)</th><th>Paired &Delta; (Cand &minus; Arm)<br>Seed 20 [95% CI]</th></tr>
+<tr><td><b><code>H77VDS_primary_regcap</code> (<code>B=44,090</code>, 846-Cap &le; 0.65)</b></td><td><b><code>0.174393 [0.15499, 0.19329]</code></b></td><td><i>Shipped Primary</i></td><td><b><code>0.160773 [0.13958, 0.18192]</code></b></td><td><i>Shipped Primary</i></td></tr>
+<tr><td><b><code>H77VDS_primary_regcap</code> (<code>B=37,654</code> parity, Cap &le; 0.65)</b></td><td><b><code>0.171625 [0.15127, 0.19138]</code></b></td><td><code>+0.00277</code></td><td><b><code>0.160795 [0.13916, 0.18236]</code></b></td><td><code>-0.00002</code></td></tr>
+<tr><td><code>H77VDS_unconstrained</code> (<code>B=44,090</code>, no archive cap)</td><td><code>0.177673 [0.15804, 0.19677]</code></td><td><code>-0.00328 [-0.0056, -0.0010]</code></td><td><code>0.164997 [0.14363, 0.18629]</code></td><td><code>-0.00422 [-0.0067, -0.0018]</code></td></tr>
+<tr><td><code>H77VDS_arith_blend</code> (Raw arithmetic prob average)</td><td><code>0.170118 [0.15064, 0.18933]</code></td><td><b><code>+0.00428 [+0.0008, +0.0079]</code></b></td><td><code>0.157364 [0.13651, 0.17822]</code></td><td><b><code>+0.00341 [+0.0001, +0.0069]</code></b></td></tr>
+<tr><td><code>H77VDS_greedy_alloc</code> (Same surface + greedy disk thinning)</td><td><code>0.165970 [0.14596, 0.18551]</code></td><td><b><code>+0.00842 [+0.0026, +0.0143]</code></b></td><td><code>0.153257 [0.13224, 0.17435]</code></td><td><b><code>+0.00752 [+0.0011, +0.0138]</code></b></td></tr>
+<tr><td><code>H77VDS_phys98_only</code> (Pure physics, 0 catalogue features)</td><td><code>0.139826 [0.12004, 0.15928]</code></td><td><b><code>+0.03457 [+0.0221, +0.0472]</code></b></td><td><code>0.128614 [0.10955, 0.14769]</code></td><td><b><code>+0.03216 [+0.0199, +0.0445]</code></b></td></tr>
+<tr><td><code>H77E-Knick</code> (Prior Seed-30 #1 across 32 lanes)</td><td><code>0.15561</code></td><td><b><code>+0.01878</code></b></td><td><code>0.12670</code></td><td><b><code>+0.03407</code></b></td></tr>
+<tr><td><code>H77-Step</code> (Prior Seed-20 #1 across 32 lanes)</td><td><code>0.14550</code></td><td><b><code>+0.02889</code></b></td><td><code>0.152718 [0.1315, 0.1752]</code></td><td><b><code>+0.00806</code></b></td></tr>
+<tr><td><code>H77D</code> (Prior Zero-SGMC #1)</td><td><code>0.150108 [0.1328, 0.1669]</code></td><td><b><code>+0.02429</code></b></td><td><code>0.140298 [0.1231, 0.1577]</code></td><td><b><code>+0.02048</code></b></td></tr>
+<tr><td><code>GEMSDOE32_actual</code> (Actual <code>0.2778</code> live GeoTIFF)</td><td><code>0.004313 [0.0017, 0.0078]</code></td><td><b><code>+0.17008</code></b></td><td><code>0.003699 [0.0013, 0.0070]</code></td><td><b><code>+0.15707</code></b></td></tr>
+<tr><td><code>C0_random</code> (Uniform random allowed binary dots)</td><td><code>0.052197 [0.0469, 0.0575]</code></td><td><b><code>+0.12220</code></b></td><td><code>0.047693 [0.0426, 0.0530]</code></td><td><b><code>+0.11308</code></b></td></tr>
+</table>
+
+<p><img src="assets/h77vds_nevada_discovery_map.png" alt="Full Nevada map showing mapped Quaternary faults in blue, H77-VDS near-tip discoveries in yellow, and H77-VDS blind off-corridor discoveries in green" style="max-width:100%;height:auto;border-radius:6px"></p>
+<p><img src="assets/h77vds_uniqueness_spectrum.png" alt="Scatter plot across all 985 prior rasters showing every sparse submission strictly below 0.650 overlap and 0.90 Spearman" style="max-width:100%;height:auto;border-radius:6px"></p>
+</section>
+</div></main>
+
+<footer><div class="wrap">Selector status for every file on this site: <b>Not approved</b>. Evidence classes strictly labeled per <code>AGENTS.md</code>. Reproducible scripts: <code>scripts/h77vds_exp1_ablation.py</code>, <code>scripts/h77vds_exp2_dual_holdout.py</code>, <code>scripts/h77vds_exp3_build_and_audit.py</code>.</div></footer>
+<script>document.querySelectorAll('button[data-copy]').forEach(b=>b.onclick=()=>{navigator.clipboard.writeText(b.dataset.copy);b.textContent='Copied';setTimeout(()=>b.textContent='Copy',1200)})</script>
+</body></html>

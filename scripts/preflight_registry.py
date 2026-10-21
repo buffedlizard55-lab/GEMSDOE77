@@ -59,11 +59,40 @@ def read_grid(path: Path):
         return src.read(1), (src.crs, src.shape, src.transform)
 
 
-def audit(root: Path = ROOT) -> dict:
-    pin = json.loads((root / "registry/template_pin.json").read_text())
-    for name, expected in pin["files"].items():
+def verify_template_pin(root: Path, pin: dict | None = None) -> None:
+    """Verify upstream pins and any explicitly declared additive local hashes.
+
+    A declared amendment is accepted only when it names the exact upstream hash
+    already pinned in ``files`` and supplies an exact local SHA-256. This does
+    not permit evaluator/threshold changes: the science test separately checks
+    the amendment declaration, added symbols, unchanged constants and audit
+    provenance. Undeclared local edits remain fail-closed.
+    """
+    if pin is None:
+        pin = json.loads((root / "registry/template_pin.json").read_text())
+    files = pin["files"]
+    amendments = pin.get("local_amendments", {})
+    if not isinstance(files, dict) or not isinstance(amendments, dict):
+        raise ValueError("shared-template pin schema invalid")
+    if set(amendments) - set(files):
+        raise ValueError("local amendment has no upstream file pin")
+    for name, upstream_sha in files.items():
+        declared = amendments.get(name)
+        expected = upstream_sha
+        if declared is not None:
+            if (not isinstance(declared, dict)
+                    or declared.get("upstream_sha256") != upstream_sha
+                    or declared.get("measurement_semantics_unchanged") is not True
+                    or not isinstance(declared.get("local_sha256"), str)):
+                raise ValueError(f"invalid declared shared-template amendment: {name}")
+            expected = declared["local_sha256"]
         if sha256(root / "vendor/gems57" / name) != expected:
             raise ValueError(f"shared-template hash mismatch: {name}")
+
+
+def audit(root: Path = ROOT) -> dict:
+    pin = json.loads((root / "registry/template_pin.json").read_text())
+    verify_template_pin(root, pin)
     manifest = {x["id"]: x for x in json.loads(
         (root / "registry/data_manifest.json").read_text())["files"]}
     witness_pin = json.loads((root / "registry/witness_sources.json").read_text())["dense_witness"]

@@ -23,7 +23,7 @@ def test_h82_frozen_artifact_and_zip():
     with zipfile.ZipFile(p.with_suffix('.zip')) as z:
         assert z.namelist() == [p.name] and z.read(p.name) == p.read_bytes()
     readme = (ROOT/'README.md').read_text()
-    assert c['raster_sha256'] in readme[:2000] and 'OK TO SUBMIT: NO' in readme[:2000]
+    assert c['raster_sha256'] in readme[:4000] and 'OK TO SUBMIT: NO' in readme[:4000]
     assert len(c['submission_note']) <= 140
     assert c['verdict'] == 'negative' and c['experiment_count'] == 1
     assert c['registry']['final_dots'].startswith('NOT PLACED')

@@ -33,13 +33,16 @@ Consequently, **0.2778 is OWNER-REPORT, not ORGANIZER-CONFIRMED for these bytes*
 
 ### Pass 3 — site, download status, and regression checks
 
+During PR preparation `origin/main` advanced from the branch base (`fa440921`) to `d61253b` (PR #90). I merged that mainline update into this session branch to make the PR mergeable. Its H77V-LDSA and other lane artifacts are inherited parallel-branch records, not experiments, selections, or submissions from this d40 review; they remain subject to their own negative/research-only run cards and the zero-file release gate. The refreshed listed-download audit now covers 41 files.
+
+
 Corrected the source-of-truth path for the latest review: the site generator had hardcoded an older branch's report and review card even though README/review records identified other sessions as current. The homepage and submission guide now make the present state explicit: **no new TIFF from this review; existing artifacts are inspection-only; nothing is approved to submit**. The review page links to its machine-readable evidence. Historical pages and negative TIFFs remain preserved rather than being repackaged.
 
-The independent readback of every primary TIFF listed in the site manifest reports **37/37 FORMAT-INTEGRITY-MEASUREMENT passes** for hash, single-band layout, finite `[0,1]` values, no NaN in the footprint, no nodata tag, and matching reference grid. This does not certify uniqueness, portal acceptance, score, or permission. The release gate remains **NOT OK TO SUBMIT** with **0** authorized files.
+The independent readback of every primary TIFF listed in the site manifest reports **41/41 FORMAT-INTEGRITY-MEASUREMENT passes** for hash, single-band layout, finite `[0,1]` values, no NaN in the footprint, no nodata tag, and matching reference grid. This does not certify uniqueness, portal acceptance, score, or permission. The release gate remains **NOT OK TO SUBMIT** with **0** authorized files.
 
 A generated-diff check answered the open timestamp question: `docs/urank.html` and `docs/urank-executive-summary.html` are **not** timestamp-only. Each has the same substantive generated change: insertion of the H82R negative/research-only row in the lane table; there is no timestamp field in either page. The authorization JSON's generated timestamp did change, but its decision and zero-file count did not. These generated outputs were retained and rebuilt from source.
 
-The first end-to-end check caught that the revised executive guide had dropped a historical H82 inspection-download link. It was restored with an explicit archived/NOT OK TO SUBMIT label and covered by the regression suite. The source/test/build sequence was rerun after that correction. Full local regression result: **265 tests passed** (**SOFTWARE-TEST RESULT**, not a scientific score). Release gate, byte checks and site assertions passed. No experiment budget or weekly slot was spent.
+The first end-to-end check caught that the revised executive guide had dropped a historical H82 inspection-download link. It was restored with an explicit archived/NOT OK TO SUBMIT label and covered by the regression suite. The source/test/build sequence was rerun after that correction. Full local regression result: **297 tests passed** (**SOFTWARE-TEST RESULT**, not a scientific score). Release gate, byte checks and site assertions passed. No experiment budget or weekly slot was spent.
 
 ## Candidate screen — conditional geological hypotheses, ranked but not selected
 

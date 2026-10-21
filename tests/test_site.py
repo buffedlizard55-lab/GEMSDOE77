@@ -30,6 +30,14 @@ def test_nan_outside_diagnostics_are_not_published_as_downloads():
     assert not re.search(r'\]\([^)]*-nan\.tif\)', readme, re.I)
 
 
+def test_active_d40_status_precedes_archived_parallel_banners():
+    readme=(ROOT/'README.md').read_text()
+    assert readme.index('Current Arena branch') < readme.index('All following lane banners')
+    assert readme.index('All following lane banners') < readme.index('<!-- H77V-LDSA PRIMARY STATUS BANNER -->')
+    assert 'no new d40 artifact is available to download' in readme
+    assert 'zero files' in readme
+
+
 def test_unambiguous_download_status_and_accessibility_basics():
     for path in DOC.glob('*.html'):
         s=path.read_text()
@@ -311,7 +319,7 @@ def test_current_review_and_metric_correction_are_linked():
     for name in ('index.html', 'executive-summary.html'):
         text = (DOC / name).read_text()
         assert 'review-latest.html' in text and 'metric-review.html' in text
-        assert 'Current branch review:' in text or name == 'executive-summary.html'
+        assert 'Current d40 review:' in text or name == 'executive-summary.html'
         assert 'no new TIFF' in text or 'NO NEW TIFF' in text
     analysis = (DOC / 'metric-review.html').read_text()
     assert 'ΔT=k' in analysis and 'only when' in analysis
@@ -355,6 +363,26 @@ def test_urank_generated_pages_include_the_h82r_lane_row():
         assert 'generated_utc' not in text
 
 
+def test_active_branch_review_records_stop_and_no_submission():
+    source = (DOC / "review-2026-10-21-arena-00397d44.md").read_text()
+    card = json.loads((ROOT / "evidence/review_00397d44_run_card.json").read_text())
+    assert "STOP_UNIVERSAL_DUPLICATE" in source
+    assert "Cross-wavelet" in source or "cross-wavelet" in source
+    assert "Not viable now" in source
+    assert card["verdict"] == "negative"
+    assert card["raster_sha256"] is None and card["submission_name"] is None
+    assert card["holdout_dti"]["withheld_positive_pixels"] is None
+    assert card["validator_output"]["decision"] == "NOT OK TO SUBMIT"
+    assert not card["validator_output"]["new_tiff_generated"]
+    assert (DOC / "evidence/review_00397d44_run_card.json").read_bytes() == (ROOT / "evidence/review_00397d44_run_card.json").read_bytes()
+    branch_page = (DOC / "review-arena-00397d44.html").read_text()
+    assert "arena/00397d44-gemsdoe77" in branch_page
+    assert "Resource not accessible by integration" in branch_page
+    assert "review-arena-00397d44.html" in (ROOT / "README.md").read_text()
+    for name in ("index.html", "executive-summary.html"):
+        assert "review-arena-00397d44.html" in (DOC / name).read_text()
+
+
 def test_current_preflight_review_does_not_claim_a_new_submission():
     text = (DOC / "preflight-review.html").read_text()
     assert "NOT OK TO SUBMIT" in text and "No new TIFF generated" in text
@@ -367,7 +395,7 @@ def test_current_preflight_review_does_not_claim_a_new_submission():
     assert card["raster_sha256"] is None and card["submission_name"] is None
     assert len(card["submission_note"]) <= 140
     assert card["holdout_dti"]["value"] is None
-    assert card["validator"]["listed_count"] == 37
+    assert card["validator"]["listed_count"] == 41
     assert card["branch"] == "arena/d40f78d1-gemsdoe77"
 
 

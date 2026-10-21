@@ -1,0 +1,62 @@
+{
+  "lane_id": "H77H",
+  "lane_title": "Mesh-Deconfounded Regional Regime (sigma>=35px) x Coupled Hydrothermal Demagnetization Trough, Gravity-Basement Step, 3DEP Fluvial-Scarp Crest & SLOCO Fracture Mechanics",
+  "preregistered_date": "2026-10-21",
+  "branch": "arena/46c3997d-gemsdoe77",
+  "addresses_prior_review_items": [
+    "IR-H77G-01: Filter cond_surf (Band 17), geodetic strain rates (Bands 4, 7, 8), and earthquake densities (Bands 10, 16) strictly at sigma >= 35 px (3.5 km) so rectilinear 35 px / 70 px inversion-mesh boundaries are never differentiated; remove short-wavelength cond_grad (sigma=1.5 px) and hydro_chem_claycap_coupled (sigma=2.5 px).",
+    "IR-H77G-02: Use true across-valley positive Hessian eigenvalue lambda_1 weighted by linear tubularity 1 - min(|lambda_2|, lambda_1)/(lambda_1 + eps) via hessian_trough rather than legacy F77.hessian_ridge.",
+    "IR-H77G-03: Couple hydrothermal magnetite-destruction troughs and oriented gravity-basement steps directly with 1m/10m 3DEP scarp crests, 10m fluvial knickpoint steps, and fold-pure SLOCO fracture-mechanics tip/relay continuations rather than using hydrothermal features alone."
+  ],
+  "ranked_pre_experiment_hypotheses": [
+    {
+      "id": "H77H-1",
+      "rank": 1,
+      "selected_for_implementation": true,
+      "title": "Mesh-Deconfounded Regional Crustal-Regime Modulation (sigma>=35px) of Coupled Hydrothermal Demagnetization Troughs, Gravity-Basement Steps, 3DEP 1m/10m Fluvial-Scarp Crests, and SLOCO Fracture-Mechanics Continuations",
+      "layers_used": [
+        "training_features.tif: rtp (Band 2), tmi_hg (Band 3), tmi_vg (Band 9), iso_grav_anom (Band 13), iso_grav_anom_hg_signed (Band 18), iso_grav_anom_vg (Band 11), depth_to_base_surf (Band 15), det_elev (Band 12), det_elev_slope (Band 19)",
+        "training_features.tif (strictly low-pass filtered at sigma = 35 px = 3.5 km and sigma = 50 px = 5.0 km): cond_surf (Band 17), geod_2ndinv (Band 4), geod_shearrate (Band 7), geod_dilaterate (Band 8), deq_n100a15 (Band 10), ieq_n100a15 (Band 16)",
+        "USGS 3DEP 1m LiDAR scarp stack (lidar_scarp_features_u8.tif + lidar_scarp_features.json with q==0 -> NaN) and 10m derived topographic/fluvial knickpoint stacks (topo_10m_derived_100m_u8.tif, dem10_chi_100m_u8.tif, dem10_chi_100m_i16.tif, dem10_chi_100m_sig_i32.tif) deconfounded by US Census TIGER/Line road distance (tiger_road_distance_m.tif)",
+        "GeoDAWN radiometrics & upward-continued TMI (geodawn_rad_u8.tif, geodawn_extensions_u8.tif) and GDR 1391 thermal springs/wells, 2m temperature probes, and paleo-geothermal sinter/tufa",
+        "Fold-pure SLOCO (Segment-Leave-Out) fracture-mechanics tip cones and 2-component relay corridors computed strictly from each fold's visible fault mask"
+      ],
+      "expected_physical_signature": "Steeply dipping (55-65 deg) blind and eroded normal/transtensional faults channel hydrothermal fluids that alter magnetite to paramagnetic clay/pyrite (linear across-valley RTP Hessian trough lambda_1 > 0) along a co-aligned subsurface basement-depth and gravity step, accompanied at the surface by subtle TIGER-deconfounded 1m/10m scarp crests or 10m fluvial knickpoints along the projected strike of visible fault tips and relay breaches within a regional (sigma>=35 px) transtensional, microseismically active, conductive clay-cap province.",
+      "why_missed_by_catalogue": "The USGS/INGENIOUS catalogue primarily maps continuous subaerial range-front scarps; intrabasin step-faults, eroded relay-ramp breaches, and alluvial-apron continuations have discontinuous or sub-meter surface expression that requires joint corroboration by subsurface gravity-basement steps, hydrothermal demagnetization troughs, and 10m fluvial knickpoints.",
+      "named_non_fault_mimics_and_controls": [
+        "Rectilinear 3.5 km / 7.0 km MT & geodetic inversion-mesh boundaries (IR-H77G-01): eliminated by strictly filtering cond_surf, geodetic strain, and seismicity at sigma >= 35 px and removing short-wavelength cond_grad (sigma=1.5 px) and hydro_chem_claycap_coupled (sigma=2.5 px).",
+        "Reverse-remagnetized volcanic flows and equant plutonic aureoles: suppressed via across-valley Hessian tubularity, oriented gravity-basement step co-alignment, and Gallardo-Meju cross-gradient parallelism.",
+        "Highway/railroad embankments and Pleistocene Lake Lahontan (1332 m) / Bonneville (1463/1552 m) paleoshorelines: suppressed via TIGER road-distance Gaussian damping and 1.6 km along-strike elevation variance."
+      ]
+    },
+    {
+      "id": "H77H-2",
+      "rank": 2,
+      "selected_for_implementation": false,
+      "title": "3-D Euler Deconvolution Structural-Index (N=0.5) Depth-Cluster Lineaments Coupled with Sub-Alluvial Basement Relay Saddles"
+    },
+    {
+      "id": "H77H-3",
+      "rank": 3,
+      "selected_for_implementation": false,
+      "title": "Anisotropic Cross-Divide Chi Disequilibrium (Delta-Chi) and Tributary Capture-Elbow Asymmetry Across Relay Ramps"
+    },
+    {
+      "id": "H77H-4",
+      "rank": 4,
+      "selected_for_implementation": false,
+      "title": "Radiometric Potassium-to-Thorium (K/Th) Illite-Adularia Alteration Halos Coupled with 2-Meter Temperature Probe & Silica Geothermometer Anomalies"
+    }
+  ],
+  "protocol_rules": {
+    "evaluator": "vendor/gems57/evaluate_holdout.py (gems57-pooled-hide-v2, alpha=0.2, beta=0.8, 300m triangular kernel)",
+    "seeds": [20, 30],
+    "leakage_canary_ceiling_symmetric_auc": 0.90,
+    "surface_spearman_ceiling": 0.90,
+    "final_dot_3px_overlap_ceiling": 0.70,
+    "max_experiments": 3,
+    "target_dots_full": 36800,
+    "catalogue_exclusion_collar_px": 2.0,
+    "informative_overlap_cap": 0.665
+  }
+}

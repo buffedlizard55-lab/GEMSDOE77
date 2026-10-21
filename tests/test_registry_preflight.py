@@ -1,11 +1,12 @@
 """Preflight is a rejection witness, never permission to submit."""
+import hashlib
 import json
 from pathlib import Path
 
 import numpy as np
 import pytest
 
-from preflight_registry import audit, domain_proof
+from preflight_registry import audit, domain_proof, verify_template_pin
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -57,6 +58,27 @@ def test_no_blocker_proof_never_means_unique():
     result = domain_proof(np.ones((11, 11), bool), np.eye(11))
     assert not result["universal_overlap_blocker"]
     assert "unique" not in result
+
+
+def test_declared_additive_template_amendment_uses_its_local_pin(tmp_path):
+    path = tmp_path / "vendor/gems57/uniqueness.py"
+    path.parent.mkdir(parents=True)
+    path.write_text("upstream plus declared reporting helpers")
+    local_sha = hashlib.sha256(path.read_bytes()).hexdigest()
+    pin = {
+        "files": {"uniqueness.py": "upstream-sha"},
+        "local_amendments": {
+            "uniqueness.py": {
+                "upstream_sha256": "upstream-sha",
+                "local_sha256": local_sha,
+                "measurement_semantics_unchanged": True,
+            }
+        },
+    }
+    verify_template_pin(tmp_path, pin)
+    pin["local_amendments"]["uniqueness.py"]["upstream_sha256"] = "wrong-upstream"
+    with pytest.raises(ValueError, match="invalid declared shared-template amendment"):
+        verify_template_pin(tmp_path, pin)
 
 
 def test_input_pin_failure_precedes_any_proof(tmp_path):
