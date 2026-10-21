@@ -1,0 +1,13 @@
+{
+  "name": "gems77-h85xwc-magxgrav-coherence-37654dots-20261021-zeros",
+  "note": "H85-XWC RTP x gravity multi-scale cross-coherence, label-blind; 37654 dotted sep3px >2px off catalogue",
+  "note_chars": 102,
+  "sha256": "9546011da3c1ba5175c30937a4d4a495e9bb81a335a12eb80c715b183969e23b",
+  "dots": 37654,
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "verdict": "negative",
+  "holdout_dti_seed20": 0.023363117749217673,
+  "holdout_dti_seed30": 0.02070724167227775,
+  "evidence_class": "HOLDOUT-DTI (local hide-and-recover; not a leaderboard score)"
+}

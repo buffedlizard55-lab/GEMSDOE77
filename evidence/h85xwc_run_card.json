@@ -1,0 +1,83 @@
+{
+  "lane": "H85-XWC",
+  "hypothesis": "A buried fault juxtaposing basement blocks of different susceptibility and density produces a spatially coherent edge in both RTP magnetics and isostatic gravity across 400-1600 m wavelengths with consistent cross-field phase, even where basin fill hides any surface scarp.",
+  "mechanism": "FFT log-Gabor bandpass (4/8/16 px) of high-passed RTP (band 2) and isostatic gravity (band 13); per-scale local coherence x rank joint edge energy, phase-agreement weighted, rank-normalised; template decimated dotted emission, 37,654 dots, >2 px from catalogue, 0 on catalogue.",
+  "named_non_fault_mimic": "Lithologic/intrusive contact sharing a magnetic and gravity edge without fault throw; GeoDAWN flight-line/survey-block seams.",
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "seed20": {
+      "dti": 0.023363117749217673,
+      "ci95": [
+        0.015697606819002414,
+        0.031231958612707816
+      ],
+      "withheld_positives": 11321
+    },
+    "seed30": {
+      "dti": 0.02070724167227775,
+      "ci95": [
+        0.015186527790968159,
+        0.026538518472802825
+      ],
+      "withheld_positives": 11342
+    },
+    "controls_seed20": {
+      "rtp_only": 0.03677246858295696,
+      "grav_only": 0.023404552589446504,
+      "random": 0.046548878432371876
+    },
+    "controls_seed30": {
+      "rtp_only": 0.03566874122728326,
+      "grav_only": 0.02899305567995854,
+      "random": 0.04590651644557896
+    },
+    "beats_all_controls_paired_ci": false,
+    "interpretation": "Candidate is significantly below the matched random control on both seeds; cross-field coherence concentrates dots on shared lithologic edges, not on withheld catalogue faults. Decisive negative."
+  },
+  "canary_max_auc_vs_withheld": 0.529644595088773,
+  "correlation_overlap_vs_registry": {
+    "rasters_compared": 67,
+    "errors": [],
+    "max_abs_surface_rho_sparse": 0.07289042820064026,
+    "max_abs_surface_rho_dense": 0.06043872069295906,
+    "max_forward_dot_overlap_3px_sparse": 0.4451585488925479,
+    "max_forward_dot_overlap_3px_dense_literal": 0.997822276517767,
+    "informative_unique": true,
+    "literal_unique": false,
+    "irregularity": "IR-H85-01 (see evidence/h85xwc_exp3_build.json)"
+  },
+  "raster_sha256": "9546011da3c1ba5175c30937a4d4a495e9bb81a335a12eb80c715b183969e23b",
+  "validator": {
+    "all_checks_passed": true,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "n_nan": 0,
+    "min": 0.0,
+    "max": 1.0
+  },
+  "submission_name": "gems77-h85xwc-magxgrav-coherence-37654dots-20261021-zeros",
+  "note": "H85-XWC RTP x gravity multi-scale cross-coherence, label-blind; 37654 dotted sep3px >2px off catalogue",
+  "note_chars": 102,
+  "experiments_used": 3,
+  "weekly_slots_used": 0,
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "verdict": "negative",
+  "generated_utc": "2026-10-21T20:01:10.778718+00:00"
+}

@@ -1,0 +1,45 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="assets/lia.css"><title>H85-XWC · GEMSDOE77</title></head><body><header><div class="wrap"><span class="brand">GEMSDOE77 · DOE GEMS Prize</span><a href="index.html">Start here</a> <a href="h85xwc.html">H85-XWC report</a> <a href="h85xwc-executive-summary.html">H85-XWC submit guide</a> <a href="executive-summary.html">How to submit</a> <a href="https://github.com/buffedlizard55-lab/GEMSDOE77">GitHub</a></div></header><main><div class="wrap">
+<h1>H85-XWC - magnetic x gravity cross-field coherence</h1>
+<section class="card dl" style="border:3px solid #b91c1c;background:#fef2f2;">
+<h2>⬇ H85-XWC unique submission GeoTIFF (new method, machine-validated)</h2>
+<p class="verdict">✅ OK TO DOWNLOAD &nbsp;·&nbsp; ⛔ NOT OK TO SUBMIT — automated gate verdict: <b>NEGATIVE</b> (holdout candidate below matched random control; 0 weekly slots used; selector: not approved)</p>
+<a class="btn" href="downloads/gems77-h85xwc-magxgrav-coherence-37654dots-20261021-zeros.tif" download>Download .tif (113 KB)</a>
+<a class="btn alt" href="downloads/gems77-h85xwc-magxgrav-coherence-37654dots-20261021-zeros.zip" download>One-TIFF .zip (76 KB)</a>
+<a class="btn alt" href="h85xwc-executive-summary.html">Executive summary: exactly how submission works →</a>
+<p class="small">name: <code>gems77-h85xwc-magxgrav-coherence-37654dots-20261021-zeros</code><br>note (102 chars): <code>H85-XWC RTP x gravity multi-scale cross-coherence, label-blind; 37654 dotted sep3px >2px off catalogue</code><br>
+sha256: <code>9546011da3c1ba5175c30937a4d4a495e9bb81a335a12eb80c715b183969e23b</code> · dots: 37654 · on catalogue: 0 ·
+min catalogue distance: 2.236 px</p>
+<div class="chips"><span class="chip ok">Format validator: 15/15 PASS (float32 {0,1}, 0 NaN, EPSG:32611)</span>
+<span class="chip ok">Informative uniqueness: PASS (max |ρ| 0.073 ≤ 0.90; max sparse dot overlap 0.445 ≤ 0.70; 67 rasters)</span>
+<span class="chip bad">Holdout: NEGATIVE — 0.0234 (s20) / 0.0207 (s30) HOLDOUT-DTI, below random</span>
+<span class="chip warn">Literal dense-witness gate: FAIL for every candidate (IR-H85-01)</span></div></section>
+
+<h2>Method (new in this repo — no prior implementation)</h2>
+<p>Magnetic×gravity <b>multi-scale cross-field coherence</b>: FFT log-Gabor bandpass (wavelengths
+4/8/16 px = 400/800/1600 m) of high-passed RTP magnetics (band 2) and isostatic gravity (band 13);
+per-scale local coherence |S(XY)|/√(S(X²)S(Y²)) × rank joint edge energy, weighted by cross-scale
+phase-sign agreement. Label-blind (no catalogue input to the surface). Emission reuses the shared
+template decimated dotted allocator at the H33-matched budget of 37,654 dots, &gt;2 px from the
+catalogue. Preregistration: <code>registry/preregistration_h85xwc.json</code>,
+hypotheses: <code>research/h85_hypotheses.md</code>. Named mimic: lithologic/intrusive contacts
+and flight-line seams.</p>
+<img src="assets/h85xwc_fig.png" alt="H85-XWC surface, dots and holdout arms" style="max-width:100%">
+
+<h2>Results — every number labelled</h2>
+<table><tr><th>Quantity</th><th>Value</th><th>Class</th></tr>
+<tr><td>Candidate, seed 20</td><td><b>0.0234</b> (95% CI 0.0157–0.0312; 11321 withheld positives)</td><td>HOLDOUT-DTI, gems57-pooled-hide-v2</td></tr>
+<tr><td>Candidate, seed 30</td><td><b>0.0207</b> (95% CI 0.0152–0.0265; 11342 withheld)</td><td>HOLDOUT-DTI</td></tr>
+<tr><td>Matched random control</td><td>0.0465 (s20) / 0.0459 (s30)</td><td>HOLDOUT-DTI</td></tr>
+<tr><td>Single-field controls (RTP / gravity)</td><td>0.0368 / 0.0234 (s20)</td><td>HOLDOUT-DTI</td></tr>
+<tr><td>Leakage canary (max single-feature AUC)</td><td>0.530 (stop &gt; 0.90: clear)</td><td>Diagnostic</td></tr>
+<tr><td>H33 family best 0.2778</td><td>Owner-reported; no organizer receipt in this repo</td><td>UNVERIFIED — not ORGANIZER-CONFIRMED</td></tr></table>
+<p><b>Interpretation.</b> Cross-field coherence concentrates emission on shared lithologic edges
+(the named mimic), which do not coincide with withheld catalogue faults; uniform random coverage
+earns more 300 m-kernel credit. This closes the cross-coherence lane as preregistered — no
+retuning. The file above is nevertheless a genuinely unique, format-valid GeoTIFF: it is safe to
+download and inspect, and the automated gate says <b>do not spend a weekly slot on it</b>.</p>
+<p class="small">Evidence: <a href="evidence/h85xwc_run_card.json">run card</a> ·
+<code>evidence/h85xwc_exp1_canary.json</code> · <code>evidence/h85xwc_exp2_holdout.json</code> ·
+<code>evidence/h85xwc_exp3_build.json</code> · reproduce: <code>scripts/h85xwc_pipeline.py</code>,
+audit: <code>scripts/h85xwc_audit.py</code>.</p>
+</div></main></body></html>

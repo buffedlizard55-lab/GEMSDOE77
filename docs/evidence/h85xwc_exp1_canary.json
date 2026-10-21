@@ -1,0 +1,57 @@
+{
+  "experiment": "H85-XWC Exp1 single-feature leakage canaries",
+  "evidence_class": "CANARY-DIAGNOSTIC; NOT HOLDOUT-DTI OR ORGANIZER SCORE",
+  "generated_utc": "2026-10-21T19:39:46.788420+00:00",
+  "features_sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+  "canaries": {
+    "xwc": {
+      "auc_vs_withheld_seed20": 0.5087523015634661,
+      "auc_vs_full_catalogue_diagnostic": 0.5319582125991998
+    },
+    "rtp_only": {
+      "auc_vs_withheld_seed20": 0.529644595088773,
+      "auc_vs_full_catalogue_diagnostic": 0.526340331491441
+    },
+    "grav_only": {
+      "auc_vs_withheld_seed20": 0.5104609601625298,
+      "auc_vs_full_catalogue_diagnostic": 0.553086278759756
+    },
+    "coherence_mean": {
+      "auc_vs_withheld_seed20": 0.4788490430174013,
+      "auc_vs_full_catalogue_diagnostic": 0.5083628204892766
+    },
+    "phase_agreement": {
+      "auc_vs_withheld_seed20": 0.4994374772546595,
+      "auc_vs_full_catalogue_diagnostic": 0.5026924483504952
+    }
+  },
+  "leakage_stop_features_over_090": [],
+  "withheld_positives_seed20": 11321,
+  "surface_stats": {
+    "xwc": {
+      "min": 0.0,
+      "max": 1.0,
+      "positive_in_footprint": 5167372
+    },
+    "rtp_only": {
+      "min": 0.0,
+      "max": 0.9997612833976746,
+      "positive_in_footprint": 5167373
+    },
+    "grav_only": {
+      "min": 0.0,
+      "max": 0.999981164932251,
+      "positive_in_footprint": 5167373
+    },
+    "coherence_mean": {
+      "min": 0.0,
+      "max": 1.0,
+      "positive_in_footprint": 5167372
+    },
+    "phase_agreement": {
+      "min": 0.0,
+      "max": 1.0,
+      "positive_in_footprint": 5167373
+    }
+  }
+}

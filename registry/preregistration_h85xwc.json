@@ -1,0 +1,31 @@
+{
+  "registered_utc": "2026-10-21",
+  "branch": "arena/7a05d452-gemsdoe77",
+  "lane": "H85-XWC magnetic-gravity multi-scale cross-field coherence",
+  "assignment_irregularity": "No single method paragraph identifiable in supplied prompt; autonomous narrow lane preregistered in research/h85_hypotheses.md before implementation.",
+  "hypothesis": "A buried fault juxtaposing basement blocks of different susceptibility and density produces a spatially coherent edge in both RTP magnetics and isostatic gravity across 400-1600 m wavelengths, with consistent cross-field phase sign across scales, even where basin fill hides any surface scarp from the USGS/INGENIOUS catalogue.",
+  "mechanism": "FFT bandpass both high-passed fields at wavelengths 4/8/16 px; per-scale local coherence |S(XY)|/sqrt(S(X2)S(Y2)) times rank-normalised joint edge energy, averaged over scales and weighted by cross-scale phase-sign agreement; rank-normalised surface; template decimated dotted emission.",
+  "mimic": "Lithologic/intrusive contact sharing a magnetic and gravity edge without fault throw; GeoDAWN flight-line/survey-block seams.",
+  "inputs": [
+    "data/raw/training_features.tif band 2 rtp (sha256 4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5)",
+    "data/raw/training_features.tif band 13 iso_grav_anom (same file)",
+    "data/bridge/existing_faults.tif only for holdout split and emission masking",
+    "data/bridge/sample_submission.tif only for footprint/grid"
+  ],
+  "label_blind_surface": true,
+  "parameters_fixed_before_holdout": {
+    "highpass_gaussian_sigma_px": 8,
+    "wavelengths_px": [4, 8, 16],
+    "coherence_smoothing_sigma": "wavelength/2",
+    "emission": "gems57.emit.emit_decimated tile_px=3 on p=surface rank in [0,1]",
+    "budget_dots": 37654,
+    "min_catalogue_distance_px_exclusive": 2.0
+  },
+  "experiments": {
+    "exp1": "single-feature AUC canaries (stop if any > 0.90)",
+    "exp2": "buffered whole-component holdout seeds 20,30; arms xwc/rtp_only/grav_only/random; pooled DTI + paired 20km-block bootstrap CI",
+    "exp3": "final build via gems57.submission_writer + uniqueness vs restored lineage and local sparse registry + validator"
+  },
+  "promotion_rule": "promote only if candidate beats all matched controls with paired CI lower bound > 0 on both seeds AND max |surface rho| <= 0.90 AND max sparse-raster 3px dot overlap <= 0.70 AND validator 15/15; literal dense-witness reading reported separately as irregularity IR-H85-01; weekly slot selection remains a separate step, 0 slots used",
+  "budget": {"maximum_experiments": 3, "maximum_hours": 2}
+}

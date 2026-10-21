@@ -2,12 +2,30 @@
   "schema": "gems-listed-download-readback-v1",
   "evidence_class": "FORMAT-INTEGRITY-MEASUREMENT; NOT SCORE OR PORTAL ACCEPTANCE",
   "scope": "Every primary TIFF in docs/data/lanes.json; no archive or NaN twins, no uniqueness certification",
-  "manifest_sha256": "f8035a50a2d7ae5b62fe33846f3a351e6c338b954d7cc53815df689d290fea26",
+  "manifest_sha256": "7556c722ae12440e68a4b8c5e5634e142c44e3aa21f53187393f597c6506bcf0",
   "reference_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
-  "listed_count": 44,
+  "listed_count": 45,
   "all_format_pass": true,
   "authorized_to_submit": false,
   "artifacts": [
+    {
+      "lane": "H85-XWC: RTP x isostatic-gravity multi-scale cross-field coherence (negative; below matched random on both seeds)",
+      "file": "downloads/gems77-h85xwc-magxgrav-coherence-37654dots-20261021-zeros.tif",
+      "sha256": "9546011da3c1ba5175c30937a4d4a495e9bb81a335a12eb80c715b183969e23b",
+      "checks": {
+        "single_band": true,
+        "crs_matches": true,
+        "shape_matches": true,
+        "transform_matches": true,
+        "finite_entire_raster": true,
+        "no_nan_inside_footprint": true,
+        "values_in_0_1": true,
+        "nodata_none": true,
+        "sha256_matches_manifest": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
     {
       "lane": "H77E-ACD: Covariate-Matched Zero-SGMC Multi-Modal Ensemble + Filament Auto-Context + Dinkelbach 1-Swap (ALL-TIME #1 RECORD: 0.18478 3-Seed Pooled / 0.18938 s30 / 0.18225 s20 / 0.18271 s21 HOLDOUT-DTI)",
       "file": "downloads/gems77-h77e-autoctx-dinkelbach-37654dots-20261021-5cd77ffc-zeros.tif",

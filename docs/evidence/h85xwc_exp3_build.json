@@ -1,0 +1,623 @@
+{
+  "experiment": "H85-XWC Exp3 final build + uniqueness + validation (audit re-derivation)",
+  "evidence_class": "FORMAT/REGISTRY MEASUREMENT; NOT A SCORE",
+  "generated_utc": "2026-10-21T19:47:30.023881+00:00",
+  "file": "gems77-h85xwc-magxgrav-coherence-37654dots-20261021-zeros.tif",
+  "sha256": "9546011da3c1ba5175c30937a4d4a495e9bb81a335a12eb80c715b183969e23b",
+  "dots": 37654,
+  "dots_on_catalogue": 0,
+  "min_catalogue_distance_px": 2.23606797749979,
+  "validator": {
+    "file": "/home/user/GEMSDOE77/docs/downloads/gems77-h85xwc-magxgrav-coherence-37654dots-20261021-zeros.tif",
+    "bytes": 115082,
+    "sha256": "9546011da3c1ba5175c30937a4d4a495e9bb81a335a12eb80c715b183969e23b",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "emitted_positive_pixels": 37654,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 37654,
+    "footprint_fraction": 0.007286874781441169
+  },
+  "uniqueness": {
+    "rasters_compared": 67,
+    "errors": [],
+    "sparse_dot_rasters": 64,
+    "dense_surfaces": 3,
+    "max_abs_surface_rho_sparse": 0.07289042820064026,
+    "max_abs_surface_rho_dense": 0.06043872069295906,
+    "max_forward_dot_overlap_3px_sparse": 0.4451585488925479,
+    "max_forward_dot_overlap_3px_dense_literal": 0.997822276517767,
+    "worst_sparse_by_overlap": {
+      "file": "gems77-ago-hybrid50-geophys-37654dots-11b45670-nan.tif",
+      "positive_in_footprint": 37502,
+      "positive_fraction": 0.007257459447963211,
+      "surface_spearman_full_footprint": null,
+      "forward_dot_overlap_3px": 0.4451585488925479,
+      "class": "sparse_dot_raster"
+    },
+    "rows": [
+      {
+        "file": "gems77-ago-hybrid35-geophys-37654dots-dc66e42e-nan.tif",
+        "positive_in_footprint": 37502,
+        "positive_fraction": 0.007257459447963211,
+        "surface_spearman_full_footprint": null,
+        "forward_dot_overlap_3px": 0.4298082541031497,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-ago-hybrid35-geophys-37654dots-dc66e42e-zeros.tif",
+        "positive_in_footprint": 37502,
+        "positive_fraction": 0.007257459447963211,
+        "surface_spearman_full_footprint": 0.06694074413116699,
+        "forward_dot_overlap_3px": 0.4298082541031497,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-ago-hybrid50-geophys-37654dots-11b45670-nan.tif",
+        "positive_in_footprint": 37502,
+        "positive_fraction": 0.007257459447963211,
+        "surface_spearman_full_footprint": null,
+        "forward_dot_overlap_3px": 0.4451585488925479,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-ago-hybrid50-geophys-37654dots-11b45670-zeros.tif",
+        "positive_in_footprint": 37502,
+        "positive_fraction": 0.007257459447963211,
+        "surface_spearman_full_footprint": 0.07289042820064026,
+        "forward_dot_overlap_3px": 0.4451585488925479,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-ago-select-geophys-37654dots-909053c9-nan.tif",
+        "positive_in_footprint": 37654,
+        "positive_fraction": 0.007286874781441169,
+        "surface_spearman_full_footprint": null,
+        "forward_dot_overlap_3px": 0.2063525787432942,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-ago-select-geophys-37654dots-909053c9-zeros.tif",
+        "positive_in_footprint": 37654,
+        "positive_fraction": 0.007286874781441169,
+        "surface_spearman_full_footprint": 0.028114945241097027,
+        "forward_dot_overlap_3px": 0.2063525787432942,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-bgb-growthwedge-transtens-37654dots-20261021-3c58975b-zeros.tif",
+        "positive_in_footprint": 37654,
+        "positive_fraction": 0.007286874781441169,
+        "surface_spearman_full_footprint": 0.023780668919908064,
+        "forward_dot_overlap_3px": 0.10155627556169332,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif",
+        "positive_in_footprint": 44090,
+        "positive_fraction": 0.00853238192791579,
+        "surface_spearman_full_footprint": 0.01665868251075418,
+        "forward_dot_overlap_3px": 0.17126998459659,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-d77-blind-band-35106dots-20261021-926076f7-zeros.tif",
+        "positive_in_footprint": 35106,
+        "positive_fraction": 0.0067937809018238085,
+        "surface_spearman_full_footprint": 0.005794271291614589,
+        "forward_dot_overlap_3px": 0.06466776438094227,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-h28-dotted-pruned2px-20261021-35b64879-zeros.tif",
+        "positive_in_footprint": 55403,
+        "positive_fraction": 0.010721695530785178,
+        "surface_spearman_full_footprint": 0.02433182163707064,
+        "forward_dot_overlap_3px": 0.30283635204759124,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-h77-lia-38323dots-20261021-aa5c9331-nan.tif",
+        "positive_in_footprint": 38323,
+        "positive_fraction": 0.007416340953130343,
+        "surface_spearman_full_footprint": 0.0005323103297243023,
+        "forward_dot_overlap_3px": 0.19166622403994263,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif",
+        "positive_in_footprint": 38323,
+        "positive_fraction": 0.007416340953130343,
+        "surface_spearman_full_footprint": 0.0005323103297243023,
+        "forward_dot_overlap_3px": 0.19166622403994263,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-h77-urank-curvature-0d868dc271bb-research.tif",
+        "positive_in_footprint": 4961936,
+        "positive_fraction": 0.9602434351071618,
+        "surface_spearman_full_footprint": -0.06043872069295906,
+        "forward_dot_overlap_3px": 0.7713390343655389,
+        "class": "dense_surface"
+      },
+      {
+        "file": "gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-nan.tif",
+        "positive_in_footprint": 37654,
+        "positive_fraction": 0.007286874781441169,
+        "surface_spearman_full_footprint": 0.019972639255190362,
+        "forward_dot_overlap_3px": 0.1431720401550964,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.tif",
+        "positive_in_footprint": 37654,
+        "positive_fraction": 0.007286874781441169,
+        "surface_spearman_full_footprint": 0.019972639255190362,
+        "forward_dot_overlap_3px": 0.1431720401550964,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-h77e-autoctx-dinkelbach-37654dots-20261021-5cd77ffc-nan.tif",
+        "positive_in_footprint": 37654,
+        "positive_fraction": 0.007286874781441169,
+        "surface_spearman_full_footprint": 0.018685221851967297,
+        "forward_dot_overlap_3px": 0.16224039942635576,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-h77e-autoctx-dinkelbach-37654dots-20261021-5cd77ffc-zeros.tif",
+        "positive_in_footprint": 37654,
+        "positive_fraction": 0.007286874781441169,
+        "surface_spearman_full_footprint": 0.018685221851967297,
+        "forward_dot_overlap_3px": 0.16224039942635576,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-h77e-fluvial-deseam-lagsubmod-37654-20261021-236fc1cb-zeros.tif",
+        "positive_in_footprint": 37654,
+        "positive_fraction": 0.007286874781441169,
+        "surface_spearman_full_footprint": 0.011448109327684787,
+        "forward_dot_overlap_3px": 0.18914325171296542,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-h77e-knick-deconf-submod-36500dots-20261021-101e200b-nan.tif",
+        "positive_in_footprint": 36500,
+        "positive_fraction": 0.007063550473325614,
+        "surface_spearman_full_footprint": 0.002338748754048285,
+        "forward_dot_overlap_3px": 0.16399320125351888,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-h77e-knick-deconf-submod-36500dots-20261021-101e200b-zeros.tif",
+        "positive_in_footprint": 36500,
+        "positive_fraction": 0.007063550473325614,
+        "surface_spearman_full_footprint": 0.002338748754048285,
+        "forward_dot_overlap_3px": 0.16399320125351888,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-h77e-pure-submod-36500dots-20261021-e106c72c-zeros.tif",
+        "positive_in_footprint": 36500,
+        "positive_fraction": 0.007063550473325614,
+        "surface_spearman_full_footprint": 0.013550580741552104,
+        "forward_dot_overlap_3px": 0.15305146863547034,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-h77e-ucpeuler-ctx-37654dots-20261021-22873551-nan.tif",
+        "positive_in_footprint": 37654,
+        "positive_fraction": 0.007286874781441169,
+        "surface_spearman_full_footprint": 0.008747433123258905,
+        "forward_dot_overlap_3px": 0.11563180538588198,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-h77e-ucpeuler-ctx-37654dots-20261021-22873551-zeros.tif",
+        "positive_in_footprint": 37654,
+        "positive_fraction": 0.007286874781441169,
+        "surface_spearman_full_footprint": 0.008747433123258905,
+        "forward_dot_overlap_3px": 0.11563180538588198,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-h77g-demagtrough-gravstep-37654dots-20261021-08b78f3c-zeros.tif",
+        "positive_in_footprint": 37654,
+        "positive_fraction": 0.007286874781441169,
+        "surface_spearman_full_footprint": 0.020409531432688473,
+        "forward_dot_overlap_3px": 0.1619217081850534,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-h77h-downdip-notch36-bridge-36500dots-20261021-0c05c2bc-nan.tif",
+        "positive_in_footprint": 36500,
+        "positive_fraction": 0.007063550473325614,
+        "surface_spearman_full_footprint": 0.013319056503837214,
+        "forward_dot_overlap_3px": 0.14667764380942264,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-h77h-downdip-notch36-bridge-36500dots-20261021-0c05c2bc-zeros.tif",
+        "positive_in_footprint": 36500,
+        "positive_fraction": 0.007063550473325614,
+        "surface_spearman_full_footprint": 0.013319056503837214,
+        "forward_dot_overlap_3px": 0.14667764380942264,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-h77h-meshsafe-hydrostruct-submod-36800dots-20261021-5ef236e2-zeros.tif",
+        "positive_in_footprint": 36800,
+        "positive_fraction": 0.0071216070525584275,
+        "surface_spearman_full_footprint": -8.917180826197119e-05,
+        "forward_dot_overlap_3px": 0.15828331651351782,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-h77h-piedmont-relay-37654dots-20261021-56b7c98c-zeros.tif",
+        "positive_in_footprint": 37654,
+        "positive_fraction": 0.007286874781441169,
+        "surface_spearman_full_footprint": 0.023216450207745154,
+        "forward_dot_overlap_3px": 0.1490147129123068,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY.tif",
+        "positive_in_footprint": 25439,
+        "positive_fraction": 0.004923004397011789,
+        "surface_spearman_full_footprint": 0.0009711751893450311,
+        "forward_dot_overlap_3px": 0.04597121155786902,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-h77v-geothermal-vent-submod-36250dots-20261021-zeros.tif",
+        "positive_in_footprint": 36250,
+        "positive_fraction": 0.007015169990631604,
+        "surface_spearman_full_footprint": 0.009308268151592646,
+        "forward_dot_overlap_3px": 0.13045094810644287,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-h77v-vent-advect-conduit-37654dots-20261021-8910ea15-nan.tif",
+        "positive_in_footprint": 37654,
+        "positive_fraction": 0.007286874781441169,
+        "surface_spearman_full_footprint": 0.030189579646903258,
+        "forward_dot_overlap_3px": 0.15143145482551654,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-h77v-vent-advect-conduit-37654dots-20261021-8910ea15-zeros.tif",
+        "positive_in_footprint": 37654,
+        "positive_fraction": 0.007286874781441169,
+        "surface_spearman_full_footprint": 0.030189579646903258,
+        "forward_dot_overlap_3px": 0.15143145482551654,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-h77v-ventsinter-heatflow-37654dots-20261021-cc5e4cd9-zeros.tif",
+        "positive_in_footprint": 37654,
+        "positive_fraction": 0.007286874781441169,
+        "surface_spearman_full_footprint": 0.015915964500395775,
+        "forward_dot_overlap_3px": 0.08803845540978382,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-h77vds-valve-dinkelbach-44090dots-20261021-nan.tif",
+        "positive_in_footprint": 44090,
+        "positive_fraction": 0.00853238192791579,
+        "surface_spearman_full_footprint": 0.011615072029209122,
+        "forward_dot_overlap_3px": 0.19950071705529293,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-h77vds-valve-dinkelbach-44090dots-20261021-zeros.tif",
+        "positive_in_footprint": 44090,
+        "positive_fraction": 0.00853238192791579,
+        "surface_spearman_full_footprint": 0.011615072029209122,
+        "forward_dot_overlap_3px": 0.19950071705529293,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-nan.tif",
+        "positive_in_footprint": 38301,
+        "positive_fraction": 0.00741208347065327,
+        "surface_spearman_full_footprint": 0.008245744361192823,
+        "forward_dot_overlap_3px": 0.19809316407287406,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros.tif",
+        "positive_in_footprint": 38301,
+        "positive_fraction": 0.00741208347065327,
+        "surface_spearman_full_footprint": 0.008245744361192823,
+        "forward_dot_overlap_3px": 0.19809316407287406,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-h79-crossgrad-ridge-37654dots-20261021-dd0dbf9c-nan.tif",
+        "positive_in_footprint": 37654,
+        "positive_fraction": 0.007286874781441169,
+        "surface_spearman_full_footprint": 0.033695519244769136,
+        "forward_dot_overlap_3px": 0.270914112710469,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-h79-crossgrad-ridge-37654dots-20261021-dd0dbf9c-zeros.tif",
+        "positive_in_footprint": 37654,
+        "positive_fraction": 0.007286874781441169,
+        "surface_spearman_full_footprint": 0.033695519244769136,
+        "forward_dot_overlap_3px": 0.270914112710469,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-h79-radhalo-lag3-37654-20261021-zeros.tif",
+        "positive_in_footprint": 37654,
+        "positive_fraction": 0.007286874781441169,
+        "surface_spearman_full_footprint": 0.01054423429001774,
+        "forward_dot_overlap_3px": 0.1792638232325915,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-h80-orphan-thermal-align-37654dots-20261021-zeros.tif",
+        "positive_in_footprint": 37654,
+        "positive_fraction": 0.007286874781441169,
+        "surface_spearman_full_footprint": 0.008975671651035924,
+        "forward_dot_overlap_3px": 0.1272109204865353,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-h80-riedel-wingcrack-tips-20261021-zeros.tif",
+        "positive_in_footprint": 12000,
+        "positive_fraction": 0.0023222631693125308,
+        "surface_spearman_full_footprint": 0.0032014856352738613,
+        "forward_dot_overlap_3px": 0.05648802252084772,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-h80t-tilt-persist-37654dots-20261021-7d5f7b11-nan.tif",
+        "positive_in_footprint": 37654,
+        "positive_fraction": 0.007286874781441169,
+        "surface_spearman_full_footprint": 0.03778124028217267,
+        "forward_dot_overlap_3px": 0.186859297816965,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-h80t-tilt-persist-37654dots-20261021-7d5f7b11-zeros.tif",
+        "positive_in_footprint": 37654,
+        "positive_fraction": 0.007286874781441169,
+        "surface_spearman_full_footprint": 0.03778124028217267,
+        "forward_dot_overlap_3px": 0.186859297816965,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-h81-slipcone-37654dots-20261021-0fbeaf41-nan.tif",
+        "positive_in_footprint": 37654,
+        "positive_fraction": 0.007286874781441169,
+        "surface_spearman_full_footprint": 0.00817870666335598,
+        "forward_dot_overlap_3px": 0.09507622032187815,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-h81-slipcone-37654dots-20261021-0fbeaf41-zeros.tif",
+        "positive_in_footprint": 37654,
+        "positive_fraction": 0.007286874781441169,
+        "surface_spearman_full_footprint": 0.00817870666335598,
+        "forward_dot_overlap_3px": 0.09507622032187815,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-h82-cool-chemconcord-11185dots-20261021-245bb13136-zeros.tif",
+        "positive_in_footprint": 11185,
+        "positive_fraction": 0.0021645427957300545,
+        "surface_spearman_full_footprint": 0.016206356895497775,
+        "forward_dot_overlap_3px": 0.02475168640781856,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-h82-crestthin-fullstack-37654dots-20261021-zeros.tif",
+        "positive_in_footprint": 37654,
+        "positive_fraction": 0.007286874781441169,
+        "surface_spearman_full_footprint": 0.014587354547245673,
+        "forward_dot_overlap_3px": 0.1866999521963138,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-h82-faultcollar-37553dots-20261021-a55f4c9c-zeros.tif",
+        "positive_in_footprint": 37553,
+        "positive_fraction": 0.007267329066432789,
+        "surface_spearman_full_footprint": 0.0004584608201601328,
+        "forward_dot_overlap_3px": 0.09653688851118075,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-h82-rrd-discord-37654dots-20261021-c069b8d8-zeros.tif",
+        "positive_in_footprint": 37654,
+        "positive_fraction": 0.007286874781441169,
+        "surface_spearman_full_footprint": 0.009372292021893162,
+        "forward_dot_overlap_3px": 0.12195251500504595,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-h82-tcstep-37654dots-20261021-2c501fd1-zeros.tif",
+        "positive_in_footprint": 37654,
+        "positive_fraction": 0.007286874781441169,
+        "surface_spearman_full_footprint": 0.021546062848060387,
+        "forward_dot_overlap_3px": 0.17015456525203165,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-h82-ternaryentropy-20261021-RESEARCH-ONLY.tif",
+        "positive_in_footprint": 1879873,
+        "positive_fraction": 0.3637966525737546,
+        "surface_spearman_full_footprint": -0.010769866315939831,
+        "forward_dot_overlap_3px": 0.997822276517767,
+        "class": "dense_surface"
+      },
+      {
+        "file": "gems77-h82-texture-kt-bf0a3028b4fa-RESEARCH-ONLY.tif",
+        "positive_in_footprint": 5007344,
+        "positive_fraction": 0.9690308789398404,
+        "surface_spearman_full_footprint": 0.0348986471605593,
+        "forward_dot_overlap_3px": 0.9168481436235194,
+        "class": "dense_surface"
+      },
+      {
+        "file": "gems77-h83-faultcollar-37553dots-20261021-a55f4c9c-zeros.tif",
+        "positive_in_footprint": 37553,
+        "positive_fraction": 0.007267329066432789,
+        "surface_spearman_full_footprint": 0.0004584608201601328,
+        "forward_dot_overlap_3px": 0.09653688851118075,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-h83-netsib-37654dots-20261021-ed06b51d-zeros.tif",
+        "positive_in_footprint": 37654,
+        "positive_fraction": 0.007286874781441169,
+        "surface_spearman_full_footprint": 0.02212115816128024,
+        "forward_dot_overlap_3px": 0.15695543634142456,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-h84-orgate-collar-37654dots-20261021-2d0a731a-zeros.tif",
+        "positive_in_footprint": 37654,
+        "positive_fraction": 0.007286874781441169,
+        "surface_spearman_full_footprint": 0.016957824985507047,
+        "forward_dot_overlap_3px": 0.1580708556859829,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-h84-ramp-relay-37654dots-20261021-1b76b4b7-zeros.tif",
+        "positive_in_footprint": 37654,
+        "positive_fraction": 0.007286874781441169,
+        "surface_spearman_full_footprint": 0.01030716001814938,
+        "forward_dot_overlap_3px": 0.1495458649811441,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-h84-tiplobe-37654dots-20261021-b57c52b3-zeros.tif",
+        "positive_in_footprint": 37654,
+        "positive_fraction": 0.007286874781441169,
+        "surface_spearman_full_footprint": 0.006852800546755814,
+        "forward_dot_overlap_3px": 0.11257768099006746,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-step-propensity-submod300.tif",
+        "positive_in_footprint": 34625,
+        "positive_fraction": 0.006700696853120532,
+        "surface_spearman_full_footprint": 0.005663441937952684,
+        "forward_dot_overlap_3px": 0.1242099112976045,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-tsd-transtens-swarm-submod-37654dots-20261021-zeros.tif",
+        "positive_in_footprint": 37654,
+        "positive_fraction": 0.007286874781441169,
+        "surface_spearman_full_footprint": 0.04216869470401485,
+        "forward_dot_overlap_3px": 0.1652148510118447,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems77-xsen-coincide-hgb-37654dots-20261021-zeros.tif",
+        "positive_in_footprint": 37654,
+        "positive_fraction": 0.007286874781441169,
+        "surface_spearman_full_footprint": 0.009246679950583645,
+        "forward_dot_overlap_3px": 0.1312742338131407,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems79-orient-persistence-37654dots-20261021-4abff47886.tif",
+        "positive_in_footprint": 37654,
+        "positive_fraction": 0.007286874781441169,
+        "surface_spearman_full_footprint": 0.0002716284001208489,
+        "forward_dot_overlap_3px": 0.15390131194561002,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-nan.tif",
+        "positive_in_footprint": 44090,
+        "positive_fraction": 0.00853238192791579,
+        "surface_spearman_full_footprint": 0.01885292612955494,
+        "forward_dot_overlap_3px": 0.25354544005948904,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-zeros.tif",
+        "positive_in_footprint": 44090,
+        "positive_fraction": 0.00853238192791579,
+        "surface_spearman_full_footprint": 0.01885292612955494,
+        "forward_dot_overlap_3px": 0.25354544005948904,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gemsdoe77-h77v-dealiased-vent-demag-knick-ldsa-20261021.tif",
+        "positive_in_footprint": 36500,
+        "positive_fraction": 0.007063550473325614,
+        "surface_spearman_full_footprint": 0.007957687959168933,
+        "forward_dot_overlap_3px": 0.167126998459659,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+        "positive_in_footprint": 44090,
+        "positive_fraction": 0.00853238192791579,
+        "surface_spearman_full_footprint": 0.019768876207677075,
+        "forward_dot_overlap_3px": 0.2141073989483189,
+        "class": "sparse_dot_raster"
+      },
+      {
+        "file": "gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif",
+        "positive_in_footprint": 121131,
+        "positive_fraction": 0.023441504996833014,
+        "surface_spearman_full_footprint": 0.03248311412847796,
+        "forward_dot_overlap_3px": 0.24172730652785893,
+        "class": "sparse_dot_raster"
+      }
+    ],
+    "irregularity_IR_H85_01": "Literal reading: dense continuous registry surfaces positive on ~100% of allowed cells force forward dot overlap near 1.0 for ANY non-empty candidate (incl. H33 itself); that gate is reported verbatim and remains the protocol owner's to resolve. Informative reading applies the protocol's two tests as typed: Spearman rho to surfaces, 3px dot overlap to dot rasters."
+  }
+}
