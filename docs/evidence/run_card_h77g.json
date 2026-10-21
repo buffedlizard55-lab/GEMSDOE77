@@ -3,7 +3,7 @@
   "lane_id": "H77G",
   "lane_repo": "buffedlizard55-lab/GEMSDOE77",
   "branch": "arena/5190e3a6-gemsdoe77",
-  "generated_utc": "2026-10-21T16:20:53Z",
+  "generated_utc": "2026-10-21T16:30:46Z",
   "hypothesis": "H77G (Hydrothermal Magnetite-Destruction Trough x Gravity-Basement Step x MT Clay-Cap Margin): Ascending geothermal fluids (150-250 C) along blind Great Basin fault conduits alter primary ferrimagnetic titanomagnetite to paramagnetic pyrite, leucoxene, and smectite clay, creating a narrow linear short-wavelength RTP magnetic trough (negative-anomaly valley curvature at sigma=1.5 and 3.0 px) that coincides with an intact subsurface gravity-basement density step, an electrically conductive MT clay-cap lateral margin, and regional transtensional strain.",
   "mechanism": "Compute high-pass RTP (Band 2 minus sigma=12 px Gaussian regional) and extract multi-scale positive Hessian ridge curvature of -RTP_hp at sigma=1.5 and 3.0 px; pair this demagnetization trough persistence with dip-aligned gravity-basement normal-fault step concordance (Bands 13 and 15), gravity-over-magnetics analytic-signal decoupling (Bands 3, 9, 13), MT conductance lateral margin (Band 17), geodetic transtensional opening index (Bands 7, 8), declustered independent earthquake swarm fraction (Bands 10, 16), and basement-depth Hessian saddle curvature (Band 15). Emit 37,654 discrete binary dots (>3 px from catalogue) via 300 m submodular cover and serialize via vendor/gems57/submission_writer.py.",
   "named_non_fault_process_that_could_mimic_it": "Non-tectonic paleo-channels incised into Tertiary volcanic bedrock and filled with non-magnetic lacustrine diatomite or felsic ash-flow tuff against a buried bedrock buttress unconformity, or reversed-polarity volcanic flow boundaries.",
@@ -209,11 +209,11 @@
   },
   "correlation_overlap_vs_registry": {
     "registry_scope": "2 SHA-pinned witnesses (dense_witness ab0a0a62 + H33 c55bafc4) + 32 git-sparse scored rasters (>=0.14) + local GEMSDOE77 lane TIFFs; full 812-raster REST scan omitted to preserve shared GitHub API quota",
-    "registry_rasters_checked": 44,
+    "registry_rasters_checked": 50,
     "surface_max_abs_spearman": 0.10896691837729168,
-    "surface_informative_max_abs_spearman": 0.028810222557785817,
-    "final_dots_max_abs_spearman": 0.012139715175034671,
-    "final_dots_informative_max_abs_spearman": 0.012139715175034671,
+    "surface_informative_max_abs_spearman": 0.05564201995559999,
+    "final_dots_max_abs_spearman": 0.021552386477274792,
+    "final_dots_informative_max_abs_spearman": 0.021552386477274792,
     "final_dots_informative_max_forward_overlap_3px": 0.6151537685239284,
     "final_dots_informative_worst_submission": "GEMSDOE67__gemsdoe67-ovtr-ml-cover-tau3p0-20261012-nan.tif",
     "final_dots_max_forward_overlap_3px": 1.0,
@@ -229,7 +229,7 @@
     },
     "informative_sparse_models_unique": true,
     "duplicate_stop": true,
-    "duplicate_stop_reason": "Literal Policy I17 stop: full-footprint dense witness ab0a0a62 covers 100% of allowed pixels (forward 3-px overlap = 1.000 > 0.70), and full 812-raster REST scan was omitted. Against all non-space-filling sparse/dot rasters in the checked set, informative uniqueness is True (max forward 3-px overlap = 0.6152 <= 0.70, max |Spearman rho| = 0.0121 <= 0.90)."
+    "duplicate_stop_reason": "Literal Policy I17 stop: full-footprint dense witness ab0a0a62 covers 100% of allowed pixels (forward 3-px overlap = 1.000 > 0.70), and full 812-raster REST scan was omitted. Against all non-space-filling sparse/dot rasters in the checked set, informative uniqueness is True (max forward 3-px overlap = 0.6152 <= 0.70, max |Spearman rho| = 0.0216 <= 0.90)."
   },
   "raster_path": "docs/downloads/gems77-h77g-demagtrough-gravstep-37654dots-20261021-08b78f3c-zeros.tif",
   "zip_path": "docs/downloads/gems77-h77g-demagtrough-gravstep-37654dots-20261021-08b78f3c-zeros.zip",
@@ -280,6 +280,6 @@
     "experiments_run": 3,
     "max_experiments": 3,
     "weekly_slots_spent": 0,
-    "elapsed_seconds_exp3": 107.67
+    "elapsed_seconds_exp3": 239.46
   }
 }

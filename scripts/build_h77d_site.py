@@ -51,7 +51,6 @@ def status_banner_html(rc: dict, compact: bool = False) -> str:
     u = rc["uniqueness_audit"]
     tif_rel = f"downloads/{Path(sub['primary_geotiff']).name}"
     zip_rel = f"downloads/{Path(sub['primary_zip']).name}"
-    nan_rel = f"downloads/{Path(sub['nan_twin_geotiff']).name}"
     extra_links = (
         f' · <a href="h77d.html">Full PhD Technical Report</a> · <a href="h77d-executive-summary.html">Step-by-Step Submission Guide</a>'
         if compact
@@ -68,7 +67,7 @@ def status_banner_html(rc: dict, compact: bool = False) -> str:
 <div class="buttons">
   <a class="button" download href="{esc(tif_rel)}">⬇ Download GeoTIFF for Inspection (-zeros.tif · {sub['primary_geotiff_bytes']/1024:.1f} KB)</a>
   <a class="button secondary" download href="{esc(zip_rel)}">⬇ Download Single-TIFF ZIP ({sub['primary_zip_bytes']/1024:.1f} KB)</a>
-  <a class="button secondary" download href="{esc(nan_rel)}">⬇ Twin NaN-Outside GeoTIFF ({sub['nan_twin_geotiff_bytes']/1024:.1f} KB)</a>
+  <span class="badge negative">NaN-outside twin is diagnostic only; invalid under the all-pixel [0,1] preflight</span>
 </div>
 <div class="file-label">Primary GeoTIFF SHA-256 (<code>{esc(Path(sub['primary_geotiff']).name)}</code>)</div>
 <div class="hash">{esc(sub['primary_geotiff_sha256'])}</div>

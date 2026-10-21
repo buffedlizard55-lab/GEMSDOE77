@@ -93,7 +93,7 @@ single geomorphic feature, an off-catalogue proxy observation) are the usable yi
 <tr><th>Submit OK? (science / selector)</th><td><span class="no">NO — verdict negative, see banner</span></td></tr>
 </table>
 <p><small>Step-by-step DrivenData submission instructions (for any future promoted file) are on the
-<a href="contactphys-executive-summary.html">executive summary</a> page, including the root cause of the portal error
+<a href="contactphys-executive-summary.html">executive summary</a> page, including conservative local checks for the reported portal error
 “Predicted values must be in range [0, 1]”.</small></p></div>
 
 <div class="card"><h2>Why did h33-2-b2 score 0.2778 (OWNER-REPORT), and can it be beaten?</h2>
@@ -231,8 +231,8 @@ would be <code>{NOTE}</code> — recorded here only so the artifact is unambiguo
 <li>Submit, then record the organizer's returned score + submission ID + date in the repo ledger as ORGANIZER-CONFIRMED (only portal receipts earn that label; screenshots/summaries do not).</li>
 <li>Remember the two-round structure (problem page 967): before the deadline the team must select a <b>single</b> submission scored in both rounds — slot choice is a team/selector decision, never automated here.</li></ol></div>
 
-<div class="card"><h2>The portal error “Predicted values must be in range [0, 1]” — root causes &amp; the permanent fix</h2>
-<p>Two distinct defects produce this message, both measured in this data family:</p><ul>
+<div class="card"><h2>The range error: possible contributors and conservative local checks</h2>
+<p>Two local risks were measured in this data family; neither is confirmed as the cause of the original portal response:</p><ul>
 <li><b>Float sentinel written through:</b> <code>training_features.tif</code> uses nodata <code>-3.4028234663852886e+38</code>; thousands of such cells lie inside the footprint. Any pipeline that copies them into a prediction emits values far outside [0, 1].</li>
 <li><b>Nodata-tag / NaN-outside fragility:</b> files carrying a nodata tag outside [0, 1] (or relying on NaN handling) can be rejected by range scanning even when in-footprint values are legal.</li></ul>
 <p><b>Fix used here (shared <code>gems57.submission_writer</code>, fail-closed, no silent repair):</b> the prediction is
@@ -240,8 +240,7 @@ validated in memory as finite in [0, 1] everywhere, written all-finite with <cod
 footprint and on the mapped catalogue), re-read from disk, and re-validated (single-band float32, EPSG:32611,
 3730×3292, transform identical to the sample submission) before the ZIP is packed. This session's file additionally
 passed an independent plain-rasterio re-read: 12,279,160/12,279,160 cells finite, min 0.0, max 1.0, zero NaN —
-<a href="downloads/verification_pass2.json">receipt</a>. Local validity is not organizer acceptance; it eliminates the
-known mechanical causes of the range error.</p></div>
+<a href="downloads/verification_pass2.json">receipt</a>. Local validity is not organizer acceptance; it reduces these measured local risks. The original portal error cause remains unverified.</p></div>
 
 <div class="card"><h2>What “good” looks like at selection time (checklist)</h2><ul>
 <li>Run card: hypothesis, mechanism, named mimic, HOLDOUT-DTI + CI + withheld-positive count + evaluator version.</li>
