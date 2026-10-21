@@ -73,7 +73,7 @@
     "all_passed": true
   },
   "registry_uniqueness": {
-    "rasters_audited": 26,
+    "rasters_audited": 41,
     "phase1_surface_max_abs_rho": 0.40781,
     "phase1_surface_worst_match": "registry_witness:dense_witness",
     "phase2_dot_max_abs_rho": 0.15699,

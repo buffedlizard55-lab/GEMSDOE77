@@ -87,3 +87,75 @@ def test_run_card_schema_guardrail_blocks_false_promotion(tmp_path):
         assert result["authorized_to_submit"] is False, rc_rel
         assert result["decision"] == "NOT OK TO SUBMIT", rc_rel
         assert result["run_card_audit"]["guardrail_clear"] is False, rc_rel
+
+
+def approval_row(tmp_path):
+    artifact = tmp_path / "candidate.tif"
+    artifact.write_bytes(b"test artifact; format evidence supplied separately")
+    return {
+        "lane": "approval-regression", "file": artifact.name,
+        "format_valid": True, "protocol_unique": True,
+        "beats_holdout_best": True, "verdict": "promote",
+        "selector_approved": True,
+        "sha256": hashlib.sha256(artifact.read_bytes()).hexdigest(),
+    }
+
+
+def test_missing_run_card_blocks_otherwise_green_manifest(tmp_path):
+    row = approval_row(tmp_path)
+    result = assess(row, tmp_path, root=tmp_path)
+    assert not result["authorized_to_submit"]
+    assert "run_card_present" in result["failed_gates"]
+    assert not result["run_card_audit"]["guardrail_clear"]
+
+
+def test_run_card_verdict_must_agree_with_manifest(tmp_path):
+    row = approval_row(tmp_path)
+    row["run_card"] = "card.json"
+    for verdict in ("negative", None, "PROMOTE", True):
+        (tmp_path / "card.json").write_text(json.dumps({"verdict": verdict}))
+        result = assess(row, tmp_path, root=tmp_path)
+        assert not result["authorized_to_submit"]
+        assert "scientific_verdict_promote" in result["failed_gates"]
+
+
+def test_malformed_run_card_fails_closed_without_stale_receipt(tmp_path):
+    row = approval_row(tmp_path)
+    row["run_card"] = "card.json"
+    for text in ('{broken', '[]', 'null', '42'):
+        (tmp_path / "card.json").write_text(text)
+        result = assess(row, tmp_path, root=tmp_path)
+        assert not result["authorized_to_submit"]
+        assert result["run_card_audit"]["read_error"]
+        assert not result["checks"]["run_card_present"]
+
+
+def test_consistent_promotion_can_pass_recorded_decision_gate(tmp_path):
+    # This gate combines recorded evidence; it does not validate TIFF bytes itself.
+    row = approval_row(tmp_path)
+    row["run_card"] = "card.json"
+    (tmp_path / "card.json").write_text(json.dumps({"verdict": "promote"}))
+    assert assess(row, tmp_path, root=tmp_path)["authorized_to_submit"]
+    row["selector_approved"] = False
+    assert not assess(row, tmp_path, root=tmp_path)["authorized_to_submit"]
+
+
+def test_malformed_nested_guardrails_fail_closed(tmp_path):
+    row = approval_row(tmp_path)
+    row['run_card'] = 'card.json'
+    payloads = [
+        {'registry': 'complete'},
+        {'uniqueness_audit': []},
+        {'registry_comparison': {'literal_reading': 'clear'}},
+        {'registry': {'duplicate_count': '0'}},
+        {'correlation_overlap_vs_registry': {'final_dots_max_forward_overlap_3px': float('nan')}},
+        {'registry': {'surface_max_forward_overlap_3px': float('inf')}},
+        {'registry': {'surface_max_forward_overlap_3px': -1}},
+        {'registry': {'surface_max_forward_overlap_3px': 1.1}},
+        {'registry': {'duplicate_count': False}},
+    ]
+    for payload in payloads:
+        (tmp_path / 'card.json').write_text(json.dumps({'verdict': 'promote', **payload}))
+        result = assess(row, tmp_path, root=tmp_path)
+        assert not result['authorized_to_submit'], payload
+        assert result['run_card_audit']['read_error'], payload

@@ -63,12 +63,14 @@ The slot decision belongs to the separate selector step.</p>
 <div class="copy"><span class="small">Name</span><code>{e(sub['name'])}</code><button data-copy="{e(sub['name'])}">Copy</button></div>
 <div class="copy"><span class="small">Note ({sub['note_chars']}/140)</span><code>{e(sub['note'])}</code><button data-copy="{e(sub['note'])}">Copy</button></div>
 <p class="small muted">sha256 <code>{e(pv['sha256'])}</code> · {pv['dots']:,} binary dots ·
-NaN-outside twin (bit-identical inside the footprint): <a href="downloads/{e(tw['file'])}">{e(tw['file'])}</a> ·
+NaN-outside twin is diagnostic only and fails the all-pixel [0,1] preflight ·
 <a href="data/run-card.json">run card (JSON)</a> · <a href="data/submission.json">validator report (JSON)</a></p></section>"""
 
 
 def main():
     sub, card = j("docs/data/submission.json"), j("docs/data/run-card.json")
+    if sub.get("name") != card.get("submission_name"):
+        raise ValueError("LIA metadata/run-card identity mismatch; do not overwrite submission.json with another lane")
     why, hold, alloc = j("evidence/why_02778.json"), j("evidence/e3_holdout_final.json"), j("evidence/e3_allocation.json")
     e2, e2b, uniq = j("evidence/e2_inversion.json"), j("evidence/e2_hypothesis_test.json"), j("evidence/e3_uniqueness.json")
     rc = card["registry_comparison"]
@@ -209,7 +211,7 @@ Neither tested off-support field improves the leave-one-out fit.</p>
 A space-filling raster's 3 px halo covers ≥ 70% of allowed cells (for example the r13 lattice and 400k-dot surfaces), so uniformly random dots would also exceed 0.70 against it. The test carries no information there (IR-77-04).</li></ul>
 <h2 id="template">8. Shared-template issues (reported; no private fork)</h2>
 <ul><li><code>gems.validate_submission</code> takes the footprint from feature band 1 (5,165,852 cells) instead of <code>sample_submission.tif</code> (5,167,373 cells).
-A correct NaN-outside file then "fails" with 1,540 NaN inside and 3,061 finite outside. A file built to pass it leaves 3,061 scored cells as NaN, which is one portal-rejection mechanism.
+The measured footprint mismatch can place NaNs inside cells that the sample submission marks valid if outputs are built against the feature-derived mask. That is a local format risk; the original portal rejection's cause is unverified.
 Proposed upstream patch: <a href="{REPO}/blob/main/reports/template_fix_validate_footprint.patch"><code>reports/template_fix_validate_footprint.patch</code></a>.</li>
 <li>GEMSDOE71's vendored <code>gems57/grid.py</code> differs from its own pin (a local edit to <code>REPO_ROOT</code>). This repo vendors the upstream bytes (GEMSDOE66@0f6762f0); all 11 pins verify.</li></ul>"""
     (D / "lia-analysis.html").write_text(page("lia-analysis.html", "Why 0.2778", body))

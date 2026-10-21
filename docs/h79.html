@@ -12,7 +12,7 @@ Format-valid (17/17 PASS), informative-unique (0.14 forward overlap, |ρ| 0.004)
 <p class="small muted"><b>Hypothesis H79-1:</b> A concealed basement normal-fault step produces coincident magnetic & gravity tilt zeros and analytic-signal peaks (cross-gradient confluence) plus a Quaternary topographic Hessian-ridge curvature lineament with high coherence. Their product is high only where a basement step has surficial expression — vetoing Lake Lahontan shorelines (curvature without step) and SGMC lithologic contacts (step without Quaternary curvature).</p>
 <a class="btn" href="downloads/gems77-h79-crossgrad-ridge-37654dots-20261021-dd0dbf9c-zeros.tif" download>Download .tif (149 KB) — SUBMISSION FILE</a>
 <a class="btn alt" href="downloads/gems77-h79-crossgrad-ridge-37654dots-20261021-dd0dbf9c-zeros.zip" download>Same file as one-TIFF .zip</a>
-<a class="btn alt" href="downloads/gems77-h79-crossgrad-ridge-37654dots-20261021-dd0dbf9c-nan.tif" download>NaN-outside twin (reference only, do NOT upload)</a>
+<span class="warning"><strong>Not a submission download:</strong> <code>gems77-h79-crossgrad-ridge-37654dots-20261021-dd0dbf9c-nan.tif</code> contains NaNs outside the footprint and fails the strict all-pixel [0,1] preflight.</span>
 <div class="chips"><span class="chip ok">OK to download: YES</span>
 <span class="chip ok">Portal format (local 17/17): PASS — zeros mode, no NaN, [0,1], EPSG:32611 3730×3292</span>
 <span class="chip bad">Unique, literal rule (binding): FAIL — I17 dense witness ab0a0a62 (100% coverage)</span>
@@ -23,7 +23,7 @@ Format-valid (17/17 PASS), informative-unique (0.14 forward overlap, |ρ| 0.004)
 <p class="small muted">Submission name (62 chars)</p><div class="copy"><code>gems77-h79-crossgrad-ridge-37654dots-20261021-dd0dbf9c-zeros</code><button data-copy="gems77-h79-crossgrad-ridge-37654dots-20261021-dd0dbf9c-zeros">Copy</button></div>
 <p class="small muted">Note (121 chars, ≤140)</p><div class="copy"><code>H79 mag-grav confluence x Hessian ridge+coh 37654dots; zero-SGMC, 0 lidar/GDR, 0 H19-5 reuse; HOLDOUT-DTI 0.0323 [0.0284,0.0365] neg vs random; unique inf 0.14</code><button data-copy="H79 mag-grav confluence x Hessian ridge+coh 37654dots; zero-SGMC, 0 lidar/GDR, 0 H19-5 reuse; HOLDOUT-DTI 0.0323 [0.0284,0.0365] neg vs random; unique inf 0.14">Copy</button></div>
 <p class="small">sha256 <code>67aafffc50637a6df9c4275bc2735a0a865ac73904f02667b05f4f257d97587c</code> · 37,654 dots · <a href="../evidence/h79_run_card.json">JSON run card</a> · <a href="../evidence/h79_build.json">build receipt</a></p>
-<p class="small muted">“Predicted values must be in range [0, 1]” will NOT recur: this file is all-finite, exactly {0,1}, nodata=None, zeros outside footprint. Verified on-disk by <code>vendor/gems57</code> template validator + <code>src/gems77lia/validate.py</code> footprint check (17/17 PASS: see run card). Upload the <code>-zeros.tif</code> or <code>-zeros.zip</code>; the <code>-nan.tif</code> twin is for reference only (identical inside footprint).</p>
+<p class="small muted">The original “Predicted values must be in range [0, 1]” rejection cause is unknown. This zeros variant was locally re-read as all-finite with values in [0,1], but that does not guarantee portal acceptance or submission eligibility. <b>Do not upload:</b> this lane is negative and selector-unapproved. The NaN-outside twin is a diagnostic only and fails the strict all-pixel preflight.</p>
 </section>
 
 <h2>Why GEMSDOE32 h33-h33-2-b2 scored 0.2778 — and why this lane cannot yet beat it</h2>
@@ -86,8 +86,8 @@ Format-valid (17/17 PASS), informative-unique (0.14 forward overlap, |ρ| 0.004)
 <li>At <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">the competition page</a>, open the submission form, choose the file, paste the note, submit. Check the weekly allowance first (selector, not this repo, decides slots).</li>
 <li>Record the score the portal reports; only that number may be labelled ORGANIZER-CONFIRMED.</li>
 </ol>
-<h3>Why “Predicted values must be in range [0, 1]” will not recur</h3>
-<p>The portal message is triggered by NaN/inf or values outside [0,1] inside the study area — typically a footprint mismatch (the shared template validator derives footprint from feature band 1, which differs by 4,601 cells from the official <code>sample_submission.tif</code> footprint; see <code>src/gems77lia/validate.py</code>). This file avoids it by design: every one of the 12,279,160 cells is finite and exactly 0 or 1, nodata tag is absent (<code>None</code>), grid is copied from <code>sample_submission.tif</code>, and it is read back and passes 17 portal-equivalence checks plus the shared template validator. The <code>-nan.tif</code> twin has NaN outside footprint for diagnostics — do not upload it.</p>
+<h3>Conservative local checks for the previous range error</h3>
+<p>The original portal rejection&#x27;s cause is unverified. A footprint mismatch can put NaNs in cells that the sample marks valid, and sentinels or out-of-range values are additional local risks; none is confirmed as the cause of that specific response. This primary file is all-finite and exactly 0 or 1 across the 12,279,160-cell grid, has no nodata tag, uses the sample grid, and passes local readback checks. That reduces known local risks but does not guarantee portal acceptance. The <code>-nan.tif</code> twin is a diagnostic with NaNs outside the footprint, fails the strict all-pixel preflight, and must not be used.</p>
 
 <h2>Reproduce</h2>
 <pre><code>python scripts/h79_build_candidate.py  # ~45s, writes docs/downloads/gems77-h79-*.tif + zip + json (17/17 PASS)
