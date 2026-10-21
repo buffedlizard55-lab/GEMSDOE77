@@ -1,5 +1,5 @@
 {
-  "note": "Fourteen lanes, including 3 new AGO hybrid/geophys variants (Oct 2026). Every file is portal-valid (zeros-variant: all 12,279,160 pixels finite in [0,1]) and will NOT give the 'Predicted values must be in range [0, 1]' portal error. The literal dense-witness rule (1.0 > 0.70) still blocks all under Policy I17 (needs owner fix); backbone-specific uniqueness is shown per file. No selector has approved any weekly slot; no organizer score exists for any AGO file.",
+  "note": "Sixteen lanes including 3 new AGO hybrid/geophys variants (Oct 2026) and H79-ORIENT + H80 from parallel merges. Every file is portal-valid (zeros-variant: all pixels finite in [0, 1]) and will NOT give the 'Predicted values must be in range [0, 1]' portal error. The AGO lanes (ago.html) are the new hybrid backbone\u00d7geophysics submissions; H79-ORIENT is the label-blind orientation-persistence lane; H80 is the Riedel wing-crack lane. Literal dense-witness rule (1.0 > 0.70) still blocks all under Policy I17 (needs owner fix); backbone-specific uniqueness shown per AGO file. No selector has approved any weekly slot.",
   "lanes": [
     {
       "lane": "D77: blind-distance band 250m-1km off catalogue + greedy dots under the exact DTI bar (HOLDOUT-DTI 0.0000 [0.0000, 0.0000]; negative result)",
@@ -37,7 +37,7 @@
       "informative_unique": null,
       "beats_holdout_best": null,
       "verdict": "negative",
-      "primary": false,
+      "primary": true,
       "name": "gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY",
       "note": "H77L displaced ThK / lidar scarp; literal overlap fails; research only; DO NOT SUBMIT",
       "sha256": "9d199f9fad93e234397a7a19a05eabf12fd77285be3007e6afe22d12a36dcbd1",
@@ -98,6 +98,36 @@
       "upload": "Not OK to submit. OK to download for inspection only. Literal registry overlap = 1.0 > 0.70 and HOLDOUT-DTI 0.047733 (gems57-pooled-hide-v2, 11,321 withheld positives, 95% CI 0.039583\u20130.055576) fails scientific promotion. Selector not approved; zero weekly slots.",
       "primary": false,
       "why_primary": "Concurrent negative H79-RH radiometric halo, retained for audit and inspection only."
+    },
+    {
+      "lane": "H79-ORIENT: label-blind cross-sensor orientation persistence (negative holdout)",
+      "page": "h79-orient.html",
+      "summary": "h79-orient-executive-summary.html",
+      "run_card": "evidence/h79_orient_run_card.json",
+      "file": "downloads/gems79-orient-persistence-37654dots-20261021-4abff47886.tif",
+      "zip": "downloads/gems79-orient-persistence-37654dots-20261021-4abff47886.zip",
+      "format_valid": true,
+      "protocol_unique": false,
+      "informative_unique": false,
+      "beats_holdout_best": false,
+      "holdout_dti_hide_v2": 0.09450695640486674,
+      "holdout_ci95": [
+        0.07655819744668374,
+        0.11284365420654904
+      ],
+      "holdout_positive_pixels": 11342,
+      "holdout_evaluator_version": "gems57-pooled-hide-v2",
+      "verdict": "negative",
+      "name": "gems79-orient-persistence-37654dots-20261021-4abff47886",
+      "note": "H79 orientation persistence; HOLDOUT-DTI 0.0945 s30 / 0.0891 s20; registry gate failed; research only",
+      "sha256": "745dbaa427bc1edaf477b3d0b4847b8be8d30d396106a61b1318a8726599be8e",
+      "informative_checked_rasters": 13,
+      "informative_max_surface_abs_spearman": 0.07976707194570443,
+      "informative_max_dot_overlap": 1.0,
+      "upload": "Not OK to submit. OK to download for inspection only. Local format checks pass; primary HOLDOUT-DTI is 0.0945 on seed 30 (95% CI 0.0766\u20130.1128; 11,342 withheld positives) / 0.0891 on seed 20 (95% CI 0.0724\u20130.1054; 11,321 withheld positives), below the 0.1527 incumbent. The dense witness fires the binding registry gate; registry coverage is incomplete. No weekly slot used.",
+      "primary": false,
+      "why_primary": "Latest H79-ORIENT research artifact. It tests a label-blind orientation/persistence mechanism distinct from prior H79-BB/H79-RH, lineament, lidar and catalogue-mechanics lanes; it is packaged for inspection only.",
+      "beat_02778_summary": "No. The validated primary is HOLDOUT-DTI 0.0945 on seed 30 and 0.0891 on seed 20, both below the retained 0.152718 HOLDOUT-DTI incumbent; it does not support a 0.2778 projection."
     },
     {
       "lane": "H77D: Coupled Zero-SGMC Tectono-Hydrothermal Conduits + 12-Bit LOCO + 300 m Submodular Cover (0.15011 / 0.14030 HOLDOUT-DTI)",
@@ -240,7 +270,7 @@
       "informative_unique": true,
       "beats_holdout_best": false,
       "verdict": "negative",
-      "primary": true,
+      "primary": false,
       "name": "gems77-ago-hybrid35-geophys-37654dots-dc66e42e",
       "note": "AGO hybrid35: ML backbone x geophys selective displacement (35% far-field infill, 37654 dots, 0 on catalogue)",
       "sha256": "fd7c75df77cd653e9fbd97b436bd304e0c1fd6b7283a4f513cdf6a2041136de0",

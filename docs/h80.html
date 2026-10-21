@@ -1,0 +1,58 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>H80 Riedel wing-crack tips · GEMSDOE77</title>
+<link rel="stylesheet" href="assets/lia.css"></head><body>
+<header><div class="wrap"><span class="brand">GEMSDOE77 · DOE GEMS Prize</span>
+<a href="index.html">Start here</a> <a href="executive-summary.html">How to submit</a>
+<a href="h80.html" class="here">H80 · research-only</a>
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE77">GitHub</a></div></header>
+<main><div class="wrap">
+<h1>H80 — Riedel R / R′ wing cracks at mapped-fault tips</h1>
+<p class="verdict"><b>OK TO DOWNLOAD. NOT OK TO SUBMIT.</b> Unique research GeoTIFF for inspection.
+Selector has not approved a weekly slot. Literal 3-px overlap vs a dense local surface is 0.982 &gt; 0.70.
+HOLDOUT-DTI 0.0958 does not beat the retained incumbent 0.1527. Verdict: <b>negative</b>.</p>
+
+<section class="card dl research">
+<h2>⬇ Download the H80 GeoTIFF — inspection only — DO NOT SUBMIT</h2>
+<a class="btn" href="downloads/gems77-h80-riedel-wingcrack-tips-20261021-zeros.tif" download>Download .tif (87 KB)</a>
+<a class="btn alt" href="downloads/gems77-h80-riedel-wingcrack-tips-20261021-zeros.zip" download>Same file as one-TIFF .zip</a>
+<div class="chips">
+<span class="chip ok">OK to download: YES</span>
+<span class="chip ok">Portal format (local): PASS — values in [0,1], 0 NaN</span>
+<span class="chip bad">Unique vs dense witness: FAIL (0.982)</span>
+<span class="chip warn">Selector: not approved</span>
+<span class="chip bad">NOT OK TO SUBMIT</span>
+</div>
+<p class="small muted">Submission name (for reference)</p>
+<div class="copy"><code>gems77-h80-riedel-wingcrack-tips-20261021-zeros</code>
+<button data-copy="gems77-h80-riedel-wingcrack-tips-20261021-zeros">Copy</button></div>
+<p class="small muted">Note ≤140 chars (for reference)</p>
+<div class="copy"><code>H80 Riedel 15/75deg tip rays; fold-fair HOLDOUT negative expected; research only DO NOT SUBMIT</code>
+<button data-copy="H80 Riedel 15/75deg tip rays; fold-fair HOLDOUT negative expected; research only DO NOT SUBMIT">Copy</button></div>
+<p class="small">sha256 <code>bab170ed60ab7e1a8afbfad69386a8266191fa4864ac3abac5b6290b7d25bc57</code> · 12,000 binary dots · float32 · EPSG:32611 · 3730×3292</p>
+</section>
+
+<h2>Why H33 scored 0.2778 (mechanism, not a receipt)</h2>
+<p>Family forensics treat <code>h33-h33-2-b2…-zeros</code> as a <b>kernel-efficiency</b> construction: 1-px multi-physics ridge, Poisson dots ~300 m, prune catalogue distance ≤200 m. That cuts 0.2·FP while keeping most of the 300 m triangular kernel on unmapped traces. Beating 0.2778 (OWNER-REPORT) or 0.4413 (ORGANIZER-CONFIRMED public #1) needs <b>new true-positive mass</b>, not another copy of those dots. H80 tests a different geometry.</p>
+
+<h2>Hypothesis</h2>
+<ul>
+<li><b>Layers:</b> mapped catalogue only (<code>existing_faults.tif</code>), local strike from <code>gems57.network.local_strike</code>.</li>
+<li><b>Signature:</b> degree-1 tips; rays at +15° (Riedel R) and −75° (R′) from strike, 400–1000 m; Poisson-disk dots; zeros on catalogue.</li>
+<li><b>Why missing from USGS/INGENIOUS:</b> short wing cracks at mapped tips are often omitted from Qfaults while lidar interpreters still draw them.</li>
+<li><b>Named mimic:</b> canyon-mouth drainages; cadastral lines.</li>
+<li><b>Official physics:</b> Riedel (1929); Pollard &amp; Segall (1987) crack-tip fields. Grid: DrivenData #306 page 967.</li>
+</ul>
+
+<h2>Experiments (budget 3)</h2>
+<ol>
+<li><b>Leakage canary:</b> fold-fair surface AUC <b>0.687</b> on withheld positives (threshold 0.90). No trip.</li>
+<li><b>Holdout:</b> <b>0.09580 HOLDOUT-DTI</b> (evaluator <code>gems57-pooled-hide-v2</code>, 11,319 withheld positives, 95% CI [0.08818, 0.10325]) vs random-control 0.01489. Below incumbent 0.15272.</li>
+<li><b>Uniqueness:</b> max local 3-px overlap 0.982 vs selective-U dense surface. Literal gate FAIL. Negative deliverable.</li>
+</ol>
+<p>Run card: <a href="../evidence/h80_run_card.json"><code>evidence/h80_run_card.json</code></a>. Hypotheses: <a href="../research/h80_hypotheses.md">research/h80_hypotheses.md</a>.</p>
+<p><a href="executive-summary.html">How a submission would work after approval →</a></p>
+</div></main>
+<footer><div class="wrap">NOT OK TO SUBMIT. Generated 2026-10-21. Labels: HOLDOUT-DTI vs ORGANIZER-CONFIRMED vs OWNER-REPORT.</div></footer>
+<script>document.querySelectorAll('button[data-copy]').forEach(b=>b.onclick=()=>{navigator.clipboard.writeText(b.dataset.copy);b.textContent='Copied';setTimeout(()=>b.textContent='Copy',1200)})</script>
+</body></html>
