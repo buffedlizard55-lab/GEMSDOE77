@@ -8,9 +8,9 @@
 <a href="https://github.com/buffedlizard55-lab/GEMSDOE77">GitHub</a></div></header>
 <main><div class="wrap">
 <h1>H80 — Riedel R / R′ wing cracks at mapped-fault tips</h1>
-<p class="verdict"><b>OK TO DOWNLOAD. NOT OK TO SUBMIT.</b> Unique research GeoTIFF for inspection.
-Selector has not approved a weekly slot. Literal 3-px overlap vs a dense local surface is 0.982 &gt; 0.70.
-HOLDOUT-DTI 0.0958 does not beat the retained incumbent 0.1527. Verdict: <b>negative</b>.</p>
+<p class="verdict"><b>OK TO DOWNLOAD. NOT OK TO SUBMIT.</b> H80 is a distinct research artifact, not a protocol-unique submission.
+Selector has not approved a weekly slot. The recorded 3-px overlap against a local raster is 0.982 &gt; 0.70.
+HOLDOUT-DTI 0.0958 is a negative local result, not a leaderboard score. Verdict: <b>negative</b>.</p>
 
 <section class="card dl research">
 <h2>⬇ Download the H80 GeoTIFF — inspection only — DO NOT SUBMIT</h2>
@@ -32,16 +32,16 @@ HOLDOUT-DTI 0.0958 does not beat the retained incumbent 0.1527. Verdict: <b>nega
 <p class="small">sha256 <code>bab170ed60ab7e1a8afbfad69386a8266191fa4864ac3abac5b6290b7d25bc57</code> · 12,000 binary dots · float32 · EPSG:32611 · 3730×3292</p>
 </section>
 
-<h2>Why H33 scored 0.2778 (mechanism, not a receipt)</h2>
-<p>Family forensics treat <code>h33-h33-2-b2…-zeros</code> as a <b>kernel-efficiency</b> construction: 1-px multi-physics ridge, Poisson dots ~300 m, prune catalogue distance ≤200 m. That cuts 0.2·FP while keeping most of the 300 m triangular kernel on unmapped traces. Beating 0.2778 (OWNER-REPORT) or 0.4413 (ORGANIZER-CONFIRMED public #1) needs <b>new true-positive mass</b>, not another copy of those dots. H80 tests a different geometry.</p>
+<h2>H33: plausible mechanism for the reported 0.2778 (not a causal attribution)</h2>
+<p><b>Evidence status:</b> 0.2778 remains <b>OWNER-REPORT</b> for the named GEMSDOE32 TIFF. The official leaderboard snapshot (2026-10-21) shows 0.2778 for <code>extradr19</code> at #48 and 0.4413 for <code>xiaofanhu</code> at #1, but neither row identifies this TIFF or its hash; no organizer receipt here links these bytes to the 0.2778 entry. Raster forensics show a 1-px multi-physics ridge followed by roughly 300 m Poisson spacing and pruning within 200 m of the mapped catalogue. Under the official distance-weighted DTI, that construction <em>could</em> reduce redundant false-positive mass while preserving some nearby kernel credit. This is plausible metric arithmetic, not a controlled causal result or proof of geological accuracy. See the <a href="https://github.com/buffedlizard55-lab/GEMSDOE77/blob/main/research/why-h33-scored-02778.md">full H33 analysis</a> and the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">official metric</a>. H80's 0.09580 <b>HOLDOUT-DTI</b> (evaluator <code>gems57-pooled-hide-v2</code>, 11,319 withheld positives, 95% CI [0.08818, 0.10325]) is a negative local result, not a leaderboard score.</p>
 
 <h2>Hypothesis</h2>
 <ul>
 <li><b>Layers:</b> mapped catalogue only (<code>existing_faults.tif</code>), local strike from <code>gems57.network.local_strike</code>.</li>
 <li><b>Signature:</b> degree-1 tips; rays at +15° (Riedel R) and −75° (R′) from strike, 400–1000 m; Poisson-disk dots; zeros on catalogue.</li>
-<li><b>Why missing from USGS/INGENIOUS:</b> short wing cracks at mapped tips are often omitted from Qfaults while lidar interpreters still draw them.</li>
+<li><b>Why potentially missing from the catalogue (hypothesis):</b> short wing cracks at mapped tips could fall below mapping scale. This lane did not verify whether those structures appear in expert labels; its local catalogue-segment holdout was negative.</li>
 <li><b>Named mimic:</b> canyon-mouth drainages; cadastral lines.</li>
-<li><b>Official physics:</b> Riedel (1929); Pollard &amp; Segall (1987) crack-tip fields. Grid: DrivenData #306 page 967.</li>
+<li><b>Conceptual references, not AOI validation:</b> Riedel (1929); Pollard &amp; Segall (1987) crack-tip fields. Grid specification: DrivenData #306 page 967.</li>
 </ul>
 
 <h2>Experiments (budget 3)</h2>
@@ -50,7 +50,7 @@ HOLDOUT-DTI 0.0958 does not beat the retained incumbent 0.1527. Verdict: <b>nega
 <li><b>Holdout:</b> <b>0.09580 HOLDOUT-DTI</b> (evaluator <code>gems57-pooled-hide-v2</code>, 11,319 withheld positives, 95% CI [0.08818, 0.10325]) vs random-control 0.01489. Below incumbent 0.15272.</li>
 <li><b>Uniqueness:</b> max local 3-px overlap 0.982 vs selective-U dense surface. Literal gate FAIL. Negative deliverable.</li>
 </ol>
-<p>Run card: <a href="../evidence/h80_run_card.json"><code>evidence/h80_run_card.json</code></a>. Hypotheses: <a href="../research/h80_hypotheses.md">research/h80_hypotheses.md</a>.</p>
+<p>Run card: <a href="evidence/h80_run_card.json"><code>evidence/h80_run_card.json</code></a>. Hypotheses: <a href="research/h80_hypotheses.md">research/h80_hypotheses.md</a>.</p>
 <p><a href="executive-summary.html">How a submission would work after approval →</a></p>
 </div></main>
 <footer><div class="wrap">NOT OK TO SUBMIT. Generated 2026-10-21. Labels: HOLDOUT-DTI vs ORGANIZER-CONFIRMED vs OWNER-REPORT.</div></footer>
