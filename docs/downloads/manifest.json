@@ -10,5 +10,7 @@
   "note": "H77 selective-U rank curvature; research-only, literal registry gate failed; do not submit.",
   "organizer_confirmed_score": null,
   "weekly_cap": null,
-  "weekly_slots_used": 0
+  "weekly_slots_used": 0,
+  "holdout_valid_for_promotion": false,
+  "holdout_caveat": "Post-run audit: 10px cross erosion insufficient for diagonal Gaussian stencil. Retained historical result only; no rerun."
 }

@@ -46,3 +46,12 @@ def test_all_published_scores_have_version_count_ci():
         assert r['evidence_class']=='HOLDOUT-DTI' and r['evaluator_version']
         assert r['withheld_positive_pixels']>0 and len(r['ci95'])==2
         assert 0<=r['ci95'][0]<=r['dti']<=r['ci95'][1]<=1
+
+
+def test_original_prompt_preserved_and_postrun_caveat_visible():
+    assert (ROOT/'README.md').read_text().endswith((DOC/'PROJECT_PROMPT.md').read_text())
+    for name in ['index.html','research.html']:
+        s=(DOC/name).read_text()
+        assert 'confound' in s and ('not valid for promotion' in s or 'not valid promotion' in s)
+    card=json.loads((ROOT/'evidence/run_card.json').read_text())
+    assert not card['holdout_valid_for_promotion']

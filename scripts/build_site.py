@@ -36,7 +36,8 @@ def main():
     maximum_auc=max(r['auc'] for r in canaries['rows'])
     manifest={'file':file,'sha256':card['raster_sha256'],'format_valid':True,'ok_to_download':True,
               'ok_to_submit':False,'protocol_unique':False,'verdict':'negative','submission_name':card['submission_name'],
-              'note':card['note'],'organizer_confirmed_score':None,'weekly_cap':None,'weekly_slots_used':0}
+              'note':card['note'],'organizer_confirmed_score':None,'weekly_cap':None,'weekly_slots_used':0,
+              'holdout_valid_for_promotion':False,'holdout_caveat':card['holdout_caveat']}
     (DOC/'downloads/manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
     download=f'''<div class="panel download-panel"><span class="badge negative">Not OK to submit</span>
 <h2>A new TIFF. A clear stop.</h2><p>Generated from cached radiometric features—not a copied submission. Local format checks pass, but the literal uniqueness gate fails.</p>
@@ -52,7 +53,7 @@ def main():
 <div class="metrics"><div class="metric"><span>HOLDOUT-DTI</span><strong>{score}</strong><small>95% CI {ci}</small></div>
 <div class="metric"><span>Hidden positive pixels</span><strong>{h['withheld_positive_pixels']:,}</strong><small>{esc(h['evaluator_version'])} · pooled four-fold</small></div>
 <div class="metric"><span>Real submission slots used</span><strong>0</strong><small>Weekly cap not observed. Selector approval required.</small></div></div>
-<div class="notice"><strong>Negative result, useful evidence.</strong> The paired gain over the strongest ablation is not statistically clear. A dense registry surface also forces 100% forward overlap under the literal shared rule. We stopped before dot placement; a new filename is not uniqueness clearance.</div>
+<div class="notice"><strong>Negative result, useful evidence.</strong> The paired gain over the strongest ablation is not statistically clear. A post-run audit also found potential diagonal nodata-stencil contact; the historical holdout result is confounded and not valid for promotion. A dense registry surface also forces 100% forward overlap under the literal shared rule. We stopped before dot placement; a new filename is not uniqueness clearance.</div>
 <div class="two"><section><h2>What was verified</h2><ul><li>Shared evaluator and writer copied byte-for-byte from a pinned template.</li><li>Whole-component hide/recover, buffered spatial folds and per-feature canaries.</li><li>Actual TIFF readback: no NaN/Inf, bounded values, matching CRS, shape and transform.</li><li>ZIP contains exactly the same single TIFF.</li></ul></section>
 <section><h2>What remains unverified</h2><ul><li>No authenticated organizer receipt or current leaderboard.</li><li>Mirror integrity is not proof of official input origin.</li><li>Full-family novelty and the current weekly cap are not established.</li><li>Official portal, PDF and science-host access is restricted here.</li></ul></section></div>
 <div class="buttons"><a class="button secondary" href="research.html">Read the scientific assessment →</a><a class="button secondary" href="sources.html">Explore the source feed →</a></div>'''
@@ -76,7 +77,7 @@ bash scripts/download_competition_data.sh
 .venv/bin/python -m pytest -q
 .venv/bin/python scripts/build_site.py</pre><p>The experiment runner refuses to re-run a finalized lane. Its stop is intentional. GitHub Pages hosts precomputed evidence and files; it cannot run a model in your browser or submit on your behalf.</p></section>'''
     rows=''.join(f'<tr><td>{esc(n)}</td><td>{r["dti"]:.6f}</td><td>{r["ci95"][0]:.6f}–{r["ci95"][1]:.6f}</td><td>{r["withheld_positive_pixels"]:,}</td></tr>' for n,r in hold['scores'].items())
-    research=f'''<div class="eyebrow">Research / one hypothesis tested</div><h1>No claimed breakthrough.<br>A measured next step.</h1><div class="notice">All results below are <strong>HOLDOUT-DTI</strong>, evaluator {esc(h['evaluator_version'])}, {h['withheld_positive_pixels']:,} withheld positives, paired physical-block conditional 95% intervals. Not organizer scores.</div>
+    research=f'''<div class="eyebrow">Research / one hypothesis tested</div><h1>No claimed breakthrough.<br>A measured next step.</h1><div class="notice">All results below are <strong>HOLDOUT-DTI</strong>, evaluator {esc(h['evaluator_version'])}, {h['withheld_positive_pixels']:,} withheld positives, paired physical-block conditional 95% intervals. Not organizer scores. <strong>Post-run support audit found a boundary confound; these historical results are not valid promotion evidence.</strong> <a href="evidence/support_audit.json">Audit</a>.</div>
 <div class="table-wrap"><table><thead><tr><th>Feature / arm</th><th>HOLDOUT-DTI</th><th>95% CI</th><th>Hidden positives</th></tr></thead><tbody>{rows}</tbody></table></div>
 <p class="fine">Maximum per-feature/quadrant AUC = {maximum_auc:.5f} (LEAKAGE-CANARY diagnostic, not a score); no AUC exceeded the preregistered 0.90 threshold. Low AUC is not proof of zero leakage.</p>
 <div class="prose">{md('knowledge.md')}<div class="line"></div>{md('hypotheses.md')}</div>'''

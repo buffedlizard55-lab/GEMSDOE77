@@ -66,7 +66,10 @@
   "weekly_slots_used": 0,
   "organizer_confirmed_score": null,
   "verdict": "negative",
-  "reason": "Literal surface duplicate/overlap stop or incomplete registry; no slot approval. Research-only TIFF.",
+  "reason": "Literal surface duplicate stop; incomplete registry; boundary-support confound. Research-only TIFF, no slot approval.",
   "experiments_run": 1,
-  "elapsed_seconds": 41.72
+  "elapsed_seconds": 41.72,
+  "holdout_valid_for_promotion": false,
+  "holdout_caveat": "Post-run audit: 10px cross erosion insufficient for diagonal Gaussian stencil. Retained historical result only; no rerun.",
+  "support_audit": "evidence/support_audit.json"
 }

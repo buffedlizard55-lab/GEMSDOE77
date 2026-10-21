@@ -36,7 +36,8 @@ def build(raw, footprint):
 
     Zero is nodata, valid raw values are 1..255. Rank-intensities are bounded
     re-expressions of independently quantized channels, NOT K/Th/U ppm ratios.
-    Erosion exceeds the 4*sigma Gaussian support to avoid nodata-edge responses.
+    The post-run guard rejects any registered domain that is not stencil-safe.
+    Original stopped computation is preserved at commit 1e5c994 (see support audit).
     """
     raw = np.asarray(raw)
     if raw.ndim != 3 or raw.shape[0] != 3 or raw.shape[1:] != footprint.shape:
@@ -45,6 +46,11 @@ def build(raw, footprint):
     if not supported.any():
         raise ValueError('no radiometric support')
     valid = ndi.binary_erosion(supported, iterations=10)
+    # Post-run correction: cross erosion is not square Gaussian-stencil erosion.
+    # Do not silently alter the registered historical domain and report a new score.
+    stencil_safe = ndi.binary_erosion(supported, structure=np.ones((3, 3)), iterations=8)
+    if np.any(valid & ~stencil_safe):
+        raise ValueError('registered erosion is not Gaussian-stencil-safe; stopped historical lane must not rerun')
     ranks = (raw.astype(np.float32) - 1) / 254
     # Constants cancel in U - (K+Th)/2, matching the registered U/254 contrast.
     ranks[:, ~supported] = 0

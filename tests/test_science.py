@@ -101,3 +101,14 @@ def test_normalization_fails_closed():
         with pytest.raises(ValueError): normalized(a,valid)
     p,s=normalized(np.arange(9).reshape(3,3),valid)
     assert p.min()>=0 and p.max()<=1 and s>0
+
+
+def test_diagonal_nodata_support_fails_closed_without_new_experiment():
+    raw=np.full((3,80,80),150,np.uint8)
+    raw[:,30:35,30:35]=0
+    with pytest.raises(ValueError,match='Gaussian-stencil-safe'):
+        build(raw,np.ones((80,80),bool))
+    audit=json.loads((ROOT/'evidence/support_audit.json').read_text())
+    assert audit['eligible_cells_with_potential_nodata_stencil_contact']==15044
+    assert audit['catalogue_positive_pixels_in_risky_cells']==365
+    assert not audit['score_recomputed'] and not audit['artifact_changed']

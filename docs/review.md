@@ -23,6 +23,7 @@
 - Preserve the standing request in README and a separate linked document; add next-session instructions and honest capability boundaries.
 - Add CI and scheduled Pages publication with no auto-training, auto-promotion or portal action.
 - Independently validate the immutable TIFF and single-file ZIP again; run the full suite and static-link checks.
+- Found and diagnosed diagonal nodata-stencil contact in the historical feature domain. Added a fail-closed guard and regression test; retained the negative artifact/observed score without rerunning the stopped experiment. The historical computation is preserved in commit `1e5c994`, for audit only.
 - Test output: [tests-pass3.txt](evidence/tests-pass3.txt).
 
 ## Not fulfilled / not claimed

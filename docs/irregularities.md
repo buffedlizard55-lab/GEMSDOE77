@@ -17,6 +17,8 @@
 | I13 | Full raw 19-band training stack and GPU network were not restored/trained in this narrow lane. | Reused the obtainable cached GeoDAWN stack required by this hypothesis. CPU suffices for this pilot; no claim full neural pipeline is complete. |
 | I14 | Initial shared-registry call preceded TIFF serialization. | Subsequent immutable-byte audit supplied the actual file SHA and verified decoded equality, ZIP membership, range and stop. No new experiment. |
 
+| I15 | Post-run support audit: default cross erosion does not cover every diagonal offset of the Gaussian stencil. | Preserve the stopped artifact and observed result, label holdout confounded/not promotion-valid, and add a fail-closed feature guard. No rerun or score replacement. See support_audit.json. |
+
 ## Next session — ordered by risk reduction
 
 1. Read README original request, preregistration, run card and this ledger. Keep H77 stopped; do not re-tune its failed lane.
