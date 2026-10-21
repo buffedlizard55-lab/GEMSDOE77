@@ -40,7 +40,7 @@ def audit_run_card(run_card_rel: str | None, root: Path = ROOT) -> dict:
             "registry_incomplete": False,
             "holdout_invalid_for_promotion": False,
             "historical_promotion_conflict": False,
-            "guardrail_clear": True,
+            "guardrail_clear": False,
         }
     rc_path = root / run_card_rel
     if not rc_path.is_file():
@@ -56,7 +56,15 @@ def audit_run_card(run_card_rel: str | None, root: Path = ROOT) -> dict:
             "historical_promotion_conflict": False,
             "guardrail_clear": False,
         }
-    card = json.loads(rc_path.read_text())
+    try:
+        card = json.loads(rc_path.read_text())
+        if not isinstance(card, dict):
+            raise ValueError("run card must be a JSON object")
+    except (OSError, ValueError) as exc:
+        audit = audit_run_card(None, root=root)
+        audit.update(run_card=run_card_rel, present=rc_path.is_file(),
+                     read_error=str(exc), registry_incomplete=True)
+        return audit
     verdict = card.get("verdict")
     safe_sub = bool(card.get("safe_to_download_and_submit") or card.get("ok_to_submit"))
 
@@ -126,6 +134,7 @@ def assess(row: dict, docs: Path, root: Path = ROOT) -> dict:
     rc_audit = audit_run_card(row.get("run_card"), root=root)
     checks = {
         "artifact_exists": path.is_file(),
+        "run_card_present": rc_audit["present"] and "read_error" not in rc_audit,
         "format_valid": row.get("format_valid") is True,
         "literal_protocol_unique": (
             row.get("protocol_unique") is True
@@ -138,7 +147,9 @@ def assess(row: dict, docs: Path, root: Path = ROOT) -> dict:
             and not rc_audit["holdout_invalid_for_promotion"]
         ),
         "scientific_verdict_promote": (
-            row.get("verdict") == "promote" and rc_audit["guardrail_clear"]
+            row.get("verdict") == "promote"
+            and rc_audit["recorded_verdict"] == "promote"
+            and rc_audit["guardrail_clear"]
         ),
         "selector_approved": row.get("selector_approved") is True,
     }
@@ -184,7 +195,8 @@ def build(lanes_path: Path = DEFAULT_LANES, out: Path = DEFAULT_OUT) -> dict:
         "schema": "gems-submission-authorization-v1",
         "generated_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "policy": (
-            "Authorization requires artifact existence, matching SHA-256, local format PASS, "
+            "Authorization requires artifact existence, matching SHA-256, a readable run card "
+            "with a promote verdict, local format PASS, "
             "literal protocol uniqueness (including <=0.70 real-model forward 3-px overlap and "
             "complete registry), improvement over the accepted holdout best, a promote "
             "verdict, and explicit selector approval. Missing fields or historical run-card "
