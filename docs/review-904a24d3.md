@@ -36,7 +36,7 @@ Restored the two SHA-pinned registry witnesses through GitHub. Independently ran
 `scripts/verify_h77l.py`: **23/23 software/artifact checks pass**. These include
 all-finite values in [0,1], exact reference CRS/shape/transform, no NaN inside
 footprint, hash/ZIP identity and unchanged template hashes. The existing H77L
-raster differs in pixels from 35 other local TIFFs and H33, but this is **not**
+raster differs in pixels from 36 other local TIFFs and H33, but this is **not**
 protocol uniqueness. Forward overlap with the dense rejection witness is 1.0.
 These are artifact measurements, not HOLDOUT-DTI or organizer scores.
 
@@ -107,3 +107,15 @@ organizer confirmation. Fault segmentation is not direct geothermal-vent detecti
    buffered segment holdouts; require improvement over a comparable incumbent.
 5. Only then write/validate a unique TIFF, run both registry gates, and obtain a
    separate selector decision. Store any later organizer receipt against its hash.
+
+## Parallel merge reconciliation
+
+Main advanced with PR #47 during this review, adding an H28 research TIFF and
+replacing the LIA manifest at `docs/data/submission.json` with an incompatible
+H28 record. The merged Pages build failed with `KeyError: zip`. Preserved the
+H28 bytes and manifest as `docs/data/h28-submission.json`, and restored the LIA
+manifest from this review's pre-merge commit so its consumers cannot silently
+pair H28 bytes with LIA evidence. H28 is not authorized by this review; its
+manifest has no validation checks or complete protocol run card. Independent
+local TIFF comparison now includes 36 other files. Repeated the builds,
+artifact audit, full test suite and staging after reconciliation.
