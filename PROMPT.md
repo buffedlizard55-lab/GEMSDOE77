@@ -8,20 +8,6 @@ summarised with provenance at the end rather than re-transcribed hash-by-hash
 `docs/score-ledger.csv`; later entries below are OWNER-REPORT as supplied in
 the 2026-10-21 brief — no organizer receipts).*
 
-## 2026-10-21 parallel H82-SE execution addendum — arena/21cc174e-gemsdoe77
-
-This branch's H82-SE strike-entropy lane is distinct from the H82 cool-outlet,
-H82-TEXTURE, and H82R lanes merged from other sessions in `main`. It was
-preregistered before E1 in `registry/preregistration_h82se.json`; ranked
-hypotheses are in `research/h82se_hypotheses.md`. The result is negative:
-inspection download YES, submission NO. HOLDOUT-DTI 0.097608 (evaluator
-`gems57-pooled-hide-v2`, seed 20, 11,321 withheld positives, 95% CI
-[0.079093, 0.117763]) and 0.103416 (same evaluator, seed 30, 11,342 withheld
-positives, 95% CI [0.081687, 0.125512]) are both below the local incumbent.
-The final-dot registry audit found a 3-px overlap of 1.0 and duplicate firings;
-no weekly slot was used. Do not merge H82-SE evidence into another H82 run card.
-Full card: `evidence/h82se_run_card.json`.
-
 ## 2026-10-21 parallel H82-SE lane addendum — arena/21cc174e-gemsdoe77
 
 This branch's H82-SE strike-entropy method is distinct from the upstream H82
