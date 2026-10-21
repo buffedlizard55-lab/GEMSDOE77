@@ -1,12 +1,10 @@
 #!/usr/bin/env python3
-"""Repository-wide entry pages for GitHub Pages - generated, never hand-edited.
+"""Generate repository-wide GitHub Pages entry points from frozen records.
 
-Writes docs/index.html ("Start here": the download + per-file status table first),
-docs/executive-summary.html (how to submit any file from this repository) and docs/h78.html
-(the H78 lane page).  Inputs: docs/data/lanes.json, docs/data/h78_submission.json,
-evidence/h78_run_card.json.  Runs in CI after scripts/build_site.py (which now writes the
-selective-U lane pages to urank*.html), so CI no longer overwrites the entry page with one
-lane's view (IR-78-06).
+Writes the start page, general submission guide, and selected lane pages. The
+manifest at ``docs/data/lanes.json`` is the sole source of the featured download;
+individual lane cards are validated against their frozen evidence and artifact
+hashes. A lane-specific page must never inject or override the featured file.
 """
 from __future__ import annotations
 
@@ -23,7 +21,7 @@ LB = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboa
 PD = "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
 NAV = [("index.html", "Start here"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
-       ("h77e-knick.html", "H77E-Knick · 0/816 firings"), ("release-review.html", "Release safety review"), ("executive-summary.html", "How to submit"),
+       ("h77e-knick.html", "H77E-Knick · research-only"), ("release-review.html", "Release safety review"), ("executive-summary.html", "How to submit"),
        ("h81.html", "H81 · slip-cone"),
        ("h80t.html", "H80T · tilt-persist"), ("h80t-executive-summary.html", "H80T guide"),
        ("h80.html", "H80 · negative"), ("ago.html", "AGO · negative proxies"),
@@ -125,6 +123,36 @@ def main():
             or h80["protocol_unique"] is not False
             or h80["beats_holdout_best"] is not False):
         raise ValueError("H80 manifest/landing page differs from the frozen negative run card")
+    # H77E-Knick is a historical research page, not the featured artifact. Keep
+    # its page tied to the same manifest row and fail closed if its clearance
+    # or byte identity drifts.
+    knick_rows = [x for x in lanes["lanes"] if x["lane"].startswith("H77E-Knick")]
+    knick_card = jload("evidence/h77e/run_card.json")
+    if len(knick_rows) != 1 or not knick_card:
+        raise ValueError("H77E-Knick research lane missing from manifest or frozen run card")
+    knick = knick_rows[0]
+    knick_sub = knick_card["submission_artifact"]
+    knick_tif = D / knick["file"]
+    if (knick_card.get("verdict") != "negative"
+            or knick_card.get("ok_to_submit") is not False
+            or knick_card.get("protocol_unique") is not False
+            or knick_card.get("approved_for_weekly_slot") is not False
+            or knick_sub.get("writer_receipt", {}).get("promoted") is not False
+            or knick.get("primary") is not False
+            or knick.get("protocol_unique") is not False
+            or knick.get("verdict") != "negative"
+            or knick.get("selector_approved") is not False
+            or knick.get("file") != knick_sub["primary_geotiff"].removeprefix("docs/")
+            or knick.get("name") != knick_sub["submission_name"]
+            or knick.get("note") != knick_sub["submission_note"]
+            or len(knick_sub["submission_note"]) > 140
+            or knick.get("sha256") != knick_sub["primary_geotiff_sha256"]
+            or not knick_tif.is_file()
+            or hashlib.sha256(knick_tif.read_bytes()).hexdigest() != knick_sub["primary_geotiff_sha256"]
+            or knick.get("format_valid") is not knick_sub["validator_receipt"]["all_checks_passed"]
+            or "not ok to submit" not in knick.get("upload", "").lower()):
+        raise ValueError("H77E-Knick page must remain a hash-verified, research-only negative artifact")
+
     if sum(bool(x.get("primary")) for x in lanes["lanes"]) != 1:
         raise ValueError("exactly one download must be featured")
     primary = next(x for x in lanes["lanes"] if x.get("primary"))
@@ -264,7 +292,7 @@ lists the reviewed research candidates, not every historical archived/NaN-twin f
 (at row #48 in this read). Neither public row identifies the underlying raster. The owner's claim that the specific
 <code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</code> file achieved 0.2778 is <b>OWNER-REPORT, not a submission
 receipt</b>; GEMSDOE32's own published page said it had no organizer score for that file. No H77L file has an organizer
-score. H77L used <b>zero</b> of the <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">three weekly feedback slots</a>.</div>
+score. Its run card records zero weekly slots used.</div>
 {facts}
 <h2>Why the H33 file might have achieved the owner's reported 0.2778</h2>
 <p><b>Direct raster measurement, not an authenticated causal leaderboard attribution:</b> the archived H33 file has 37,654
@@ -280,10 +308,9 @@ not proof that the specific file received that score or that another submission 
     # ---------------- general executive summary (how to submit)
     guide = f"""<h1>Executive summary: how to submit — only AFTER approval</h1>
 <p class="verdict"><b>Today: NOT OK TO SUBMIT any file here.</b> The featured H80 file is explicitly
-<b>RESEARCH ONLY</b>. Download is for inspection, not permission to upload. Before spending one of the official
-<a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">three weekly feedback slots</a>, the shared uniqueness policy must
-be resolved, a candidate must beat a <em>matched</em> holdout incumbent, and a separate selector must approve it. No
-condition is met merely by passing a format check.</p>
+<b>RESEARCH ONLY</b>. Download is for inspection, not permission to upload. Before using any weekly feedback allowance,
+confirm the current organizer rules, resolve the shared uniqueness policy, require a candidate to beat a <em>matched</em>
+holdout incumbent, and obtain a separate selector approval. No condition is met merely by passing a format check.</p>
 {glance}
 {dl}
 {orient_box}
@@ -566,16 +593,26 @@ def h77e_knick_body(rc77e):
     sub = rc77e["submission_artifact"]
     val = sub["validator_receipt"]
     uq = rc77e["uniqueness_audit"]
+    phase2 = uq["phase2_post_placement_final_dots"]
+    informative = phase2["informative_reading_lt_0p70_bg"]
+    literal = phase2["literal_unfiltered_reading_policy_I17"]
     can = rc77e["leakage_canary_audit"]
 
     arms_rows = ""
     for arm_name, a20 in s20["scores"].items():
         a30 = s30["scores"].get(arm_name)
-        s30_txt = f'{a30["dti"]:.6f} ({a30["ci95"][0]:.6f}–{a30["ci95"][1]:.6f})' if a30 else "—"
+        s30_txt = (
+            f'<code>HOLDOUT-DTI {a30["dti"]:.6f}</code> '
+            f'(95% CI {a30["ci95"][0]:.6f}–{a30["ci95"][1]:.6f}; '
+            f'{a30["withheld_positive_pixels"]:,} withheld positives)'
+            if a30 else "—"
+        )
         arms_rows += (
             f'<tr><td><b>{e(arm_name)}</b></td>'
-            f'<td><code>{a20["dti"]:.6f}</code> ({a20["ci95"][0]:.6f}–{a20["ci95"][1]:.6f})</td>'
-            f'<td><code>{s30_txt}</code></td></tr>'
+            f'<td><code>HOLDOUT-DTI {a20["dti"]:.6f}</code> '
+            f'(95% CI {a20["ci95"][0]:.6f}–{a20["ci95"][1]:.6f}; '
+            f'{a20["withheld_positive_pixels"]:,} withheld positives)</td>'
+            f'<td>{s30_txt}</td></tr>'
         )
 
     diff_rows = ""
@@ -601,29 +638,36 @@ def h77e_knick_body(rc77e):
         f'<td><code>{item["forward_3px_overlap"]:.5f}</code></td><td><code>{item["memmap_vs_vendor_abs_diff"]:.1e}</code></td></tr>'
         for item in uq["top_15_vendor_verified_matches"]
     )
-    return f"""<h1>H77E-Knick lane: Statewide 10 m 3DEP Knickpoint + TIGER-Deconfounded Step + Up-Dip Seismicity + 4-Scale SLOCO + 816-Raster Capped 300 m Submodular Cover</h1>
-<p class="verdict"><b>Status at a glance.</b> <b>OK to download locally: YES</b> (15/15 <code>vendor/gems57</code> checks + 17/17 portal grid checks PASS, exact <code>0.0 / 1.0</code> float32 values strictly in <code>[0, 1]</code>, <code>0</code> NaN anywhere in all <code>12,279,160</code> cells).<br>
-<b>OK to submit automatically without human selector Policy I17 sign-off: NO</b> (Not OK to submit automatically under literal Policy I17 because 45 space-filling archive heatmaps have 3-px halos covering &ge; 70% of Nevada, up to 100.0%).<br>
-<b>Informative uniqueness across ALL 816 &lt;70%-halo rasters in the 861-raster portfolio AND all 18 sparse GEMSDOE77 sibling files: PASS with ZERO firings</b> (exact worst forward 3-px overlap = <code>0.66800 &le; 0.70</code> across portfolio; <code>0.42104 &le; 0.70</code> across all 18 sparse GEMSDOE77 siblings).</p>
-<section class="card dl"><h2>⬇ Download verified H77E-Knick competition GeoTIFFs</h2>
-<a class="btn" href="downloads/{e(Path(sub["primary_geotiff"]).name)}" download>Download Primary Zero-Firing .tif ({sub["file_bytes"]//1024} KB)</a>
-<a class="btn alt" href="downloads/{e(Path(sub["primary_zip"]).name)}" download>Same file as single-TIFF .zip ({sub["zip_bytes"]//1024} KB)</a>
-<a class="btn alt" href="downloads/{e(Path(sub["companion_pure_geotiff"]).name)}" download>Pure Unconstrained Companion .tif (0.1556 HOLDOUT-DTI)</a>
-{copy("Submission name", sub["submission_name"])}
-{copy("Submission note (<= 140 chars)", sub["submission_note"])}
-<p class="small">Primary <code>.tif</code> SHA-256: <code>{e(sub["primary_geotiff_sha256"])}</code> · ZIP SHA-256: <code>{e(sub["primary_zip_sha256"])}</code> · Pure companion SHA-256: <code>{e(sub["companion_pure_sha256"])}</code></p>
+    return f"""<h1>H77E-Knick lane: Statewide 10 m 3DEP knickpoint + TIGER-deconfounded step + up-dip seismicity + SLOCO</h1>
+<p class="verdict"><b>NEGATIVE — OK TO DOWNLOAD FOR INSPECTION: YES. NOT OK TO SUBMIT.</b>
+This is a historical research artifact, not the featured file and not a selector-approved entry. The manifest and frozen
+run card both record <code>protocol_unique=false</code>, <code>verdict=negative</code>, and no submission authorization.
+Local format checks pass (15/15 shared-template checks; 17/17 local grid checks; finite float32 values in [0,1]), but
+format validity is not portal acceptance or upload permission. The informative-only subset reports
+{informative["rasters_checked"]} rasters with {informative["firings_gt_0p70"]} overlap firings
+(max {informative["max_forward_3px_overlap"]:.3f}); the binding, unfiltered Policy I17 result reports
+{literal["firings_gt_0p70"]} firings (max {literal["max_forward_3px_overlap"]:.3f} &gt; 0.70).
+The subset diagnostic does not override the literal failure.</p>
+<section class="card dl research"><h2>⬇ H77E-Knick research-only GeoTIFF — DO NOT SUBMIT</h2>
+<a class="btn" href="downloads/{e(Path(sub["primary_geotiff"]).name)}" download>Download for inspection .tif ({sub["file_bytes"]//1024} KB)</a>
+<a class="btn alt" href="downloads/{e(Path(sub["primary_zip"]).name)}" download>Same research file as one-TIFF .zip ({sub["zip_bytes"]//1024} KB)</a>
+{copy("Artifact name (tracking only — NOT approved for portal submission)", sub["submission_name"])}
+{copy("Artifact note (tracking only; <= 140 chars; NOT approved for portal submission)", sub["submission_note"])}
+<p class="small">TIFF SHA-256: <code>{e(sub["primary_geotiff_sha256"])}</code> · ZIP SHA-256: <code>{e(sub["primary_zip_sha256"])}</code> ·
+<a href="evidence/h77e/run_card.json">frozen run card</a> · <a href="data/submission-authorization.json">current authorization receipt</a></p>
 </section>
-<h2>Visual overview of dual-seed holdout benchmark, blind Central Nevada fault recovery &amp; 861-raster audit</h2>
-<p><img src="assets/h77e/fig1_h77e_holdout_and_uniqueness.png" alt="Dual-seed HOLDOUT-DTI benchmark and 816-raster uniqueness audit" style="max-width:100%;height:auto;border:1px solid #ddd;border-radius:6px"></p>
-<p><img src="assets/h77e/fig2_h77e_nevada_surface_and_zoom.png" alt="Cross-fitted Nevada propensity surface and 45x45 km Central Nevada Basin-and-Range zoom showing blind fault recovery" style="max-width:100%;height:auto;border:1px solid #ddd;border-radius:6px"></p>
+<h2>Visual overview of dual-seed holdout measurements and registry diagnostics</h2>
+<p><img src="assets/h77e/fig1_h77e_holdout_and_uniqueness.png" alt="Dual-seed HOLDOUT-DTI measurements and informative-subset registry diagnostics" style="max-width:100%;height:auto;border:1px solid #ddd;border-radius:6px"></p>
+<p><img src="assets/h77e/fig2_h77e_nevada_surface_and_zoom.png" alt="Cross-fitted Nevada surface and spatially blocked hide-and-recover example; not an organizer-labeled blind-fault map" style="max-width:100%;height:auto;border:1px solid #ddd;border-radius:6px"></p>
 <p><img src="assets/h77e/fig3_h77e_top15_informative_overlaps.png" alt="Top 15 closest informative rasters across the 861-raster portfolio" style="max-width:100%;height:auto;border:1px solid #ddd;border-radius:6px"></p>
-<h2>Dual-seed official hide-and-recover benchmark (<code>gems57-pooled-hide-v2</code>, zero test retuning)</h2>
+<h2>Dual-seed pinned holdout benchmark (<code>gems57-pooled-hide-v2</code>; local hide-and-recover, not organizer scoring)</h2>
+<p>Whole mapped-fault segments were withheld under the lane's spatial split; catalogue-derived features used visible faults only, and visible faults were masked pixel-exactly. Scores are pooled DTI (α=0.2, β=0.8, 300 m triangular kernel); the table labels each result HOLDOUT-DTI and shows withheld-positive counts and 95% CIs. This proxy-label exercise is not the organizer's hidden-label test.</p>
 <table><tr><th>Arm</th><th>Seed 20 HOLDOUT-DTI (95% CI)</th><th>Seed 30 HOLDOUT-DTI (95% CI)</th></tr>{arms_rows}</table>
-<h3>Paired block-bootstrap differences on Seed 20 (<code>2,000</code> replicates)</h3>
+<h3>Paired block-bootstrap differences on Seed 20 (local HOLDOUT-DTI, <code>gems57-pooled-hide-v2</code>, 11,321 withheld positives, 2,000 replicates; 95% CI)</h3>
 <table><tr><th>Comparison</th><th>Paired &Delta; HOLDOUT-DTI</th><th>95% CI</th></tr>{diff_rows}</table>
 <h2>Leakage canary audit (<code>{can["n_features_checked"]}/{can["n_features_checked"]}</code> passed &le; 0.90)</h2>
 <table><tr><th>Top 12 Single-Feature Canaries</th><th>Holdout AUC</th><th>Feature Group</th></tr>{can_rows}</table>
-<h2>Exact 861-raster portfolio uniqueness audit (<code>0 / 816</code> informative firings)</h2>
+<h2>Informative-subset registry diagnostic only (<code>{informative["firings_gt_0p70"]} / {informative["rasters_checked"]}</code> firings); does not clear literal Policy I17</h2>
 <table><tr><th>Closest Informative Raster (&lt;70% 3-px halo)</th><th>Halo Fraction</th><th>Exact Forward 3-px Overlap</th><th>Abs Diff vs Vendor</th></tr>{top_ov_rows}</table>
 """
 
@@ -632,27 +676,13 @@ def _write_h77e_knick():
     rc77e = jload("evidence/h77e/run_card.json")
     if rc77e:
         (D / "h77e-knick.html").write_text(page("h77e-knick.html", "H77E-Knick lane", h77e_knick_body(rc77e)))
+        # Publish the exact frozen run card at the relative path used by the page.
+        source = ROOT / "evidence/h77e/run_card.json"
+        target = D / "evidence/h77e/run_card.json"
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_bytes(source.read_bytes())
 
 
-
-def _inject_h77e_knick_hero():
-    rc77e = jload("evidence/h77e/run_card.json")
-    if not rc77e:
-        return
-    sub = rc77e["submission_artifact"]
-    hero = f"""<section class="card dl"><h2>⬇ Latest H77E-Knick Research Deliverable (0 / 816 Informative Firings · Dual-Seed Positive Holdout)</h2>
-<p class="verdict"><b>OK to download: YES</b> (15/15 <code>vendor/gems57</code> + 17/17 grid checks PASS, binary float32 in <code>[0, 1]</code>, <code>0</code> NaNs).<br>
-<b>Not OK to submit (NOT OK TO SUBMIT automatically — inspection only without human selector Policy I17 sign-off):</b>
-45 space-filling &ge;70%-halo archive heatmaps trigger literal overlap; across ALL <code>816</code> &lt;70%-halo portfolio rasters AND all <code>18</code> sparse GEMSDOE77 files, forward 3-px overlap has <b>0 firings</b> (<code>max = 0.66800 &le; 0.70</code>; local siblings <code>max = 0.42104 &le; 0.70</code>).<br>
-<b>Official HOLDOUT-DTI (<code>gems57-pooled-hide-v2</code>):</b> <code>0.126664</code> on Seed 20 (95% CI <code>0.111196–0.141749</code>; +0.0303 vs fold-fair H33) &amp; <code>0.124727</code> on Seed 30 (95% CI <code>0.109650–0.138262</code>; +0.0257 vs fold-fair H33); pure physics twin <code>0.155623</code> (Seed 20) / <code>0.154666</code> (Seed 30).</p>
-<a class="btn" href="downloads/{e(Path(sub["primary_geotiff"]).name)}" download>Download H77E-Knick .tif ({sub["file_bytes"]//1024} KB)</a>
-<a class="btn alt" href="downloads/{e(Path(sub["primary_zip"]).name)}" download>Single-TIFF .zip ({sub["zip_bytes"]//1024} KB)</a>
-<a class="btn alt" href="h77e-knick.html">Full H77E-Knick report &amp; figures →</a>
-<p class="small">name: <code>{e(sub["submission_name"])}</code> · sha256: <code>{e(sub["primary_geotiff_sha256"])}</code> · note: <code>{e(sub["submission_note"])}</code></p></section>"""
-    for pname in ("index.html", "executive-summary.html"):
-        ptxt = (D / pname).read_text()
-        ptxt = ptxt.replace("<h1>", hero + "<h1>", 1)
-        (D / pname).write_text(ptxt)
 
 def _write_h77g():
     h77g_card = jload("evidence/run_card_h77g.json")
@@ -740,5 +770,4 @@ Format-valid (15/15 checks, 0 NaN, values in [0,1], 37,654 binary dots) and info
 if __name__ == "__main__":
     main()
     _write_h77e_knick()
-    _inject_h77e_knick_hero()
     _write_h77g()

@@ -28,14 +28,23 @@ an organizer score.*
   `gems77-h77e-ucpeuler-ctx-37654dots-20261021-22873551-zeros` /
   "H77E UCP-Euler+LOCO-ctx submod 37654; HOLDOUT-DTI 0.1305/0.1342 < best 0.1527; NEGATIVE not selector-approved" (109 chars)
 
-## Why did H33 (`h33-h33-2-b2`, 0.2778 OWNER-REPORT) score highest in the family — and can this beat it?
+## H33 attribution and the limits of this lane's comparison
 
-The repo's verified answer is in `research/why-h33-scored-02778.md`: H33 is the
-exhaust of an *emission* optimum (dotting + ≤2 px catalogue-flank pruning of
-the H19-5 line set) on a 0.19-class field; beating it live requires a *better
-field* (higher realised credit per dot, ≈ +60% against the 0.4413 leader), not
-a cleverer thinning rule. H77E tested exactly that kind of candidate better
-field. The measured answer is **no**:
+The family file-to-score attribution of 0.2778 remains **OWNER-REPORT**. The archived
+2026-10-21 leaderboard row at the same value is for participant `extradr19`, but it
+names no TIFF or hash; no inspected organizer receipt links the row to the H33 bytes.
+The archived raster-forensics record describes a sparse H19-5-derived construction
+with thinning and near-catalogue pruning. That sequence is compatible with reduced
+redundant prediction mass under the distance-tolerant metric, but it is not a controlled
+experiment and does not identify hidden-fault locations, prove causality, or establish
+an optimum. See [`research/why-h33-scored-02778.md`](why-h33-scored-02778.md) for the
+corrected evidence classes and exact marginal condition.
+
+H77E-UCP/Euler did **not** demonstrate a candidate that beats the reported H33 score.
+The measurements below are local **HOLDOUT-DTI** results on a catalogue hide-and-recover
+proxy, not organizer scores or leaderboard predictions. The candidate's comparison with
+a fold-rebuilt H19-5/H33-derived control is meaningful only within the same recorded
+folds; it cannot validate the H33 file-to-score attribution.
 
 | Arm (seed 20, B=37,654) | HOLDOUT-DTI [95% CI] |
 |---|---|
@@ -50,24 +59,15 @@ field. The measured answer is **no**:
 Seed-30 replication: A_std 0.0679, A_comb_ctx 0.1342 [0.1183, 0.1512].
 Paired Δ candidate − champion = +0.0348 [+0.0164, +0.0540] (seed 20).
 
-**Interpretation.** (i) Upward-continuation persistence and Euler density are
-real, computable, leak-free fields (canaries ≤ 0.529 symmetric AUC; Euler keeps
-828,816/1,288,704 window solutions at depth 50–1500 m), but as *catalogue-fault
-predictors* they are near-uninformative individually (AUC ≈ 0.49–0.53) and
-their top-ranked dots recover withheld catalogue faults worse than chance
-allocation — deep basement contacts in this province are simply not
-preferentially the mapped Quaternary faults (the named mimic — intrusive /
-lithologic contacts and caldera margins — dominates the signal). (ii) The
-candidate's entire margin over the champion construction comes from
-catalogue-context continuation (distance to a *different* visible component),
-a signal class the repo's earlier analysis shows is holdout-strong but
-live-weak: live hidden faults are defined by *not* being the mapped ones, and
-near-catalogue mass is taxed, not credited. So even the 0.1305 figure is an
-optimistic proxy for live performance. (iii) Consequently this lane does not
-support the claim "a unique submission scoring higher than 0.2778" — no
-HOLDOUT-DTI in this repo (best 0.1527) has yet demonstrated the ≈ +60% credit
-density that the metric algebra in `why-h33-scored-02778.md` requires, and
-H77E's new physics moves the field the wrong way on the only validated proxy.
+**Interpretation with limits.** (i) The recorded UCP/Euler block alone has low
+catalogue holdout performance in this experiment; that is evidence against this
+particular proxy-label use, not proof that all basement-edge geophysics is uninformative.
+(ii) The candidate's local improvement over the fold-fair construction in the table is
+conditional on the stated split and features. It does not show that catalogue-context
+continuation would help on the organizer's hidden off-catalogue labels. (iii) The lane
+remains negative: the final-dot duplicate/Policy I17 findings and lack of selector
+approval block submission, regardless of holdout values. Nothing here supports a
+numerical live-score projection or a causal account of H33's reported value.
 
 ## Experiments (3/3 budget, then stopped)
 - **E1** fields + leakage canary (`evidence/h77e_e1_fields_canary.json`).

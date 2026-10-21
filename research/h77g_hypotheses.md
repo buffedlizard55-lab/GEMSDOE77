@@ -10,24 +10,25 @@
 
 ---
 
-## PhD-Level Forensic Answer: Why `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros` Reported `0.2778` (`OWNER-REPORT`) and What Is Needed to Score Higher
+## H33 score attribution and conditional metric mechanism
 
-1. **Exact Metric Decision Theory ([DrivenData Problem Description](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/), [Tversky 1977](https://en.wikipedia.org/wiki/Tversky_index)):**
-   Under the official distance-weighted Tversky index (`α = 0.2`, `β = 0.8`, linear triangular kernel $k(d) = \max(1 - d / 300\text{ m}, 0)$ with $R = 3\text{ px}$ at 100 m resolution in `EPSG:32611`):
-   $$\text{DTI}(p, G) = \frac{\text{TP}_w}{\text{TP}_w + 0.2\,\text{FP}_w + 0.8\,\text{FN}_w}, \quad \text{TP}_w + \text{FN}_w = |G|, \quad \text{FP}_w = \sum_{x: p(x)>0} p(x)\big[1 - \max_{g \in G} k(d(x, g))\big].$$
-   In `INSTRUMENT` marginal analysis, adding a discrete unit dot $p(x) = 1$ at pixel $x$ increases $\text{DTI} = s$ if and only if its marginal kernel credit $\Delta \text{TP}_w(x) + \frac{\alpha}{1-\alpha} s \, k(d(x, G))$ exceeds the false-positive tax $\frac{\alpha}{1-\alpha} s \approx 0.25\,s$ (or for isolated off-support dots, $\mathbb{E}[k(d(x, G))] > \alpha \cdot s \approx 0.0556$ at $s = 0.2778$).
-2. **Direct Byte Forensics of `H33-2-B2` (`evidence/prior_forensics.json`, `evidence/h77l_independent_audit.json`):**
-   - `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif` (`SHA-256: c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9`) is a strictly binary `{0.0, 1.0}` float32 raster (`nodata=None`, zero NaNs across all `12,279,160` cells) containing **37,654** positive dots.
-   - Its support is byte-for-byte identical to the 44,090-dot `D2.8` Poisson-disk thinned `H19-5` multi-physics ridge (`GEMSDOE25`/`GEMSDOE30`, `0.2600 OWNER-REPORT`) with the **6,436 dots at Euclidean distance $d(x, \text{catalogue}) \le 2\text{ px}$ ($200\text{ m}$) removed** (`min_dist_catalogue = √5 ≈ 2.236 px`).
-   - Why this geometry aligns with the metric: (a) spacing dots by $\sim 2.8\text{ px}$ ($280\text{ m} \approx R$) eliminates redundant false-positive mass $\alpha \cdot \text{FP}_w$ within overlapping $300\text{ m}$ kernels while preserving near-unit coverage of any fault trace passing through the kernel; and (b) in the Initial Prize Round, where the test set consists of *newly identified faults not in the existing USGS database* ([official problem page](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/)), dots sitting within $\le 200\text{ m}$ of already-mapped catalogue traces incur false-positive penalty without covering new off-catalogue segments.
-   - **Provenance caveat (`IR-L-02`):** While `0.2778 ORGANIZER-CONFIRMED` appears on the public leaderboard at row #48 (`extradr19`), the leaderboard does not identify the uploaded filename or SHA-256, and [GEMSDOE32's public site](https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html) states that no organizer score is archived there. Thus the `0.2778` attribution to the `H33` bytes remains `OWNER-REPORT`.
-3. **Why Rearranging `H19-5` Dots Cannot Reach the `0.4413 ORGANIZER-CONFIRMED` Leaderboard Top:**
-   - Every lane that merely re-weights or uniqueness-caps the `H19-5` support (`LIA`, `H78`) saturates around `0.245 INSTRUMENT` and underperforms on holdout (`0.0708 HOLDOUT-DTI` in `H78`).
-   - Closing the gap from `0.2778` (`OWNER-REPORT`) toward `0.4413` (`ORGANIZER-CONFIRMED`) requires genuinely higher **off-catalogue true-positive discovery density** — specifically detecting **blind, hydrothermally altered, and intrabasin faults** that lack classic range-front topographic scarps or positive aeromagnetic ridges.
+The family attribution of 0.2778 to the named H33 TIFF remains **OWNER-REPORT**. The archived 2026-10-21 leaderboard note records the same value for participant `extradr19` at row #48, but the row identifies no TIFF or hash; no inspected organizer receipt links those bytes to that row. See [`research/why-h33-scored-02778.md`](why-h33-scored-02778.md) for the complete corrected analysis and evidence classes.
+
+Archived raster forensics describe a H19-5-derived support with Poisson-dot thinning and near-catalogue pruning. Under the recorded DTI, reducing redundant false-positive mass while preserving weighted true-positive credit is a plausible mechanism. This is not a controlled ablation and does not prove that spacing or pruning caused the owner-reported score, that removed dots were false positives, or that any particular geology was detected.
+
+For the metric notation used in the corrected analysis, with `T = TP_w`, `S = emitted mass`, `M = mass on kernel support`, and `K = |G|`,
+
+```text
+DTI = T / (0.2·(T + S − M) + 0.8·K)
+```
+
+For a new dot with nearest-truth kernel weight `k` and marginal weighted-true-positive gain `dT`, the exact improvement condition is `dT > α·DTI·(dT + 1 − k)`. It reduces to `k > α·DTI` only for a nonredundant dot (`dT = k`). This algebra is conditional; it says nothing about unknown truth at H33's coordinates or why its named file may have received the reported value.
+
+A future method might improve credit efficiency by discovering additional off-catalogue faults, reducing redundant false-positive mass, or both. The evidence here does not establish which change is required, that the geological targets in this preregistration are present in hidden labels, or that any proposed method will improve a score. Local holdout outcomes are **HOLDOUT-DTI** proxy measurements, not leaderboard projections.
 
 ---
 
-## Ranked Candidate Geological Hypotheses (Not Previously Tried in `GEMSDOE77`)
+## Ranked Candidate Geological Hypotheses (preregistered before H77G experiments)
 
 | Rank | ID & Name | Specific Layers Involved | Physical Signature Targeted | Why It Catches a Fault Missing from USGS/INGENIOUS Catalogue | How It Differs from All Existing `GEMSDOE77` Lanes | Named Non-Fault Mimic | Expected Gain ÷ Cost & Viability |
 |---:|---|---|---|---|---|---|---|

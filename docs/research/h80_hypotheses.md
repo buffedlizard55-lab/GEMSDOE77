@@ -6,9 +6,9 @@ Competition: predict faults **not** in the USGS/INGENIOUS catalogue; DTI α=0.2,
 
 Family live high `h33-h33-2-b2…-zeros` = **0.2778 OWNER-REPORT** (GEMSDOE32 site; not an organizer receipt in this repo). Public #1 **0.4413 ORGANIZER-CONFIRMED** (leaderboard read 2026-10-21).
 
-## Why 0.2778 is not a geology trick
+## What the available H33 evidence does—and does not—show
 
-H33 is a **kernel-efficiency construction**: 1-px multi-physics ridge → Poisson dots at ~300 m → prune dots with catalogue distance ≤ 2 px. That raises DTI by cutting 0.2·FP_w while keeping most 300 m kernel coverage of unmapped traces. Beating 0.2778 therefore requires **new true-positive mass off the H19-5 ridge**, not another copy of the same dots.
+Archived raster forensics describe H33 as a **kernel-efficiency construction**: a 1-px multi-physics ridge → Poisson dots at about 300 m → pruning dots within 2 px of the mapped catalogue. Under DTI, reducing redundant false-positive mass while retaining weighted true-positive credit is a plausible way to improve a score. This is a **metric-level mechanism hypothesis**, not a measured causal effect: the repository has no controlled ablation linking those operations to the owner-reported 0.2778, and no inspected organizer receipt linking that leaderboard row to the H33 bytes. A future method could improve by increasing true-positive credit per dot, reducing false-positive mass, or both; the evidence does not establish that new true-positive mass off the H19-5 ridge is the only route.
 
 ## Ranked untried hypotheses (this lane)
 

@@ -1,30 +1,31 @@
-# Why h33-2-b2 got the family's highest reported score — and what beating it takes
+# Why the H33 construction plausibly explains the family's highest reported score — and what beating it would take
 
-*PhD-level analysis, 2026-10-21. Evidence classes: **[OFFICIAL]** organizer/USGS
-source · **[MEASURED]** computed from hash-pinned bytes (this or sibling
-checkouts, file cited) · **[OWNER-REPORT]** family ledger, no organizer receipt ·
-**[CONDITIONAL]** algebra under stated assumptions.*
+*Analysis, 2026-10-21. Evidence classes: **[OFFICIAL-SNAPSHOT]** a dated public organizer/source record, not freshly fetched here · **[RASTER-FORENSICS]** recorded from a hash-pinned owner-mirror or sibling audit, not independently reread in this checkout · **[OWNER-REPORT]** family file-to-score claim without an organizer receipt · **[CONDITIONAL]** algebra or interpretation under stated assumptions.*
 
 ## The question
 
 The brief asks why `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros` (GEMSDOE32)
-scored **0.2778 [OWNER-REPORT]** — the family's best — and whether a unique
-submission can beat it (public leader **0.4413 [OFFICIAL]**, xiaofanhu,
-leaderboard fetched 2026-10-21).
+was reported at **0.2778 [OWNER-REPORT]** — the family's best — and whether a
+unique submission could beat it. A repository snapshot of the 2026-10-21 public
+leaderboard recorded **0.4413 for xiaofanhu [OFFICIAL-SNAPSHOT]**; neither
+snapshot figure is freshly verified in this review.
 
-Attribution caveat first: **no organizer receipt links 0.2778 to these bytes**
-in any inspected repository; GEMSDOE32's own site states no organizer score
-exists in that repo for the file. What follows explains the *mechanism* that
-makes the reported ordering (0.1922 < 0.2477 < 0.2600 < 0.2708 < 0.2778)
-expected under the official metric; it does not authenticate the numbers.
+Attribution caveat first: **no inspected organizer receipt links 0.2778 to
+these bytes**; GEMSDOE32's own site says no organizer score exists there for
+the file. The reported ordering (0.1922 < 0.2477 < 0.2600 < 0.2708 < 0.2778)
+is compatible with a metric-aware thinning/pruning explanation, but neither
+that ordering nor this mechanism authenticates the score or establishes
+causality.
 
-## What the file measurably is
+## What the archived raster-forensics reports
 
-**[MEASURED, sibling audits + local bytes]** The lineage is one surface (H19-5,
+**[RASTER-FORENSICS, recorded from a hash-pinned owner mirror/sibling audit]** The reported lineage is one surface (H19-5,
 "powerlaw-budget multiline-corroborated", 121,131 px solid) progressively
 *thinned*, never re-detected:
 
-| step | pixels | reported score | operation |
+The pixel counts are archived raster-forensics; every score in the lineage below is **OWNER-REPORT**, not a verified file-specific organizer receipt.
+
+| step | pixels | owner-reported score | operation |
 |---|---:|---:|---|
 | H19-5 solid | 121,131 | 0.1922 | — |
 | dotted d1.5 | 60,069 | 0.2477 | min-distance dot thinning |
@@ -32,14 +33,11 @@ expected under the official metric; it does not authenticate the numbers.
 | H27-4 solo | 40,199 | 0.2708 | delete dots 1 px from catalogue |
 | **H33-2-B2** | **37,654** | **0.2778** | delete dots ≤2 px (≤200 m) from catalogue |
 
-Local copy of the B2 raster (`data/registry_rasters/…-zeros.tif` from the
-GEMSDOE32 clone): single-band float32, 37,654 binary dots, 0 on catalogue
-(verified indirectly via this session's uniqueness rows: its dot count and
-decoded digest match the archive).
+The recorded B2 raster SHA-256 is `c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9`; the sibling audit reports a single-band float32 raster with 37,654 binary dots and 0 on the catalogue. The TIFF is not present in this checkout, so those raster facts were not independently reread here. They do not authenticate any score.
 
-## Why thinning + flank pruning raises this metric
+## Why thinning + flank pruning could raise this metric
 
-**[OFFICIAL]** DTI(α=0.2, β=0.8) with triangular kernel k(d)=max(1−d/300 m, 0):
+**[OFFICIAL-SNAPSHOT]** DTI(α=0.2, β=0.8) with triangular kernel k(d)=max(1−d/300 m, 0):
 TP_w = Σ_g max_x p(x)k(d), FP_w = Σ_x p(x)[1−max_g k], FN_w = |G|−TP_w
 (DrivenData page 967; FN identity verified against a brute-force transcription
 in `scripts/verify_all.py`, max err 7×10⁻¹⁵).
@@ -51,73 +49,23 @@ support), K=|G|:
 DTI = T / (0.2·(T + S − M) + 0.8·K)         (★)
 ```
 
-**[CONDITIONAL, exact algebra]** Adding one unit of mass with realised kernel
-weight k raises DTI iff **k > 0.2·DTI** — because the denominator always rises
-by exactly α=0.2 (ΔT=k, ΔFP=1−k) regardless of placement. At DTI≈0.27 the bar
-is k>0.054, i.e. a dot must lie within ~283 m of a hidden-truth pixel (and not
-duplicate better cover) to pay for itself.
+**[CONDITIONAL, exact algebra]** For a new binary dot, let `k` be its kernel weight to the nearest withheld-truth pixel and `dT` its *marginal* increase in weighted true-positive credit. Redundancy can make `dT < k`. With `α+β=1`, the exact improvement condition is `dT > α·DTI·(dT + 1 − k)`. Only for a non-redundant dot (`dT = k`) does this reduce to **`k > α·DTI`**. At DTI≈0.27 this special-case threshold is about `0.054`, or roughly 283 m under the 300 m triangular kernel. It is not a universal rule for redundant placements.
 
-Three consequences, each matching the lineage:
+The lineage is **consistent with** three metric-level mechanisms, but it does not isolate them experimentally:
 
-1. **Solid ribbons waste mass.** Along a 1-px truth trace, one dot already
-   gives max-credit ≈1 to itself and triangular credit to neighbours within
-   3 px; adjacent solid pixels add denominator (0.2 each) with ΔT≈0. Spacing
-   dots at ≈2.8 px keeps kernel coverage while cutting S by 2.75×
-   (121,131→44,090): the observed +0.068.
-2. **Near-catalogue dots are near-pure false positives live.** The hidden
-   truth is defined as faults *not* in the catalogue, and known faults are
-   masked from scoring (problem page: test faults are "not contained within
-   the current public USGS database"; sibling metric docs cite organizer
-   forum thread 11516 for pixel masking). A dot ≤200 m from a mapped trace
-   most plausibly covers that mapped structure's halo/shoulder — credit ≈0
-   against *new* truth, cost 0.2 guaranteed. Deleting 6,436 such dots
-   (44,090→37,654 across the two prunes) raises mean realised credit per dot:
-   the observed +0.018 over d2.8.
-3. **The gains are emission-side and exhaustible.** Each prune can only remove
-   tax; it cannot move a dot onto a real unmapped fault. Solve (★) at fixed
-   S=37,654 for the leader's 0.4413 vs 0.2778 (same hidden K): required T —
-   i.e. mean realised credit per emitted pixel — must rise by roughly **60%**
-   (exact figure depends on the unknown K; using the family's lattice-calibrated
-   K≈7.9–12.7k px gives +55–65%). No re-thinning of the H19-5 surface can
-   supply that; the surface's top-ranked pixels are simply not close enough
-   to hidden faults.
+1. **Redundant ribbons can waste prediction mass.** If adjacent pixels cover already-served truth cells, they can add false-positive mass with little marginal `dT`. Spacing dots near the 300 m kernel radius may reduce that redundancy while retaining useful coverage. The recorded 121,131→44,090 pixel change and score increase are compatible with this explanation; they do not prove that spacing alone caused the reported score.
+2. **Catalogue-distance pruning may improve precision for the initial-round target.** The problem describes hidden faults outside the existing catalogue, and the shared holdout masks visible mapped faults from scoring. Dots within 200 m of a mapped trace may therefore have lower expected credit for that target, but no file-specific organizer labels establish the truth at those locations. The archived 44,090→37,654 pixel difference is a removal count, not proof that the deleted dots were false positives.
+3. **Better geology is still required for a reliable gain.** Pruning can remove predicted mass but cannot move it toward an unmapped fault. Any claim that a fixed-support construction has an exhausted optimum, or that a public leader's score requires a specific increase in hidden-truth credit, depends on unknown labels and a verified file-to-score mapping. Those conditions are not available here; no numerical leaderboard projection is warranted.
 
 ## So can 0.2778 be beaten, and how?
 
-Yes in principle — only with a **better field** (higher credit density at the
-top of the ranking), because the emission lever is spent. What "better" means
-geologically: the hidden set was hand-mapped by experts from the same
-GeoDAWN/DEM/lidar evidence, so winning pixels are places where *expert mapping
-criteria* fire off-catalogue: buried basement contacts in potential fields,
-fronts/scarps too subtle for the legacy catalogue, structurally required
-continuations. The public leader's margin (0.4413 vs a thick pack at
-0.32–0.39, [OFFICIAL] snapshot 2026-10-21) is consistent with a materially
-better detector (e.g. learned segmentation over multi-physics + high-res DEM
-context with metric-aware emission), not with a cleverer thinning constant.
+Beating 0.2778 is possible in principle, but no current evidence establishes how. A plausible path is a better ranking field with more kernel credit near withheld faults, combined with a metric-aware emitter. Candidate geology might include buried basement contacts, subtle scarps, or structural continuations, but these are hypotheses until tested. The leaderboard values are only a dated snapshot here; they cannot show that a particular detector or emission rule caused a rank difference.
 
-This session tested one new-field family (derived contact physics +
-front-base geomorphology). **[MEASURED]** It reached HOLDOUT-DTI 0.1090 vs
-standard-block 0.1043 on catalogue hide-and-recover, but the paired advantage
-is statistically indistinguishable from zero across two draws (+0.0026
-[−0.0030, +0.0080], 22,914 withheld px) — so it **cannot honestly be claimed**
-as the better field, and no slot was spent (`evidence/holdout_exp1.json`,
-`evidence/holdout_exp3_replication.json`). Two warnings for the next attempt:
+A prior local contact-physics experiment is recorded in `evidence/holdout_exp1.json` and `evidence/holdout_exp3_replication.json`. Across its combined two-draw summary, the candidate measured **0.113714 HOLDOUT-DTI** (95% CI `[0.098774, 0.128091]`; evaluator `gems57-pooled-hide-v2`; 22,914 withheld positives) versus **0.111145 HOLDOUT-DTI** for its standard control (95% CI `[0.095771, 0.126375]`; same evaluator and withheld count). The paired difference was **+0.002569 HOLDOUT-DTI** (95% CI `[-0.003035, +0.007976]`; same evaluator and withheld count), which includes zero. The archived H33-static reference on the first draw was **0.004313 HOLDOUT-DTI** (95% CI `[0.003508, 0.005188]`; evaluator `gems57-pooled-hide-v2`; 11,342 withheld positives). These are local proxy-label measurements, not evidence explaining or reproducing the public H33 attribution. No slot was spent.
 
-- **Catalogue holdout rewards catalogue-style faults.** The same H33 dots that
-  (reportedly) lead live score 0.0043 HOLDOUT-DTI here, by construction. Any
-  instrument must be calibrated against live orderings before its deltas are
-  trusted (GEMSDOE70's piedmont calibration is the family's current best
-  attempt — adopt and preregister, don't improvise post-hoc).
-- **Two shipped-band tags are wrong** (band 6 = radiometric TC, not tilt;
-  band 18 = ∂g/∂x, not |∇g| — measured, ρ≈1.00/0.95 vs the true quantities).
-  Fields built by trusting tags have been training on misnamed physics;
-  correcting the stack is free accuracy for every future lane.
+Two cautions for future work:
 
-**Bottom line:** 0.2778 is the exhaust of an emission optimum on a 0.19-class
-field. Beating it — and approaching 0.4413 — requires raising top-of-ranking
-credit density with genuinely better off-catalogue evidence (lidar-grade
-geomorphology at scale, potential-field contacts derived correctly, sub-km
-seismicity, or learned multi-context segmentation), each proven on a frozen
-holdout before a slot is spent. This session's candidate did not prove that;
-its verified negative, band corrections, and instrumentation are the
-contribution.
+- **Catalogue hide-and-recover is only a proxy.** H33's near-zero first-draw result is not a public-score estimate and does not validate the owner-reported 0.2778; the hidden organizer labels may differ materially from the mapped-catalogue holdout.
+- **Two shipped-band tags were reported as wrong** in the prior audit (band 6 = radiometric TC, not tilt; band 18 = ∂g/∂x, not |∇g|; see the cited band-resolution evidence). Treat that as a repository measurement to verify against current bytes before relying on the tags; it is not evidence about the H33 score.
+
+**Bottom line:** if the OWNER-REPORT file-to-score attribution is correct, the thinning and near-catalogue pruning history offers a plausible metric-level explanation, not a proven cause or a demonstrated optimum. A future attempt should test a distinct off-catalogue evidence field on a preregistered, spatially blocked holdout with the pinned evaluator and matched control; any holdout result remains a proxy, not a leaderboard projection. No current candidate in this review has been validated or authorized for a slot.

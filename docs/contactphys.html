@@ -35,23 +35,9 @@ single geomorphic feature, an off-catalogue proxy observation) are the usable yi
 <a href="contactphys-executive-summary.html">executive summary</a> page, including conservative local checks for the reported portal error
 “Predicted values must be in range [0, 1]”.</small></p></div>
 
-<div class="card"><h2>Why did h33-2-b2 score 0.2778 (OWNER-REPORT), and can it be beaten?</h2>
-<p>The family's best file is not new geology — it is <b>emission arithmetic on an older field</b>. Owner-reported chain:
-solid H19-5 surface (121,131 px → 0.1922) → dotted thinning d1.5 (60,069 px → 0.2477) → d2.8 (44,090 px → 0.2600) →
-solo prune (40,199 px → 0.2708) → <b>h33-2-b2 deletes every dot within 2 px (200 m) of the mapped catalogue</b>
-(37,654 px → 0.2778). Under the official metric
-DTI = TP<sub>w</sub> / (TP<sub>w</sub> + 0.2·FP<sub>w</sub> + 0.8·FN<sub>w</sub>) with a 300 m triangular kernel,
-each emitted unit always adds 0.2 to the denominator but earns at most its kernel credit k; a dot helps iff
-<b>k &gt; 0.2·DTI</b> (≈0.054 at DTI 0.27). Dots hugging known faults cover structures that are already mapped
-(and therefore not in the hidden truth) — they pay the false-positive tax for almost no credit. Deleting them,
-and spacing the rest so one dot covers each 300 m kernel footprint, raises credit per dot without finding a single
-new fault. That is why thinning bought +0.086 (0.1922→0.2778).</p>
-<p><b>Beating it — let alone the public leader at 0.4413 (ORGANIZER-CONFIRMED, leaderboard read 2026-10-21) —
-cannot come from more thinning.</b> At equal emitted mass the leader's pixels earn roughly 60% more mean kernel
-credit than the H19-5 family's; only a better-ranked <i>field</i> (pixels closer to real unmapped faults) can supply
-that. This repository tested one new field family honestly; it did not clear the bar (below). No score in this
-repository is organizer-confirmed for any local file; 0.2778 itself is an owner report without a receipt in any
-inspected sibling repo, and no local proxy reproduces it — flagged as irregularity IR-77-04.</p></div>
+<div class="card"><h2>H33 0.2778: owner-reported attribution and a conditional mechanism</h2>
+<p>The family ledger attributes 0.2778 to the GEMSDOE32 H33 artifact (<b>OWNER-REPORT</b>). An archived public leaderboard read records the same value for participant <code>extradr19</code>, but its row does not identify a TIFF or hash; no inspected organizer receipt links those bytes to the row. Archived owner-mirror forensics describe a 37,654-dot H19-5-derived raster and a sequence of thinning/pruning operations. The corresponding family-reported scores rise along that sequence, but it is not a controlled experiment: correlation of construction and score does not establish causality, hidden-fault locations, or an emission optimum.</p>
+<p>For DTI <code>= T / (α·(T + S − M) + β·K)</code>, let <code>k</code> be a candidate dot's nearest-truth kernel weight and <code>dT</code> its marginal increase in weighted true-positive credit. The exact condition is <code>dT &gt; α·DTI·(dT + 1 − k)</code>. Only for a nonredundant dot (<code>dT=k</code>) does it reduce to <code>k &gt; α·DTI</code>. Spacing may reduce redundant prediction mass and catalogue-distance pruning may remove low-expected-credit pixels, but neither effect is established for the hidden labels. The archived H33-static reference measured <b>0.004313 HOLDOUT-DTI</b> on one local catalogue hide-and-recover draw (evaluator <code>gems57-pooled-hide-v2</code>, 11,342 withheld positives, 95% CI <code>[0.003508, 0.005188]</code>); this proxy is not a leaderboard estimate. See the <a href="../research/why-h33-scored-02778.md">corrected H33 analysis</a>. Official pages were not freshly fetched in this review.</p></div>
 
 <div class="card"><h2>What was tested (preregistered, 3 experiments)</h2>
 <p>Ranked hypotheses were frozen in <code>registry/preregistration_contactphys.json</code> before Exp 1. Top lane:
@@ -79,8 +65,7 @@ Pre-declared replication (seed 21, 11,572 withheld):
 Two-draw pooled Δ <b>+0.0026 [-0.0030, +0.0080]</b>.
 Receipts: <a href="downloads/holdout_exp1.json">Exp 1</a> · <a href="downloads/holdout_exp3_replication.json">Exp 3 replication</a>.
 Operating point from the Exp-1 scan (16 cells reported in the receipt): 44,090 dots, &gt;3 px catalogue exclusion.
-Caveat: catalogue holdout rewards catalogue-style faults; archived H33 dots score 0.0043 HOLDOUT-DTI here because
-they were pruned <i>away</i> from the catalogue by construction — instrument divergence, not evidence about live score.</p>
+Caveat: this catalogue hide-and-recover proxy rewards withheld mapped traces, whereas the archived H33 construction excludes dots near mapped catalogue traces. Its 0.0043 HOLDOUT-DTI result is consistent with that target/construction mismatch, but does not identify hidden organizer labels or explain the owner-reported live value.</p>
 <img src="assets/fig_holdout_arms.png" alt="Holdout DTI by arm with 95 percent confidence intervals"></div>
 
 <div class="card"><h2>Maps</h2>

@@ -6,7 +6,7 @@
 
 **Band-6 correction [MEASURED]:** `training_features.tif` band 6 tag claims "Tilt angle" but Spearman vs external radiometric TC = 1.0000, vs derived tilt = 0.0200 → band 6 is radiometric TC, not tilt (evidence/band6_resolution.json). All tilt channels here are correctly derived from tmi_vg/tmi_hg and grav_vg/grav_thdr, not from band 6. Band 18 is signed directional derivative, not HGM; HGM recomputed from iso_grav_anom (band 13).
 
-**Why holdout vs live gap matters:** H33 dotted construction scores 0.2778 live [OWNER-REPORT] but only ~0.095 on hide-and-recover holdout in prior lanes because holdout withholds catalogue segments that share surface expression with visible traces. A new field must raise *top-of-ranking kernel credit density* off-catalogue, not just tune dot spacing (which is exhausted at ~37k dots).
+**Why the holdout/live distinction matters:** the file-to-score attribution of 0.2778 to H33 remains **OWNER-REPORT**; the same value in the archived public leaderboard row for `extradr19` does not identify a TIFF or hash. The named H33 raster's archived first-draw result is **0.004313 HOLDOUT-DTI** (`gems57-pooled-hide-v2`; 11,342 withheld positives; 95% CI `[0.003508, 0.005188]`). Separate fold-fair H19-5/H33-derived controls near 0.095 are not measurements of that named file and should not be conflated with it. The catalogue hide-and-recover proxy withholds mapped fault segments, so its target distribution differs from the organizer's hidden labels. Neither proxy outcome authenticates the file-to-score link or proves why the owner-reported live value occurred. New methods should be evaluated on the prescribed pooled blocked holdout and described as HOLDOUT-DTI, not as a live-score projection.
 
 ---
 
