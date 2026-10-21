@@ -1,10 +1,13 @@
-# large restored inputs live outside git (re-fetch with scripts/lia_restore_data.py or scripts/download_competition_data.sh)
-.venv/
 .cache/
+.venv/
 __pycache__/
-.pytest_cache/
 *.pyc
-*.aux.xml
-work/
-data/*
-!data/README.md
+*.pyo
+.pytest_cache/
+*.f32
+*.f16
+*.tmp
+data/raw
+data/raw/
+data/processed/
+data/external/

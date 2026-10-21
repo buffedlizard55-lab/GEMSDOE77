@@ -86,7 +86,11 @@
     "dot_max_spearman_abs": 0.06538900991203968,
     "dot_max_forward_overlap_3px_informative": 0.6883199660062675,
     "dot_nearest_informative_raster": "archive_registry:595b5b5c4c079169ac747b17ea88aa32941efd63",
-    "passed_both_stages": true
+    "passed_both_stages": true,
+    "template_literal_reading_duplicate": true,
+    "gemsdoe77_sibling_max_forward_overlap_3px": 0.4974,
+    "gemsdoe77_vs_h77_step_forward_overlap_3px": 0.40684,
+    "gemsdoe77_vs_h78_forward_overlap_3px": 0.3517
   },
   "submission_artifacts": {
     "submission_name": "gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros",
@@ -244,5 +248,7 @@
         "verdict": "promote"
       }
     }
-  }
+  },
+  "scientific_holdout_verdict": "promote",
+  "policy_i17_literal_verdict": "negative"
 }

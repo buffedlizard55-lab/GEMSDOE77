@@ -1,0 +1,422 @@
+{
+ "lane": "H78 residual-guided off-support allocation (self-assigned; IR-78-01)",
+ "hypothesis": "Uncatalogued faults off the H19-5 support leave 1 m lidar scarp morphology; ranking off-support dots by a lidar scarp consensus earns hidden-fault credit where the 0.2778 construction has none.",
+ "mechanism": "Quaternary normal-fault scarps: a linear break in slope with a steep free face, a convex crest and a concave toe (rank mean of 7 lidar_scarp_features_u8 operators); INGENIOUS used UAV lidar for exactly such new traces.",
+ "non_fault_mimic": "Pluvial Lake Lahontan shoreline benches and wave-cut risers, fluvial terrace risers and fan-incision banks, and road cuts/canal banks all produce linear slope breaks with the same profile.",
+ "hypotheses_considered": [
+  {
+   "id": "H78-1",
+   "name": "Lidar scarp-morphology consensus",
+   "layers": "lidar_scarp_features_u8 (ex_max, step_max, lapneg_max, lappos_max, downface_max, upface_max, cross_max); 3DEP-derived, competition data pack",
+   "signature": "Linear slope break with free face, convex crest, concave toe",
+   "why_uncatalogued": "Young, small-offset scarps below the mapping scale of the USGS Qfault database are visible at 1 m (INGENIOUS Lund North UAV lidar)",
+   "differs_from_repo": "Earlier lidar lanes (GEMSDOE7/64/66) used single operators as dense surfaces; H78 uses a 7-operator consensus only to rank OFF-support dots inside a uniqueness-capped allocation",
+   "gain_over_cost": "highest (+0.01 to +0.02 hoped / 1 field, cached data)",
+   "outcome": "E1 negative (LOO dMSE < 0), E2 negative, E3 holdout below champion construction"
+  },
+  {
+   "id": "H78-2",
+   "name": "Geothermal manifestation proximity",
+   "layers": "GDR 1391 (INGENIOUS regional compilation, DOI 10.15121/1881483, CC BY 4.0): well and spring temperatures",
+   "signature": "Hot/warm wells and springs sit on permeable fault intersections and step-overs",
+   "why_uncatalogued": "Fluid upflow marks blind faults that have no scarp",
+   "differs_from_repo": "No family repo used thermal-manifestation distance to place dots",
+   "gain_over_cost": "second (sparse points, cheap)",
+   "outcome": "E1: zero weight; E2: unordered, not live-supported"
+  },
+  {
+   "id": "H78-3",
+   "name": "Regional mapping-campaign heterogeneity",
+   "layers": "3x3 region blocks of the footprint",
+   "signature": "Catalogue completeness varies by mapping campaign; hidden truth density should track it",
+   "why_uncatalogued": "Under-mapped regions hide more faults",
+   "differs_from_repo": "Spatially varying off-support credit; the family assumes one global rate",
+   "gain_over_cost": "third (cheap, weak prior)",
+   "outcome": "E1: zero weight"
+  },
+  {
+   "id": "H78-4",
+   "name": "Single lidar operators (sensitivity rows)",
+   "layers": "ex_max, step_max, upface_max, relief",
+   "signature": "As H78-1, one operator at a time",
+   "why_uncatalogued": "As H78-1",
+   "differs_from_repo": "Sensitivity check on H78-1, not a separate lane",
+   "gain_over_cost": "fourth",
+   "outcome": "E1: none live-supported"
+  },
+  {
+   "id": "CTRL",
+   "name": "Controls: H77-1 straight edges, det_elev_slope (band 19), SEF",
+   "layers": "training_features band 19; SEF cache",
+   "signature": "Generic edges / slope",
+   "why_uncatalogued": "n/a (controls)",
+   "differs_from_repo": "Already tested elsewhere (LIA lane)",
+   "gain_over_cost": "control",
+   "outcome": "E2: det_elev_slope +8.7e-5 dMSE but CI includes 0 and bins unordered"
+  }
+ ],
+ "experiments": [
+  {
+   "id": "E1",
+   "what": "Off-support split of the S0 live-score model by each field; LOO over 95 organizer-scored rasters",
+   "result": "no field live-supported (lidar consensus dMSE < 0)",
+   "verdict": "negative",
+   "evidence": "h78_e1_screen.json"
+  },
+  {
+   "id": "E2",
+   "what": "On-support split (post-hoc amendment, disclosed IR-78-03)",
+   "result": "no field live-supported",
+   "verdict": "negative",
+   "evidence": "h78_e2_within_support.json"
+  },
+  {
+   "id": "E3",
+   "what": "Pre-registered build + 4-fold hide-and-recover holdout + leakage canary + uniqueness",
+   "result": "C 0.0708 vs A0 0.0958; delta -0.0250",
+   "verdict": "negative",
+   "evidence": "h78_e3_holdout.json"
+  }
+ ],
+ "holdout": {
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "dti": 0.07080326116269187,
+  "ci95": [
+   0.06004507090448665,
+   0.08158776425472165
+  ],
+  "withheld_positive_pixels": 11321,
+  "split": "gems57.holdout.buffered_component_draw seed=20 hide_frac=0.20 buffer_px=3"
+ },
+ "paired_difference_vs_champion_construction": {
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "delta": -0.025025971293106353,
+  "ci95": [
+   -0.030103195617506226,
+   -0.020153739950290638
+  ],
+  "withheld_positive_pixels": 11321
+ },
+ "holdout_arms": [
+  {
+   "arm": "C: H78 candidate rule (rebuilt per fold)",
+   "dti": 0.07080326116269187,
+   "ci95": [
+    0.06004507090448665,
+    0.08158776425472165
+   ],
+   "delta": null
+  },
+  {
+   "arm": "A0: champion construction (H19-5 dots > 2 px from visible catalogue)",
+   "dti": 0.09582923245579822,
+   "ci95": [
+    0.08296362096064179,
+    0.10840044421721251
+   ],
+   "delta": -0.025025971293106353,
+   "delta_ci95": [
+    -0.030103195617506226,
+    -0.020153739950290638
+   ]
+  },
+  {
+   "arm": "L: lidar consensus alone (same dot count)",
+   "dti": 0.059683081537179064,
+   "ci95": [
+    0.04601939557858,
+    0.07430043734078252
+   ],
+   "delta": 0.011120179625512802,
+   "delta_ci95": [
+    -0.004969348292125749,
+    0.025769774579817037
+   ]
+  },
+  {
+   "arm": "R: random dots (same dot count)",
+   "dti": 0.047963475911053766,
+   "ci95": [
+    0.04231514390139269,
+    0.053745461682151975
+   ],
+   "delta": 0.0228397852516381,
+   "delta_ci95": [
+    0.012581391408883261,
+    0.03348750905067241
+   ]
+  }
+ ],
+ "leakage_canary_auc": {
+  "h19_5_support_proximity": 0.6360456580322704,
+  "lidar_consensus_H78_1": 0.5887922146159056,
+  "visible_catalogue_proximity": 0.7553170902894326,
+  "S0_credit": 0.6391906365014869,
+  "thermal_proximity_H78_2": 0.4919357569266555,
+  "det_elev_slope": 0.563973631157436
+ },
+ "canary_any_auc_above_090": false,
+ "live_inversion_projection": {
+  "evidence_class": "INSTRUMENT (projection, not a score)",
+  "S0_candidate": 0.24497394668268976,
+  "S0_champion": 0.28812012469079895,
+  "S0_delta": -0.04314617800810919,
+  "chosen": {
+   "B_px": 4,
+   "on_frac": 0.85,
+   "s_on_target": 0.66
+  },
+  "grid": [
+   {
+    "B_px": 2,
+    "on_frac": 1.0,
+    "s_on_target": 0.66,
+    "n_on": 33325,
+    "n_off": 17168,
+    "on_share": 0.6599924742043451,
+    "worst_informative_overlap": 0.6599924742043451,
+    "S0": {
+     "T": 4441.45068359375,
+     "S": 50493.0,
+     "K": 10366.1923828125,
+     "dti_projection": 0.2357996212182436,
+     "credit_per_dot": 0.08796171119944844
+    },
+    "feasible": true
+   },
+   {
+    "B_px": 2,
+    "on_frac": 1.0,
+    "s_on_target": 0.6,
+    "n_on": 33326,
+    "n_off": 22217,
+    "on_share": 0.6000036008137839,
+    "worst_informative_overlap": 0.6599931584538106,
+    "S0": {
+     "T": 4448.27783203125,
+     "S": 55543.0,
+     "K": 10366.1923828125,
+     "dti_projection": 0.2241354571143403,
+     "credit_per_dot": 0.08008710066131196
+    },
+    "feasible": true
+   },
+   {
+    "B_px": 2,
+    "on_frac": 0.85,
+    "s_on_target": 0.66,
+    "n_on": 28326,
+    "n_off": 14593,
+    "on_share": 0.6599874181597893,
+    "worst_informative_overlap": 0.6599874181597893,
+    "S0": {
+     "T": 4222.4765625,
+     "S": 42919.0,
+     "K": 10366.1923828125,
+     "dti_projection": 0.24408787682020303,
+     "credit_per_dot": 0.09838245444907849
+    },
+    "feasible": true
+   },
+   {
+    "B_px": 2,
+    "on_frac": 0.85,
+    "s_on_target": 0.6,
+    "n_on": 28327,
+    "n_off": 18884,
+    "on_share": 0.6000084726017242,
+    "worst_informative_overlap": 0.6599944928088793,
+    "S0": {
+     "T": 4227.9765625,
+     "S": 47211.0,
+     "K": 10366.1923828125,
+     "dti_projection": 0.23284435735755915,
+     "credit_per_dot": 0.08955490378301667
+    },
+    "feasible": true
+   },
+   {
+    "B_px": 4,
+    "on_frac": 1.0,
+    "s_on_target": 0.66,
+    "n_on": 29740,
+    "n_off": 15322,
+    "on_share": 0.6599795836847011,
+    "worst_informative_overlap": 0.6599795836847011,
+    "S0": {
+     "T": 4290.37158203125,
+     "S": 45062.0,
+     "K": 10366.1923828125,
+     "dti_projection": 0.24192381720006642,
+     "credit_per_dot": 0.0952104119220463
+    },
+    "feasible": true
+   },
+   {
+    "B_px": 4,
+    "on_frac": 1.0,
+    "s_on_target": 0.6,
+    "n_on": 29741,
+    "n_off": 19827,
+    "on_share": 0.6000040348612008,
+    "worst_informative_overlap": 0.6599822466107166,
+    "S0": {
+     "T": 4296.2294921875,
+     "S": 49568.0,
+     "K": 10366.1923828125,
+     "dti_projection": 0.23053169786413458,
+     "credit_per_dot": 0.08667344843825654
+    },
+    "feasible": true
+   },
+   {
+    "B_px": 4,
+    "on_frac": 0.85,
+    "s_on_target": 0.66,
+    "n_on": 25278,
+    "n_off": 13023,
+    "on_share": 0.6599827680739406,
+    "worst_informative_overlap": 0.6599827680739406,
+    "S0": {
+     "T": 4006.249755859375,
+     "S": 38301.0,
+     "K": 10366.1923828125,
+     "dti_projection": 0.24497394668268976,
+     "credit_per_dot": 0.1045990902550684
+    },
+    "feasible": true
+   },
+   {
+    "B_px": 4,
+    "on_frac": 0.85,
+    "s_on_target": 0.6,
+    "n_on": 25279,
+    "n_off": 16852,
+    "on_share": 0.6000094941966723,
+    "worst_informative_overlap": 0.6599890816738269,
+    "S0": {
+     "T": 4011.180419921875,
+     "S": 42131.0,
+     "K": 10366.1923828125,
+     "dti_projection": 0.2342942000015204,
+     "credit_per_dot": 0.09520733948688317
+    },
+    "feasible": true
+   }
+  ]
+ },
+ "registry_comparison": {
+  "tool": "gems57.uniqueness.compare_array_to_registry (vendored template, unchanged)",
+  "registry_files": 839,
+  "space_filling_rasters": 44,
+  "phase1_worst_rho": 0.3686405864798103,
+  "phase1_rho_firings": 0,
+  "phase2_worst_rho": 0.639212732620308,
+  "phase2_rho_firings": 0,
+  "phase2_worst_overlap_informative": 0.6599827680739406,
+  "phase2_worst_overlap_submission": "GEMSDOE68:registry/rasters/rasters/19GEMSDOE__h19-5-powerlaw-budget-multiline.tif",
+  "phase2_overlap_firings_informative": 0,
+  "phase2_jaccard_firings_informative": 0,
+  "identical_decoded": 0,
+  "literal_reading": {
+   "worst_spearman_full_footprint": 0.639212732620308,
+   "worst_spearman_submission": "GEMSDOE77:docs/downloads/gems77-h77-lia-38323dots-20261021-aa5c9331-nan.tif",
+   "worst_forward_overlap": 1.0,
+   "worst_overlap_submission": "GEMSDOE48:docs/downloads/GEMSDOE48-unassigned-mass-20261006.tif",
+   "forward_overlap_firings": 44,
+   "rho_firings": 0,
+   "duplicate": true,
+   "note": "Keeps the inherited literal support definition. A continuous-surface prior fires on every nonempty candidate, so a firing here is not evidence of duplication; it is reported for completeness."
+  },
+  "literal_firings_all_space_filling": true,
+  "unreadable_registry_files": 6,
+  "scope": "812-raster registry index + GEMSDOE73-76 TIFFs at clone time (~04:10 UTC) + this repo's TIFFs; later files unchecked (IR-78-05)"
+ },
+ "raster_sha256": "4571e767757be95e3fb70b4afb05e45528b1cfd74147e168c36253b1247f1c47",
+ "file": "docs/downloads/gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros.tif",
+ "validator": {
+  "portal_equivalence": {
+   "GeoTIFF driver": "PASS",
+   "single band": "PASS",
+   "dtype float32": "PASS",
+   "CRS EPSG:32611": "PASS",
+   "CRS equals sample_submission": "PASS",
+   "shape 3730x3292 equals sample_submission": "PASS",
+   "transform equals sample_submission": "PASS",
+   "resolution 100 m": "PASS",
+   "nodata tag none (zeros) or NaN (nan)": "PASS",
+   "no NaN/inf inside official footprint": "PASS",
+   "all 12,279,160 cells finite (no NaN anywhere)": "PASS",
+   "zeros outside footprint": "PASS",
+   "values within [0, 1]": "PASS",
+   "binary values {0,1} inside footprint": "PASS",
+   "0 dots on masked catalogue pixels": "PASS",
+   "name non-empty, <= 120 chars": "PASS",
+   "note <= 140 chars": "PASS"
+  },
+  "template_validator_passed": false,
+  "zip_single_tiff": true,
+  "nan_twin_bit_identical_in_footprint": true
+ },
+ "submission_name": "gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros",
+ "note": "GEMSDOE77 H78: 66% H19-5 support (S0 credit) + 34% 1m-lidar scarp-consensus dots, 38301 binary, 0 on catalogue",
+ "note_chars": 110,
+ "format_valid": true,
+ "protocol_unique": false,
+ "protocol_unique_informative_reading": true,
+ "literal_reading_firings_final_dots": 44,
+ "uniqueness_policy": "Literal reading binds (repository policy I17): any registry raster with > 70% of our dots within 3 px is a duplicate. All literal firings here are space-filling rasters, against which even random dots fire; resolving that contradiction is a protocol-owner decision, not this lane's.",
+ "beats_holdout_best": false,
+ "ok_to_download": true,
+ "ok_to_submit": false,
+ "approved_for_weekly_slot": false,
+ "weekly_slots_used": 0,
+ "organizer_confirmed_score": null,
+ "verdict": "negative",
+ "verdict_reason": "holdout delta vs champion construction -0.0250 (95% CI -0.0301 to -0.0202) is entirely below 0; INSTRUMENT S0 projection 0.2450 < champion 0.2881; E1 and E2 found no live-supported field; literal registry gate fails (44 final-dot firings, all on space-filling rasters; the informative reading passes).",
+ "budget": "3 experiments (E1, E2, E3); E3 re-run twice for implementation bugs, not re-tuned (IR-78-03)",
+ "sources": [
+  {
+   "title": "DrivenData GEMS problem description (metric, format)",
+   "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+   "used_for": "DTI definition, file format"
+  },
+  {
+   "title": "DrivenData GEMS public leaderboard",
+   "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+   "used_for": "0.2778, 0.4413, 0.3904 (ORGANIZER-CONFIRMED)"
+  },
+  {
+   "title": "Hardwick et al. 2025, Stanford Geothermal Workshop (INGENIOUS UAV lidar)",
+   "url": "https://pangea.stanford.edu/ERE/db/GeoConf/papers/SGW/2025/Hardwick.pdf",
+   "used_for": "H78-1 mechanism"
+  },
+  {
+   "title": "Hart-Wagoner et al., GRC (INGENIOUS Quaternary fault database)",
+   "url": "https://publications.mygeoenergynow.org/grc/1034813.pdf",
+   "used_for": "catalogue provenance"
+  },
+  {
+   "title": "Faulds & Richards, GRC (INGENIOUS favorable structural settings)",
+   "url": "https://publications.mygeoenergynow.org/grc/1034745.pdf",
+   "used_for": "H78-2 rationale"
+  },
+  {
+   "title": "GBCGE INGENIOUS project page",
+   "url": "https://gbcge.org/current-projects/ingenious/",
+   "used_for": "project scope and dates"
+  },
+  {
+   "title": "GDR submission 1391, INGENIOUS Great Basin Regional Dataset Compilation (DOI 10.15121/1881483, CC BY 4.0)",
+   "url": "https://gdr.openei.org/submissions/1391",
+   "used_for": "H78-2 field (its 'Well and Spring Temperature and Chemistry' resource); the INGENIOUS Quaternary fault compilation is in the same submission"
+  },
+  {
+   "title": "USGS 3D Elevation Program (3DEP; free, no use restrictions)",
+   "url": "https://www.usgs.gov/3d-elevation-program",
+   "used_for": "source of the 1 m DEM tiles behind lidar_scarp_features_u8 (H78-1)"
+  }
+ ]
+}

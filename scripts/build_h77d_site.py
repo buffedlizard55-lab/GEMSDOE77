@@ -23,10 +23,12 @@ def esc(x) -> str:
 
 def page_shell(title: str, active: str, body: str) -> str:
     nav_items = [
-        ("index.html", "overview", "Overview"),
-        ("h77d.html", "h77d", "H77D Candidate (Promote)"),
+        ("index.html", "home", "Start here"),
+        ("h77d.html", "h77d", "H77D (Zero-SGMC)"),
         ("h77d-executive-summary.html", "h77d-submit", "H77D Submit Guide"),
-        ("executive-summary.html", "submit", "Legacy Guide"),
+        ("h77-step.html", "h77-step", "H77-Step"),
+        ("h78.html", "h78", "H78 lane"),
+        ("executive-summary.html", "submit", "How to submit"),
         ("research.html", "research", "Research"),
         ("sources.html", "sources", "Source feed"),
         ("audit.html", "audit", "Audit trail"),

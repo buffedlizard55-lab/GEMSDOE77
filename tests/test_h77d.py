@@ -221,3 +221,26 @@ def test_h77d_all_three_experiments_and_run_card_receipts():
         assert not np.any(np.isinf(arr))
         assert float(arr.min()) == 0.0 and float(arr.max()) == 1.0
         assert int((arr > 0).sum()) == 37654
+
+
+def test_h77d_featured_on_home_and_orthogonal_to_all_siblings():
+    """Verify H77D is featured clearly on site pages and orthogonal to all GEMSDOE77 sibling lanes."""
+    rc = json.loads((ROOT / "evidence" / "run_card_h77d.json").read_text())
+    u3 = json.loads((ROOT / "evidence" / "h77d_exp3_uniqueness.json").read_text())
+    sub = rc["submission_artifacts"]
+
+    for page_name in ["index.html", "h77d.html", "h77d-executive-summary.html"]:
+        html_txt = (ROOT / "docs" / page_name).read_text()
+        assert sub["submission_name"] in html_txt
+        assert sub["primary_geotiff_sha256"] in html_txt
+        assert Path(sub["primary_geotiff"]).name in html_txt
+        assert Path(sub["primary_zip"]).name in html_txt
+
+    sibs = u3["gemsdoe77_head_to_head_siblings"]
+    assert len(sibs) >= 4
+    for sib_name, stats in sibs.items():
+        assert stats["forward_overlap_3px"] <= 0.50, (sib_name, stats)
+        assert stats["mutual_overlap_3px"] <= 0.50, (sib_name, stats)
+        assert stats["spearman_abs"] <= 0.10, (sib_name, stats)
+        assert stats["surface_spearman_abs"] <= 0.15, (sib_name, stats)
+

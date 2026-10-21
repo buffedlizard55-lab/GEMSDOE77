@@ -1,0 +1,157 @@
+{
+  "grid_shape": [
+    3730,
+    3292
+  ],
+  "crs": "EPSG:32611",
+  "transform": [
+    100.0,
+    0.0,
+    243350.0,
+    0.0,
+    -100.0,
+    4508550.0
+  ],
+  "footprint_pixels": 5167373,
+  "outside_footprint_pixels": 7111787,
+  "mapped_catalogue_pixels": 60988,
+  "external_layers_present": [
+    "2m_temperature_probe_INGENIOUS_regional_data.zip",
+    "dem10_chi_100m.manifest.json",
+    "dem10_chi_100m_i16.tif",
+    "dem10_chi_100m_sig_i32.tif",
+    "dem10_chi_100m_u8.tif",
+    "derived_sgmc_faults_100m.tif",
+    "derived_sgmc_faults_100m_u8.tif",
+    "gdr_qfaults_traces.csv",
+    "gdr_volcanic_vents_in_footprint.csv",
+    "gdr_wellspring_in_footprint.csv",
+    "geodawn_extensions_u8.tif",
+    "geodawn_rad_u8.tif",
+    "lidar_scarp_features_u8.tif",
+    "paleo_geothermal_regional.zip",
+    "qfault_attributes.csv",
+    "qfaults_8_README_fielddefinitions_qfaults_ingenious_nad83conus117_2023-06-27.txt",
+    "qfaults_receipt.json",
+    "sgmc_faults_100m.tif",
+    "topo_10m_derived_100m_u8.manifest.json",
+    "topo_10m_derived_100m_u8.tif",
+    "trace_segments_utm11.csv"
+  ],
+  "official_19_bands": [
+    {
+      "band": 1,
+      "description": "mag_anom - Magnetic anomaly - deviation from expected Earth's magnetic field",
+      "in_footprint_sentinel_or_nan": 3061,
+      "p50": -57.68793487548828
+    },
+    {
+      "band": 2,
+      "description": "rtp - Reduced to pole magnetic data - magnetic anomaly corrected for latitude effects",
+      "in_footprint_sentinel_or_nan": 3061,
+      "p50": -137.22166442871094
+    },
+    {
+      "band": 3,
+      "description": "tmi_hg - Total magnetic intensity horizontal gradient - rate of change in horizontal direction",
+      "in_footprint_sentinel_or_nan": 3061,
+      "p50": 13.155465126037598
+    },
+    {
+      "band": 4,
+      "description": "geod_2ndinv - Geodetic second invariant - measure of strain rate tensor magnitude",
+      "in_footprint_sentinel_or_nan": 3061,
+      "p50": 19.90778923034668
+    },
+    {
+      "band": 5,
+      "description": "iso_grav_anom_slope - Isostatic gravity anomaly slope - gradient of gravity after isostatic correction",
+      "in_footprint_sentinel_or_nan": 3061,
+      "p50": 0.10218460857868195
+    },
+    {
+      "band": 6,
+      "description": "tc - Tilt angle or total curvature - magnetic field derivative for edge detection",
+      "in_footprint_sentinel_or_nan": 3073,
+      "p50": 18.481700897216797
+    },
+    {
+      "band": 7,
+      "description": "geod_shearrate - Geodetic shear rate - rate of angular deformation from GPS/InSAR",
+      "in_footprint_sentinel_or_nan": 3061,
+      "p50": 9.699999809265137
+    },
+    {
+      "band": 8,
+      "description": "geod_dilaterate - Geodetic dilatation rate - rate of volumetric strain (expansion/contraction)",
+      "in_footprint_sentinel_or_nan": 3061,
+      "p50": 5.5
+    },
+    {
+      "band": 9,
+      "description": "tmi_vg - Total magnetic intensity vertical gradient - rate of change in vertical direction",
+      "in_footprint_sentinel_or_nan": 3061,
+      "p50": -0.008997071534395218
+    },
+    {
+      "band": 10,
+      "description": "deq_n100a15 - Distance to earthquake (n=100km radius, a=15\u00b0 azimuth parameters)",
+      "in_footprint_sentinel_or_nan": 3061,
+      "p50": 622.7999877929688
+    },
+    {
+      "band": 11,
+      "description": "iso_grav_anom_vg - Isostatic gravity anomaly vertical gradient - vertical rate of change",
+      "in_footprint_sentinel_or_nan": 3061,
+      "p50": -0.07213491946458817
+    },
+    {
+      "band": 12,
+      "description": "det_elev - Detrended elevation - topography with regional trends removed",
+      "in_footprint_sentinel_or_nan": 3061,
+      "p50": -75.57621002197266
+    },
+    {
+      "band": 13,
+      "description": "iso_grav_anom - Isostatic gravity anomaly - gravity after compensating for topographic mass",
+      "in_footprint_sentinel_or_nan": 3061,
+      "p50": -7.26103401184082
+    },
+    {
+      "band": 14,
+      "description": "tmi - Total magnetic intensity - total strength of magnetic field",
+      "in_footprint_sentinel_or_nan": 3061,
+      "p50": -124.8157730102539
+    },
+    {
+      "band": 15,
+      "description": "depth_to_base_surf - Depth to basement surface - thickness of sedimentary cover",
+      "in_footprint_sentinel_or_nan": 3061,
+      "p50": 316.3645324707031
+    },
+    {
+      "band": 16,
+      "description": "ieq_n100a15 - Earthquake intensity or density (n=100km radius, a=15\u00b0 parameters)",
+      "in_footprint_sentinel_or_nan": 3061,
+      "p50": 755.7000122070312
+    },
+    {
+      "band": 17,
+      "description": "cond_surf - Conductivity surface - electrical conductivity of subsurface",
+      "in_footprint_sentinel_or_nan": 3061,
+      "p50": 2.885897636413574
+    },
+    {
+      "band": 18,
+      "description": "iso_grav_anom_hg - Isostatic gravity anomaly horizontal gradient - horizontal rate of change",
+      "in_footprint_sentinel_or_nan": 3061,
+      "p50": 0.037620771676301956
+    },
+    {
+      "band": 19,
+      "description": "det_elev_slope - Detrended elevation slope - gradient of elevation after detrending",
+      "in_footprint_sentinel_or_nan": 3061,
+      "p50": 3.749262809753418
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "sibling_file": "gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif",
+    "their_dots": 44090,
+    "surface_spearman": 0.09747,
+    "dots_spearman": 0.05314,
+    "forward_3px": 0.61291,
+    "reverse_3px": 0.47088,
+    "mutual_3px": 0.47088
+  },
+  {
+    "sibling_file": "gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif",
+    "their_dots": 38323,
+    "surface_spearman": 0.0271,
+    "dots_spearman": 0.02041,
+    "forward_3px": 0.39021,
+    "reverse_3px": 0.22472,
+    "mutual_3px": 0.22472
+  },
+  {
+    "sibling_file": "gems77-h77-urank-curvature-0d868dc271bb-research.tif",
+    "their_dots": 4961936,
+    "surface_spearman": -0.01608,
+    "dots_spearman": 0.00097,
+    "forward_3px": 0.97895,
+    "reverse_3px": 0.11139,
+    "mutual_3px": 0.11139
+  },
+  {
+    "sibling_file": "gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-zeros.tif",
+    "their_dots": 44090,
+    "surface_spearman": -0.00073,
+    "dots_spearman": 0.00146,
+    "forward_3px": 0.10845,
+    "reverse_3px": 0.11819,
+    "mutual_3px": 0.10845
+  }
+]

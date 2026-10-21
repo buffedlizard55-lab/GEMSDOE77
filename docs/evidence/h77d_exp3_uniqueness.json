@@ -309,5 +309,41 @@
       "spearman_abs": 0.02081,
       "surface_spearman_abs": 0.08537
     }
-  ]
+  ],
+  "gemsdoe77_head_to_head_siblings": {
+    "H77_Step_PR9_gems77-step-propensity-submod300.tif": {
+      "positives": 34625,
+      "forward_overlap_3px": 0.40684,
+      "reverse_overlap_3px": 0.39379,
+      "mutual_overlap_3px": 0.39379,
+      "spearman_abs": 0.03242,
+      "surface_spearman_abs": 0.093
+    },
+    "H78_PR10_gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros.tif": {
+      "positives": 38301,
+      "forward_overlap_3px": 0.3517,
+      "reverse_overlap_3px": 0.18151,
+      "mutual_overlap_3px": 0.18151,
+      "spearman_abs": 0.01351,
+      "surface_spearman_abs": 0.04628
+    },
+    "LIA_PR6_gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif": {
+      "positives": 38323,
+      "forward_overlap_3px": 0.3419,
+      "reverse_overlap_3px": 0.17553,
+      "mutual_overlap_3px": 0.17553,
+      "spearman_abs": 0.01264,
+      "surface_spearman_abs": 0.02982
+    },
+    "ContactPhys_PR5_gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif": {
+      "positives": 44090,
+      "forward_overlap_3px": 0.4974,
+      "reverse_overlap_3px": 0.4134,
+      "mutual_overlap_3px": 0.4134,
+      "spearman_abs": 0.03908,
+      "surface_spearman_abs": 0.08378
+    }
+  },
+  "template_literal_reading_duplicate": true,
+  "policy_i17_dense_witness_note": "Dense continuous archive witness ab0a0a62 covers 100.0% of allowed Nevada footprint pixels, forcing 1.000 forward overlap for every non-empty raster until selector excludes non-dot rasters."
 }
