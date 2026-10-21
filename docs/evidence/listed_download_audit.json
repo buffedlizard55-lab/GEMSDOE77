@@ -2,16 +2,16 @@
   "schema": "gems-listed-download-readback-v1",
   "evidence_class": "FORMAT-INTEGRITY-MEASUREMENT; NOT SCORE OR PORTAL ACCEPTANCE",
   "scope": "Every primary TIFF in docs/data/lanes.json; no archive or NaN twins, no uniqueness certification",
-  "manifest_sha256": "40905004356c610cf1177f62780c9c0d1b41f911bb5e97ab7f9138bc9fd599d3",
+  "manifest_sha256": "32419245285e0f09ba47f92aea925cdd9f718fe745d11947126360135a26bb2f",
   "reference_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
-  "listed_count": 36,
+  "listed_count": 37,
   "all_format_pass": true,
   "authorized_to_submit": false,
   "artifacts": [
     {
-      "lane": "H77VC: Strike-Aligned Geothermal Vent Plume \u00d7 Smectite Clay-Cap Breach + V-LBCO + Uniqueness-Constrained 300 m Submodular Cover (0.1688 s30 / 0.1491 s20 HOLDOUT-DTI)",
-      "file": "downloads/gems77-h77v-geothermal-vent-submod-36250dots-20261021-zeros.tif",
-      "sha256": "83df91facbe17d8fd7afae6c851c514317f1d763f61781af954eef9834c2f7d2",
+      "lane": "H77H-DD (NEWEST): +500m Downdip-Lag Hanging-Wall Potential-Field Dipole \u00d7 Mesh-Notched sigma=36px MT/Strain/GDR1391 Gate \u00d7 Bilateral 4-Bucket LOCO Bridge (HOLDOUT-DTI 0.1150 s20 / 0.1149 s30 unique; 0.1301 s20 / 0.1298 s30 full; 0/54 info dupes; negative result)",
+      "file": "downloads/gems77-h77h-downdip-notch36-bridge-36500dots-20261021-0c05c2bc-zeros.tif",
+      "sha256": "d1e87159a8908f0051352c091d9343e8e5128e2c8eea0debdd17589a02692dad",
       "checks": {
         "single_band": true,
         "crs_matches": true,
@@ -30,6 +30,24 @@
       "lane": "H82R: local ternary radiometric rank-mixture entropy (STOPPED; research only)",
       "file": "downloads/gems77-h82-ternaryentropy-20261021-RESEARCH-ONLY.tif",
       "sha256": "56debe682505bf2649f30d914c7b552dcf669bce4b902ce91eb3e5363031f115",
+      "checks": {
+        "single_band": true,
+        "crs_matches": true,
+        "shape_matches": true,
+        "transform_matches": true,
+        "finite_entire_raster": true,
+        "no_nan_inside_footprint": true,
+        "values_in_0_1": true,
+        "nodata_none": true,
+        "sha256_matches_manifest": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
+    {
+      "lane": "H77VC: Strike-Aligned Geothermal Vent Plume \u00d7 Smectite Clay-Cap Breach + V-LBCO + Uniqueness-Constrained 300 m Submodular Cover (0.1688 s30 / 0.1491 s20 HOLDOUT-DTI)",
+      "file": "downloads/gems77-h77v-geothermal-vent-submod-36250dots-20261021-zeros.tif",
+      "sha256": "83df91facbe17d8fd7afae6c851c514317f1d763f61781af954eef9834c2f7d2",
       "checks": {
         "single_band": true,
         "crs_matches": true,
