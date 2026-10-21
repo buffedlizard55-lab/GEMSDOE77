@@ -2,12 +2,30 @@
   "schema": "gems-listed-download-readback-v1",
   "evidence_class": "FORMAT-INTEGRITY-MEASUREMENT; NOT SCORE OR PORTAL ACCEPTANCE",
   "scope": "Every primary TIFF in docs/data/lanes.json; no archive or NaN twins, no uniqueness certification",
-  "manifest_sha256": "9bfed9ba3cf1749bb3a0677a348d54a096d0baec461663dec8e38b70a9a2e73b",
+  "manifest_sha256": "d38b0595b35a0ff15a7428708029adc508b0da9c05237de9ce8be57d188355fc",
   "reference_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
-  "listed_count": 22,
+  "listed_count": 23,
   "all_format_pass": true,
   "authorized_to_submit": false,
   "artifacts": [
+    {
+      "lane": "H82: cool-outlet geothermometer concordance (negative)",
+      "file": "downloads/gems77-h82-cool-chemconcord-11185dots-20261021-245bb13136-zeros.tif",
+      "sha256": "84b50d05eaba578c398c4c7ab720dbf5a46de29d63f4254eb02a8ba02a4a43df",
+      "checks": {
+        "single_band": true,
+        "crs_matches": true,
+        "shape_matches": true,
+        "transform_matches": true,
+        "finite_entire_raster": true,
+        "no_nan_inside_footprint": true,
+        "values_in_0_1": true,
+        "nodata_none": true,
+        "sha256_matches_manifest": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
     {
       "lane": "H77G: hydrothermal magnetite-destruction trough \u00d7 gravity-basement step \u00d7 MT clay-cap margin (HOLDOUT-DTI 0.0619 s20 / 0.0618 s30, pure 0.0392/0.0471; negative result)",
       "file": "downloads/gems77-h77g-demagtrough-gravstep-37654dots-20261021-08b78f3c-zeros.tif",

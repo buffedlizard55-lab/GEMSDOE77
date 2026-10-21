@@ -1,5 +1,15 @@
 # Irregularities and next-session handoff
 
+## H82 update (2026-10-21; later than historical rows)
+
+| ID | Verified irregularity | Consequence |
+|---|---|---|
+| IR-82-01 | No assigned single-method paragraph in the latest parallel-run prompt; H82 chemistry lane self-declared before outcomes. | Do not assume any method was assigned by the user; avoid lane collisions; H82 is now stopped negative. |
+| IR-82-02 | SHA-pinned `17GEMSDOE` registry witness is positive throughout the permitted footprint; H82 final dots have literal 3-pixel forward overlap 1.000. Only two registry witnesses were checked. | Stop. Neither byte novelty nor local format validity grants protocol uniqueness/slot clearance. Only protocol owner can resolve universal dense-surface representation contradiction in the shared template. |
+| IR-82-03 | Only 41 chemistry records (32 unique cells) passed the preregistered all-three hot-estimate + cool-outlet filter. Input CSV is an owner mirror, not organizer-authenticated; official GDR not reachable here. | HOLDOUT-DTI 0.012184 (gems57-pooled-hide-v2, 11,321 withheld positives, 95% CI [0.003700, 0.022844]) is negative; do not tune on this holdout or interpret as geothermal vent discovery. |
+| IR-82-04 | Local release gate did not recognize H82 card's `duplicate` and `registry_complete` fields although row status still failed closed. | Fixed once in repository-wide `scripts/release_gate.py` and tested, not in a private scientific evaluator. |
+| IR-82-05 | Local format [0,1]/finite PASS does not prove portal acceptance; prior rejected submission bytes absent. Source feed is GitHub inventory, not a private organizer leaderboard feed. | Inspection download only, zero approved slots, no attribution of owner-reported H33 score. See [three-pass review](review-2026-10-21-h82.md). |
+
 > Historical lane ledger. Its early I08/“Access and capability boundaries” text reflects an earlier session: on 2026-10-21 official competition/USGS/GDR/NLR **public pages were independently read via the web fetch tool** (not sandbox `bash`). Organizer-only training downloads, the private entry receipts, and authenticated portal submissions remain unavailable. [Current H77L three-pass review](review-2026-10-21-h77l.md) supersedes the old next-session guidance; do not rewrite old run cards.
 
 | ID | Finding | Action / consequence |

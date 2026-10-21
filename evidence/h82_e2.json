@@ -1,0 +1,163 @@
+{
+  "experiment": "H82-E2",
+  "pooled": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "triangular_radius_m": 300.0,
+    "pooled": true,
+    "scores": {
+      "concordance": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.012183573151637725,
+        "ci95": [
+          0.0036995165161437336,
+          0.022843915166265796
+        ],
+        "withheld_positive_pixels": 11321,
+        "tpw": 137.39690701293176,
+        "fpw": 10964.732721331258,
+        "fnw": 11183.603092987069
+      },
+      "presence": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.011905695466715634,
+        "ci95": [
+          0.004161183114353474,
+          0.021214731427896618
+        ],
+        "withheld_positive_pixels": 11321,
+        "tpw": 134.2202208970565,
+        "fpw": 10949.852216488716,
+        "fnw": 11186.779779102944
+      },
+      "random": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.018304988011823335,
+        "ci95": [
+          0.014653608547600323,
+          0.022065354334928816
+        ],
+        "withheld_positive_pixels": 11321,
+        "tpw": 205.16366817133652,
+        "fpw": 10551.208507658463,
+        "fnw": 11115.836331828661
+      }
+    },
+    "best_comparable_control": "random",
+    "paired_differences": {
+      "presence": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.00027787768492209056,
+        "ci95": [
+          -0.0016265050298452078,
+          0.0025120273784397886
+        ],
+        "withheld_positive_pixels": 11321
+      },
+      "random": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": -0.006121414860185611,
+        "ci95": [
+          -0.01539019637159446,
+          0.00497298981245266
+        ],
+        "withheld_positive_pixels": 11321
+      }
+    },
+    "bootstrap": {
+      "method": "paired physical spatial-cluster percentile",
+      "clusters": 158,
+      "draws": 1000,
+      "seed": 82021,
+      "confidence": 0.95,
+      "caveat": "Conditional on fitted folds, catalogue labels and fixed budgets; not a leaderboard interval."
+    },
+    "implementation_sha256": {
+      "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+      "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+      "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+      "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+    }
+  },
+  "fold_scores_diagnostic_only": {
+    "concordance": [
+      {
+        "fold": "NW",
+        "dti": 0.0020427598583591783,
+        "withheld_positive_pixels": 1923
+      },
+      {
+        "fold": "NE",
+        "dti": 0.028018048501508734,
+        "withheld_positive_pixels": 2367
+      },
+      {
+        "fold": "SW",
+        "dti": 0.015088997932961508,
+        "withheld_positive_pixels": 3781
+      },
+      {
+        "fold": "SE",
+        "dti": 0.0,
+        "withheld_positive_pixels": 3250
+      }
+    ],
+    "presence": [
+      {
+        "fold": "NW",
+        "dti": 0.0019436886377500338,
+        "withheld_positive_pixels": 1923
+      },
+      {
+        "fold": "NE",
+        "dti": 0.02396444705028074,
+        "withheld_positive_pixels": 2367
+      },
+      {
+        "fold": "SW",
+        "dti": 0.016941269830142398,
+        "withheld_positive_pixels": 3781
+      },
+      {
+        "fold": "SE",
+        "dti": 0.0005917433222915468,
+        "withheld_positive_pixels": 3250
+      }
+    ],
+    "random": [
+      {
+        "fold": "NW",
+        "dti": 0.013287804809796489,
+        "withheld_positive_pixels": 1923
+      },
+      {
+        "fold": "NE",
+        "dti": 0.020027785930770637,
+        "withheld_positive_pixels": 2367
+      },
+      {
+        "fold": "SW",
+        "dti": 0.015280487595046948,
+        "withheld_positive_pixels": 3781
+      },
+      {
+        "fold": "SE",
+        "dti": 0.02376375978496035,
+        "withheld_positive_pixels": 3250
+      }
+    ]
+  },
+  "fold_budgets": [
+    11193,
+    11193,
+    11193,
+    11193
+  ]
+}
