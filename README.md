@@ -23,10 +23,10 @@ This radiometric lane was originally preregistered H82 and relabelled **H82R onl
 [Independent readback of all listed primary TIFFs](evidence/listed_download_audit.json).
 
 The **new unique submission requirement remains blocked**, not completed: a freshly hash-checked witness is positive at
-all 5,106,385 allowed pixels (REGISTRY MEASUREMENT). Every nonempty candidate has forward overlap 1.0, above the
-mandatory 0.70 limit, before placement and on final dots. The preflight stops without restarting a closed lane,
-copying a prior submission, inventing a score, or spending a slot. Format checks pass for all 23 listed primary TIFFs;
-that is neither uniqueness nor portal acceptance. Run `scripts/restore_registry.py`, then
+all 5,106,385 allowed pixels (**REGISTRY MEASUREMENT**). Every nonempty candidate has a forward-overlap lower bound
+of 1.0 (**REGISTRY MEASUREMENT**), above the mandatory 0.70 limit, before placement and on final dots. The preflight
+stops without restarting a closed lane, copying a prior submission, inventing a score, or spending a slot. Format
+checks pass for all 25 listed primary TIFFs (**FORMAT/INTEGRITY MEASUREMENTS**, current merged inventory); that is neither uniqueness nor portal acceptance. Run `scripts/restore_registry.py`, then
 `scripts/preflight_registry.py` (expected exit 2), before considering a new experiment.
 
 The full original prompt remains embedded below, and `PROMPT.md` remains the standing brief. Re-read them each session.
@@ -35,12 +35,14 @@ uses the exact marginal metric inequality and removes unsupported causal/leaderb
 [the corrected analysis](research/why-h33-scored-02778.md). A freshly checked organizer reference README supports
 CPU-only training as well as GPU. Fresh source inventories cover 78 configured family repos, not authenticated scores.
 
+This branch review adds a separate ranked candidate screen: [docs/review-2026-10-21-arena-70bc0061.md](docs/review-2026-10-21-arena-70bc0061.md). A direct check of the current checkout found the raw training raster and processed stack absent; older restore/feature receipts describe prior temporary files, not a live cache. No new holdout or candidate artifact was made here.
+
 ---
 
 
 > ## New H82 experiment (2026-10-21): download for inspection — **NOT OK TO SUBMIT**
 >
-> [Download the newly generated research GeoTIFF](docs/downloads/gems77-h82-cool-chemconcord-11185dots-20261021-245bb13136-zeros.tif) · [one-TIFF ZIP](docs/downloads/gems77-h82-cool-chemconcord-11185dots-20261021-245bb13136-zeros.zip) · [H82 executive summary and future submission steps](docs/h82-executive-summary.html) · [JSON run card](evidence/h82_run_card.json). It is a **new pixel/byte-distinct candidate, NOT unique under the mandatory registry-overlap rule**. SHA-256 `84b50d05eaba578c398c4c7ab720dbf5a46de29d63f4254eb02a8ba02a4a43df`; 11,185 binary dots; local writer validator PASS: float32 EPSG:32611, 3730×3292, sample transform, no NaN anywhere, range [0,1], zero outside footprint/on mapped faults. **HOLDOUT-DTI 0.012184** (gems57-pooled-hide-v2; 11,321 withheld positives; spatial-block bootstrap 95% CI [0.003700, 0.022844]), below the repository 0.152718 historical local incumbent. Surface max |ρ| 0.04651 vs 2 pinned witnesses; final 3-pixel forward overlap **1.000** vs the SHA-pinned full-footprint witness (duplicate >0.70); full registry unavailable. E1–E3 then STOP, negative. **No selector authorization, no organizer score, no competition slot spent.** Mirrored input is not organizer-authenticated. This is a negative *research deliverable*, not an approved competition submission.
+> [Download the H82 research GeoTIFF](docs/downloads/gems77-h82-cool-chemconcord-11185dots-20261021-245bb13136-zeros.tif) · [one-TIFF ZIP](docs/downloads/gems77-h82-cool-chemconcord-11185dots-20261021-245bb13136-zeros.zip) · [H82 executive summary](docs/h82-executive-summary.html) · [JSON run card](evidence/h82_run_card.json). This is an upstream-generated, byte/pixel-distinct research raster; it is **NOT protocol-unique and NOT OK TO SUBMIT**. SHA-256 `84b50d05eaba578c398c4c7ab720dbf5a46de29d63f4254eb02a8ba02a4a43df`; `11,185` positive pixels (**RASTER MEASUREMENT**); local writer preflight: float32, EPSG:32611, 3730×3292, exact sample transform, no NaN/Inf, values [0,1], zero outside footprint/on mapped faults. **HOLDOUT-DTI 0.012184** (`gems57-pooled-hide-v2`, 11,321 withheld positives, 95% CI `[0.003700, 0.022844]`), below same-run **HOLDOUT-DTI** random `0.018305` (same evaluator/count, 95% CI `[0.014654, 0.022065]`) and below the retained **HOLDOUT-DTI** incumbent `0.152718` (`gems57-pooled-hide-v2`, 11,321 withheld positives, 95% CI `[0.131548, 0.175185]`). **REGISTRY MEASUREMENT:** surface max `|ρ| = 0.04651` against 2 pinned witnesses; final-dot forward 3-px overlap `1.000` against a full-footprint witness (stop limit `0.70`); the H82 comparison covered only 2 pinned rasters, not the full registry. Three H82 experiments were used; verdict negative. No selector authorization, organizer score, or weekly slot. Mirrored inputs are not organizer-authenticated. This is an upstream negative research artifact, not a competition-cleared submission.
 >
 > Re-read the complete standing user request at the end of this README and [PROMPT.md](PROMPT.md) each session. The release [authorization receipt](docs/data/submission-authorization.json) is binding; individual format PASS receipts never authorize an upload.
 >
