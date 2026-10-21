@@ -2,8 +2,8 @@
   "schema": "gems-parallel-run-card-v1",
   "lane_repo": "buffedlizard55-lab/GEMSDOE77",
   "branch": "arena/f9952b5d-gemsdoe77",
-  "lane": "H85-length-halo",
-  "hypothesis": "H85-1 Fault-length\u2013scaled anisotropic damage halo with hanging-wall bias (R(L)=8+0.9\u221aL, exp(-d/(R/2.2)), 1+0.25cos\u00b2\u0394\u03b8 anisotropy; Scholz 2002, Mitchell & Faulkner 2009; Faulds 2010 geothermal tip/stepover model)",
+  "lane": "H86-LENHALO (internal id H85 while running; renamed at merge to avoid collision with the promoted H85-EDTI lane)",
+  "hypothesis": "H86-1 Fault-length\u2013scaled anisotropic damage halo with hanging-wall bias (R(L)=8+0.9\u221aL, exp(-d/(R/2.2)), 1+0.25cos\u00b2\u0394\u03b8 anisotropy; Scholz 2002, Mitchell & Faulkner 2009; Faulds 2010 geothermal tip/stepover model)",
   "mechanism": "Mature long faults have wider off-fault fracture halos (W\u221d\u221aL) and more blind splay potential; length-scaling prioritizes mature faults whose blind halo is widest while narrowing halos of short immature faults to cut FP.",
   "named_non_fault_process_that_could_mimic_it": "Alluvial-fan apex distributary lobe boundaries and Pleistocene Lake Lahontan/Bonneville shoreline benches whose widths scale with catchment/fetch, not tectonic length \u2014 arcuate piedmont halos correlating with fault length via topography.",
   "holdout_dti": {
@@ -87,8 +87,8 @@
     "literal_dense_witness": "ab0a0a62 covers 5,167,373 footprint cells (100.0%); every nonempty candidate has forward overlap 1.0 >0.70; see docs/preflight-review.md"
   },
   "submission_raster": {
-    "path": "docs/downloads/gems77-h85-length-halo-37654dots-20261021-zeros.tif",
-    "zip_path": "docs/downloads/gems77-h85-length-halo-37654dots-20261021-zeros.zip",
+    "path": "docs/downloads/gems77-h86-lenhalo-37654dots-20261021-zeros.tif",
+    "zip_path": "docs/downloads/gems77-h86-lenhalo-37654dots-20261021-zeros.zip",
     "sha256_tif": "86f1394516d05aa5d545b8be7103472ca7bd6fe8ad651c7870a3fefb87e65345",
     "sha256_zip": "936d47e0955a73de4f016c2d9659247f7f402a21de81c6829e349fad0d100d68",
     "bytes_tif": 826436,
@@ -117,10 +117,11 @@
     "emitted_dots": 37654,
     "on_catalogue_positive_pixels": 0,
     "footprint_fraction": 0.007286874781441169,
-    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance"
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "sha256_tif_reverified_after_rename": true
   },
-  "submission_name": "gems77-h85-length-halo-37654dots-20261021-zeros",
-  "submission_note": "H85 length-scaled damage halo R=8+0.9\u221aL + strike anisotropy; 37654 dots sep2.8; HOLDOUT-DTI 0.0208(s20)/0.0206(s30) vs random 0.0152",
+  "submission_name": "gems77-h86-lenhalo-37654dots-20261021-zeros",
+  "submission_note": "H86 lenhalo length-scaled damage halo R=8+0.9\u221aL + strike anisotropy; 37654 dots sep2.8; HOLDOUT-DTI 0.0208(s20)/0.0206(s30) vs random 0.0152",
   "verdict": "negative",
   "safe_to_download_and_submit": false,
   "safe_to_download_for_inspection": true,
@@ -142,5 +143,6 @@
     "epsg32611": "https://epsg.io/32611",
     "tversky": "https://en.wikipedia.org/wiki/Tversky_index",
     "competition": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
-  }
+  },
+  "namespace_note": "Files were re-namespaced h85->h86 at merge time. Artifact bytes are unchanged: the shipped TIF/zip have the same SHA-256 as measured during the run. Lineage: 7dab259 (H85-labelled run) -> merge commit. This lane is independent of, and does not modify, the promoted H85-EDTI candidate."
 }

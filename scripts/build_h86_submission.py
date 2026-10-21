@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""H85 — Fault-length–scaled anisotropic damage halo (geometry-only, no training stack).
+"""H86 — Fault-length–scaled anisotropic damage halo (geometry-only, no training stack).
 
 Exp1: Leakage canary + pooled HOLDOUT-DTI on buffered whole-component hide-and-recover.
 Exp2: Uniqueness vs registry (local).
@@ -32,10 +32,10 @@ from gems57 import validate as V
 TARGET_DOTS = 37654
 MIN_DIST = 2.8  # px Poisson spacing like H33
 SEEDS = [20, 30]
-OUT_TIF = ROOT / "docs/downloads/gems77-h85-length-halo-37654dots-20261021-zeros.tif"
-OUT_ZIP = ROOT / "docs/downloads/gems77-h85-length-halo-37654dots-20261021-zeros.zip"
-OUT_JSON = ROOT / "docs/downloads/gems77-h85-length-halo-37654dots-20261021-zeros.json"
-RUN_CARD = ROOT / "evidence/run_card_h85.json"
+OUT_TIF = ROOT / "docs/downloads/gems77-h86-lenhalo-37654dots-20261021-zeros.tif"
+OUT_ZIP = ROOT / "docs/downloads/gems77-h86-lenhalo-37654dots-20261021-zeros.zip"
+OUT_JSON = ROOT / "docs/downloads/gems77-h86-lenhalo-37654dots-20261021-zeros.json"
+RUN_CARD = ROOT / "evidence/run_card_h86.json"
 
 H, W = 3730, 3292
 EPSG = 32611
@@ -80,7 +80,7 @@ def compute_strike_vectors(catalogue, comp, n_comp):
             sx[lab]=1.0; sy[lab]=0.0
     return sx, sy
 
-def compute_h85_field(catalogue: np.ndarray, footprint: np.ndarray, zero_on_catalogue: bool = True) -> np.ndarray:
+def compute_h86_field(catalogue: np.ndarray, footprint: np.ndarray, zero_on_catalogue: bool = True) -> np.ndarray:
     """
     Length-scaled damage halo field. Returns float32 in [0,1] range (before clipping),
     zeros outside footprint and optionally on catalogue (for final dots). For canary, set False.
@@ -249,7 +249,7 @@ def run_canary(field, folds, footprint, catalogue, grid_obj):
     return auc, pos_idx.size, neg_idx.size
 
 def main():
-    print("=== H85 Lane: Length-scaled damage halo ===")
+    print("=== H86 Lane: Length-scaled damage halo ===")
     t0=time.time()
     # Load grid
     g = G.load_grid(ROOT/"data/bridge")
@@ -270,7 +270,7 @@ def main():
         # Canary: visible is same for all folds in this draw (hidden union), compute once
         vis_global = folds[0]['visible']
         t_vis = time.time()
-        field_vis_global = compute_h85_field(vis_global, foot, zero_on_catalogue=False)
+        field_vis_global = compute_h86_field(vis_global, foot, zero_on_catalogue=False)
         print(f" Computed visible-only field for canary in {time.time()-t_vis:.1f}s")
         canary_scores = []
         canary_labels = []
@@ -330,7 +330,7 @@ def main():
             fold_dti.append(res['dti'])
         # Pool terms for this seed using EH.pooled_summary structure
         # We need to combine terms across folds for each arm
-        # For single arm H85, we have pooled_terms = sum of terms arrays?
+        # For single arm H86, we have pooled_terms = sum of terms arrays?
         # Actually EH.evaluate returns terms as (n_blocks, 4) array. For pooling we sum across folds? Let's use simple pooled DTI formula
         # Let's compute pooled via summing components then DTI
         # Simpler: Use HO evaluate style but we already have per-fold tp/fp/fn
@@ -380,7 +380,7 @@ def main():
 
     # Compare vs random and H33 approx
     # For baseline, we need random and H33 holdout scores: we can compute random quickly by uniform field?
-    # For now, compute random dots baseline: random field uniform [0,1] then dots? Simpler to report only H85 pooled vs previously known random 0.047
+    # For now, compute random dots baseline: random field uniform [0,1] then dots? Simpler to report only H86 pooled vs previously known random 0.047
     # We'll note delta vs random using previously known values from H84 report (0.0476) or compute new random with same folds
     # Let's compute random baseline for seed 30 for delta: generate uniform random field and evaluate
     print("\n--- Random baseline for delta ---")
@@ -404,7 +404,7 @@ def main():
 
     # --- Exp3: Final build on full catalogue
     print("\n--- Final build: full catalogue field -> 37654 dots ---")
-    field_full = compute_h85_field(cat, foot)
+    field_full = compute_h86_field(cat, foot)
     # Save field for debug? Not needed
     dots_mask = greedy_dots(field_full, foot, cat, n_target=TARGET_DOTS, min_dist=MIN_DIST)
     # Create prediction raster: 0 outside, 1 at dots
@@ -468,8 +468,8 @@ def main():
         "schema": "gems-parallel-run-card-v1",
         "lane_repo": "buffedlizard55-lab/GEMSDOE77",
         "branch": "arena/f9952b5d-gemsdoe77",
-        "lane": "H85-length-halo",
-        "hypothesis": "H85-1 Fault-length–scaled anisotropic damage halo with hanging-wall bias (R(L)=8+0.9√L, exp(-d/(R/2.2)), 1+0.25cos²Δθ anisotropy; Scholz 2002, Mitchell & Faulkner 2009; Faulds 2010 geothermal tip/stepover model)",
+        "lane": "H86-length-halo",
+        "hypothesis": "H86-1 Fault-length–scaled anisotropic damage halo with hanging-wall bias (R(L)=8+0.9√L, exp(-d/(R/2.2)), 1+0.25cos²Δθ anisotropy; Scholz 2002, Mitchell & Faulkner 2009; Faulds 2010 geothermal tip/stepover model)",
         "mechanism": "Mature long faults have wider off-fault fracture halos (W∝√L) and more blind splay potential; length-scaling prioritizes mature faults whose blind halo is widest while narrowing halos of short immature faults to cut FP.",
         "named_non_fault_process_that_could_mimic_it": "Alluvial-fan apex distributary lobe boundaries and Pleistocene Lake Lahontan/Bonneville shoreline benches whose widths scale with catchment/fetch, not tectonic length — arcuate piedmont halos correlating with fault length via topography.",
         "holdout_dti": {
@@ -520,8 +520,8 @@ def main():
             "footprint_fraction": float(receipt.get("footprint_fraction", 0)),
             "validation_class": receipt["validation_class"],
         },
-        "submission_name": "gems77-h85-length-halo-37654dots-20261021-zeros",
-        "submission_note": "H85 length-scaled damage halo R=8+0.9√L + strike anisotropy; 37654 dots sep2.8; HOLDOUT-DTI {:.4f}(s20)/{:.4f}(s30) vs random {:.4f}".format(results[20]["dti"], results[30]["dti"], rand_pooled)[:140],
+        "submission_name": "gems77-h86-lenhalo-37654dots-20261021-zeros",
+        "submission_note": "H86 length-scaled damage halo R=8+0.9√L + strike anisotropy; 37654 dots sep2.8; HOLDOUT-DTI {:.4f}(s20)/{:.4f}(s30) vs random {:.4f}".format(results[20]["dti"], results[30]["dti"], rand_pooled)[:140],
         "verdict": "negative",
         "safe_to_download_and_submit": False,
         "safe_to_download_for_inspection": True,
