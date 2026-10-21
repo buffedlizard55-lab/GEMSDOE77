@@ -8,14 +8,23 @@ summarised with provenance at the end rather than re-transcribed hash-by-hash
 `docs/score-ledger.csv`; later entries below are OWNER-REPORT as supplied in
 the 2026-10-21 brief — no organizer receipts).*
 
-## 2026-10-21 H79 execution addendum (current session)
+## 2026-10-21 H82 execution addendum (current checkout)
 
-This session's registered lane is **H79-ORIENT**, not the historical contact-physics
-lane mentioned in older repository notes. The operative preregistration is
-`registry/preregistration_h79_orient.json`; the measured artifact and stop decision are
-in `evidence/h79_orient_run_card.json`. The full request below remains preserved as the
-standing brief. H79's result is negative, safe to download for inspection, not
-approved to submit, and no weekly slot was selected.
+The supplied brief did not identify a single assigned method paragraph. H82 was
+self-declared and preregistered before E1 in `registry/preregistration_h82.json`;
+its ranked hypotheses are in `research/h82_hypotheses.md`. H82-STRIKE-ENTROPY is
+negative: the newly generated artifact is OK TO DOWNLOAD FOR INSPECTION, NOT OK TO
+SUBMIT, and no selector or weekly slot was used. Full result: `evidence/h82_run_card.json`.
+The 54-band feature-stack receipt points to `data/processed/stack.npy`, which is
+absent in this checkout; H82 is catalogue-only, so the cached stack was not rebuilt
+or privately forked. Shared `vendor/gems57` evaluator and writer were used unchanged.
+
+## 2026-10-21 H79 execution addendum (historical previous lane)
+
+The earlier H79-ORIENT lane (not the current H82 lane) is documented in
+`registry/preregistration_h79_orient.json` and `evidence/h79_orient_run_card.json`.
+It was also negative, inspection-download only, not approved to submit, and used no
+weekly slot. The full request below remains the standing project brief.
 
 ## Highest urgency
 

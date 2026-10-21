@@ -1,0 +1,47 @@
+{
+  "id": "GEMSDOE77-PREREG-H82-STRIKE-ENTROPY",
+  "registered_utc": "2026-10-21",
+  "lane": "H82-STRIKE-ENTROPY",
+  "assignment_irregularity": "The supplied brief contains no single identifiable method paragraph; this lane was autonomously declared before E1 and is not claimed to be assigned.",
+  "hypothesis": "Catalogue-visible fault-strike heterogeneity indicates transfer/intersection zones where an unmapped strand may continue beyond the mapped trace.",
+  "mechanism": "Gaussian structure-tensor axial orientation entropy (spin-2 isotropy) times local visible-trace density; no thermal, geophysical, external, prior-prediction, or hidden-fault inputs.",
+  "named_non_fault_mimic": "Digitization bends, dense mapped swarms, and non-geothermal fault intersections.",
+  "inputs": {
+    "catalogue": "data/bridge/existing_faults.tif",
+    "footprint_grid": "data/bridge/sample_submission.tif",
+    "cached_feature_stack": "registry/feature_receipt.json points to data/processed/stack.npy, absent in this checkout; deliberately unused because H82 is catalogue-only; no private rebuild"
+  },
+  "transform": {
+    "binary_fault_smoothing_sigma_px": 1.0,
+    "tensor_averaging_sigma_px": 10.0,
+    "density_sigma_px": 10.0,
+    "density_scale": "q95 of local density on footprint, computed from visible faults only",
+    "formula": "(1 - sqrt((Jxx-Jyy)^2+4*Jxy^2)/(Jxx+Jyy+1e-12)) * (1-exp(-local_density/q95)); normalize by max footprint value",
+    "edge_mode": "constant zero; feature only used inside footprint",
+    "catalogue_usage": "visible mask only within each fold; full catalogue used only for final-dot exclusion"
+  },
+  "candidate_ranking": "research/h82_hypotheses.md (written before experiment)",
+  "holdout": {
+    "evaluator": "gems57-pooled-hide-v2",
+    "implementation": "vendor/gems57/evaluate_holdout.py",
+    "split": "buffered whole-component quadrant draw, seeds 20 and 30, hide_frac=0.20, feature buffer=3 px, 12-pixel boundary erosion",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "kernel_radius_m": 300.0,
+    "emission_budget_per_fold": 37654,
+    "minimum_separation_px": 2.8,
+    "bootstrap": "paired 20 km physical blocks, 2000 draws, fixed seeds"
+  },
+  "canary": {
+    "test": "the sole H82 entropy feature alone against withheld positive pixels and footprint negatives more than 3 px from the full catalogue",
+    "threshold_symmetric_auc": 0.90
+  },
+  "uniqueness": {
+    "preplacement": "all 812 indexed public inventory TIFFs plus local siblings where readable; any |Spearman rho| > 0.90 stops. Report incomplete inventory/read errors fail-closed.",
+    "finaldots": "same registry plus local siblings; any forward 3-px overlap > 0.70 or |Spearman rho| > 0.90 stops; dense witness is a literal blocker under Policy I17.",
+    "no_exemption": true
+  },
+  "controls": ["random fixed-budget dots", "distance-to-visible-fault fixed-budget dots"],
+  "promotion": "Negative unless primary H82 HOLDOUT-DTI lower 95% CI exceeds the frozen 0.152718 local incumbent, confirmation is directionally consistent, all canaries and uniqueness checks pass, shared writer validates, and separate selector approval exists. No slot is spent in this lane.",
+  "budget": {"max_experiments": 3, "max_hours": 2, "planned": ["E1 canary + pre-placement registry comparison", "E2 dual-seed holdout", "E3 artifact + final-dot registry comparison"]}
+}

@@ -24,7 +24,7 @@ PD = "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
 NAV = [("index.html", "Start here"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
        ("h77e-knick.html", "H77E-Knick · 0/816 firings"), ("release-review.html", "Release safety review"), ("executive-summary.html", "How to submit"),
-       ("h81.html", "H81 · slip-cone"),
+       ("h82.html", "H82 · strike-entropy · negative"), ("h81.html", "H81 · slip-cone"),
        ("h80t.html", "H80T · tilt-persist"), ("h80t-executive-summary.html", "H80T guide"),
        ("h80.html", "H80 · negative"), ("ago.html", "AGO · negative proxies"),
        ("h79-orient.html", "H79-ORIENT · negative"), ("h79-orient-executive-summary.html", "H79-ORIENT guide"),
@@ -654,6 +654,77 @@ def _inject_h77e_knick_hero():
         ptxt = ptxt.replace("<h1>", hero + "<h1>", 1)
         (D / pname).write_text(ptxt)
 
+def h82_body(card):
+    h20, h30 = card["holdout"]["seed20"], card["holdout"]["seed30"]
+    u = card["correlation_overlap_vs_registry"]
+    file_name = Path(card["writer_receipt"]["file"]).name
+    zip_name = Path(card["writer_receipt"]["zip_file"]).name
+    e1 = jload("evidence/h82_e1_surface.json")
+    canary = e1["canary"]
+    return f"""<h1>H82 · local fault-strike entropy (negative research candidate)</h1>
+<section class="card dl research"><h2>OK TO DOWNLOAD FOR INSPECTION — NOT OK TO SUBMIT</h2>
+<p class="verdict"><b>Do not upload this file.</b> Local format validation passes, but the scientific HOLDOUT-DTI is below the frozen local incumbent and the final-dot registry test has duplicate firings. The accessible registry scan is incomplete (four invalid/mismatched indexed rasters); the policy remains fail-closed. No selector approval or weekly slot was used.</p>
+<a class="btn" href="downloads/{e(file_name)}" download>Download H82 .tif</a>
+<a class="btn alt" href="downloads/{e(zip_name)}" download>Download one-TIFF .zip</a>
+<p><b>Submission name (reference only):</b> <code>{e(card['submission_name'])}</code><br>
+<b>Optional note (reference only; do not submit):</b> <code>{e(card['submission_note'])}</code><br>
+<b>SHA-256:</b> <code>{e(card['raster_sha256'])}</code></p>
+<div class="chips"><span class="chip ok">Local TIFF format: PASS</span><span class="chip bad">Holdout vs incumbent: NEGATIVE</span><span class="chip bad">Literal final-dot uniqueness: FAIL</span><span class="chip warn">Selector: not approved</span></div></section>
+<h2>Hypothesis and mechanism</h2>
+<p>{e(card['hypothesis'])} The feature is the spin-2 local structure-tensor orientation entropy, multiplied by local visible-trace density. It is derived from the visible fault mask in each fold only. No held-out fault geometry, prior prediction raster, geothermal temperature, or external feature band is used.</p>
+<p><b>Named non-fault mimic:</b> {e(card['named_non_fault_process'])}</p>
+<p>Pre-experiment hypothesis list and ranked alternatives: <a href="research/h82_hypotheses.md">research/h82_hypotheses.md</a> · preregistration: <a href="evidence/preregistration_h82.json">JSON</a>.</p>
+<h2>Results — local HOLDOUT-DTI, not leaderboard scores</h2>
+<table><tr><th>Holdout split</th><th>HOLDOUT-DTI</th><th>Withheld positives</th><th>95% CI</th><th>Evaluator</th></tr>
+<tr><td>Seed 20 (primary)</td><td>{h20['dti']:.6f}</td><td>{h20['withheld_positive_pixels']:,}</td><td>{h20['ci95'][0]:.6f}–{h20['ci95'][1]:.6f}</td><td>{e(h20['evaluator_version'])}</td></tr>
+<tr><td>Seed 30 (confirmation)</td><td>{h30['dti']:.6f}</td><td>{h30['withheld_positive_pixels']:,}</td><td>{h30['ci95'][0]:.6f}–{h30['ci95'][1]:.6f}</td><td>{e(h30['evaluator_version'])}</td></tr></table>
+<p>Both seed-20 and seed-30 results are below the frozen <b>0.152718 HOLDOUT-DTI</b> local reference (seed 20; 11,321 withheld positives; 95% CI [0.131548, 0.175185]; same evaluator). H82 exceeds its same-run random control on both seeds, but not the incumbent and not the submission gate.</p>
+<p>Feature-alone leakage canary: symmetric AUC <b>{canary['symmetric_auc']:.6f}</b> ({canary['withheld_positive_pixels']:,} withheld positives; threshold 0.90; PASS). Pre-placement surface maximum absolute Spearman correlation was <b>{card['correlation_overlap_vs_registry']['surface_max_abs_spearman']:.6f}</b> across {card['correlation_overlap_vs_registry']['surface_registry_rasters_checked']} compared rasters, below the 0.90 rule. These are diagnostic measurements, not scores.</p>
+<h2>Uniqueness and validator</h2>
+<p>Final-dot overlap reached <b>{u['final_worst_forward_3px_overlap']:.6f}</b> within 3 pixels; {u['duplicate_firings']} registry comparisons crossed a duplicate threshold. Maximum absolute final Spearman correlation was {u['final_max_abs_spearman']:.6f}. Only {u['final_registry_rasters_checked']} comparisons were readable; the registry was not complete. Therefore the artifact is explicitly <b>NOT OK TO SUBMIT</b>.</p>
+<p>Local format preflight: single-band float32, EPSG:32611, 3730 × 3292, sample transform matched, values in [0,1], no NaN/Inf, {card['validator']['emitted_positive_pixels']:,} positive pixels, zero on the mapped catalogue. This does not establish portal acceptance.</p>
+<ul><li><a href="evidence/h82_run_card.json">Complete run card</a></li><li><a href="evidence/h82_e1_surface.json">E1 canary and surface uniqueness</a></li><li><a href="evidence/h82_e2_holdout.json">E2 dual-seed HOLDOUT-DTI</a></li><li><a href="evidence/h82_e3_uniqueness.json">E3 final-dot registry audit</a></li><li><a href="research/h82_hypotheses.md">Ranked hypotheses and official references</a></li></ul>
+<h2>Official sources for manual review</h2>
+<ul><li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DrivenData task, metric and submission format</a></li><li><a href="https://gbcge.org/current-projects/ingenious/">GBCGE INGENIOUS project</a></li><li><a href="https://gbcge.org/recent-projects/characterizing-structural-controls/">GBCGE structural-controls summary</a></li><li><a href="https://www.usgs.gov/publications/structural-discontinuities-and-their-control-on-hydrothermal-systems-great-basin-usa">USGS structural-discontinuities publication</a></li></ul>"""
+
+
+def _inject_h82_hero():
+    card = jload("evidence/h82_run_card.json")
+    if not card:
+        return
+    if (card.get("ok_to_submit") is not False or card.get("ok_to_download") is not True
+            or card.get("verdict") != "negative"):
+        raise ValueError("H82 landing-page safety gate failed")
+    path = D / "downloads" / Path(card["writer_receipt"]["file"]).name
+    if not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest() != card["raster_sha256"]:
+        raise ValueError("H82 landing-page artifact SHA mismatch")
+    body = h82_body(card)
+    (D / "h82.html").write_text(page("h82.html", "H82 strike entropy · negative research candidate", body))
+    for src, dest in (("evidence/h82_run_card.json", "docs/evidence/h82_run_card.json"),
+                      ("evidence/h82_e1_surface.json", "docs/evidence/h82_e1_surface.json"),
+                      ("evidence/h82_e2_holdout.json", "docs/evidence/h82_e2_holdout.json"),
+                      ("evidence/h82_e3_uniqueness.json", "docs/evidence/h82_e3_uniqueness.json"),
+                      ("registry/preregistration_h82.json", "docs/evidence/preregistration_h82.json"),
+                      ("research/h82_hypotheses.md", "docs/research/h82_hypotheses.md")):
+        out = ROOT / dest
+        out.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(ROOT / src, out)
+    hero = f"""<section class=\"card dl research\"><h2>⬇ Latest research artifact: H82 strike-entropy — inspection only</h2>
+<p class=\"verdict\"><b>OK TO DOWNLOAD FOR INSPECTION: YES. NOT OK TO SUBMIT: NO.</b> Local format passes, but H82 is below the local HOLDOUT-DTI incumbent and final-dot registry overlap fails (max {card['correlation_overlap_vs_registry']['final_worst_forward_3px_overlap']:.3f}; 0.70 threshold). No slot or selector approval.</p>
+<a class=\"btn\" href=\"downloads/{e(path.name)}\" download>Download H82 .tif</a> <a class=\"btn alt\" href=\"downloads/{e(path.with_suffix('.zip').name)}\" download>One-TIFF .zip</a> <a class=\"btn alt\" href=\"h82.html\">Full H82 report →</a>
+<p class=\"small\">HOLDOUT-DTI: {card['holdout']['seed20']['dti']:.4f} (Seed 20; {card['holdout']['seed20']['withheld_positive_pixels']:,} withheld positives; 95% CI [{card['holdout']['seed20']['ci95'][0]:.4f}, {card['holdout']['seed20']['ci95'][1]:.4f}]; {e(card['holdout']['evaluator_version'])}). SHA-256 <code>{e(card['raster_sha256'])}</code>. Note (reference only): <code>{e(card['submission_note'])}</code></p></section>"""
+    for page_name in ("index.html", "executive-summary.html"):
+        p = D / page_name
+        content = p.read_text()
+        # Place the current artifact above the historical H77E hero where present.
+        anchor = '<section class="card dl"><h2>⬇ Latest H77E-Knick'
+        if anchor in content:
+            content = content.replace(anchor, hero + anchor, 1)
+        else:
+            content = content.replace("<h1>", hero + "<h1>", 1)
+        p.write_text(content)
+
+
 def _write_h77g():
     h77g_card = jload("evidence/run_card_h77g.json")
     h77g_e1 = jload("evidence/h77g_e1_canary_surface.json")
@@ -742,3 +813,4 @@ if __name__ == "__main__":
     _write_h77e_knick()
     _inject_h77e_knick_hero()
     _write_h77g()
+    _inject_h82_hero()
