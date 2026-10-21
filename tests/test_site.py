@@ -55,3 +55,14 @@ def test_original_prompt_preserved_and_postrun_caveat_visible():
         assert 'confound' in s and ('not valid for promotion' in s or 'not valid promotion' in s)
     card=json.loads((ROOT/'evidence/run_card.json').read_text())
     assert not card['holdout_valid_for_promotion']
+
+
+def test_pages_staging_preserves_legacy_docs_urls_and_excludes_secrets(tmp_path):
+    from stage_pages import stage
+    out=stage(tmp_path/'public')
+    assert 'docs/index.html' in (out/'index.html').read_text()
+    assert (out/'docs/index.html').exists() and (out/'docs/assets/site.css').exists()
+    assert not (out/'.git').exists() and not (out/'data').exists()
+    assert set(p.name for p in out.iterdir())=={'.generated-public-pages','.nojekyll','index.html','docs'}
+    # Re-running replaces only a marked generated directory.
+    assert stage(out)==out

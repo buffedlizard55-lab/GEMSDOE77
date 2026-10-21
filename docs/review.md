@@ -30,6 +30,10 @@
 
 Main advanced via PRs #1/#2 during this run. Preserved their code, mirrored inputs, tests and TIFFs; renamed the U-lane feature module to avoid a namespace collision. Archived original incoming pages/code/claims as inert text. The inherited generator contained numerical fallbacks for absent registry measurements, and its metadata claimed PASS while saying values would be computed later. Independently audited incoming TIFF with the unchanged shared gate: rejection. Disabled the unsafe generation entrypoint and superseded approval claims without changing TIFF bytes. This is integration/immutable-byte review, not another geological experiment. Re-ran the combined suite.
 
+## Publication compatibility review
+
+PR #3 merged and the scheduled Pages workflow deployed successfully. The Pages-settings update API was denied by integration permissions, so existing legacy settings remain. Both publishing paths now intentionally use the same root redirect plus `/docs/` layout, preserving the original prompt’s deep links. Only public docs and the redirect are staged; repository internals and raw data are not uploaded. The deployment workflow’s Node runtime/runner migration warnings were non-fatal.
+
 ## Not fulfilled / not claimed
 
 A protocol-unique, submission-approved TIFF has **not** been achieved; the measured universal overlap blocker prevents that under the supplied literal rule. No improved organizer score, current leaderboard record, complete family novelty, direct official PDF verification, full GPU training pipeline, or authenticated external-data eligibility is claimed. The negative research artifact is the deliverable required by the stop protocol. It is downloadable, but NOT OK TO SUBMIT.
