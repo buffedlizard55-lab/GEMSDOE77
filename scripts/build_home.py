@@ -22,7 +22,7 @@ PD = "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
 NAV = [("index.html", "Start here"), ("executive-summary.html", "How to submit"),
        ("h77d.html", "H77D (Zero-SGMC)"), ("h77d-executive-summary.html", "H77D guide"),
-       ("h77-step.html", "H77-Step"), ("h78.html", "H78 lane"),
+       ("h77-step.html", "H77-Step"), ("h79.html", "H79 negative"), ("h78.html", "H78 lane"),
        ("lia.html", "LIA lane"), ("contactphys.html", "Contact-physics lane"), ("urank.html", "Selective-U lane"),
        ("lia-analysis.html", "Why 0.2778"), ("lia-sources.html", "Sources")]
 
@@ -85,7 +85,9 @@ def main():
     rows = ""
     for x in lanes["lanes"]:
         rows += (f'<tr><td><a href="{e(x["page"])}">{e(x["lane"])}</a></td>'
-                 f'<td><a download href="{e(x["file"])}">{e(Path(x["file"]).name)}</a></td>'
+                 f'<td><a download href="{e(x["file"])}">{e(Path(x["file"]).name)}</a>'
+                 f'<br><a download href="{e(Path(x["file"]).with_suffix(".zip").as_posix())}">{e(Path(x["file"]).with_suffix(".zip").name)}</a>'
+                 f'<br><small>sha256 <code>{e(x.get("sha256", "not recorded"))}</code></small></td>'
                  f'<td>{yn(x.get("format_valid"), "PASS", "FAIL")}</td>'
                  f'<td>{yn(x.get("protocol_unique"), "PASS", "FAIL")}</td>'
                  f'<td>{info_cell(x)}</td>'

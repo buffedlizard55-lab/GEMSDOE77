@@ -1,6 +1,24 @@
 {
- "note": "Status of every submission file in this repository, copied from each lane's own run card. Under Policy I17 (unfiltered literal registry check where dense witness ab0a0a62... has positive values on 100.0% of allowed Nevada pixels), automatic literal clearance fails closed ('Not OK to submit' automatically without selector policy sign-off). H77D (0.15011 [s30] / 0.14030 [s20] HOLDOUT-DTI, 100% zero-SGMC) and H77-Step (0.15272 HOLDOUT-DTI) are orthogonal (only 0.4068 3-px dot overlap) top candidates for human selector review.",
+ "note": "H79 generated a new byte-unique, format-valid GeoTIFF, but it is NOT OK to submit: negative holdout and literal overlap stop. Status of every submission file in this repository, copied from each lane's own run card. Under Policy I17 (unfiltered literal registry check where dense witness ab0a0a62... has positive values on 100.0% of allowed Nevada pixels), automatic literal clearance fails closed ('Not OK to submit' automatically without selector policy sign-off). H77D (0.15011 [s30] / 0.14030 [s20] HOLDOUT-DTI, 100% zero-SGMC) and H77-Step (0.15272 HOLDOUT-DTI) are orthogonal (only 0.4068 3-px dot overlap) top candidates for human selector review.",
  "lanes": [
+  {
+   "lane": "H79: lagged radiometric U-halo pairing (negative)",
+   "page": "h79.html",
+   "summary": "executive-summary.html",
+   "file": "downloads/gems77-h79-radhalo-lag3-37654-20261021-zeros.tif",
+   "format_valid": true,
+   "protocol_unique": false,
+   "informative_unique": false,
+   "beats_holdout_best": false,
+   "verdict": "negative",
+   "name": "gems77-h79-radhalo-lag3-37654-20261021-zeros",
+   "note": "H79 lag-3px U-residual halo paired to K-Th edge; 37654 spaced dots; HOLDOUT negative\u2014research only, do not submit",
+   "sha256": "c272025ee653187d09489d941613a86bfe4b88110fb455847a2256cf5699014b",
+   "upload": "Not OK to submit: HOLDOUT-DTI 0.04773 [0.03958, 0.05558] does not beat 0.152718; final literal registry overlap is 1.000 > 0.70. Negative research artifact only.",
+   "primary": true,
+   "why_primary": "Newest unique-byte H79 research artifact. It is prominently offered for inspection, but is explicitly rejected for competition upload.",
+   "beat_02778_summary": "No. H79 HOLDOUT-DTI is 0.04773 [0.03958, 0.05558], statistically indistinguishable from random and below the 0.152718 local best."
+  },
   {
    "lane": "H77D: Coupled Zero-SGMC Tectono-Hydrothermal Conduits + 12-Bit LOCO + 300 m Submodular Cover (0.15011 / 0.14030 HOLDOUT-DTI)",
    "page": "h77d.html",
@@ -16,7 +34,6 @@
    "sha256": "110e7c77ec7e7d201de0ae04ffd2bf3b9db786b4063d800cacb8ab1ded4fd1b9",
    "informative_unique": true,
    "upload": "Not OK to submit automatically under Policy I17 unfiltered dense-witness gate (ab0a0a62 covers 100% of footprint); SAFE TO DOWNLOAD (17/17 checks, 0 NaN) & RECOMMENDED FOR HUMAN SELECTOR SIGN-OFF: 100% zero-SGMC, HOLDOUT-DTI 0.15011 (s30) / 0.14030 (s20) (+54.5% / +46.5% vs fold-fair H33; +38.8% / +28.4% vs prior best), unique vs all 709 sparse rasters (max 0.6883 <= 0.70; vs H77-Step = 0.4068; vs H78 = 0.3517). Selector: not approved.",
-   "primary": true,
    "why_primary": "Newest session (Lane H77D, 100% zero-SGMC). Eliminates Paleozoic/Mesozoic SGMC bedrock false positives (0.036-0.051 live), fixes q==0 missing-LiDAR across 24.6% of Nevada, and beats fold-fair H33 on both spatial seeds (0.15011 vs 0.09715 on Seed 30; 0.14030 vs 0.09574 on Seed 20) while overlapping H77-Step by only 40.7%.",
    "beat_02778_summary": "Strong candidate once human selector grants dense-witness policy sign-off: beats fold-fair H33 champion construction on BOTH spatial seeds (+0.0530 [95% CI +0.0378, +0.0680] on Seed 30; +0.0446 [+0.0303, +0.0586] on Seed 20) with 0 SGMC channels and unweighted DTI live-inversion support (12.1x bar on scarps)."
   },
@@ -34,7 +51,7 @@
    "holdout_dti_blind_4quad": 0.185834,
    "verdict": "negative",
    "selector_recommendation": "CO-PRIMARY CANDIDATE FOR HUMAN SELECTOR SIGN-OFF (orthogonal to zero-SGMC H77D with only 0.4068 dot overlap; 0.1527 HOLDOUT-DTI)",
-   "upload": "Not OK to submit automatically under unfiltered dense-witness literal gate (ab0a0a62 covers 100% of footprint); PASSES gems57 symmetric gate (max mutual 0.493 <= 0.70, max |rho| 0.403 <= 0.90) & all discrete model checks (H33 fwd 0.586, GEMSDOE70 fwd 0.438, H77D fwd 0.394) — recommended co-primary file once human selector confirms non-submission dense-witness exemption (selector: not approved)."
+   "upload": "Not OK to submit automatically under unfiltered dense-witness literal gate (ab0a0a62 covers 100% of footprint); PASSES gems57 symmetric gate (max mutual 0.493 <= 0.70, max |rho| 0.403 <= 0.90) & all discrete model checks (H33 fwd 0.586, GEMSDOE70 fwd 0.438, H77D fwd 0.394) \u2014 recommended co-primary file once human selector confirms non-submission dense-witness exemption (selector: not approved)."
   },
   {
    "lane": "H78: lidar scarp consensus, uniqueness-capped allocation",

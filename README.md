@@ -1,4 +1,4 @@
-# GEMSDOE77: DOE GEMS Geothermal Fault Detection — Multi-Lane Research Portfolio & `H77-Step` Breakthrough (`0.1527` `HOLDOUT-DTI`)
+# GEMSDOE77: DOE GEMS Geothermal Fault Detection — Multi-Lane Research Portfolio, H79 Negative Result & `H77-Step` Breakthrough (`0.1527` `HOLDOUT-DTI`)
 
 **Read this README, including the original request at the end of this file, at the beginning of every session.**
 
@@ -17,6 +17,7 @@
 
 | Lane | File | Format Valid (`[0, 1]`) | Official `gems57-pooled-hide-v2` | Discrete-Model & `gems57` Unique | Unfiltered Literal Gate (`I17`) | Upload Status |
 | :--- | :--- | :---: | :---: | :---: | :---: | :--- |
+| **`H79` lagged radiometric halo ([report](docs/h79.html) · [run card](evidence/h79_run_card.json))** | **[`gems77-h79-radhalo-lag3-37654-20261021-zeros.tif`](docs/downloads/gems77-h79-radhalo-lag3-37654-20261021-zeros.tif)** · [`.zip`](docs/downloads/gems77-h79-radhalo-lag3-37654-20261021-zeros.zip) | **Yes (all checks; `{0,1}`; `0 NaN`)** | **`0.04773` `[0.03958, 0.05558]`** (Seed 20; `11,321` withheld px) | Surface max `|ρ|=0.1203`; final max `|ρ|=0.0173`; final overlap fails | **FAIL (`1.000 > 0.70`; dense universal registry witness)** | **NOT OK TO SUBMIT** *(OK to download for inspection; byte-unique negative deliverable; no weekly slot used)* |
 | **`H77D` (Zero-SGMC Breakthrough — [Technical Report](docs/h77d.html) · [Submit Guide](docs/h77d-executive-summary.html) · [Run Card](evidence/run_card_h77d.json))** | **[`gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.tif`](docs/downloads/gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.tif)** · [`.zip`](docs/downloads/gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.zip) · [`-nan.tif`](docs/downloads/gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-nan.tif) | **Yes (`17/17`, `{0,1}`, `0 NaN`)** | **`0.15011`** (`[0.1328, 0.1669]`, Seed 30) · **`0.14030`** (`[0.1231, 0.1577]`, Seed 20) | **YES (`0` sparse dupes across `869` rasters; max `0.6883`, `H77-Step=0.4068`, `mut<=0.497`)** | Blocked only by dense non-dot witness `ab0a0a62` | **Not OK to submit automatically** *(SAFE TO DOWNLOAD; Co-Primary #1 Candidate for Human Selector Sign-Off — `0` SGMC channels, immune to `0.036–0.051` SGMC live penalty)* |
 | **`H77-Step` (Step-Purity Breakthrough — [Full Portal](docs/h77-step.html) · [Exec Brief](docs/h77-step-executive-summary.html))** | **[`gems77-step-propensity-submod300.tif`](docs/downloads/gems77-step-propensity-submod300.tif)** | **Yes (`15/15`, `{0,1}`, `0 NaN`)** | **`0.15272`** (`[0.1315, 0.1752]`, Seed 20) · **`0.1858`** Blind 4-Quad | **YES (`0` model dupes; `H33=0.586`, `H77D=0.394`, `mut<=0.493`)** | Blocked only by `100%`-coverage witness `ab0a0a62` | **Not OK to submit automatically** *(SAFE TO DOWNLOAD; Co-Primary #1 Candidate for Human Selector Sign-Off)* |
 | **H78** ([page](docs/h78.html), [section below](#-h78-lane-newest-2026-10-21-lidar-scarp-consensus-uniqueness-capped-allocation)) | [`gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros.tif`](docs/downloads/gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros.tif) | Yes (`17/17`, `{0,1}`, `0 NaN`) | `0.0708` `HOLDOUT-DTI` (`[0.0600, 0.0816]`); champion construction `0.0958` | Yes (informative: overlap `0.660`, ρ `0.639`) | No (44 firings, all space-filling) | **Not OK to submit** (holdout negative; selector: not approved) |
@@ -26,6 +27,18 @@
 | **H77C claycap** (quarantined) | [`gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-zeros.tif`](docs/downloads/gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-zeros.tif) | — | Private evaluator | — | No | **Not approved** |
 
 Site entry pages: [Start here](https://buffedlizard55-lab.github.io/GEMSDOE77/docs/index.html) (every file, with download links and the same checks) · [How to submit](https://buffedlizard55-lab.github.io/GEMSDOE77/docs/executive-summary.html) · [H77D Technical Report](https://buffedlizard55-lab.github.io/GEMSDOE77/docs/h77d.html) · [H77D Submission Guide](https://buffedlizard55-lab.github.io/GEMSDOE77/docs/h77d-executive-summary.html).
+
+---
+
+## Lane `H79`: Lagged Radiometric Alteration-Halo Pairing — Negative Deliverable
+
+- **Download:** [`gems77-h79-radhalo-lag3-37654-20261021-zeros.tif`](docs/downloads/gems77-h79-radhalo-lag3-37654-20261021-zeros.tif) (`SHA-256 c272025ee653187d09489d941613a86bfe4b88110fb455847a2256cf5699014b`).
+- **Status:** **OK to download for inspection; NOT OK to submit.** It is a newly generated, byte-unique, locally format-valid GeoTIFF, but scientific and literal-uniqueness promotion gates fail. No weekly slot was used.
+- **HOLDOUT-DTI:** `0.04773` (95% CI `[0.03958, 0.05558]`; `gems57-pooled-hide-v2`; `11,321` withheld positives), versus repository best `0.152718`. Delta versus random is `+0.00031` (95% CI `[-0.00837, +0.00896]`).
+- **Leakage canary:** maximum symmetric feature-only AUC `0.5084 <= 0.90`.
+- **Uniqueness:** surface max `|Spearman ρ| = 0.1203 <= 0.90`; final max `|ρ| = 0.0173`, but literal final-dot overlap reaches `1.000 > 0.70` against a registry raster positive over the entire footprint. Protocol rule 1 therefore requires a duplicate stop. Four of 812 indexed rasters were malformed or grid-mismatched; 808 were measured.
+- **Method:** pair a K–Th common-mode edge with a selective-U residual edge shifted by 300 m, while penalizing same-pixel coincidence. The named mimic is hillslope transport across a soil/sediment boundary.
+- **Evidence:** [technical page](docs/h79.html) · [five preregistered hypotheses](research/h79_hypotheses.md) · [run card](evidence/h79_run_card.json) · [holdout](evidence/h79_e2_holdout.json) · [uniqueness](evidence/h79_e3_uniqueness.json).
 
 ---
 
