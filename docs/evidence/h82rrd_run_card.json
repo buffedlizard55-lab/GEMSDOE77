@@ -1,0 +1,172 @@
+{
+  "schema": "gems-parallel-run-card-v1",
+  "lane_id": "H82-RRD",
+  "lane_repo": "buffedlizard55-lab/GEMSDOE77",
+  "branch": "arena/7ad85a23-gemsdoe77",
+  "session_date_utc": "2026-10-21",
+  "hypothesis": "RTP-TMI local regression discordance (remanence / vertical-axis block rotation) marks block-bounding faults missed by amplitude magnetic and DEM scarp detectors.",
+  "mechanism": "8 label-free channels from bands 1/2/14 (local slope/correlation/residual breaks at sigma_w=2.5px on sigma=3px high-pass fields); winner arm A_std19_rrd = HGB(19 raw + 8 RRD), 37,654 binary dots, min-sep 2.8px, >2px off catalogue.",
+  "named_non_fault_process_that_could_mimic_it": "Unfaulted margins of reversely-magnetized volcanic flow units; GeoDAWN survey-block levelling seams.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "seed": 20,
+    "withheld_positive_pixels": 11321,
+    "winner_arm_A_std19_rrd": 0.06862971084396283,
+    "winner_ci95": [
+      0.05408828010840957,
+      0.08415686096996444
+    ],
+    "arms": {
+      "S_rrd": {
+        "dti": 0.041860237096622545,
+        "ci95": [
+          0.033941258432109774,
+          0.049875516326978384
+        ]
+      },
+      "A_rrd": {
+        "dti": 0.04900811382528039,
+        "ci95": [
+          0.03932032457842661,
+          0.05834429374608919
+        ]
+      },
+      "A_std19": {
+        "dti": 0.06183510301855965,
+        "ci95": [
+          0.04736630145070781,
+          0.07720595856201404
+        ]
+      },
+      "A_std19_rrd": {
+        "dti": 0.06862971084396283,
+        "ci95": [
+          0.05408828010840957,
+          0.08415686096996444
+        ]
+      },
+      "A0_random": {
+        "dti": 0.047084223943834526,
+        "ci95": [
+          0.041387534407269354,
+          0.05296987781814585
+        ]
+      }
+    },
+    "paired_delta_vs_A_std19_control": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.0067946078254031775,
+      "ci95": [
+        -0.0035925471931991626,
+        0.016320665530131163
+      ],
+      "withheld_positive_pixels": 11321
+    },
+    "incumbent": {
+      "dti": 0.152718,
+      "evaluator": "gems57-pooled-hide-v2",
+      "seed": 20,
+      "withheld": 11321,
+      "ci95": [
+        0.131548,
+        0.175185
+      ]
+    },
+    "beats_incumbent": false
+  },
+  "leakage_canary": {
+    "features_tested": 9,
+    "max_sym_auc": 0.5333672643759385,
+    "ceiling": 0.9,
+    "pass": true
+  },
+  "correlation_overlap_vs_registry": {
+    "scope": "Phase-1 surface: sampled Spearman (n=200k, seed 82) vs 37 local-scope rasters. Phase-2 dots: exact 3px forward overlap vs 37 local-scope rasters incl. hash-verified H33 champion. NOT the complete family registry.",
+    "phase1_surface_max_abs_rho_sampled": 0.04716653233337247,
+    "phase1_pass_le_090": true,
+    "phase2_max_overlap_literal": 0.9744515854889255,
+    "phase2_max_overlap_informative_lt70_halo": 0.7857332554310299,
+    "phase2_informative_firings_gt070": 3,
+    "phase2_vs_h33_champion_overlap": 0.3210548680087109,
+    "phase2_pass_le_070": false,
+    "byte_novel_sha_not_in_local_scope": true
+  },
+  "raster_sha256": "8f0726723898078d480668d887d7aebf9b9ca87b7892912ce1110ab92e164c2c",
+  "raster_bytes": 131841,
+  "zip_sha256": "29e4c1e928d4e83b1c9d91072b20fe3f62e30f189c56a4014e800273b280a6f5",
+  "validator": {
+    "file": "/home/user/GEMSDOE77/docs/downloads/gems77-h82-rrd-discord-37654dots-20261021-c069b8d8-zeros.tif",
+    "bytes": 131841,
+    "sha256": "8f0726723898078d480668d887d7aebf9b9ca87b7892912ce1110ab92e164c2c",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "emitted_positive_pixels": 37654,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 37654,
+    "footprint_fraction": 0.007286874781441169
+  },
+  "submission_name": "gems77-h82-rrd-discord-37654dots-20261021-c069b8d8-zeros",
+  "note": "H82-RRD RTP-TMI remanence-discordance breaks; 37654 binary dots >200m off catalogue; holdout-gated, see run card",
+  "note_chars": 112,
+  "file": "docs/downloads/gems77-h82-rrd-discord-37654dots-20261021-c069b8d8-zeros.tif",
+  "ok_to_download_for_inspection": true,
+  "ok_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "weekly_slots_used": 0,
+  "organizer_confirmed_score": null,
+  "experiments_run": 3,
+  "verdict": "negative",
+  "reason": "Winner 0.0686 HOLDOUT-DTI (gems57-pooled-hide-v2, seed 20, 11,321 withheld, 95% CI in run card) is far below the 0.152718 incumbent; the paired RRD-block lift over the std19 control is +0.0068 with CI including 0 (not significant); pure S_rrd physics scored below the random control; final HGB dots fire the 3px-overlap duplicate gate vs 3 informative local rasters (max 0.786). The file is format-valid and pixel-distinct from H33 (overlap 0.321), but it must not spend a weekly slot.",
+  "irregularities": [
+    "IR-82-01: family-best 0.2778 has no organizer receipt; GEMSDOE32 site labels h33-2-b2 UNSCORED (projected 0.2747 model).",
+    "IR-82-02: shipped band tags unreliable (band6 = TC not tilt; band18 signed dx; bands 10/16 hedged).",
+    "IR-82-03: first Exp3 uniqueness run self-matched the submissions/ mirror (spurious 1.0); fixed by hash exclusion and rerun; corrected values in this card."
+  ]
+}
