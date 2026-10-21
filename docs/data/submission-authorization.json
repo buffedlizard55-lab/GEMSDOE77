@@ -1,13 +1,13 @@
 {
   "schema": "gems-submission-authorization-v1",
-  "generated_utc": "2026-10-21T17:41:15+00:00",
+  "generated_utc": "2026-10-21T17:50:27+00:00",
   "policy": "Authorization requires artifact existence, matching SHA-256, a readable run card with a promote verdict, local format PASS, literal protocol uniqueness (including <=0.70 real-model forward 3-px overlap and complete registry), improvement over the accepted holdout best, a promote verdict, and explicit selector approval. Missing fields or historical run-card uniqueness/completeness failures fail closed.",
   "repository_authorized_file_count": 0,
   "repository_decision": "NOT OK TO SUBMIT",
   "historical_run_card_reconciliation": [
     {
-      "lane": "H82: mapping-deficit allocation (HOLDOUT-DTI 0.1121 s20 / 0.1093 s30 for the crest-thinned 48-channel build; the preregistered deficit weight itself is REFUTED; negative result)",
-      "run_card": "evidence/h82_run_card.json",
+      "lane": "H82-FMD: mapping-deficit allocation (HOLDOUT-DTI 0.1121 s20 / 0.1093 s30 for the crest-thinned 48-channel build; the preregistered deficit weight itself is REFUTED; negative result)",
+      "run_card": "evidence/h82fmd_run_card.json",
       "recorded_verdict": "negative",
       "recorded_safe_to_submit": false,
       "historical_promotion_conflict": false,
@@ -170,7 +170,7 @@
   ],
   "artifacts": [
     {
-      "lane": "H82: mapping-deficit allocation (HOLDOUT-DTI 0.1121 s20 / 0.1093 s30 for the crest-thinned 48-channel build; the preregistered deficit weight itself is REFUTED; negative result)",
+      "lane": "H82-FMD: mapping-deficit allocation (HOLDOUT-DTI 0.1121 s20 / 0.1093 s30 for the crest-thinned 48-channel build; the preregistered deficit weight itself is REFUTED; negative result)",
       "file": "downloads/gems77-h82-crestthin-fullstack-37654dots-20261021-zeros.tif",
       "sha256": "4f69c9fa0187cfb61394b558d9866794ef15ad7066d135fde8acef4349faac13",
       "checks": {
@@ -184,7 +184,7 @@
         "sha256_matches": true
       },
       "run_card_audit": {
-        "run_card": "evidence/h82_run_card.json",
+        "run_card": "evidence/h82fmd_run_card.json",
         "present": true,
         "recorded_verdict": "negative",
         "recorded_safe_to_submit": false,
