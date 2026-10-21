@@ -1,0 +1,70 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>H77-HSL Executive Summary &amp; Submission Guide · GEMSDOE77</title>
+<link rel="stylesheet" href="assets/lia.css"></head><body>
+<header><div class="wrap"><span class="brand">GEMSDOE77 · DOE GEMS Prize (Lane H77-HSL)</span><a href="hsl.html">H77-HSL Overview</a> <a href="hsl-executive-summary.html" class=here>HSL Executive Summary &amp; Submit Guide</a> <a href="index.html">All GEMSDOE77 Lanes</a> <a href="executive-summary.html">Repository Submission Guide</a> <a href="lia-analysis.html">Why 0.2778 Analysis</a> <a href="contactphys.html">Contact-Physics Lane</a> <a href="lia.html">LIA Lane</a>
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE77">GitHub</a></div></header>
+<main><div class="wrap"><section class="card dl"><h2>⬇ Download the Primary GEMSDOE77 H77-HSL Submission</h2>
+<a class="btn" href="downloads/gems77-hsl-37654dots-20261021T052500Z-7b13aa7e-zeros.tif" download>Download gems77-hsl-37654dots-20261021T052500Z-7b13aa7e-zeros.tif (140 KB) — Primary GeoTIFF</a>
+<a class="btn alt" href="downloads/gems77-hsl-37654dots-20261021T052500Z-7b13aa7e-zeros.zip" download>Download gems77-hsl-37654dots-20261021T052500Z-7b13aa7e-zeros.zip (107 KB) — Single-TIFF .zip</a>
+<div class="chips">
+<span class="chip ok">OK to download: YES</span>
+<span class="chip ok">Portal format: 17/17 checks PASS (values in [0, 1], 0 NaN)</span>
+<span class="chip ok">Unique vs 765 informative registry rasters: PASS (max 3-px overlap 0.6550 ≤ 0.70)</span>
+<span class="chip ok">Surface &amp; dot rank-correlation: PASS (max |ρ| = 0.6945 ≤ 0.90)</span>
+<span class="chip ok">Leakage canary (84 ch): PASS (max AUC = 0.7982 ≤ 0.90)</span>
+<span class="chip ok">Run verdict: PROMOTE to weekly-slot selector</span>
+<span class="chip warn">Rule 6 Selector Gate: separate human sign-off required (not approved for auto-upload)</span>
+</div>
+<p class="verdict"><b>Is this TIF OK to download and submit?</b><br>
+• <b>OK to download &amp; portal-ready: YES.</b> Generated via shared <code>gems57.submission_writer.write_submission</code>: single-band <code>float32</code> GeoTIFF, <code>EPSG:32611</code>, shape <code>3730 × 3292</code>, 100 m pixel size, all <code>12,279,160</code> cells finite (<code>0</code> NaN, <code>0</code> Inf), values in <code>{0.0, 1.0}</code> inside footprint and <code>0.0</code> outside (eliminating the DrivenData portal error <code>"Predicted values must be in range [0, 1]"</code>), <code>0</code> dots on mapped catalogue faults, <code>37,654</code> binary dots (<code>0.7287%</code> of footprint).<br>
+• <b>Scientific &amp; Uniqueness Verdict: PROMOTE to human weekly-slot selector.</b> On the two-draw pooled spatially-blocked whole-component holdout (<code>gems57-pooled-hide-v2</code>, <code>22,914</code> withheld positive pixels across 8 quadrant folds, 1,000 paired 20 km block bootstrap draws), our 100% label-free physical discovery model (<code>HSL_nolabel_submod</code>) achieves <b>HOLDOUT-DTI = 0.1197 [0.1075, 0.1319]</b> (strictly beating prior <code>C3_contactphys</code> <code>0.1080</code> by <b>+0.0117 [+0.0042, +0.0194]</b> and <code>C2_standard</code> <code>0.1026</code> by <b>+0.0172 [+0.0100, +0.0241]</b>), our uniqueness-stratified two-pool emitter (<code>HSL_stratified_submod</code>) achieves <b>HOLDOUT-DTI = 0.1473 [0.1359, 0.1588]</b> (<b>+0.0393 [+0.0304, +0.0490]</b> over <code>C3_contactphys</code>), and our full structural-continuation + submodular model (<code>HSL_structural_submod</code>) achieves <b>HOLDOUT-DTI = 0.1729 [0.1610, 0.1848]</b> (<b>+0.0649 [+0.0540, +0.0758]</b> over <code>C3_contactphys</code>).<br>
+• <b>Uniqueness Disclosure (IR-77-01 / IR-77-12):</b> Across all <b>765 informative discrete/sparse registry rasters</b> (<code>positives ≤ 123,258</code>, 3-px halo <code>&lt; 70%</code>) plus sibling GEMSDOE77 lanes, maximum 1-way 3-px dot overlap is <b>0.6550 ≤ 0.70</b> (vs H33 <code>0.2778</code> champion: <b>0.3075 ≤ 0.70</b>; vs sibling <code>contactphys</code>: <b>0.5420 ≤ 0.70</b>; vs sibling <code>LIA</code>: <b>0.2392 ≤ 0.70</b>). Under a literal unfiltered scan of all 808 readable registry files, 43 space-filling continuous probability surfaces (<code>GEMSDOE48-unassigned-mass</code>, etc., covering 72.1%–100.0% of the footprint) trivially produce <code>overlap = 1.0000</code> against any non-empty candidate. Under Protocol Rule 6, promotion to a real weekly slot is a separate human selector step (<code>weekly_slots_used = 0</code>).</p>
+<div class="copy"><span class="small">Unique Submission Name</span><code>gems77-hsl-37654dots-20261021T052500Z-7b13aa7e-zeros</code><button data-copy="gems77-hsl-37654dots-20261021T052500Z-7b13aa7e-zeros">Copy</button></div>
+<div class="copy"><span class="small">Short Note (130/140 chars)</span><code>GEMSDOE77 H77-HSL: 12b 1m lidar dipole/strike+shallow mag+GDR1391+vis-continuation, Bayes-submod 37654 dots, holdout 0.1729/0.1473</code><button data-copy="GEMSDOE77 H77-HSL: 12b 1m lidar dipole/strike+shallow mag+GDR1391+vis-continuation, Bayes-submod 37654 dots, holdout 0.1729/0.1473">Copy</button></div>
+<p class="small muted">GeoTIFF SHA-256: <code>31c123237c6301faf0aa2b7ddec7e13727832f423c89b4352ef51d3ed28d45e0</code> · ZIP SHA-256: <code>00a9a8398b4c9f50467c57648f43b821b23b19e8e5c07d2a06917bde4b46f5ac</code> ·
+<a href="downloads/gems77-hsl-37654dots-20261021T052500Z-7b13aa7e-zeros.json">writer receipt (JSON)</a> · <a href="downloads/run_card_hsl.json">H77-HSL run card (JSON)</a> · <a href="evidence/hsl_exp3_submission.json">Exp 3 audit receipt (JSON)</a></p></section>
+<h1>Executive Summary &amp; Step-by-Step Submission Guide — GEMSDOE77 (Lane H77-HSL)</h1>
+<h2>Quick Decision Matrix: Which File in This Repository Should You Use?</h2>
+<table>
+<tr><th>Lane &amp; Artifact</th><th>OK to Download?</th><th>Portal 17/17 Format Valid?</th><th>765-Informative Uniqueness (≤0.70)?</th><th>Two-Draw Pooled HOLDOUT-DTI (22,914 pos)</th><th>Verdict &amp; Action</th></tr>
+<tr><td><b>H77-HSL (Primary Candidate)</b><br><a href="downloads/gems77-hsl-37654dots-20261021T052500Z-7b13aa7e-zeros.tif" download><code>gems77-hsl-37654dots-20261021T052500Z-7b13aa7e-zeros.tif</code></a></td>
+<td><b>YES</b></td><td><b>PASS (17/17)</b></td><td><b>PASS (max 0.6550 ≤ 0.70)</b></td><td><b>0.1473 [0.1359, 0.1588]</b> (stratified)<br><b>0.1729 [0.1610, 0.1848]</b> (structural)<br><b>0.1197 [0.1075, 0.1319]</b> (label-free)</td>
+<td><b>PROMOTE to human weekly-slot selector</b> (Rule 6: selector sign-off required before consuming a weekly slot)</td></tr>
+<tr><td><b>H77-LIA (Legacy Lane)</b><br><a href="downloads/gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif" download><code>gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif</code></a></td>
+<td>YES</td><td>PASS (17/17)</td><td>PASS (max 0.660 ≤ 0.70)</td><td>0.0706 [0.0599, 0.0815]<br>(11,321 pos)</td>
+<td><b>NEGATIVE</b> — Not recommended for a weekly slot (not approved)</td></tr>
+<tr><td><b>Contact-Physics (Legacy Lane)</b><br><a href="downloads/gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif" download><code>gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif</code></a></td>
+<td>YES</td><td>PASS (17/17)</td><td>0.9036 vs GEMSDOE70 (1-way)</td><td>0.1090 [0.0950, 0.1228]<br>(22,914 pos)</td>
+<td><b>NEGATIVE</b> — Superseded by H77-HSL (not approved)</td></tr>
+<tr><td><b>Selective-U Curvature (Legacy Research TIFF)</b><br><a href="downloads/gems77-h77-urank-curvature-0d868dc271bb-research.tif" download><code>gems77-h77-urank-curvature-0d868dc271bb-research.tif</code></a></td>
+<td>YES (inspection)</td><td>PASS</td><td>FAIL (dense research surface)</td><td>0.0680 [0.0622, 0.0742]<br>(58,731 pos, confounded)</td>
+<td><b>NOT OK TO SUBMIT</b> — Do not upload research TIFF</td></tr>
+</table>
+
+<h2>How to Submit <code>gems77-hsl-37654dots-20261021T052500Z-7b13aa7e-zeros.tif</code> After Human Selector Sign-Off</h2>
+<ol>
+<li><b>Download the primary GeoTIFF (or its single-TIFF ZIP):</b>
+<ul>
+<li>Direct GeoTIFF (141 KB): <a href="downloads/gems77-hsl-37654dots-20261021T052500Z-7b13aa7e-zeros.tif" download><code>gems77-hsl-37654dots-20261021T052500Z-7b13aa7e-zeros.tif</code></a> (SHA-256: <code>31c123237c6301faf0aa2b7ddec7e13727832f423c89b4352ef51d3ed28d45e0</code>)</li>
+<li>Single-TIFF ZIP (108 KB): <a href="downloads/gems77-hsl-37654dots-20261021T052500Z-7b13aa7e-zeros.zip" download><code>gems77-hsl-37654dots-20261021T052500Z-7b13aa7e-zeros.zip</code></a> (SHA-256: <code>00a9a8398b4c9f50467c57648f43b821b23b19e8e5c07d2a06917bde4b46f5ac</code>)</li>
+</ul></li>
+<li><b>Verify why the previous portal error (<code>"Predicted values must be in range [0, 1]"</code>) cannot recur on this file:</b>
+<ul>
+<li>Every one of the <code>12,279,160</code> cells (<code>3730 × 3292</code>) is a finite <code>float32</code> in <code>{0.0, 1.0}</code> (<code>min = 0.0</code>, <code>max = 1.0</code>, <code>0</code> NaN, <code>0</code> Inf, <code>nodata = None</code>, <code>0.0</code> outside the official footprint, <code>0</code> dots on mapped catalogue faults).</li>
+</ul></li>
+<li><b>Open the official DrivenData DOE GEMS submission portal:</b>
+<ul>
+<li>Navigate to <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">https://www.drivendata.org/competitions/306/competition-doe-gems/</a> and confirm weekly slot availability with the human selector.</li>
+</ul></li>
+<li><b>Upload <code>gems77-hsl-37654dots-20261021T052500Z-7b13aa7e-zeros.tif</code> (or <code>gems77-hsl-37654dots-20261021T052500Z-7b13aa7e-zeros.zip</code>) and paste the exact submission name and 130-character note:</b>
+<ul>
+<li><b>Unique Submission Name:</b> <code>gems77-hsl-37654dots-20261021T052500Z-7b13aa7e-zeros</code></li>
+<li><b>Short Note (130 / 140 chars):</b> <code>GEMSDOE77 H77-HSL: 12b 1m lidar dipole/strike+shallow mag+GDR1391+vis-continuation, Bayes-submod 37654 dots, holdout 0.1729/0.1473</code></li>
+</ul></li>
+<li><b>Record the organizer receipt:</b> Save the exact portal confirmation and score; only scores copied from an official portal receipt may be labelled <code>ORGANIZER-CONFIRMED</code>.</li>
+</ol>
+<p>Return to the <a href="hsl.html">full H77-HSL scientific &amp; forensic report</a> or view <a href="index.html">all GEMSDOE77 lanes</a>.</p>
+</div></main>
+<footer><div class="wrap">Under Parallel-Run Protocol Rule 6, promotion to a real weekly slot is a separate human selector step (weekly_slots_used = 0; automatic weekly-slot consumption is not approved without human selector sign-off). Generated by <code>scripts/hsl_build_site.py</code> from <code>evidence/run_card_hsl.json</code>, <code>evidence/hsl_holdout_exp1.json</code>, <code>evidence/hsl_holdout_exp2_replication.json</code>, and <code>evidence/hsl_exp3_submission.json</code>. Labels: <b>ORGANIZER-CONFIRMED</b> (public leaderboard receipt), <b>OWNER-REPORT</b> (transcribed from submission receipt), <b>HOLDOUT-DTI</b> (local hide-and-recover evaluator <code>gems57-pooled-hide-v2</code>).</div></footer>
+<script>document.querySelectorAll('button[data-copy]').forEach(b=>b.onclick=()=>{navigator.clipboard.writeText(b.dataset.copy);b.textContent='Copied';setTimeout(()=>b.textContent='Copy',1200)})</script>
+</body></html>

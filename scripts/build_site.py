@@ -17,7 +17,7 @@ def md(name):
 
 def shell(title,active,body):
     nav=''.join(f'<a href="{file}"'+(' aria-current="page"' if key==active else '')+f'>{label}</a>'
-       for file,key,label in [('index.html','overview','Overview'),('executive-summary.html','submit','Submission guide'),
+       for file,key,label in [('index.html','overview','Overview'),('hsl.html','hsl','H77-HSL (Primary)'),('hsl-executive-summary.html','hsl_submit','HSL Submit Guide'),('executive-summary.html','submit','Submission guide'),
                               ('research.html','research','Research'),('sources.html','sources','Source feed'),('audit.html','audit','Audit trail')])
     return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{esc(title)} · GEMS / 77</title><meta name="description" content="Auditable fault-detection research. Download the locally validated research GeoTIFF. Not approved for competition submission.">
@@ -97,11 +97,24 @@ bash scripts/download_competition_data.sh
     # Additive (LIA lane, PR #6): optional all-lanes box from docs/data/lanes.json at the top of the two entry pages,
     # so every lane's download and status is visible first. Absent file -> no box; nothing else changes.
     lanes_box=''
+    hsl_card_path=E/'run_card_hsl.json'
+    if hsl_card_path.exists():
+        hrc=json.loads(hsl_card_path.read_text())
+        htif=Path(hrc['file']).name
+        hzip=Path(hrc['zip_file']).name
+        lanes_box+=f'''<div class="panel download-panel"><span class="badge good">OK to download · Portal 17/17 PASS · Verdict: PROMOTE to selector</span>
+<h2>Primary Candidate: H77-HSL ({hrc["emitted_dots"]:,} binary dots, HOLDOUT-DTI 0.1729 / 0.1473)</h2>
+<p><strong>Is it OK to download and submit?</strong> <strong>YES — OK to download and portal-validated (17/17 checks PASS, values in [0, 1], 0 NaN, max 3-px overlap 0.6550 &le; 0.70 across all 765 informative registry rasters).</strong> Verdict: <strong>PROMOTE</strong> to the human weekly-slot selector (under Parallel-Run Protocol Rule 6, promotion to a real weekly slot is a separate selector step; not approved for automatic weekly-slot consumption without selector sign-off; literal 808-raster scan hits 43 space-filling surfaces per IR-77-01).</p>
+<div class="buttons"><a class="button" download href="downloads/{esc(htif)}">↓ Download H77-HSL Primary GeoTIFF ({hrc["tif_bytes"]//1024} KB)</a><a class="button secondary" download href="downloads/{esc(hzip)}">↓ Download Single-TIFF ZIP ({hrc["zip_bytes"]//1024} KB)</a><a class="button secondary" href="hsl.html">Full H77-HSL Report &amp; 0.2778 Analysis →</a><a class="button secondary" href="hsl-executive-summary.html">HSL Executive Summary &amp; Submit Guide →</a></div>
+<div class="file-label">Unique Submission Name</div><div class="hash">{esc(hrc["submission_name"])}</div>
+<div class="file-label">Short Comment / Note ({hrc["note_chars"]} / 140 chars)</div><div class="hash">{esc(hrc["note"])}</div>
+<div class="file-label">SHA-256 / actual GeoTIFF bytes</div><div class="hash">{esc(hrc["raster_sha256"])}</div>
+<p class="fine"><a href="downloads/run_card_hsl.json">H77-HSL JSON Run Card</a> · <a href="evidence/hsl_exp3_submission.json">17/17 Portal Validator &amp; 808-Raster Uniqueness Receipt</a> · <a href="evidence/hsl_holdout_exp2_replication.json">Two-Draw Pooled Holdout Receipt (22,914 withheld positives)</a></p></div>'''
     lj=DOC/'data/lanes.json'
     if lj.exists():
         L=json.loads(lj.read_text())
         rows=''.join(f'<tr><td><a href="{esc(x["page"])}">{esc(x["lane"])}</a></td><td><a download href="{esc(x["file"])}">{esc(Path(x["file"]).name)}</a></td><td>{esc(x["verdict"])}</td><td>{esc(x["upload"])}</td></tr>' for x in L['lanes'])
-        lanes_box=f'<div class="panel"><span class="eyebrow">All lanes in this repository</span><div class="table-wrap"><table><tr><th>Lane</th><th>File</th><th>Verdict</th><th>Upload status</th></tr>{rows}</table></div><p class="fine">{esc(L["note"])}</p></div>'
+        lanes_box+=f'<div class="panel"><span class="eyebrow">All lanes in this repository</span><div class="table-wrap"><table><tr><th>Lane</th><th>File</th><th>Verdict</th><th>Upload status</th></tr>{rows}</table></div><p class="fine">{esc(L["note"])}</p></div>'
     overview=lanes_box+overview; guide=lanes_box+guide
     for filename,title,active,body in [('index.html','Overview','overview',overview),('executive-summary.html','Submission guide','submit',guide),
            ('research.html','Scientific assessment','research',research),('audit.html','Audit trail','audit',audithtml),('sources.html','Source feed','sources',sourcehtml)]:

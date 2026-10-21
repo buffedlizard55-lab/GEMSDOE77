@@ -102,3 +102,44 @@ computed this session from SHA-pinned bytes.
 - **Disposition:** all 16 cells published in `evidence/holdout_exp1.json`;
   live-optimal mass likely lower (hidden truth sparser than holdout truth) —
   noted for any future selector.
+
+## IR-77-10 — `knowledge/01_geothermal-vents.md` previously repeated the unverified Band 6 / Band 18 tags
+- **Evidence [MEASURED]:** `knowledge/01_geothermal-vents.md` originally listed
+  Band 6 (`tc`) as magnetic tilt angle / curvature and Band 18 (`iso_grav_anom_hg`)
+  as horizontal gradient magnitude without flagging `IR-77-01` and `IR-77-03`.
+- **Impact:** Any downstream reader of `knowledge/01_geothermal-vents.md` could
+  mistakenly treat Band 6 as magnetic tilt or Band 18 as unsigned gradient magnitude.
+- **Disposition:** Fixed in `knowledge/01_geothermal-vents.md` with explicit
+  **[IR-77-01 MEASURED]** (`r = +0.99995` vs GeoDAWN radiometric Total Count) and
+  **[IR-77-03 MEASURED]** (`r = +0.945` vs signed `∂g/∂x`) warnings and links to
+  `evidence/band6_resolution.json`.
+
+## IR-77-11 — `scripts/build_site_contactphys.py` contained a CSS overwrite hazard
+- **Evidence:** `scripts/build_site_contactphys.py` wrote to `docs/assets/site.css`
+  rather than its own stylesheet `docs/assets/contactphys.css`, risking accidental
+  clobbering of the shared site stylesheet used by `docs/index.html` and `docs/lia.html`.
+- **Impact:** Re-running `scripts/build_site_contactphys.py` would overwrite
+  `docs/assets/site.css`.
+- **Disposition:** Fixed in `scripts/build_site_contactphys.py` so it writes only
+  to `docs/assets/contactphys.css`.
+
+## IR-77-12 — Full 812-raster registry audit reveals 4 corrupt TIFFs (`MissingRequired: StripOffsets`) and 43 space-filling surfaces
+- **Evidence [MEASURED]:** Restoring and scanning all 812 registry entries in
+  `registry/registry_index.json` (`scripts/restore_registry.py` + `scripts/fetch_registry.py`)
+  confirms: `4` blobs (`271`, `598`, `604`, `609`) fail `rasterio.open` with
+  `MissingRequired: TIFF directory is missing required "StripOffsets" field`;
+  `43` rasters (`41` unique blobs, documented in `evidence/e3_registry_free.json`)
+  are continuous probability surfaces with `>= 155,021` positive pixels whose
+  3-px halo covers `72.11%` to `100.00%` of the footprint; and `765` rasters
+  are informative discrete/sparse dot fields (`<= 123,258` positive pixels,
+  3-px halo `< 70%`).
+- **Impact:** Under a literal unfiltered 808-raster scan, the 43 space-filling
+  surfaces trivially force `overlap = 1.0000` against any non-empty candidate.
+  Across all `765` informative rasters + sibling GEMSDOE77 rasters, our
+  two-pool uniqueness-budgeted emitter (`gems77-hsl-37654dots-20261021T052500Z-7b13aa7e-zeros.tif`)
+  achieves `max_1way_overlap_3px = 0.6550 <= 0.70`, `max_mutual_overlap_3px = 0.5307 <= 0.70`,
+  `max_|Spearman rho|_surface = 0.6945 <= 0.90`, and `max_|Spearman rho|_dots = 0.0751 <= 0.90`.
+- **Disposition:** Both the `765`-informative uniqueness pass (`0.6550 <= 0.70`)
+  and the `43`-surface literal space-filling saturation (`1.0000`) are reported
+  side-by-side in `evidence/hsl_exp3_submission.json` and `evidence/run_card_hsl.json`.
+

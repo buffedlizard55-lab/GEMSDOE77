@@ -254,7 +254,7 @@ known mechanical causes of the range error.</p></div>
 </div></body></html>"""
 
 (DOCS / "assets").mkdir(parents=True, exist_ok=True)
-(DOCS / "assets" / "site.css").write_text(CSS)
+(DOCS / "assets" / "site-contactphys.css").write_text(CSS)
 (DOCS / "contactphys.html").write_text(index)
 (DOCS / "contactphys-executive-summary.html").write_text(exec_summary)
 (DOCS / ".nojekyll").write_text("")

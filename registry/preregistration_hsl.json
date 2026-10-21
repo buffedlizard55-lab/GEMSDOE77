@@ -1,0 +1,93 @@
+{
+  "id": "GEMSDOE77-PREREG-HSL-1",
+  "registered_utc": "2026-10-21T04:10:00Z",
+  "session_branch": "arena/2dd85e1d-gemsdoe77",
+  "lane_single_method_paragraph": "Hydrothermal-Scarp-Lineament & Visible-Fault Continuation (H77-HSL): Executing the documented next steps from the three prior GEMSDOE77 lanes, we train a spatially-blocked HGB ranker over (1) the full 12-band 1 m USGS 3DEP lidar scarp block with derived crest-toe Laplacian curvature dipole, unilateral facing polarity, and multi-cell sub-pixel spin-2 strike director continuity (H77-HSL-1), (2) the 150 m upward-continued magnetic vertical-continuation residual (TMI minus TMI_up150) and hydrothermal magnetite-destruction / smectite clay-cap conduit index (H77-HSL-2), (3) INGENIOUS GDR 1391 geothermal outflow (thermal spring/well temperatures, quartz/chalcedony/cation geothermometers, and Quaternary volcanic vents, strictly excluding any fault-distance column; H77-HSL-3), (4) the corrected potential-field contact-physics and range-front-base channels from PR #5, and (5) in the structural arm, visible-fault-only multi-scale damage-zone density, stepover relay deficit, and lidar-to-host strike alignment derived strictly from fold-visible faults (H77-HSL-4). Dots are emitted off-catalogue (>3 px) via submodular 300 m triangular-kernel marginal-gain selection under a minimum spacing of 2.8 px and verified against all 808 registry rasters plus the 3 prior GEMSDOE77 lane rasters.",
+  "prior_session_next_steps_addressed": [
+    "Contact-physics lane (PR #5) Next Step 2a: promote the 1 m lidar scarp block from ablation into a primary preregistered candidate and expand from 5 raw bands to all 12 bands plus crest-toe dipole, facing polarity, and sub-pixel strike director continuity.",
+    "Contact-physics lane (PR #5) Next Step 2b: evaluate on both the whole-component hide-and-recover holdout (seeds 30 and 21, 22,914 withheld pixels) and the secondary SGMC off-catalogue proxy (62,122 proxy pixels).",
+    "LIA lane (PR #6) Next Step 3: construct a high-resolution 1 m lidar + multi-physics + hydrothermal detector capable of earning credit away from the H19-5 support while respecting the <=0.70 3-px overlap limit against all 765 informative registry rasters.",
+    "Selective-U lane (PR #3) Next Step 3: evaluate against fold-recomputed, visible-fault-only incumbents (C1_champion_vis, C2_standard, C3_contactphys) on identical spatial folds with paired 20 km physical-block bootstrap CIs.",
+    "Standing prompt geothermal research directive: incorporate official INGENIOUS GDR 1391 geothermal well/spring temperature and chemical geothermometer data, Quaternary volcanic vents, and upward-continued aeromagnetic continuation residuals."
+  ],
+  "hypotheses_ranked": [
+    {
+      "rank": 1,
+      "id": "H77-HSL-1",
+      "name": "1 m USGS 3DEP Lidar Scarp Crest-Toe Curvature Dipole, Facing Polarity, and Sub-Pixel Strike Director Continuity",
+      "layers": [
+        "external/lidar_scarp_features_u8.tif bands 1-12 (ex_max, ex_mean, step_max, lapneg_max, lappos_max, downface_max, upface_max, cross_max, relief, coh100, strike, valid)",
+        "training_features.tif bands 12 (det_elev) and 19 (det_elev_slope)"
+      ],
+      "signature": "Crest-toe curvature dipole sqrt(lapneg_max * lappos_max) * cross_max; unilateral facing polarity |downface_max - upface_max| / (downface_max + upface_max + eps) * step_max; spin-2 axial director coherence of sub-pixel 1 m strike at sigma=2 px (200 m) and sigma=5 px (500 m); Hessian ridge of step_max * coh100 at sigma=2 px.",
+      "why_missing_from_catalogue": "1:250k-1:24k airphoto compilations missed low-throw (<1-2 m) or fan-breached scarps that 1 m bare-earth lidar resolves through paired crest-toe curvature and multi-cell sub-pixel strike collinearity.",
+      "non_fault_mimic": "Pleistocene Lake Lahontan wave-cut shoreline scarps, fluvial terrace risers along the Humboldt/Carson/Walker rivers, and road/railroad grades.",
+      "difference_vs_repo": "PR #5 excluded lidar from its primary arm and only used 5 raw uint8 bands in ablation; Bands 2, 4, 5, 7, 8, 9, 11 and all dipole/polarity/director transforms are untried in GEMSDOE77."
+    },
+    {
+      "rank": 2,
+      "id": "H77-HSL-2",
+      "name": "Shallow Vertical Magnetic Continuation Residual (TMI - TMI_up150m) & Hydrothermal Demagnetization Conduit",
+      "layers": [
+        "external/geodawn_extensions_u8.tif bands 3 (UTh) and 4 (TMI_up150)",
+        "training_features.tif bands 2 (rtp), 3 (tmi_hg), 9 (tmi_vg), 14 (tmi), 17 (cond_surf)"
+      ],
+      "signature": "Vertical continuation dipole residual rank01(tmi) - rank01(TMI_up150) and its gradient magnitude; hydrothermal magnetite-destruction / smectite clay-cap index rank01(cond_surf) * (1 - rank01(mag_as)) * rank01(|grad(cond_surf)|); U/Th radiometric mobility.",
+      "why_missing_from_catalogue": "Concealed intra-basin faults beneath young playa/alluvial cover lack surface scarps but offset shallow (<150-300 m) volcanic layers and host hydrothermal fluid pathways that destroy magnetite and form conductive clay caps.",
+      "non_fault_mimic": "Saline playa evaporite/clay pans (high conductivity and low magnetic gradient without structural throw) and stratabound altered tuffs.",
+      "difference_vs_repo": "No lane in GEMSDOE77 read Band 3 (UTh) or Band 4 (TMI_up150) of geodawn_extensions_u8.tif."
+    },
+    {
+      "rank": 3,
+      "id": "H77-HSL-3",
+      "name": "INGENIOUS GDR 1391 Geothermal Outflow (Thermal Springs, Silica/Cation Geothermometers) & Quaternary Volcanic Vent Alignment",
+      "layers": [
+        "external/gdr_wellspring_in_footprint.csv (row, col, thermalclass, temp_c, geothermquartz_c, geothermchalc_c, geothermcat_c; dist_known_fault_px strictly excluded)",
+        "external/gdr_volcanic_vents_in_footprint.csv (row, col; dist_known_fault_px strictly excluded)"
+      ],
+      "signature": "Log-distance to hot/warm springs and wells (T >= 35 C); multi-scale Gaussian thermal excess (sigma=4, 12 px) and chemical geothermometer excess (max of quartz, chalcedony, Na-K-Ca >= 70 C at sigma=8 px); log-distance to Quaternary volcanic vents.",
+      "why_missing_from_catalogue": "Over 70% of Great Basin geothermal systems are 'blind' (no prominent surface scarp at the upflow zone due to sinter/playa cover), yet thermal wells, silica/cation geothermometers, and Quaternary dike vents localize the controlling dilational fault stepovers and terminations.",
+      "non_fault_mimic": "Lateral warm-water outflow plumes in permeable alluvial fan aquifers down-gradient from range-front faults.",
+      "difference_vs_repo": "No lane in GEMSDOE77 loaded gdr_wellspring_in_footprint.csv or gdr_volcanic_vents_in_footprint.csv."
+    },
+    {
+      "rank": 4,
+      "id": "H77-HSL-4",
+      "name": "Visible-Fault-Only Multi-Scale Damage-Zone Density, Stepover Relay Deficit, and Lidar-to-Host Strike Alignment + Submodular 300 m Kernel Emission",
+      "layers": [
+        "fold['visible'] fault mask in holdout folds (catalogue in final full fit), strictly buffered by >3 px from withheld truth",
+        "Band 11 (lidar strike) and Band 12 (det_elev) axial orientation"
+      ],
+      "signature": "Log Euclidean distance to nearest visible fault (at d > 3 px); Gaussian visible-fault densities at sigma=5, 15, 35 px; relay-stepover deficit ratio dens_s15 / (dens_s5 + 0.01); axial alignment cos(2*(theta_lidar - theta_vis)) between 1 m lidar scarp strike and nearest visible fault strike; submodular 300 m triangular-kernel marginal-coverage dot emission.",
+      "why_missing_from_catalogue": "Organizer Forum 11536 states 'new fault' includes newly mapped geometry (splays, relay ramps, stepovers, tip extensions) of existing fault systems. Displacement transfers across stepover gaps along collinear or conjugate strikes.",
+      "non_fault_mimic": "Piedmont bajada contours and parallel distributor channels flanking a mapped range-front fault.",
+      "difference_vs_repo": "Neither PR #3, PR #5, nor PR #6 trained a supervised model combining visible-fault-only structural features with the 12-band lidar + geophysical + hydrothermal stack or submodular 300 m kernel coverage emission."
+    },
+    {
+      "rank": 5,
+      "id": "H77-HSL-5",
+      "name": "Relocated Sub-km Microseismicity Lineaments (USGS ComCat / UNR NSL / 2020 M6.5 Monte Cristo Range Rupture)",
+      "layers": [
+        "External free official source: https://earthquake.usgs.gov/fdsnws/event/1/query (USGS ComCat FDSN API)"
+      ],
+      "signature": "Sub-km epicentral streak density and focal-mechanism nodal-plane alignment.",
+      "why_missing_from_catalogue": "Active blind strike-slip and normal faults in the Walker Lane (such as the 2020 M6.5 Monte Cristo Range rupture inside the GeoDAWN footprint) rupture unmapped intra-basin strands.",
+      "non_fault_mimic": "Distributed swarm seismicity from geothermal injection/production or volcanic diking.",
+      "difference_vs_repo": "DATA-BLOCKED in this sandbox (earthquake.usgs.gov outside sandbox egress allowlist); shipped bands 10 and 16 are 100 km-smoothed rate-density grids."
+    }
+  ],
+  "experiments_budget": {
+    "max_experiments": 3,
+    "max_hours": 2.0,
+    "exp1": "Build 77-channel HSL stack, run leakage canary on all 77 channels (stop if any symmetric AUC > 0.90), run seed-30 buffered whole-component quadrant holdout (11,342 withheld positives) across C0_random, C1_champion_vis, C2_standard, C3_contactphys, C4_contactphys_lidar5, HSL_nolabel, HSL_structural, and submodular 300 m kernel emission.",
+    "exp2": "Replicate on independent seed-21 buffered whole-component quadrant holdout (11,572 withheld positives), compute two-draw pooled summary (22,914 withheld positives, 1,000 paired 20 km block bootstrap draws), SGMC off-catalogue proxy (62,122 pixels), and LIA live-inversion projection diagnostic.",
+    "exp3": "Build full-catalogue candidate GeoTIFF + single-TIFF ZIP via shared gems57.submission_writer, run Phase-1 (surface) and Phase-2 (dots) uniqueness audit against all 808 registry rasters + 3 prior GEMSDOE77 lane rasters, run 17/17 portal validator + independent pass-2 rasterio verification, emit run_card_hsl.json and docs/hsl*.html."
+  },
+  "promotion_gates": {
+    "1_leakage_canary": "Every feature used in the candidate has single-feature holdout symmetric AUC <= 0.90.",
+    "2_holdout_beats_standard_and_incumbent": "Primary candidate beats C2_standard AND C3_contactphys (the prior GEMSDOE77 holdout best, 0.1090 on seed 30 / 0.1137 two-draw) on gems57-pooled-hide-v2 with paired 95% CIs excluding 0 on seed 30, seed 21, AND two-draw pooled.",
+    "3_uniqueness": "Spearman |rho| <= 0.90 on surface and final dots, and 3-px dot overlap <= 0.70 against all 765 informative registry rasters and all 3 prior GEMSDOE77 lane rasters (space-filling rasters with >=70% 3-px halo coverage and the dense urank research surface are reported transparently under both literal and informative/like-for-like readings).",
+    "4_format_valid": "Shared writer + 17/17 portal checks + independent pass-2 rasterio verification all pass (single-band float32, EPSG:32611, 3730x3292, all-finite in [0,1], nodata=None, 0 on catalogue).",
+    "5_selector_step": "Even when science/holdout/uniqueness/format gates pass (verdict: promote), spending a real weekly DrivenData submission slot remains a separate human selector decision within the weekly cap."
+  }
+}

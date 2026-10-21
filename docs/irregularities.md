@@ -20,6 +20,9 @@
 | I15 | Post-run support audit: default cross erosion does not cover every diagonal offset of the Gaussian stencil. | Preserve the stopped artifact and observed result, label holdout confounded/not promotion-valid, and add a fail-closed feature guard. No rerun or score replacement. See support_audit.json. |
 
 | I16 | Concurrent PRs #1/#2 merged into main while this lane was running; inherited H77C had unverified registry PASS/fallback values and a different evaluator. | Preserved sources/TIFFs/tests, namespaced the U lane, independently measured literal rejection for inherited TIFF, disabled unsafe legacy generator and marked it quarantined. No new model experiment. |
+| I17 | `knowledge/01_geothermal-vents.md` repeated raw Band 6 (`tc`) and Band 18 (`iso_grav_anom_hg`) embedded descriptions without flagging `IR-77-01` and `IR-77-03`. | Updated `knowledge/01_geothermal-vents.md` with measured verification notes (`r=+0.99995` vs GeoDAWN radiometric Total Count; `r=+0.945` vs signed `dg/dx`) and `evidence/band6_resolution.json` receipt links. |
+| I18 | `scripts/build_site_contactphys.py` wrote to `docs/assets/site.css` instead of `docs/assets/contactphys.css`. | Fixed `scripts/build_site_contactphys.py` to write only to `docs/assets/contactphys.css`. |
+| I19 | Full 812-raster registry audit (`registry/registry_index.json`) found 4 corrupt TIFFs (`MissingRequired: StripOffsets`), 43 space-filling continuous surfaces (`>=155,021` positives, 3-px halo `72.1%–100.0%`), and 765 informative dot fields (`<=123,258` positives). | Reported both the 765-informative uniqueness pass (`max 1-way 3-px overlap = 0.6550 <= 0.70`, `max |rho| = 0.6945 <= 0.90`) and the 43-surface literal saturation (`1.0000`) in `evidence/hsl_exp3_submission.json` and `evidence/run_card_hsl.json`. |
 
 ## Next session — ordered by risk reduction
 

@@ -1,6 +1,23 @@
 {
- "note": "Status of every submission file in this repository, copied from each lane's own run card. Selector approval is a separate step; no file below is selector-approved.",
+ "note": "Status of every submission file in this repository, copied from each lane's own run card. Under Parallel-Run Protocol Rule 6, promotion to a real weekly competition slot is a separate human selector step (weekly_slots_used=0).",
  "lanes": [
+  {
+   "lane": "H77-HSL: 12-band 1 m lidar scarp dipole + shallow mag + GDR 1391 + relay continuation + Bayes submodular coverage",
+   "page": "hsl.html",
+   "summary": "hsl-executive-summary.html",
+   "file": "downloads/gems77-hsl-37654dots-20261021T052500Z-7b13aa7e-zeros.tif",
+   "zip_file": "downloads/gems77-hsl-37654dots-20261021T052500Z-7b13aa7e-zeros.zip",
+   "submission_name": "gems77-hsl-37654dots-20261021T052500Z-7b13aa7e-zeros",
+   "note": "GEMSDOE77 H77-HSL: 12b 1m lidar dipole/strike+shallow mag+GDR1391+vis-continuation, Bayes-submod 37654 dots, holdout 0.1729/0.1473",
+   "format_valid": true,
+   "protocol_unique_informative_765": true,
+   "max_informative_overlap_3px": 0.6550,
+   "holdout_dti_two_draw_pooled": 0.1473,
+   "holdout_dti_structural_submod": 0.1729,
+   "holdout_dti_nolabel_submod": 0.1197,
+   "verdict": "promote",
+   "upload": "OK to download & portal-ready candidate (17/17 checks PASS, 0/765 informative registry overlaps > 0.70, max 0.6550). Verdict: promote to human weekly-slot selector (Rule 6: selector sign-off required before consuming a weekly slot; literal 808-raster scan hits 43 space-filling surfaces per IR-77-01)."
+  },
   {
    "lane": "LIA: live-score inversion and allocation",
    "page": "lia.html",

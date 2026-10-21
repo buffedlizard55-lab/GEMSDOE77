@@ -1,0 +1,473 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>H77-HSL Lane Overview · GEMSDOE77</title>
+<link rel="stylesheet" href="assets/lia.css"></head><body>
+<header><div class="wrap"><span class="brand">GEMSDOE77 · DOE GEMS Prize (Lane H77-HSL)</span><a href="hsl.html" class=here>H77-HSL Overview</a> <a href="hsl-executive-summary.html">HSL Executive Summary &amp; Submit Guide</a> <a href="index.html">All GEMSDOE77 Lanes</a> <a href="executive-summary.html">Repository Submission Guide</a> <a href="lia-analysis.html">Why 0.2778 Analysis</a> <a href="contactphys.html">Contact-Physics Lane</a> <a href="lia.html">LIA Lane</a>
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE77">GitHub</a></div></header>
+<main><div class="wrap"><section class="card dl"><h2>⬇ Download the Primary GEMSDOE77 H77-HSL Submission</h2>
+<a class="btn" href="downloads/gems77-hsl-37654dots-20261021T052500Z-7b13aa7e-zeros.tif" download>Download gems77-hsl-37654dots-20261021T052500Z-7b13aa7e-zeros.tif (140 KB) — Primary GeoTIFF</a>
+<a class="btn alt" href="downloads/gems77-hsl-37654dots-20261021T052500Z-7b13aa7e-zeros.zip" download>Download gems77-hsl-37654dots-20261021T052500Z-7b13aa7e-zeros.zip (107 KB) — Single-TIFF .zip</a>
+<div class="chips">
+<span class="chip ok">OK to download: YES</span>
+<span class="chip ok">Portal format: 17/17 checks PASS (values in [0, 1], 0 NaN)</span>
+<span class="chip ok">Unique vs 765 informative registry rasters: PASS (max 3-px overlap 0.6550 ≤ 0.70)</span>
+<span class="chip ok">Surface &amp; dot rank-correlation: PASS (max |ρ| = 0.6945 ≤ 0.90)</span>
+<span class="chip ok">Leakage canary (84 ch): PASS (max AUC = 0.7982 ≤ 0.90)</span>
+<span class="chip ok">Run verdict: PROMOTE to weekly-slot selector</span>
+<span class="chip warn">Rule 6 Selector Gate: separate human sign-off required (not approved for auto-upload)</span>
+</div>
+<p class="verdict"><b>Is this TIF OK to download and submit?</b><br>
+• <b>OK to download &amp; portal-ready: YES.</b> Generated via shared <code>gems57.submission_writer.write_submission</code>: single-band <code>float32</code> GeoTIFF, <code>EPSG:32611</code>, shape <code>3730 × 3292</code>, 100 m pixel size, all <code>12,279,160</code> cells finite (<code>0</code> NaN, <code>0</code> Inf), values in <code>{0.0, 1.0}</code> inside footprint and <code>0.0</code> outside (eliminating the DrivenData portal error <code>"Predicted values must be in range [0, 1]"</code>), <code>0</code> dots on mapped catalogue faults, <code>37,654</code> binary dots (<code>0.7287%</code> of footprint).<br>
+• <b>Scientific &amp; Uniqueness Verdict: PROMOTE to human weekly-slot selector.</b> On the two-draw pooled spatially-blocked whole-component holdout (<code>gems57-pooled-hide-v2</code>, <code>22,914</code> withheld positive pixels across 8 quadrant folds, 1,000 paired 20 km block bootstrap draws), our 100% label-free physical discovery model (<code>HSL_nolabel_submod</code>) achieves <b>HOLDOUT-DTI = 0.1197 [0.1075, 0.1319]</b> (strictly beating prior <code>C3_contactphys</code> <code>0.1080</code> by <b>+0.0117 [+0.0042, +0.0194]</b> and <code>C2_standard</code> <code>0.1026</code> by <b>+0.0172 [+0.0100, +0.0241]</b>), our uniqueness-stratified two-pool emitter (<code>HSL_stratified_submod</code>) achieves <b>HOLDOUT-DTI = 0.1473 [0.1359, 0.1588]</b> (<b>+0.0393 [+0.0304, +0.0490]</b> over <code>C3_contactphys</code>), and our full structural-continuation + submodular model (<code>HSL_structural_submod</code>) achieves <b>HOLDOUT-DTI = 0.1729 [0.1610, 0.1848]</b> (<b>+0.0649 [+0.0540, +0.0758]</b> over <code>C3_contactphys</code>).<br>
+• <b>Uniqueness Disclosure (IR-77-01 / IR-77-12):</b> Across all <b>765 informative discrete/sparse registry rasters</b> (<code>positives ≤ 123,258</code>, 3-px halo <code>&lt; 70%</code>) plus sibling GEMSDOE77 lanes, maximum 1-way 3-px dot overlap is <b>0.6550 ≤ 0.70</b> (vs H33 <code>0.2778</code> champion: <b>0.3075 ≤ 0.70</b>; vs sibling <code>contactphys</code>: <b>0.5420 ≤ 0.70</b>; vs sibling <code>LIA</code>: <b>0.2392 ≤ 0.70</b>). Under a literal unfiltered scan of all 808 readable registry files, 43 space-filling continuous probability surfaces (<code>GEMSDOE48-unassigned-mass</code>, etc., covering 72.1%–100.0% of the footprint) trivially produce <code>overlap = 1.0000</code> against any non-empty candidate. Under Protocol Rule 6, promotion to a real weekly slot is a separate human selector step (<code>weekly_slots_used = 0</code>).</p>
+<div class="copy"><span class="small">Unique Submission Name</span><code>gems77-hsl-37654dots-20261021T052500Z-7b13aa7e-zeros</code><button data-copy="gems77-hsl-37654dots-20261021T052500Z-7b13aa7e-zeros">Copy</button></div>
+<div class="copy"><span class="small">Short Note (130/140 chars)</span><code>GEMSDOE77 H77-HSL: 12b 1m lidar dipole/strike+shallow mag+GDR1391+vis-continuation, Bayes-submod 37654 dots, holdout 0.1729/0.1473</code><button data-copy="GEMSDOE77 H77-HSL: 12b 1m lidar dipole/strike+shallow mag+GDR1391+vis-continuation, Bayes-submod 37654 dots, holdout 0.1729/0.1473">Copy</button></div>
+<p class="small muted">GeoTIFF SHA-256: <code>31c123237c6301faf0aa2b7ddec7e13727832f423c89b4352ef51d3ed28d45e0</code> · ZIP SHA-256: <code>00a9a8398b4c9f50467c57648f43b821b23b19e8e5c07d2a06917bde4b46f5ac</code> ·
+<a href="downloads/gems77-hsl-37654dots-20261021T052500Z-7b13aa7e-zeros.json">writer receipt (JSON)</a> · <a href="downloads/run_card_hsl.json">H77-HSL run card (JSON)</a> · <a href="evidence/hsl_exp3_submission.json">Exp 3 audit receipt (JSON)</a></p></section>
+<h1>GEMSDOE77 Lane H77-HSL — 12-Band 1 m Lidar Scarp Dipole, Shallow Magnetic Conduit &amp; Submodular 300 m Coverage</h1>
+<p class="values"><b>Core Values: Maximize P(Win) &amp; Own the Outcome.</b> Every number below is labelled with its exact evidence class (<b>HOLDOUT-DTI</b> with evaluator version, withheld positive pixel count, and 95% block-bootstrap CI, or <b>ORGANIZER-CONFIRMED</b> / <b>OWNER-REPORT</b>). Every input band and external dataset is verified line by line from SHA-256-pinned bytes.</p>
+
+<h2>1. PhD-Level Forensic Analysis: Why <code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</code> (GEMSDOE32) Scored <code>0.2778</code> — and How to Beat It Toward <code>0.4413</code></h2>
+<ol>
+<li><b>Exact Byte-Level Anatomy of <code>h33.tif</code> (<code>0.2778</code> OWNER-REPORT):</b>
+<ul>
+<li><code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif</code> (<code>SHA-256: b373ee1e6d2bf3fb5dc8fe9dc0fffa7ae6ca3d5deacbfceac5bc8eb0f83fb7c7</code>) is a binary <code>{0.0, 1.0}</code> <code>float32</code> GeoTIFF with <code>nodata=None</code>, all <code>12,279,160</code> cells finite, and exactly <b>40,653</b> unit-valued dots (<code>0.7867%</code> of the <code>5,167,373</code>-pixel footprint).</li>
+<li><b>100.00% (`40,653 / 40,653`)</b> of H33's dots are an exact subset of the <code>123,258</code>-dot ridge-skeleton candidate set <code>19GEMSDOE/gems19-h19-5-20261001T073230Z-1f2771bc.tif</code> (which scored <code>0.2643</code> OWNER-REPORT).</li>
+<li>Specifically, H33 applies two geometric operations to H19-5: (a) <b>catalogue distance pruning</b> removing every dot within <code>2.0 km</code> (<code>20 px</code>) of the <code>59,935</code> mapped USGS/INGENIOUS catalogue fault pixels (100% of H33 dots satisfy <code>dist_to_catalogue &gt; 20 px</code>), and (b) <b>greedy 3-pixel (~300 m) non-maximum suppression (NMS)</b> reducing dot density by <code>3.03×</code> while preserving <b>78.0%</b> of H19-5's 300 m triangular-kernel coverage halo (<code>516,743</code> vs <code>662,566</code> footprint cells).</li>
+</ul></li>
+<li><b>Why Those Two Operations Produced <code>0.2778</code> Under the Asymmetric DTI Formula:</b>
+<ul>
+<li>The official Detection-to-Interpretation (DTI) metric is <code>DTI = TP / (TP + α·FP + β·FN)</code> with <code>α = 0.2</code>, <code>β = 0.8</code>, and a 300 m (<code>3 px</code>) linear-tent distance kernel <code>K(d) = max(0, 1 − d/300 m)</code> evaluated only on unmapped test faults <code>T_hid</code> (while predictions on mapped catalogue faults <code>F_0</code> are masked to 0).</li>
+<li>Because <code>min(P̂(i), 1)</code> caps coverage at <code>1.0</code>, placing two dots within <code>&lt; 300 m</code> of each other adds a full extra false-positive penalty <code>α = 0.2</code> in the denominator where halos overlap without increasing <code>TP</code> on covered truth pixels. H33's 3-px thinning cuts <code>82,605</code> redundant dots from H19-5 (saving up to <code>0.2 × 82,605 ≈ 16,521</code> effective FP units), lifting the score from <code>0.2643</code> to <code>0.2778</code> (<code>+0.0135</code>).</li>
+<li>Across the 95 organizer-scored family submissions (<code>reports/why_02778.md</code>, LOO Spearman <code>ρ = +0.917</code>), non-negative least-squares inversion of the exact DTI linear fractional equation shows that unmapped test faults are concentrated in two distinct structural regimes: (i) <b>along-strike relay extensions and step-overs</b> within <code>300 m–3 km</code> of mapped fault tips, and (ii) <b>unmapped Basin and Range range-front and intrabasin scarps</b> <code>&gt; 2 km</code> from mapped catalogue traces.</li>
+</ul></li>
+<li><b>Why Standard Hide-and-Recover Holdout Penalizes H33's <code>&gt; 2 km</code> Rule (`0.0393`), and How to Beat `0.2778` Toward `0.4413` (ORGANIZER-CONFIRMED Leaderboard #1):</b>
+<ul>
+<li>On whole-component hide-and-recover holdout (`C1_champion_vis`), withholding connected fault segments leaves 71% of hidden pixels within <code>20 px</code> of remaining visible segments, so H33's hard <code>dist &gt; 20 px</code> exclusion scores only <code>0.0393</code>.</li>
+<li>Conversely, H33's <code>dist &gt; 20 px</code> hard exclusion throws away all along-strike relay splays within <code>200 m–2 km</code> of mapped fault tips on the live test set, and H33 uses only 100 m topographic/gravity/magnetic ridge skeletons without 1 m lidar scarp dipoles or hydrothermal demagnetization/thermal signatures.</li>
+<li>To maximize expected live DTI while satisfying the strict <code>≤ 0.70</code> 3-px overlap gate against all 765 informative registry rasters (including H33 and H19-5), our <b>H77-HSL</b> submission combines:
+<ol>
+<li><b>Pool 1 (62% = 23,345 dots):</b> Bayes-calibrated submodular 300 m kernel coverage on our 84-channel structural-continuation + 12-band 1 m lidar + shallow magnetic + GDR 1391 model (<code>HSL_structural_submod</code>, Two-Draw Pooled <code>HOLDOUT-DTI = 0.1729 [0.1610, 0.1848]</code>), capturing high-probability relay splays, step-overs, and range-front continuations.</li>
+<li><b>Pool 2 (38% = 14,309 dots):</b> Uniqueness-budgeted submodular coverage on our off-corridor physical discovery surface (<code>0.70 · p_phys + 0.30 · p_struct</code>, where <code>HSL_nolabel_submod</code> achieves <code>HOLDOUT-DTI = 0.1197 [0.1075, 0.1319]</code> with zero label features), explicitly capped so no informative registry raster exceeds <code>0.6550 ≤ 0.70</code> 3-px overlap.</li>
+</ol></li>
+</ul></li>
+</ol>
+
+<h2>2. Five Ranked Geological Hypotheses (Preregistration <code>GEMSDOE77-PREREG-HSL-1</code>)</h2>
+<table>
+<tr><th>Rank &amp; ID</th><th>Geological Hypothesis &amp; Specific Layers</th><th>Physical Signature &amp; Why Missed by Catalogue</th><th>Non-Fault Mimic &amp; Safeguard</th><th>Holdout Result</th></tr>
+<tr><td><b>#1: H77-HSL-1</b><br><span class="small muted">Implemented (13 new ch)</span></td>
+<td><b>12-Band 1 m Airborne Lidar Micro-Scarp Curvature Dipole, Facing Polarity &amp; Multi-Scale Strike Coherence</b><br><span class="small muted">Bands 1–12 of <code>lidar_scarp_features_u8.tif</code> (3DEP 1 m lidar) + <code>terrain_50m_features.tif</code> + DEM slope/TRI</span></td>
+<td>Late Quaternary intrabasin normal fault scarps (<code>0.5–3 m</code> throw) produce paired convex crest + concave toe curvature dipoles (<code>b5 − b6</code>), consistent scarp-facing polarity (<code>cos/sin ψ</code>), and strike coherence (<code>b10</code>) invisible at 100 m DEM resolution.</td>
+<td>Lake Lahontan wave-cut shorelines, fluvial terrace risers, highway/canal berms. Suppressed via crest-toe dipole symmetry and geophysical co-registration.</td>
+<td><b>+0.0068 [+0.0021, +0.0116]</b> over prior 5-band lidar (<code>0.1181</code> vs <code>0.1113</code>, 22,914 pos); probe <code>S_lidar_strike_coh_s5 = 0.0682</code></td></tr>
+<tr><td><b>#2: H77-HSL-2</b><br><span class="small muted">Implemented (5 new ch)</span></td>
+<td><b>Hydrothermal Magnetite-Destruction Trough &amp; Shallow Residual Magnetic Boundary Gradient</b><br><span class="small muted">GeoDAWN <code>mag_residual_400m.tif</code>, <code>tmi_vg</code> (Band 9), <code>tmi_hg</code> (Band 3), <code>rad_U</code>/<code>K</code>/<code>Th</code>, <code>iso_grav_anom</code> (Band 13)</span></td>
+<td>Argillic/phyllic hydrothermal fluids oxidise magnetite to hematite/pyrite along fault conduits, creating localized negative vertical-gradient magnetic troughs flanked by steep shallow residual magnetic gradients and gravity steps.</td>
+<td>Unaltered silicic tuffs, reversely magnetized flows, deep basin lows. Suppressed via localized high-pass residual trough × gravity gradient co-registration.</td>
+<td>Combined with GDR 1391 in <code>HSL_nolabel_submod</code>: <b>0.1197 [0.1075, 0.1319]</b> (<b>+0.0117 [+0.0042, +0.0194]</b> over <code>C3_contactphys</code>)</td></tr>
+<tr><td><b>#3: H77-HSL-3</b><br><span class="small muted">Implemented (5 new ch)</span></td>
+<td><b>INGENIOUS GDR 1391 Conductive Temperature-at-200 m Excess, Fault-Intersection / Dilation-Tendency Density &amp; Geochemical Halo</b><br><span class="small muted"><code>gdr1391_features.tif</code> (Bands 1–7) + <code>nv_springs_features.tif</code> + DEM elevation</span></td>
+<td>Blind upflow faults advect hot Na-K-Cl/B/Li brines upward, producing elevation-detrended 200 m temperature excess co-located with high structural dilation/slip tendency outside mapped traces.</td>
+<td>Basin-center conductive thermal blankets under thick low-k playas. Suppressed by conditioning on range-front/scarp gradients and spring alignment.</td>
+<td>Integrated in 77-ch label-free stack (<code>HSL_nolabel_submod = 0.1197</code>, 0 leakage canaries &gt; 0.90)</td></tr>
+<tr><td><b>#4: H77-HSL-5</b><br><span class="small muted">Implemented (7 vis ch + submodular emit)</span></td>
+<td><b>Azimuthal Visible-Fault Relay Continuation + Bayes-Calibrated Submodular 300 m Triangular-Kernel Coverage Emission</b><br><span class="small muted">Fold-visible fault skeleton (<code>visible</code> only in holdout) + 1 m lidar strike tensor + exact <code>K(d)=max(0, 1−d/3)</code> kernel</span></td>
+<td>Faulds et al. (2011, 2015) show 78% of Great Basin geothermal systems occur at fault tips, relay ramps, and step-overs. Submodular 300 m coverage eliminates redundant halo overlap within 300 m.</td>
+<td>Erosional spur ridges extending across strike. Suppressed via double-angle strike alignment <code>cos 2(θ_vis − θ_lidar)</code>.</td>
+<td><b>0.1729 [0.1610, 0.1848]</b> full / <b>0.1473 [0.1359, 0.1588]</b> uniqueness-stratified; submodular emit alone adds <b>+0.0125 [+0.0082, +0.0172]</b></td></tr>
+<tr><td><b>#5: H77-HSL-4</b><br><span class="small muted">Preregistered reserve</span></td>
+<td><b>Quaternary Alluvial Contact-Parallel Scarp Asymmetry &amp; Valley-Margin Drainage Deflection</b><br><span class="small muted">SGMC <code>sgmc_features.tif</code> + 50 m TPI/dev + 1 m lidar aspect</span></td>
+<td>Concealed range-front faults beneath young alluvial fans produce systematic drainage deflection and subtle topographic steps <code>200–1,200 m</code> basinward of bedrock contacts.</td>
+<td>Depositional fan-toe aprons and bajada coalescences.</td>
+<td>Partially captured via contact-zone × 1 m lidar scarp interactions in 77-ch stack; standalone stream-network extraction held in reserve per 3-experiment budget.</td></tr>
+</table>
+
+<h2>3. Spatially-Blocked Whole-Component Holdout Validation (<code>gems57-pooled-hide-v2</code>, 22,914 Withheld Positives)</h2>
+<p>Evaluated across two independent buffered whole-component holdout draws: <b>Seed 30</b> (<code>11,342</code> withheld positive pixels across 4 quadrant folds) and <b>Seed 21</b> (<code>11,572</code> withheld positive pixels across 4 quadrant folds), pooled across all <b>22,914 withheld positive pixels</b> (8 quadrant folds, 1,000 paired 20 km physical-block bootstrap draws, operating point <code>B = 37,654</code> dots, exclusion <code>E = 2 px</code> around fold-visible faults).</p>
+<table>
+<tr><th>Model / Arm</th><th>Seed 30 DTI<br><span class="small muted">(11,342 pos)</span></th><th>Seed 21 DTI<br><span class="small muted">(11,572 pos)</span></th><th>Two-Draw Pooled DTI<br><span class="small muted">(22,914 pos, 95% CI)</span></th><th>Paired Δ vs <code>HSL_stratified_submod</code><br><span class="small muted">(Emitted Architecture)</span></th><th>Paired Δ vs <code>HSL_structural_submod</code><br><span class="small muted">(Full 84-ch Submod)</span></th></tr>
+<tr><td><b>C0_random</b><br><span class='small muted'>C0: Random uniform dots (negative control, 37,654 dots)</span></td><td>0.0497<br><span class='small muted'>[0.0440, 0.0555]</span></td><td>0.0478<br><span class='small muted'>[0.0419, 0.0536]</span></td><td><b>0.0487</b><br><span class='small muted'>[0.0446, 0.0531]</span></td><td>+0.0986 [+0.0873, +0.1097]</td><td>+0.1242 [+0.1119, +0.1357]</td></tr><tr><td><b>C1_champion_vis</b><br><span class='small muted'>C1: Fold-visible H19-5 / H33 rule (3-px thinned ridge, dist_vis &gt; 20 px)</span></td><td>0.0398<br><span class='small muted'>[0.0317, 0.0480]</span></td><td>0.0389<br><span class='small muted'>[0.0300, 0.0474]</span></td><td><b>0.0393</b><br><span class='small muted'>[0.0332, 0.0455]</span></td><td>+0.1080 [+0.0957, +0.1205]</td><td>+0.1336 [+0.1206, +0.1464]</td></tr><tr><td><b>C2_standard</b><br><span class='small muted'>C2: Standard 33-channel baseline (greedy 3-px NMS emit)</span></td><td>0.0965<br><span class='small muted'>[0.0804, 0.1137]</span></td><td>0.1086<br><span class='small muted'>[0.0857, 0.1324]</span></td><td><b>0.1026</b><br><span class='small muted'>[0.0881, 0.1173]</span></td><td>+0.0447 [+0.0363, +0.0536]</td><td>+0.0703 [+0.0606, +0.0796]</td></tr><tr><td><b>C3_contactphys</b><br><span class='small muted'>C3: Contact-physics 49-channel prior primary (greedy 3-px NMS emit)</span></td><td>0.1020<br><span class='small muted'>[0.0841, 0.1199]</span></td><td>0.1140<br><span class='small muted'>[0.0937, 0.1371]</span></td><td><b>0.1080</b><br><span class='small muted'>[0.0931, 0.1220]</span></td><td>+0.0393 [+0.0304, +0.0490]</td><td>+0.0649 [+0.0540, +0.0758]</td></tr><tr><td><b>C4_contactphys_lidar5</b><br><span class='small muted'>C4: Contact-physics + prior 5-band 1 m lidar (54 ch, greedy emit)</span></td><td>0.1078<br><span class='small muted'>[0.0908, 0.1266]</span></td><td>0.1147<br><span class='small muted'>[0.0935, 0.1381]</span></td><td><b>0.1113</b><br><span class='small muted'>[0.0969, 0.1253]</span></td><td>+0.0360 [+0.0281, +0.0442]</td><td>+0.0617 [+0.0513, +0.0717]</td></tr><tr><td><b>HSL_lidar12</b><br><span class='small muted'>HSL_lidar12: +13 new 12-band 1 m lidar dipole/facing/coherence ch (67 ch, greedy emit)</span></td><td>0.1108<br><span class='small muted'>[0.0933, 0.1280]</span></td><td>0.1170<br><span class='small muted'>[0.0955, 0.1405]</span></td><td><b>0.1139</b><br><span class='small muted'>[0.0993, 0.1282]</span></td><td>+0.0334 [+0.0261, +0.0415]</td><td>+0.0590 [+0.0497, +0.0685]</td></tr><tr><td><b>HSL_nolabel</b><br><span class='small muted'>HSL_nolabel: +shallow mag + GDR 1391 thermal/density (77 ch label-free, greedy emit)</span></td><td>0.1077<br><span class='small muted'>[0.0924, 0.1257]</span></td><td>0.1139<br><span class='small muted'>[0.0924, 0.1353]</span></td><td><b>0.1108</b><br><span class='small muted'>[0.0974, 0.1240]</span></td><td>+0.0365 [+0.0294, +0.0436]</td><td>+0.0621 [+0.0530, +0.0711]</td></tr><tr><td><b>HSL_lidar12_submod</b><br><span class='small muted'>HSL_lidar12_submod: 67 ch label-free + Bayes submodular 300 m kernel emit</span></td><td>0.1144<br><span class='small muted'>[0.0978, 0.1310]</span></td><td>0.1218<br><span class='small muted'>[0.1031, 0.1417]</span></td><td><b>0.1181</b><br><span class='small muted'>[0.1052, 0.1303]</span></td><td>+0.0292 [+0.0235, +0.0350]</td><td>+0.0548 [+0.0472, +0.0623]</td></tr><tr><td><b>HSL_nolabel_submod</b><br><span class='small muted'>HSL_nolabel_submod: 77 ch label-free + Bayes submodular 300 m kernel emit</span></td><td>0.1177<br><span class='small muted'>[0.1016, 0.1336]</span></td><td>0.1218<br><span class='small muted'>[0.1025, 0.1422]</span></td><td><b>0.1197</b><br><span class='small muted'>[0.1075, 0.1319]</span></td><td>+0.0276 [+0.0220, +0.0328]</td><td>+0.0532 [+0.0448, +0.0606]</td></tr><tr><td><b>HSL_stratified_submod</b><br><span class='small muted'>HSL_stratified_submod: 62% structural + 38% off-corridor physical (emitted architecture)</span></td><td>0.1466<br><span class='small muted'>[0.1328, 0.1620]</span></td><td>0.1480<br><span class='small muted'>[0.1300, 0.1652]</span></td><td><b>0.1473</b><br><span class='small muted'>[0.1359, 0.1588]</span></td><td>Reference</td><td>+0.0256 [+0.0206, +0.0303]</td></tr><tr><td><b>HSL_structural</b><br><span class='small muted'>HSL_structural: 84 ch (+7 fold-visible continuation ch, greedy emit)</span></td><td>0.1616<br><span class='small muted'>[0.1447, 0.1795]</span></td><td>0.1592<br><span class='small muted'>[0.1389, 0.1779]</span></td><td><b>0.1604</b><br><span class='small muted'>[0.1475, 0.1735]</span></td><td>-0.0131 [-0.0192, -0.0068]</td><td>+0.0125 [+0.0082, +0.0172]</td></tr><tr><td><b>HSL_structural_submod</b><br><span class='small muted'>HSL_structural_submod: 84 ch + Bayes submodular 300 m kernel emit</span></td><td>0.1723<br><span class='small muted'>[0.1560, 0.1882]</span></td><td>0.1735<br><span class='small muted'>[0.1547, 0.1908]</span></td><td><b>0.1729</b><br><span class='small muted'>[0.1610, 0.1848]</span></td><td>-0.0256 [-0.0303, -0.0206]</td><td>Reference</td></tr>
+</table>
+
+<h2>4. Leakage Canary &amp; Uniqueness Audit Across All 808 Readable Registry Rasters</h2>
+<ul>
+<li><b>Single-Feature Leakage Canary (<code>evidence/hsl_holdout_exp1.json</code>):</b> All 84 channels tested individually on the Seed-30 holdout before model training. Maximum symmetric AUC across all 84 channels = <b>0.7982 ≤ 0.90</b> (<code>vis_logdist</code>, computed strictly from fold-visible faults). Maximum symmetric AUC across all 77 label-free channels = <b>0.7186 ≤ 0.90</b> (<code>frontness</code>). <b>0 channels exceed 0.90 (PASS).</b></li>
+<li><b>Phase 1 Surface Rank-Correlation Gate:</b> Max <code>|Spearman ρ| = 0.6945 ≤ 0.90</code> across all 765 informative registry rasters (<code>0.8326 ≤ 0.90</code> vs <code>dense_witness.tif</code>; <code>0.0656 ≤ 0.90</code> vs <code>h33.tif</code>).</li>
+<li><b>Phase 2 Final Dots Uniqueness Gate:</b> Across all <b>765 informative discrete/sparse registry rasters</b> (<code>positives ≤ 123,258</code>) and sibling GEMSDOE77 lanes, maximum 1-way 3-px dot overlap is <b>0.6550 ≤ 0.70</b>, maximum 2-way mutual overlap is <b>0.5307 ≤ 0.70</b>, and maximum <code>|Spearman ρ|</code> on dots is <b>0.0751 ≤ 0.90</b>.</li>
+</ul>
+<table>
+<tr><th>Informative Registry Raster (Top 10 Highest 1-Way Overlaps out of 765)</th><th>Nonzero Pixels</th><th>3-px Halo Fraction</th><th>Cand in Reg ≤3px (≤0.70)</th><th>Reg in Cand ≤3px</th><th>Mutual Min ≤3px</th><th>|ρ| Surface (≤0.90)</th><th>|ρ| Dots (≤0.90)</th></tr>
+<tr><td><code>354:GEMSDOE67/gemsdoe67-ovtr-ml-cover-tau3p0-20261012-nan.tif</code></td><td>167,597</td><td>0.5486</td><td><b>0.6550</b></td><td>0.2210</td><td>0.2210</td><td>0.1046</td><td>0.0088</td></tr><tr><td><code>355:GEMSDOE67/gemsdoe67-ovtr-ml-cover-tau3p0-20261012-zero.tif</code></td><td>167,597</td><td>0.5486</td><td><b>0.6550</b></td><td>0.2210</td><td>0.2210</td><td>0.1046</td><td>0.0088</td></tr><tr><td><code>749:GEMSDOE22/gems22-h23-b-dti-optimal-emission-10pct-20261002-86176698-allfinite.tif</code></td><td>516,738</td><td>0.5347</td><td><b>0.6550</b></td><td>0.2598</td><td>0.2598</td><td>0.2289</td><td>0.0400</td></tr><tr><td><code>750:GEMSDOE22/gems22-h23-b-dti-optimal-emission-10pct-20261002-86176698-nan.tif</code></td><td>516,738</td><td>0.5347</td><td><b>0.6550</b></td><td>0.2598</td><td>0.2598</td><td>0.2289</td><td>0.0400</td></tr><tr><td><code>768:13GEMSDOE/13gems-r6-ensemble-20260929T182914Z.tif</code></td><td>344,041</td><td>0.6459</td><td><b>0.6550</b></td><td>0.2040</td><td>0.2040</td><td>0.1496</td><td>0.0006</td></tr><tr><td><code>769:13GEMSDOE/13gems-r6-ensemble-20260929T182914Z_allfinite.tif</code></td><td>344,041</td><td>0.6459</td><td><b>0.6550</b></td><td>0.2040</td><td>0.2040</td><td>0.1496</td><td>0.0006</td></tr><tr><td><code>772:13GEMSDOE/13gems-toporef-holdoutref.tif</code></td><td>246,469</td><td>0.6797</td><td><b>0.6550</b></td><td>0.1378</td><td>0.1378</td><td>0.0799</td><td>0.0070</td></tr><tr><td><code>773:13GEMSDOE/13gems-toporef-holdoutref_allfinite.tif</code></td><td>246,469</td><td>0.6797</td><td><b>0.6550</b></td><td>0.1378</td><td>0.1378</td><td>0.0799</td><td>0.0070</td></tr><tr><td><code>787:7GEMSDOE/gems7-halo15-gbt-v1-90fb7dc0fc1f.tif</code></td><td>1,828,699</td><td>0.4094</td><td><b>0.6550</b></td><td>0.2865</td><td>0.2865</td><td>0.6945</td><td>0.0541</td></tr><tr><td><code>794:GEMSDOE3/coverage-v3-wide-20260925T054019Z-0ac095a7ed.tif</code></td><td>624,025</td><td>0.6142</td><td><b>0.6550</b></td><td>0.1992</td><td>0.1992</td><td>0.1644</td><td>0.0164</td></tr>
+</table>
+
+<h2>5. JSON Run Card (<code>evidence/run_card_hsl.json</code>)</h2>
+<pre>{
+  &quot;schema&quot;: &quot;gemsdoe77-run-card-v2&quot;,
+  &quot;lane&quot;: &quot;H77-HSL&quot;,
+  &quot;preregistration_id&quot;: &quot;GEMSDOE77-PREREG-HSL-1&quot;,
+  &quot;generated_utc&quot;: &quot;2026-10-21T06:20:58Z&quot;,
+  &quot;hypothesis&quot;: &quot;H77-HSL-1 + H77-HSL-2 + H77-HSL-3 + H77-HSL-5: Joint 12-Band 1 m Lidar Scarp Dipole/Facing/Strike Coherence + Shallow Residual Magnetic Boundary Gradient &amp; Hydrothermal Demagnetization + INGENIOUS GDR 1391 Temperature/Density/Geochemistry + Azimuthal Visible-Fault Relay Continuation with Bayes-Calibrated Submodular 300 m Triangular-Kernel Coverage Emission.&quot;,
+  &quot;mechanism&quot;: &quot;Unmapped Basin and Range geothermal faults combine (1) sharp 1 m lidar micro-scarp crest-toe curvature dipoles, oriented scarp-facing polarity, and strike coherence where thin eolian/playa veneers obscure 100 m DEM slopes; (2) short-wavelength residual magnetic vertical-derivative boundary gradients and localized hydrothermal magnetite-destruction troughs along fluid-conducting structural relays; (3) excess 200 m temperature anomalies and fault-intersection / dilation-tendency density from INGENIOUS GDR 1391; and (4) along-strike relay continuation from mapped fault tips. Replacing greedy top-K pixel emission with lazy submodular 300 m triangular-kernel coverage on Bayes-calibrated probabilities eliminates redundant halo overlap, and two-pool uniqueness-budgeted emission (62% structural relay + 38% off-corridor physical discovery) enforces &lt;= 0.70 3-px dot overlap against every informative registry submission.&quot;,
+  &quot;named_non_fault_mimic&quot;: &quot;Pleistocene Lake Lahontan wave-cut shorelines, fluvial terrace risers, highway/canal embankments (1 m lidar scarp mimics), primary basaltic flow margins / unaltered pluton edges (magnetic mimics), and conductive basin-center thermal blankets (temperature mimics). Suppressed via crest-toe dipole asymmetry, multi-scale strike coherence, geophysical co-registration across gravity/magnetic/lithology channels, and 3-px distance-buffer exclusion around mapped faults.&quot;,
+  &quot;evidence_class&quot;: &quot;HOLDOUT-DTI&quot;,
+  &quot;evaluator_version&quot;: &quot;gems57-pooled-hide-v2&quot;,
+  &quot;holdout_dti&quot;: {
+    &quot;evidence_class&quot;: &quot;HOLDOUT-DTI&quot;,
+    &quot;evaluator_version&quot;: &quot;gems57-pooled-hide-v2&quot;,
+    &quot;alpha&quot;: 0.2,
+    &quot;beta&quot;: 0.8,
+    &quot;kernel_radius_m&quot;: 300.0,
+    &quot;bootstrap_draws&quot;: 1000,
+    &quot;bootstrap_block_km&quot;: 20.0,
+    &quot;primary_emitted_architecture_HSL_stratified_submod&quot;: {
+      &quot;description&quot;: &quot;Two-pool uniqueness-budgeted emitter (62% HSL_structural_submod + 38% off-corridor HSL_nolabel_submod, B=37,654, E=2 px)&quot;,
+      &quot;seed30_11342_withheld_positives&quot;: {
+        &quot;dti&quot;: 0.1466,
+        &quot;ci95&quot;: [
+          0.1304,
+          0.1636
+        ],
+        &quot;withheld_positive_pixels&quot;: 11342
+      },
+      &quot;seed21_11572_withheld_positives&quot;: {
+        &quot;dti&quot;: 0.148,
+        &quot;ci95&quot;: [
+          0.1319,
+          0.1639
+        ],
+        &quot;withheld_positive_pixels&quot;: 11572
+      },
+      &quot;two_draw_pooled_22914_withheld_positives&quot;: {
+        &quot;dti&quot;: 0.1473,
+        &quot;ci95&quot;: [
+          0.1359,
+          0.1588
+        ],
+        &quot;withheld_positive_pixels&quot;: 22914,
+        &quot;paired_delta_vs_C0_random&quot;: {
+          &quot;delta&quot;: 0.0986,
+          &quot;ci95&quot;: [
+            0.0873,
+            0.1097
+          ]
+        },
+        &quot;paired_delta_vs_C1_champion_vis&quot;: {
+          &quot;delta&quot;: 0.108,
+          &quot;ci95&quot;: [
+            0.0957,
+            0.1205
+          ]
+        },
+        &quot;paired_delta_vs_C2_standard&quot;: {
+          &quot;delta&quot;: 0.0447,
+          &quot;ci95&quot;: [
+            0.0363,
+            0.0536
+          ]
+        },
+        &quot;paired_delta_vs_C3_contactphys&quot;: {
+          &quot;delta&quot;: 0.0393,
+          &quot;ci95&quot;: [
+            0.0304,
+            0.049
+          ]
+        },
+        &quot;paired_delta_vs_C4_contactphys_lidar5&quot;: {
+          &quot;delta&quot;: 0.036,
+          &quot;ci95&quot;: [
+            0.0281,
+            0.0442
+          ]
+        },
+        &quot;paired_delta_vs_HSL_nolabel_submod&quot;: {
+          &quot;delta&quot;: 0.0276,
+          &quot;ci95&quot;: [
+            0.022,
+            0.0328
+          ]
+        }
+      }
+    },
+    &quot;full_structural_submodular_HSL_structural_submod&quot;: {
+      &quot;description&quot;: &quot;84-channel structural + physical model with Bayes-calibrated submodular 300 m coverage emitter (B=37,654, E=2 px)&quot;,
+      &quot;seed30_11342_withheld_positives&quot;: {
+        &quot;dti&quot;: 0.1723,
+        &quot;ci95&quot;: [
+          0.1558,
+          0.1893
+        ],
+        &quot;withheld_positive_pixels&quot;: 11342
+      },
+      &quot;seed21_11572_withheld_positives&quot;: {
+        &quot;dti&quot;: 0.1735,
+        &quot;ci95&quot;: [
+          0.1566,
+          0.1904
+        ],
+        &quot;withheld_positive_pixels&quot;: 11572
+      },
+      &quot;two_draw_pooled_22914_withheld_positives&quot;: {
+        &quot;dti&quot;: 0.1729,
+        &quot;ci95&quot;: [
+          0.161,
+          0.1848
+        ],
+        &quot;withheld_positive_pixels&quot;: 22914,
+        &quot;paired_delta_vs_C0_random&quot;: {
+          &quot;delta&quot;: 0.1242,
+          &quot;ci95&quot;: [
+            0.1119,
+            0.1357
+          ]
+        },
+        &quot;paired_delta_vs_C1_champion_vis&quot;: {
+          &quot;delta&quot;: 0.1336,
+          &quot;ci95&quot;: [
+            0.1206,
+            0.1464
+          ]
+        },
+        &quot;paired_delta_vs_C2_standard&quot;: {
+          &quot;delta&quot;: 0.0703,
+          &quot;ci95&quot;: [
+            0.0606,
+            0.0796
+          ]
+        },
+        &quot;paired_delta_vs_C3_contactphys&quot;: {
+          &quot;delta&quot;: 0.0649,
+          &quot;ci95&quot;: [
+            0.054,
+            0.0758
+          ]
+        },
+        &quot;paired_delta_vs_C4_contactphys_lidar5&quot;: {
+          &quot;delta&quot;: 0.0617,
+          &quot;ci95&quot;: [
+            0.0513,
+            0.0717
+          ]
+        },
+        &quot;paired_delta_vs_HSL_structural_std_emit&quot;: {
+          &quot;delta&quot;: 0.0125,
+          &quot;ci95&quot;: [
+            0.0082,
+            0.0172
+          ]
+        }
+      }
+    },
+    &quot;label_free_physical_discovery_HSL_nolabel_submod&quot;: {
+      &quot;description&quot;: &quot;77-channel 100% label-free physical/lidar/magnetic/GDR-1391 model with Bayes-calibrated submodular 300 m coverage emitter (zero visible-fault distance/continuation features)&quot;,
+      &quot;seed30_11342_withheld_positives&quot;: {
+        &quot;dti&quot;: 0.1177,
+        &quot;ci95&quot;: [
+          0.0998,
+          0.1363
+        ],
+        &quot;withheld_positive_pixels&quot;: 11342
+      },
+      &quot;seed21_11572_withheld_positives&quot;: {
+        &quot;dti&quot;: 0.1218,
+        &quot;ci95&quot;: [
+          0.1046,
+          0.138
+        ],
+        &quot;withheld_positive_pixels&quot;: 11572
+      },
+      &quot;two_draw_pooled_22914_withheld_positives&quot;: {
+        &quot;dti&quot;: 0.1197,
+        &quot;ci95&quot;: [
+          0.1075,
+          0.1319
+        ],
+        &quot;withheld_positive_pixels&quot;: 22914,
+        &quot;paired_delta_vs_C0_random&quot;: {
+          &quot;delta&quot;: 0.071,
+          &quot;ci95&quot;: [
+            0.0589,
+            0.0827
+          ]
+        },
+        &quot;paired_delta_vs_C1_champion_vis&quot;: {
+          &quot;delta&quot;: 0.0804,
+          &quot;ci95&quot;: [
+            0.067,
+            0.0946
+          ]
+        },
+        &quot;paired_delta_vs_C2_standard&quot;: {
+          &quot;delta&quot;: 0.0172,
+          &quot;ci95&quot;: [
+            0.01,
+            0.0241
+          ]
+        },
+        &quot;paired_delta_vs_C3_contactphys&quot;: {
+          &quot;delta&quot;: 0.0117,
+          &quot;ci95&quot;: [
+            0.0042,
+            0.0194
+          ]
+        },
+        &quot;paired_delta_vs_C4_contactphys_lidar5&quot;: {
+          &quot;delta&quot;: 0.0085,
+          &quot;ci95&quot;: [
+            0.0019,
+            0.0149
+          ]
+        },
+        &quot;paired_delta_vs_HSL_nolabel_std_emit&quot;: {
+          &quot;delta&quot;: 0.0089,
+          &quot;ci95&quot;: [
+            0.0053,
+            0.0126
+          ]
+        }
+      }
+    },
+    &quot;label_free_12band_lidar_HSL_lidar12_submod&quot;: {
+      &quot;description&quot;: &quot;67-channel 100% label-free model (33 std + 16 contact + 5 old lidar + 13 new 12-band 1 m lidar dipole/facing/coherence channels) with Bayes-calibrated submodular emitter&quot;,
+      &quot;seed30_11342_withheld_positives&quot;: {
+        &quot;dti&quot;: 0.1144,
+        &quot;ci95&quot;: [
+          0.097,
+          0.1322
+        ],
+        &quot;withheld_positive_pixels&quot;: 11342
+      },
+      &quot;seed21_11572_withheld_positives&quot;: {
+        &quot;dti&quot;: 0.1218,
+        &quot;ci95&quot;: [
+          0.1045,
+          0.1385
+        ],
+        &quot;withheld_positive_pixels&quot;: 11572
+      },
+      &quot;two_draw_pooled_22914_withheld_positives&quot;: {
+        &quot;dti&quot;: 0.1181,
+        &quot;ci95&quot;: [
+          0.1052,
+          0.1303
+        ],
+        &quot;withheld_positive_pixels&quot;: 22914
+      }
+    },
+    &quot;baselines_two_draw_pooled_22914_withheld_positives&quot;: {
+      &quot;C0_random&quot;: {
+        &quot;dti&quot;: 0.0487,
+        &quot;ci95&quot;: [
+          0.0446,
+          0.0531
+        ]
+      },
+      &quot;C1_champion_vis&quot;: {
+        &quot;dti&quot;: 0.0393,
+        &quot;ci95&quot;: [
+          0.0332,
+          0.0455
+        ]
+      },
+      &quot;C2_standard&quot;: {
+        &quot;dti&quot;: 0.1026,
+        &quot;ci95&quot;: [
+          0.0881,
+          0.1173
+        ]
+      },
+      &quot;C3_contactphys&quot;: {
+        &quot;dti&quot;: 0.108,
+        &quot;ci95&quot;: [
+          0.0931,
+          0.122
+        ]
+      },
+      &quot;C4_contactphys_lidar5&quot;: {
+        &quot;dti&quot;: 0.1113,
+        &quot;ci95&quot;: [
+          0.0969,
+          0.1253
+        ]
+      }
+    }
+  },
+  &quot;leakage_canary&quot;: {
+    &quot;threshold_symmetric_auc&quot;: 0.9,
+    &quot;channels_tested&quot;: 84,
+    &quot;max_symmetric_auc_all_84_channels&quot;: 0.7982,
+    &quot;max_symmetric_auc_channel&quot;: &quot;vis_logdist&quot;,
+    &quot;max_symmetric_auc_77_labelfree_channels&quot;: 0.7186,
+    &quot;max_symmetric_auc_labelfree_channel&quot;: &quot;frontness&quot;,
+    &quot;channels_above_0_90&quot;: [],
+    &quot;passed&quot;: true
+  },
+  &quot;correlation_overlap_vs_registry&quot;: {
+    &quot;registry_rasters_scanned&quot;: 808,
+    &quot;informative_registry_rasters&quot;: 765,
+    &quot;space_filling_registry_rasters_excluded&quot;: 43,
+    &quot;unreadable_corrupt_registry_rasters&quot;: 4,
+    &quot;phase1_surface_vs_dense_witness_spearman&quot;: 0.8326,
+    &quot;phase1_surface_vs_h33_spearman&quot;: 0.0656,
+    &quot;phase1_surface_max_informative_abs_spearman&quot;: 0.6945,
+    &quot;phase1_surface_max_informative_id&quot;: &quot;787:7GEMSDOE/gems7-halo15-gbt-v1-90fb7dc0fc1f.tif&quot;,
+    &quot;phase2_dots_vs_dense_witness_spearman&quot;: 0.0785,
+    &quot;phase2_dots_vs_h33_spearman&quot;: 0.0164,
+    &quot;phase2_dots_within_3px_of_h33&quot;: 0.3075,
+    &quot;phase2_h33_within_3px_of_dots&quot;: 0.3462,
+    &quot;phase2_max_informative_1way_overlap_3px&quot;: 0.655,
+    &quot;phase2_max_informative_1way_overlap_id&quot;: &quot;354:GEMSDOE67/gemsdoe67-ovtr-ml-cover-tau3p0-20261012-nan.tif&quot;,
+    &quot;phase2_max_informative_mutual_overlap_3px&quot;: 0.5307,
+    &quot;phase2_max_informative_mutual_overlap_id&quot;: &quot;784:GEMSDOE10/gems10-h16-continuation-20260927T065521077735Z-3431b83c7c.tif&quot;,
+    &quot;phase2_max_informative_abs_spearman_dots&quot;: 0.0751,
+    &quot;sibling_lanes&quot;: {
+      &quot;contactphys_ca70a971_cand_in_sib_3px&quot;: 0.542,
+      &quot;contactphys_ca70a971_sib_in_cand_3px&quot;: 0.6911,
+      &quot;lia_aa5c9331_cand_in_sib_3px&quot;: 0.2392,
+      &quot;lia_aa5c9331_sib_in_cand_3px&quot;: 0.2045
+    },
+    &quot;informative_765_uniqueness_gate_passed&quot;: true,
+    &quot;literal_808_space_filling_overlap_3px&quot;: 1.0,
+    &quot;literal_808_space_filling_note&quot;: &quot;IR-77-01 / IR-77-08: 43 registry rasters are continuous probability surfaces covering 72.1% to 100.0% of the footprint (e.g. GEMSDOE48-unassigned-mass-20261006.tif with 5,107,358 nonzero pixels), which trivially cover 100% of any non-empty submission. Across all 765 informative discrete/sparse rasters (&lt;= 123,258 positives), max 1-way 3-px dot overlap is 0.6550 &lt;= 0.70 and max |Spearman rho| is 0.6945 &lt;= 0.90.&quot;
+  },
+  &quot;file&quot;: &quot;docs/downloads/gems77-hsl-37654dots-20261021T052500Z-7b13aa7e-zeros.tif&quot;,
+  &quot;zip_file&quot;: &quot;docs/downloads/gems77-hsl-37654dots-20261021T052500Z-7b13aa7e-zeros.zip&quot;,
+  &quot;raster_sha256&quot;: &quot;31c123237c6301faf0aa2b7ddec7e13727832f423c89b4352ef51d3ed28d45e0&quot;,
+  &quot;zip_sha256&quot;: &quot;00a9a8398b4c9f50467c57648f43b821b23b19e8e5c07d2a06917bde4b46f5ac&quot;,
+  &quot;raw_float32_sha256_prefix&quot;: &quot;7b13aa7e&quot;,
+  &quot;tif_bytes&quot;: 144194,
+  &quot;zip_bytes&quot;: 110447,
+  &quot;emitted_dots&quot;: 37654,
+  &quot;footprint_fraction&quot;: 0.007286874781441169,
+  &quot;validator&quot;: {
+    &quot;portal_17_checks_passed&quot;: true,
+    &quot;n_pass&quot;: 17,
+    &quot;n_checks&quot;: 17,
+    &quot;zip_single_geotiff_identical&quot;: true,
+    &quot;crs&quot;: &quot;EPSG:32611&quot;,
+    &quot;shape&quot;: [
+      3730,
+      3292
+    ],
+    &quot;dtype&quot;: &quot;float32&quot;,
+    &quot;nodata&quot;: null,
+    &quot;min&quot;: 0.0,
+    &quot;max&quot;: 1.0,
+    &quot;nan_count&quot;: 0,
+    &quot;inf_count&quot;: 0,
+    &quot;outside_footprint_nonzero&quot;: 0,
+    &quot;on_catalogue_nonzero&quot;: 0
+  },
+  &quot;submission_name&quot;: &quot;gems77-hsl-37654dots-20261021T052500Z-7b13aa7e-zeros&quot;,
+  &quot;note&quot;: &quot;GEMSDOE77 H77-HSL: 12b 1m lidar dipole/strike+shallow mag+GDR1391+vis-continuation, Bayes-submod 37654 dots, holdout 0.1729/0.1473&quot;,
+  &quot;note_chars&quot;: 130,
+  &quot;verdict&quot;: &quot;promote&quot;,
+  &quot;ok_to_download&quot;: true,
+  &quot;ok_to_submit_after_selector_signoff&quot;: true,
+  &quot;weekly_slots_used&quot;: 0,
+  &quot;organizer_confirmed_score&quot;: null,
+  &quot;selector_rule6_note&quot;: &quot;Under Parallel-Run Protocol Rule 6, promotion to a real weekly competition slot is a separate human selector step (weekly_slots_used=0).&quot;
+}</pre>
+</div></main>
+<footer><div class="wrap">Under Parallel-Run Protocol Rule 6, promotion to a real weekly slot is a separate human selector step (weekly_slots_used = 0; automatic weekly-slot consumption is not approved without human selector sign-off). Generated by <code>scripts/hsl_build_site.py</code> from <code>evidence/run_card_hsl.json</code>, <code>evidence/hsl_holdout_exp1.json</code>, <code>evidence/hsl_holdout_exp2_replication.json</code>, and <code>evidence/hsl_exp3_submission.json</code>. Labels: <b>ORGANIZER-CONFIRMED</b> (public leaderboard receipt), <b>OWNER-REPORT</b> (transcribed from submission receipt), <b>HOLDOUT-DTI</b> (local hide-and-recover evaluator <code>gems57-pooled-hide-v2</code>).</div></footer>
+<script>document.querySelectorAll('button[data-copy]').forEach(b=>b.onclick=()=>{navigator.clipboard.writeText(b.dataset.copy);b.textContent='Copied';setTimeout(()=>b.textContent='Copy',1200)})</script>
+</body></html>

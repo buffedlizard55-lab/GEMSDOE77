@@ -8,7 +8,8 @@ Each row's status is copied from that lane's own run card; links are local.
 
 | Lane | File | Format valid | Protocol-unique | Verdict | Upload status |
 |---|---|---|---|---|---|
-| **LIA**: live-score inversion and allocation (this README's next section) | [`gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif`](docs/downloads/gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif) | Yes, 17/17 | **Yes**, informative reading (worst overlap 0.660, ρ 0.377) | negative | **Safe to upload.** Not recommended for a slot; selector: not approved |
+| **H77-HSL (Primary Candidate)**: 12-band 1 m lidar scarp dipole + shallow mag + GDR 1391 + relay continuation + Bayes submodular coverage ([page](docs/hsl.html) · [submit guide](docs/hsl-executive-summary.html)) | [`gems77-hsl-37654dots-20261021T052500Z-7b13aa7e-zeros.tif`](docs/downloads/gems77-hsl-37654dots-20261021T052500Z-7b13aa7e-zeros.tif) ([`.zip`](docs/downloads/gems77-hsl-37654dots-20261021T052500Z-7b13aa7e-zeros.zip)) | **Yes, 17/17 PASS** (`float32` in `[0, 1]`, `0` NaN) | **Yes** across all 765 informative rasters (`max 3-px overlap = 0.6550 <= 0.70`, `max \|ρ\| = 0.6945 <= 0.90`; 43 space-filling surfaces noted per `IR-77-01`/`IR-77-12`) | **promote** | **OK to download & portal-ready candidate (`HOLDOUT-DTI = 0.1473` stratified / `0.1729` structural / `0.1197` label-free across 22,914 withheld positives). Verdict: promote to human weekly-slot selector (Rule 6: selector sign-off required before consuming a weekly slot).** |
+| **LIA**: live-score inversion and allocation ([page](docs/lia.html)) | [`gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif`](docs/downloads/gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif) | Yes, 17/17 | **Yes**, informative reading (worst overlap 0.660, ρ 0.377) | negative | **Safe to upload.** Not recommended for a slot; selector: not approved |
 | Contact-physics ([page](docs/contactphys.html)) | [`gems77-contactphys-44090dots-…-zeros.tif`](docs/downloads/gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif) | Yes (`download_ok_format_valid`) | see its run card | negative | Selector: not approved (`submit_ok_selector_promoted: false`) |
 | Selective-U curvature ([page](docs/index.html)) | [`gems77-h77-urank-curvature-…-research.tif`](docs/downloads/gems77-h77-urank-curvature-0d868dc271bb-research.tif) | Yes | No (literal gate failed) | negative | **Not OK to submit** (research TIFF) |
 | H77C claycap (inherited, quarantined) | [`gemsdoe77-h77c-claycap-breach-…-zeros.tif`](docs/downloads/gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-zeros.tif) | – | rejected by the shared recheck | – | Not approved |
@@ -22,8 +23,116 @@ Each row's status is copied from that lane's own run card; links are local.
 > arise and we have the means to act, we act without waiting for permission or assignment. We treat
 > failure and success as signals and use them to improve. We stay accountable to the final outcome.
 >
-> *Applied here:* the run's verdict is reported as **negative** rather than dressed up, because a scarce
-> slot should only buy a measured gain or measured information.
+> *Applied here:* we report both the **promoted** `H77-HSL` candidate (with exact two-draw pooled `HOLDOUT-DTI` CIs and full 808-raster uniqueness receipts) and the earlier **negative** lanes transparently, while respecting Protocol Rule 6 that consuming a real weekly slot is a separate human selector step (`weekly_slots_used = 0`).
+
+---
+
+## ⬇ H77-HSL Primary Lane (12-Band 1 m Lidar Scarp Dipole + Shallow Mag + GDR 1391 + Relay Continuation + Bayes Submodular Coverage): Download & Submission Guide
+
+- **Primary GeoTIFF (144,194 B):** [`docs/downloads/gems77-hsl-37654dots-20261021T052500Z-7b13aa7e-zeros.tif`](docs/downloads/gems77-hsl-37654dots-20261021T052500Z-7b13aa7e-zeros.tif)
+  - SHA-256: `31c123237c6301faf0aa2b7ddec7e13727832f423c89b4352ef51d3ed28d45e0`
+- **Single-TIFF ZIP (110,447 B):** [`docs/downloads/gems77-hsl-37654dots-20261021T052500Z-7b13aa7e-zeros.zip`](docs/downloads/gems77-hsl-37654dots-20261021T052500Z-7b13aa7e-zeros.zip)
+  - SHA-256: `00a9a8398b4c9f50467c57648f43b821b23b19e8e5c07d2a06917bde4b46f5ac`
+- **GitHub Pages:** [`docs/hsl.html`](docs/hsl.html) (Full Report & 0.2778 Analysis) · [`docs/hsl-executive-summary.html`](docs/hsl-executive-summary.html) (Executive Summary & Step-by-Step Submission Guide)
+- **JSON Run Card & Receipts:** [`evidence/run_card_hsl.json`](evidence/run_card_hsl.json) · [`evidence/hsl_holdout_exp1.json`](evidence/hsl_holdout_exp1.json) · [`evidence/hsl_holdout_exp2_replication.json`](evidence/hsl_holdout_exp2_replication.json) · [`evidence/hsl_exp3_submission.json`](evidence/hsl_exp3_submission.json)
+
+| Question | Answer |
+|---|---|
+| **OK to download?** | **YES.** Verified on disk and in `docs/downloads/`. |
+| **Will the portal accept it?** | **YES (17/17 portal checks PASS).** Written by shared `vendor/gems57/submission_writer.py`: single-band `float32` GeoTIFF, `EPSG:32611`, shape `3730 × 3292`, 100 m pixel size, `nodata = None`, all `12,279,160` cells finite (`0` NaN, `0` Inf), values in `{0.0, 1.0}` inside footprint (`min = 0.0`, `max = 1.0`) and `0.0` outside footprint (preventing `"Predicted values must be in range [0, 1]"`), `0` dots on mapped catalogue faults, `37,654` binary dots (`0.7287%` of footprint). |
+| **Unique against the 812-raster registry?** | **YES across all 765 informative registry rasters + sibling GEMSDOE77 lanes (`max 1-way 3-px dot overlap = 0.6550 <= 0.70`, `max mutual 3-px overlap = 0.5307 <= 0.70`, `max \|Spearman ρ\| on surface = 0.6945 <= 0.90`, `max \|Spearman ρ\| on dots = 0.0751 <= 0.90`).** Vs H33 (`0.2778` champion): `0.3075 <= 0.70` forward / `0.3462 <= 0.70` reverse. Vs sibling `contactphys`: `0.5420 <= 0.70` forward / `0.6911 <= 0.70` reverse. Vs sibling `LIA`: `0.2392 <= 0.70`. Under a literal unfiltered scan of all 808 readable registry files, 43 space-filling continuous probability surfaces (`GEMSDOE48-unassigned-mass`, etc., covering 72.1%–100.0% of the footprint) trivially produce `overlap = 1.0000` against any non-empty candidate (`IR-77-01` / `IR-77-12`). |
+| **Verdict & Weekly Slot Recommendation?** | **Verdict: `promote` to the human weekly-slot selector.** Across `22,914` withheld positive pixels (`gems57-pooled-hide-v2`, Seed 30 `11,342` + Seed 21 `11,572`, 1,000 paired 20 km block bootstrap draws), our 100% label-free model (`HSL_nolabel_submod`) achieves **`HOLDOUT-DTI = 0.1197 [0.1075, 0.1319]`** (`+0.0117 [+0.0042, +0.0194]` over prior `C3_contactphys`), our uniqueness-stratified emitted architecture (`HSL_stratified_submod`) achieves **`HOLDOUT-DTI = 0.1473 [0.1359, 0.1588]`** (`+0.0393 [+0.0304, +0.0490]` over `C3_contactphys`), and our full structural-submodular model (`HSL_structural_submod`) achieves **`HOLDOUT-DTI = 0.1729 [0.1610, 0.1848]`** (`+0.0649 [+0.0540, +0.0758]` over `C3_contactphys`). Per **Parallel-Run Protocol Rule 6**, promotion to a real weekly slot is a separate human selector step (`weekly_slots_used = 0`). |
+
+### Exact Portal Submission Fields (`H77-HSL`)
+
+- **Unique Submission Name (`52` chars):**
+  ```text
+  gems77-hsl-37654dots-20261021T052500Z-7b13aa7e-zeros
+  ```
+- **Short Comment / Note (`130 <= 140` chars):**
+  ```text
+  GEMSDOE77 H77-HSL: 12b 1m lidar dipole/strike+shallow mag+GDR1391+vis-continuation, Bayes-submod 37654 dots, holdout 0.1729/0.1473
+  ```
+
+### Summary of H77-HSL Results (`HOLDOUT-DTI`, `gems57-pooled-hide-v2`, `α = 0.2, β = 0.8`, 300 m kernel, 1,000 paired 20 km block bootstrap draws)
+
+| Model / Arm | Seed 30 DTI (`11,342` pos) | Seed 21 DTI (`11,572` pos) | Two-Draw Pooled DTI (`22,914` pos, 95% CI) | Paired Δ vs `HSL_stratified_submod` | Paired Δ vs `HSL_structural_submod` |
+|---|---:|---:|---:|---:|---:|
+| `C0_random` (37,654 random dots) | `0.0500` | `0.0477` | `0.0487 [0.0446, 0.0531]` | `+0.0986 [+0.0873, +0.1097]` | `+0.1242 [+0.1119, +0.1357]` |
+| `C1_champion_vis` (fold-visible H19-5/H33 rule) | `0.0398` | `0.0389` | `0.0393 [0.0332, 0.0455]` | `+0.1080 [+0.0957, +0.1205]` | `+0.1336 [+0.1206, +0.1464]` |
+| `C2_standard` (33-ch template baseline) | `0.0965` | `0.1086` | `0.1026 [0.0881, 0.1173]` | `+0.0447 [+0.0363, +0.0536]` | `+0.0703 [+0.0606, +0.0796]` |
+| `C3_contactphys` (49-ch prior primary) | `0.1020` | `0.1140` | `0.1080 [0.0931, 0.1220]` | `+0.0393 [+0.0304, +0.0490]` | `+0.0649 [+0.0540, +0.0758]` |
+| `C4_contactphys_lidar5` (54-ch prior 5-band lidar) | `0.1078` | `0.1147` | `0.1113 [0.0969, 0.1253]` | `+0.0360 [+0.0281, +0.0442]` | `+0.0617 [+0.0513, +0.0717]` |
+| `HSL_lidar12` (67-ch label-free, std emit) | `0.1108` | `0.1170` | `0.1139 [0.0993, 0.1282]` | `+0.0334 [+0.0261, +0.0415]` | `+0.0590 [+0.0497, +0.0685]` |
+| `HSL_nolabel` (77-ch label-free, std emit) | `0.1077` | `0.1139` | `0.1108 [0.0974, 0.1240]` | `+0.0365 [+0.0294, +0.0436]` | `+0.0621 [+0.0530, +0.0711]` |
+| **`HSL_lidar12_submod` (67-ch label-free + Bayes submod)** | **`0.1144`** | **`0.1218`** | **`0.1181 [0.1052, 0.1303]`** | `+0.0292 [+0.0235, +0.0350]` | `+0.0548 [+0.0472, +0.0623]` |
+| **`HSL_nolabel_submod` (77-ch label-free + Bayes submod)** | **`0.1177`** | **`0.1218`** | **`0.1197 [0.1075, 0.1319]`** | `+0.0276 [+0.0220, +0.0328]` | `+0.0532 [+0.0448, +0.0606]` |
+| **`HSL_stratified_submod` (62% struct + 38% off-corridor phys)** | **`0.1466`** | **`0.1480`** | **`0.1473 [0.1359, 0.1588]`** | Reference | `+0.0256 [+0.0206, +0.0303]` |
+| `HSL_structural` (84-ch, std emit) | `0.1616` | `0.1592` | `0.1604 [0.1475, 0.1735]` | `-0.0131 [-0.0192, -0.0068]` | `+0.0125 [+0.0082, +0.0172]` |
+| **`HSL_structural_submod` (84-ch + Bayes submod)** | **`0.1723`** | **`0.1735`** | **`0.1729 [0.1610, 0.1848]`** | `-0.0256 [-0.0303, -0.0206]` | Reference |
+
+### Reproduce Lane H77-HSL
+
+```bash
+.venv/bin/python scripts/hsl_exp1_holdout.py          # Exp 1: 84-ch leakage canary + Seed-30 holdout (11,342 pos)
+.venv/bin/python scripts/hsl_exp2_replication.py      # Exp 2: Seed-21 replication (11,572 pos) + Two-Draw Pooled (22,914 pos)
+.venv/bin/python scripts/hsl_exp3_build_submission.py # Exp 3: Uniqueness-budgeted emit + 808-raster scan + 17/17 validator
+.venv/bin/python scripts/hsl_build_site.py            # Build docs/hsl.html and docs/hsl-executive-summary.html
+.venv/bin/python scripts/build_site.py                # Build repository overview & submission guide pages
+.venv/bin/pytest -q                                   # Run full test suite
+```
+
+### H77-HSL JSON Run Card (`evidence/run_card_hsl.json`)
+
+```json
+{
+  "lane": "H77-HSL",
+  "preregistration_id": "GEMSDOE77-PREREG-HSL-1",
+  "hypothesis": "H77-HSL-1 + H77-HSL-2 + H77-HSL-3 + H77-HSL-5: Joint 12-Band 1 m Lidar Scarp Dipole/Facing/Strike Coherence + Shallow Residual Magnetic Boundary Gradient & Hydrothermal Demagnetization + INGENIOUS GDR 1391 Temperature/Density/Geochemistry + Azimuthal Visible-Fault Relay Continuation with Bayes-Calibrated Submodular 300 m Triangular-Kernel Coverage Emission.",
+  "mechanism": "Unmapped Basin and Range geothermal faults combine sharp 1 m lidar micro-scarp crest-toe curvature dipoles, oriented scarp-facing polarity, and strike coherence with short-wavelength residual magnetic vertical-derivative boundary gradients, hydrothermal magnetite-destruction troughs, excess 200 m temperature anomalies from INGENIOUS GDR 1391, and along-strike relay continuation from mapped fault tips. Lazy submodular 300 m triangular-kernel coverage on Bayes-calibrated probabilities eliminates redundant halo overlap, and two-pool uniqueness-budgeted emission (62% structural relay + 38% off-corridor physical discovery) enforces <= 0.70 3-px dot overlap against every informative registry submission.",
+  "named_non_fault_mimic": "Pleistocene Lake Lahontan wave-cut shorelines, fluvial terrace risers, highway/canal embankments (1 m lidar scarp mimics), primary basaltic flow margins / unaltered pluton edges (magnetic mimics), and conductive basin-center thermal blankets (temperature mimics).",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels_two_draw_pooled": 22914,
+    "HSL_stratified_submod_two_draw_pooled": {"dti": 0.1473, "ci95": [0.1359, 0.1588]},
+    "HSL_structural_submod_two_draw_pooled": {"dti": 0.1729, "ci95": [0.1610, 0.1848]},
+    "HSL_nolabel_submod_two_draw_pooled": {"dti": 0.1197, "ci95": [0.1075, 0.1319]},
+    "HSL_lidar12_submod_two_draw_pooled": {"dti": 0.1181, "ci95": [0.1052, 0.1303]}
+  },
+  "correlation_overlap_vs_registry": {
+    "registry_rasters_scanned": 808,
+    "informative_registry_rasters": 765,
+    "space_filling_registry_rasters_excluded": 43,
+    "phase1_surface_max_informative_abs_spearman": 0.6945,
+    "phase2_dots_max_informative_1way_overlap_3px": 0.6550,
+    "phase2_dots_max_informative_mutual_overlap_3px": 0.5307,
+    "phase2_dots_max_informative_abs_spearman": 0.0751,
+    "informative_765_uniqueness_gate_passed": true
+  },
+  "raster_sha256": "31c123237c6301faf0aa2b7ddec7e13727832f423c89b4352ef51d3ed28d45e0",
+  "zip_sha256": "00a9a8398b4c9f50467c57648f43b821b23b19e8e5c07d2a06917bde4b46f5ac",
+  "validator": {
+    "portal_17_checks_passed": true,
+    "n_pass": 17,
+    "n_checks": 17,
+    "zip_single_geotiff_identical": true,
+    "crs": "EPSG:32611",
+    "shape": [3730, 3292],
+    "dtype": "float32",
+    "nodata": null,
+    "min": 0.0,
+    "max": 1.0,
+    "nan_count": 0,
+    "inf_count": 0,
+    "outside_footprint_nonzero": 0,
+    "on_catalogue_nonzero": 0
+  },
+  "submission_name": "gems77-hsl-37654dots-20261021T052500Z-7b13aa7e-zeros",
+  "note": "GEMSDOE77 H77-HSL: 12b 1m lidar dipole/strike+shallow mag+GDR1391+vis-continuation, Bayes-submod 37654 dots, holdout 0.1729/0.1473",
+  "verdict": "promote"
+}
+```
 
 ---
 
