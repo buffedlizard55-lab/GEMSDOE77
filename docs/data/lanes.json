@@ -1,5 +1,5 @@
 {
- "note": "All 17 listed TIFF lanes are inspection downloads only; every file is NOT OK TO SUBMIT. H80 is featured because it has complete evidence from the pinned gems57 evaluator; the later AGO variants have only a different quick 4-quadrant proxy and are not comparable. The literal uniqueness/selector gates remain fail-closed; see docs/data/submission-authorization.json.",
+ "note": "All 17 listed TIFF lanes are inspection downloads only; every file is NOT OK TO SUBMIT. H80 is featured because it has complete evidence from the pinned gems57 evaluator; the later AGO variants have only a different quick 4-quadrant proxy and are not comparable. The literal uniqueness/selector gates remain fail-closed; see docs/data/submission-authorization.json. H81 (slip-cone, negative, research-only) is listed for inspection only.",
  "lanes": [
   {
    "lane": "H77E-Knick (NEWEST): 10m 3DEP Knickpoint + TIGER-Deconfounded Step + Up-Dip Seismicity + 4-Scale SLOCO + 816-Raster Capped 300 m Submodular Cover",
@@ -420,6 +420,28 @@
    "why_primary": "Highest holdout (0.144) among AGO variants but overlap 1.00 duplicates D2.8 \u2014 kept for diagnostic comparison.",
    "beat_02778_summary": "Best holdout in AGO family (0.144) but not unique \u2014 a strict subset, no displaced dots.",
    "selector_recommendation": "NOT APPROVED \u2014 negative lane; no weekly slot used."
+  },
+  {
+   "lane": "H81: slip-budget fault-tip continuation cones (deterministic, catalogue-only)",
+   "page": "h81.html",
+   "summary": "executive-summary.html",
+   "file": "downloads/gems77-h81-slipcone-37654dots-20261021-0fbeaf41-zeros.tif",
+   "run_card": "evidence/h81_run_card.json",
+   "format_valid": true,
+   "protocol_unique": false,
+   "beats_holdout_best": false,
+   "verdict": "negative",
+   "name": "gems77-h81-slipcone-37654dots-20261021-0fbeaf41-zeros",
+   "note": "H81 slip-budget tip cones 37654 dots 0-on-cat; HOLDOUT-DTI 0.0671 [0.0552,0.0779]",
+   "sha256": "f3eb9e5e3bf03da0285b48b5bb7d41f15b0e450d16bc6b8943aeaa63efadc1f7",
+   "holdout_dti": 0.0670711968860764,
+   "holdout_ci95": [
+    0.05523215485018934,
+    0.07790796160479564
+   ],
+   "upload": "Not OK to submit. OK to download for inspection only. HOLDOUT-DTI 0.06707 (gems57-pooled-hide-v2, 11,321 withheld positives, 95% CI 0.05523-0.07791); literal gate FAIL; selector not approved; zero weekly slots.",
+   "primary": false,
+   "why_primary": "H81 strand-tip slip-cone lane; clearance per release gate (not approved)."
   }
  ]
 }
