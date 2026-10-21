@@ -1,0 +1,126 @@
+{
+  "file": "gemsdoe77-h85-medial-ridge-03f7b8d5-RESEARCH-ONLY.tif",
+  "sha256": "223550109b55b02df00f43fad6003e19c91449df81ef59a26018409dd3210a5b",
+  "bytes": 74342,
+  "submission_name": "gemsdoe77-h85-medial-ridge-03f7b8d5-RESEARCH-ONLY",
+  "note": "H85 far-field medial-ridge research surface; format PASS; Policy I17 dense-witness duplicate; DO NOT SUBMIT.",
+  "note_chars": 108,
+  "validator": {
+    "file": "/home/user/GEMSDOE77/docs/downloads/gemsdoe77-h85-medial-ridge-03f7b8d5-RESEARCH-ONLY.tif",
+    "bytes": 74342,
+    "sha256": "223550109b55b02df00f43fad6003e19c91449df81ef59a26018409dd3210a5b",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0001309932122239843,
+    "emitted_positive_pixels": 1878,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 1878,
+    "footprint_fraction": 0.00036343418599741104
+  },
+  "template_report": {
+    "path": "/home/user/GEMSDOE77/docs/downloads/gemsdoe77-h85-medial-ridge-03f7b8d5-RESEARCH-ONLY.tif",
+    "bytes": 74342,
+    "sha256": "223550109b55b02df00f43fad6003e19c91449df81ef59a26018409dd3210a5b",
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "width": 3292,
+    "height": 3730,
+    "bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "ref_bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": null,
+    "blocksize": [
+      256,
+      256
+    ],
+    "fixture_grid": false,
+    "has_validity_mask": false,
+    "nan_pixels": 0,
+    "infinity_pixels": 0,
+    "n_nan": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0001309932122239843,
+    "n_nonzero": 1878,
+    "mass": 1608.4866101145744,
+    "mass_outside_footprint": 0,
+    "problems": [],
+    "ok": true,
+    "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+  },
+  "zip_file": "gemsdoe77-h85-medial-ridge-03f7b8d5-RESEARCH-ONLY.zip",
+  "zip_sha256": "20167dd3ab0099502eb826eacd6df0c8242ca7a1bb7f149c596bebaf18a8b3b4",
+  "approved_for_weekly_slot": false,
+  "promoted": false,
+  "submission_slots_used": 0,
+  "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+  "metadata": {
+    "lane": "H85-FTMR: far-field fault-network medial-ridge surface",
+    "research_only": true,
+    "surface_preplacement_duplicate": true,
+    "preflight_decision": "STOP_UNIVERSAL_DUPLICATE",
+    "final_dots": "not placed"
+  }
+}

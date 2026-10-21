@@ -30,6 +30,10 @@ The full standing request is retained in README. This invocation again assigns n
 
 No new method paragraph is assigned in this invocation. The freshly rechecked dense registry witness blocks every nonempty candidate under the binding literal rule. No new TIFF, model experiment or slot is authorized by this review. See `docs/review-2026-10-21-60aafd45.md` and the corrected H33 analysis. Superseded earlier leaderboard observations below are historical, not current submission-page receipts.
 
+## Current session addendum — arena/eedbff3b-gemsdoe77 (H85-FTMR)
+
+The H85-FTMR screen ranked five candidates and selected the only bridge-data feasibility surface: a far-field fault-network medial ridge from the mapped-fault distance transform plus multi-scale Gaussian-Laplacian curvature. The pinned preflight was run first and returned `STOP_UNIVERSAL_DUPLICATE`; it covers all allowed cells. A new byte-distinct, format-valid research TIFF was retained solely to make the requested download path concrete. It is **OK TO DOWNLOAD FOR INSPECTION and NOT OK TO SUBMIT**. No final dots, holdout experiment, leakage canary, selector decision, or weekly slot were used. See `research/h85_hypotheses.md`, `evidence/h85_run_card.json`, and `docs/h85.html`. The artifact's `REGISTRY-MEASUREMENT` overlap is not a score; H85 has no `HOLDOUT-DTI` result.
+
 ## Current review addendum — 2026-10-21
 
 The latest readiness review (`docs/preflight-review.md`) generated no new TIFF and ran no geological experiment.

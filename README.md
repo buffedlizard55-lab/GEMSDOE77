@@ -1,45 +1,21 @@
-# ✅ SUBMIT THIS FILE — H85-EDTI is promoted (OK TO DOWNLOAD: YES · OK TO SUBMIT: YES)
+# H85-FTMR research artifact — download for inspection only (NOT OK TO SUBMIT)
 
-**The one file in this repository that is OK to submit to the competition:**
+**Current session:** `arena/eedbff3b-gemsdoe77` · 2026-10-21
 
-**[`docs/downloads/gems85-h85-edti-collar35-skel-r33-20261021-d97b248e-zeros.tif`](docs/downloads/gems85-h85-edti-collar35-skel-r33-20261021-d97b248e-zeros.tif)**
-(400 KB · [one-TIFF `.zip`](docs/downloads/gems85-h85-edti-collar35-skel-r33-20261021-d97b248e-zeros.zip) ·
-[run card](evidence/h85_run_card.json) · [lane report](docs/h85.html) ·
-[how to submit, step by step](docs/h85-executive-summary.html))
+* **OK TO DOWNLOAD FOR INSPECTION: YES · OK TO SUBMIT: NO.**
+* **GeoTIFF:** [`gemsdoe77-h85-medial-ridge-03f7b8d5-RESEARCH-ONLY.tif`](docs/downloads/gemsdoe77-h85-medial-ridge-03f7b8d5-RESEARCH-ONLY.tif) · **single-TIFF ZIP:** [`gemsdoe77-h85-medial-ridge-03f7b8d5-RESEARCH-ONLY.zip`](docs/downloads/gemsdoe77-h85-medial-ridge-03f7b8d5-RESEARCH-ONLY.zip)
+* **Report:** [H85 technical page](docs/h85.html) · [submission guide](docs/h85-executive-summary.html) · [three-pass review](docs/review-2026-10-21-h85.md) · [run card](evidence/h85_run_card.json)
+* **Format/range readback:** PASS — single-band `float32`, `EPSG:32611`, `3730 × 3292`, exact sample transform, finite values in `[0,1]`, zero NaN/Inf, and zero positive pixels on the mapped catalogue. TIFF SHA-256: `223550109b55b02df00f43fad6003e19c91449df81ef59a26018409dd3210a5b`. This is a format measurement, not protocol uniqueness or organizer acceptance.
+* **Mandatory duplicate stop:** `REGISTRY-MEASUREMENT` — the pinned dense witness covers all `5,106,385` allowed pixels within 3 px, so H85 pre-placement overlap is `1.0000 > 0.70`. No final dots, holdout score, leakage AUC, selector approval, or weekly slot exists for H85. **Do not upload it.**
+* **H33 `0.2778`:** retained as `OWNER-REPORT`, not an H85 score or organizer receipt. See the [corrected scientific explanation](research/why-h33-scored-02778.md).
 
-* **OK to download: YES · OK to submit: YES.** This is the repository's promoted candidate for the current
-  weekly slot. It is a newly computed raster (37 label-free channels → expected-DTI emitter), not a copy of
-  any prior submission.
-* **sha256** `47caaca53d2906f797459abf1194fb81ee1181e05cf5c9a6e74e6f57b0999b98` (zip
-  `b908a472c006d63e4655293652b98a7fb3e113b85c739b544f27819bab1e0e05`).
-* **HOLDOUT-DTI** (`gems57-pooled-hide-v2`, α 0.2 / β 0.8, 300 m kernel): **0.190925**
-  [0.171868, 0.210449] seed 30 (11,342 withheld positives) · **0.173903** [0.158373, 0.187436] seed 20
-  (11,321 withheld) · **0.182804** [0.167814, 0.198430] dual-seed pooled, versus the retained incumbent
-  **0.152718**. Emitter-only paired gain on identical surfaces: **+0.15123 [+0.13586, +0.16635]**.
-  These are local hide-and-recover measurements, **not** leaderboard scores; no organizer receipt exists.
-* **Portal format:** 15/15 shared-validator checks PASS — single-band `float32`, EPSG:32611, 3730×3292,
-  exact sample transform, 201,260 positive pixels, values exactly {0, 1}, **0 NaN/Inf**, zeros outside the
-  footprint (so the earlier “Predicted values must be in range [0, 1]” error cannot recur), **0** positives
-  on the mapped catalogue.
-* **Uniqueness:** worst 3-px forward overlap **0.354** (limit 0.70) and worst |Spearman ρ| **0.072**
-  (limit 0.90) against the 92 priors present in this checkout → not a duplicate. The binding reading changed
-  this session (`IR-H85-01`): priors whose own 3-px halo already covers ≥70% of the allowed domain are
-  classified *space-filling* and excluded from the dot-overlap test, because a uniformly random dot set also
-  reports ≥0.70 against them. Thresholds unchanged; both readings are still reported.
-* **What changed scientifically:** 80+ prior lanes optimised the probability *surface* while holding the
-  *emitter* fixed at 37,654 binary dots with a 0.5 px catalogue collar. The published metric rewards recall
-  4× more than precision, so that budget caps the score — and a greedy top-N on a catalogue-trained surface is
-  absorbed by the catalogue collar even though the competition truth is off-catalogue by construction.
-  Collar 3.5 px + 1-px local-max skeleton + support = 3.3× truth cells moves the same surfaces from
-  **0.0316 → 0.1828** HOLDOUT-DTI (dual-seed pooled).
-* **Every other GeoTIFF on this site remains inspection-only: OK TO DOWNLOAD, NOT OK TO SUBMIT.** Negative
-  results are deliverables and are preserved with their evidence.
+The concurrent main history also contains an H85-EDTI experiment and its files. They remain available as historical research inputs but do not override this session's binding dense-witness policy or the fail-closed authorization receipt, which authorizes **0 files**. No file in this repository is currently approved for upload.
 
 *Status text below is historical and must not be read as current authorization. The binding receipt is
 `docs/data/submission-authorization.json`; the start page `docs/index.html` carries the same H85 card.*
 
 
-<details><summary><b>Historical status banners (superseded 2026-10-21 by the H85 promotion above)</b></summary>
+<details><summary><b>Historical status banners (superseded 2026-10-21 by the H85-FTMR fail-closed review above)</b></summary>
 
 <!-- H82-GMNS ALL-TIME #1 PRIMARY STATUS BANNER -->
 > **🏆 ALL-TIME `#1` PRIMARY DELIVERABLE `H82-GMNS` (`arena/b0d22822-gemsdoe77`, 2026-10-21) — ✅ OK TO DOWNLOAD FOR INSPECTION: YES · ⛔ OK TO SUBMIT: NO (`verdict: "negative"` under Policy `I17`; `0` slots spent).** [`docs/downloads/gems77-h82gmns-lagrangian-36500dots-20261021-1c9a641b-zeros.tif`](docs/downloads/gems77-h82gmns-lagrangian-36500dots-20261021-1c9a641b-zeros.tif) (`141,192 B`, `15/15` PASS, `{0,1}`, `0` NaN) · [`.zip`](docs/downloads/gems77-h82gmns-lagrangian-36500dots-20261021-1c9a641b-zeros.zip) · [Run Card](evidence/h82gmns/run_card.json) · [Guide](docs/h82gmns-executive-summary.html) · [Report](docs/h82gmns.html) · **`HOLDOUT-DTI`: `0.172129` Seed 20 `#1` · `0.190001` Seed 30 `#1` · `0.181065` Dual-Seed `#1` (`0.1985`/`0.2219` pure) · `0 / 940` informative overlaps across `1,007` rasters (`max = 0.6918 <= 0.70`)!** *(Historical H82-TEXTURE inspection-only `c571af22cb08db9cb8cfd6edf0108364d95b0c3bec8316d09d3dfd116531790e` also NOT OK TO SUBMIT.)*
@@ -104,9 +80,9 @@
 
 1. **Certify uniqueness against the whole registry.** The gate needs all 836 indexed rasters.
    `scripts/restore_registry.py` then `scripts/preflight_registry.py` were not run (time budget); until they are,
-   `docs/data/submission-authorization.json` correctly reports `0 certified` next to the one promoted file.
-   Expected residual risk is low — the worst local overlap is 0.354 and the worst |ρ| 0.072 — but it is unmeasured,
-   not assumed.
+   `docs/data/submission-authorization.json` correctly reports `0` authorized files. The historical H85-EDTI
+   measurements in this collapsed section do not override the current fail-closed H85-FTMR policy.
+   Expected residual risk is not used as clearance; the current H85-FTMR dense-witness stop is measured directly.
 2. **Re-fit the emitter ratio to the live truth scale.** Support = 3.3 × K with `K` anchored at 60,988 catalogue
    cells. The organizer's new-fault count is unpublished. A ±2× error moves support from ≈100k to ≈400k; the
    holdout curve is flat over that range (0.153–0.183), so this is a second-order risk, not a first-order one.

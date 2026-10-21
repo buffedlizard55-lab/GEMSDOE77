@@ -1158,6 +1158,31 @@
    "upload": "Not OK to submit. OK to download for inspection only. HOLDOUT-DTI 0.132515 [0.117209, 0.145631] (s30, 11,342 withheld positives) / 0.123066 [0.108735, 0.138706] (s20, 11,321 withheld positives) on gems57-pooled-hide-v2 beats the matched 41-channel standard control (0.086239 s30 / 0.087347 s20; paired delta +0.046276 s30 / +0.035720 s20, 95% CIs exclude zero) and passes 100% of sparse dot-field uniqueness checks (max sparse 3-px overlap 0.6400 <= 0.70; 0.3224 vs H33; max |Spearman rho| 0.2120 <= 0.90), but remains below the retained holdout ceiling and fails the literal Policy I17 all-raster check on space-filling continuous witness 17GEMSDOE_E-proba-multiscale (ab0a0a62). Selector: not approved; zero weekly slots spent.",
    "why_primary": "H83-PCD lane (2026-10-21): Multi-scale Poisson pseudogravity-gravity gradient anti-concordance + missing-coverage-aware 1 m LiDAR piedmont scarp-toe dipole + 12-bit LOCO transfer relay + bitwise sparse-overlap-capped 300 m submodular cover; clearance per release gate (not approved).",
    "beat_02778_summary": "No. HOLDOUT-DTI 0.132515 (s30) / 0.123066 (s20) is below the retained holdout incumbent and cannot be projected to an organizer score; no organizer score exists for this file."
+  },
+  {
+   "lane": "H85-FTMR: far-field fault-network medial-ridge surface (preflight-stopped; research only)",
+   "page": "h85.html",
+   "summary": "h85-executive-summary.html",
+   "file": "downloads/gemsdoe77-h85-medial-ridge-03f7b8d5-RESEARCH-ONLY.tif",
+   "zip": "downloads/gemsdoe77-h85-medial-ridge-03f7b8d5-RESEARCH-ONLY.zip",
+   "run_card": "evidence/h85_run_card.json",
+   "format_valid": true,
+   "protocol_unique": false,
+   "informative_unique": null,
+   "beats_holdout_best": null,
+   "selector_approved": false,
+   "verdict": "negative",
+   "primary": false,
+   "name": "gemsdoe77-h85-medial-ridge-03f7b8d5-RESEARCH-ONLY",
+   "note": "H85 far-field medial-ridge research surface; format PASS; Policy I17 dense-witness duplicate; DO NOT SUBMIT.",
+   "sha256": "223550109b55b02df00f43fad6003e19c91449df81ef59a26018409dd3210a5b",
+   "zip_sha256": "20167dd3ab0099502eb826eacd6df0c8242ca7a1bb7f149c596bebaf18a8b3b4",
+   "holdout_evaluator_version": "gems57-pooled-hide-v2 (not run)",
+   "holdout_dti_hide_v2": null,
+   "upload": "Not OK to submit. OK to download for inspection only. Surface duplicate stop: 1.0000 forward 3-px overlap vs the hash-pinned dense witness; no final dots, no HOLDOUT-DTI, zero slots.",
+   "why_primary": "New byte-distinct research surface; no final-dot or holdout claim.",
+   "format_description": "Shared writer readback PASS: single float32 band, EPSG:32611, 3730×3292, exact transform, finite values in [0,1], 0 NaN, 0 on mapped catalogue.",
+   "research_only": true
   }
  ]
 }

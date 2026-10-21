@@ -1,154 +1,43 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>H85-EDTI · expected-DTI emitter · GEMSDOE77</title>
-<link rel="stylesheet" href="assets/lia.css"></head><body>
-<header><div class="wrap"><span class="brand">GEMSDOE77 · DOE GEMS Prize</span>
-<a href="index.html">Start here</a> <a href="h85-executive-summary.html">How to submit H85</a>
-<a href="https://github.com/buffedlizard55-lab/GEMSDOE77">GitHub</a></div></header>
-<main><div class="wrap">
-
-<section class="card dl" style="border:3px solid #1c7c4a">
-<h1>H85-EDTI — expected-DTI emitter</h1>
-<p class="verdict"><b>OK TO DOWNLOAD: YES · OK TO SUBMIT: YES.</b>
-<a href="downloads/gems85-h85-edti-collar35-skel-r33-20261021-d97b248e-zeros.tif">Download the .tif</a> ·
-<a href="downloads/gems85-h85-edti-collar35-skel-r33-20261021-d97b248e-zeros.zip">one-TIFF .zip</a> ·
-<a href="downloads/gems85-h85-edti-collar35-skel-r33-20261021-d97b248e-zeros.run-card.json">run card JSON</a></p>
-<p><b>sha256</b> <code>47caaca53d2906f797459abf1194fb81ee1181e05cf5c9a6e74e6f57b0999b98</code> ·
-<b>201,260</b> positive pixels · <b>0</b> NaN · values exactly {0.0, 1.0} · EPSG:32611 · 3730×3292 ·
-<b>0</b> positives on the mapped catalogue.</p>
-</section>
-
-<h2>1. The question this lane answers</h2>
-<p>The family's best owner-reported submission is <code>h33-h33-2-b2-…-zeros</code> at <b>0.2778</b> (OWNER-REPORT;
-no organizer receipt exists for it), and the public leaderboard top is <b>0.4413</b>
-(<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">leaderboard</a>).
-Every lane in this repository, including that one, held one thing fixed: the <em>emitter</em> —
-<code>B = 37,654</code> binary dots, <code>min_sep = 2.8 px</code>, chosen greedily as the top of a
-probability surface trained on the mapped catalogue. Every lane then spent its budget on a
-<em>new surface</em>. H85 asks whether the emitter, not the surface, is the binding constraint.</p>
-
-<h2>2. Why the emitter must be the constraint (derivation from the published metric)</h2>
-<p>The organizer publishes the metric in full
-(<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/#performance-metric">problem
-description, “Performance metric”</a>; transcribed and unit-tested in <code>vendor/gems57/metric.py</code>):</p>
-<pre>TP_w = Σ_g max_{x: d(x,g) ≤ R} p(x)·k(d(x,g))      k(d) = max(1 − d/R, 0),  R = 300 m = 3 px
-FP_w = Σ_{x: p(x)>0} p(x)·[1 − max_g k(d(x,g))]
-FN_w = Σ_g [1 − max_{x: d(x,g) ≤ R} p(x)·k(d(x,g))]
-DTI  = TP_w / (TP_w + 0.2·FP_w + 0.8·FN_w)</pre>
-<p>Three consequences follow directly, and they are the whole lane:</p>
-<ol>
-<li><b>A missed truth cell costs four times an over-prediction</b> (β/α = 0.8/0.2). Under-coverage is the
-expensive error.</li>
-<li><b>Any prediction inside the kernel radius earns graded credit.</b> The exact marginal test for adding one
-binary dot with self-credit <code>k</code> and marginal truth credit <code>ΔT</code> is
-<code>ΔT &gt; α·DTI·(ΔT + 1 − k)</code> (<code>vendor/gems57/metric.py</code>, verified against
-<code>dti_bruteforce</code> in <code>tests/test_metric.py</code>). At a score of 0.19 a non-redundant dot
-(<code>ΔT = k</code>) pays for itself whenever <code>k &gt; 0.038</code>, i.e. anywhere within ≈ 2.9 px of a
-truth cell.</li>
-<li><b>A fixed dot budget therefore caps recall.</b> With 37,654 dots over a 60,988-px catalogue, the family's
-best cannot cover much more than a third of the network no matter how good the surface is. The published algebra
-says that is exactly the wrong place to be stuck.</li>
-</ol>
-
-<h2>3. The second finding: greedy top-N is absorbed by the catalogue collar</h2>
-<p>The competition truth is <b>new faults that are not in the USGS/INGENIOUS catalogue</b> by construction
-(<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/#problem-description">problem
-description: “faults that are not contained within the current public USGS database … will comprise the test
-dataset”</a>). But a model trained on the catalogue puts its highest probabilities <em>on</em> the catalogue and
-in the 1–3 px rasterisation/alignment collar around it. The repository convention allows emission 0.5 px away
-from a mapped trace (<code>dist_vis &gt; 0.5</code>), so the top of the surface goes straight back into the
-collar. Measured on the same surfaces, the same support size and the same folds:</p>
-<table>
-<thead><tr><th>Emitter</th><th>HOLDOUT-DTI (dual-seed pooled)</th><th>95% CI</th></tr></thead>
-<tbody>
-<tr><td>collar 0.5 px, no thinning (repository convention)</td><td>0.0316</td><td>[0.0215, 0.0412]</td></tr>
-<tr><td>collar 0.5 px, 1-px skeleton</td><td>0.1521</td><td>[0.1376, 0.1671]</td></tr>
-<tr><td>collar 3.5 px, no thinning</td><td>0.1185</td><td>[0.1003, 0.1358]</td></tr>
-<tr><td><b>collar 3.5 px + 1-px skeleton (shipped)</b></td><td><b>0.1828</b></td><td>[0.1678, 0.1984]</td></tr>
-</tbody></table>
-<p>Paired bootstrap (<code>EH.pooled_summary</code>, 1,000 draws over 20 km spatial blocks):
-collar effect <code>+0.0643 [+0.0509, +0.0774]</code>; skeleton effect on top of the collar
-<code>+0.0307 [+0.0250, +0.0361]</code>; total versus the repository convention
-<code>+0.1512 [+0.1359, +0.1664]</code>. Every interval excludes zero, and every arm shares the identical
-surface, support size and folds, so the difference is attributable to the emitter alone.</p>
-
-<h2>4. The surface (deliberately plain)</h2>
-<p>37 channels derived only from the 19 official <code>training_features.tif</code> bands: robust z-scores,
-gradient energy, Laplacian and across-strike ridge curvature, 5 px texture, and cross-sensor coupling terms.
-<b>No catalogue input, no distance-to-mapped-fault channel, no external dataset.</b> That matters: the
-repository's own <code>IRR-03</code> and this session's second control both show that a
-distance-to-visible-fault channel immediately collapses to “train on d = 0” and scores exactly 0.5 AUC on the
-held-out strands. A label-free surface is the only one that can transfer to a genuinely unmapped fault.</p>
-
-<h2>5. Numbers, labelled</h2>
-<table>
-<thead><tr><th>Quantity</th><th>Value</th><th>Label</th></tr></thead>
-<tbody>
-<tr><td>Seed 30 score</td><td>0.190925 [0.171868, 0.210449], 11,342 withheld positives</td><td>HOLDOUT-DTI, <code>gems57-pooled-hide-v2</code></td></tr>
-<tr><td>Seed 20 score</td><td>0.173903 [0.158373, 0.187436], 11,321 withheld positives</td><td>HOLDOUT-DTI, <code>gems57-pooled-hide-v2</code></td></tr>
-<tr><td>Dual-seed pooled</td><td>0.182804 [0.167814, 0.198430]</td><td>HOLDOUT-DTI, <code>gems57-pooled-hide-v2</code></td></tr>
-<tr><td>Repository incumbent before this lane</td><td>0.152718 [0.131548, 0.175185]</td><td>HOLDOUT-DTI, H77-Step, served seed 20</td></tr>
-<tr><td>Leakage canary (surface alone, symmetric AUC)</td><td>0.8162–0.8993 across 8 fold cells (max 0.8993)</td><td>canary diagnostic, ceiling 0.90</td></tr>
-<tr><td>Uniqueness</td><td>worst 3-px forward overlap 0.3540 / worst |ρ| 0.0719</td><td>REGISTRY-MEASUREMENT, local scope (92 rasters)</td></tr>
-<tr><td>Organizer score for this file</td><td>none — not yet uploaded</td><td>not organizer-confirmed</td></tr>
-</tbody></table>
-<p class="small">The canary maximum 0.8993 sits just below the 0.90 leakage ceiling. It is reported as measured, not
-rounded down. It is not label leakage in the code sense (the surface never sees a catalogue pixel); it reflects how
-strongly the official geophysics alone already predicts fault-like lineaments, and it is why the ablation is run
-on identical surfaces rather than across lanes.</p>
-
-<h2>6. What was actually shipped</h2>
-<ul>
-<li>Emission domain: footprint minus a <b>3.5 px</b> (350 m) collar around every mapped trace.</li>
-<li>Thinning: <b>1-px skeleton</b> (3×3 local maxima of the probability surface) before selection.</li>
-<li>Support: <b>3.3 × K</b>, the scale-free optimum from the two independent draws. <code>K</code> is anchored
-at the 60,988 published catalogue cells — the only public count of ground-truth-scale fault cells in this study
-area — giving 201,260 pixels. A ±2× error in that anchor moves support between ≈100k and ≈400k; the holdout
-curve is flat over that range (0.153–0.183), which is why the choice is not knife-edge.</li>
-<li>Values: binary 1.0 on support, 0.0 elsewhere, including outside the footprint (the earlier
-“Predicted values must be in range [0, 1]” portal error came from non-finite cells; this file has none).</li>
-</ul>
-
-<h2>7. The named non-fault process that could mimic this</h2>
-<p>Plio-Pleistocene <b>Lake Lahontan shoreline benches and fluvial terrace risers</b> produce the identical
-slope-break/curvature signature as a fault scarp, and 100 m alluvial-fan or basalt-flow contacts add linear
-property gradients that are not faults. Both survive the label-free surface, and neither is removed by the
-collar. This is a real source of the false-positive mass in the file and the main scientific risk in it.</p>
-
-<h2>8. Limitations — stated, not buried</h2>
-<ul>
-<li>HOLDOUT-DTI is a <b>local spatial holdout over withheld mapped faults</b>, used as a proxy. It is not the
-organizer's unpublished new-fault truth and it is not a leaderboard score.</li>
-<li>Support ratio 3.3× is calibrated on withheld <em>catalogue</em> faults; the live new-fault count is
-unpublished (see §6).</li>
-<li>The 836-entry remote registry index was not materialised in this session; uniqueness is measured against
-the 92 rasters present in the checkout, plus the 23 pinned mirrors. Un-fetched entries are a scope limitation,
-not a claim of absence.</li>
-<li>No deep model, no 1 m DEM scarp channels, no external datasets. The gain measured here is from the emitter,
-and the same emitter applied to a stronger surface should add to it.</li>
-<li>Week-1 promotion is a repository selector decision; the weekly submission slot remains the owner's.</li>
-</ul>
-
-<h2>9. Sources (checked, with links)</h2>
-<ul>
-<li>Metric definition and problem statement — <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DrivenData problem description</a> (retrieved 2026-10-21: α = 0.2, β = 0.8, triangular kernel R = 300 m, TP_w/FP_w/FN_w definitions).</li>
-<li>Reference solution (Tversky loss, α = 0.2, β = 0.8, CPU-only supported) — <a href="https://github.com/drivendataorg/gems-prize-reference-solution">drivendataorg/gems-prize-reference-solution</a>.</li>
-<li>Feature provenance — <a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN</a> · <a href="https://gbcge.org/current-projects/ingenious/">GBCGE INGENIOUS</a> · <a href="https://epsg.io/32611">EPSG:32611</a> · <a href="https://en.wikipedia.org/wiki/Tversky_index">Tversky index</a>.</li>
-<li>Pinned data mirrors and hashes — <code>registry/data_manifest.json</code>, re-verified this session (23/23 hashes matched; <code>training_features.tif</code> <code>4371c82e…</code>).</li>
-</ul>
-
-<h2>10. Reproduce</h2>
-<pre>python scripts/restore_data.py                     # 23 SHA-256-pinned inputs
-python scripts/h85_edti_pipeline.py --stage feats
-python scripts/h85_edti_pipeline.py --stage sweep --seeds 30,20 --ratios 3.3 --collars 0.5,3.5
-python scripts/h85_edti_pipeline.py --stage build
-python scripts/h85_edti_pipeline.py --stage write</pre>
-<p class="small">Evidence: <a href="data/h85/h85_run_card.json">run card</a> ·
-<a href="data/h85/h85_sweep_ablation_dualseed.json">ablation sweep</a> ·
-<a href="data/h85/h85_sweep_seed20.json">seed-20 grid</a> ·
-<a href="data/h85/h85_uniqueness.json">uniqueness scan</a> ·
-<a href="data/h85/h85_feature_audit.json">feature audit</a> ·
-<a href="data/h85/preregistration_h85.json">preregistration</a> ·
-<a href="data/h85/h85_hypotheses.md">the five ranked hypotheses</a>.</p>
-
-</div></main></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>H85-FTMR · GEMSDOE77</title><link rel="stylesheet" href="assets/lia.css">
+</head>
+<body><header><div class="wrap"><span class="brand">GEMSDOE77 · DOE GEMS Prize</span>
+<a href="index.html">Start here</a><a href="h85-executive-summary.html">How to submit</a><a href="research/h85_hypotheses.md">Hypotheses</a><a href="https://github.com/buffedlizard55-lab/GEMSDOE77">GitHub</a>
+</div></header><main><div class="wrap">
+<h1>H85-FTMR · far-field fault-network medial-ridge surface</h1>
+<section class="card research"><h2>Status at a glance</h2>
+<p><span class="chip ok">OK TO DOWNLOAD FOR INSPECTION: YES</span>
+<span class="chip bad">OK TO SUBMIT: NO</span></p>
+<p><b>Do not upload this file.</b> Selector: <b>Not approved</b>. The shared literal registry rule stops the candidate at the surface stage: the restored dense witness has 3-pixel forward overlap <code>1.0000 &gt; 0.70</code>. No final dots were placed, no selector approved a slot, and no organizer score exists.</p></section>
+<section class="card dl"><h2>Download the unique research artifact</h2>
+<p>This is a newly generated, byte-distinct, format-valid research TIFF—not a copy of a prior submission. It is retained to make the requested download and the rejection evidence reproducible.</p>
+<p><a class="btn" download href="downloads/gemsdoe77-h85-medial-ridge-03f7b8d5-RESEARCH-ONLY.tif">Download H85 GeoTIFF (73 KB)</a>
+<a class="btn alt" download href="downloads/gemsdoe77-h85-medial-ridge-03f7b8d5-RESEARCH-ONLY.zip">Download single-TIFF ZIP (26 KB)</a>
+<a class="btn alt" href="h85-executive-summary.html">Read the submission guide →</a></p>
+<table><tr><th>Field</th><th>Verified value</th></tr>
+<tr><td>Submission name (reference only)</td><td><code>gemsdoe77-h85-medial-ridge-03f7b8d5-RESEARCH-ONLY</code></td></tr>
+<tr><td>Note (108 characters)</td><td><code>H85 far-field medial-ridge research surface; format PASS; Policy I17 dense-witness duplicate; DO NOT SUBMIT.</code></td></tr>
+<tr><td>GeoTIFF SHA-256</td><td><code>223550109b55b02df00f43fad6003e19c91449df81ef59a26018409dd3210a5b</code></td></tr>
+<tr><td>ZIP SHA-256</td><td><code>20167dd3ab0099502eb826eacd6df0c8242ca7a1bb7f149c596bebaf18a8b3b4</code></td></tr>
+<tr><td>Positive surface support</td><td><code>1,878</code> pixels; final dots not placed</td></tr>
+</table></section>
+<h2>What was tested</h2>
+<ul><li><b>Layers:</b> only the committed `existing_faults.tif` mapped-fault mask and `sample_submission.tif` footprint.</li>
+<li><b>Signature:</b> Euclidean distance transform, 8–35 px (0.8–3.5 km) annulus, 7 px medial maximum, and absolute Gaussian-Laplacian terms at σ=2 and 4 px.</li>
+<li><b>Surface comparison:</b> H33 witness Spearman rho = <code>-0.000201</code> (REGISTRY-MEASUREMENT; not an organizer score); dense-witness forward 3 px overlap = <code>1.0</code> (REGISTRY-MEASUREMENT).</li>
+<li><b>Format:</b> shared `gems57.submission_writer` readback PASS: one float32 band, EPSG:32611, 3730×3292, exact transform, finite values in [0,1], no NaN, zeros outside footprint, zero on mapped catalogue.</li>
+<li><b>Science:</b> no HOLDOUT-DTI and no leakage AUC. The mandatory duplicate stop occurred before final-dot placement and before an experiment.</li></ul>
+<h2>Why this is not a leaderboard submission</h2>
+<p>The H85 surface is a feasibility artifact, not a validated predictor. A continuous registry witness is positive throughout the allowed footprint, so every non-empty H85 support cell lies within its 3-pixel halo. This makes the candidate fail the written uniqueness rule regardless of its low correlation with the H33 raster. This is a protocol measurement, not a claim that H85 geology resembles the witness.</p>
+<p>The full ranked candidate screen, official source links, obtainability limits, and next-step gate are in <a href="research/h85_hypotheses.md">research/h85_hypotheses.md</a>. The machine-readable run card is <a href="evidence/h85_run_card.json">evidence/h85_run_card.json</a>. The line-by-line <a href="review-2026-10-21-h85.md">three-pass review</a> records the final checks.</p>
+<h2>Reproduce</h2><pre><code>python -m venv .venv
+.venv/bin/pip install -r requirements.txt
+.venv/bin/python scripts/restore_registry.py
+.venv/bin/python scripts/build_h85_research.py
+.venv/bin/python scripts/validate_submission.py docs/downloads/gemsdoe77-h85-medial-ridge-03f7b8d5-RESEARCH-ONLY.tif
+</code></pre>
+<p class="small muted">The restore step uses the SHA-pinned owner-repository witnesses listed in <code>registry/witness_sources.json</code>. It does not authenticate a DrivenData submission or grant upload permission.</p>
+</div></main><footer><div class="wrap">H85 is inspection-only. Format PASS is not uniqueness, selector approval, or organizer acceptance.</div></footer></body></html>

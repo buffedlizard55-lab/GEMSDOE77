@@ -1,45 +1,37 @@
-# H85 — five candidate hypotheses, ranked before implementation
+# H85 candidate screen — far-field fault-network medial ridges
 
-Preregistered 2026-10-21 in `registry/preregistration_h85.json` **before** any surface was
-trained. Ranked by expected DTI gain ÷ implementation cost, per the standing science
-instruction. Every hypothesis is judged against the same question: *why should this catch a
-fault that is missing from the USGS/INGENIOUS catalogue rather than one that is already in it?*
+**Session / lane:** `arena/eedbff3b-gemsdoe77` · H85-FTMR · 2026-10-21 UTC
+**Status:** one controlled research artifact was written for inspection. It is **not OK TO SUBMIT**. No weekly slot was used. No HOLDOUT-DTI experiment was run because the shared, hash-pinned registry preflight stopped every non-empty candidate before final-dot placement.
 
-| # | Hypothesis | Layers / transform | Why it should find an **unmapped** fault | Why it is new in this repo | Cost | Expected gain |
-|---|---|---|---|---|---|---|
-| **1** | **H85-EDTI — the emitter, not the surface, is the binding constraint.** Fixed 37,654-dot budgets cap recall; greedy top-N is absorbed by the catalogue collar. Emit under the published metric: collar 3.5 px, 1-px skeleton thinning, support = 3.3 × truth cell count. | No new layer. Uses the 19 official bands as a plain label-free surface. Metric algebra: `vendor/gems57/metric.py`. | A dot only counts if it is **off**-catalogue; the collar guarantees every emitted pixel is ≥ 350 m from a mapped trace, i.e. in the domain where a *new* fault can live. Support size is set by the metric's marginal-credit algebra, not by a number inherited from an earlier lane. | All 80+ prior lanes froze the emitter (37,654 dots, min_sep 2.8, collar 0.5 px). The ablation below is the first direct measurement of emitter choice with everything else held fixed. | Low | **+0.15 DTI (measured)** |
-| 2 | H85-2 — across-strike Hessian ridge curvature of detrended elevation and depth-to-basement, multi-scale (σ = 2, 5, 9 px), used as a *ranking* channel | Bands 12, 15, 19; `λ₁` of the Hessian | Young scarps below the mapping scale appear as a crest/trough pair in curvature that a 1:250k line compilation misses | The repo has used Laplacian operators (`h77g`) but never a multi-scale `λ₁` ranking channel on band 15 | Low | +0.01 to +0.03 (untested; deferred) |
-| 3 | H85-3 — cross-sensor *phase* coherence: the local offset between the magnetic ridge (band 6) and the gravity ridge (band 13) should be small at a real fault and random at a playa/fan contact | Bands 6, 13, 14, 18; local cross-correlation at 5–9 px | A concealed fault perturbs two independent potential fields at the same place; a lake shoreline or fan contact perturbs topography only | Repo has cross-sensor *products* (`x_couple_*`) but never a lag/phase test | Medium | +0.01 to +0.04 (deferred) |
-| 4 | H85-4 — earthquake-density *b*-value / declustered swarm excess along unmapped lineaments | Bands 10, 16 | Fluid-driven swarms nucleate on unmapped conduits; a mapped trace that is aseismic is already known and already scored zero | Repo used raw `ieq/deq` counts as a multiplicative gate, never a declustered excess | Medium | +0.00 to +0.02 (needs the declustered catalogue; not obtainable without the INGENIOUS/GDR event table) |
-| 5 | H85-5 — K/Th radiometric asymmetry across strike (the "potassic halo" of a hydrothermal fault) | USGS GeoDAWN radiometric bands, `doi:10.5066/P93LGLVQ` | Argillic/K-metasomatic halos form on the **damaged** side of a fault and are not compiled in the trace map | Repo used the 8-bit radiometric stack only as a rank-mixture entropy, never as a signed across-strike asymmetry | High (needs the 3-band K/U/Th raster; owner mirror exists at `registry/data_manifest.json` → `ext_geodawn_rad_u8`, but that mirror is an 8-bit composite with no band labels — the official 3-band product was not obtainable in this sandbox) | deferred, source verified unobtainable here |
+This document is a pre-implementation screen, not a claim that any hypothesis will improve the leaderboard. Code-search absence is not proof of novelty. A candidate would need a fresh preregistration, feature-alone leakage canaries, whole-segment buffered hide-and-recover, and a complete registry scan before selector review.
 
-## What was actually run (budget: 3 experiments)
+## Ranked candidates
 
-* **E1 — surface + leakage canary.** 37 label-free channels from the 19 official bands, one
-  HistGradientBoosting fit per fold per draw, 8 fold cells over seeds 30 and 20.
-  Canary (single-surface symmetric AUC vs withheld truth): max **0.8993** (ceiling 0.90), i.e.
-  no leakage, but the official geophysics alone already separates fault-like ground strongly.
-  A second control that *adds* `distance-to-visible-fault` collapses to exactly **0.5000** AUC on
-  every fold — it learns `d == 0` and predicts nothing for withheld strands. That reproduces the
-  repository's `IRR-03` and is why the shipped surface carries no catalogue channel.
-* **E2 — emitter grid.** 9 emitter configurations × 2 independent draws: collar ∈ {0.5, 2.5, 3.5,
-  4.0, 5.0, 7.0} px, support ratio ∈ {1, 2, 3.3, 5, 8} × withheld-positive count, thinning ∈ {raw,
-  1-px skeleton}, plus the metric-derived expected-credit threshold and a random control.
-  Best: collar 3.5 px + skeleton + ratio 3.3.
-* **E3 — build, uniqueness, validator, run card.** Final model on the full catalogue, emission at
-  201,260 px, 15/15 shared-validator checks, uniqueness under the corrected binding rule
-  (worst 3-px forward overlap 0.354 vs limit 0.70; worst |ρ| 0.072 vs limit 0.90).
+| Rank | Candidate and layers | Physical signature and missing-fault rationale | Difference from this repository | External-data / obtainability check | Expected DTI / cost |
+|---:|---|---|---|---|---|
+| 1 | **H85-FTMR — catalogue-network medial ridge.** Layers: bridged `existing_faults.tif` and `sample_submission.tif` footprint only. | Euclidean distance transform, 7-pixel local maxima, and absolute Gaussian-Laplacian curvature at σ=2 and 4 pixels, restricted to an 0.8–3.5 km annulus. A blind relay or accommodation corridor can lack a mapped scarp but still occupy a coherent far-field gap in the mapped network. The non-fault mimic is a shoreline bench, alluvial-fan toe, lithologic boundary, or footprint edge. | No prior lane in this checkout is exactly this continuous **distance-transform medial-ridge surface**. H83/H84 use related fault-network geometry and therefore make the novelty claim collision-prone; this is why the registry gate is tested rather than assumed. It is not an H19/H33 subset, a DEM scarp, a radiometric band, or a learned stack. | No new external data required for the feasibility surface. The competition feature stack is absent in this checkout, so a predictive holdout test is blocked independently of the registry stop. | **Medium / low CPU cost.** Scientific ranking is uncertain; no score projection is allowed. |
+| 2 | **Persistent InSAR deformation gradient.** Sentinel-1 ascending/descending LOS velocity and temporal coherence, terrain-corrected with the sample grid. | A spatially persistent, geometry-consistent deformation gradient can expose a creeping or pressurised blind fault without a preserved scarp. Mimics: groundwater pumping/seasonal aquifer compaction, landslides, and volcanic deformation; require multi-track and temporal controls. | No Sentinel-1 time-series ingestion or deformation-uncertainty layer is implemented here. This is event/measurement based, not a catalogue morphology transform. | **Specific free official source:** [Copernicus Sentinel data / Data Space](https://dataspace.copernicus.eu/). It was not downloaded or AOI-checked in this session; the sandbox egress policy permits only GitHub, codeload.github.com, api.github.com, registry.npmjs.org, pypi.org, and files.pythonhosted.org. **Not viable for this session.** | **Potentially high / high data and QC cost.** No DTI projection. |
+| 3 | **Seasonal Landsat thermal residual edges.** USGS Landsat Collection 2 Level-2 surface-temperature products, QA/cloud masks, elevation/aspect controls, and existing geochemistry only as a confounder. | A compact thermal-gradient anomaly that persists across acquisitions and survives elevation, land-cover, cloud, and illumination controls could mark an active hydrothermal upflow along a blind fault. Mimics: fires, irrigated fields, industrial heat, exposed rock, and warm springs unrelated to a mapped fault. | Existing lanes use point chemistry/probes and radiometric/geophysical channels; no seasonally replicated Landsat surface-temperature residual is present. | **Specific free official source:** [USGS Landsat Collection 2](https://www.usgs.gov/landsat-missions/landsat-collection-2). No scene inventory or cloud-free time series was retrieved in this session for the same egress reason. **Not viable for this session.** | **Medium–high / high temporal QC cost.** No DTI projection. |
+| 4 | **Event-plane seismicity sibling.** USGS ComCat event locations, depth, magnitude, time, and uncertainty; catalogue traces only for the holdout split. | A depth-consistent, uncertainty-weighted event plane or aligned swarm between mapped segments could indicate a blind active fault. Mimics: induced seismicity, aftershock sequences, quarry blasts, and cultural noise; require magnitude/time robustness. | Existing shipped channels are broad aggregates; no event-level uncertainty-weighted plane fit is implemented in this checkout. | **Specific free official source:** [USGS ComCat FDSN event service](https://earthquake.usgs.gov/fdsnws/event/1/query). The host was not obtained in this session under the egress policy, so no events are claimed or used. **Not viable for this session.** | **Medium–high / medium–high processing and completeness cost.** No DTI projection. |
+| 5 | **Hydrologically conditioned multi-tributary deflection.** USGS 3DEP DEM, flow network, χ/profile residuals, and lithology/relief controls. | Repeated, opposite-sense channel deflection and persistent knickpoint residuals across neighbouring tributaries can reveal distributed deformation after a scarp is eroded or buried. Mimics: resistant beds, fan incision, shorelines, and engineered drainage. | This is materially less novel here: H77E/H77-Step and other merged lanes already contain DEM, knickpoint, channel, scarp, and drainage work. It requires an exact overlap audit before any use. | **Specific free official source:** [USGS 3DEP](https://www.usgs.gov/3d-elevation-program). Raw DEM/derived inputs are not present in this checkout and were not re-downloaded. **Defer; not viable for this session.** | **Medium / medium–high cost; high collision risk.** No DTI projection. |
 
-## Result in one line
+## Selection and result
 
-Emitter change alone, on identical surfaces and identical support size:
-`0.0316 → 0.1828` HOLDOUT-DTI (dual-seed pooled), paired **+0.1512 [+0.1359, +0.1664]** — larger
-than every surface-side improvement this repository has measured in 80+ lanes, and it composes
-with them.
+H85-FTMR is the only candidate in this screen that can be constructed from the committed bridge layers without inventing external observations. Its surface was written with the unchanged `vendor/gems57.submission_writer` after verifying the pinned grid and catalogue mask. The exact operator and bytes are in [`evidence/h85_run_card.json`](../evidence/h85_run_card.json).
 
-## Negative / deferred
+The candidate-independent preflight was run first. The restored witness `17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif` has SHA-256 `ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be` and its 3-pixel dilation covers all `5,106,385` allowed cells. The H85 surface has a measured forward overlap of `1.0` with that witness. This is a **REGISTRY-MEASUREMENT**, not a score and not evidence that the geology is similar. The lane therefore stops before final-dot placement and before any holdout experiment. The file is retained as a negative, format-valid research artifact so the download path is auditable.
 
-H85-2 and H85-3 were not run: the budget was spent on the hypothesis that measured largest.
-H85-4 needs the declustered event catalogue, which is not in the pinned mirrors. H85-5 needs the
-official 3-band K/U/Th GeoDAWN product; the mirror present here is an unlabelled 8-bit composite,
-so the idea is *not* proposed as viable from this sandbox (checked, not assumed).
+No `HOLDOUT-DTI` number is reported for H85. The evaluator is not called, no leakage AUC is claimed, and no leaderboard outcome is projected. If a future lane is authorized, it must use the unchanged whole-segment hide-and-recover protocol with a 3-pixel buffer, visible-fault-only catalogue features, exact visible-fault masking, pooled DTI with α=0.2 and β=0.8, and a 300 m triangular kernel; none of that evaluation ran here. The only safe user action is local inspection; **do not upload the H85 file**.
+
+## Verified source ledger
+
+| Source | What is verified here | What is not claimed |
+|---|---|---|
+| [DrivenData GEMS reference solution](https://github.com/drivendataorg/gems-prize-reference-solution/tree/aebe92f7c8a990f0e3443451b7a825d9afd6336b) | The pinned official reference README describes data placement and CPU/GPU environment choices. | It does not verify this repository's owner-mirrored data or any leaderboard score. |
+| [USGS GeoDAWN data page](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and) | Manual-review link retained from the project brief for the survey provenance. | No new GeoDAWN bytes were downloaded in this session. |
+| [GDR / INGENIOUS submission 1391](https://gdr.openei.org/submissions/1391) | Manual-review link retained for the regional compilation cited by prior lanes. | No new GDR record is treated as authenticated input here. |
+| [EPSG:32611](https://epsg.io/32611) | The local artifact was read back as EPSG:32611 and matched the bridge transform. | Local format equality is not portal acceptance. |
+
+## Required next step before a real experiment
+
+Resolve the shared support semantics for continuous registry surfaces with the protocol owner, restore the full hash-pinned feature stack, and assign a single method paragraph. Only then preregister H85 (or a new lane), run each feature alone as a leakage canary, evaluate the shared buffered holdout, and compare against a matched current incumbent. The universal witness cannot be waived privately or by changing the filename.

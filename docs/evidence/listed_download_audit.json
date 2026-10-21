@@ -2,9 +2,9 @@
   "schema": "gems-listed-download-readback-v1",
   "evidence_class": "FORMAT-INTEGRITY-MEASUREMENT; NOT SCORE OR PORTAL ACCEPTANCE",
   "scope": "Every primary TIFF in docs/data/lanes.json; no archive or NaN twins, no uniqueness certification",
-  "manifest_sha256": "5188c699687e5c2d8381d3e5b3e849216c8c98f81a1bcea90acc3d3c365fb5b5",
+  "manifest_sha256": "643fff6977026d0c973346ad6484a4b80c20bfaecad8975e139e4fc91b401812",
   "reference_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
-  "listed_count": 46,
+  "listed_count": 47,
   "all_format_pass": true,
   "authorized_to_submit": false,
   "artifacts": [
@@ -822,6 +822,24 @@
       "lane": "H83-PCD: Multi-Scale Poisson Pseudogravity-Gravity Discordance x Piedmont Scarp-Toe Asymmetry x 12-Bit LOCO Relay + 300 m Submodular Cover (0.132515 s30 / 0.123066 s20 HOLDOUT-DTI)",
       "file": "downloads/h83pcd-poisson-piedmont-loco-submod-20261021T183000Z-zeros.tif",
       "sha256": "1ff7bc32563b56a6b18beb0d4500afa9bad814396485aaba39b2b8cbc8a9fa59",
+      "checks": {
+        "single_band": true,
+        "crs_matches": true,
+        "shape_matches": true,
+        "transform_matches": true,
+        "finite_entire_raster": true,
+        "no_nan_inside_footprint": true,
+        "values_in_0_1": true,
+        "nodata_none": true,
+        "sha256_matches_manifest": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
+    {
+      "lane": "H85-FTMR: far-field fault-network medial-ridge surface (preflight-stopped; research only)",
+      "file": "downloads/gemsdoe77-h85-medial-ridge-03f7b8d5-RESEARCH-ONLY.tif",
+      "sha256": "223550109b55b02df00f43fad6003e19c91449df81ef59a26018409dd3210a5b",
       "checks": {
         "single_band": true,
         "crs_matches": true,
