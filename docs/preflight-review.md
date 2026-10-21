@@ -112,3 +112,13 @@ restore its pinned inputs, preregister at most three experiments, run individual
 whole-segment hide-and-recover with the pinned evaluator, require a supported paired improvement over the matched
 incumbent, generate through the shared writer, check both surface and dots against a complete current registry,
 and only then seek separate selector approval. No automatic upload or private exemption is introduced here.
+
+## Parallel-merge reconciliation
+
+While preparing this review PR, main received PRs #47 and #48. Preserved their H28 artifacts and H81 status correction.
+The H28 merge had replaced `docs/data/submission.json` with a different schema, causing `lia_build_site.py` to raise
+`KeyError: zip` in the CI-equivalent build. Retained H28 metadata under `docs/data/h28_submission.json`, restored the
+original LIA metadata, and added LIA/run-card identity protection plus a regression test binding both metadata records
+to their unchanged TIFF hashes. This is metadata repair, not a new candidate or an ownership claim over parallel work.
+The primary download inventory is still 22 entries; the new unlisted H28 archive is outside this review's listed-file
+audit. Repeated the full build, verifier and software tests after reconciliation.

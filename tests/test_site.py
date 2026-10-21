@@ -289,3 +289,16 @@ def test_current_preflight_review_does_not_claim_a_new_submission():
     assert card["raster_sha256"] is None and card["submission_name"] is None
     assert len(card["submission_note"]) <= 140
     assert card["holdout_dti"]["value"] is None
+
+
+def test_lia_and_parallel_h28_metadata_do_not_collide():
+    lia = json.loads((DOC / "data/submission.json").read_text())
+    h28 = json.loads((DOC / "data/h28_submission.json").read_text())
+    card = json.loads((DOC / "data/run-card.json").read_text())
+    assert lia["name"] == card["submission_name"]
+    assert lia["name"] != h28["name"]
+    for sub in (lia, h28):
+        import hashlib
+        path = DOC / "downloads" / sub["primary"]["file"]
+        assert hashlib.sha256(path.read_bytes()).hexdigest() == sub["primary"]["sha256"]
+    assert "zip" in lia and "n_checks" in lia["primary"]

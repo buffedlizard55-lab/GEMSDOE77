@@ -3,7 +3,7 @@ import hashlib
 import numpy as np
 import pytest
 import rasterio
-from rasterio.transform import from_origin
+from affine import Affine
 
 from audit_downloads import audit, validate
 
@@ -11,7 +11,7 @@ from audit_downloads import audit, validate
 def write(path, arr):
     with rasterio.open(path, "w", driver="GTiff", height=arr.shape[0], width=arr.shape[1],
                        count=1, dtype="float32", crs="EPSG:32611",
-                       transform=from_origin(243350, 4508550, 100, 100)) as src:
+                       transform=Affine(100, 0, 243350, 0, -100, 4508550)) as src:
         src.write(arr.astype("float32"), 1)
 
 
