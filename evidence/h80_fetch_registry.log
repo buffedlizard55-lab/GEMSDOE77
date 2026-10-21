@@ -1,0 +1,33 @@
+Get "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE68/git/blobs/9e3a320ba0727937ee5ab58279acb506793c38df": net/http: TLS handshake timeout
+Get "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE68/git/blobs/c00c2ca916c046544baeb6e40d1e782bf46f50c0": net/http: TLS handshake timeout
+Get "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE68/git/blobs/45b9f47ac9c1518875b5e4b9ea92ca2fc6727fe4": net/http: TLS handshake timeout
+Get "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE68/git/blobs/08d76f6d82da45384fdb1be9801c659995ff5ce0": net/http: TLS handshake timeout
+Traceback (most recent call last):
+  File "/home/user/GEMSDOE77/scripts/fetch_registry.py", line 72, in <module>
+    main()
+  File "/home/user/GEMSDOE77/scripts/fetch_registry.py", line 64, in main
+    for blob, sha in ex.map(lambda t: fetch(*t), todo.values()):
+  File "/usr/lib/python3.11/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/concurrent/futures/_base.py", line 456, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/usr/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/GEMSDOE77/scripts/fetch_registry.py", line 64, in <lambda>
+    for blob, sha in ex.map(lambda t: fetch(*t), todo.values()):
+                                      ^^^^^^^^^
+  File "/home/user/GEMSDOE77/scripts/fetch_registry.py", line 44, in fetch
+    subprocess.run(["gh", "api", "-H", "Accept: application/vnd.github.raw",
+  File "/usr/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['gh', 'api', '-H', 'Accept: application/vnd.github.raw', 'repos/buffedlizard55-lab/GEMSDOE68/git/blobs/45b9f47ac9c1518875b5e4b9ea92ca2fc6727fe4']' returned non-zero exit status 1.
+EXIT=1
+121

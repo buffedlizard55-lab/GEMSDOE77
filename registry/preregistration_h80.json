@@ -1,0 +1,34 @@
+{
+  "lane": "H80-OTA orphan thermal alignment (collinear off-catalogue hot wells/springs)",
+  "session_date": "2026-10-21",
+  "status": "preregistered before Experiment 1; label-free inputs only were inspected (point-file marginals, band tags)",
+  "hypothesis": "Wells/springs with high chemical-geothermometer excess or high measured temperature that lie >1 km from every visible catalogue fault (orphans) are collinear along concealed, catalogue-missing geothermal conduit faults.",
+  "mechanism": "Dedup GDR1391 points by cell (max weight). Tier A weight 2: finite dT=max(Tqtz,Tchalc,Tcat)-temp_c >= 30C and max geothermometer >= 90C. Tier B weight 1: temp_c >= 40C. Orphan = distance to VISIBLE catalogue > 10 px (holdout) or full catalogue > 10 px (final build). For each orphan point and 36 azimuths (0-175 deg, 5 deg steps), weighted support = sum of weights of other orphans with perpendicular distance <=2 px and |along-strike| in [5,40] px; vote = max over azimuths (own weight excluded). Splat each point's vote along its best azimuth +/-40 px with perpendicular Gaussian sigma 1.5 px -> ota_line. Channels: ota_vote_splat=ota_line rank, ota_x_ridge = sqrt(rank(ota_line)*rank(max(rank(band3 tmi_hg), rank(band5 iso_grav_slope)))), ota_orphan_prox = exp(-dist to nearest orphan/10), ota_hot_prox = exp(-dist to nearest tierA/B point regardless of orphan status/10). The csv dist_known_fault_px column is never read.",
+  "named_non_fault_mimic": "Wells drilled along roads/canals/valley axes (anthropogenic collinearity) and regional aquifer flow along basin axes; mitigated by temperature/geothermometer weighting and the ridge-coincidence channel.",
+  "data": {
+    "training_features_sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+    "wellspring_csv_sha256": "122718e65bdf55aab0ee12ad20d80062f0deb1de957225a61ad880dd5dc196ea",
+    "provenance": "owner SHA-pinned GitHub mirrors via registry/data_manifest.json + scripts/restore_data.py; integrity-pinned, NOT organizer-authenticated. GDR 1391 DOI 10.15121/1881483 (CC BY 4.0 per manifest).",
+    "feature_stack": "scripts/build_features.py (src/gems77/features77.py CHANNELS) -> data/processed/stack.npy, shared template stack, not forked"
+  },
+  "holdout": {
+    "evaluator": "vendor gems57.evaluate_holdout, version gems57-pooled-hide-v2, alpha 0.2 beta 0.8, 300 m triangular kernel",
+    "draw": "gems57.holdout.buffered_component_draw(seed=30, hide_frac=0.20, buffer_px=3); whole components; every catalogue-derived quantity from fold visible only; visible faults masked pixel-exactly in scoring (evaluator masked_known)",
+    "emitter": "gems77.emit77.emit_dots, budget 37654 pooled across folds pro-rata, min_sep 2.8 px, allowed = footprint & ~visible & dist_visible>2 px",
+    "model": "HistGradientBoostingClassifier(max_iter=180, lr=0.09, max_leaf_nodes=31, min_samples_leaf=40, random_state=77); per-fold training on other quadrants' visible positives (cap 40000) + 2x negatives (half 3<dist_cat<=15... dist to FULL catalogue used ONLY to define unlabelled negatives off any catalogue pixel with 3px buffer, identical to prior XSEN protocol; negatives exclude hidden by >3px catalogue distance to full catalogue which includes hidden - noted as protocol-consistent sampling, not a feature)",
+    "arms": ["S_ota_line (surface alone)", "S_ota_xridge (surface alone)", "A0_random", "A_std (raw+terrain+rad = 33ch)", "A_ota (A_std + 4 OTA ch)"]
+  },
+  "experiments_budget": [
+    "Exp1: OTA fields from visible-orphans + single-feature leakage canaries (AUC>0.90 => stop) + surface-alone screens vs random",
+    "Exp2: paired HGB A_std vs A_ota pooled HOLDOUT-DTI + paired spatial-block bootstrap CI",
+    "Exp3: full-map build (orphans vs full catalogue), train on all catalogue positives, emit 37654 dots dist_cat>2, uniqueness vs checked subset (local TIFFs + restored scored witnesses + GEMSDOE32 champion if fetchable), validator, writer, run card"
+  ],
+  "promotion_bar": "scientific promote requires pooled HOLDOUT-DTI > 0.152718 (H77-Step incumbent, gems57-pooled-hide-v2, 11321 withheld px, CI [0.131548,0.175185]; cross-draw caveat: this lane seed30) AND paired delta vs A_std 95% CI excludes 0 AND informative uniqueness (rho<=0.90 and 3px dot overlap <=0.70 vs sparse scored witnesses). Upload authorization additionally requires a separate human selector decision and is never granted by this session.",
+  "irregularities_flagged_at_preregistration": [
+    "IR-H80-01: shipped band tags for 10/16 are vague ('intensity or density', 'n=100km radius, a=15deg'); band 6 tag wrong per prior measurement; band 15 tag says 'Depth to basement surface' while problem page says 'depth to conductive base surface' - tags not trusted beyond prior measured resolutions.",
+    "IR-H80-02: only 1247/27092 wellspring rows carry geothermometers and 8718 carry temp_c - OTA point support is sparse by construction; coverage failure is an expected possible negative result.",
+    "IR-H80-03: sample_submission.tif contains 60988 ones on catalogue pixels although the problem page calls it 'total fault absence' (previously recorded); used only as footprint/grid template."
+  ],
+  "submission_name_pattern": "gems77-h80-orphan-thermal-align-37654dots-20261021-zeros",
+  "note_le_140_chars": "H80-OTA collinear orphan hot-well alignments + ridge coincidence; 37654 dots; HOLDOUT-DTI in run card; selector decides"
+}

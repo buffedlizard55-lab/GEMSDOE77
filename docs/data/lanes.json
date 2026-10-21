@@ -1,5 +1,5 @@
 {
- "note": "All 17 listed TIFF lanes are inspection downloads only; every file is NOT OK TO SUBMIT. H80 is featured because it has complete evidence from the pinned gems57 evaluator; the later AGO variants have only a different quick 4-quadrant proxy and are not comparable. The literal uniqueness/selector gates remain fail-closed; see docs/data/submission-authorization.json. H81 (slip-cone, negative, research-only) is listed for inspection only.",
+ "note": "All 21 listed TIFF lanes are inspection downloads only; every file is NOT OK TO SUBMIT. H80 (Riedel) is featured because it has complete evidence from the pinned gems57 evaluator; the later AGO variants have only a different quick 4-quadrant proxy and are not comparable. H80-OTA (orphan thermal alignment, negative) was merged in parallel and is listed second. The literal uniqueness/selector gates remain fail-closed; see docs/data/submission-authorization.json. H81 (slip-cone, negative, research-only) is listed for inspection only.",
  "lanes": [
   {
    "lane": "H77E-Knick (NEWEST): 10m 3DEP Knickpoint + TIGER-Deconfounded Step + Up-Dip Seismicity + 4-Scale SLOCO + 816-Raster Capped 300 m Submodular Cover",
@@ -25,6 +25,32 @@
    "primary": false,
    "why_primary": "Newest verified lane (H77E-Knick). Only positive-holdout model in GEMSDOE77 with ZERO duplicate firings across ALL 816 informative portfolio rasters (max_ov = 0.66800) AND all 18 sparse GEMSDOE77 siblings (max_ov = 0.42104), beating fold-fair H33 on BOTH spatial seeds (+0.0303 Seed 20 / +0.0257 Seed 30; unconstrained twin 0.155623 Seed 20 / 0.154666 Seed 30 = #1 in GEMSDOE77).",
    "beat_02778_summary": "Top candidate for human selector review under Policy I17: beats fold-fair H33 champion construction significantly on BOTH spatial holdout seeds (+31.5% Seed 20, +25.9% Seed 30; unconstrained physics twin +61.6% Seed 20, +56.1% Seed 30) with 0 SGMC channels and 127/127 leakage canaries passed."
+  },
+  {
+   "lane": "H80-OTA: orphan thermal alignment - collinear off-catalogue hot wells/springs (0.1039 HOLDOUT-DTI)",
+   "page": "h80-ota.html",
+   "summary": "executive-summary.html",
+   "file": "downloads/gems77-h80-orphan-thermal-align-37654dots-20261021-zeros.tif",
+   "run_card": "evidence/run_card_h80.json",
+   "format_valid": true,
+   "protocol_unique": false,
+   "informative_unique": false,
+   "beats_holdout_best": false,
+   "verdict": "negative",
+   "name": "gems77-h80-orphan-thermal-align-37654dots-20261021-zeros",
+   "note": "H80-OTA orphan hot-well collinearity HGB 37654 dots; HOLDOUT-DTI 0.1039 seed30; negative do not submit",
+   "sha256": "703e7dee0a790572c2a9597ed210e04d4d45c93e8bae661aa117b34c0445f4d3",
+   "holdout_dti_hide_v2": 0.1039,
+   "holdout_evaluator_version": "gems57-pooled-hide-v2",
+   "holdout_positive_pixels": 11342,
+   "holdout_ci95": [
+    0.0872,
+    0.123
+   ],
+   "upload": "Not OK to submit. OK to download for inspection only. HOLDOUT-DTI 0.1039 [0.0872, 0.1230] (gems57-pooled-hide-v2, 11,342 withheld px, seed 30) is below the 0.152718 incumbent; paired OTA gain +0.0068 [-0.0007, 0.0149] is not significant; literal uniqueness fails (1.0 vs dense witnesses) and sparse-dot overlap reaches 0.924 > 0.70 vs a registry scarp raster. Selector not approved; no slot spent.",
+   "primary": false,
+   "why_primary": "Parallel H80-OTA lane (distinct from the H80 Riedel lane), listed second for review; not selected for submission.",
+   "beat_02778_summary": "No measured evidence it beats the owner-reported 0.2778: catalogue-holdout gain over the standard stack is not significant and the file is not cleared to submit."
   },
   {
    "lane": "H80: Riedel R/R-prime wing-crack tips at degree-1 mapped-fault endpoints (negative)",
