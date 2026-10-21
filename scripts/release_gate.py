@@ -63,6 +63,7 @@ def audit_run_card(run_card_rel: str | None, root: Path = ROOT) -> dict:
     ua = card.get("uniqueness_audit") or {}
     rcmp = card.get("registry_comparison") or {}
     uvr = card.get("uniqueness_vs_registry") or {}
+    cov = card.get("correlation_overlap_vs_registry") or {}
     reg = card.get("registry") or {}
     lit_read = rcmp.get("literal_reading") or {}
 
@@ -72,6 +73,9 @@ def audit_run_card(run_card_rel: str | None, root: Path = ROOT) -> dict:
         or ua.get("template_literal_reading_duplicate") is True
         or rcmp.get("template_literal_reading_duplicate") is True
         or lit_read.get("duplicate") is True
+        or cov.get("duplicate_stop") is True
+        or (cov.get("final_dots_max_forward_overlap_3px") or 0) > 0.70
+        or "fails closed" in str(uvr.get("unfiltered_dense_witness_note") or "").lower()
         or (reg.get("duplicate_count") or 0) > 0
         or (card.get("literal_reading_firings_final_dots") or 0) > 0
     )

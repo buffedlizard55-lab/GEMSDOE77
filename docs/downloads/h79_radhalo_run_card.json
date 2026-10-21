@@ -1,0 +1,97 @@
+{
+  "schema": "gems-parallel-run-card-v1",
+  "lane": "H79-RH radiometric phase-offset alteration-halo pairing",
+  "hypothesis": "A concealed permeable fault may place a selectively mobile uranium residual halo 300 m from a K-Th common-mode lithologic edge; lagged pairing may recover the structural center while suppressing coincident lithologic contacts.",
+  "mechanism": "Rank-intensity U minus K-Th common mode, smoothed at 150 m; pair a K-Th edge with a selective-U edge shifted 300 m over four normals, and penalize same-pixel selective-U edges.",
+  "named_non_fault_process_that_could_mimic_it": "Hillslope transport across a sediment or soil boundary can spatially displace uranium-bearing material without fault permeability.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": 11321,
+    "score": 0.04773265734715734,
+    "ci95": [
+      0.03958335878724709,
+      0.05557557296791166
+    ],
+    "delta_vs_random": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.0003098766944214307,
+      "ci95": [
+        -0.00836770294767929,
+        0.008958153150938623
+      ],
+      "withheld_positive_pixels": 11321
+    },
+    "delta_vs_common_edge": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.005130633671656372,
+      "ci95": [
+        -0.0014701658903921574,
+        0.011831645795245961
+      ],
+      "withheld_positive_pixels": 11321
+    },
+    "current_repository_best": 0.152718,
+    "beats_current_best": false
+  },
+  "leakage_canary": {
+    "threshold": 0.9,
+    "features": {
+      "common_edge_rank": {
+        "auc": 0.5026733975576363,
+        "symmetric_auc": 0.5026733975576363,
+        "leakage_flag": false
+      },
+      "residual_edge_rank": {
+        "auc": 0.5020971613594205,
+        "symmetric_auc": 0.5020971613594205,
+        "leakage_flag": false
+      },
+      "shifted_residual_edge_rank": {
+        "auc": 0.492597878573742,
+        "symmetric_auc": 0.5074021214262581,
+        "leakage_flag": false
+      },
+      "surface": {
+        "auc": 0.49164826730559724,
+        "symmetric_auc": 0.5083517326944027,
+        "leakage_flag": false
+      }
+    },
+    "max_symmetric_auc": 0.5083517326944027,
+    "pass": true
+  },
+  "correlation_overlap_vs_registry": {
+    "registry_expected": 812,
+    "registry_checked": 808,
+    "invalid_registry_rasters": 4,
+    "surface_max_abs_spearman": 0.12034572542622088,
+    "final_dots_max_abs_spearman": 0.017314978194690946,
+    "final_dots_max_forward_overlap_3px": 1.0,
+    "duplicate_firings": 49,
+    "duplicate_stop": true,
+    "worst_overlap_submission": "60GEMSDOE:registry/rasters/calib_r13lattice_00904.tif",
+    "irregularity": "A registry diagnostic has positive support on all 5,167,373 footprint cells, making literal <=0.70 overlap impossible for every non-empty candidate."
+  },
+  "raster_sha256": "c272025ee653187d09489d941613a86bfe4b88110fb455847a2256cf5699014b",
+  "validator_output": {
+    "all_checks_passed": true,
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "crs_shape_transform_match": true,
+    "single_band_float32": true,
+    "zero_on_catalogue": true,
+    "dot_count": 37654
+  },
+  "submission_name": "gems77-h79-radhalo-lag3-37654-20261021-zeros",
+  "submission_note": "H79 lag-3px U-residual halo paired to K-Th edge; 37654 spaced dots; HOLDOUT negative\u2014research only, do not submit",
+  "submission_note_chars": 113,
+  "download_path": "docs/downloads/gems77-h79-radhalo-lag3-37654-20261021-zeros.tif",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "verdict": "negative",
+  "verdict_reason": "HOLDOUT-DTI 0.04773 does not beat 0.152718; CI overlaps random; final dots also trigger the literal registry overlap stop. Do not spend a weekly slot.",
+  "submission_slots_used": 0
+}

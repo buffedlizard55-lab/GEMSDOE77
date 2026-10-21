@@ -1,6 +1,53 @@
 {
-  "note": "This is a fail-closed inventory, not a promotion list. Every listed TIFF is available for inspection only and is Not OK to submit. The literal registry rule rejects every nonempty candidate because the pinned dense witness has positive support over the full allowed footprint. Pairwise uniqueness among sparse rasters and positive holdout measurements do not override the rule or confer selector approval.",
+  "note": "This is a fail-closed inventory, not a promotion list. Every listed TIFF is available for inspection only and is Not OK to submit. The literal registry rule rejects every nonempty candidate because the pinned dense witness has positive support over the full allowed footprint. Pairwise uniqueness among sparse rasters and positive holdout measurements do not override the rule or confer selector approval. H79 (NEWEST UNIQUE TIF, 17/17 PASS, informative unique 0.14, HOLDOUT-DTI 0.0323 negative) is the newest lane of this parallel branch, also inspection-only. H79-RH independently generated a second byte-unique format-valid TIFF; it is also negative and Not OK to submit.",
   "lanes": [
+    {
+      "lane": "H79-BB: Basement potential-field step \u00d7 topographic curvature ridge (NEWEST, UNIQUE TIF \u2014 17/17 PASS)",
+      "page": "h79.html",
+      "summary": "executive-summary.html",
+      "file": "downloads/gems77-h79-crossgrad-ridge-37654dots-20261021-dd0dbf9c-zeros.tif",
+      "run_card": "evidence/h79_run_card.json",
+      "format_valid": true,
+      "protocol_unique": false,
+      "beats_holdout_best": false,
+      "verdict": "negative",
+      "name": "gems77-h79-crossgrad-ridge-37654dots-20261021-dd0dbf9c-zeros",
+      "note": "H79 cross-gradient confluence x ridge (mag+grav tile zero x Hessian ridge) 37654dots; zero-SGMC, no lidar, no H19-5 reuse",
+      "sha256": "67aafffc50637a6df9c4275bc2735a0a865ac73904f02667b05f4f257d97587c",
+      "s0_projection": null,
+      "informative_unique": true,
+      "holdout_dti": 0.03232838588730809,
+      "holdout_ci95": [
+        0.028377191340547874,
+        0.03645024878150852
+      ],
+      "upload": "Not OK to submit automatically under Policy I17 dense-witness gate (ab0a0a62 covers 100% footprint); SAFE TO DOWNLOAD (17/17 PASS, 0 NaN, 37654 dots) \u2014 INFORMATIVE unique 0.14 overlap, HOLDOUT-DTI 0.0323 negative vs random 0.0353; inspection only, selector: not approved.",
+      "primary": true,
+      "why_primary": "Newest unique TIF of this parallel lane (2026-10-21): distinct physics (mag-grav cross-gradient confluence \u00d7 Hessian ridge coherence) vs H77D (0.1501) & H77-Step (0.1527); byte-unique (overlap 0.11\u20130.14 vs siblings, |\u03c1| 0.004), 0 SGMC, 0 H19-5 reuse, all-finite zeros encoding that fixes 'Predicted values must be in range [0,1]' (17/17 PASS)."
+    },
+    {
+      "lane": "H79-RH: lagged radiometric U-halo pairing (parallel negative)",
+      "page": "h79-radhalo.html",
+      "summary": "executive-summary.html",
+      "file": "downloads/gems77-h79-radhalo-lag3-37654-20261021-zeros.tif",
+      "run_card": "evidence/h79_radhalo_run_card.json",
+      "format_valid": true,
+      "protocol_unique": false,
+      "informative_unique": false,
+      "beats_holdout_best": false,
+      "verdict": "negative",
+      "name": "gems77-h79-radhalo-lag3-37654-20261021-zeros",
+      "note": "H79 lag-3px U-residual halo paired to K-Th edge; 37654 spaced dots; HOLDOUT negative\u2014research only, do not submit",
+      "sha256": "c272025ee653187d09489d941613a86bfe4b88110fb455847a2256cf5699014b",
+      "holdout_dti": 0.04773265734715734,
+      "holdout_ci95": [
+        0.03958335878724709,
+        0.05557557296791166
+      ],
+      "upload": "Not OK to submit: HOLDOUT-DTI 0.04773 [0.03958, 0.05558] does not beat 0.152718; final literal registry overlap is 1.000 > 0.70. Inspection only; negative artifact; selector not approved.",
+      "primary": false,
+      "why_primary": "Parallel H79-RH unique-byte research artifact; explicitly rejected for competition upload."
+    },
     {
       "lane": "H77D: Coupled Zero-SGMC Tectono-Hydrothermal Conduits + 12-Bit LOCO + 300 m Submodular Cover (0.15011 / 0.14030 HOLDOUT-DTI)",
       "page": "h77d.html",
@@ -17,7 +64,7 @@
       "sha256": "110e7c77ec7e7d201de0ae04ffd2bf3b9db786b4063d800cacb8ab1ded4fd1b9",
       "informative_unique": true,
       "upload": "Not OK to submit. OK to download for inspection only. The literal registry-uniqueness gate fails on the full-footprint dense witness; selector has not approved a slot. HOLDOUT-DTI measurements are historical evidence, not organizer scores or submission clearance. The archived run card's scientific 'promote' field conflicts with this overall negative/protocol verdict; see docs/review-2026-10-21.md.",
-      "primary": true,
+      "primary": false,
       "why_primary": "Displayed first for audit only; this is not a selected/promoted candidate. Literal uniqueness fails and no selector approval exists.",
       "beat_02778_summary": "No conclusion that this file beats the organizer-reported 0.2778 can be drawn from holdout measurements; the candidate is not cleared to submit."
     },
@@ -37,7 +84,8 @@
       "verdict": "negative",
       "selector_recommendation": "NOT APPROVED; no selector recommendation. Literal registry uniqueness fails and the overall lane verdict is negative.",
       "upload": "Not OK to submit. OK to download for inspection only. Literal uniqueness fails on the full-footprint dense witness; selector has not approved a slot. The HOLDOUT-DTI measurement and informative pairwise uniqueness checks do not override the literal gate or establish an organizer score.",
-      "sha256": "f55105a091281be14957fff2f5aad9a85fa5b1acc31558e9fcd2aae9fdd588b0"
+      "sha256": "f55105a091281be14957fff2f5aad9a85fa5b1acc31558e9fcd2aae9fdd588b0",
+      "primary": false
     },
     {
       "lane": "H78: lidar scarp consensus, uniqueness-capped allocation",
@@ -54,7 +102,8 @@
       "sha256": "4571e767757be95e3fb70b4afb05e45528b1cfd74147e168c36253b1247f1c47",
       "s0_projection": 0.24497394668268976,
       "informative_unique": true,
-      "upload": "Not OK to submit. OK to download for inspection only. Literal uniqueness gate fails and the holdout experiment is negative; no selector approval."
+      "upload": "Not OK to submit. OK to download for inspection only. Literal uniqueness gate fails and the holdout experiment is negative; no selector approval.",
+      "primary": false
     },
     {
       "lane": "LIA: live-score inversion and allocation",
@@ -68,7 +117,8 @@
       "upload": "Not OK to submit. OK to download for inspection only. Literal uniqueness fails, and the recorded HOLDOUT-DTI is below its comparison construction; no selector approval.",
       "informative_unique": true,
       "beats_holdout_best": false,
-      "sha256": "a8bfb844ab44b5d4157f75ec914a51655c27ae54727f7b4a088eca9d6f396898"
+      "sha256": "a8bfb844ab44b5d4157f75ec914a51655c27ae54727f7b4a088eca9d6f396898",
+      "primary": false
     },
     {
       "lane": "Contact-physics + front-base",
@@ -80,7 +130,8 @@
       "protocol_unique": false,
       "verdict": "negative",
       "upload": "Not OK to submit. OK to download for inspection only. Literal uniqueness and scientific promotion gates fail; no selector approval.",
-      "sha256": "20be05cc671c85484e4cfc8ea40d2fced71d7ec70f20ab915f36fcc68fcc4851"
+      "sha256": "20be05cc671c85484e4cfc8ea40d2fced71d7ec70f20ab915f36fcc68fcc4851",
+      "primary": false
     },
     {
       "lane": "Selective-U curvature (research TIFF)",
@@ -92,7 +143,8 @@
       "protocol_unique": false,
       "verdict": "negative",
       "upload": "Not OK to submit. OK to download for inspection only. Research artifact; literal uniqueness gate fails.",
-      "sha256": "9489af2b7e1b06a249203d3c9d6dfe4ed469647f59ebe3a5ffe9c50c67e46b42"
+      "sha256": "9489af2b7e1b06a249203d3c9d6dfe4ed469647f59ebe3a5ffe9c50c67e46b42",
+      "primary": false
     }
   ]
 }
