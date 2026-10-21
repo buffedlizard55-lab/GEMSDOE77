@@ -1,6 +1,6 @@
 # Current-checkout repository review — 2026-10-21
 
-**Branch:** `arena/4dbb59e0-gemsdoe77` · **review-start base/HEAD:** `2b22987` (`2b229879b9be8cf6ccda32affbe0ed6d7da4dd25`). During PR preparation, `origin/main` advanced to `9f9bac0`; the branch is being reconciled with that current main state without treating its parallel artifacts as results of this review.
+**Branch:** `arena/4dbb59e0-gemsdoe77` · **review-start base/HEAD:** `2b22987` (`2b229879b9be8cf6ccda32affbe0ed6d7da4dd25`). During PR preparation, `origin/main` advanced to `9f9bac0`; merge commit `fa8d244` integrates that current main state while keeping its parallel artifacts distinct from results of this review.
 
 ## Executive decision
 
