@@ -1,6 +1,6 @@
 {
   "schema": "gems-submission-authorization-v1",
-  "generated_utc": "2026-10-21T16:41:11+00:00",
+  "generated_utc": "2026-10-21T16:47:55+00:00",
   "policy": "Authorization requires artifact existence, matching SHA-256, a readable run card with a promote verdict, local format PASS, literal protocol uniqueness (including <=0.70 real-model forward 3-px overlap and complete registry), improvement over the accepted holdout best, a promote verdict, and explicit selector approval. Missing fields or historical run-card uniqueness/completeness failures fail closed.",
   "repository_authorized_file_count": 0,
   "repository_decision": "NOT OK TO SUBMIT",
