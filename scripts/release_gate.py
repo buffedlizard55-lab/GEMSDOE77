@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -25,6 +26,40 @@ def sha256(path: Path) -> str:
         for block in iter(lambda: stream.read(1024 * 1024), b""):
             h.update(block)
     return h.hexdigest()
+
+
+def validate_guardrail_types(card: dict) -> None:
+    """Reject malformed guardrail evidence rather than crashing or accepting NaN.
+
+    Historical cards have multiple schemas; validate the fields this gate reads,
+    without pretending that this establishes scientific evidence completeness.
+    """
+    mappings = ("uniqueness_audit", "registry_comparison", "uniqueness_vs_registry",
+                "correlation_overlap_vs_registry", "registry")
+    for name in mappings:
+        if name in card and not isinstance(card[name], dict):
+            raise ValueError(f"{name} must be an object")
+    comparison = card.get("registry_comparison", {})
+    if "literal_reading" in comparison and not isinstance(comparison["literal_reading"], dict):
+        raise ValueError("registry_comparison.literal_reading must be an object")
+    numeric_keys = {
+        "final_dots_max_forward_overlap_3px", "surface_max_forward_overlap_3px",
+        "duplicate_count", "duplicate_rasters_in_checked_subset",
+        "literal_reading_firings_final_dots",
+        "post_placement_dots_max_forward_3px_overlap_real_models",
+        "dot_duplicate_count", "max_forward_overlap_3px", "unreadable_registry_files",
+    }
+    def walk(obj):
+        for key, value in obj.items():
+            if key in numeric_keys and value is not None:
+                if (type(value) not in (int, float) or not math.isfinite(value)
+                        or value < 0):
+                    raise ValueError(f"{key} must be a finite nonnegative number")
+                if "overlap" in key and value > 1:
+                    raise ValueError(f"{key} must be in [0,1]")
+            if isinstance(value, dict):
+                walk(value)
+    walk(card)
 
 
 def audit_run_card(run_card_rel: str | None, root: Path = ROOT) -> dict:
@@ -60,6 +95,7 @@ def audit_run_card(run_card_rel: str | None, root: Path = ROOT) -> dict:
         card = json.loads(rc_path.read_text())
         if not isinstance(card, dict):
             raise ValueError("run card must be a JSON object")
+        validate_guardrail_types(card)
     except (OSError, ValueError) as exc:
         audit = audit_run_card(None, root=root)
         audit.update(run_card=run_card_rel, present=rc_path.is_file(),
