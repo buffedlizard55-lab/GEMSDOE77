@@ -308,6 +308,9 @@ def test_h80t_lane_artifact_and_run_card_fail_closed():
 
 
 def test_current_review_and_metric_correction_are_linked():
+    source = (ROOT / 'scripts/build_home.py').read_text()
+    assert 'docs/review-2026-10-21-arena-2c503e77.md' in source
+    assert 'docs/review-2026-10-21-60aafd45.md' not in source
     for name in ('index.html', 'executive-summary.html'):
         text = (DOC / name).read_text()
         assert 'review-latest.html' in text and 'metric-review.html' in text
@@ -317,8 +320,10 @@ def test_current_review_and_metric_correction_are_linked():
     assert 'does <strong>not</strong> always increase' in analysis
     review = (DOC / 'review-latest.html').read_text()
     assert 'NOT OK TO SUBMIT' in review
-    assert 'No new TIFF was generated' in review
-    assert 'Resource not accessible by integration' in review
+    assert 'New TIFF / experiment / slot' in review and 'none generated or used' in review
+    assert 'arena/2c503e77-gemsdoe77' in review
+    assert 'STOP_UNIVERSAL_DUPLICATE' in review
+    assert '29/29 listed files pass' in review
 
 
 def test_current_preflight_review_does_not_claim_a_new_submission():
