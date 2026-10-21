@@ -109,8 +109,9 @@ this, with one shared registry policy. Until then, spending a slot is a selector
         "beat_02778_summary",
         "Not expected. Its projection is below the 0.2778 file, and its holdout did not beat the champion construction.",
     )
-    dl = f"""<section class="card dl"><h2>⬇ Newest file: download</h2>
+    dl = f"""<section class="card dl"><h2>⬇ Highlighted download (not approved to submit)</h2>
 <p class="small muted"><b>{e(primary["lane"])}.</b> {e(primary.get("why_primary", ""))}</p>
+<p class="small muted"><b>Freshness:</b> H78 is the latest completed experiment in this repository; its result is negative and it is not approved. This H77D file is highlighted for comparison, not because it is the newest experiment.</p>
 <a class="btn" href="{e(primary["file"])}" download>Download .tif ({size_kb:.0f} KB)</a>{zip_btn}
 <div class="chips"><span class="chip ok">OK to download: YES</span>
 <span class="chip {'ok' if primary.get('format_valid') else 'bad'}">Portal format (local checks): {'PASS' if primary.get('format_valid') else 'FAIL'}</span>
