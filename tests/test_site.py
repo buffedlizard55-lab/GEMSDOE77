@@ -275,3 +275,51 @@ def test_h80t_lane_artifact_and_run_card_fail_closed():
     assert uniq['phase1_surface_before_placement']['worst_spearman_full_footprint'] <= 0.90
     assert uniq['phase2_final_dots']['worst_dot_overlap_informative_dot_fields'] <= 0.70
     assert uniq['phase2_final_dots']['worst_dot_overlap_literal'] > 0.70
+
+
+def test_h77e_homepage_uses_frozen_holdout_metadata_and_says_not_to_submit():
+    card = json.loads((ROOT / 'evidence/h77e/run_card.json').read_text())
+    lanes = json.loads((DOC / 'data/lanes.json').read_text())['lanes']
+    lane = next(x for x in lanes if x['lane'].startswith('H77E-Knick'))
+    home = (DOC / 'index.html').read_text()
+    report = (DOC / 'h77e-knick.html').read_text()
+
+    assert card['branch'] != 'arena/4dbb59e0-gemsdoe77'  # imported historical evidence, not this review's experiment
+    assert lane['primary'] is False and lane['protocol_unique'] is False
+    assert 'Existing H77E-Knick research file' in home
+    assert 'this review did not generate it' in home
+    assert 'OK to download for inspection: YES' in home
+    assert 'NOT OK TO SUBMIT' in home and 'no selector has approved it' in home
+    assert '45</code> literal overlap firings' in home
+    assert '861</code> valid rasters' in home
+    assert '<code>0/816</code>' in home
+    assert 'not organizer-confirmed scores' in home
+    assert 'Official HOLDOUT-DTI' not in home
+    for seed_key, score_key, label in (
+        ('holdout_dti_seed20_11321px', 'h77e_portfolio_unique_submodular', 'Seed 20'),
+        ('holdout_dti_seed30_11342px', 'h77e_portfolio_unique_submodular', 'Seed 30'),
+    ):
+        score = card[seed_key]['scores'][score_key]
+        assert score['evidence_class'] == 'HOLDOUT-DTI'
+        assert score['evaluator_version'] == 'gems57-pooled-hide-v2'
+        assert score['withheld_positive_pixels'] in (11321, 11342)
+        assert len(score['ci95']) == 2
+        assert f'{label} HOLDOUT-DTI:</b> <code>{score["dti"]:.6f}</code>' in home
+        assert f'{score["withheld_positive_pixels"]:,} withheld positives' in home
+        assert f'95% CI <code>[{score["ci95"][0]:.6f}, {score["ci95"][1]:.6f}]</code>' in home
+    assert '0 / 816' not in home.split('Existing H77E-Knick research file', 1)[0]
+    assert 'download for inspection only' in report
+    assert 'NOT OK TO SUBMIT' in report
+    assert '11,321' in report and '11,342' in report
+    assert 'Every score below is <b>HOLDOUT-DTI</b>' in report
+    assert 'This is not organizer acceptance' in report
+
+
+def test_current_readme_status_is_not_the_old_h77e_promotion_banner():
+    readme = (ROOT / 'README.md').read_text()
+    assert 'No new experiment or TIFF was generated in this review' in readme
+    assert 'NOT OK TO SUBMIT — 0 authorized files' in readme
+    assert 'H77E-Knick` Newest Primary Deliverable' not in readme
+    assert '17 fail-closed lanes' not in readme
+    assert '22 manifest-listed fail-closed lanes' in readme
+    assert readme.endswith((DOC / 'PROJECT_PROMPT.md').read_text())

@@ -1,0 +1,116 @@
+# Current-checkout repository review — 2026-10-21
+
+**Branch:** `arena/4dbb59e0-gemsdoe77` · **base/HEAD at review start:** `2b22987` (`2b229879b9be8cf6ccda32affbe0ed6d7da4dd25`).
+
+## Executive decision
+
+**No experiment or new TIFF was generated in this review. No file is approved to submit. No weekly slot was used.** The fail-closed release gate reports **NOT OK TO SUBMIT — 0 authorized files**. This is an intentional stop, not a completed candidate-generation run.
+
+Three independent blockers prevent a responsible experiment or “unique submission” claim:
+
+1. **No method lane is assigned.** The user brief asks for new work but does not assign a single preregistered lane; archived lanes are closed/negative and cannot be retuned here.
+2. **Inputs are absent in this checkout.** The new read-only `scripts/check_data_ready.py` audit reports all **23/23** files in `registry/data_manifest.json` missing from `data/raw/`. `data/processed/stack.npy` is also absent. The tracked restore receipt is historical; it does not prove current files exist.
+3. **The literal uniqueness rule remains blocked.** Frozen audits record a full-support/space-filling registry witness and literal 3-px overlap above the `0.70` limit. The informative-subset diagnostic is not an exemption. No local override was made.
+
+The data check reports missing inputs, so there is no honest leakage-canary run, matched spatial holdout, final-dot comparison, candidate score, or new artifact to publish. Resolving the lane authority, input state, and shared policy is a prerequisite.
+
+## Pass 1 — scope, status, and claims
+
+- Re-read the root `README.md`, the preserved project request at its end, `PROMPT.md`, `docs/PROJECT_PROMPT.md`, repo instructions, lane manifests, release receipts, and relevant run cards.
+- Reconciled the landing-page/README mismatch: the manifest lists **22** research/download lanes and marks H80 as its one featured `primary`; the README previously said 17 lanes and labeled H77E-Knick a newest primary deliverable. The README now identifies H77E as a historical inspection-only artifact and the lane count is corrected. No lane or selector decision was changed.
+- Rebuilt the static site from its generators. The H77E top card now says it is an existing historical file, distinguishes **OK to download for inspection** from **NOT OK TO SUBMIT**, shows both local HOLDOUT-DTI values with evaluator, withheld-positive count and 95% CI, and displays both the archived informative-subset diagnostic and literal-rule failure. It no longer calls the local score “official” or presents the informative reading as clearance. The landing table is shorter and routes details to each lane report.
+- Updated `AGENTS.md` and `data/README.md` to state the current blockers and to distinguish historical restore receipts from current on-disk data.
+- Added four ranked next-lane hypotheses in [`research/next-lane-hypotheses-2026-10-21.md`](../research/next-lane-hypotheses-2026-10-21.md). These are qualitative priors, not DTI projections or permission to run. Novelty is limited to a search of the inspected GEMSDOE77 code/preregistrations; no family-wide novelty claim is made.
+
+### H33 / score attribution
+
+`research/why-h33-scored-02778.md` and the repository forensic receipt give a plausible *metric mechanism*: the archived H33 raster has 37,654 positive pixels on the H19-5 backbone, and the forensics describe it as the earlier 44,090-dot raster with 6,436 dots at or within 200 m of known catalogue traces removed. Under the repository's stated DTI setup (α=0.2, β=0.8, 300 m triangular kernel), removing redundant near-catalogue predictions can reduce false-positive mass while retaining nearby hidden-fault coverage. That is a mechanism-based explanation, **not causal proof** that the specific bytes received a particular organizer score.
+
+The reported `0.2778` file-to-score mapping remains **OWNER-REPORT**, not `ORGANIZER-CONFIRMED`: no authenticated submission-page receipt identifies the raster. The brief and repository contain conflicting score snapshots (including `0.3195`, `0.2778`, and `0.4413`). The archived landing-page text reports a public leaderboard snapshot, but no external page was fetched in this review and a leaderboard row does not identify a repository TIFF. No snapshot is adopted as a verified score for a specific file.
+
+### Existing H77E evidence — historical, not a new result
+
+`evidence/h77e/run_card.json` records a source branch of `arena/66740483-gemsdoe77`, not the active branch for this review. Treat it as imported historical evidence. It reports the H77E portfolio-unique construction at:
+
+- **Seed 20 HOLDOUT-DTI:** `0.126664`, evaluator `gems57-pooled-hide-v2`, `11,321` withheld positives, 95% CI `[0.111196, 0.141749]`.
+- **Seed 30 HOLDOUT-DTI:** `0.124727`, evaluator `gems57-pooled-hide-v2`, `11,342` withheld positives, 95% CI `[0.109650, 0.138262]`.
+
+The frozen run card says `protocol_unique: false`, `informative_unique: true`, and overall `verdict: negative`. Its archived registry snapshot records 0/816 informative-subset firings but 45 literal firings among 861 valid rasters, with a literal maximum forward 3-px overlap of 1.0. That narrower diagnostic does not clear the binding rule. The webpage and README mark the file **OK to download for inspection; NOT OK TO SUBMIT**. These historical numbers were not recomputed in this review.
+
+The retained repository comparator remains **0.152718 HOLDOUT-DTI**, evaluator `gems57-pooled-hide-v2`, `11,321` withheld positives, 95% CI `[0.131548, 0.175185]`. It is a local holdout result, not an organizer score.
+
+## Pass 2 — scientific/protocol review and candidate ranking
+
+- Checked that this session did not create or modify a private evaluator, writer, feature stack, or uniqueness exemption. `vendor/gems57` remains pinned; the prior review's 23/23 template-file hash check matched `registry/template_pin.json`.
+- Confirmed the run protocol still requires feature-alone leakage canaries first (`AUC > 0.90` is leakage until resolved), whole-segment buffered holdouts, catalogue features derived only from visible faults, pixel-exact masking, the pinned pooled DTI evaluator/writer, and both pre-placement surface and final-dot registry checks. Do not replace these with a private copy or a partial-registry interpretation.
+- The ranked future ideas are: (1) cross-geothermometer discordance corridors (low–moderate signal prior, low–medium incremental cost; the historical GDR chemistry audit is sparse), (2) Sentinel-1 interseismic deformation discontinuities (potentially high signal, high cost and unverified AOI coverage), (3) groundwater-head barriers/conduits (moderate prior, sparse-data risk), and (4) persistent Landsat surface-temperature residuals (low–moderate prior, high confounding/cost). No numerical DTI improvement is defensible from this evidence.
+- **The top candidate was not validated on holdout.** That would be an unauthorized experiment under the current lane status, with required data absent and no path to literal uniqueness clearance. The hypotheses document names official-source routes and marks external/AOI availability unverified; none is represented as currently viable.
+- No current experiment was run; experiment count for this review is **0**. No model was retuned, no submission candidate selected, and no selector decision made.
+
+## Pass 3 — implementation, reproducibility, and publication checks
+
+- Added `scripts/check_data_ready.py`, a read-only, fail-closed manifest + receipt + live-byte check. It validates current file presence, byte count, and SHA-256, rejects unknown IDs and path traversal, and explicitly warns that owner-mirror integrity is not organizer authentication.
+- Added five tests covering matching inputs in a fresh checkout, missing files despite an old receipt, byte/hash drift, receipt mismatch, and unsafe/unknown paths.
+- Added site tests that enforce H77E's inspection-only/NOT-OK status and score metadata. The README's full original prompt remains present at EOF.
+- Successful generators: `.venv/bin/python scripts/build_site.py`, `scripts/lia_build_site.py`, and `scripts/build_home.py`.
+- Test suite: **131 passed** (pinned `.venv`).
+- `.venv/bin/python scripts/verify_all.py`: **all_passed: true** for the ContactPhys local format/metric checks it runs. This is not organizer acceptance, a full portfolio uniqueness check, or approval for any file.
+- `.venv/bin/python scripts/release_gate.py --out /tmp/gems77-review-release-final.json --verify-fail-closed`: decision **NOT OK TO SUBMIT**, **0** authorized files.
+- `.venv/bin/python scripts/check_data_ready.py`: expected non-ready result; **23/23** manifest inputs absent in `data/raw/`. The processing cache `data/processed/stack.npy` is absent as well.
+- No external web pages were fetched, no TIFF was generated, no TIFF bytes were intentionally changed, and no submission slot was used.
+
+## Irregularities and limitations
+
+1. **Score provenance:** the GEMSDOE32/H33 `0.2778` attribution is not tied to an organizer receipt; competing score snapshots remain unresolved. The local DTI mechanism is plausible, not proof of that score's cause.
+2. **H77E provenance:** its run card names a different originating branch. It is retained as an existing artifact with frozen evidence, not a current-branch experiment.
+3. **Status duplication:** the tracked lane manifest, README, generated landing page, and historical report language previously disagreed. The README and site-builder wording were reconciled for the current summary; frozen run cards and historical prose were not rewritten.
+4. **Receipt drift:** `data/restore_receipt.json` references files absent from this checkout, and `registry/feature_receipt.json` references an absent processed stack. The new checker makes that failure explicit.
+5. **Uniqueness contradiction:** archived runs record a dense/space-filling witness with a 3-px halo that defeats the literal overlap threshold. Do not infer uniqueness from H77E's informative subset, nor patch the threshold locally.
+6. **External-source verification:** links below and in the hypothesis backlog are for manual review. No official page, data availability, current leaderboard, license terms, or submission receipt was freshly verified over the network in this review. Prior repository notes about blocked hosts are historical notes, not a new connectivity test.
+7. **Scope of registry checks:** this review did not acquire a fresh full-family registry or issue a new uniqueness certificate. Stored audit counts are historical and are labeled as such.
+
+## Official/manual-review links
+
+- [DrivenData competition problem](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/)
+- [DrivenData data page](https://www.drivendata.org/competitions/306/competition-doe-gems/data/)
+- [DrivenData leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/)
+- [Organizer reference solution](https://github.com/drivendataorg/gems-prize-reference-solution)
+- [DOE GDR INGENIOUS / data release 1391](https://gdr.openei.org/submissions/1391)
+- [USGS GeoDAWN](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and)
+- [USGS 3DEP](https://www.usgs.gov/3d-elevation-program)
+- [Copernicus Data Space Ecosystem](https://dataspace.copernicus.eu/)
+- [USGS Water Services](https://waterservices.usgs.gov/)
+- [USGS Landsat Collection 2 Surface Temperature](https://www.usgs.gov/landsat-missions/landsat-collection-2-surface-temperature)
+- [NLR competition rules PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf)
+
+## Handoff — highest-value next steps
+
+1. Have the protocol owner assign exactly one method lane and resolve the full-support witness versus literal 3-px overlap policy. Do not change Policy I17 locally.
+2. Restore the authorized inputs and require `scripts/check_data_ready.py` to pass; separately rebuild and verify the feature stack required by the assigned lane.
+3. Verify the official competition spec and current H33 submission-page receipt/file mapping. Keep `0.2778`, `0.3195`, and `0.4413` claims separated by provenance.
+4. Only then preregister one novel idea, confirm official data availability where needed, run leakage canaries first, and use the pinned whole-component holdout/evaluator/writer. Respect the three-experiment/two-hour cap.
+5. Compare both the ranking surface and final dots against the authorized registry. Stop at `|rho| > 0.90` or `>70%` overlap. Do not create a new TIFF until this can be satisfied.
+6. Do not spend a weekly slot unless the candidate beats the comparable holdout best and a separate selector approves the exact file SHA-256.
+
+## Review card
+
+```json
+{
+  "hypothesis": "No geological hypothesis tested; repository/site/data-readiness review only.",
+  "mechanism": "Reconciled current download/submit wording, added read-only manifest/receipt/live-byte readiness checks, added four ranked but unvalidated hypotheses, and kept release authorization fail-closed.",
+  "named_non_fault_mimic": "Not applicable to this review; candidate-specific mimics are listed in research/next-lane-hypotheses-2026-10-21.md.",
+  "holdout_dti": {
+    "evidence_class": "NOT RUN in this review",
+    "evaluator_version": null,
+    "withheld_positive_count": null,
+    "value": null,
+    "ci95": null
+  },
+  "correlation_overlap_vs_registry": "NOT RUN in this review. Historical H77E audit: pre-placement max absolute Spearman 0.7653; literal final-dot scan 45 firings/861 valid rasters, max forward 3-px overlap 1.0; informative diagnostic 0/816, max 0.66800. Historical only; no new clearance.",
+  "raster_sha256": null,
+  "format_validation": "No TIFF generated. Existing H77E frozen local validator receipt passes, but this review did not revalidate it as an organizer submission.",
+  "submission_name": "NONE — no new candidate generated, selected, or authorized.",
+  "submission_note": "Review only; no weekly slot used.",
+  "verdict": "negative / blocked; not OK to submit"
+}
+```

@@ -23,7 +23,7 @@ LB = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboa
 PD = "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
 NAV = [("index.html", "Start here"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
-       ("h77e-knick.html", "H77E-Knick · 0/816 firings"), ("release-review.html", "Release safety review"), ("executive-summary.html", "How to submit"),
+       ("h77e-knick.html", "H77E-Knick · research-only"), ("release-review.html", "Release safety review"), ("executive-summary.html", "How to submit"),
        ("h81.html", "H81 · slip-cone"),
        ("h80t.html", "H80T · tilt-persist"), ("h80t-executive-summary.html", "H80T guide"),
        ("h80.html", "H80 · negative"), ("ago.html", "AGO · negative proxies"),
@@ -141,10 +141,12 @@ def main():
         if x["lane"].startswith("H79-ORIENT:"):
             h20 = orient_card["holdout"]["seed20"]["scores"]["H79_plus_raw"]
             h30 = orient_card["holdout"]["seed30"]["scores"]["H79_plus_raw"]
-            return (f'<span class="chip warn">HOLDOUT-DTI {h30["dti"]:.4f} '
+            return (f'<span class="chip warn">Seed 30 HOLDOUT-DTI {h30["dti"]:.4f} '
                     f'(95% CI {h30["ci95"][0]:.4f}–{h30["ci95"][1]:.4f}; '
                     f'{e(h30["evaluator_version"])}; {h30["withheld_positive_pixels"]:,} withheld); '
-                    f'seed20 {h20["dti"]:.4f}; negative</span>')
+                    f'Seed 20 HOLDOUT-DTI {h20["dti"]:.4f} '
+                    f'(95% CI {h20["ci95"][0]:.4f}–{h20["ci95"][1]:.4f}; '
+                    f'{e(h20["evaluator_version"])}; {h20["withheld_positive_pixels"]:,} withheld); negative</span>')
         if x["lane"].startswith("H79-BB:"):
             h = jload("evidence/h79_run_card.json")["holdout_dti"]
             v = h["pooled_hide_v2"]
@@ -179,14 +181,16 @@ def main():
 
     rows = ""
     for x in lanes["lanes"]:
-        rows += (f'<tr><td><a href="{e(x["page"])}">{e(x["lane"])}</a></td>'
+        lane_label = x["lane"].split(":", 1)[0].replace("(NEWEST)", "(archived)").strip()
+        rows += (f'<tr><td><a href="{e(x["page"])}">{e(lane_label)}</a></td>'
                  f'<td>{download_cell(x)}</td>'
                  f'<td>{yn(x.get("format_valid"), "PASS", "FAIL")}</td>'
                  f'<td>{yn(x.get("protocol_unique"), "PASS", "FAIL")}</td>'
                  f'<td>{info_cell(x)}</td>'
                  f'<td>{holdout_cell(x)}</td>'
                  f'<td><span class="chip warn">not approved</span></td>'
-                 f'<td>{e(x["upload"])}</td></tr>')
+                 '<td><b>NOT OK TO SUBMIT.</b> Inspection download only. The literal registry gate is not cleared; '
+                 'no selector has approved this file. See the lane report for its evidence and limitations.</td></tr>')
     table = (f'<table><tr><th>Lane</th><th>File (click to download)</th><th>Portal format (local checks)</th>'
              f'<th>Unique, literal rule (binding)</th><th>Unique, informative reading (diagnostic)</th>'
              f'<th>Beat the champion construction on the holdout?</th><th>Selector</th>'
@@ -235,7 +239,7 @@ gates and currently says <b>NOT OK TO SUBMIT — 0 authorized files</b>.</p>"""
     o20 = orient_card["holdout"]["seed20"]["scores"]["H79_plus_raw"]
     o30 = orient_card["holdout"]["seed30"]["scores"]["H79_plus_raw"]
     orient_box = f"""<section class="card" style="border:2px solid #b45309;background:#fffbeb;"><h2>⬇ H79-ORIENT: earlier negative lane</h2>
-<p><b>OK TO DOWNLOAD: YES.</b> <b>OK TO SUBMIT: NO.</b> The label-blind orientation/persistence artifact is a distinct research lane, but its primary is HOLDOUT-DTI {o30['dti']:.6f} on seed 30 (95% CI {o30['ci95'][0]:.6f}–{o30['ci95'][1]:.6f}; {o30['withheld_positive_pixels']:,} withheld positives) and {o20['dti']:.6f} on seed 20. The retained incumbent is 0.152718 HOLDOUT-DTI. The registry gate is also fail-closed.</p>
+<p><b>OK TO DOWNLOAD: YES.</b> <b>NOT OK TO SUBMIT.</b> The label-blind orientation/persistence artifact is a distinct research lane. Seed 30 HOLDOUT-DTI is {o30['dti']:.6f} (evaluator {e(o30['evaluator_version'])}; {o30['withheld_positive_pixels']:,} withheld positives; 95% CI [{o30['ci95'][0]:.6f}, {o30['ci95'][1]:.6f}]); Seed 20 HOLDOUT-DTI is {o20['dti']:.6f} (evaluator {e(o20['evaluator_version'])}; {o20['withheld_positive_pixels']:,} withheld positives; 95% CI [{o20['ci95'][0]:.6f}, {o20['ci95'][1]:.6f}]). The retained comparator is 0.152718 HOLDOUT-DTI (evaluator <code>gems57-pooled-hide-v2</code>; 11,321 withheld positives; 95% CI [0.131548, 0.175185]). The registry gate is also fail-closed.</p>
 <a class="btn" href="{e(orient['file'])}" download>Download H79-ORIENT .tif</a> <a class="btn alt" href="{e(orient['zip'])}" download>One-TIFF ZIP</a>
 <div class="chips"><span class="chip ok">Format preflight: PASS</span><span class="chip bad">Holdout: NEGATIVE</span><span class="chip bad">Registry: FAIL</span><span class="chip warn">Slots used: 0</span></div>
 <p class="small">SHA-256 <code>{e(orient['sha256'])}</code> · <a href="h79-orient.html">technical report</a> · <a href="h79-orient-executive-summary.html">H79-ORIENT guide</a> · <a href="evidence/h79_orient_run_card.json">run card</a></p></section>"""
@@ -602,13 +606,13 @@ def h77e_knick_body(rc77e):
         for item in uq["top_15_vendor_verified_matches"]
     )
     return f"""<h1>H77E-Knick lane: Statewide 10 m 3DEP Knickpoint + TIGER-Deconfounded Step + Up-Dip Seismicity + 4-Scale SLOCO + 816-Raster Capped 300 m Submodular Cover</h1>
-<p class="verdict"><b>Status at a glance.</b> <b>OK to download locally: YES</b> (15/15 <code>vendor/gems57</code> checks + 17/17 portal grid checks PASS, exact <code>0.0 / 1.0</code> float32 values strictly in <code>[0, 1]</code>, <code>0</code> NaN anywhere in all <code>12,279,160</code> cells).<br>
-<b>OK to submit automatically without human selector Policy I17 sign-off: NO</b> (Not OK to submit automatically under literal Policy I17 because 45 space-filling archive heatmaps have 3-px halos covering &ge; 70% of Nevada, up to 100.0%).<br>
-<b>Informative uniqueness across ALL 816 &lt;70%-halo rasters in the 861-raster portfolio AND all 18 sparse GEMSDOE77 sibling files: PASS with ZERO firings</b> (exact worst forward 3-px overlap = <code>0.66800 &le; 0.70</code> across portfolio; <code>0.42104 &le; 0.70</code> across all 18 sparse GEMSDOE77 siblings).</p>
-<section class="card dl"><h2>⬇ Download verified H77E-Knick competition GeoTIFFs</h2>
-<a class="btn" href="downloads/{e(Path(sub["primary_geotiff"]).name)}" download>Download Primary Zero-Firing .tif ({sub["file_bytes"]//1024} KB)</a>
-<a class="btn alt" href="downloads/{e(Path(sub["primary_zip"]).name)}" download>Same file as single-TIFF .zip ({sub["zip_bytes"]//1024} KB)</a>
-<a class="btn alt" href="downloads/{e(Path(sub["companion_pure_geotiff"]).name)}" download>Pure Unconstrained Companion .tif (0.1556 HOLDOUT-DTI)</a>
+<p class="verdict"><b>Existing research artifact; this review did not generate it.</b> <b>OK to download for inspection: YES</b> (its frozen local validator receipt reports all checks passed: single-band float32, <code>EPSG:32611</code>, <code>3730×3292</code>, values in <code>[0, 1]</code>, and no NaNs). This is not organizer acceptance.<br>
+<b>NOT OK TO SUBMIT.</b> The frozen run card fails the literal Policy I17 gate: a registry snapshot recorded <code>45</code> space-filling heatmaps with 3-px halos covering at least <code>70%</code> of allowed cells (maximum <code>100%</code>). No selector has approved this artifact.<br>
+<b>Informative-subset diagnostic only, not protocol clearance:</b> the archived comparison recorded <code>0</code> firings across <code>816</code> informative rasters (maximum forward 3-px overlap <code>0.66800</code>), but the separate literal scan recorded <code>45</code> firings across <code>861</code> valid rasters. This historical comparison is not a fresh full-registry uniqueness certificate.</p>
+<section class="card dl"><h2>⬇ Existing H77E-Knick research GeoTIFFs — download for inspection only</h2>
+<a class="btn" href="downloads/{e(Path(sub["primary_geotiff"]).name)}" download>Download H77E research .tif ({sub["file_bytes"]//1024} KB)</a>
+<a class="btn alt" href="downloads/{e(Path(sub["primary_zip"]).name)}" download>Same research file as single-TIFF .zip ({sub["zip_bytes"]//1024} KB)</a>
+<a class="btn alt" href="downloads/{e(Path(sub["companion_pure_geotiff"]).name)}" download>Download unconstrained research companion .tif</a>
 {copy("Submission name", sub["submission_name"])}
 {copy("Submission note (<= 140 chars)", sub["submission_note"])}
 <p class="small">Primary <code>.tif</code> SHA-256: <code>{e(sub["primary_geotiff_sha256"])}</code> · ZIP SHA-256: <code>{e(sub["primary_zip_sha256"])}</code> · Pure companion SHA-256: <code>{e(sub["companion_pure_sha256"])}</code></p>
@@ -617,13 +621,15 @@ def h77e_knick_body(rc77e):
 <p><img src="assets/h77e/fig1_h77e_holdout_and_uniqueness.png" alt="Dual-seed HOLDOUT-DTI benchmark and 816-raster uniqueness audit" style="max-width:100%;height:auto;border:1px solid #ddd;border-radius:6px"></p>
 <p><img src="assets/h77e/fig2_h77e_nevada_surface_and_zoom.png" alt="Cross-fitted Nevada propensity surface and 45x45 km Central Nevada Basin-and-Range zoom showing blind fault recovery" style="max-width:100%;height:auto;border:1px solid #ddd;border-radius:6px"></p>
 <p><img src="assets/h77e/fig3_h77e_top15_informative_overlaps.png" alt="Top 15 closest informative rasters across the 861-raster portfolio" style="max-width:100%;height:auto;border:1px solid #ddd;border-radius:6px"></p>
-<h2>Dual-seed official hide-and-recover benchmark (<code>gems57-pooled-hide-v2</code>, zero test retuning)</h2>
+<h2>Dual-seed spatial hide-and-recover benchmark (local HOLDOUT-DTI)</h2>
+<p>Every score below is <b>HOLDOUT-DTI</b> from evaluator <code>gems57-pooled-hide-v2</code>. Seed 20 withheld <code>11,321</code> positives; Seed 30 withheld <code>11,342</code> positives. Each score cell includes its <b>95% CI</b>; these are local spatial holdout results, not organizer-confirmed leaderboard scores.</p>
 <table><tr><th>Arm</th><th>Seed 20 HOLDOUT-DTI (95% CI)</th><th>Seed 30 HOLDOUT-DTI (95% CI)</th></tr>{arms_rows}</table>
 <h3>Paired block-bootstrap differences on Seed 20 (<code>2,000</code> replicates)</h3>
+<p>Paired &Delta; and 95% CI are also <b>HOLDOUT-DTI</b> differences, using evaluator <code>gems57-pooled-hide-v2</code> and <code>11,321</code> withheld positives.</p>
 <table><tr><th>Comparison</th><th>Paired &Delta; HOLDOUT-DTI</th><th>95% CI</th></tr>{diff_rows}</table>
 <h2>Leakage canary audit (<code>{can["n_features_checked"]}/{can["n_features_checked"]}</code> passed &le; 0.90)</h2>
 <table><tr><th>Top 12 Single-Feature Canaries</th><th>Holdout AUC</th><th>Feature Group</th></tr>{can_rows}</table>
-<h2>Exact 861-raster portfolio uniqueness audit (<code>0 / 816</code> informative firings)</h2>
+<h2>Archived registry uniqueness scan: <code>0 / 816</code> informative-subset firings, but <code>45</code> literal firings across <code>861</code> valid rasters</h2>
 <table><tr><th>Closest Informative Raster (&lt;70% 3-px halo)</th><th>Halo Fraction</th><th>Exact Forward 3-px Overlap</th><th>Abs Diff vs Vendor</th></tr>{top_ov_rows}</table>
 """
 
@@ -640,18 +646,44 @@ def _inject_h77e_knick_hero():
     if not rc77e:
         return
     sub = rc77e["submission_artifact"]
-    hero = f"""<section class="card dl"><h2>⬇ Latest H77E-Knick Research Deliverable (0 / 816 Informative Firings · Dual-Seed Positive Holdout)</h2>
-<p class="verdict"><b>OK to download: YES</b> (15/15 <code>vendor/gems57</code> + 17/17 grid checks PASS, binary float32 in <code>[0, 1]</code>, <code>0</code> NaNs).<br>
-<b>Not OK to submit (NOT OK TO SUBMIT automatically — inspection only without human selector Policy I17 sign-off):</b>
-45 space-filling &ge;70%-halo archive heatmaps trigger literal overlap; across ALL <code>816</code> &lt;70%-halo portfolio rasters AND all <code>18</code> sparse GEMSDOE77 files, forward 3-px overlap has <b>0 firings</b> (<code>max = 0.66800 &le; 0.70</code>; local siblings <code>max = 0.42104 &le; 0.70</code>).<br>
-<b>Official HOLDOUT-DTI (<code>gems57-pooled-hide-v2</code>):</b> <code>0.126664</code> on Seed 20 (95% CI <code>0.111196–0.141749</code>; +0.0303 vs fold-fair H33) &amp; <code>0.124727</code> on Seed 30 (95% CI <code>0.109650–0.138262</code>; +0.0257 vs fold-fair H33); pure physics twin <code>0.155623</code> (Seed 20) / <code>0.154666</code> (Seed 30).</p>
-<a class="btn" href="downloads/{e(Path(sub["primary_geotiff"]).name)}" download>Download H77E-Knick .tif ({sub["file_bytes"]//1024} KB)</a>
-<a class="btn alt" href="downloads/{e(Path(sub["primary_zip"]).name)}" download>Single-TIFF .zip ({sub["zip_bytes"]//1024} KB)</a>
+    s20 = rc77e["holdout_dti_seed20_11321px"]
+    s30 = rc77e["holdout_dti_seed30_11342px"]
+    score20 = s20["scores"]["h77e_portfolio_unique_submodular"]
+    score30 = s30["scores"]["h77e_portfolio_unique_submodular"]
+    uq = rc77e["uniqueness_audit"]
+    surface = uq["phase1_pre_placement_surface"]
+    informative = uq["phase2_post_placement_final_dots"]["informative_reading_lt_0p70_bg"]
+    literal = uq["phase2_post_placement_final_dots"]["literal_unfiltered_reading_policy_I17"]
+    if any(x.get("evidence_class") != "HOLDOUT-DTI" for x in (score20, score30)):
+        raise ValueError("H77E landing-page score does not have HOLDOUT-DTI evidence class")
+    validator = sub["validator_receipt"]
+    if not validator.get("all_checks_passed") or rc77e.get("verdict") != "negative":
+        raise ValueError("H77E landing page requires a passing local receipt and a negative lane verdict")
+
+    def holdout_line(seed_name, score):
+        lo, hi = score["ci95"]
+        return (
+            f'<b>{e(seed_name)} HOLDOUT-DTI:</b> <code>{score["dti"]:.6f}</code> '
+            f'(evaluator <code>{e(score["evaluator_version"])}</code>; '
+            f'{score["withheld_positive_pixels"]:,} withheld positives; '
+            f'95% CI <code>[{lo:.6f}, {hi:.6f}]</code>)'
+        )
+
+    hero = f"""<section class="card dl"><h2>⬇ Existing H77E-Knick research file — download for inspection only</h2>
+<p class="verdict"><b>This is an existing historical artifact; this review did not generate it.</b><br>
+<b>OK to download for inspection: YES.</b> Its frozen local validator receipt reports all checks passed (single-band float32, <code>EPSG:32611</code>, <code>3730×3292</code>, values in <code>[0,1]</code>, no NaNs). This is not organizer acceptance.<br>
+<b>NOT OK TO SUBMIT.</b> The archived registry measurement records <code>{literal["firings_gt_0p70"]}</code> literal overlap firings among <code>{literal["rasters_checked"]}</code> valid rasters, so the protocol-unique flag is false; no selector has approved it. In the narrower diagnostic subset, <code>{informative["firings_gt_0p70"]}/{informative["rasters_checked"]}</code> overlaps fired (maximum <code>{informative["max_forward_3px_overlap"]:.5f}</code> against the <code>0.70</code> limit), but that does not override the literal failure. The archived pre-placement surface check recorded maximum absolute Spearman correlation <code>{surface["max_abs_spearman"]:.4f}</code> against the <code>0.90</code> limit; none of these are fresh registry checks.<br>
+{holdout_line("Seed 20", score20)}<br>
+{holdout_line("Seed 30", score30)}<br>
+These are local HOLDOUT-DTI measurements, not organizer-confirmed scores or submission approval.</p>
+<a class="btn" href="downloads/{e(Path(sub["primary_geotiff"]).name)}" download>Download H77E research .tif ({sub["file_bytes"]//1024} KB)</a>
+<a class="btn alt" href="downloads/{e(Path(sub["primary_zip"]).name)}" download>Same research file as single-TIFF .zip ({sub["zip_bytes"]//1024} KB)</a>
 <a class="btn alt" href="h77e-knick.html">Full H77E-Knick report &amp; figures →</a>
-<p class="small">name: <code>{e(sub["submission_name"])}</code> · sha256: <code>{e(sub["primary_geotiff_sha256"])}</code> · note: <code>{e(sub["submission_note"])}</code></p></section>"""
+<p class="small">submission name (reference only): <code>{e(sub["submission_name"])}</code> · sha256: <code>{e(sub["primary_geotiff_sha256"])}</code> · note (not approved): <code>{e(sub["submission_note"])}</code></p></section>"""
     for pname in ("index.html", "executive-summary.html"):
         ptxt = (D / pname).read_text()
-        ptxt = ptxt.replace("<h1>", hero + "<h1>", 1)
+        if "<h1>" in ptxt and "Existing H77E-Knick research file" not in ptxt:
+            ptxt = ptxt.replace("<h1>", hero + "<h1>", 1)
         (D / pname).write_text(ptxt)
 
 def _write_h77g():
