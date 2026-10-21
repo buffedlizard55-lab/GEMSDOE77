@@ -8,6 +8,10 @@ summarised with provenance at the end rather than re-transcribed hash-by-hash
 `docs/score-ledger.csv`; later entries below are OWNER-REPORT as supplied in
 the 2026-10-21 brief — no organizer receipts).*
 
+## 2026-10-21 latest review addendum — arena/b6805ddb-gemsdoe77
+
+No single method paragraph is assigned in this invocation; prior lanes are closed. The pinned dense-witness preflight was rerun and rejects every nonempty allowed candidate under the literal overlap threshold (all 5,106,385 allowed pixels are within 3 px; lower bound 1.0 > 0.70). The raw training feature raster and processed stack are absent. No new TIFF or geological experiment was authorized or run; no weekly slot was used; release authorization remains zero. Existing listed primary TIFFs were read back: 29/29 local format/integrity checks pass, not uniqueness or portal acceptance. See `docs/review-2026-10-21-b6805ddb.md` and `evidence/review_b6805ddb_run_card.json`. The four hypotheses there are conditional backlog, not validation results. Superseded leaderboard observations below are historical, not current submission-page receipts.
+
 ## 2026-10-21 review addendum — arena/60aafd45-gemsdoe77
 
 No new method paragraph is assigned in this invocation. The freshly rechecked dense registry witness blocks every nonempty candidate under the binding literal rule. No new TIFF, model experiment or slot is authorized by this review. See `docs/review-2026-10-21-60aafd45.md` and the corrected H33 analysis. Superseded earlier leaderboard observations below are historical, not current submission-page receipts.

@@ -374,7 +374,7 @@ These are registry/format measurements, not scores or portal acceptance.</p>"""
 lists the reviewed research candidates, not every historical archived/NaN-twin file; see <a href="audit.html">archive audit</a>.</p>
 {glance}
 {dl}
-<p><a href="review-latest.html">Latest review: no new TIFF; independently verified duplicate-stop blocker</a> · <a href="metric-review.html">Corrected H33 analysis</a></p>
+<p><a href="review-latest.html">Latest review (arena/b6805ddb): no new TIFF; duplicate-stop blocker and 29-file format audit</a> · <a href="metric-review.html">Corrected H33 analysis</a></p>
 {orient_box}
 <h2>Reviewed downloadable candidates</h2>{table}
 <div class="values"><b>Score provenance and slot limits.</b> The supplied 0.2778 attribution to H33,
@@ -408,7 +408,7 @@ condition is met merely by passing a format check.</p>
 {glance}
 {rank_box}
 {dl}
-<p><a href="review-latest.html">Latest review: no new TIFF; independently verified duplicate-stop blocker</a> · <a href="metric-review.html">Corrected H33 analysis</a></p>
+<p><a href="review-latest.html">Latest review (arena/b6805ddb): no new TIFF; duplicate-stop blocker and 29-file format audit</a> · <a href="metric-review.html">Corrected H33 analysis</a></p>
 {orient_box}
 <h2>What the DrivenData submission form asks for</h2>
 <table><tr><th>Field</th><th>What to give it only after clearance</th></tr>
@@ -862,11 +862,17 @@ Format-valid (15/15 checks, 0 NaN, values in [0,1], 37,654 binary dots) and info
 
 def write_review_pages():
     for source, output, title in (
-        ("docs/review-2026-10-21-60aafd45.md", "review-latest.html", "Latest repository review"),
+        ("docs/review-2026-10-21-b6805ddb.md", "review-latest.html", "Latest repository review"),
         ("research/why-h33-scored-02778.md", "metric-review.html", "Corrected H33 analysis"),
     ):
         body = markdown.markdown((ROOT / source).read_text(), extensions=["tables", "fenced_code"])
+        # The source review is in docs/ and links to repo-root evidence/research;
+        # the published page is also in docs/, so make those links site-relative.
+        body = body.replace('href="../evidence/', 'href="evidence/')
+        body = body.replace('href="../research/', 'href="research/')
         (D / output).write_text(page(output, title, body))
+    shutil.copyfile(ROOT / "evidence/review_b6805ddb_run_card.json",
+                    D / "evidence/review_b6805ddb_run_card.json")
     for name in ("review_60aafd45_card.json", "review_60aafd45_verification.json"):
         shutil.copyfile(ROOT / "evidence" / name, D / "evidence" / name)
 

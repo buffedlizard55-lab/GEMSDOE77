@@ -39,6 +39,6 @@ def main():
         note += (' ' if note else '') + 'H82R: radiometric negative research file; NOT OK TO SUBMIT.'
     import re
     lanes['note'] = re.sub(r'All \d+ listed TIFF lanes', f'All {len(lanes["lanes"])} listed TIFF lanes', note)
-    lanespath.write_text(json.dumps(lanes,indent=1,ensure_ascii=False)+'\n')
+    lanespath.write_text(json.dumps(lanes,indent=2)+'\n')
 
 if __name__=='__main__':main()

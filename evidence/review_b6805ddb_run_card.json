@@ -1,0 +1,46 @@
+{
+  "schema": "gems-review-run-card-v1",
+  "branch": "arena/b6805ddb-gemsdoe77",
+  "date": "2026-10-21",
+  "hypothesis": "Repository review only. Top conditional hypothesis: multiscale cross-wavelet phase-jump coherence between GeoDAWN RTP/TMI and isostatic gravity to identify buried, cross-sensor coherent offsets; no new lane was assigned or tested.",
+  "mechanism": "No mechanism was implemented or evaluated. Proposed signature would be a locally detrended, scale-persistent cross-sensor phase discontinuity, not a standalone amplitude edge.",
+  "named_non_fault_process_that_could_mimic_it": "Intrusive/lithologic contacts, survey gridding seams, or unrelated juxtaposed magnetic and density sources.",
+  "holdout_dti": {
+    "evidence_class": "NO NEW HOLDOUT-DTI RESULT",
+    "reason": "No assigned method lane; raw feature raster and processed stack absent; no feature or candidate was constructed.",
+    "historical_results_used_as_new_evidence": false
+  },
+  "correlation_overlap_vs_registry": {
+    "candidate_surface_built": false,
+    "candidate_final_dots_built": false,
+    "candidate_spearman": null,
+    "candidate_final_dot_overlap": null,
+    "registry_measurement": {
+      "evidence_class": "REGISTRY-MEASUREMENT",
+      "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+      "allowed_pixels": 5106385,
+      "allowed_pixels_covered_within_3px": 5106385,
+      "uncovered_allowed_pixels": 0,
+      "nonempty_candidate_forward_overlap_lower_bound": 1.0,
+      "strict_stop_threshold": 0.7,
+      "decision": "STOP_UNIVERSAL_DUPLICATE",
+      "scope": "one hash-pinned rejection witness; not a full registry scan"
+    }
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "new_candidate_tif": "not generated; not applicable",
+    "existing_listed_primary_tiffs": "29/29 local format/integrity checks PASS; not uniqueness or portal acceptance",
+    "no_nan_inside_footprint": "not applicable to a new candidate",
+    "values_in_0_1": "not applicable to a new candidate",
+    "crs_shape_transform_match": "not applicable to a new candidate",
+    "release_authorized_files": 0
+  },
+  "submission_name": null,
+  "submission_note": "No new TIFF generated. Existing files are inspection-only; NOT OK TO SUBMIT.",
+  "verdict": "negative",
+  "experiments_run": 0,
+  "new_raster_generated": false,
+  "weekly_slots_used": 0,
+  "organizer_confirmed_score": null
+}
