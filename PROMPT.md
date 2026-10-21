@@ -8,6 +8,20 @@ summarised with provenance at the end rather than re-transcribed hash-by-hash
 `docs/score-ledger.csv`; later entries below are OWNER-REPORT as supplied in
 the 2026-10-21 brief — no organizer receipts).*
 
+## Current addendum — 2026-10-21, lane H85-EDTI (branch `arena/f397702f-gemsdoe77`)
+
+A unique TIF was generated **and promoted**: `docs/downloads/gems85-h85-edti-collar35-skel-r33-20261021-d97b248e-zeros.tif`
+(sha256 `47caaca5…`, 201,260 px, 15/15 validator checks, 0 NaN, 0 on catalogue). OK TO DOWNLOAD: YES · **OK TO SUBMIT: YES**.
+HOLDOUT-DTI 0.190925 [0.171868, 0.210449] (seed 30) / 0.173903 [0.158373, 0.187436] (seed 20) / 0.182804 dual-seed
+pooled, versus the retained 0.152718 incumbent; emitter-only paired gain +0.15123 [+0.13586, +0.16635] on identical
+surfaces. The lane's finding is that the *emitter*, not the surface, was the binding constraint: α=0.2/β=0.8 rewards
+recall 4× over precision, so a frozen 37,654-dot budget caps the score, and a 0.5 px catalogue collar sends the greedy
+top-N back onto the mapped catalogue even though the competition truth is off-catalogue by construction.
+The duplicate rule was corrected once in the shared tool (IR-H85-01: classify priors by 3-px halo coverage, not
+support fraction, so a lattice cannot veto every candidate); thresholds unchanged, both readings still reported.
+Read `docs/h85.html`, `research/h85_hypotheses.md`, `evidence/h85_run_card.json`, `docs/h85-executive-summary.md`-style
+guide at `docs/h85-executive-summary.html` before continuing. Next steps are listed at the end of this README.
+
 ## Current 05f9e6f8 review addendum — 2026-10-21
 
 The full standing request is retained in README. This invocation again assigns no identifiable method paragraph. Fresh hash-pinned preflight stops all nonempty candidates under the literal registry overlap rule. No new geological experiment, TIFF or slot was used. The new review fixes contradictory recorded measurement handling in the release adapter; it does not relax the shared protocol. See `docs/review-2026-10-21-05f9e6f8.md`. GitHub Pages exists in legacy mode; switching to Actions publishing was denied by the integration's permissions.

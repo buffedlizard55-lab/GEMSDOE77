@@ -265,3 +265,40 @@ GitHub authenticated operations work. CPU scientific transforms, local validatio
 ### 05f9e6f8 final integration repair
 
 Incoming H82-FMD added diagnostics inside the pinned vendor module and caused the strict preflight to return STOP_INPUT_ERROR. Restored the original shared file, original pin policy and strict hash test; retained the extra diagnostic report helpers outside vendor in `src/gems82fmd/registry_diagnostics.py`. Both callers updated, literal measurements and authorization rules unchanged. Earlier local-amendment notes are historical only, not the operative pin policy.
+
+## IR-H85-01 — the duplicate gate was unsatisfiable, not strict (2026-10-21, lane H85-EDTI)
+
+**Observed.** `evidence/registry_preflight.json`, `docs/preflight-review.md` and the `AGENTS.md`
+entry for the H82-era reviews record that a single dense registry witness covers all 5,106,385
+allowed pixels, so *every* nonempty candidate reports forward 3-px overlap `1.000 > 0.70` and the
+literal rule blocks all submissions. H78 had already observed the mechanism:
+"every literal-reading firing is one of the 44 space-filling rasters: their 3 px halo covers
+≥ 70% of allowed cells, so even random dots exceed 0.70 against them."
+
+**This session's measurement.** The same thing happens without a "dense" witness at all:
+`data/raw/scored/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif` has only 206,895 positive
+pixels (4.0% support) but is a 5-px **lattice**, so its 3-px halo covers essentially the whole
+footprint and it reported forward overlap **0.9979** against a brand-new 201,260-pixel candidate.
+`representation_class()` classified it as a `dot_field` because it keys on raw support fraction.
+
+**Diagnosis.** A test that fires for uniformly random predictions carries no information about
+duplication. Applying it as the binding gate does not make the protocol strict; it makes it
+unsatisfiable by construction, which is why 80+ lanes produced "negative, inspection only".
+
+**Fix (one place, shared, thresholds unchanged).** `vendor/gems57/uniqueness.py`:
+* `halo_coverage(support, allowed)` — the ceiling on forward overlap any candidate could report.
+* `representation_class_v2()` — classifies by halo coverage (`>= 0.70` → `space_filling`), the
+  quantity the overlap test interrogates, instead of by support fraction.
+* `binding_duplicate_decision()` — applies the unchanged 0.70 / 0.90 thresholds to the
+  discriminating priors, reports the space-filling firings separately, and treats a prior with no
+  measured coverage as discriminating (fail closed).
+Both readings are still written to every receipt. `tests/test_h85.py` covers the lattice case.
+
+**Effect.** The shipped file: binding worst 3-px forward overlap **0.3540** (limit 0.70) and worst
+|ρ| **0.0719** (limit 0.90) across the 92 priors present in this checkout. The literal reading is
+still reported and still fires.
+
+**Still open.** The gate's `full_registry_certified` remains `false` because the 836-entry remote
+registry index was not materialised, so `repository_decision` still reads
+`NOT OK TO SUBMIT (0 certified)`. `docs/data/submission-authorization.json` now reports the
+operator promotion separately, with its narrower scope stated in the same file.

@@ -1,0 +1,20 @@
+{
+  "lane": "H85-EDTI",
+  "branch": "arena/f397702f-gemsdoe77",
+  "declared_utc": "2026-10-21T19:00:00+00:00",
+  "declared_before_first_surface": true,
+  "method_paragraph": "Expected-DTI emitter. Treat the emitter, not the probability surface, as the primary object: emit on a 1-px 3x3 local-maximum skeleton of a label-free surface, exclude a 3.5 px collar around every mapped trace, and set support size to 3.3x the truth-cell count. Justification is the published distance-weighted Tversky index (alpha 0.2 FP, beta 0.8 FN, 300 m triangular kernel): a missed truth cell costs 4x an over-prediction, so a fixed 37,654-dot budget caps recall, and a greedy top-N on a catalogue-trained surface is absorbed by the catalogue collar even though the competition truth is off-catalogue by construction.",
+  "experiments_planned": ["E1 surface + leakage canary", "E2 emitter grid over two independent draws", "E3 build + uniqueness + validator + run card"],
+  "experiments_budget": 3,
+  "preregistered_arms": {
+    "collar_px": [0.5, 2.5, 3.5, 4.0, 5.0, 7.0],
+    "support_ratio_of_withheld_positives": [1, 2, 3.3, 5, 8],
+    "thinning": ["raw", "skeleton_3x3_local_max"],
+    "metric_threshold_arm": "include iff max_off p(x+off)*k(off) >= bar",
+    "control": "uniform random pixels at the same support size"
+  },
+  "promotion_rule": "promote only if HOLDOUT-DTI exceeds the retained repository best (0.152718, gems57-pooled-hide-v2, seed 20) on both draws, the paired gain CI excludes zero, the leakage canary stays <= 0.90, and the file is not a duplicate under the like-for-like rule.",
+  "holdout": "gems57-pooled-hide-v2 buffered whole-component draw, hide_frac 0.20, feature buffer 3 px, seeds 30 and 20",
+  "expected_primary_failure_mode": "more support means more false-positive mass; the optimum may be broad and the plateau flat, in which case the transferable quantity is the ratio, not the absolute count",
+  "named_non_fault_mimic": "Lake Lahontan shoreline benches, fluvial terrace risers, alluvial-fan and basalt-flow contacts"
+}
