@@ -1,23 +1,25 @@
 {
-  "evidence_class": "DATA-MEASUREMENT",
-  "data_dir": "/home/user/GEMSDOE77/.cache/data",
-  "feature_ref": "c0c06ac82178f26b94fce3397036ef8f12a2f3a0",
-  "aux_ref": "32024716f218d06a94e01464157392119c03cb15",
-  "files": {
-    "training_features.tif": {
-      "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
-      "expected": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
-      "ok": true
-    },
-    "existing_faults.tif": {
-      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
-      "expected": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
-      "ok": true
-    },
-    "sample_submission.tif": {
+  "evidence_class": "INPUT-INTEGRITY",
+  "organizer_authenticated": false,
+  "caveat": "Pinned public owner mirrors, not independent official-origin authentication",
+  "files": [
+    {
+      "file": "sample_submission.tif",
       "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
-      "expected": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
-      "ok": true
+      "bytes": 1599597,
+      "url": "https://github.com/buffedlizard55-lab/60GEMSDOE/blob/b99591eede63c6d45c8a896255b8cd34824fa00b/data/bridge/sample_submission.tif"
+    },
+    {
+      "file": "existing_faults.tif",
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "bytes": 425830,
+      "url": "https://github.com/buffedlizard55-lab/60GEMSDOE/blob/b99591eede63c6d45c8a896255b8cd34824fa00b/data/bridge/existing_faults.tif"
+    },
+    {
+      "file": "geodawn_rad_u8.tif",
+      "sha256": "c22420f75999030d7cc65c9e31e50d232ea6158423bca051613a18a8b20ba682",
+      "bytes": 26612970,
+      "url": "https://github.com/buffedlizard55-lab/60GEMSDOE/blob/b99591eede63c6d45c8a896255b8cd34824fa00b/data/external/geodawn_rad_u8.tif"
     }
-  }
+  ]
 }

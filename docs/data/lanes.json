@@ -1,35 +1,6 @@
 {
- "note": "All 23 listed TIFF lanes are inspection downloads only; every file is NOT OK TO SUBMIT. H80 (Riedel) is featured because it has complete evidence from the pinned gems57 evaluator; the later AGO variants have only a different quick 4-quadrant proxy and are not comparable. H80-OTA (orphan thermal alignment, negative) was merged in parallel and is listed second. The literal uniqueness/selector gates remain fail-closed; see docs/data/submission-authorization.json. H77V (3.6km de-aliased crustal regime x tubular demag trough x 3DEP knick/scarp + LDSA, 0/95 informative firings, HOLDOUT-DTI 0.1444/0.1424 unique & 0.1530/0.1527 pure), H81 (slip-cone, negative, research-only), and H77G (hydrothermal demagnetization trough, negative, research-only) are listed for inspection only.",
+ "note": "All 22 listed TIFF lanes are inspection downloads only; every file is NOT OK TO SUBMIT. H80 (Riedel) is featured because it has complete evidence from the pinned gems57 evaluator; the later AGO variants have only a different quick 4-quadrant proxy and are not comparable. H80-OTA (orphan thermal alignment, negative) was merged in parallel and is listed second. The literal uniqueness/selector gates remain fail-closed; see docs/data/submission-authorization.json. H81 (slip-cone, negative, research-only) and H77G (hydrothermal demagnetization trough, negative, research-only) are listed for inspection only.",
  "lanes": [
-  {
-   "lane": "H77V (NEWEST): 3.6 km spectral mesh-dealiased MT/strain regime × tubular demagnetization trough × 3DEP knickpoint-scarp step + 8-ch SLOCO + LDSA 300 m cover (0/95 informative firings; HOLDOUT-DTI 0.1444 s20 / 0.1424 s30 unique; 0.1530 s20 / 0.1527 s30 pure)",
-   "page": "h77v.html",
-   "summary": "h77v-executive-summary.html",
-   "file": "downloads/gemsdoe77-h77v-dealiased-vent-demag-knick-ldsa-20261021.tif",
-   "zip": "downloads/gemsdoe77-h77v-dealiased-vent-demag-knick-ldsa-20261021.zip",
-   "run_card": "evidence/run_card_h77v.json",
-   "format_valid": true,
-   "protocol_unique": false,
-   "informative_unique": true,
-   "beats_holdout_best": true,
-   "selector_approved": false,
-   "verdict": "negative",
-   "primary": false,
-   "name": "gemsdoe77-h77v-dealiased-vent-demag-knick-ldsa-20261021",
-   "note": "GEMSDOE77 H77V: 3.6km dealiased MT/strain + tubular demag trough + 3DEP knick/scarp + 8-ch SLOCO + LDSA 300m cover (inspection only)",
-   "sha256": "861c880e7a56203d197182075765480efaf224ad6cfde342fab511f5f908fa4c",
-   "zip_sha256": "efa45a7be334f80a3bccc548c2453394fe3b33dd27d50d834235255a1af7000d",
-   "holdout_dti_hide_v2": 0.1444462519822974,
-   "holdout_evaluator_version": "gems57-pooled-hide-v2",
-   "holdout_positive_pixels": 11321,
-   "holdout_ci95": [
-    0.12728735130586463,
-    0.1606096268356279
-   ],
-   "upload": "Not OK to submit (inspection only until selector Policy I17 sign-off): format-valid (15/15 validator checks, 0 NaN, values in [0,1], 36,500 binary dots) and informative-unique across all 95 non-space-filling (<70% halo) rasters checked (0 firings, max forward 3-px overlap 0.65000 <= 0.70; surface max |Spearman rho| 0.75189 <= 0.90; final dots max |Spearman rho| 0.31120 <= 0.90), but literal rule fires on 6 space-filling/lattice >=70%-halo archive witnesses under Policy I17. HOLDOUT-DTI 0.144446 (Seed 20) / 0.142415 (Seed 30) on portfolio-unique LDSA (+0.0178 / +0.0177 over H77E-Knick unique; +0.0481 / +0.0434 over fold-fair H33) and 0.153036 (Seed 20) / 0.152730 (Seed 30) on pure LDSA. Selector: not approved.",
-   "why_primary": "New H77V de-aliased crustal regime x tubular demagnetization trough x 3DEP knickpoint-scarp + LDSA lane: highest zero-informative-firing unique HOLDOUT-DTI (0.1444 s20 / 0.1424 s30; pure 0.1530 / 0.1527), inspection only pending Policy I17 selector review.",
-   "beat_02778_summary": "No organizer-confirmed score; achieves 0.144446 (Seed 20) / 0.142415 (Seed 30) HOLDOUT-DTI on unique LDSA (0/95 informative firings) and 0.153036 / 0.152730 on pure LDSA (+0.0481 / +0.0434 over fold-fair H33)."
-  },
   {
    "lane": "H77G: hydrothermal magnetite-destruction trough × gravity-basement step × MT clay-cap margin (HOLDOUT-DTI 0.0619 s20 / 0.0618 s30, pure 0.0392/0.0471; negative result)",
    "page": "h77g.html",

@@ -6,5 +6,3 @@
 4. Distinguish HOLDOUT-DTI, ORGANIZER-CONFIRMED receipts, canary diagnostics, format/input measurements, and unverified claims. Never promise a leaderboard gain.
 5. Keep downloads and approval status unambiguous. Format PASS is not uniqueness or approval.
 6. Concurrent H77C code/artifacts are preserved for audit only; its generation entrypoint is quarantined. Do not use inherited unverified registry values or private holdout as clearance. See `evidence/inherited_h77c_review.json`.
-7. Read `evidence/h77v/run_card.json`, `reports/h77v_validation_report.md`, and `docs/review-2026-10-21-h77v.md` (`H77V-DEALIASED-VENT-DEMAG-KNICK-LDSA`: 140/140 leakage canaries passed; highest zero-informative-firing unique `HOLDOUT-DTI` of `0.144446` on Seed 20 and `0.142415` on Seed 30, plus `0.153036` / `0.152730` unconstrained pure `LDSA`; `0/95` informative firings at `max overlap = 0.6500 <= 0.70`; fail-closed `negative` under Policy I17 dense witness; `0` weekly slots spent).
-
