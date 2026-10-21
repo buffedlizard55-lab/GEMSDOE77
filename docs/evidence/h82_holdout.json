@@ -1,0 +1,159 @@
+{
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "alpha": 0.2,
+  "beta": 0.8,
+  "kernel_radius_m": 300.0,
+  "holdout_seed": 30,
+  "fold_split": "buffered-whole-components-loqo-v2",
+  "budget": 37654,
+  "withheld_positive_pixels_total_draw": 11342,
+  "canary_auc": {
+    "collar_visible_only": 0.7250972928055017,
+    "collar_full_catalogue_LEAKY_CONTROL": 0.6134125
+  },
+  "arms": {
+    "H82": {
+      "dots": 37553,
+      "per_fold": {
+        "NW": {
+          "dti": 0.13960162204214466,
+          "n_truth": 1919,
+          "emitted": 8461,
+          "coverage": 0.23763945438813494
+        },
+        "NE": {
+          "dti": 0.08055292117449876,
+          "n_truth": 2356,
+          "emitted": 10490,
+          "coverage": 0.13713222817264975
+        },
+        "SW": {
+          "dti": 0.13095946916556112,
+          "n_truth": 3805,
+          "emitted": 10308,
+          "coverage": 0.17819268070593325
+        },
+        "SE": {
+          "dti": 0.1389209312031469,
+          "n_truth": 3262,
+          "emitted": 8294,
+          "coverage": 0.1846200190214605
+        }
+      },
+      "pooled_holdout_dti": 0.12265521891707207
+    },
+    "A0_random": {
+      "dots": 37654,
+      "per_fold": {
+        "NW": {
+          "dti": 0.04188321123413743,
+          "n_truth": 1919,
+          "emitted": 8461,
+          "coverage": 0.07078193591698781
+        },
+        "NE": {
+          "dti": 0.038721065363055626,
+          "n_truth": 2356,
+          "emitted": 10490,
+          "coverage": 0.06575971612495393
+        },
+        "SW": {
+          "dti": 0.046305221433502956,
+          "n_truth": 3805,
+          "emitted": 10357,
+          "coverage": 0.062608504998431
+        },
+        "SE": {
+          "dti": 0.04597953312804798,
+          "n_truth": 3262,
+          "emitted": 8346,
+          "coverage": 0.06067842863397216
+        }
+      },
+      "pooled_holdout_dti": 0.043544395393747694
+    }
+  },
+  "runtime_note": "CPU sandbox, deterministic; geometry-only, no training, no external data",
+  "canary_worst_symmetric_auc": 0.7250972928055017,
+  "leakage_flag_gt_0p90": false,
+  "dots_emitted": 37553,
+  "dots_on_catalogue": 0,
+  "min_dot_distance_to_catalogue_px": 1.0,
+  "pooled_summary": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "triangular_radius_m": 300.0,
+    "pooled": true,
+    "scores": {
+      "H82": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.1226552189170721,
+        "ci95": [
+          0.10799672421127436,
+          0.1372130738097347
+        ],
+        "withheld_positive_pixels": 11342,
+        "tpw": 2059.3672946796737,
+        "fpw": 36522.06889164454,
+        "fnw": 9282.632705320324
+      },
+      "A0_random": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.04354439539374768,
+        "ci95": [
+          0.03848814649647956,
+          0.048275828859465915
+        ],
+        "withheld_positive_pixels": 11342,
+        "tpw": 726.9188219381381,
+        "fpw": 37373.78195631547,
+        "fnw": 10615.081178061864
+      }
+    },
+    "best_comparable_control": "A0_random",
+    "paired_differences": {
+      "A0_random": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.07911082352332441,
+        "ci95": [
+          0.06502503387239039,
+          0.09243341380270363
+        ],
+        "withheld_positive_pixels": 11342
+      }
+    },
+    "bootstrap": {
+      "method": "paired physical spatial-cluster percentile",
+      "clusters": 159,
+      "draws": 1000,
+      "seed": 520810,
+      "confidence": 0.95,
+      "caveat": "Conditional on fitted folds, catalogue labels and fixed budgets; not a leaderboard interval."
+    },
+    "implementation_sha256": {
+      "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+      "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+      "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+      "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+    }
+  },
+  "uniqueness_vs_registry": {
+    "phase": "dots",
+    "registry_rasters_expected": 812,
+    "registry_rasters_checked": 0,
+    "complete_accessible_scan": false,
+    "missing_or_invalid": 812,
+    "worst_spearman_full_footprint": null,
+    "worst_forward_overlap_3px": null,
+    "literal_firings": 0,
+    "protocol_unique": false,
+    "scope": "All hash-verified accessible entries in the indexed public owner-repository inventory; not a complete organizer registry. External/private/unlinked/inaccessible files may be absent. Reverse overlap is diagnostic only."
+  },
+  "elapsed_s": 28.7
+}

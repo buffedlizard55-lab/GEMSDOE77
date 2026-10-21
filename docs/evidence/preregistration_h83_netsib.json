@@ -1,0 +1,86 @@
+{
+ "lane": "H83-NETSIB",
+ "title": "Visible fault-network sibling / gap / continuation geometry learned by synthetic re-withholding, fused with the core + lidar + radiometric stack",
+ "written_utc": "2026-10-21T18:20:00Z",
+ "written_before_experiment": true,
+ "branch": "arena/e8283608-gemsdoe77",
+ "lane_assignment_note": "The brief names no single method paragraph (same irregularity as IR-77-06/IR-81-01). This session declares one new narrow lane before Experiment 1. No stopped lane is resumed or retuned.",
+ "hypotheses_doc": "research/h83_netsib_hypotheses.md",
+ "hypothesis": "Unmapped faults belong to the same organised normal-fault arrays as mapped ones: they lie parallel to mapped traces at characteristic spacing, bridge collinear gaps, or continue along strike. A model trained on synthetic whole-component withholdings of the visible catalogue learns where an absent strand goes; fused with geophysical/topographic evidence it recovers withheld faults better than geophysics alone and better than the incumbent.",
+ "mechanism": "From the VISIBLE catalogue only: structure-tensor strike (sigma1=1, sigma2=3 px), 12 strike bins of 15 deg; per bin FFT convolution with oriented kernels: along-strike continuation (|a|<=25 px, lateral sigma 1.5 px, exp(-|a|/12)), forward/backward half kernels combined as bilateral gap sqrt(F*B), parallel-sibling band (4<=|c|<=20 px perpendicular, |a|<=15 px); plus isotropic Gaussian network density at sigma 4/12/32 px, log1p distance-to-visible, and local strike coherence. Training positives = (i) synthetic re-withheld visible components (20% per quadrant, whole 8-connected components, 3 px collar removed from features, 2 independent draws) and (ii) the real withheld components of the OTHER quadrants; features for each row computed from the catalogue state that row would see at test time. Negatives = footprint pixels > 3 px from every catalogue pixel, half within 15 px.",
+ "named_non_fault_mimics": [
+  "Mapping-density bias: dense catalogue where geologists mapped intensively (e.g. around known geothermal fields) \u2013 the network prior then predicts more faults where mapping effort, not faulting, was high",
+  "Pluvial Lake Lahontan shoreline benches parallel to range fronts \u2013 parallel to faults at km spacing, mimic the sibling kernel in topography-gated cells",
+  "Bedding/foliation-parallel lithologic contacts in tilted fault blocks (sub-parallel to faults at sub-km spacing)"
+ ],
+ "inputs": {
+  "training_features": "data/raw/training_features.tif sha256 4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5 (owner mirror, NOT organizer-authenticated)",
+  "lidar": "data/raw/external/lidar_scarp_features_u8.tif sha256 d580bb8bdcdb941e32fefb8b38044bc5bf04e199bf2e83498c3576e6fc465568 (bands 1-11; band 12 'valid' used as a feature too)",
+  "radiometric": "data/raw/external/geodawn_rad_u8.tif sha256 c22420f75999030d7cc65c9e31e50d232ea6158423bca051613a18a8b20ba682 + geodawn_extensions_u8.tif sha256 a35a9c6d2a14786f4dab85481ee59769213072f5dab5b2535ea82ae4d9bb7d9b",
+  "bridge": "data/bridge/sample_submission.tif + existing_faults.tif (SHA-pinned)",
+  "new_external_data": "NONE"
+ },
+ "experiments": {
+  "exp1": "Leakage canaries: single-feature symmetric ROC-AUC of every NETSIB channel (computed from visible only) and every base channel, withheld positives vs footprint pixels > 3 px from catalogue, seeds 20 and 30. STOP if any > 0.90 unless shown to be a legitimate network-clustering effect AND it is not computed from withheld pixels (report either way). Surface Spearman of the deterministic NETSIB-only score vs every available registry raster; STOP if |rho| > 0.90.",
+  "exp2": "Paired hide-and-recover HOLDOUT-DTI, unmodified vendor gems57-pooled-hide-v2 (buffered_component_draw hide_frac 0.20 buffer 3 px; alpha 0.2, beta 0.8, 300 m triangular kernel), seeds 20 and 30, LOQO HGB. Arms: A_netsib_full (candidate: base38 + netsib), A_base (base38 only, identical rows), S_netsib_only (netsib channels only), A0_random. Emission identical for every arm: greedy Poisson-disk min-sep 2.8 px, 37,654 dots, allowed = footprint & distance to masked_known > 2 px.",
+  "exp3": "Full-catalogue LOQO candidate surface (synthetic re-withholding on the full catalogue), pre-placement surface Spearman vs registry, 37,654-dot binary GeoTIFF via unmodified vendor submission_writer, final-dot overlap vs registry, validator, run card."
+ },
+ "promotion_rule": "Verdict 'promote' iff (a) seed-20 pooled HOLDOUT-DTI > 0.152718 (incumbent, same evaluator, same seed-20 draw, 11,321 withheld positives) AND seed-30 pooled HOLDOUT-DTI > 0.152718; (b) paired delta vs A_base has 95% CI excluding 0 on both seeds; (c) no leakage stop; (d) uniqueness passes (Spearman <= 0.90 vs every registry raster; forward 3-px dot overlap <= 0.70 vs every registry raster for which the test is informative, i.e. whose 3-px dilated support covers < 70% of the allowed domain - a test that uniformly random dots fail is reported but cannot discriminate drift; matched-budget top-37,654 dots of every dense raster also <= 0.70). Whether the candidate's CI lower bound also exceeds 0.152718 is reported separately. Otherwise 'negative'.",
+ "uniqueness_rule_interpretation_flag": "The literal reading applied to dense surfaces makes every candidate a duplicate (docs/preflight-review.md). This lane applies the informativeness criterion above, reports the literal value as well, and flags the interpretation for owner review (docs/irregularities.md IR-H83N-01). The interpretation is fixed here before any candidate exists.",
+ "budget": {
+  "experiments_max": 3,
+  "hours_max": 2,
+  "weekly_slots_used": 0
+ },
+ "fixed_constants": {
+  "budget_dots": 37654,
+  "min_sep_px": 2.8,
+  "catalogue_exclusion_px": 2.0,
+  "hgb": {
+   "max_iter": 160,
+   "learning_rate": 0.075,
+   "max_leaf_nodes": 45,
+   "min_samples_leaf": 50,
+   "l2_regularization": 2.5,
+   "early_stopping": false,
+   "random_state": 83083
+  },
+  "strike_bins": 12,
+  "synthetic_draws": 2,
+  "synthetic_hide_frac": 0.2,
+  "collar_px": 3,
+  "train_pos_cap_per_fold": 40000,
+  "neg_per_pos": 2
+ },
+ "amendments_post_hoc": {
+  "written_utc": "2026-10-21T18:30:00Z",
+  "written_after_experiments": true,
+  "note": "Transparency record of differences between the frozen text above and the code that actually ran. Nothing above was edited. None of these changes was chosen after seeing a holdout score; all were fixed in scripts/h83_netsib_pipeline.py before Experiment 2 began.",
+  "deviations": [
+   {
+    "id": "IR-H83N-03",
+    "frozen": "Training positives = (i) synthetic re-withheld visible components AND (ii) the real withheld components of the other quadrants.",
+    "ran": "Positives = (i) only: synthetic re-withheld components (2 draws). Real withheld components of training quadrants are used only to keep them out of the negatives.",
+    "why": "Real withheld pixels have features computed from a catalogue state that already lacks them, so they are not like-for-like with the synthetic state per draw; using only (i) keeps one consistent catalogue state per training row. Effect is conservative (fewer positives)."
+   },
+   {
+    "id": "IR-H83N-04",
+    "frozen": "base38",
+    "ran": "39 base channels (base39_fp.npy): training_features bands 1-19 + lidar_scarp bands 1-12 + geodawn_rad bands 1-4 + geodawn_extensions bands 1-4; identical for A_netsib_full and A_base.",
+    "why": "Count error in the frozen text; the paired control A_base uses exactly the same 39 channels, so the paired comparison is unaffected."
+   },
+   {
+    "id": "IR-H83N-05",
+    "frozen": "Negatives = footprint pixels > 3 px from every catalogue pixel.",
+    "ran": "Exp2: > 3 px from (catalogue inside training quadrants) | visible catalogue, i.e. every catalogue pixel a fold-k model is allowed to know; Exp3: > 3 px from the full catalogue.",
+    "why": "Fold-k test-quadrant hidden pixels must not shape fold-k training rows."
+   },
+   {
+    "id": "IR-H83N-06",
+    "frozen": "Experiments run in sequence.",
+    "ran": "Exp2 started after Exp1's leakage canaries had passed but while Exp1's deterministic surface scan was still running (2 CPUs).",
+    "why": "Time budget. Exp1's surface scan then passed (max |rho| 0.8202 <= 0.90); had it failed, Exp2's numbers would have been discarded."
+   }
+  ]
+ }
+}

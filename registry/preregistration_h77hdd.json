@@ -1,0 +1,55 @@
+{
+  "schema_version": "gems-preregistration-v1",
+  "registered_utc": "2026-10-21T16:50:00Z",
+  "lane_id": "H77H",
+  "lane_repo": "buffedlizard55-lab/GEMSDOE77",
+  "branch": "arena/17079c9b-gemsdoe77",
+  "lane_title": "Downdip-Lag Hanging-Wall Potential-Field Dipole (+500 m Dip-Vector Shift) x Mesh-Deconfounded (sigma=36 px) MT/Strain/Geothermometer Regime Gate x De-Quantized 1 m LiDAR Scarp + Bilateral LOCO Bridge + Capacity-Capped 300 m Submodular Cover",
+  "assignment_note": "Self-declared narrow method lane per Protocol Rule 1 (no single method paragraph supplied in the 2026-10-21 brief), directly executing Recommendations 2 and 3 of docs/review-2026-10-21-h77g.md (IR-H77G-01 3.5 km MT mesh notch filtering and IR-H77G-03 hydrothermal-structural coupling) plus untried 500 m downdip hanging-wall potential-field advection and bilateral inter-component LOCO bridge mechanics.",
+  "hypotheses_file": "research/h77h_hypotheses.md",
+  "selected_hypothesis": "H77H-1 (with H77H-2 mesh-notched hydro-geothermometer regime and H77H-3 Laplace second-vertical-derivative dipole as ablation sub-blocks; H77H-4 EarthScope Vs tomography marked BLOCKED/not viable in sandbox)",
+  "physical_mechanism": "A 55-60 deg dipping Basin-and-Range normal fault offsets dense pre-Tertiary basement at 500-1000 m depth inside the downthrown hanging wall, displacing the steepest horizontal gradient of isostatic gravity and basement depth by ~400-700 m (+5 px) downdip from the surface scarp breakaway along the local dip unit vector. Pairing this +500 m downdip potential-field dipole with de-quantized 1 m LiDAR / 10 m DEM scarp morphology, a sigma=36 px (3.6 km) mesh-deconfounded MT clay-cap / transtensional / GDR-1391 chemical geothermometer regime gate (fixing IR-H77G-01), and fold-strict Leave-Own-Component-Out (LOCO) bilateral inter-strand bridge continuation isolates both blind/degraded piedmont faults and hydrothermal relay conduits.",
+  "named_non_fault_mimic": "Gently dipping unfaulted pediment unconformities (Tertiary tuff over Paleozoic basement), Pleistocene Lake Lahontan shoreline scarps above basinward-thickening lacustrine clays, and highway/railroad embankments.",
+  "inputs": [
+    "data/raw/training_features.tif (19 bands; Band 6 treated as TC radiometric total count per IR-77-01; Band 18 treated as signed x-derivative per IR-77-03)",
+    "data/raw/external/lidar_scarp_features_u8.tif (1 m USGS 3DEP LiDAR scarp derivatives; q==0 mapped strictly to NaN per IR-77D-01)",
+    "data/raw/external/geodawn_rad_u8.tif and geodawn_extensions_u8.tif (USGS GeoDAWN DOI:10.5066/P93LGLVQ)",
+    "data/raw/external/gdr_wellspring_in_footprint.csv and gdr_volcanic_vents_in_footprint.csv (DOE GDR #1391 DOI:10.15121/1881483; dist_known_fault_px strictly forbidden)",
+    "data/bridge/existing_faults.tif (strictly restricted to visible training components per fold for LOCO mechanics and visible-fault masking)",
+    "data/bridge/sample_submission.tif (used strictly as grid/footprint template; 0 SGMC bedrock channels used)"
+  ],
+  "leakage_canary_gate": {
+    "metric": "single-feature symmetric ROC-AUC max(AUC, 1 - AUC) on withheld positive vs negative footprint pixels",
+    "ceiling": 0.90,
+    "action_on_exceed": "Immediate hard stop before trusting any holdout result"
+  },
+  "uniqueness_gate": {
+    "phase1_pre_placement_surface_abs_spearman_limit": 0.90,
+    "phase2_final_dots_3px_forward_overlap_limit": 0.70,
+    "phase2_final_dots_abs_spearman_limit": 0.90,
+    "informative_capacity_cap": 0.665,
+    "literal_policy_i17": "Fail closed (protocol_unique=false, ok_to_submit=false) if any full-footprint dense witness (>70% halo coverage, e.g., ab0a0a62) remains in the literal registry or if the 812-raster REST scan is incomplete."
+  },
+  "holdout_protocol": {
+    "evaluator": "vendor/gems57/evaluate_holdout.py (gems57-pooled-hide-v2, unmodified)",
+    "seeds": [20, 30],
+    "hide_frac": 0.20,
+    "buffer_px": 3,
+    "alpha": 0.2,
+    "beta": 0.8,
+    "kernel_radius_m": 300.0,
+    "bootstrap_draws": 1000,
+    "bootstrap_block_m": 20000.0,
+    "retained_repo_incumbent_dti": 0.152718
+  },
+  "budget": {
+    "max_experiments": 3,
+    "max_hours": 2,
+    "planned_experiments": [
+      "E1: Build 12 H77H channels + verify sigma=36 px MT mesh suppression + single-feature ROC-AUC leakage canaries on Seeds 20 and 30 + Phase 1 surface uniqueness check",
+      "E2: Dual-seed (Seed 20: 11,321 withheld px; Seed 30: 11,342 withheld px) whole-component buffered hide-and-recover holdout evaluation across 6 arms",
+      "E3: Full-map 4-quadrant OOF surface + capacity-capped 300 m submodular dot placement (37,654 dots) + shared submission_writer GeoTIFF/ZIP + 15/15 and 17/17 validator checks + Phase 2 uniqueness audit + run card"
+    ],
+    "weekly_slots_to_spend": 0
+  }
+}

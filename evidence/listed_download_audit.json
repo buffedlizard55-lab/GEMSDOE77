@@ -2,16 +2,16 @@
   "schema": "gems-listed-download-readback-v1",
   "evidence_class": "FORMAT-INTEGRITY-MEASUREMENT; NOT SCORE OR PORTAL ACCEPTANCE",
   "scope": "Every primary TIFF in docs/data/lanes.json; no archive or NaN twins, no uniqueness certification",
-  "manifest_sha256": "66495bce258e9245eaded524d268e170f9220425f6bc31683031d85747151234",
+  "manifest_sha256": "32501001d375523cb5fbb45acdf0cbf28197317ef498d7ec43e2494ad8700f86",
   "reference_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
-  "listed_count": 30,
+  "listed_count": 45,
   "all_format_pass": true,
   "authorized_to_submit": false,
   "artifacts": [
     {
-      "lane": "H77-TSD: Transtensional strain-partitioning \u00d7 seismic swarm excess \u00d7 MT clay-cap margin + 12-bit LOCO relay & 300 m submod (0.1360 / 0.1337 HOLDOUT-DTI; negative under Policy I17)",
-      "file": "downloads/gems77-tsd-transtens-swarm-submod-37654dots-20261021-zeros.tif",
-      "sha256": "4ebb1da423d26d9823ad15c4f8a0e722edc3e79272c8e720adcd28e6224af68c",
+      "lane": "H77E-ACD: Covariate-Matched Zero-SGMC Multi-Modal Ensemble + Filament Auto-Context + Dinkelbach 1-Swap (ALL-TIME #1 RECORD: 0.18478 3-Seed Pooled / 0.18938 s30 / 0.18225 s20 / 0.18271 s21 HOLDOUT-DTI)",
+      "file": "downloads/gems77-h77e-autoctx-dinkelbach-37654dots-20261021-5cd77ffc-zeros.tif",
+      "sha256": "566bfd0a4fe4486d7fae3fec0f3ac52329b1da98d409984e2c0187f557bfe8d4",
       "checks": {
         "single_band": true,
         "crs_matches": true,
@@ -30,6 +30,186 @@
       "lane": "H82R: local ternary radiometric rank-mixture entropy (STOPPED; research only)",
       "file": "downloads/gems77-h82-ternaryentropy-20261021-RESEARCH-ONLY.tif",
       "sha256": "56debe682505bf2649f30d914c7b552dcf669bce4b902ce91eb3e5363031f115",
+      "checks": {
+        "single_band": true,
+        "crs_matches": true,
+        "shape_matches": true,
+        "transform_matches": true,
+        "finite_entire_raster": true,
+        "no_nan_inside_footprint": true,
+        "values_in_0_1": true,
+        "nodata_none": true,
+        "sha256_matches_manifest": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
+    {
+      "lane": "H77-PD: 10m Fluvial Knickpoint/Chi + GeoDAWN/BLM/TIGER Deseam + sqrt-LiDAR/10m Step + Cutting-Plane Primal-Dual Submodular Cover (#1 Seed 20: 0.1640, #1 Seed 21: 0.1758, #1 3-Seed Pool: 0.1685, #1 Blind 4-Quad: 0.1942 HOLDOUT-DTI)",
+      "file": "downloads/gems77-h77e-fluvial-deseam-lagsubmod-37654-20261021-236fc1cb-zeros.tif",
+      "sha256": "25b1c0449e8d94469db22bab4c390110b6f8a928dc01cf21a39b97efcf84d19e",
+      "checks": {
+        "single_band": true,
+        "crs_matches": true,
+        "shape_matches": true,
+        "transform_matches": true,
+        "finite_entire_raster": true,
+        "no_nan_inside_footprint": true,
+        "values_in_0_1": true,
+        "nodata_none": true,
+        "sha256_matches_manifest": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
+    {
+      "lane": "H77V-LDSA: 3.6 km Mesh-Dealiased Crustal Regime x Tubular Demag Trough x 3DEP Fluvial Knickpoint-Scarp Step + LDSA 300 m Submodular Cover",
+      "file": "downloads/gemsdoe77-h77v-dealiased-vent-demag-knick-ldsa-20261021.tif",
+      "sha256": "861c880e7a56203d197182075765480efaf224ad6cfde342fab511f5f908fa4c",
+      "checks": {
+        "single_band": true,
+        "crs_matches": true,
+        "shape_matches": true,
+        "transform_matches": true,
+        "finite_entire_raster": true,
+        "no_nan_inside_footprint": true,
+        "values_in_0_1": true,
+        "nodata_none": true,
+        "sha256_matches_manifest": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
+    {
+      "lane": "H77H-MeshSafe: Mesh-Deconfounded (sigma>=35px) Hydrothermal Demagnetization Trough x Gravity-Basement Step x 3DEP Scarp/Knickpoint x Coupled SLOCO + 119-Raster Capped 300 m Submodular Cover",
+      "file": "downloads/gems77-h77h-meshsafe-hydrostruct-submod-36800dots-20261021-5ef236e2-zeros.tif",
+      "sha256": "34f8dea50ff0b2eeac843e1f3f76e8d9a7bb63368aab2de339ba046009162744",
+      "checks": {
+        "single_band": true,
+        "crs_matches": true,
+        "shape_matches": true,
+        "transform_matches": true,
+        "finite_entire_raster": true,
+        "no_nan_inside_footprint": true,
+        "values_in_0_1": true,
+        "nodata_none": true,
+        "sha256_matches_manifest": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
+    {
+      "lane": "H77-VDS: Zero-SGMC Survey-Deconfounded Fault-Valve Ensemble + Dinkelbach 300 m Submodular Allocator (ALL-TIME #1 RECORD: HOLDOUT-DTI 0.17439 s30 / 0.16077 s20)",
+      "file": "downloads/gems77-h77vds-valve-dinkelbach-44090dots-20261021-zeros.tif",
+      "sha256": "eaf1ed0cfe60922f96cb57929083e65b1b715acc9803f005a9e520cf1699006b",
+      "checks": {
+        "single_band": true,
+        "crs_matches": true,
+        "shape_matches": true,
+        "transform_matches": true,
+        "finite_entire_raster": true,
+        "no_nan_inside_footprint": true,
+        "values_in_0_1": true,
+        "nodata_none": true,
+        "sha256_matches_manifest": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
+    {
+      "lane": "H77H-DD (NEWEST): +500m Downdip-Lag Hanging-Wall Potential-Field Dipole \u00d7 Mesh-Notched sigma=36px MT/Strain/GDR1391 Gate \u00d7 Bilateral 4-Bucket LOCO Bridge (HOLDOUT-DTI 0.1150 s20 / 0.1149 s30 unique; 0.1301 s20 / 0.1298 s30 full; 0/54 info dupes; negative result)",
+      "file": "downloads/gems77-h77h-downdip-notch36-bridge-36500dots-20261021-0c05c2bc-zeros.tif",
+      "sha256": "d1e87159a8908f0051352c091d9343e8e5128e2c8eea0debdd17589a02692dad",
+      "checks": {
+        "single_band": true,
+        "crs_matches": true,
+        "shape_matches": true,
+        "transform_matches": true,
+        "finite_entire_raster": true,
+        "no_nan_inside_footprint": true,
+        "values_in_0_1": true,
+        "nodata_none": true,
+        "sha256_matches_manifest": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
+    {
+      "lane": "H77VC: Strike-Aligned Geothermal Vent Plume \u00d7 Smectite Clay-Cap Breach + V-LBCO + Uniqueness-Constrained 300 m Submodular Cover (0.1688 s30 / 0.1491 s20 HOLDOUT-DTI)",
+      "file": "downloads/gems77-h77v-geothermal-vent-submod-36250dots-20261021-zeros.tif",
+      "sha256": "83df91facbe17d8fd7afae6c851c514317f1d763f61781af954eef9834c2f7d2",
+      "checks": {
+        "single_band": true,
+        "crs_matches": true,
+        "shape_matches": true,
+        "transform_matches": true,
+        "finite_entire_raster": true,
+        "no_nan_inside_footprint": true,
+        "values_in_0_1": true,
+        "nodata_none": true,
+        "sha256_matches_manifest": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
+    {
+      "lane": "H77H (NEWEST): Piedmont-Bajada Alluvial-Fan Toe Pinchout \u00d7 Synthetic/Antithetic Scarp Polarity \u00d7 En-Echelon Sinter-Relay Bridge (HOLDOUT-DTI 0.1579 s20 / 0.1570 s30 deliverable, 0.1709 / 0.1684 unguarded; Policy I17 negative)",
+      "file": "downloads/gems77-h77h-piedmont-relay-37654dots-20261021-56b7c98c-zeros.tif",
+      "sha256": "e4c718f450130e2e07e14ef506f051ea974c53382740974e758858519e866fe4",
+      "checks": {
+        "single_band": true,
+        "crs_matches": true,
+        "shape_matches": true,
+        "transform_matches": true,
+        "finite_entire_raster": true,
+        "no_nan_inside_footprint": true,
+        "values_in_0_1": true,
+        "nodata_none": true,
+        "sha256_matches_manifest": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
+    {
+      "lane": "H82-FMD: mapping-deficit allocation (HOLDOUT-DTI 0.1121 s20 / 0.1093 s30 for the crest-thinned 48-channel build; the preregistered deficit weight itself is REFUTED; negative result)",
+      "file": "downloads/gems77-h82-crestthin-fullstack-37654dots-20261021-zeros.tif",
+      "sha256": "4f69c9fa0187cfb61394b558d9866794ef15ad7066d135fde8acef4349faac13",
+      "checks": {
+        "single_band": true,
+        "crs_matches": true,
+        "shape_matches": true,
+        "transform_matches": true,
+        "finite_entire_raster": true,
+        "no_nan_inside_footprint": true,
+        "values_in_0_1": true,
+        "nodata_none": true,
+        "sha256_matches_manifest": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
+    {
+      "lane": "H77VS: tufa-deconfounded vent-sinter & multi-depth 2m conductive heat-flow strike-conduit coupling (HOLDOUT-DTI 0.0649 s20 / 0.0767 s30, pure 0.0502/0.0621; negative result)",
+      "file": "downloads/gems77-h77v-ventsinter-heatflow-37654dots-20261021-cc5e4cd9-zeros.tif",
+      "sha256": "2044447ff7d4df318c277846299815591211c83641a3beb20c90f9b33c2255bb",
+      "checks": {
+        "single_band": true,
+        "crs_matches": true,
+        "shape_matches": true,
+        "transform_matches": true,
+        "finite_entire_raster": true,
+        "no_nan_inside_footprint": true,
+        "values_in_0_1": true,
+        "nodata_none": true,
+        "sha256_matches_manifest": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
+    {
+      "lane": "H77-TSD: Transtensional strain-partitioning \u00d7 seismic swarm excess \u00d7 MT clay-cap margin + 12-bit LOCO relay & 300 m submod (0.1360 / 0.1337 HOLDOUT-DTI; negative under Policy I17)",
+      "file": "downloads/gems77-tsd-transtens-swarm-submod-37654dots-20261021-zeros.tif",
+      "sha256": "4ebb1da423d26d9823ad15c4f8a0e722edc3e79272c8e720adcd28e6224af68c",
       "checks": {
         "single_band": true,
         "crs_matches": true,
@@ -516,6 +696,96 @@
       "lane": "H82-TCSTEP: radiometric total-count lithologic-offset step x coherence x low-slope blind gate + std19 HGB (HOLDOUT-DTI 0.0688 s20 / 0.0700 s30; physics below random; negative, lane closed)",
       "file": "downloads/gems77-h82-tcstep-37654dots-20261021-2c501fd1-zeros.tif",
       "sha256": "2cc14ba3ec8a6ea114c821445ff0ee90f84c7a8e62720e80c533c05475f76860",
+      "checks": {
+        "single_band": true,
+        "crs_matches": true,
+        "shape_matches": true,
+        "transform_matches": true,
+        "finite_entire_raster": true,
+        "no_nan_inside_footprint": true,
+        "values_in_0_1": true,
+        "nodata_none": true,
+        "sha256_matches_manifest": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
+    {
+      "lane": "H83: hanging-wall fault-damage collar at the 300 m kernel scale (negative result)",
+      "file": "downloads/gems77-h83-faultcollar-37553dots-20261021-a55f4c9c-zeros.tif",
+      "sha256": "7f71739a2804bf2fa7199d30d512e0a267e4cfa2fdd0d32304b962db65b98662",
+      "checks": {
+        "single_band": true,
+        "crs_matches": true,
+        "shape_matches": true,
+        "transform_matches": true,
+        "finite_entire_raster": true,
+        "no_nan_inside_footprint": true,
+        "values_in_0_1": true,
+        "nodata_none": true,
+        "sha256_matches_manifest": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
+    {
+      "lane": "H84-TIPLOBE: fault-tip crack-tip stress lobe + en-echelon relay breach (HOLDOUT-DTI 0.1209 [0.1068,0.1354] s30; negative, inspection only)",
+      "file": "downloads/gems77-h84-tiplobe-37654dots-20261021-b57c52b3-zeros.tif",
+      "sha256": "2bff4b55cabe5a4eb7ab1aeff6b21e407a87a576d1d0c3c5f20ed3ddb1c279ba",
+      "checks": {
+        "single_band": true,
+        "crs_matches": true,
+        "shape_matches": true,
+        "transform_matches": true,
+        "finite_entire_raster": true,
+        "no_nan_inside_footprint": true,
+        "values_in_0_1": true,
+        "nodata_none": true,
+        "sha256_matches_manifest": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
+    {
+      "lane": "H84-ORGATE: geophysics-gated second-strand collar (HOLDOUT-DTI 0.1215 [0.1071,0.1355] s30; negative, inspection only)",
+      "file": "downloads/gems77-h84-orgate-collar-37654dots-20261021-2d0a731a-zeros.tif",
+      "sha256": "9a5f5433cbfed4a1a8ac2587678aaa930c8ed93e948b9e94874c8febc549fd57",
+      "checks": {
+        "single_band": true,
+        "crs_matches": true,
+        "shape_matches": true,
+        "transform_matches": true,
+        "finite_entire_raster": true,
+        "no_nan_inside_footprint": true,
+        "values_in_0_1": true,
+        "nodata_none": true,
+        "sha256_matches_manifest": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
+    {
+      "lane": "H83-NETSIB: visible fault-network sibling/gap/continuation geometry, synthetic re-withholding HGB (0.1538 s20 / 0.1637 s30 HOLDOUT-DTI; below H77-VDS; duplicate rule fired; negative)",
+      "file": "downloads/gems77-h83-netsib-37654dots-20261021-ed06b51d-zeros.tif",
+      "sha256": "b2f89a83ffb1080c512bb46c6feae3a6211207cd619e0291bd2d767c002be87f",
+      "checks": {
+        "single_band": true,
+        "crs_matches": true,
+        "shape_matches": true,
+        "transform_matches": true,
+        "finite_entire_raster": true,
+        "no_nan_inside_footprint": true,
+        "values_in_0_1": true,
+        "nodata_none": true,
+        "sha256_matches_manifest": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
+    {
+      "lane": "H84-RAMP: B-LBCO deconfounded two-host en-echelon relay-ramp + GeoDAWN/basement stepover corridor (0.1366 s20 / 0.1446 s30 HOLDOUT-DTI; negative, inspection only)",
+      "file": "downloads/gems77-h84-ramp-relay-37654dots-20261021-1b76b4b7-zeros.tif",
+      "sha256": "f06ada5aa834ceaf65e8700e36bbd46eddb96929b42c9041c72c8369c1022838",
       "checks": {
         "single_band": true,
         "crs_matches": true,

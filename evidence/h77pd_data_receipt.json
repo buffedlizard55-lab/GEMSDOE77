@@ -1,0 +1,114 @@
+{
+  "evidence_class": "DATA-MEASUREMENT",
+  "lane": "H77E",
+  "vendor_gems57_integrity": {
+    "verified_files": 23,
+    "commit": "b99591eede63c6d45c8a896255b8cd34824fa00b",
+    "ok": true
+  },
+  "extra_external_files": [
+    {
+      "path": ".cache/data/data/external/audit_sources/acquisition_block_id_100m.tif",
+      "bytes": 85031,
+      "sha256": "2c0785c4b3ec46c734d1be7a7aedbb3e816201100ab358033a3af074418c894a"
+    },
+    {
+      "path": ".cache/data/data/external/audit_sources/blm_closed_claim_distance_m.tif",
+      "bytes": 5752587,
+      "sha256": "a88356423c03fc8b6510a84f77cee2b1d38c4ccbd7761bc95c1ca8332a2e166a"
+    },
+    {
+      "path": ".cache/data/data/external/audit_sources/tiger_road_distance_m.tif",
+      "bytes": 10492276,
+      "sha256": "e5350423508968fa2d32b0a6ae0d3fb4ae3ea645e3b8736f0c8e7ad9ff2f2988"
+    },
+    {
+      "path": ".cache/data/data/external/lidar_scarp_features.json",
+      "bytes": 3531,
+      "sha256": "9ef0df6e87598a8b0cd52fe821661e5fdb3a00568c5d9b1c5d61fd6b242dcd41"
+    },
+    {
+      "path": ".cache/data/data/external/geodawn_rad.json",
+      "bytes": 7985,
+      "sha256": "d917fd08f89c160d2a0ba91af9c3321c8c8b5677fcdba39b10e684384cbc7488"
+    },
+    {
+      "path": ".cache/data/data/external/geodawn_extensions.json",
+      "bytes": 8927,
+      "sha256": "56556f24c051043fd7a85587786118f8064624f2ad0604aaa3e6614f1a9f6d2f"
+    },
+    {
+      "path": ".cache/data/data/external/dem1m_high_prior_openness_lrm.npz",
+      "bytes": 610575,
+      "sha256": "62f27929747ad3c35be4dd3e0257b0bde7d7bea8566474956e1711269ad451fe"
+    }
+  ],
+  "dem10_channels_count": 13,
+  "dem10_channels": [
+    {
+      "path": ".cache/data/dem10/dem10_slope_max.f32.npy",
+      "bytes": 20669620,
+      "sha256": "fd46738e9a58a6f40c130c3c70f645525dbfc12d27b6ed149e596e6a379cbfaa"
+    },
+    {
+      "path": ".cache/data/dem10/dem10_slope_mean.f32.npy",
+      "bytes": 20669620,
+      "sha256": "338b443c441db61120faf36437ec61dfcccaa569c41aa3099ed3accef5a35f95"
+    },
+    {
+      "path": ".cache/data/dem10/dem10_slope_std.f32.npy",
+      "bytes": 20669620,
+      "sha256": "9c15e0e760d8255eb0473821a07cc09e4fe4b40746e6e37278e691f615c0f642"
+    },
+    {
+      "path": ".cache/data/dem10/dem10_hgm20_max.f32.npy",
+      "bytes": 20669620,
+      "sha256": "f58df86b0be3b3dc54affc60dc7d77a95db3dafb9c1267eac4912c5d8e57526b"
+    },
+    {
+      "path": ".cache/data/dem10/dem10_hgm50_max.f32.npy",
+      "bytes": 20669620,
+      "sha256": "1cca42538ec0c91951b578136893eb5d90cd1414c45257d2a72ebe80b29f0f40"
+    },
+    {
+      "path": ".cache/data/dem10/dem10_hgm200_mean.f32.npy",
+      "bytes": 20669620,
+      "sha256": "9328f889f4d607f8530840da138741b7431da49d2432b0ab2da110a82984102b"
+    },
+    {
+      "path": ".cache/data/dem10/dem10_steep_ratio_max.f32.npy",
+      "bytes": 20669620,
+      "sha256": "eaf3d5e24c6769ffb98665e75c9665dbaa16bdb79708900217dca955031e6828"
+    },
+    {
+      "path": ".cache/data/dem10/dem10_resid_std.f32.npy",
+      "bytes": 20669620,
+      "sha256": "50db8caa815cb09cc695ec230f15f41e8e04cd9bef5fc09b07b06aeadd44a86e"
+    },
+    {
+      "path": ".cache/data/dem10/dem10_resid_range.f32.npy",
+      "bytes": 20669620,
+      "sha256": "bbcf8a462ace31a80964ba8a7ab76fcbcb347deb4f4d2919166b3eda5c721b0c"
+    },
+    {
+      "path": ".cache/data/dem10/dem10_curv_absmax.f32.npy",
+      "bytes": 20669620,
+      "sha256": "58e82f1301032b46b10344b9299b83e6ce5bed1ca83e320f078fa57321bff632"
+    },
+    {
+      "path": ".cache/data/dem10/dem10_onesided.f32.npy",
+      "bytes": 20669620,
+      "sha256": "02d1d241de9534d307f314d0b2f8a857ceb1ce0d099fd7dee8872a83bd0271f8"
+    },
+    {
+      "path": ".cache/data/dem10/dem10_onesided3.f32.npy",
+      "bytes": 20669620,
+      "sha256": "bca9faf8e0c572ecb1e77b6c94b0cb96c41e824873cb7747e0ece28b531598d2"
+    },
+    {
+      "path": ".cache/data/dem10/dem10_valid_frac.f32.npy",
+      "bytes": 20669620,
+      "sha256": "35d7ef0719bfed93f9aed927afd8c51882283fc7316cab0f8c219c9302b92122"
+    }
+  ]
+}

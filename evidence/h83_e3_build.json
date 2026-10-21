@@ -1,0 +1,225 @@
+{
+ "experiment": "H83-E3-build",
+ "submission_name": "gems77-h83-netsib-37654dots-20261021-ed06b51d-zeros",
+ "note": "H83-NETSIB fault-network sibling/gap/continuation geometry, synthetic re-withholding HGB; 37654 dots sep2.8 >2px off catalogue",
+ "note_chars": 126,
+ "file": "submissions/gems77-h83-netsib-37654dots-20261021-ed06b51d-zeros.tif",
+ "download": "docs/downloads/gems77-h83-netsib-37654dots-20261021-ed06b51d-zeros.tif",
+ "zip": "docs/downloads/gems77-h83-netsib-37654dots-20261021-ed06b51d-zeros.zip",
+ "file_sha256": "b2f89a83ffb1080c512bb46c6feae3a6211207cd619e0291bd2d767c002be87f",
+ "zip_sha256": "ef61cfe593aa69468ed72303f49e293da9199fd4c84ddf325134a06c3155a93a",
+ "bytes": 137795,
+ "dot_index_sha256": "ed06b51d29d05efdfd2e12388d78a23eb9ef239cabc27d3f24c3b8587be5d9af",
+ "writer_receipt": {
+  "file": "gems77-h83-netsib-37654dots-20261021-ed06b51d-zeros.tif",
+  "sha256": "b2f89a83ffb1080c512bb46c6feae3a6211207cd619e0291bd2d767c002be87f",
+  "bytes": 137795,
+  "submission_name": "gems77-h83-netsib-37654dots-20261021-ed06b51d-zeros",
+  "note": "H83-NETSIB fault-network sibling/gap/continuation geometry, synthetic re-withholding HGB; 37654 dots sep2.8 >2px off catalogue",
+  "note_chars": 126,
+  "validator": {
+   "file": "/home/user/GEMSDOE77/submissions/gems77-h83-netsib-37654dots-20261021-ed06b51d-zeros.tif",
+   "bytes": 137795,
+   "sha256": "b2f89a83ffb1080c512bb46c6feae3a6211207cd619e0291bd2d767c002be87f",
+   "meta": {
+    "crs": "EPSG:32611",
+    "shape": [
+     3730,
+     3292
+    ],
+    "dtype": "float32",
+    "count": 1,
+    "nodata": null,
+    "transform": [
+     100.0,
+     0.0,
+     243350.0,
+     0.0,
+     -100.0,
+     4508550.0
+    ],
+    "profile_compress": "deflate"
+   },
+   "band_description": [
+    null
+   ],
+   "n_finite": 12279160,
+   "n_nan": 0,
+   "n_infinite": 0,
+   "min": 0.0,
+   "max": 1.0,
+   "mean": 0.0030664964579045773,
+   "emitted_positive_pixels": 37654,
+   "checks": {
+    "single_band": true,
+    "dtype_float32": true,
+    "dimensions_3730x3292": true,
+    "crs_epsg_32611": true,
+    "transform_matches_sample_submission": true,
+    "no_nan_anywhere": true,
+    "no_inf_anywhere": true,
+    "no_sentinel_values": true,
+    "range_0_1_guaranteed": true,
+    "min_ge_0": true,
+    "max_le_1": true,
+    "in_footprint_all_finite": true,
+    "in_footprint_range_0_1": true,
+    "outside_footprint_zero": true,
+    "zero_dots_on_mapped_catalogue": true
+   },
+   "all_checks_passed": true,
+   "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+   "on_catalogue_positive_pixels": 0,
+   "in_footprint_positive_pixels": 37654,
+   "footprint_fraction": 0.007286874781441169
+  },
+  "template_report": {
+   "path": "/home/user/GEMSDOE77/submissions/gems77-h83-netsib-37654dots-20261021-ed06b51d-zeros.tif",
+   "bytes": 137795,
+   "sha256": "b2f89a83ffb1080c512bb46c6feae3a6211207cd619e0291bd2d767c002be87f",
+   "bands": 1,
+   "dtype": "float32",
+   "crs": "EPSG:32611",
+   "width": 3292,
+   "height": 3730,
+   "bounds": [
+    243350.0,
+    4135550.0,
+    572550.0,
+    4508550.0
+   ],
+   "ref_bounds": [
+    243350.0,
+    4135550.0,
+    572550.0,
+    4508550.0
+   ],
+   "transform": [
+    100.0,
+    0.0,
+    243350.0,
+    0.0,
+    -100.0,
+    4508550.0
+   ],
+   "nodata": null,
+   "blocksize": [
+    256,
+    256
+   ],
+   "fixture_grid": false,
+   "has_validity_mask": false,
+   "nan_pixels": 0,
+   "infinity_pixels": 0,
+   "n_nan": 0,
+   "min": 0.0,
+   "max": 1.0,
+   "mean": 0.0030664964579045773,
+   "n_nonzero": 37654,
+   "mass": 37654.0,
+   "mass_outside_footprint": 0,
+   "problems": [],
+   "ok": true,
+   "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+  },
+  "zip_file": "gems77-h83-netsib-37654dots-20261021-ed06b51d-zeros.zip",
+  "zip_sha256": "ef61cfe593aa69468ed72303f49e293da9199fd4c84ddf325134a06c3155a93a",
+  "approved_for_weekly_slot": false,
+  "promoted": false,
+  "submission_slots_used": 0,
+  "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+  "metadata": {
+   "lane": "H83-NETSIB",
+   "dots": 37654,
+   "dot_index_sha256": "ed06b51d29d05efdfd2e12388d78a23eb9ef239cabc27d3f24c3b8587be5d9af"
+  }
+ },
+ "validator": {
+  "file": "/home/user/GEMSDOE77/submissions/gems77-h83-netsib-37654dots-20261021-ed06b51d-zeros.tif",
+  "bytes": 137795,
+  "sha256": "b2f89a83ffb1080c512bb46c6feae3a6211207cd619e0291bd2d767c002be87f",
+  "meta": {
+   "crs": "EPSG:32611",
+   "shape": [
+    3730,
+    3292
+   ],
+   "dtype": "float32",
+   "count": 1,
+   "nodata": null,
+   "transform": [
+    100.0,
+    0.0,
+    243350.0,
+    0.0,
+    -100.0,
+    4508550.0
+   ],
+   "profile_compress": "deflate"
+  },
+  "band_description": [
+   null
+  ],
+  "n_finite": 12279160,
+  "n_nan": 0,
+  "n_infinite": 0,
+  "min": 0.0,
+  "max": 1.0,
+  "mean": 0.0030664964579045773,
+  "emitted_positive_pixels": 37654,
+  "checks": {
+   "single_band": true,
+   "dtype_float32": true,
+   "dimensions_3730x3292": true,
+   "crs_epsg_32611": true,
+   "transform_matches_sample_submission": true,
+   "no_nan_anywhere": true,
+   "no_inf_anywhere": true,
+   "no_sentinel_values": true,
+   "range_0_1_guaranteed": true,
+   "min_ge_0": true,
+   "max_le_1": true,
+   "in_footprint_all_finite": true,
+   "in_footprint_range_0_1": true,
+   "outside_footprint_zero": true,
+   "zero_dots_on_mapped_catalogue": true
+  },
+  "all_checks_passed": true,
+  "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+  "on_catalogue_positive_pixels": 0,
+  "in_footprint_positive_pixels": 37654,
+  "footprint_fraction": 0.007286874781441169
+ },
+ "readback_equals_dots": true,
+ "final_dot_uniqueness": {
+  "evidence_class": "REGISTRY-MEASUREMENT",
+  "my_dots": 37654,
+  "unique_decoded_rasters_compared": 615,
+  "rows_total_including_duplicates_and_errors": 881,
+  "errors": [
+   {
+    "raster": "GEMSDOE63:docs/downloads/smoke.tif",
+    "error": "89ffb2d61840859392a758928ffdbae4260f2918.tif: MissingRequired:TIFF directory is missing required \"StripOffsets\" field"
+   },
+   {
+    "raster": "GEMSDOE36:docs/downloads/GEMS36_FORMAT_TEST_NOT_SUBMISSION.tif",
+    "skipped": "grid mismatch"
+   }
+  ],
+  "rho_limit": 0.9,
+  "overlap_limit": 0.7,
+  "max_abs_spearman": 0.08888587637661795,
+  "max_abs_spearman_raster": "witness:dense_witness.tif",
+  "informative_rasters": 578,
+  "max_forward_overlap_informative": 0.9091198810219365,
+  "max_forward_overlap_informative_raster": "GEMSDOE3:docs/downloads/coverage-v3-wide-20260925T054019Z-0ac095a7ed.tif",
+  "max_forward_overlap_literal_all": 1.0,
+  "max_forward_overlap_literal_all_raster": "GEMSDOE48:docs/downloads/GEMSDOE48-unassigned-mass-20261006.tif",
+  "literal_firings_noninformative": 37,
+  "max_matched_budget_overlap_dense": 0.41621076114091465,
+  "max_matched_budget_overlap_dense_raster": "GEMSDOE23:docs/downloads/gemsdoe23-h30-arrangement-matched-habitat-20261002-0d4e02e8-allfinite.tif",
+  "identical_pixels_any": false,
+  "duplicate": true,
+  "self_comparisons_removed": 2
+ }
+}

@@ -1,0 +1,30 @@
+{
+  "repository": "https://github.com/buffedlizard55-lab/60GEMSDOE",
+  "commit": "b99591eede63c6d45c8a896255b8cd34824fa00b",
+  "policy": "Unmodified shared code. No local fork or gate relaxation.",
+  "files": {
+    "__init__.py": "bd7f12b45caf67b7b4d0da4656c7c3895513bec524ec0b7f251227ecbdd39d26",
+    "anatomy.py": "f47103ae0f615a0f04ef0427ea83ad2dd11ecd4af34e53b99f2e20e557025cf9",
+    "damagezone_envelope.py": "5e5cc359f3ccc239a0906d96f642057461ae7928e967f02249b62dab2ac98a36",
+    "emit.py": "05c473e736e4a599b35be77b2791b62d72460383853c8fba0eb56ea26c99055d",
+    "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+    "evaluator_provenance.py": "6f1d1932fbe427ceb028f74d80926aa836b2cb77c982625c97d1c4141b7b80e2",
+    "faultzone.py": "620537490173e565898911577f6cdf95e288d8eff326830a1da9c71f4b467bdd",
+    "fit.py": "936488cc00c0f71c64d7e36a94dd1ddd0f17625abeefb41e7c6e75360ac14ae8",
+    "fitting.py": "91fbc11fc51374ca07b5246d5221edee33636e546fa457331e84272b80a7cbc7",
+    "gates.py": "7c57f70dbba58bb1112df4193a3de56516af0f981970d4b943b394f99b573dae",
+    "geo.py": "4320d4fb718a66a794b21c35af28cc1f2ce7b6e49649b17e86b3e9eb34235ff8",
+    "grid.py": "b96df7ec0f33658a61b0baa5db85fcd19be2cd8b1873f99699bd26bddae8cd8d",
+    "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+    "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+    "network.py": "d5e53d7df182e69bb22a6e39ac16f43d3f5b730e503d86538d5f8f7360020943",
+    "offcatalogue.py": "5c1937dda9f16563d8679446bb60e66c8c878e7440c522c44afa0e7879b7b6e8",
+    "relay_bend_anatomy.py": "cb9b79b9b61feaaaf6305009f571b6222c1ec390d1f94a1b05a91e05e7eb5dcb",
+    "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8",
+    "strand_orientation.py": "c1dd6d8bc39c48c4cda11321c116e600b59b18cf1764e23ce3d5438bea9dd0bc",
+    "strike_zone.py": "eaf5b1030b731ec743650568d28598d3b6104e641a089dd6cca196e05be4e9c4",
+    "submission_writer.py": "41220185ac2823fe5358603d38f2a915ea3e5f1ab1f94f0b237295b38b4a2565",
+    "uniqueness.py": "1c5094b814277ae801ccea6a47cf744429cffcdc10f9cc79f229d5fc44a8df95",
+    "validate.py": "e7849554b47f6a2b66aeb2f7cfd5db06267412f049f52a73f1c41f934a2c34dd"
+  }
+}
