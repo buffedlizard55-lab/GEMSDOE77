@@ -8,9 +8,27 @@ summarised with provenance at the end rather than re-transcribed hash-by-hash
 `docs/score-ledger.csv`; later entries below are OWNER-REPORT as supplied in
 the 2026-10-21 brief — no organizer receipts).*
 
-## Historical lane notes and current checkout status
+## Current review addendum — 2026-10-21
 
-The original 2026-10-21 H79-ORIENT session was followed by later merged lanes. H79 and H81 are historical; the latest documented lane in this checkout is **H82 cool-outlet geothermometer concordance**, preregistered at `registry/preregistration_h82.json` with its frozen card at `evidence/h82_run_card.json`. H82 exhausted its three-experiment budget, is negative, and stopped after final-dot overlap 1.0 exceeded the 0.70 limit against a pinned witness; its two-witness scan is incomplete. H81 is also closed after 69 duplicate firings and an incomplete 832-raster scan. Both TIFFs are inspection-only; **NOT OK TO SUBMIT**. The site features H82 as the newest research download and H80 as an evidence-complete negative, not as a promotion or submission approval. This checkout has no separately assigned new method paragraph or selector-approved weekly slot. Do not resume either stopped lane or upload a repository artifact. The full request below remains the standing brief.
+The latest readiness review (`docs/preflight-review.md`) generated no new TIFF and ran no geological experiment.
+A freshly pinned universal witness (`evidence/registry_preflight.json`) blocks every nonempty allowed candidate
+under the mandatory literal overlap rule. H82 is the latest documented lane (`evidence/h82_run_card.json`):
+negative HOLDOUT-DTI 0.012184, duplicate overlap 1.000, incomplete two-witness scan, and three experiments
+used; do not resume it. H81 is also closed after 69 duplicate firings and an incomplete 832-raster scan.
+The site shows H82 as the newest inspection-only download and H80 as the evidence-complete featured negative;
+neither presentation is a promotion. Run the pinned preflight before future authorized research, preserve closed
+lanes, and do not treat older execution addenda as a new lane assignment. No TIF may be uploaded and no
+selector-approved slot exists. The original complete user request remains embedded in README.md. This addendum
+does not relax its gates or authorize a slot.
+
+## Historical 2026-10-21 H79 execution addendum
+
+This session's registered lane is **H79-ORIENT**, not the historical contact-physics
+lane mentioned in older repository notes. The operative preregistration is
+`registry/preregistration_h79_orient.json`; the measured artifact and stop decision are
+in `evidence/h79_orient_run_card.json`. The full request below remains preserved as the
+standing brief. H79's result is negative, safe to download for inspection, not
+approved to submit, and no weekly slot was selected.
 
 ## Highest urgency
 

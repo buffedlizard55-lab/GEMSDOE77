@@ -1,3 +1,29 @@
+# Current readiness review — 2026-10-21
+
+**OK TO DOWNLOAD FOR INSPECTION. NOT OK TO SUBMIT. No new TIFF was generated in this review.**
+
+[Download an existing research TIFF](docs/downloads/gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY.tif) ·
+[Submission instructions](docs/executive-summary.html) ·
+[Three-pass review and conditional hypotheses](docs/preflight-review.md) ·
+[Reproducible registry blocker](evidence/registry_preflight.json) ·
+[Independent readback of all listed primary TIFFs](evidence/listed_download_audit.json).
+
+The **new unique submission requirement remains blocked**, not completed: a freshly hash-checked witness is positive at
+all 5,106,385 allowed pixels (REGISTRY MEASUREMENT). Every nonempty candidate has forward overlap 1.0, above the
+mandatory 0.70 limit, before placement and on final dots. The preflight stops without restarting a closed lane,
+copying a prior submission, inventing a score, or spending a slot. Format checks pass for all 23 listed primary TIFFs;
+that is neither uniqueness nor portal acceptance. Run `scripts/restore_registry.py`, then
+`scripts/preflight_registry.py` (expected exit 2), before considering a new experiment.
+
+The full original prompt remains embedded below, and `PROMPT.md` remains the standing brief. Re-read them each session.
+Earlier lane headings and performance claims below are historical, not current selector approval. The H33 analysis now
+uses the exact marginal metric inequality and removes unsupported causal/leaderboard gain claims; see
+[the corrected analysis](research/why-h33-scored-02778.md). A freshly checked organizer reference README supports
+CPU-only training as well as GPU. Fresh source inventories cover 78 configured family repos, not authenticated scores.
+
+---
+
+
 > ## New H82 experiment (2026-10-21): download for inspection — **NOT OK TO SUBMIT**
 >
 > [Download the newly generated research GeoTIFF](docs/downloads/gems77-h82-cool-chemconcord-11185dots-20261021-245bb13136-zeros.tif) · [one-TIFF ZIP](docs/downloads/gems77-h82-cool-chemconcord-11185dots-20261021-245bb13136-zeros.zip) · [H82 executive summary and future submission steps](docs/h82-executive-summary.html) · [JSON run card](evidence/h82_run_card.json). It is a **new pixel/byte-distinct candidate, NOT unique under the mandatory registry-overlap rule**. SHA-256 `84b50d05eaba578c398c4c7ab720dbf5a46de29d63f4254eb02a8ba02a4a43df`; 11,185 binary dots; local writer validator PASS: float32 EPSG:32611, 3730×3292, sample transform, no NaN anywhere, range [0,1], zero outside footprint/on mapped faults. **HOLDOUT-DTI 0.012184** (gems57-pooled-hide-v2; 11,321 withheld positives; spatial-block bootstrap 95% CI [0.003700, 0.022844]), below the repository 0.152718 historical local incumbent. Surface max |ρ| 0.04651 vs 2 pinned witnesses; final 3-pixel forward overlap **1.000** vs the SHA-pinned full-footprint witness (duplicate >0.70); full registry unavailable. E1–E3 then STOP, negative. **No selector authorization, no organizer score, no competition slot spent.** Mirrored input is not organizer-authenticated. This is a negative *research deliverable*, not an approved competition submission.
@@ -63,7 +89,7 @@ Start every session with this README, [PROMPT.md](PROMPT.md), and [AGENTS.md](AG
 
 > **Earlier H78 review (2026-10-21; retained as historical evidence):** H78 is closed/negative. Its TIFF is inspection-download only, scored `0.0708` **HOLDOUT-DTI** (`gems57-pooled-hide-v2`, 11,321 withheld positives, 95% CI `[0.0600, 0.0816]`) versus its matched `0.0958` control, and fails the binding literal registry-uniqueness gate. No H78 competition slot was spent. See [the H78-era audit](docs/SESSION_REVIEW.md); the H80 block above is the current featured file.
 
-**XSEN session update (2026-10-21, branch `arena/f054d26e-gemsdoe77`): a new unique TIF was generated and is NOT OK to submit.** `submissions/gems77-xsen-coincide-hgb-37654dots-20261021-zeros.tif` (sha256 `e7c81754420b9a6b4126ad1d7239870ae680eaa61e97a6d3f16f644a620d1c6a`; also under `docs/downloads/`) is format-valid — finite, values exactly {0,1}, no nodata, EPSG:32611, 3730×3292, pinned transform, so the portal "Predicted values must be in range [0, 1]" error cannot recur with it — but its lane verdict is **negative**: **0.0994 HOLDOUT-DTI** (evaluator `gems57-pooled-hide-v2`, 11,342 withheld positives, 95% CI `[0.0824, 0.1179]`) vs 0.0971 for the standard-stack control (paired Δ +0.0023, CI includes 0), below the 0.152718 incumbent, its coincidence surface alone scores at the random-control level (0.0480 vs 0.0500), and 93.4% of its dots fall within 3 px of GEMSDOE37's sparse dotted raster (duplicate under the 70% rule). Download it for inspection only; do not upload it. Full card: `evidence/run_card_xsen.json`; lane page: `docs/xsen.html`. The best retained candidate remains H77-Step/H77D (see below), still awaiting a selector/policy decision — no slot was spent by the XSEN session.
+**XSEN session update (2026-10-21, branch `arena/f054d26e-gemsdoe77`): a new unique TIF was generated and is NOT OK to submit.** `submissions/gems77-xsen-coincide-hgb-37654dots-20261021-zeros.tif` (sha256 `e7c81754420b9a6b4126ad1d7239870ae680eaa61e97a6d3f16f644a620d1c6a`; also under `docs/downloads/`) is format-valid — finite, values exactly {0,1}, no nodata, EPSG:32611, 3730×3292, pinned transform, so local readback finds no range/nonfinite defect; portal acceptance remains unverified — but its lane verdict is **negative**: **0.0994 HOLDOUT-DTI** (evaluator `gems57-pooled-hide-v2`, 11,342 withheld positives, 95% CI `[0.0824, 0.1179]`) vs 0.0971 for the standard-stack control (paired Δ +0.0023, CI includes 0), below the 0.152718 incumbent, its coincidence surface alone scores at the random-control level (0.0480 vs 0.0500), and 93.4% of its dots fall within 3 px of GEMSDOE37's sparse dotted raster (duplicate under the 70% rule). Download it for inspection only; do not upload it. Full card: `evidence/run_card_xsen.json`; lane page: `docs/xsen.html`. The best retained candidate remains H77-Step/H77D (see below), still awaiting a selector/policy decision — no slot was spent by the XSEN session.
 
 **Read this README, including the original request at the end of this file, at the beginning of every session.**
 

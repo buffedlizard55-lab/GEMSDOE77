@@ -6,3 +6,5 @@
 4. Distinguish HOLDOUT-DTI, ORGANIZER-CONFIRMED receipts, canary diagnostics, format/input measurements, and unverified claims. Never promise a leaderboard gain.
 5. Keep downloads and approval status unambiguous. Format PASS is not uniqueness or approval.
 6. Concurrent H77C code/artifacts are preserved for audit only; its generation entrypoint is quarantined. Do not use inherited unverified registry values or private holdout as clearance. See `evidence/inherited_h77c_review.json`.
+
+7. Current preflight review: read `docs/preflight-review.md` and `evidence/registry_preflight.json`. Restore the pinned witnesses and run `scripts/preflight_registry.py` before any new experiment (exit 2 means STOP_UNIVERSAL_DUPLICATE; exit 3 means input error; exit 0 is NOT uniqueness clearance). Do not generate a new field/dots while this rejection proof applies. `scripts/audit_downloads.py` independently rechecks every listed primary TIFF; it is not portal acceptance or selector approval. Correct marginal-DTI reasoning is in `research/why-h33-scored-02778.md`.
