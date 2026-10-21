@@ -2,9 +2,9 @@
   "schema": "gems-listed-download-readback-v1",
   "evidence_class": "FORMAT-INTEGRITY-MEASUREMENT; NOT SCORE OR PORTAL ACCEPTANCE",
   "scope": "Every primary TIFF in docs/data/lanes.json; no archive or NaN twins, no uniqueness certification",
-  "manifest_sha256": "5e32b3e074a0dd347d986e862c318b9f8ca91a9590a5d1a0de7e58924e2e0bea",
+  "manifest_sha256": "ac9204150eb903c73c09f40103152e20ad39b6876ad7d55b35177fa9a5399657",
   "reference_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
-  "listed_count": 41,
+  "listed_count": 42,
   "all_format_pass": true,
   "authorized_to_submit": false,
   "artifacts": [
@@ -30,6 +30,24 @@
       "lane": "H82R: local ternary radiometric rank-mixture entropy (STOPPED; research only)",
       "file": "downloads/gems77-h82-ternaryentropy-20261021-RESEARCH-ONLY.tif",
       "sha256": "56debe682505bf2649f30d914c7b552dcf669bce4b902ce91eb3e5363031f115",
+      "checks": {
+        "single_band": true,
+        "crs_matches": true,
+        "shape_matches": true,
+        "transform_matches": true,
+        "finite_entire_raster": true,
+        "no_nan_inside_footprint": true,
+        "values_in_0_1": true,
+        "nodata_none": true,
+        "sha256_matches_manifest": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
+    {
+      "lane": "H77V-LDSA: 3.6 km Mesh-Dealiased Crustal Regime x Tubular Demag Trough x 3DEP Fluvial Knickpoint-Scarp Step + LDSA 300 m Submodular Cover",
+      "file": "downloads/gemsdoe77-h77v-dealiased-vent-demag-knick-ldsa-20261021.tif",
+      "sha256": "861c880e7a56203d197182075765480efaf224ad6cfde342fab511f5f908fa4c",
       "checks": {
         "single_band": true,
         "crs_matches": true,
