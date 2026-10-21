@@ -8,8 +8,8 @@ Each row's status is copied from that lane's own run card; links are local.
 
 | Lane | File | Format valid | Protocol-unique | Verdict | Upload status |
 |---|---|---|---|---|---|
-| **LIA**: live-score inversion and allocation (this README's next section) | [`gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif`](docs/downloads/gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif) | Yes, 17/17 | **Yes**, informative reading (worst overlap 0.660, ρ 0.377) | negative | **Safe to upload.** Not recommended for a slot; selector: not approved |
-| Contact-physics ([page](docs/contactphys.html)) | [`gems77-contactphys-44090dots-…-zeros.tif`](docs/downloads/gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif) | Yes (`download_ok_format_valid`) | see its run card | negative | Selector: not approved (`submit_ok_selector_promoted: false`) |
+| **LIA**: live-score inversion and allocation (this README's next section) | [`gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif`](docs/downloads/gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif) | Yes, 17/17 | **No under the literal rule** (35 dense-raster overlap firings); informative-only diagnostic: 0.660 overlap, ρ 0.377 | negative | **Not OK to submit.** Inspection download only; selector: not approved |
+| Contact-physics ([page](docs/contactphys.html)) | [`gems77-contactphys-44090dots-…-zeros.tif`](docs/downloads/gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif) | Yes (`download_ok_format_valid`) | **No under the post-merge literal gate** (dense-surface overlap 0.979) | negative | **Not OK to submit** (`submit_ok_selector_promoted: false`) |
 | Selective-U curvature ([page](docs/index.html)) | [`gems77-h77-urank-curvature-…-research.tif`](docs/downloads/gems77-h77-urank-curvature-0d868dc271bb-research.tif) | Yes | No (literal gate failed) | negative | **Not OK to submit** (research TIFF) |
 | H77C claycap (inherited, quarantined) | [`gemsdoe77-h77c-claycap-breach-…-zeros.tif`](docs/downloads/gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-zeros.tif) | – | rejected by the shared recheck | – | Not approved |
 
@@ -27,9 +27,11 @@ Each row's status is copied from that lane's own run card; links are local.
 
 ---
 
-## ⬇ LIA lane (live-score inversion and allocation): download first
+## ⬇ LIA lane (live-score inversion and allocation): inspection download
 
-**[Download `gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif`](docs/downloads/gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif)** (151,009 B)
+> **NOT OK TO SUBMIT.** Format-valid research bytes are downloadable, but literal protocol uniqueness and promotion both fail.
+
+**[Download `gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif` for inspection](docs/downloads/gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif)** (151,009 B)
 
 - sha256 `a8bfb844ab44b5d4157f75ec914a51655c27ae54727f7b4a088eca9d6f396898`
 - Same file as a one-TIFF zip: [`…-zeros.zip`](docs/downloads/gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.zip)
@@ -37,10 +39,10 @@ Each row's status is copied from that lane's own run card; links are local.
 
 | Question | Answer |
 |---|---|
-| OK to download? | **Yes** |
-| Will the portal accept it? | **Yes.** It passes 17/17 checks against the official grid and footprint, using the same encoding as the 0.2778 file the portal accepted and scored: all cells finite, binary {0, 1}, no nodata tag, EPSG:32611, 3730×3292 with the official transform. |
-| Unique? | **Yes.** Worst ρ 0.377; worst overlap 0.660 against 765 informative registry rasters. 43 space-filling rasters are reported, not used: each one's 3 px halo covers ≥ 70% of allowed cells, so even random dots exceed 0.70 against it. The first build was logged as a duplicate and not shipped. |
-| Spend a weekly slot? | **Not recommended. Run verdict: NEGATIVE** (pre-registered rule). INSTRUMENT Δ versus the 0.2778 champion is S0 -0.043 and S1 -0.041. HOLDOUT-DTI is 0.0706 against 0.0958 for the fold-fair champion construction (Δ -0.0252, 95% CI [-0.0303, -0.0203]). **The selector decides.** |
+| OK to download? | **Yes, for inspection.** |
+| Will the portal accept it? | **Unknown; do not upload it.** It passes 17/17 local checks against the mirrored grid and footprint: all cells finite, binary {0, 1}, no nodata tag, EPSG:32611, 3730×3292 and matching transform. Local validation is not an organizer acceptance receipt. |
+| Unique? | **No under the brief's literal rule.** The unchanged template reports 35 final-dot overlap firings on dense/space-filling registry rasters. The narrower informative-only diagnostic has worst ρ 0.377 and overlap 0.660 against 765 rasters, but the brief says *any* registry raster, so that diagnostic cannot be promoted to clearance. The first build was also logged as a duplicate and not shipped. |
+| Spend a weekly slot? | **No. Run verdict: NEGATIVE.** INSTRUMENT Δ versus the 0.2778 owner-reported champion is S0 -0.043 and S1 -0.041. HOLDOUT-DTI is 0.0706 against 0.0958 for the fold-fair champion construction (Δ -0.0252, 95% CI [-0.0303, -0.0203]). Selector approval is absent. |
 
 **Form fields**
 
@@ -78,9 +80,9 @@ submission page), **HOLDOUT-DTI** (local hide-and-recover), **INSTRUMENT** (proj
    - Leaderboard #1 is **0.4413** (ORGANIZER-CONFIRMED, read 2026-10-21). The brief's 0.3195 is stale.
      At our dot count, 0.4413 needs 0.194 credit per dot (1.56× ours), which requires a better field,
      not better thinning.
-3. **The GEMSDOE77 file.**
+3. **The GEMSDOE77 LIA file (research candidate; not submission-cleared).**
    - **Composition.** 25,293 dots on the live-validated support (> 400 m from the catalogue) plus
-     13,030 dots on a new straight-edge field (H77-1), within a per-raster overlap budget of 0.66.
+     13,030 dots on a new straight-edge field (H77-1), within a 0.66 budget against informative rasters. It nevertheless fails the literal gate on 35 dense rasters.
    - **HOLDOUT-DTI 0.0706** [0.0599, 0.0815] (`gems57-pooled-hide-v2`,
      11,321 withheld positives).
    - **Below** the fold-fair champion construction (Δ -0.0252
@@ -141,12 +143,12 @@ These are listed on the [Sources & limits page](docs/lia-sources.html) and in
 
 Most valuable next steps:
 
-1. If the selector spends a slot on this file, add its score to `registry/live_scores.csv` and re-run
-   E2. One score pins the off-support straight-edge credit (S0 versus S1).
+1. Do **not** spend a slot on this file. First resolve the dense-raster contradiction as one shared,
+   protocol-owner-approved registry policy; never create a private exemption.
 2. Apply the proposed template validator patch upstream
    ([`reports/template_fix_validate_footprint.patch`](reports/template_fix_validate_footprint.patch)).
-3. Search for a field with ≥ 0.06 credit per dot away from the H19-5 support. That is the only route
-   to a unique file above 0.2778. Two promising signals:
+3. In a separately authorized lane, search for a field with ≥ 0.06 credit per dot away from the H19-5 support. Under an approved discriminating registry representation, that is the route
+   to a distinct file above 0.2778. Two promising signals:
    - High-resolution (1 m) lidar scarp mapping away from the support.
    - The GEMSDOE49/70 positive residuals (+0.13), which show such credit exists.
 

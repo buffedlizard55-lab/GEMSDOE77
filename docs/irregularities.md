@@ -20,6 +20,7 @@
 | I15 | Post-run support audit: default cross erosion does not cover every diagonal offset of the Gaussian stencil. | Preserve the stopped artifact and observed result, label holdout confounded/not promotion-valid, and add a fail-closed feature guard. No rerun or score replacement. See support_audit.json. |
 
 | I16 | Concurrent PRs #1/#2 merged into main while this lane was running; inherited H77C had unverified registry PASS/fallback values and a different evaluator. | Preserved sources/TIFFs/tests, namespaced the U lane, independently measured literal rejection for inherited TIFF, disabled unsafe legacy generator and marked it quarantined. No new model experiment. |
+| I17 | Post-merge LIA pages promoted an “informative-raster” diagnostic PASS to uniqueness clearance even though the same run card records `template_literal_reading_duplicate=true` and 35 dense-raster firings. Contact-physics also has 0.979 literal overlap with the merged dense surface. | Corrected the all-lane manifest, README, generated pages and CI to fail closed. All three files are inspection downloads and **NOT OK to submit**. This is an evidence-label correction, not a new experiment. |
 
 ## Next session — ordered by risk reduction
 
