@@ -1,5 +1,5 @@
 {
- "note": "Eleven reviewed downloadable lanes are retained, including H77L (the featured research-only file), two concurrently merged H79 negative TIFFs, and the new D77 blind-distance band. Every listed artifact is for inspection only, Not OK to submit: the literal dense-witness gate blocks every nonempty candidate under Policy I17. See data/submission-authorization.json.",
+ "note": "Twelve reviewed downloadable lanes plus H81 are retained. Every listed artifact is for inspection only, Not OK to submit, unless the machine-readable authorization receipt says otherwise. See data/submission-authorization.json.",
  "lanes": [
   {
    "lane": "D77: blind-distance band 250m-1km off catalogue + greedy dots under the exact DTI bar (HOLDOUT-DTI 0.0000 [0.0000, 0.0000]; negative result)",
@@ -50,10 +50,10 @@
    ],
    "upload": "Not OK to submit. OK to download for inspection only. Literal registry overlap = 1.0 against a full-support witness; no final dots or weekly slot. Format-valid research TIFF, NOT competition-approved.",
    "why_primary": "Featured H77L experiment of this research session: original LiDAR/ThK lagged-flank response, negative result, no reused submission pixels. Other parallel lanes are preserved below.",
-   "beat_02778_summary": "Unknown. H77L has 0.0312 HOLDOUT-DTI (gems57-pooled-hide-v2, 41,732 withheld positives, 95% CI 0.0260–0.0369) on an unmatched catalogue holdout, not a public leaderboard result. No organizer score, approved dot placement, or verified H33 file-to-score receipt exists."
+   "beat_02778_summary": "Unknown. H77L has 0.0312 HOLDOUT-DTI (gems57-pooled-hide-v2, 41,732 withheld positives, 95% CI 0.0260\u20130.0369) on an unmatched catalogue holdout, not a public leaderboard result. No organizer score, approved dot placement, or verified H33 file-to-score receipt exists."
   },
   {
-   "lane": "H79-BB: basement potential-field step × topographic curvature ridge (research TIFF; literal FAIL)",
+   "lane": "H79-BB: basement potential-field step \u00d7 topographic curvature ridge (research TIFF; literal FAIL)",
    "page": "h79.html",
    "summary": "executive-summary.html",
    "file": "downloads/gems77-h79-crossgrad-ridge-37654dots-20261021-dd0dbf9c-zeros.tif",
@@ -72,7 +72,7 @@
     0.028377191340547874,
     0.03645024878150852
    ],
-   "upload": "Not OK to submit. OK to download for inspection only. Literal dense-witness uniqueness fails; H79 0.032328 HOLDOUT-DTI (gems57-pooled-hide-v2, 22,633 withheld positives, 95% CI 0.028377–0.036450) is below its same-support random control; selector not approved.",
+   "upload": "Not OK to submit. OK to download for inspection only. Literal dense-witness uniqueness fails; H79 0.032328 HOLDOUT-DTI (gems57-pooled-hide-v2, 22,633 withheld positives, 95% CI 0.028377\u20130.036450) is below its same-support random control; selector not approved.",
    "primary": false,
    "why_primary": "Historical H79 parallel lane, with a new format-valid TIFF; the binding literal uniqueness gate failed, and its holdout result is negative."
   },
@@ -88,14 +88,14 @@
    "beats_holdout_best": false,
    "verdict": "negative",
    "name": "gems77-h79-radhalo-lag3-37654-20261021-zeros",
-   "note": "H79 lag-3px U-residual halo paired to K-Th edge; 37654 spaced dots; HOLDOUT negative—research only, do not submit",
+   "note": "H79 lag-3px U-residual halo paired to K-Th edge; 37654 spaced dots; HOLDOUT negative\u2014research only, do not submit",
    "sha256": "c272025ee653187d09489d941613a86bfe4b88110fb455847a2256cf5699014b",
    "holdout_dti": 0.04773265734715734,
    "holdout_ci95": [
     0.03958335878724709,
     0.05557557296791166
    ],
-   "upload": "Not OK to submit. OK to download for inspection only. Literal registry overlap = 1.0 > 0.70 and HOLDOUT-DTI 0.047733 (gems57-pooled-hide-v2, 11,321 withheld positives, 95% CI 0.039583–0.055576) fails scientific promotion. Selector not approved; zero weekly slots.",
+   "upload": "Not OK to submit. OK to download for inspection only. Literal registry overlap = 1.0 > 0.70 and HOLDOUT-DTI 0.047733 (gems57-pooled-hide-v2, 11,321 withheld positives, 95% CI 0.039583\u20130.055576) fails scientific promotion. Selector not approved; zero weekly slots.",
    "primary": false,
    "why_primary": "Concurrent negative H79-RH radiometric halo, retained for audit and inspection only."
   },
@@ -227,6 +227,28 @@
    "note": "XSEN mag analytic-signal x ThK/UK boundary HGB, 37654 dots; HOLDOUT-DTI 0.0994, below 0.1527 repo best: NEGATIVE, do not submit",
    "sha256": "e7c81754420b9a6b4126ad1d7239870ae680eaa61e97a6d3f16f644a620d1c6a",
    "upload": "Not OK to submit: HOLDOUT-DTI 0.0994 < 0.1527 incumbent, coincidence gain not significant (paired CI includes 0), and 93.4% of dots within 3px of GEMSDOE37's sparse dotted raster (>0.70 duplicate limit). Inspection only; selector: not approved."
+  },
+  {
+   "lane": "H81: slip-budget fault-tip continuation cones (deterministic, catalogue-only)",
+   "page": "h81.html",
+   "summary": "executive-summary.html",
+   "file": "downloads/gems77-h81-slipcone-37654dots-20261021-0fbeaf41-zeros.tif",
+   "run_card": "evidence/h81_run_card.json",
+   "format_valid": true,
+   "protocol_unique": false,
+   "beats_holdout_best": false,
+   "verdict": "negative",
+   "name": "gems77-h81-slipcone-37654dots-20261021-0fbeaf41-zeros",
+   "note": "H81 slip-budget tip cones 37654 dots 0-on-cat; HOLDOUT-DTI 0.0671 [0.0552,0.0779]",
+   "sha256": "f3eb9e5e3bf03da0285b48b5bb7d41f15b0e450d16bc6b8943aeaa63efadc1f7",
+   "holdout_dti": 0.0670711968860764,
+   "holdout_ci95": [
+    0.05523215485018934,
+    0.07790796160479564
+   ],
+   "upload": "Not OK to submit. OK to download for inspection only. HOLDOUT-DTI 0.06707 (gems57-pooled-hide-v2, 11,321 withheld positives, 95% CI 0.05523-0.07791); literal gate FAIL; selector not approved; zero weekly slots.",
+   "primary": false,
+   "why_primary": "H81 strand-tip slip-cone lane; clearance per release gate (not approved)."
   }
  ]
 }
