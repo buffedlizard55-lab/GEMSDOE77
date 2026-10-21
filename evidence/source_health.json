@@ -1,5 +1,5 @@
 {
-  "checked_utc": "2026-10-21T16:46:56.543901+00:00",
+  "checked_utc": "2026-10-21T16:51:03.812419+00:00",
   "purpose": "Repository/page freshness and artifact inventory, NOT scores, scientific validation, or full raster uniqueness",
   "repos": [
     {
@@ -2253,49 +2253,8 @@
       "repo": "62GEMSDOE",
       "url": "https://github.com/buffedlizard55-lab/62GEMSDOE",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
-      "status": "retrieved",
-      "commit": "38c521be981681832607c6b4152165e88a54ec11",
-      "tree_sha": "38c521be981681832607c6b4152165e88a54ec11",
-      "truncated": false,
-      "review_page": "https://github.com/buffedlizard55-lab/62GEMSDOE/blob/38c521be981681832607c6b4152165e88a54ec11/docs/index.html",
-      "review_page_blob_sha": "f253542a253c5e622773678690adbaece3f1312c",
-      "tif_paths": [
-        "docs/downloads/gems62-datum-lahontan-strain-gauge-defensible-440dots-nan.tif",
-        "docs/downloads/gems62-datum-lahontan-strain-gauge-defensible-440dots-zeros.tif",
-        "docs/downloads/gems62-h62b-lahontan-datumstep-trace-37654dots-20261012T000000Z-zeros.tif",
-        "docs/downloads/gems62-h62g-benchcrosscut-hardcore-zeros.tif",
-        "docs/downloads/gems62-h62i-scarpcrosscut-hardcore-zeros.tif",
-        "docs/downloads/gems62-h62j-datumdoublet-maxmass10870-20261012T003500Z-zeros.tif",
-        "docs/downloads/gems62-h62n-lahontan-localmode-balanced-16864dots-20261012T003242Z-zeros.tif",
-        "docs/downloads/gems62-h62r-multilevel-datum-repeat-offset-zeros.tif",
-        "docs/downloads/gems62-h63-diffuse-isolated-offcat-40k-nan.tif",
-        "docs/downloads/gems62-h63-diffuse-isolated-offcat-40k-zeros.tif",
-        "docs/downloads/gems62-h63m-multiline-corroborated-90000-zeros.tif",
-        "docs/downloads/gems62-lahontan-isobase-99dots-nan.tif",
-        "docs/downloads/gems62-lahontan-isobase-99dots-zeros.tif",
-        "docs/downloads/gems62b-tiltgrad-vote-scarpcorrob-120000-zeros.tif",
-        "docs/downloads/gems62d-org-stack-inverted-truth-detector-46598-zeros.tif",
-        "docs/downloads/gems62e-h62o-orgstack-oof-lidarprof-40000dots-20261012-2f20698c5cbd-nan.tif",
-        "docs/downloads/gems62e-h62o-orgstack-oof-lidarprof-40000dots-20261012-2f20698c5cbd-zeros.tif",
-        "docs/downloads/gems62f-h2r-ventcons-125890-20261012T012736Z-zeros.tif",
-        "docs/downloads/gemsdoe62-datum-lahontan-isobase-v8.tif",
-        "lane62-bench/docs/downloads/gems62-lahontan-datumstep-min12max60-seed25-traceonly.tif",
-        "lane62-h62a/docs/downloads/gems62-h62-a-lahontan-isobase-step-38000dots-20261011T201324Z-nan.tif",
-        "lane62-h62a/docs/downloads/gems62-h62-a-lahontan-isobase-step-38000dots-20261011T201324Z-zeros.tif",
-        "lane62-h63m/docs/downloads/gems62-h63m-multiline-corroborated-90000-zeros.tif",
-        "lane62/docs/downloads/gems62-lahontan-datum-break-dotted-primary-zeros.tif",
-        "lane62/docs/downloads/gems62-lahontan-flagged-breaks-selective-secondary-zeros.tif"
-      ],
-      "download_tif_count": 25,
-      "page_content_sha256": "835a1458688e9098f9359e61d065b9a5889718334dc791152926f767942989f0",
-      "page_mentions": {
-        "0.2778": true,
-        "0.3195": true,
-        "0.4413": false,
-        "ORGANIZER-CONFIRMED": false,
-        "HOLDOUT-DTI": true
-      },
-      "authenticated_score_receipt": false
+      "status": "error",
+      "error": "gh: We couldn't respond to your request in time. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (HTTP 504)"
     },
     {
       "repo": "GEMSDOE63",
@@ -2768,11 +2727,11 @@
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE77",
       "claim_class": "OWNER-MIRROR; not organizer score verification",
       "status": "retrieved",
-      "commit": "a72af95a654abe1ee3ec7726ad71dd53e95fd2d5",
-      "tree_sha": "a72af95a654abe1ee3ec7726ad71dd53e95fd2d5",
+      "commit": "1cc2696aa1d477c591041dd55f9914a22ab0dce9",
+      "tree_sha": "1cc2696aa1d477c591041dd55f9914a22ab0dce9",
       "truncated": false,
-      "review_page": "https://github.com/buffedlizard55-lab/GEMSDOE77/blob/a72af95a654abe1ee3ec7726ad71dd53e95fd2d5/docs/index.html",
-      "review_page_blob_sha": "3705a77fcbcdae4c31ed53d97995457f65fc456f",
+      "review_page": "https://github.com/buffedlizard55-lab/GEMSDOE77/blob/1cc2696aa1d477c591041dd55f9914a22ab0dce9/docs/index.html",
+      "review_page_blob_sha": "88c18896c25dc3ec32a927506b2a37961e06686d",
       "tif_paths": [
         "docs/downloads/gems77-ago-hybrid35-geophys-37654dots-dc66e42e-nan.tif",
         "docs/downloads/gems77-ago-hybrid35-geophys-37654dots-dc66e42e-zeros.tif",
@@ -2813,7 +2772,7 @@
         "docs/downloads/gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-zeros.tif"
       ],
       "download_tif_count": 37,
-      "page_content_sha256": "2ff5e514e92abf887b00a51b00cba95d51413d280a4e9cd1c5dc4fea83e765a2",
+      "page_content_sha256": "12f7f23178762508d45ec40a97336441ff0cff031e6f23f30139c88003cdbd0b",
       "page_mentions": {
         "0.2778": true,
         "0.3195": false,
@@ -2836,6 +2795,94 @@
       "tif_paths": [],
       "download_tif_count": 0,
       "page_content_sha256": "89c4f6718b6b36ac05f11fc9fbf44bf75de2d69a0ee19af31ca9f02d8c0d25ac",
+      "page_mentions": {
+        "0.2778": false,
+        "0.3195": false,
+        "0.4413": false,
+        "ORGANIZER-CONFIRMED": false,
+        "HOLDOUT-DTI": false
+      },
+      "authenticated_score_receipt": false
+    },
+    {
+      "repo": "GEMSDOE79",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE79",
+      "claim_class": "OWNER-MIRROR; not organizer score verification",
+      "status": "retrieved",
+      "commit": "137740d9013709813ea30aae59cf757ea7ef74be",
+      "tree_sha": "137740d9013709813ea30aae59cf757ea7ef74be",
+      "truncated": false,
+      "review_page": "https://github.com/buffedlizard55-lab/GEMSDOE79/blob/137740d9013709813ea30aae59cf757ea7ef74be/README.md",
+      "review_page_blob_sha": "10714122fb22c7704123c3a4b0dcd2667bdd4bd1",
+      "tif_paths": [],
+      "download_tif_count": 0,
+      "page_content_sha256": "1486eaac4a0b04f03ed18529c722dcc79512741c86de4fce4b494bfa4279841f",
+      "page_mentions": {
+        "0.2778": false,
+        "0.3195": false,
+        "0.4413": false,
+        "ORGANIZER-CONFIRMED": false,
+        "HOLDOUT-DTI": false
+      },
+      "authenticated_score_receipt": false
+    },
+    {
+      "repo": "GEMSDOE80",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE80",
+      "claim_class": "OWNER-MIRROR; not organizer score verification",
+      "status": "retrieved",
+      "commit": "060ccf1209e580d60b555c845d619a35ee667247",
+      "tree_sha": "060ccf1209e580d60b555c845d619a35ee667247",
+      "truncated": false,
+      "review_page": "https://github.com/buffedlizard55-lab/GEMSDOE80/blob/060ccf1209e580d60b555c845d619a35ee667247/README.md",
+      "review_page_blob_sha": "7ff9e8fed281264f6231fba8761f20dde97b2007",
+      "tif_paths": [],
+      "download_tif_count": 0,
+      "page_content_sha256": "0f92f5dae561ffeddac2855dcd99164f6efa0bec3145368a13af827849971ba7",
+      "page_mentions": {
+        "0.2778": false,
+        "0.3195": false,
+        "0.4413": false,
+        "ORGANIZER-CONFIRMED": false,
+        "HOLDOUT-DTI": false
+      },
+      "authenticated_score_receipt": false
+    },
+    {
+      "repo": "GEMSDOE81",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE81",
+      "claim_class": "OWNER-MIRROR; not organizer score verification",
+      "status": "retrieved",
+      "commit": "e8b69dde87ad29bac860abf359f9d394af970423",
+      "tree_sha": "e8b69dde87ad29bac860abf359f9d394af970423",
+      "truncated": false,
+      "review_page": "https://github.com/buffedlizard55-lab/GEMSDOE81/blob/e8b69dde87ad29bac860abf359f9d394af970423/README.md",
+      "review_page_blob_sha": "35efbc8a6dff3a1105107a80a27ba1a1cd7b4f69",
+      "tif_paths": [],
+      "download_tif_count": 0,
+      "page_content_sha256": "b73ab915a6d2d948653319c69d15d31f1488909be1a185c35126407f27197047",
+      "page_mentions": {
+        "0.2778": false,
+        "0.3195": false,
+        "0.4413": false,
+        "ORGANIZER-CONFIRMED": false,
+        "HOLDOUT-DTI": false
+      },
+      "authenticated_score_receipt": false
+    },
+    {
+      "repo": "GEMSDOE82",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE82",
+      "claim_class": "OWNER-MIRROR; not organizer score verification",
+      "status": "retrieved",
+      "commit": "fe1371993775db6ec13e592d37fa634f3e39622a",
+      "tree_sha": "fe1371993775db6ec13e592d37fa634f3e39622a",
+      "truncated": false,
+      "review_page": "https://github.com/buffedlizard55-lab/GEMSDOE82/blob/fe1371993775db6ec13e592d37fa634f3e39622a/README.md",
+      "review_page_blob_sha": "06a44b150ec313f80fa9664424d2a157e19e4e4d",
+      "tif_paths": [],
+      "download_tif_count": 0,
+      "page_content_sha256": "18d2102f8178227797d9427716cfbd81576e9d59a32aeb5310d09e1c64f06852",
       "page_mentions": {
         "0.2778": false,
         "0.3195": false,

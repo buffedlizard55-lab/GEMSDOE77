@@ -1,6 +1,6 @@
 # Current-checkout repository review — 2026-10-21
 
-**Branch:** `arena/4dbb59e0-gemsdoe77` · **review-start base/HEAD:** `2b22987` (`2b229879b9be8cf6ccda32affbe0ed6d7da4dd25`). During PR preparation, `origin/main` advanced to `9f9bac0`; merge commit `fa8d244` integrates that current main state while keeping its parallel artifacts distinct from results of this review.
+**Branch:** `arena/4dbb59e0-gemsdoe77` · **review-start base/HEAD:** `2b22987` (`2b229879b9be8cf6ccda32affbe0ed6d7da4dd25`). During PR preparation, `origin/main` advanced through `9f9bac0` to `96ae619`; merge commits retain both main snapshots while keeping their parallel artifacts distinct from results of this review.
 
 ## Executive decision
 
@@ -57,9 +57,10 @@ The retained repository comparator remains **0.152718 HOLDOUT-DTI**, evaluator `
 - Added five tests covering matching inputs in a fresh checkout, missing files despite an old receipt, byte/hash drift, receipt mismatch, and unsafe/unknown paths.
 - Added site tests that enforce H77E's inspection-only/NOT-OK status and score metadata. The README's full original prompt remains present at EOF.
 - Successful generators: `.venv/bin/python scripts/build_site.py`, `scripts/lia_build_site.py`, and `scripts/build_home.py`.
-- Test suite after reconciling the concurrent main changes and rerunning all builders: **173 passed** (pinned `.venv`).
-- `.venv/bin/python scripts/verify_all.py`: **all_passed: true** for the ContactPhys local format/metric checks it runs. This is not organizer acceptance, a full portfolio uniqueness check, or approval for any file.
-- `.venv/bin/python scripts/release_gate.py --out /tmp/gems77-review-release-final.json --verify-fail-closed`: decision **NOT OK TO SUBMIT**, **0** authorized files.
+- `.venv/bin/python scripts/audit_downloads.py`: all **25/25** TIFFs listed as primary in the current main manifest passed independent byte/hash/grid/range/finite-value checks. This is a FORMAT/INTEGRITY measurement, not uniqueness, portal acceptance, or authorization; receipt: `evidence/listed_download_audit.json`.
+- Test suite after reconciling concurrent main changes and rerunning the CI-equivalent build chain: **195 passed** (pinned `.venv`).
+- `.venv/bin/python scripts/verify_all.py`: **all_passed: true** for the ContactPhys local format/metric checks it runs. This is not organizer acceptance, a full-family uniqueness certificate, or approval for any file.
+- `.venv/bin/python scripts/release_gate.py --out /tmp/gems77-review-release-current-main.json --verify-fail-closed`: decision **NOT OK TO SUBMIT**, **0** authorized files.
 - `.venv/bin/python scripts/check_data_ready.py`: expected non-ready result; **23/23** manifest inputs absent in `data/raw/`. The processing cache `data/processed/stack.npy` is absent as well.
 - No external web pages were fetched, no TIFF was generated, no TIFF bytes were intentionally changed, and no submission slot was used.
 
