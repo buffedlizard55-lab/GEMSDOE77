@@ -1,0 +1,95 @@
+{
+  "schema_version": "gems-preregistration-v2",
+  "lane_id": "H77E-FLUVIAL-DESEAM-KNAPSACK-SUBMOD",
+  "session_branch": "arena/09741416-gemsdoe77",
+  "preregistered_date_utc": "2026-10-21",
+  "status_at_preregistration": "LOCKED_BEFORE_EXPERIMENTS",
+  "lane_declaration": "Autonomous, cleanly namespaced research lane H77E (src/gems77e/, scripts/h77e_*.py, evidence/h77e_*.json, docs/h77e*.html). Per AGENTS.md and IR-77-01, all prior lanes (urank, H77C, contactphys, LIA, H77-Step, H78, H77D) are preserved untouched and never re-tuned; vendor/gems57 is verified unchanged (23/23 SHA-256 matches).",
+  "ranked_hypotheses": [
+    {
+      "id": "H77E-1",
+      "rank": 1,
+      "title": "10 m Fluvial Stream-Profile Knickpoint Chains & Footwall Chi-Disequilibrium Boundary",
+      "specific_layers": [
+        "external/dem10_chi_100m_u8.tif Bands 1-4 (chan_n, knick_n, raised_n, valid_n; NEVER loaded in any prior GEMSDOE77 lane)",
+        "external/dem10_chi_100m_i16.tif Bands 1-5 (step_max_x1000, step_min_x1000, ksn_max_m0.9, log10_area_m2_x1000, zmean_m)",
+        "official upstream source: USGS 3DEP 1/3 arc-second seamless DEM (public domain, SHA-256 verified in evidence/h77e_data_receipt.json)"
+      ],
+      "physical_signature": "Channel knickpoint density ratio knick_n / (chan_n + 1), 6-azimuth strike-coherent Radon knickpoint-chain line integral R6(knick_ratio * log1p(chi_step_max)), and cross-fault footwall-to-hanging-wall uplift boundary gradient |grad G_sigma(raised_n / (valid_n + 1))| at sigma in {1.5, 4.0} px.",
+      "why_unmapped_not_catalogued": "Alluvial-fan sheetflood aggradation erases <1.5 m inter-channel scarps within centuries and 24.6% of Nevada lacks 1 m LiDAR, causing aerial-photo mappers to miss active piedmont faults; however, every ephemeral drainage crossing an active normal fault retains a steepened k_sn reach, aligned channel knickpoint chain (knick_n), and abrupt drop from uplifted footwall channels (raised_n > 0) into subsiding basin channels (raised_n = 0).",
+      "named_non_fault_mimic": "Resistant welded-tuff / basalt caprock ledges and Pleistocene Lake Lahontan (1332 m) / Bonneville (1463, 1552 m) wave-cut shorelines — separated via contour-variance shoreline rejection and downdip basement/gravity deepening.",
+      "difference_from_prior_lanes": "First lane in GEMSDOE77 to ingest dem10_chi_100m_u8.tif (knick_n, raised_n, chan_n) and construct cross-drainage knickpoint chains and footwall chi-uplift transition gradients.",
+      "expected_dti_gain_vs_cost": "Rank 1 — High expected HOLDOUT-DTI gain across 100% of Nevada (especially the 24.6% LiDAR gap and alluvial fans), Low CPU cost (~6 s)."
+    },
+    {
+      "id": "H77E-2",
+      "rank": 2,
+      "title": "GeoDAWN Survey-Seam & BLM Open-Pit / TIGER Road Deconfounded MT Clay-Cap Lateral Breach & Multi-Depth Potential-Field Deconvolution",
+      "specific_layers": [
+        "training_features.tif (cond_surf, depth_to_base_surf, rtp, tmi, tmi_hg, tmi_vg, iso_grav_anom, iso_grav_anom_vg)",
+        "external/geodawn_extensions_u8.tif (TMI_up150) & geodawn_rad_u8.tif (K, Th, U, TC)",
+        "external/audit_sources/acquisition_block_id_100m.tif (USGS GeoDAWN DOI 10.5066/P93LGLVQ airborne merge block map — NEVER used in any prior GEMSDOE77 model)",
+        "external/audit_sources/blm_closed_claim_distance_m.tif (US BLM Nevada mining claim / open-pit distance — NEVER used in any prior GEMSDOE77 model)",
+        "external/audit_sources/tiger_road_distance_m.tif (US Census TIGER highway/railroad embankment distance)",
+        "DOE GDR 1391 (DOI 10.15121/1881483): gdr_wellspring_in_footprint.csv (temp_c, quartz/chalcedony/cation geothermometers; dist_known_fault_px STRICTLY FORBIDDEN), 2m_temperature_probe_INGENIOUS_regional_data.zip, paleo_geothermal_regional.zip, gdr_volcanic_vents_in_footprint.csv"
+      ],
+      "physical_signature": "Explicit survey-seam damping weight w_seam(d_block_seam) suppressing false potential-field/radiometric step edges along GeoDAWN flight-block boundaries, explicit BLM open-pit mine & TIGER road damping w_anthro(d_blm, d_road) suppressing Carlin/epithermal haul-road benches and fossil leach-pad alteration, coupled with lateral smectite clay-cap breach gradient |grad log(cond_surf)| * shallow hydrothermal magnetite destruction (TMI_up150 - TMI) * seam-clean Euler source-depth ratio and chemical geothermometer / 2 m probe excess.",
+      "why_unmapped_not_catalogued": "~75% of Great Basin commercial geothermal reservoirs are blind systems with zero surface fault scarps (Wannamaker et al. 2007; Faulds & Hinz 2015), detectable only through subsurface electrical conductivity breaches, shallow demagnetization, basement density steps, and thermal/geochemical leakage — previously drowned out by GeoDAWN block-stitching artifacts and open-pit gold mines.",
+      "named_non_fault_mimic": "Airborne GeoDAWN block-merge levelling seams, Nevada open-pit gold/silver mines and altered waste dumps, US highway/rail berms, and non-tectonic playa evaporite brines.",
+      "difference_from_prior_lanes": "First lane in GEMSDOE77 to explicitly deconfound both GeoDAWN airborne block seams (acquisition_block_id_100m.tif) and Nevada BLM open-pit mining camps (blm_closed_claim_distance_m.tif) alongside TIGER road embankments.",
+      "expected_dti_gain_vs_cost": "Rank 2 — High precision & blind-basin discovery gain, Low-Medium CPU cost (~12 s)."
+    },
+    {
+      "id": "H77E-3",
+      "rank": 3,
+      "title": "Anisotropic Structure-Tensor Dip-Slip Step Purity + Seamless 12-Band 1 m LiDAR / 13-Channel 10 m 3DEP Gap Bridge",
+      "specific_layers": [
+        "external/lidar_scarp_features_u8.tif + lidar_scarp_features.json (12 de-quantized 1 m bands with strict q==0 -> NaN across missing 24.6% coverage)",
+        "dem10/*.f32.npy (all 13 float32 seamless 10 m 3DEP scarp channels across 100.0% of Nevada)",
+        "external/topo_10m_derived_100m_u8.tif (9 bands) & external/dem1m_high_prior_openness_lrm.npz"
+      ],
+      "physical_signature": "Continuous structure-tensor cross-strike hanging-wall vs footwall monotone step purity A_step coupled with +400 m downdip basement/gravity drop, anthropogenically damped by w_anthro(d_blm, d_road) and fused across 1 m LiDAR and 13-channel 10 m 3DEP.",
+      "why_unmapped_not_catalogued": "Resolves sun-parallel NNE degraded <1.5 m piedmont scarps and non-LiDAR breaklines while rejecting symmetric V-shaped mountain canyons (~69% of naive tree false positives).",
+      "named_non_fault_mimic": "Symmetric V-shaped ephemeral desert washes, erosional canyon walls, and open-pit mine benches.",
+      "difference_from_prior_lanes": "Unifies full 13-channel float32 10 m 3DEP breaklines (`dem10_onesided3`, `dem10_hgm20/50/200`, `dem10_resid_range`) with de-quantized `q==0->NaN` 12-band 1 m LiDAR, structure-tensor step purity, and BLM+TIGER damping.",
+      "expected_dti_gain_vs_cost": "Rank 3 — Strong recall gain across piedmont & non-LiDAR gap, Medium CPU cost (~25 s)."
+    },
+    {
+      "id": "H77E-4",
+      "rank": 4,
+      "title": "Dual-Mechanism Hard-Collar Azimuthal Fracture Continuation + Exact Bayes-Calibrated Knapsack-Submodular 300 m Kernel Cover",
+      "specific_layers": [
+        "Strictly fold['visible'] fault mask per fold (0 hidden/test pixels ever accessed)",
+        "training_features.tif geodetic strain tensor (geod_2ndinv, geod_shearrate, geod_dilaterate)",
+        "Multi-scale surface/subsurface spin-2 strike director fields"
+      ],
+      "physical_signature": "(a) Unifies Pollard & Segall (1987) outward directional crack-tip stress lobes, Curewitz & Karson (1997) en-echelon relay step-overs, Hessian spin-2 tangent continuation cones, and GPS strain-deficit channels trained via internal buffered multi-splits with 55% hard-collar negative sampling (3 < d_ctx <= 25 px) across cross-family HGB + colsample LightGBM; (b) replaces uniform rank-quantile weights with exact Bayes prior-shift posterior p_cal(g) in Minoux lazy submodular 300 m kernel coverage subject to exact per-witness 3-px halo knapsack caps <= 0.675 across all informative registry rasters.",
+      "why_unmapped_not_catalogued": "Fault systems grow via tip propagation and unmapped breaching relays (56%+ of unmapped Quaternary strands lie within 200 m-3 km of mapped fault tips/relays); hard-collar negative training separates genuine on-strike continuations from parallel flank spurs, while Bayes-calibrated knapsack submodular cover concentrates budget on sharp 1-px high-odds fault traces while guaranteeing <= 0.675 < 0.70 uniqueness against all sparse/ridge prior submissions (fixing H77-Step's 0.735 real-model overlap defect).",
+      "named_non_fault_mimic": "Parallel erosional range-front spurs flanking an already-mapped fault trace.",
+      "difference_from_prior_lanes": "Fixes BOTH rank-quantile blob bias in H77-Step/H77D AND H77-HSL's -0.0256 stratified-pool loss AND H77-Step's 0.735 > 0.70 real-model overlap bug via exact Lagrangian/knapsack submodular cover.",
+      "expected_dti_gain_vs_cost": "Rank 4 (Full Synthesis) — Highest expected HOLDOUT-DTI across all seeds while guaranteeing strict <= 0.675 <= 0.70 sparse uniqueness, Medium CPU cost (~4 min)."
+    },
+    {
+      "id": "H77E-5",
+      "rank": 5,
+      "title": "High-Precision Double-Difference Relocated Microseismic Fault-Plane Lineations (External Data Candidate — Documented Egress Boundary)",
+      "specific_layers": [
+        "Official free source: University of Nevada Reno (UNR) Nevada Seismological Laboratory / USGS ANSS Comprehensive Catalog (https://earthquake.usgs.gov/fdsnws/event/1/) & Trugman/Shearer relocated Great Basin hypocenter catalog (CC0 / Public Domain)"
+      ],
+      "physical_signature": "3D Principal-Component planar alignment of double-difference relocated M0.5-M3.5 microearthquake swarms at 2-10 km depth projected up-dip at Andersonian 60 deg normal dip to the surface.",
+      "why_unmapped_not_catalogued": "Active aseismic/microseismic creep along permeable geothermal fault intersections (e.g., Brady's, San Emidio, Dixie Valley) illuminates blind permeable fault planes directly at reservoir depth.",
+      "named_non_fault_mimic": "Geothermal injection/production induced microseismicity clouds and mining blasts.",
+      "obtainability_status": "NOT OBTAINABLE DIRECTLY INSIDE SANDBOX (earthquake.usgs.gov blocked by sandbox network allowlist; see Policy I08). Explicitly NOT assumed available; validated H77E-1..4 use only 100% locally SHA-256 verified inputs.",
+      "expected_dti_gain_vs_cost": "Rank 5 — Deferred to unrestricted machine with live USGS ANSS FDSN egress."
+    }
+  ],
+  "experiment_budget": {
+    "max_experiments": 3,
+    "max_hours": 2.0,
+    "experiments": [
+      "Exp 1 (scripts/h77e_exp1_ablation_holdout.py): All single-feature symmetric ROC-AUC leakage canaries (abort if > 0.90) + Seed 30 (11,342 withheld positives, gems57-pooled-hide-v2, 2,000 paired 20 km block bootstrap draws) 8-arm causal ablation across H77E-1..4 and emitters (greedy, rank-submodular, Bayes-submodular, knapsack-capped Bayes-submodular).",
+      "Exp 2 (scripts/h77e_exp2_multiseed_replication.py): Zero-tuning replication on Seed 20 (11,321 withheld positives — exact split of H77-Step=0.152718, H77D=0.140298, H78=0.0708, LIA=0.0706, ContactPhys=0.1093) + Seed 21 (11,572 withheld positives) = 34,235 pooled withheld positives + Blind 4-Quadrant Province Transfer (57,448 withheld positives).",
+      "Exp 3 (scripts/h77e_exp3_build_audit.py): Cross-fitted full-catalogue OOF surface (0 in-sample pixels), Phase-1 surface check across all 873 prior rasters, Exact Bayes-Calibrated Knapsack-Submodular 300 m allocation (B=37,654 dots, cap <= 0.675 across all informative rasters including H77-Step, H77D, H78, H77-HSL, H33), Phase-2 literal + informative registry check via unmodified vendor/gems57/uniqueness.py, GeoTIFF + ZIP via unmodified vendor/gems57/submission_writer.py, and 17/17 verification."
+    ]
+  }
+}

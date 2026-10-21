@@ -1,0 +1,150 @@
+{
+  "file": "gems77-h77e-fluvial-deseam-lagsubmod-37654-20261021-236fc1cb-zeros.tif",
+  "sha256": "25b1c0449e8d94469db22bab4c390110b6f8a928dc01cf21a39b97efcf84d19e",
+  "bytes": 147116,
+  "submission_name": "gems77-h77e-fluvial-deseam-lagsubmod-37654-20261021-236fc1cb-zeros",
+  "note": "H77E: 10m fluvial knickpoints + GeoDAWN/BLM/TIGER deseam + 1m/10m step + Lagrangian 300m submod (0.1685 3-seed HOLDOUT-DTI)",
+  "note_chars": 123,
+  "validator": {
+    "file": "/home/user/GEMSDOE77/submissions/gems77-h77e-fluvial-deseam-lagsubmod-37654-20261021-236fc1cb-zeros.tif",
+    "bytes": 147116,
+    "sha256": "25b1c0449e8d94469db22bab4c390110b6f8a928dc01cf21a39b97efcf84d19e",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "emitted_positive_pixels": 37654,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 37654,
+    "footprint_fraction": 0.007286874781441169
+  },
+  "template_report": {
+    "path": "/home/user/GEMSDOE77/submissions/gems77-h77e-fluvial-deseam-lagsubmod-37654-20261021-236fc1cb-zeros.tif",
+    "bytes": 147116,
+    "sha256": "25b1c0449e8d94469db22bab4c390110b6f8a928dc01cf21a39b97efcf84d19e",
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "width": 3292,
+    "height": 3730,
+    "bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "ref_bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": null,
+    "blocksize": [
+      256,
+      256
+    ],
+    "fixture_grid": false,
+    "has_validity_mask": false,
+    "nan_pixels": 0,
+    "infinity_pixels": 0,
+    "n_nan": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "n_nonzero": 37654,
+    "mass": 37654.0,
+    "mass_outside_footprint": 0,
+    "problems": [],
+    "ok": true,
+    "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+  },
+  "zip_file": "gems77-h77e-fluvial-deseam-lagsubmod-37654-20261021-236fc1cb-zeros.zip",
+  "zip_sha256": "45bb3e30b0c3baff33d736659af8240a77fe4a8177514e670751100ad65d27e4",
+  "approved_for_weekly_slot": false,
+  "promoted": false,
+  "submission_slots_used": 0,
+  "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+  "metadata": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "seed30_11342px_dti": 0.16558003697172707,
+    "seed30_ci95": [
+      0.14835051967379476,
+      0.18200874339571624
+    ],
+    "seed20_11321px_dti": 0.16396194850638407,
+    "seed20_ci95": [
+      0.14849079407773882,
+      0.17914036894176696
+    ],
+    "seed21_11572px_dti": 0.1758406315993964,
+    "seed21_ci95": [
+      0.15886841785948713,
+      0.1939916137507115
+    ],
+    "three_seed_pooled_34235px_dti": 0.1684934254446664,
+    "three_seed_pooled_ci95": [
+      0.156095464850875,
+      0.18031705959042815
+    ],
+    "blind_4_quadrant_57448px_dti": 0.19416035786220542,
+    "max_informative_1way_overlap": 0.66498,
+    "max_informative_sym_overlap": 0.55044,
+    "vendor_like_for_like_duplicate": true,
+    "vendor_worst_dot_field_overlap": 0.9988845806554416,
+    "vendor_literal_duplicate": true,
+    "vendor_literal_worst_overlap": 1.0
+  }
+}
