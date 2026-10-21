@@ -24,9 +24,10 @@ REPO = "https://github.com/buffedlizard55-lab/GEMSDOE77"
 LB = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
 PD = "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
-NAV = [("review-latest.html", "Latest review"), ("metric-review.html", "Corrected H33 analysis"), ("index.html", "Start here"), ("tsd.html", "H77-TSD · inspection"), ("h77v.html", "H77V (Vent-Advect)"), ("h82-texture.html", "H82-TEXTURE · negative"), ("h82rank.html", "H82R · radiometric negative"), ("preflight-review.html", "Current readiness review"), ("h82-executive-summary.html", "H82 · cool-outlet negative"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
+NAV = [("review-latest.html", "Latest review"), ("metric-review.html", "Corrected H33 analysis"), ("index.html", "Start here"), ("h77vs.html", "H77VS · negative"), ("h77vs-executive-summary.html", "H77VS guide"), ("tsd.html", "H77-TSD · inspection"), ("h77v.html", "H77V (Vent-Advect)"), ("h82-texture.html", "H82-TEXTURE · negative"), ("h82rank.html", "H82R · radiometric negative"), ("preflight-review.html", "Current readiness review"), ("h82-executive-summary.html", "H82 · cool-outlet negative"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
        ("h77e-knick.html", "H77E-Knick · 0/816 firings"), ("release-review.html", "Release safety review"), ("executive-summary.html", "How to submit"),
-       ("h81.html", "H81 · slip-cone"),
+       ("h81.html", "H81 · slip-cone"), ("h82.html", "H82 · fault collar"),
+       ("h83.html", "H83 · fault collar"),
        ("h80t.html", "H80T · tilt-persist"), ("h80t-executive-summary.html", "H80T guide"),
        ("h80.html", "H80 · negative"), ("ago.html", "AGO · negative proxies"),
        ("h79-orient.html", "H79-ORIENT · negative"), ("h79-orient-executive-summary.html", "H79-ORIENT guide"),
@@ -344,6 +345,31 @@ These are registry/format measurements, not scores or portal acceptance.</p>"""
 Δ = {d["delta"]:+.4f} (95% CI {d["ci95"][0]:+.4f} to {d["ci95"][1]:+.4f}).</li>
 <li><b>Verdict:</b> <b>{e(card["verdict"].upper())}</b> — {e(card["verdict_reason"])}</li>
 <li><a href="h78.html">Full H78 page: the hypotheses, the three experiments, uniqueness and the run card →</a></li></ul>"""
+    rc_h77vs = jload("evidence/run_card_h77v.json")
+    h77vs_box = ""
+    if rc_h77vs:
+        vs20 = rc_h77vs["holdout_dti"]["seed_20"]["A_std_plus_h77v"]
+        vs30 = rc_h77vs["holdout_dti"]["seed_30"]["A_std_plus_h77v"]
+        vsuq = rc_h77vs["correlation_overlap_vs_registry"]
+        vtif = rc_h77vs["raster_path"].removeprefix("docs/")
+        vzip = rc_h77vs["zip_path"].removeprefix("docs/")
+        h77vs_box = f"""<section class="card dl research"><h2>⬇ New Session Candidate (<code>H77VS</code>): OK to download for inspection — NOT OK TO SUBMIT</h2>
+<p class="small muted"><b>{e(rc_h77vs["hypothesis"])}</b> (branch <code>arena/e9248aa6-gemsdoe77</code>; fixes <code>IR-H77VS-01..05</code>).</p>
+<a class="btn" href="{e(vtif)}" download>Download H77VS .tif ({rc_h77vs["raster_bytes"]/1024:.0f} KB)</a>
+<a class="btn alt" href="{e(vzip)}" download>Download Single-TIFF .zip</a>
+<a class="btn alt" href="h77vs.html">Full H77VS Technical Report &amp; 5 Ranked Hypotheses →</a>
+<a class="btn alt" href="h77vs-executive-summary.html">H77VS Submission Guide →</a>
+<div class="chips"><span class="chip ok">OK to download: YES</span>
+<span class="chip ok">Portal format (local checks): PASS (15/15, 0 NaN, [0,1])</span>
+<span class="chip bad">Unique, literal rule (Policy I17): FAIL (1.000 vs dense witness ab0a0a62)</span>
+<span class="chip ok">Informative reading (60 sparse rasters): PASS (max 3-px overlap {vsuq["final_dots_informative_max_forward_overlap_3px"]:.4f} &le; 0.70, max |&rho;| {vsuq["final_dots_informative_max_abs_spearman"]:.4f} &le; 0.90)</span>
+<span class="chip warn">Selector: not approved (0 weekly slots used)</span>
+<span class="chip bad">NOT OK TO SUBMIT</span></div>
+<p class="verdict"><b>Can I submit it?</b> <b>No. NOT OK TO SUBMIT (inspection download only).</b> Below the 0.152718 H77-Step repository incumbent and blocked under Policy I17.<br>
+<b>Local holdout evidence:</b> <b>{vs20["dti"]:.5f} HOLDOUT-DTI</b> on Seed 20 (95% CI {vs20["ci95"][0]:.5f}–{vs20["ci95"][1]:.5f}; <code>gems57-pooled-hide-v2</code>; 11,321 withheld positives) and <b>{vs30["dti"]:.5f} HOLDOUT-DTI</b> on Seed 30 (95% CI {vs30["ci95"][0]:.5f}–{vs30["ci95"][1]:.5f}; 11,342 withheld positives; significant paired &Delta; vs standard stack = <b>+0.01600</b>, 95% CI [+0.00123, +0.03170]).</p>
+{copy("H77VS unique submission name (inspection reference — DO NOT UPLOAD)", rc_h77vs["submission_name"])}
+{copy("H77VS short note <= 140 chars (inspection reference — DO NOT UPLOAD)", rc_h77vs["submission_note"])}
+<p class="small">GeoTIFF SHA-256: <code>{e(rc_h77vs["raster_sha256"])}</code> · ZIP SHA-256: <code>{e(rc_h77vs["zip_sha256"])}</code> · <a href="evidence/run_card_h77v.json">Machine-readable Run Card (.json)</a></p></section>"""
     rc_tsd = jload("evidence/run_card_tsd.json")
     tsd_box = ""
     if rc_tsd:
@@ -367,7 +393,7 @@ These are registry/format measurements, not scores or portal acceptance.</p>"""
 {copy("H77-TSD unique submission name (inspection reference — DO NOT UPLOAD)", tsub["name"])}
 {copy("H77-TSD short note <= 140 chars (inspection reference — DO NOT UPLOAD)", tsub["note"])}
 <p class="small">GeoTIFF SHA-256: <code>{e(tsub["tif_sha256"])}</code> · ZIP SHA-256: <code>{e(tsub["zip_sha256"])}</code> · <a href="evidence/run_card_tsd.json">Machine-readable Run Card (.json)</a></p></section>"""
-    body = f"""{tsd_box}{h82_banner}{rank_box}<h1>Start here</h1>
+    body = f"""{h77vs_box}{tsd_box}{h82_banner}{rank_box}<h1>Start here</h1>
 <p><strong>Earlier review #49 generated no new TIFF; H82 above is a later negative research download. NOT OK TO SUBMIT.</strong> <a href="review-904a24d3.html">Earlier audit and corrected H33 analysis</a>.</p>
 <p>This repository builds and audits fault-probability GeoTIFFs for the <a href="{COMP}">DOE GEMS Prize</a>
 (DrivenData competition 306). The first box distinguishes downloading a file from permission to upload it. The table
@@ -396,7 +422,7 @@ not proof that the specific file received that score or that another submission 
 
     # ---------------- general executive summary (how to submit)
     guide = f"""<h1>Executive summary: how to submit — only AFTER approval</h1>
-{tsd_box}
+{h77vs_box}{tsd_box}
 <p class="verdict"><b>NEW H82 file:</b> <a href="{e(h82['file'])}" download>Download the format-valid TIFF for inspection</a>;
 <b>NOT OK TO SUBMIT</b>. See <a href="h82-executive-summary.html">its test result and exact name/note</a>.
 This is a negative experiment, not a competition submission authorization.</p>
@@ -860,6 +886,91 @@ Format-valid (15/15 checks, 0 NaN, values in [0,1], 37,654 binary dots) and info
     shutil.copyfile(ROOT / "research/h77g_hypotheses.md", D / "research/h77g_hypotheses.md")
 
 
+def _write_h77v():
+    h77v_card = jload("evidence/run_card_h77v.json")
+    h77v_e1 = jload("evidence/h77v_e1_canary_surface.json")
+    h77v_e2 = jload("evidence/h77v_e2_holdout.json")
+    h77v_e3 = jload("evidence/h77v_e3_uniqueness.json")
+    if not (h77v_card and h77v_e1 and h77v_e2 and h77v_e3):
+        return
+    tif = h77v_card["raster_path"].removeprefix("docs/")
+    zip_ = h77v_card["zip_path"].removeprefix("docs/")
+    s20 = h77v_card["holdout_dti"]["seed_20"]
+    s30 = h77v_card["holdout_dti"]["seed_30"]
+    uq = h77v_card["correlation_overlap_vs_registry"]
+    arm_order = [
+        ("A_std_plus_h77v (19 std + 10 H77V)", "A_std_plus_h77v"),
+        ("A_std (19 std control)", "A_std_control"),
+        ("S_h77v_physics (pure composite)", "S_h77v_physics"),
+        ("A0_random (uniform random)", "A0_random"),
+        ("A_h77v_only (10 H77V only)", "A_h77v_only"),
+    ]
+    arm_rows = "".join(
+        f"<tr><td>{e(label)}</td>"
+        f"<td><b>{s20[key]['dti']:.4f}</b> ({s20[key]['ci95'][0]:.4f}–{s20[key]['ci95'][1]:.4f})</td>"
+        f"<td><b>{s30[key]['dti']:.4f}</b> ({s30[key]['ci95'][0]:.4f}–{s30[key]['ci95'][1]:.4f})</td>"
+        f"<td><code>gems57-pooled-hide-v2</code> (11,321 / 11,342 withheld)</td></tr>"
+        for label, key in arm_order
+    )
+    can_s20 = h77v_e1["canaries_by_seed"]["20"]["h77v_canaries"]
+    can_s30 = h77v_e1["canaries_by_seed"]["30"]["h77v_canaries"]
+    can_rows = "".join(
+        f"<tr><td><code>{e(k)}</code></td><td>{can_s20[k]['symmetric_auc']:.4f}</td>"
+        f"<td>{can_s30[k]['symmetric_auc']:.4f}</td></tr>"
+        for k in can_s20
+    )
+    body = f"""<h1>H77VS · tufa-deconfounded siliceous vent-sinter &amp; multi-depth conductive heat-flow strike-conduit coupling</h1>
+<p class="verdict"><b>Verdict: NEGATIVE — OK TO DOWNLOAD FOR INSPECTION; NOT OK TO SUBMIT.</b>
+{e(h77v_card['verdict_reason'])}</p>
+<section class="card dl research"><h2>⬇ H77VS inspection-only GeoTIFF (DO NOT SUBMIT)</h2>
+<a class="btn" href="{e(tif)}" download>Download .tif ({h77v_card['raster_bytes'] / 1024:.0f} KB)</a>
+<a class="btn alt" href="{e(zip_)}" download>Download one-TIFF .zip</a>
+<div class="chips"><span class="chip ok">OK to download: YES</span>
+<span class="chip ok">Portal format (15/15 checks): PASS</span>
+<span class="chip bad">Unique, literal rule (Policy I17): FAIL</span>
+<span class="chip ok">Unique, informative reading (60 sparse rasters): PASS</span>
+<span class="chip bad">Beat 0.1527 H77-Step incumbent: NO</span>
+<span class="chip warn">Selector: not approved (0 weekly slots used)</span></div>
+{copy('Submission name (for reference only — DO NOT UPLOAD)', h77v_card['submission_name'])}
+{copy('Short note <= 140 chars (for reference only — DO NOT UPLOAD)', h77v_card['submission_note'])}
+<p class="small">SHA-256 of .tif: <code>{e(h77v_card['raster_sha256'])}</code> ·
+SHA-256 of .zip: <code>{e(h77v_card['zip_sha256'])}</code> ·
+<a href="evidence/run_card_h77v.json">JSON run card</a> ·
+<a href="evidence/h77v_e1_canary_surface.json">Exp 1 canary/surface receipt</a> ·
+<a href="evidence/h77v_e2_holdout.json">Exp 2 dual-seed holdout receipt</a> ·
+<a href="evidence/h77v_e3_uniqueness.json">Exp 3 uniqueness receipt</a> ·
+<a href="evidence/preregistration_h77v.json">preregistration JSON</a> ·
+<a href="research/h77v_hypotheses.md">preregistered hypotheses</a></p></section>
+<h2>Diagnostic map &amp; dual-seed holdout benchmark</h2>
+<p><img src="figures/h77v_surface_and_dots.png" alt="H77VS geothermal vent-sinter and conductive heat-flow channels, emitted dots, and dual-seed holdout benchmark" style="max-width:100%;height:auto;border:1px solid #cbd5e1;border-radius:6px"></p>
+<h2>Dual-seed holdout evaluation (Exp 2 · <code>gems57-pooled-hide-v2</code>)</h2>
+<table><tr><th>Arm</th><th>Seed 20 HOLDOUT-DTI (95% CI)</th><th>Seed 30 HOLDOUT-DTI (95% CI)</th><th>Evaluator &amp; withheld positives</th></tr>{arm_rows}</table>
+<h2>Five irregularities discovered &amp; remediated: IR-H77VS-01..05</h2>
+<p><b>IR-H77VS-01:</b> Out of 281 in-footprint paleo-geothermal records (DOE GDR 1391), 86 (30.6%) are Pleistocene Lake Lahontan shoreline <code>Tufa</code> mounds (median 61.5 px from faults), whereas high-enthalpy <code>Alteration</code> (1.0 px), <code>Sulfur</code> (2.0 px), and <code>Sinter</code> (4.0 px) sit directly on fault conduits.<br>
+<b>IR-H77VS-02:</b> Fixed untyped <code>vals[0]</code> geothermometer index shift (171 rows) and recovered 267 Hot/Warm records lacking numeric <code>temp_c</code> in <code>gdr_wellspring_in_footprint.csv</code>.<br>
+<b>IR-H77VS-03 &amp; IR-H77VS-04:</b> Restored missing 2m probe &amp; paleo archives (fixing dead paths in H77D) and extracted downward-increasing 1m-to-2m vertical temperature gradients <code>dT/dz = T2m - T1m &gt; 0</code> (816 upward conductive heat-flow probes vs 727 downward solar-heated probes; +47% hidden-fault proximity enrichment).<br>
+<b>IR-H77VS-05:</b> Replaced <code>F77.rank01</code>'s row-major <code>argsort(kind="stable")</code> tie-breaking ramp and <code>4*sigma</code> box-truncation artifact with tie-aware <code>rankdata(..., method="average")</code> + smooth radial-and-strike advection, lifting <code>A_std_plus_h77v</code> HOLDOUT-DTI to <b>{s20['A_std_plus_h77v']['dti']:.4f}</b> (s20) and <b>{s30['A_std_plus_h77v']['dti']:.4f}</b> (s30; paired Δ vs A_std +0.0160, 95% CI [+0.0012, +0.0317]).</p>
+<h2>Leakage canaries (Exp 1 · ceiling AUC ≤ 0.90)</h2>
+<table><tr><th>Channel</th><th>Seed 20 symmetric AUC</th><th>Seed 30 symmetric AUC</th></tr>{can_rows}</table>
+<h2>Registry uniqueness audit (Exp 3 · {uq['registry_rasters_checked']} checked rasters)</h2>
+<p>Phase 1 surface max |Spearman ρ| = {uq['surface_max_abs_spearman']:.4f} ≤ 0.90; Phase 2 final dots informative max 3-px overlap = {uq['final_dots_informative_max_forward_overlap_3px']:.4f} ≤ 0.70 and max |ρ| = {uq['final_dots_informative_max_abs_spearman']:.4f} ≤ 0.90 (vs H33 overlap {uq['vs_h33_champion']['forward_overlap_3px']:.4f}, ρ {uq['vs_h33_champion']['spearman_full_footprint']:+.5f}). Literal gate fails closed under Policy I17.</p>"""
+    exec_body = f"""<h1>H77VS Executive Summary &amp; Submission Guide</h1>
+<p class="verdict"><b>Decision for <code>{e(h77v_card['submission_name'])}</code>: OK TO DOWNLOAD FOR INSPECTION · NOT OK TO SUBMIT.</b><br>
+Format-valid (15/15 checks, 0 NaN, values in [0,1], 37,654 binary dots) and informative-unique against all 60 non-space-filling sparse rasters checked, but HOLDOUT-DTI ({s20['A_std_plus_h77v']['dti']:.4f} s20 / {s30['A_std_plus_h77v']['dti']:.4f} s30) is below the 0.152718 incumbent and Policy I17 fails closed.</p>
+<section class="card dl research"><h2>⬇ H77VS Artifact &amp; Metadata</h2>
+<a class="btn" href="{e(tif)}" download>Download .tif ({h77v_card['raster_bytes'] / 1024:.0f} KB)</a>
+<a class="btn alt" href="{e(zip_)}" download>Download one-TIFF .zip</a>
+{copy('Submission name (reference only — DO NOT SUBMIT)', h77v_card['submission_name'])}
+{copy('Short note <= 140 chars (reference only — DO NOT SUBMIT)', h77v_card['submission_note'])}
+<p class="small">TIFF SHA-256: <code>{e(h77v_card['raster_sha256'])}</code> · <a href="h77vs.html">Full H77VS report →</a> · <a href="evidence/run_card_h77v.json">JSON run card →</a></p></section>"""
+    (D / "h77vs.html").write_text(page("h77vs.html", "H77VS · negative", body))
+    (D / "h77vs-executive-summary.html").write_text(page("h77vs-executive-summary.html", "H77VS guide", exec_body))
+    for fname in ("run_card_h77v.json", "h77v_e1_canary_surface.json", "h77v_e2_holdout.json", "h77v_e3_uniqueness.json"):
+        shutil.copyfile(ROOT / "evidence" / fname, D / "evidence" / fname)
+    shutil.copyfile(ROOT / "registry/preregistration_h77v.json", D / "evidence/preregistration_h77v.json")
+    shutil.copyfile(ROOT / "research/h77v_hypotheses.md", D / "research/h77v_hypotheses.md")
+
+
 def write_review_pages():
     for source, output, title in (
         ("docs/review-2026-10-21-arena-00397d44.md", "review-latest.html", "Latest repository review"),
@@ -871,12 +982,117 @@ def write_review_pages():
         shutil.copyfile(ROOT / "evidence" / name, D / "evidence" / name)
 
 
+def _write_h83():
+    h83_card = jload("evidence/h83_run_card.json")
+    if not h83_card or h83_card["verdict"] != "negative" or h83_card["ok_to_submit"]:
+        raise ValueError("H83 cannot be presented as eligible to submit")
+    ras = h83_card["raster"]
+    val = h83_card["validator"]
+    reg = h83_card["correlation_overlap_vs_registry"]["dots_phase"]
+    hold = h83_card["holdout_dti"]
+    can = h83_card["leakage_canary"]
+    tif = ras["path"].removeprefix("docs/")
+    zip_ = ras["zip"].removeprefix("docs/")
+    (D / "h83.html").write_text(page("h83.html", "H83 · fault collar", h83_body(h83_card, tif, zip_, ras, val, reg, hold, can)))
+    for fname in ("h83_run_card.json",):
+        shutil.copyfile(ROOT / "evidence" / fname, D / "evidence" / fname)
+    shutil.copyfile(ROOT / "registry/preregistration_h83.json", D / "evidence/preregistration_h83.json")
+    shutil.copyfile(ROOT / "research/h83_hypotheses.md", D / "research/h83_hypotheses.md")
+    print("wrote docs/h83.html")
+
+
+def h83_body(card, tif, zip_, ras, val, reg, hold, can):
+    score_rows = (
+        f"<tr><td><b>H83 (kernel-scale fault-damage collar)</b></td>"
+        f"<td><b>{hold['score']:.6f}</b></td>"
+        f"<td>{hold['ci_95'][0]:.6f} – {hold['ci_95'][1]:.6f}</td>"
+        f"<td>{e(hold['evaluator_version'])}</td><td>{hold['withheld_positive_pixels']:,}</td></tr>"
+        f"<tr><td>A0_random (uniform dots, same domains)</td>"
+        f"<td>{hold['delta_vs_random_control']['control_score']:.6f}</td>"
+        f"<td>{hold['delta_vs_random_control']['control_ci_95'][0]:.6f} – {hold['delta_vs_random_control']['control_ci_95'][1]:.6f}</td>"
+        f"<td>{e(hold['evaluator_version'])}</td><td>{hold['withheld_positive_pixels']:,}</td></tr>"
+        f"<tr><td>Delta H83 − random</td>"
+        f"<td><b>{hold['delta_vs_random_control']['delta']:+.6f}</b></td>"
+        f"<td>{hold['delta_vs_random_control']['ci_95'][0]:+.6f} – {hold['delta_vs_random_control']['ci_95'][1]:+.6f}</td>"
+        f"<td>{e(hold['evaluator_version'])}</td><td>{hold['withheld_positive_pixels']:,}</td></tr>"
+    )
+    check_rows = "".join(f"<li><b>{k.replace('_', ' ').title()}:</b> {'PASS' if v else 'FAIL'}</li>"
+                         for k, v in val["checks"].items())
+    return f"""<h1>H83 lane: hanging-wall fault-damage collar at the 300 m kernel scale</h1>
+<p class="verdict"><b>Verdict: NEGATIVE — OK TO DOWNLOAD FOR INSPECTION; NOT OK TO SUBMIT.</b>
+{e(card['upload'])}</p>
+<section class="card dl research"><h2>⬇ H83 research-only GeoTIFF</h2>
+<a class="btn" href="{e(tif)}" download>Download .tif ({ras['bytes']//1024} KB)</a>
+<a class="btn alt" href="{e(zip_)}" download>Same file as one-TIFF .zip</a>
+<div class="chips"><span class="chip ok">OK to download: YES</span>
+<span class="chip ok">Portal format (local checks): PASS ({ras['dots_emitted']:,} dots, {ras['dots_on_catalogue']} on catalogue)</span>
+<span class="chip bad">Unique, literal rule: FAIL (registry scan incomplete: {reg['registry_rasters_checked']}/{reg['registry_rasters_expected']} accessible locally)</span>
+<span class="chip bad">Beat 0.152718 holdout incumbent: NO</span>
+<span class="chip warn">Selector: not approved · 0 weekly slots used</span></div>
+{copy("Submission name (for reference only — DO NOT UPLOAD)", card["submission_name"])}
+{copy("Short note <= 140 chars (for reference only — DO NOT UPLOAD)", card["submission_note"])}
+<p class="small">SHA-256 of .tif: <code>{e(ras['sha256'])}</code> · SHA-256 of .zip: <code>{e(ras['zip_sha256'])}</code> ·
+<a href="evidence/h83_run_card.json">JSON run card</a> ·
+<a href="research/h83_hypotheses.md">ranked hypotheses (H83-1 implemented)</a> ·
+<a href="evidence/preregistration_h83.json">preregistration</a> ·
+<a href="executive-summary.html">How submission works →</a></p></section>
+
+<h2>Holdout result (every number is labelled HOLDOUT-DTI)</h2>
+<p>Shared evaluator <code>{e(hold['evaluator_version'])}</code>, pooled hide-and-recover, alpha=0.2 beta=0.8, 300 m triangular
+kernel. Whole buffered fault components were withheld; every catalogue-based feature was derived from the visible faults
+only and visible faults were masked pixel-exactly. CIs are the evaluator's paired physical spatial-cluster bootstrap.</p>
+<table><tr><th>Arm</th><th>HOLDOUT-DTI</th><th>95% CI</th><th>Evaluator</th><th>Withheld positives</th></tr>
+{score_rows}</table>
+<p class="small"><b>Versus incumbent:</b> {e(hold['versus_repository_incumbent'])}.
+<b>Versus owner-reported 0.2778 (GEMSDOE32) and 0.4413 ORGANIZER-CONFIRMED leader:</b> no claim; no organizer
+score exists for this file, and this local holdout result is not transferable to the public leaderboard.</p>
+
+<h2>Leakage canary</h2>
+<p>Each feature tested alone; worst symmetric AUC <b>{can['worst_symmetric_auc']:.4f}</b> (stop threshold 0.90). No leakage flag.</p>
+
+<h2>Registry uniqueness (protocol Rule 1)</h2>
+<p>{e(reg['scope_limitation'])} Worst dot overlap and rank correlation could not be measured because none of the
+812 indexed registry rasters are accessible locally; this is a scope limitation, not a uniqueness certificate. The
+literal dense-witness gate (Policy I17) is fail-closed and this lane claims no exemption.</p>
+
+<h2>Named non-fault mimic</h2>
+<p>{e(card['named_non_fault_mimicking_process'])}</p>
+
+<h2>Format preflight</h2>
+<ul>{check_rows}</ul>
+
+<h2>Exact submission steps (only if a future selector approves a cleared file)</h2>
+<ol>
+<li>Do not use H83 now; this page says <b>OK TO SUBMIT: NO</b>.</li>
+<li>For a later cleared file, download its single <code>-zeros.tif</code>, never JSON/HTML/repository files.</li>
+<li>Verify the displayed SHA-256 locally (<code>sha256sum file.tif</code> or Windows <code>certutil -hashfile file.tif SHA256</code>).</li>
+<li>On DrivenData, sign in, choose the TIFF in the competition submission form, paste the &le;140-character note, and check the weekly allowance before submitting.</li>
+<li>Only a portal receipt or public leaderboard value may be labelled <b>ORGANIZER-CONFIRMED</b>. None exists for H83.</li>
+</ol>
+<h2>Official sources and irregularity flags</h2>
+<ul>
+<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DrivenData problem and metric specification</a> — submission grid, single-band contract, alpha=0.2, beta=0.8, 300 m triangular kernel.</li>
+<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Public leaderboard</a> — 2026-10-21 read: 0.4413 ORGANIZER-CONFIRMED (first place).</li>
+<li><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">Official rules PDF</a> — three weekly feedback slots; finalist disclosure requirements.</li>
+<li><a href="https://github.com/drivendataorg/gems-prize-reference-solution">Organizer-linked reference solution</a> — implementation context, not a score receipt.</li>
+<li><b>IR-H83-01:</b> registry scan incomplete — 0/812 indexed rasters accessible locally; not a claim of global uniqueness.</li>
+<li><b>IR-H83-02:</b> below the retained 0.152718 repository holdout incumbent; negative verdict, no promotion supported.</li>
+<li><b>IR-H83-03:</b> no DrivenData authentication and no weekly selector approval in this workspace; no slot was spent.</li>
+</ul>
+<p><a href="executive-summary.html">How to submit a promoted file (step by step) →</a> ·
+<a href="index.html">Return to the status table →</a></p>
+"""
+
+
 if __name__ == "__main__":
     main()
     _write_h77e_knick()
     _inject_h77e_knick_hero()
     _write_h77g()
+    _write_h77v()
     write_review_pages()
 
     from build_h82_site import build as build_h82_texture
     build_h82_texture(page)
+
+    _write_h83()
