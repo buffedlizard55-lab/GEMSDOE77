@@ -1,0 +1,41 @@
+{
+  "schema": "gems-review-run-card-v1",
+  "branch": "arena/5999c8ab-gemsdoe77",
+  "date_utc": "2026-10-21",
+  "hypothesis": "No geological lane selected; candidate-independent literal-registry feasibility review",
+  "mechanism": "Pinned dense-positive witness covers every allowed pixel; any nonempty candidate violates the mandatory overlap stop",
+  "non_fault_mimic": "Continuous prediction support is a registry representation artifact, not a geological fault signal",
+  "holdout_dti": {
+    "evidence_class": "NOT RUN",
+    "evaluator": "gems57-pooled-hide-v2 (not invoked)",
+    "withheld_positives": null,
+    "value": null,
+    "ci95": null,
+    "reason": "Stopped before feature generation/canaries/placement"
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY MEASUREMENT",
+    "rank_correlation": null,
+    "nonempty_candidate_overlap_lower_bound": 1.0,
+    "limit": 0.7,
+    "allowed_pixels": 5106385,
+    "duplicate_stop": true,
+    "preflight": "evidence/review_5999c8ab_preflight.json",
+    "final_dots": "NOT GENERATED"
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "new_candidate": "NOT RUN \u2014 no raster generated",
+    "existing_listed_primaries": "44 PASS: finite [0,1], no NaN inside footprint, CRS/shape/transform match",
+    "existing_sibling_archives": "44 PASS: exactly one matching TIFF",
+    "receipt": "evidence/submission_archive_audit.json"
+  },
+  "submission_name": null,
+  "submission_note": "No submission: universal registry-overlap stop; existing TIFF and ZIP downloads verified for inspection only.",
+  "experiments_run": 0,
+  "weekly_slots_used": 0,
+  "new_tiff_generated": false,
+  "ok_to_download": "Existing research files only",
+  "ok_to_submit": false,
+  "verdict": "negative"
+}

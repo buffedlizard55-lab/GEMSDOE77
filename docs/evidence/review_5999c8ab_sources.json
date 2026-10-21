@@ -1,0 +1,25 @@
+{
+  "schema": "gems-review-source-receipt-v1",
+  "date_utc": "2026-10-21",
+  "evidence_class": "SOURCE READBACK; NOT SCORE",
+  "sources": [
+    {
+      "name": "organizer reference README",
+      "url": "https://github.com/drivendataorg/gems-prize-reference-solution/blob/aebe92f7c8a990f0e3443451b7a825d9afd6336b/README.md",
+      "sha256": "cfa4d55559c9128313beb9417eae7e0a94c31677132afb1120f9e86222804239",
+      "retrieval": "gh api contents; raw response"
+    },
+    {
+      "name": "owner H33 page",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/f62038b54dcb7767d4d997f80b033cdc3d42bef9/docs/index.html",
+      "sha256": "d83dd1ace9e2338c312ba9d6775413ab0b5ed8e9ae22e73b4d8291fca30aa0ec",
+      "retrieval": "gh api contents; raw response"
+    }
+  ],
+  "pages_settings": {
+    "build_type": "legacy",
+    "status": "built",
+    "html_url": "https://buffedlizard55-lab.github.io/GEMSDOE77/",
+    "retrieval": "gh api repos/buffedlizard55-lab/GEMSDOE77/pages"
+  }
+}

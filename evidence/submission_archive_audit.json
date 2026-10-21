@@ -1,0 +1,850 @@
+{
+  "schema": "gems-sibling-archive-readback-v1",
+  "evidence_class": "FORMAT-INTEGRITY-MEASUREMENT; NOT SCORE OR PORTAL ACCEPTANCE",
+  "scope": "Present sibling ZIPs of primary TIFFs in lanes.json; not all site ZIP links",
+  "manifest_sha256": "f8035a50a2d7ae5b62fe33846f3a351e6c338b954d7cc53815df689d290fea26",
+  "reference_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+  "checked_archive_count": 44,
+  "primaries_without_sibling_zip": [],
+  "all_primary_format_pass": true,
+  "all_archive_pass": true,
+  "authorized_to_submit": false,
+  "artifacts": [
+    {
+      "file": "downloads/gems77-h77e-autoctx-dinkelbach-37654dots-20261021-5cd77ffc-zeros.zip",
+      "primary_format_pass": true,
+      "checks": {
+        "primary_sha256_matches": true,
+        "exactly_one_member": true,
+        "member_name_matches": true,
+        "member_is_tiff": true,
+        "member_not_directory": true,
+        "member_not_symlink": true,
+        "member_not_encrypted": true,
+        "member_size_matches": true,
+        "read_size_matches": true,
+        "member_sha256_matches": true
+      },
+      "archive_pass": true,
+      "archive_sha256": "77d0f0bc58736911b3e5193c1ef84fa06bddde9ef3c968f445cd0c8a042f1f87",
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-h82-ternaryentropy-20261021-RESEARCH-ONLY.zip",
+      "primary_format_pass": true,
+      "checks": {
+        "primary_sha256_matches": true,
+        "exactly_one_member": true,
+        "member_name_matches": true,
+        "member_is_tiff": true,
+        "member_not_directory": true,
+        "member_not_symlink": true,
+        "member_not_encrypted": true,
+        "member_size_matches": true,
+        "read_size_matches": true,
+        "member_sha256_matches": true
+      },
+      "archive_pass": true,
+      "archive_sha256": "2eef765a0eb0406f169a79822acd9eb61598ef1ca415e4e52605bf757dae618b",
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-h77e-fluvial-deseam-lagsubmod-37654-20261021-236fc1cb-zeros.zip",
+      "primary_format_pass": true,
+      "checks": {
+        "primary_sha256_matches": true,
+        "exactly_one_member": true,
+        "member_name_matches": true,
+        "member_is_tiff": true,
+        "member_not_directory": true,
+        "member_not_symlink": true,
+        "member_not_encrypted": true,
+        "member_size_matches": true,
+        "read_size_matches": true,
+        "member_sha256_matches": true
+      },
+      "archive_pass": true,
+      "archive_sha256": "45bb3e30b0c3baff33d736659af8240a77fe4a8177514e670751100ad65d27e4",
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gemsdoe77-h77v-dealiased-vent-demag-knick-ldsa-20261021.zip",
+      "primary_format_pass": true,
+      "checks": {
+        "primary_sha256_matches": true,
+        "exactly_one_member": true,
+        "member_name_matches": true,
+        "member_is_tiff": true,
+        "member_not_directory": true,
+        "member_not_symlink": true,
+        "member_not_encrypted": true,
+        "member_size_matches": true,
+        "read_size_matches": true,
+        "member_sha256_matches": true
+      },
+      "archive_pass": true,
+      "archive_sha256": "efa45a7be334f80a3bccc548c2453394fe3b33dd27d50d834235255a1af7000d",
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-h77h-meshsafe-hydrostruct-submod-36800dots-20261021-5ef236e2-zeros.zip",
+      "primary_format_pass": true,
+      "checks": {
+        "primary_sha256_matches": true,
+        "exactly_one_member": true,
+        "member_name_matches": true,
+        "member_is_tiff": true,
+        "member_not_directory": true,
+        "member_not_symlink": true,
+        "member_not_encrypted": true,
+        "member_size_matches": true,
+        "read_size_matches": true,
+        "member_sha256_matches": true
+      },
+      "archive_pass": true,
+      "archive_sha256": "01d4681fd1f1e6c3ee874c3d0845a559e394674fb694ea54fd8260e45d3255c2",
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-h77vds-valve-dinkelbach-44090dots-20261021-zeros.zip",
+      "primary_format_pass": true,
+      "checks": {
+        "primary_sha256_matches": true,
+        "exactly_one_member": true,
+        "member_name_matches": true,
+        "member_is_tiff": true,
+        "member_not_directory": true,
+        "member_not_symlink": true,
+        "member_not_encrypted": true,
+        "member_size_matches": true,
+        "read_size_matches": true,
+        "member_sha256_matches": true
+      },
+      "archive_pass": true,
+      "archive_sha256": "4361e1e9e40ff2df037e29a2a15e32abc7671f208a6efac4cf5781c2b0a0bd14",
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-h77h-downdip-notch36-bridge-36500dots-20261021-0c05c2bc-zeros.zip",
+      "primary_format_pass": true,
+      "checks": {
+        "primary_sha256_matches": true,
+        "exactly_one_member": true,
+        "member_name_matches": true,
+        "member_is_tiff": true,
+        "member_not_directory": true,
+        "member_not_symlink": true,
+        "member_not_encrypted": true,
+        "member_size_matches": true,
+        "read_size_matches": true,
+        "member_sha256_matches": true
+      },
+      "archive_pass": true,
+      "archive_sha256": "269a6e182cdf1e358c4063c93dd5981da3408978cc9e4e30745302981765077e",
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-h77v-geothermal-vent-submod-36250dots-20261021-zeros.zip",
+      "primary_format_pass": true,
+      "checks": {
+        "primary_sha256_matches": true,
+        "exactly_one_member": true,
+        "member_name_matches": true,
+        "member_is_tiff": true,
+        "member_not_directory": true,
+        "member_not_symlink": true,
+        "member_not_encrypted": true,
+        "member_size_matches": true,
+        "read_size_matches": true,
+        "member_sha256_matches": true
+      },
+      "archive_pass": true,
+      "archive_sha256": "dfd61c9e1cd197e0610aa11848330a6e8cb898c559509e5bac50c79bb66d640f",
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-h77h-piedmont-relay-37654dots-20261021-56b7c98c-zeros.zip",
+      "primary_format_pass": true,
+      "checks": {
+        "primary_sha256_matches": true,
+        "exactly_one_member": true,
+        "member_name_matches": true,
+        "member_is_tiff": true,
+        "member_not_directory": true,
+        "member_not_symlink": true,
+        "member_not_encrypted": true,
+        "member_size_matches": true,
+        "read_size_matches": true,
+        "member_sha256_matches": true
+      },
+      "archive_pass": true,
+      "archive_sha256": "b4de904fdb73590869a9a7fef5b8cdb66bdf55197a72b4943e279f6f18c0dc84",
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-h82-crestthin-fullstack-37654dots-20261021-zeros.zip",
+      "primary_format_pass": true,
+      "checks": {
+        "primary_sha256_matches": true,
+        "exactly_one_member": true,
+        "member_name_matches": true,
+        "member_is_tiff": true,
+        "member_not_directory": true,
+        "member_not_symlink": true,
+        "member_not_encrypted": true,
+        "member_size_matches": true,
+        "read_size_matches": true,
+        "member_sha256_matches": true
+      },
+      "archive_pass": true,
+      "archive_sha256": "3cf6b4245f622456a17bd385ccc205645b2c13f304df0a5eab8937544e903da0",
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-h77v-ventsinter-heatflow-37654dots-20261021-cc5e4cd9-zeros.zip",
+      "primary_format_pass": true,
+      "checks": {
+        "primary_sha256_matches": true,
+        "exactly_one_member": true,
+        "member_name_matches": true,
+        "member_is_tiff": true,
+        "member_not_directory": true,
+        "member_not_symlink": true,
+        "member_not_encrypted": true,
+        "member_size_matches": true,
+        "read_size_matches": true,
+        "member_sha256_matches": true
+      },
+      "archive_pass": true,
+      "archive_sha256": "b1259104bf6ce011a77caff1d0446102e4eb1a683ec6e3b5c69c2a4a4c22879e",
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-tsd-transtens-swarm-submod-37654dots-20261021-zeros.zip",
+      "primary_format_pass": true,
+      "checks": {
+        "primary_sha256_matches": true,
+        "exactly_one_member": true,
+        "member_name_matches": true,
+        "member_is_tiff": true,
+        "member_not_directory": true,
+        "member_not_symlink": true,
+        "member_not_encrypted": true,
+        "member_size_matches": true,
+        "read_size_matches": true,
+        "member_sha256_matches": true
+      },
+      "archive_pass": true,
+      "archive_sha256": "2bbee85e6eb04ff17b3818f032fca1087a794a343b6383a8c4c97a3d27e0e884",
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-h77v-vent-advect-conduit-37654dots-20261021-8910ea15-zeros.zip",
+      "primary_format_pass": true,
+      "checks": {
+        "primary_sha256_matches": true,
+        "exactly_one_member": true,
+        "member_name_matches": true,
+        "member_is_tiff": true,
+        "member_not_directory": true,
+        "member_not_symlink": true,
+        "member_not_encrypted": true,
+        "member_size_matches": true,
+        "read_size_matches": true,
+        "member_sha256_matches": true
+      },
+      "archive_pass": true,
+      "archive_sha256": "7ce95dbfb3df63fe21d6ac92c0407f079bddf87beacf9cf5042d63ee263ce38c",
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-h82-texture-kt-bf0a3028b4fa-RESEARCH-ONLY.zip",
+      "primary_format_pass": true,
+      "checks": {
+        "primary_sha256_matches": true,
+        "exactly_one_member": true,
+        "member_name_matches": true,
+        "member_is_tiff": true,
+        "member_not_directory": true,
+        "member_not_symlink": true,
+        "member_not_encrypted": true,
+        "member_size_matches": true,
+        "read_size_matches": true,
+        "member_sha256_matches": true
+      },
+      "archive_pass": true,
+      "archive_sha256": "32f9c44a9139885e7f2e8640807411360d392d9f68a423849bf3ae3eb28eda2b",
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-h82-cool-chemconcord-11185dots-20261021-245bb13136-zeros.zip",
+      "primary_format_pass": true,
+      "checks": {
+        "primary_sha256_matches": true,
+        "exactly_one_member": true,
+        "member_name_matches": true,
+        "member_is_tiff": true,
+        "member_not_directory": true,
+        "member_not_symlink": true,
+        "member_not_encrypted": true,
+        "member_size_matches": true,
+        "read_size_matches": true,
+        "member_sha256_matches": true
+      },
+      "archive_pass": true,
+      "archive_sha256": "6157eb5db0763d392704cabe629889137ec27e2e06c3dbda9b9a0e461198f084",
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-h77g-demagtrough-gravstep-37654dots-20261021-08b78f3c-zeros.zip",
+      "primary_format_pass": true,
+      "checks": {
+        "primary_sha256_matches": true,
+        "exactly_one_member": true,
+        "member_name_matches": true,
+        "member_is_tiff": true,
+        "member_not_directory": true,
+        "member_not_symlink": true,
+        "member_not_encrypted": true,
+        "member_size_matches": true,
+        "read_size_matches": true,
+        "member_sha256_matches": true
+      },
+      "archive_pass": true,
+      "archive_sha256": "3769f9e5938bb5737be3514ed4f7a4f0b1cd81885ae3a86bb303057d3c90c5f4",
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-h77e-knick-deconf-submod-36500dots-20261021-101e200b-zeros.zip",
+      "primary_format_pass": true,
+      "checks": {
+        "primary_sha256_matches": true,
+        "exactly_one_member": true,
+        "member_name_matches": true,
+        "member_is_tiff": true,
+        "member_not_directory": true,
+        "member_not_symlink": true,
+        "member_not_encrypted": true,
+        "member_size_matches": true,
+        "read_size_matches": true,
+        "member_sha256_matches": true
+      },
+      "archive_pass": true,
+      "archive_sha256": "6f7baf02caf03f080cc2e3c3ba9c84209ea85c927d63e08420de90d04df12420",
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-h80-orphan-thermal-align-37654dots-20261021-zeros.zip",
+      "primary_format_pass": true,
+      "checks": {
+        "primary_sha256_matches": true,
+        "exactly_one_member": true,
+        "member_name_matches": true,
+        "member_is_tiff": true,
+        "member_not_directory": true,
+        "member_not_symlink": true,
+        "member_not_encrypted": true,
+        "member_size_matches": true,
+        "read_size_matches": true,
+        "member_sha256_matches": true
+      },
+      "archive_pass": true,
+      "archive_sha256": "c6b0fcd2a6e27549dd6fdcd6552b8dd1304a427c9a5e1bf93b43ffba46bb5ab0",
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-h80-riedel-wingcrack-tips-20261021-zeros.zip",
+      "primary_format_pass": true,
+      "checks": {
+        "primary_sha256_matches": true,
+        "exactly_one_member": true,
+        "member_name_matches": true,
+        "member_is_tiff": true,
+        "member_not_directory": true,
+        "member_not_symlink": true,
+        "member_not_encrypted": true,
+        "member_size_matches": true,
+        "read_size_matches": true,
+        "member_sha256_matches": true
+      },
+      "archive_pass": true,
+      "archive_sha256": "7f456213c7b4b5b38eefbb14b20fa864650844cc81d99600190e0445aa7c7176",
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-h80t-tilt-persist-37654dots-20261021-7d5f7b11-zeros.zip",
+      "primary_format_pass": true,
+      "checks": {
+        "primary_sha256_matches": true,
+        "exactly_one_member": true,
+        "member_name_matches": true,
+        "member_is_tiff": true,
+        "member_not_directory": true,
+        "member_not_symlink": true,
+        "member_not_encrypted": true,
+        "member_size_matches": true,
+        "read_size_matches": true,
+        "member_sha256_matches": true
+      },
+      "archive_pass": true,
+      "archive_sha256": "d3ea3d7eb7d0dcd24be30804e552f2ffe19f6ccc7f4d9cb0954191fdb87d250a",
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-d77-blind-band-35106dots-20261021-926076f7-zeros.zip",
+      "primary_format_pass": true,
+      "checks": {
+        "primary_sha256_matches": true,
+        "exactly_one_member": true,
+        "member_name_matches": true,
+        "member_is_tiff": true,
+        "member_not_directory": true,
+        "member_not_symlink": true,
+        "member_not_encrypted": true,
+        "member_size_matches": true,
+        "read_size_matches": true,
+        "member_sha256_matches": true
+      },
+      "archive_pass": true,
+      "archive_sha256": "7125218e2e324afa1656de72fdeb9a62c27a49d1106d53bba10479b8b69043c8",
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY.zip",
+      "primary_format_pass": true,
+      "checks": {
+        "primary_sha256_matches": true,
+        "exactly_one_member": true,
+        "member_name_matches": true,
+        "member_is_tiff": true,
+        "member_not_directory": true,
+        "member_not_symlink": true,
+        "member_not_encrypted": true,
+        "member_size_matches": true,
+        "read_size_matches": true,
+        "member_sha256_matches": true
+      },
+      "archive_pass": true,
+      "archive_sha256": "cbb0e8afe223527e161244cbc01ddc4999f60eb1a12ab4e26cbb1d2487804893",
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-h79-crossgrad-ridge-37654dots-20261021-dd0dbf9c-zeros.zip",
+      "primary_format_pass": true,
+      "checks": {
+        "primary_sha256_matches": true,
+        "exactly_one_member": true,
+        "member_name_matches": true,
+        "member_is_tiff": true,
+        "member_not_directory": true,
+        "member_not_symlink": true,
+        "member_not_encrypted": true,
+        "member_size_matches": true,
+        "read_size_matches": true,
+        "member_sha256_matches": true
+      },
+      "archive_pass": true,
+      "archive_sha256": "ac1130346a9dfb3c708b6042ee41253a7ea19b90798f8f8439e8326ff97276a4",
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-h79-radhalo-lag3-37654-20261021-zeros.zip",
+      "primary_format_pass": true,
+      "checks": {
+        "primary_sha256_matches": true,
+        "exactly_one_member": true,
+        "member_name_matches": true,
+        "member_is_tiff": true,
+        "member_not_directory": true,
+        "member_not_symlink": true,
+        "member_not_encrypted": true,
+        "member_size_matches": true,
+        "read_size_matches": true,
+        "member_sha256_matches": true
+      },
+      "archive_pass": true,
+      "archive_sha256": "c925114b24b05313a666bf81ce438dc7f8aff6da3e01cb71331a3ca8249cb752",
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems79-orient-persistence-37654dots-20261021-4abff47886.zip",
+      "primary_format_pass": true,
+      "checks": {
+        "primary_sha256_matches": true,
+        "exactly_one_member": true,
+        "member_name_matches": true,
+        "member_is_tiff": true,
+        "member_not_directory": true,
+        "member_not_symlink": true,
+        "member_not_encrypted": true,
+        "member_size_matches": true,
+        "read_size_matches": true,
+        "member_sha256_matches": true
+      },
+      "archive_pass": true,
+      "archive_sha256": "427967d28f0d504c0a1afdccb83714477119d8cb704c44c78fe15fa47512ac8c",
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.zip",
+      "primary_format_pass": true,
+      "checks": {
+        "primary_sha256_matches": true,
+        "exactly_one_member": true,
+        "member_name_matches": true,
+        "member_is_tiff": true,
+        "member_not_directory": true,
+        "member_not_symlink": true,
+        "member_not_encrypted": true,
+        "member_size_matches": true,
+        "read_size_matches": true,
+        "member_sha256_matches": true
+      },
+      "archive_pass": true,
+      "archive_sha256": "512ab1fcf850485c006324d6620a474ca35fe2180cf0615461b44cadc4a6c9b2",
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-step-propensity-submod300.zip",
+      "primary_format_pass": true,
+      "checks": {
+        "primary_sha256_matches": true,
+        "exactly_one_member": true,
+        "member_name_matches": true,
+        "member_is_tiff": true,
+        "member_not_directory": true,
+        "member_not_symlink": true,
+        "member_not_encrypted": true,
+        "member_size_matches": true,
+        "read_size_matches": true,
+        "member_sha256_matches": true
+      },
+      "archive_pass": true,
+      "archive_sha256": "b00073314aafe5787d5c68af7f9575d0ed33604c0968f831f9362362a7107b82",
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-zeros.zip",
+      "primary_format_pass": true,
+      "checks": {
+        "primary_sha256_matches": true,
+        "exactly_one_member": true,
+        "member_name_matches": true,
+        "member_is_tiff": true,
+        "member_not_directory": true,
+        "member_not_symlink": true,
+        "member_not_encrypted": true,
+        "member_size_matches": true,
+        "read_size_matches": true,
+        "member_sha256_matches": true
+      },
+      "archive_pass": true,
+      "archive_sha256": "ddad4a33f2a9e2f9456da2981ad0ff337f67ce2602a3b2254f29efc65d2e0529",
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.zip",
+      "primary_format_pass": true,
+      "checks": {
+        "primary_sha256_matches": true,
+        "exactly_one_member": true,
+        "member_name_matches": true,
+        "member_is_tiff": true,
+        "member_not_directory": true,
+        "member_not_symlink": true,
+        "member_not_encrypted": true,
+        "member_size_matches": true,
+        "read_size_matches": true,
+        "member_sha256_matches": true
+      },
+      "archive_pass": true,
+      "archive_sha256": "284aa143a2e023240ecce65adf78d5bee510df5f1b54a17a3097fc5145c98bc8",
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.zip",
+      "primary_format_pass": true,
+      "checks": {
+        "primary_sha256_matches": true,
+        "exactly_one_member": true,
+        "member_name_matches": true,
+        "member_is_tiff": true,
+        "member_not_directory": true,
+        "member_not_symlink": true,
+        "member_not_encrypted": true,
+        "member_size_matches": true,
+        "read_size_matches": true,
+        "member_sha256_matches": true
+      },
+      "archive_pass": true,
+      "archive_sha256": "a86d7f7892c1d46e906d5bf08a07ccbf6a35a3dd4e88880d21cd92fd647d1b45",
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-h77-urank-curvature-0d868dc271bb-research.zip",
+      "primary_format_pass": true,
+      "checks": {
+        "primary_sha256_matches": true,
+        "exactly_one_member": true,
+        "member_name_matches": true,
+        "member_is_tiff": true,
+        "member_not_directory": true,
+        "member_not_symlink": true,
+        "member_not_encrypted": true,
+        "member_size_matches": true,
+        "read_size_matches": true,
+        "member_sha256_matches": true
+      },
+      "archive_pass": true,
+      "archive_sha256": "ddf60dbb5607435b8462a6a74482d0add9d709874c616db0617be454ac5f739d",
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-h77e-ucpeuler-ctx-37654dots-20261021-22873551-zeros.zip",
+      "primary_format_pass": true,
+      "checks": {
+        "primary_sha256_matches": true,
+        "exactly_one_member": true,
+        "member_name_matches": true,
+        "member_is_tiff": true,
+        "member_not_directory": true,
+        "member_not_symlink": true,
+        "member_not_encrypted": true,
+        "member_size_matches": true,
+        "read_size_matches": true,
+        "member_sha256_matches": true
+      },
+      "archive_pass": true,
+      "archive_sha256": "9424faed98b76ce39c3f046cd8714975bf97651d173a6056f710d1d76418428f",
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-xsen-coincide-hgb-37654dots-20261021-zeros.zip",
+      "primary_format_pass": true,
+      "checks": {
+        "primary_sha256_matches": true,
+        "exactly_one_member": true,
+        "member_name_matches": true,
+        "member_is_tiff": true,
+        "member_not_directory": true,
+        "member_not_symlink": true,
+        "member_not_encrypted": true,
+        "member_size_matches": true,
+        "read_size_matches": true,
+        "member_sha256_matches": true
+      },
+      "archive_pass": true,
+      "archive_sha256": "2def51536d877f647b47c42b2cfd669867a8848bca0c60194e296eff6bc5ac61",
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-ago-hybrid35-geophys-37654dots-dc66e42e-zeros.zip",
+      "primary_format_pass": true,
+      "checks": {
+        "primary_sha256_matches": true,
+        "exactly_one_member": true,
+        "member_name_matches": true,
+        "member_is_tiff": true,
+        "member_not_directory": true,
+        "member_not_symlink": true,
+        "member_not_encrypted": true,
+        "member_size_matches": true,
+        "read_size_matches": true,
+        "member_sha256_matches": true
+      },
+      "archive_pass": true,
+      "archive_sha256": "29464f0c5e3914f2d9123a78aa8570d75232c4076e5e64be93cfb305db6bafb0",
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-ago-hybrid50-geophys-37654dots-11b45670-zeros.zip",
+      "primary_format_pass": true,
+      "checks": {
+        "primary_sha256_matches": true,
+        "exactly_one_member": true,
+        "member_name_matches": true,
+        "member_is_tiff": true,
+        "member_not_directory": true,
+        "member_not_symlink": true,
+        "member_not_encrypted": true,
+        "member_size_matches": true,
+        "read_size_matches": true,
+        "member_sha256_matches": true
+      },
+      "archive_pass": true,
+      "archive_sha256": "1aad46461a8ab835bd2cb9d565d55ebaab8708aa1db02860ac80145dcb68a6d9",
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-ago-select-geophys-37654dots-909053c9-zeros.zip",
+      "primary_format_pass": true,
+      "checks": {
+        "primary_sha256_matches": true,
+        "exactly_one_member": true,
+        "member_name_matches": true,
+        "member_is_tiff": true,
+        "member_not_directory": true,
+        "member_not_symlink": true,
+        "member_not_encrypted": true,
+        "member_size_matches": true,
+        "read_size_matches": true,
+        "member_sha256_matches": true
+      },
+      "archive_pass": true,
+      "archive_sha256": "8c98433cb32ac307ed7d7d4ea755df96b21d868abb6437e199be0ba94e5b5622",
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-h81-slipcone-37654dots-20261021-0fbeaf41-zeros.zip",
+      "primary_format_pass": true,
+      "checks": {
+        "primary_sha256_matches": true,
+        "exactly_one_member": true,
+        "member_name_matches": true,
+        "member_is_tiff": true,
+        "member_not_directory": true,
+        "member_not_symlink": true,
+        "member_not_encrypted": true,
+        "member_size_matches": true,
+        "read_size_matches": true,
+        "member_sha256_matches": true
+      },
+      "archive_pass": true,
+      "archive_sha256": "1a66169ade886564ef34e30e3898070484792a2adf56723d7d8ca4b5e498a880",
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-bgb-growthwedge-transtens-37654dots-20261021-3c58975b-zeros.zip",
+      "primary_format_pass": true,
+      "checks": {
+        "primary_sha256_matches": true,
+        "exactly_one_member": true,
+        "member_name_matches": true,
+        "member_is_tiff": true,
+        "member_not_directory": true,
+        "member_not_symlink": true,
+        "member_not_encrypted": true,
+        "member_size_matches": true,
+        "read_size_matches": true,
+        "member_sha256_matches": true
+      },
+      "archive_pass": true,
+      "archive_sha256": "3d4c7c85604da5cc4c920853387e6376d718a575a641805f0da89d4e69edbb73",
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-h82-tcstep-37654dots-20261021-2c501fd1-zeros.zip",
+      "primary_format_pass": true,
+      "checks": {
+        "primary_sha256_matches": true,
+        "exactly_one_member": true,
+        "member_name_matches": true,
+        "member_is_tiff": true,
+        "member_not_directory": true,
+        "member_not_symlink": true,
+        "member_not_encrypted": true,
+        "member_size_matches": true,
+        "read_size_matches": true,
+        "member_sha256_matches": true
+      },
+      "archive_pass": true,
+      "archive_sha256": "2e768db8287ca44fbdaf1ed11054df2346d5eea6f0d75a17505576a3c1ba4925",
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-h83-faultcollar-37553dots-20261021-a55f4c9c-zeros.zip",
+      "primary_format_pass": true,
+      "checks": {
+        "primary_sha256_matches": true,
+        "exactly_one_member": true,
+        "member_name_matches": true,
+        "member_is_tiff": true,
+        "member_not_directory": true,
+        "member_not_symlink": true,
+        "member_not_encrypted": true,
+        "member_size_matches": true,
+        "read_size_matches": true,
+        "member_sha256_matches": true
+      },
+      "archive_pass": true,
+      "archive_sha256": "301e14b81c807ce04fbcbce04d7d4fc000c9d0abd2f018dd7a3ab35c22b03f49",
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-h84-tiplobe-37654dots-20261021-b57c52b3-zeros.zip",
+      "primary_format_pass": true,
+      "checks": {
+        "primary_sha256_matches": true,
+        "exactly_one_member": true,
+        "member_name_matches": true,
+        "member_is_tiff": true,
+        "member_not_directory": true,
+        "member_not_symlink": true,
+        "member_not_encrypted": true,
+        "member_size_matches": true,
+        "read_size_matches": true,
+        "member_sha256_matches": true
+      },
+      "archive_pass": true,
+      "archive_sha256": "5fc768b4384e69858fbec4abd302a83c68bb56e2db5e50783420d50dca798b11",
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-h84-orgate-collar-37654dots-20261021-2d0a731a-zeros.zip",
+      "primary_format_pass": true,
+      "checks": {
+        "primary_sha256_matches": true,
+        "exactly_one_member": true,
+        "member_name_matches": true,
+        "member_is_tiff": true,
+        "member_not_directory": true,
+        "member_not_symlink": true,
+        "member_not_encrypted": true,
+        "member_size_matches": true,
+        "read_size_matches": true,
+        "member_sha256_matches": true
+      },
+      "archive_pass": true,
+      "archive_sha256": "91a72265e5d87f4a4e1dc2730fac484162ac0d33604e892f44184d9a93ce448f",
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-h83-netsib-37654dots-20261021-ed06b51d-zeros.zip",
+      "primary_format_pass": true,
+      "checks": {
+        "primary_sha256_matches": true,
+        "exactly_one_member": true,
+        "member_name_matches": true,
+        "member_is_tiff": true,
+        "member_not_directory": true,
+        "member_not_symlink": true,
+        "member_not_encrypted": true,
+        "member_size_matches": true,
+        "read_size_matches": true,
+        "member_sha256_matches": true
+      },
+      "archive_pass": true,
+      "archive_sha256": "ef61cfe593aa69468ed72303f49e293da9199fd4c84ddf325134a06c3155a93a",
+      "authorized_to_submit": false
+    },
+    {
+      "file": "downloads/gems77-h84-ramp-relay-37654dots-20261021-1b76b4b7-zeros.zip",
+      "primary_format_pass": true,
+      "checks": {
+        "primary_sha256_matches": true,
+        "exactly_one_member": true,
+        "member_name_matches": true,
+        "member_is_tiff": true,
+        "member_not_directory": true,
+        "member_not_symlink": true,
+        "member_not_encrypted": true,
+        "member_size_matches": true,
+        "read_size_matches": true,
+        "member_sha256_matches": true
+      },
+      "archive_pass": true,
+      "archive_sha256": "8499c3427d4f48e6a2be8929693236a9e9d7555b52fc559df7260512bdd12de1",
+      "authorized_to_submit": false
+    }
+  ]
+}

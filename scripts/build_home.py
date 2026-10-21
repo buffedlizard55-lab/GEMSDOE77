@@ -2028,6 +2028,33 @@ Min catalogue distance: <code>{sub['min_distance_to_catalogue_px']:.4f} px</code
             p.write_text(txt)
 
 
+def write_5999c8ab_review():
+    """Place the operative review above historical, parallel-lane hero cards."""
+    source = ROOT / "docs/review-2026-10-21-5999c8ab.md"
+    review = markdown.markdown(source.read_text(), extensions=["tables", "fenced_code"])
+    (D / "review-5999c8ab.html").write_text(page(
+        "review-5999c8ab.html", "Registry stop and archive verification", review))
+    for name in ("review_5999c8ab_card.json", "review_5999c8ab_preflight.json",
+                 "review_5999c8ab_sources.json", "review_5999c8ab_verification.json",
+                 "submission_archive_audit.json"):
+        shutil.copyfile(ROOT / "evidence" / name, D / "evidence" / name)
+    panel = """<section class="card" id="review-5999c8ab-status" role="status">
+<h2>Current review: NOT OK TO SUBMIT</h2>
+<p><b>No new TIFF generated.</b> The freshly pinned registry witness triggers the mandatory duplicate stop
+for every nonempty allowed candidate. Existing files below are <b>downloads for inspection only</b>.
+Historical lane claims and format PASS do not authorize a competition upload.</p>
+<p>Automated TIFF and single-TIFF ZIP readback: see the <a href="evidence/submission_archive_audit.json">archive audit</a>.
+No holdout or leaderboard gain is claimed in this review.</p>
+<p><a class="btn" href="review-5999c8ab.html">Review and next steps</a>
+<a class="btn alt" href="downloads/gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY.tif" download>Download research TIFF — NOT FOR SUBMISSION</a>
+<a class="btn alt" href="executive-summary.html">Submission instructions</a></p></section>"""
+    for name in ("index.html", "executive-summary.html"):
+        target = D / name
+        text = target.read_text()
+        text = text.replace('<main><div class="wrap">', '<main><div class="wrap">' + panel, 1)
+        target.write_text(text)
+
+
 if __name__ == "__main__":
     main()
     _write_h77e_knick()
@@ -2058,3 +2085,5 @@ if __name__ == "__main__":
     build_h84ramp(page)
     import h77pd_build_pages
     h77pd_build_pages.main()
+
+    write_5999c8ab_review()

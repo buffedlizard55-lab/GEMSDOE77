@@ -1,0 +1,25 @@
+{
+  "schema": "gems-review-verification-v1",
+  "branch": "arena/5999c8ab-gemsdoe77",
+  "evidence_class": "SOFTWARE AND FORMAT MEASUREMENTS; NOT SCIENTIFIC PERFORMANCE",
+  "passes": {
+    "pass1": "Implemented archive readback, ran baseline full suite (317 passed)",
+    "pass2": "Added archive integration and first-screen checks; fixed README banner pushing historical H82 hash outside legacy test window; no scientific gate relaxed",
+    "pass3": "Final complete suite: 319 passed; build/verify_all and staging pass; archive readback 44/44 and primary TIFF readback 44/44 pass"
+  },
+  "pytest": {
+    "passed": 319,
+    "failed": 0
+  },
+  "preflight": {
+    "decision": "STOP_UNIVERSAL_DUPLICATE",
+    "exit_code": 2
+  },
+  "release_gate": {
+    "decision": "NOT OK TO SUBMIT",
+    "authorized_file_count": 0
+  },
+  "new_raster_generated": false,
+  "experiments_run": 0,
+  "weekly_slots_used": 0
+}

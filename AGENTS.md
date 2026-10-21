@@ -1,5 +1,7 @@
 # Start here each session
 
+Read `docs/review-2026-10-21-5999c8ab.md` for this branch's stopped preflight and automated sibling-ZIP audit. No new geological lane or submission was authorized. Keep archive checks in both CI and Pages builds; format/integrity PASS never grants promotion.
+
 Read `docs/review-2026-10-21-arena-6a5eca5f.md` and `research/why-h33-scored-02778.md` first; this branch review is scoped to its recorded commit and no experiment. Then read `docs/review-2026-10-21-05f9e6f8.md` for the subsequent mainline reconciliation (nested rank/overlap contradictions veto release). Pages mode change was denied (403); do not claim scheduled Actions deployment is verified. Preserve incoming TIFFs from merged parallel lanes as historical research, not this review's new submission.
 
 1. Read `docs/review-2026-10-21-60aafd45.md` and `research/why-h33-scored-02778.md` first. At the start of every session, read `README.md` (including its current download/submit status and archived original request), the full `PROMPT.md`, `docs/irregularities.md`, and `registry/preregistration.json`. Then read `docs/release-review.md`, `docs/review-2026-10-21-current-session.md`, `docs/preflight-review.md`, and this branch's candidate screen `docs/review-2026-10-21-arena-70bc0061.md`. Older branch-specific audits are historical; compare their dates and branch names before relying on them.

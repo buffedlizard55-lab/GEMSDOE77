@@ -1,3 +1,10 @@
+> **Current review — `arena/5999c8ab-gemsdoe77` (2026-10-21): NOT OK TO SUBMIT.**
+> No new TIFF: fresh pinned preflight proves every nonempty allowed candidate violates the literal overlap rule.
+> **Existing downloads: inspection only.** Independent readback passes for all 44 listed TIFFs and their 44 single-TIFF ZIPs.
+> [This review](docs/review-2026-10-21-5999c8ab.md) · [Run card](evidence/review_5999c8ab_card.json) · [Archive audit](evidence/submission_archive_audit.json).
+> Historical H82-TEXTURE: **OK TO SUBMIT: NO**; SHA-256 `c571af22cb08db9cb8cfd6edf0108364d95b0c3bec8316d09d3dfd116531790e`.
+> This operative status takes precedence over historical banners below. Read the standing prompt and the full README each session.
+
 <!-- H77V-LDSA PRIMARY STATUS BANNER -->
 > **🚦 Current session — branch `arena/65c05dc9-gemsdoe77` (`H77V-LDSA`, 2026-10-21): ✅ OK TO DOWNLOAD FOR INSPECTION: YES · ⛔ OK TO SUBMIT: NO (`verdict: "negative"` under Policy `I17` dense witness; `0` weekly slots spent).**
 > - **Primary GeoTIFF (`145,365 B`, `36,500` `{0,1}` binary dots, `0` NaN, `0` on catalogue, $\min d_{\text{cat}} = 2.2361\text{ px}$):** [`docs/downloads/gemsdoe77-h77v-dealiased-vent-demag-knick-ldsa-20261021.tif`](docs/downloads/gemsdoe77-h77v-dealiased-vent-demag-knick-ldsa-20261021.tif) (`SHA-256 = 861c880e7a56203d197182075765480efaf224ad6cfde342fab511f5f908fa4c`) · **[Single-TIFF `.zip`](docs/downloads/gemsdoe77-h77v-dealiased-vent-demag-knick-ldsa-20261021.zip)** (`SHA-256 = efa45a7be334f80a3bccc548c2453394fe3b33dd27d50d834235255a1af7000d`) · **[Sidecar `.json`](docs/downloads/gemsdoe77-h77v-dealiased-vent-demag-knick-ldsa-20261021.json)** · **[Technical Report](docs/h77vldsa.html)** · **[Submission Guide](docs/h77vldsa-executive-summary.html)** · **[Run Card](evidence/run_card_h77vldsa.json)** · **[3-Pass Review](docs/review-2026-10-21-h77vldsa.md)**

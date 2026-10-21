@@ -23,6 +23,8 @@ jobs:
       - run: python scripts/build_h82rank_site.py
       - name: Independently re-read every listed primary TIFF (no model or slot)
         run: python scripts/audit_downloads.py
+      - name: Verify single-TIFF ZIP companions without extraction
+        run: python scripts/audit_submission_archives.py
       - run: python scripts/build_home.py
       - run: python scripts/release_gate.py --verify-fail-closed
       - run: python scripts/verify_all.py
