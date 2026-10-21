@@ -17,3 +17,4 @@ evidence/*.npy
 /data/sample_submission.tif
 /data/existing_faults.tif
 /data/geodawn_rad_u8.tif
+*.so

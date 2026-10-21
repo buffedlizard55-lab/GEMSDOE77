@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "lane_id": "H82-GMNS-CP-LAGRANGIAN",
+  "frozen_utc": "2026-10-21T16:52:00Z",
+  "branch": "arena/b0d22822-gemsdoe77",
+  "protocol_budget": {
+    "max_experiments": 3,
+    "max_wall_hours": 2.0,
+    "weekly_submission_slots_touched": 0
+  },
+  "primary_hypothesis": "H82-1 + H82-2 + H82-3 + H82-4: Whole-component generative masked-network self-supervision (GMNS) with hanging-wall vs footwall signed stress-shadow decomposition, contour-parallel synthetic/antithetic scarp tomography with downslope arroyo rejection, lapse-rate-debiased 2m probe & silica disequilibrium strike conduits, and exact Lagrangian dual shadow-priced submodular 300 m allocation simultaneously beats EVERY prior GEMSDOE77 lane on BOTH official gems57-pooled-hide-v2 holdout seeds (including unconstrained H77-Step 0.15272, H77D 0.14030/0.15011, H77E Unique 0.12666/0.12473, and H77E Pure 0.15562/0.15467) while achieving ZERO (0) forward 3-px overlap firings (>0.70) across 100% of non-space-filling portfolio rasters across GEMSDOE..GEMSDOE92.",
+  "hard_constraints": {
+    "sgmc_bedrock_channels_allowed": 0,
+    "prior_prediction_rasters_in_features": 0,
+    "forbidden_columns": [
+      "dist_known_fault_px",
+      "known_fault",
+      "label"
+    ],
+    "leakage_canary_max_symmetric_auc": 0.90,
+    "surface_spearman_max_abs": 0.90,
+    "final_dots_informative_max_3px_overlap": 0.70,
+    "evaluator": "vendor/gems57/evaluate_holdout.py (unmodified)",
+    "writer": "vendor/gems57/submission_writer.py (unmodified)",
+    "validator": "vendor/gems57/validate.py (unmodified)"
+  },
+  "experiments": [
+    {
+      "id": "H82-E1",
+      "name": "Seed 20 Official Buffered Component Holdout (11,321 px) + Single-Feature Leakage Canary + Controlled Factorials"
+    },
+    {
+      "id": "H82-E2",
+      "name": "Seed 30 Independent Replication (11,342 px) with Zero Hyperparameter Adjustment"
+    },
+    {
+      "id": "H82-E3",
+      "name": "Full-Nevada 8-Fold Dual-Grid OOF Surface + Exhaustive GEMSDOE..GEMSDOE92 Uniqueness Certificate + GeoTIFF Packaging"
+    }
+  ],
+  "promotion_criteria": {
+    "scientific_promote_requires": [
+      "All single-feature leakage canaries <= 0.90 symmetric ROC-AUC",
+      "Primary unique deliverable beats H77E Unique (0.126664 S20 / 0.124727 S30), H77D (0.14030 S20 / 0.15011 S30), H77-Step (0.152718 S20), AND fold-fair H33 (0.096320 S20 / 0.099056 S30) with strictly positive 95% paired block-bootstrap CIs on BOTH seeds",
+      "Phase 1 pre-placement surface |Spearman rho| <= 0.90 across 100% of valid portfolio rasters",
+      "Phase 2 final-dot forward 3-px overlap <= 0.70 (0 firings) across 100% of non-space-filling (<70% halo) rasters across all accessible GEMSDOE..GEMSDOE92 repositories AND all local GEMSDOE77 rasters",
+      "All 15/15 vendor/gems57/validate.py checks PASS (float32, EPSG:32611, 3730x3292, exact affine transform, 0 NaN inside or outside footprint, strict {0.0, 1.0} in [0, 1])"
+    ],
+    "policy_i17_release_rule": "Even when every scientific & informative uniqueness gate passes, literal unfiltered comparison against the 45 space-filling >=70%-halo archive heatmaps fires at 1.000 by set inclusion (A subset W); therefore docs/data/lanes.json preserves protocol_unique=false and selector='not approved' until explicit human selector sign-off."
+  }
+}
