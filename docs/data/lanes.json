@@ -227,6 +227,26 @@
    "note": "XSEN mag analytic-signal x ThK/UK boundary HGB, 37654 dots; HOLDOUT-DTI 0.0994, below 0.1527 repo best: NEGATIVE, do not submit",
    "sha256": "e7c81754420b9a6b4126ad1d7239870ae680eaa61e97a6d3f16f644a620d1c6a",
    "upload": "Not OK to submit: HOLDOUT-DTI 0.0994 < 0.1527 incumbent, coincidence gain not significant (paired CI includes 0), and 93.4% of dots within 3px of GEMSDOE37's sparse dotted raster (>0.70 duplicate limit). Inspection only; selector: not approved."
+  },
+  {
+   "lane": "H77-BGB: buried growth-wedge inflection x transtensional strain-partitioning x clay-cap breach (0.0584 lane / 0.1024 LOCO HOLDOUT-DTI)",
+   "page": "bgb.html",
+   "summary": "bgb-executive-summary.html",
+   "file": "downloads/gems77-bgb-growthwedge-transtens-37654dots-20261021-3c58975b-zeros.tif",
+   "run_card": "evidence/run_card_bgb.json",
+   "format_valid": true,
+   "protocol_unique": false,
+   "informative_unique": true,
+   "beats_holdout_best": false,
+   "scientific_holdout_verdict": "negative",
+   "verdict": "negative",
+   "selector_approved": false,
+   "selector_recommendation": "Not approved for submission (below 0.152718 holdout best and blocked by Policy I17 dense witness)",
+   "name": "gems77-bgb-growthwedge-transtens-37654dots-20261021-3c58975b-zeros",
+   "note": "H77-BGB basement growth-wedge + transtensional strain + clay-cap breach (37654 dots); HOLDOUT-DTI 0.0584 lane / 0.1024 LOCO; DO NOT UPLOAD",
+   "sha256": "07da3f559dd5f6d7f3971092bcc3dde060cd97b551ad6077b02ed558679f8e54",
+   "primary": false,
+   "upload": "Not OK to submit. OK to download for inspection only. HOLDOUT-DTI 0.058406 (lane) / 0.102390 (with 33-ch baseline + LOCO mechanics) on gems57-pooled-hide-v2 (11,342 withheld positives) beats A0_random (0.048611) and A_std (0.099208) but is below repo best 0.152718; sparse (<=100k) dot overlap PASS (max 0.5722 <= 0.70), literal Policy I17 dense-witness check FAIL (1.000 > 0.70). Selector: not approved."
   }
  ]
 }

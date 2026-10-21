@@ -1,0 +1,129 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>H77-BGB lane · GEMSDOE77</title>
+<meta name="description" content="GEMSDOE77 H77-BGB lane: buried half-graben growth-wedge inflection x transtensional strain-partitioning gradient x illite-smectite conductivity-margin breach. Verdict negative. Not OK to submit.">
+<link rel="stylesheet" href="assets/lia.css"></head><body>
+<header><div class="wrap"><span class="brand">GEMSDOE77 · DOE GEMS Prize</span><a href="index.html">Start here</a> <a href="executive-summary.html">How to submit</a> <a href="bgb-executive-summary.html">H77-BGB summary</a> <a href="h77d.html">H77D (Zero-SGMC)</a> <a href="h77-step.html">H77-Step</a> <a href="lia-analysis.html">Why 0.2778</a> <a href="lia-sources.html">Sources</a>
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE77">GitHub</a></div></header><main><div class="wrap"><h1>H77-BGB lane: buried half-graben growth-wedge inflection × transtensional strain-partitioning × clay-cap breach</h1>
+<p class="verdict"><b>Verdict: NEGATIVE. OK to download for inspection; Not OK to submit.</b>
+Selector: not approved. No weekly submission slot was used. Do not upload this research TIFF to DrivenData.</p>
+<section class="card dl"><h2>⬇ H77-BGB file (inspection download only)</h2>
+<a class="btn" href="downloads/gems77-bgb-growthwedge-transtens-37654dots-20261021-3c58975b-zeros.tif" download>Download .tif (126 KB)</a><a class="btn alt" href="downloads/gems77-bgb-growthwedge-transtens-37654dots-20261021-3c58975b-zeros.zip" download>Same file as one-TIFF .zip</a> <a class="btn alt" href="evidence/run_card_bgb.json">Run card JSON</a>
+<div class="chips"><span class="chip ok">OK to download: YES</span>
+<span class="chip ok">Portal format (17 local checks): PASS</span>
+<span class="chip ok">Sparse dot-field uniqueness (≤100k dots): PASS (max 0.5722 ≤ 0.70)</span>
+<span class="chip bad">Unique, literal rule (Policy I17 dense witness): FAIL (1.000 &gt; 0.70)</span>
+<span class="chip bad">Beat repository holdout best (0.1527): NO (0.0584 lane / 0.1024 LOCO)</span>
+<span class="chip warn">Selector: not approved</span></div>
+<p class="verdict"><b>Can I submit it?</b> <b>No.</b> Not OK to submit: (1) On the shared spatially blocked holdout
+(<code>gems57-pooled-hide-v2</code>, <code>11,342</code> withheld positive pixels, 1,000-draw 20 km physical block bootstrap),
+the standalone <code>H77-BGB</code> lane arm (<code>A_bgb_lane</code>) achieves <code>0.058406 HOLDOUT-DTI</code>
+(95% CI <code>[0.045764, 0.070749]</code>, beating <code>A0_random</code> <code>0.048611</code> by <code>+0.009795</code>),
+and adding the 10 <code>H77-BGB</code> channels to the shared 33-channel baseline lifts <code>A_std</code> from
+<code>0.099208</code> to <code>0.101142 HOLDOUT-DTI</code> (95% CI <code>[0.082394, 0.121185]</code>, <code>+0.001934</code>)
+and <code>0.102390 HOLDOUT-DTI</code> (95% CI <code>[0.085140, 0.122998]</code>, <code>+0.003182</code>) with strictly
+fold-visible LOCO mechanics, which remains below the repository holdout best (<code>H77-Step</code> at
+<code>0.152718 HOLDOUT-DTI</code>, 95% CI <code>[0.131548, 0.175185]</code>, <code>11,321</code> withheld positives);
+(2) under Repository Policy <code>I17</code>, the literal all-raster registry check includes 26 space-filling continuous
+rasters (&gt;20% of footprint, such as <code>17GEMSDOE_E-proba-multiscale</code> sha256 <code>ab0a0a62...</code>) whose 3-px
+dilation covers 100% of the evaluation domain (<code>1.000 &gt; 0.70</code>). Selector: not approved.<br>
+<b>Would the portal accept the format?</b> Yes, locally verified across all 17 checks: single-band <code>float32</code>
+GeoTIFF, <code>EPSG:32611</code>, <code>3730×3292</code>, exact sample transform, <code>nodata=None</code>, all 12,279,160
+pixels finite in <code>[0.0, 1.0]</code> (exact binary <code>{0.0, 1.0}</code> with <code>37,654</code> dots inside the valid
+footprint and <code>0</code> on known catalogue faults) — preventing the <code>"Predicted values must be in range [0, 1]"</code>
+validator rejection. Local format checks are not an organizer receipt or submission approval.</p>
+<p class="small muted">Submission name (for reference only) (66 characters)</p><div class="copy"><code>gems77-bgb-growthwedge-transtens-37654dots-20261021-3c58975b-zeros</code><button data-copy="gems77-bgb-growthwedge-transtens-37654dots-20261021-3c58975b-zeros">Copy</button></div>
+<p class="small muted">Note (for reference only) (138 characters ≤ 140 limit)</p><div class="copy"><code>H77-BGB basement growth-wedge + transtensional strain + clay-cap breach (37654 dots); HOLDOUT-DTI 0.0584 lane / 0.1024 LOCO; DO NOT UPLOAD</code><button data-copy="H77-BGB basement growth-wedge + transtensional strain + clay-cap breach (37654 dots); HOLDOUT-DTI 0.0584 lane / 0.1024 LOCO; DO NOT UPLOAD">Copy</button></div>
+<p class="small">sha256 of <code>.tif</code>: <code>07da3f559dd5f6d7f3971092bcc3dde060cd97b551ad6077b02ed558679f8e54</code> · sha256 of <code>.zip</code>: <code>3d4c7c85604da5cc4c920853387e6376d718a575a641805f0da89d4e69edbb73</code></p></section>
+
+<h2>Pre-implementation ranking of 4 untried candidate geological hypotheses</h2>
+<p>Before running any experiment, four untried geological hypotheses were formulated and ranked in
+<code>research/bgb_hypotheses.md</code> and preregistered in <code>registry/preregistration_bgb.json</code>:</p>
+<table>
+<tr><th>Rank</th><th>Candidate</th><th>Specific Layers</th><th>Physical Signature Targeted</th><th>Why It Catches Missing Faults</th><th>Expected DTI / Cost</th><th>Status</th></tr>
+<tr><td><b>1</b></td><td><b><code>H77-BGB</code>: Buried Growth-Wedge Inflection × Transtensional Strain-Partitioning × Clay-Cap Breach</b></td><td><code>training_features.tif</code> Bands 15, 13, 11, 19, 4, 7, 8, 10, 16, 17, 2; <code>geodawn_extensions_u8.tif</code> Band 4 (<code>TMI_up150</code>); <code>gdr_wellspring_in_footprint.csv</code></td><td>Gravity-normal projected Hessian inflection $|D_{nn}| = |\hat{n}_g^\top(\nabla^2 D)\hat{n}_g|$ of <code>depth_to_base_surf</code> weighted by $\exp(-\text{slope}/s_{60})$; spatial gradient $|\nabla\tau_{\text{ext}}|$ of kinematic transtensional ratio $\dot{\varepsilon}_{\text{dil}}/\sqrt{\dot{\varepsilon}_{\text{dil}}^2+\dot{\gamma}_{\text{shear}}^2}$; lateral log-conductivity margin $|\nabla\log(1+\sigma)|$ × RTP Laplacian demagnetization trough × GDR geothermometer disequilibrium $\Delta T_{\text{chem}}$</td><td>Intrabasin half-graben master/synthetic faults and Walker Lane transtensional stepovers buried beneath flat Holocene playa sediments have zero topographic scarp on 3DEP DEMs yet offset pre-Tertiary basement across density boundaries and breach the illite–smectite transition at the margin of conductive clay caps</td><td><b>Highest</b> (Medium–High signal / Low–Medium cost; 100% SHA-verified in sandbox)</td><td><b>Implemented &amp; validated on holdout (3/3 budget)</b></td></tr>
+<tr><td><b>2</b></td><td><b><code>H77-CST</code>: Magnetic Tilt-Worm Tangent × Geodetic Principal Extension Dilation Tendency</b></td><td><code>training_features.tif</code> Bands 3 (<code>tmi_hg</code>), 9 (<code>tmi_vg</code>), 7 (<code>geod_shearrate</code>), 8 (<code>geod_dilaterate</code>)</td><td>Structure-tensor tangent azimuth $\theta_{\text{mag}}$ of magnetic tilt zero-contours weighted by Morris et al. (1996) dilation tendency $\cos^2(\theta_{\text{mag}}-\theta_{\text{opt}})$ modulated by local dilatation/shear ratio</td><td>Critically stressed buried basement faults oriented perpendicular to WNW extension act as open fluid conduits under younger basin fill</td><td>Medium / Low</td><td>Backup (not run; 3-experiment budget honored)</td></tr>
+<tr><td><b>3</b></td><td><b><code>H77-PRW</code>: Two-Scale Wavelength Poisson Ratio ($\Delta g/\Delta\text{PG}_{\text{RTP}}$) Sign-Reversal Ribbons</b></td><td><code>training_features.tif</code> Bands 2 (<code>rtp</code>), 13 (<code>iso_grav_anom</code>)</td><td>Band-pass Difference-of-Gaussians ($\lambda_1\in[0.4,1.2]\text{ km}$, $\lambda_2\in[1.5,4.5]\text{ km}$) on $g_{\text{iso}}$ and Fourier pseudogravity $\text{PG}(\text{RTP})$ where Cordell &amp; Grauch (1985) ratio switches sign along high $|\nabla g|$</td><td>Hydrothermal magnetite destruction ($\Delta M &lt; 0$) along a silicified density step ($\Delta\rho &gt; 0$)</td><td>Low–Medium / Medium</td><td>Deferred</td></tr>
+<tr><td><b>4</b></td><td><b><code>H77-DDM</code>: Relocated Double-Difference Microseismicity 3D Planar RANSAC Up-Dip Projection</b></td><td>External USGS ComCat FDSN API (<code>https://earthquake.usgs.gov/fdsnws/event/1/query</code>) + Band 15 (<code>depth_to_base_surf</code>)</td><td>3D planar RANSAC cluster extraction on relocated hypocenters ($z\in[1,12]\text{ km}$) projected up-dip to basement top and ground surface</td><td>Active blind fault swarms illuminate permeable sub-vertical fault planes with no Holocene surface rupture</td><td>Medium–High / High</td><td><b>Not viable in sandbox</b> (<code>earthquake.usgs.gov</code> blocked by outbound allowlist)</td></tr>
+</table>
+<p><b>Named non-fault process that can mimic <code>H77-BGB</code>:</b> Buried pre-Tertiary paleochannel incised-valley fills
+or Mesozoic plutonic/caldera ring margins beneath flat saline playa margins, which can produce basement depth curvature steps
+along gravity gradients, sharp lateral electrical conductivity transitions at saline/freshwater interfaces, and primary
+low-magnetization felsic volcanic troughs without an active Quaternary fault conduit.</p>
+
+<h2>Diagnostic visualisations</h2>
+<p><img src="figures/bgb_overview.png" alt="4-panel spatial map of H77-BGB sub-blocks and 37,654 submodular dots" style="max-width:100%;height:auto;border:1px solid #ccc;border-radius:6px;"></p>
+<p><img src="figures/bgb_holdout_ablation.png" alt="H77-BGB Experiment 2 spatially blocked holdout DTI comparison and Experiment 1 single-feature leakage canaries" style="max-width:100%;height:auto;border:1px solid #ccc;border-radius:6px;"></p>
+
+<h2>3-Experiment protocol log (`gems57-pooled-hide-v2`, Seed 30, 11,342 withheld positives)</h2>
+<table>
+<tr><th>Exp</th><th>Description</th><th>Quantitative Result (`HOLDOUT-DTI`, `gems57-pooled-hide-v2`, 11,342 withheld positives, 95% CI)</th><th>Gate Status</th></tr>
+<tr><td><b>1</b></td><td>10 single-feature ROC-AUC leakage canaries (Seed 30 &amp; Seed 20) + Phase 1 pre-placement surface uniqueness scan (829 readable rasters) + standalone physical sub-block surfaces vs <code>A0_random</code></td><td>
+• Highest single-feature symmetric ROC-AUC: <code>0.6378 ≤ 0.90</code> (<code>bgb_01_basement_step_along_grav</code>; 0 leakage flags across all 10 channels).<br>
+• Phase 1 surface max $|\rho|$: <code>0.1421 ≤ 0.90</code> on <code>S_bgb_composite</code> (<code>0.2087 ≤ 0.90</code> on cross-fitted <code>p_full</code>).<br>
+• Standalone surfaces (37,654 dots): <code>A0_random = 0.048611 [0.043063, 0.053762]</code>, <code>S_strain_part = 0.043034 [0.031977, 0.054698]</code>, <code>S_bgb_composite = 0.039715 [0.030276, 0.050027]</code>, <code>S_growth_wedge = 0.035960 [0.025050, 0.048893]</code>, <code>S_upflow_breach = 0.029188 [0.021800, 0.037760]</code> (degraded by 7 km × 14 km coarse block seams in Band 17 <code>cond_surf</code>, logged as <code>IR-BGB-02</code>).
+</td><td>Leakage &amp; Phase 1 Spearman PASS; uncalibrated linear sum below random due to <code>IR-BGB-02</code></td></tr>
+<tr><td><b>2</b></td><td>4-quadrant out-of-fold <code>HistGradientBoostingClassifier</code> holdout comparison across 7 matched arms (all emitting <code>37,654</code> dots via <code>allocate_submodular_300m</code>)</td><td>
+• <code>A0_random</code>: <code>0.048611 HOLDOUT-DTI [0.043063, 0.053762]</code><br>
+• <code>A_bgb_hgb_only</code> (10 BGB channels): <code>0.057779 HOLDOUT-DTI [0.045731, 0.070191]</code><br>
+• <code>A_bgb_lane</code> (candidate TIF arm, 10 BGB channels + composite): <code>0.058406 HOLDOUT-DTI [0.045764, 0.070749]</code> (paired $\Delta$ vs <code>A0_random</code>: <code>+0.009795 [-0.001747, +0.021081]</code>; paired $\Delta$ vs <code>A_bgb_surface</code>: <code>+0.018691 [+0.005836, +0.031885]</code>)<br>
+• <code>A_std</code> (shared 33-channel baseline): <code>0.099208 HOLDOUT-DTI [0.079904, 0.120046]</code><br>
+• <code>A_std_plus_bgb</code> (33 standard + 10 BGB = 43 static channels): <code>0.101142 HOLDOUT-DTI [0.082394, 0.121185]</code> (paired $\Delta$ vs <code>A_std</code>: <code>+0.001934 [-0.004455, +0.008398]</code>; paired $\Delta$ vs <code>A0_random</code>: <code>+0.052531 [+0.035558, +0.073023]</code>)<br>
+• <code>A_bgb_loco</code> (43 static + 4 fold-visible LOCO mechanics): <code>0.102390 HOLDOUT-DTI [0.085140, 0.122998]</code> (paired $\Delta$ vs <code>A_std</code>: <code>+0.003182 [-0.002984, +0.009540]</code>; paired $\Delta$ vs <code>A0_random</code>: <code>+0.053779 [+0.036546, +0.074575]</code>)
+</td><td>Positive lift over <code>A0_random</code> and <code>A_std</code>, but below <code>0.152718</code> repo holdout best → <b>NEGATIVE</b></td></tr>
+<tr><td><b>3</b></td><td>Full-map cross-fitted <code>H77-BGB</code> surface + 300 m submodular <code>37,654</code>-dot placement, two-phase uniqueness scan across 829 readable rasters, 17-check GeoTIFF/ZIP validation</td><td>
+• Phase 1 surface max $|\rho|$: <code>0.2087 ≤ 0.90</code> (PASS).<br>
+• Phase 2 final dots max $|\rho|$: <code>0.0462 ≤ 0.90</code> (PASS).<br>
+• Phase 2 sparse dot submissions ($\le 100\text{k}$ dots, 773 rasters): max 3-px forward overlap = <code>0.5722 ≤ 0.70</code> (0 sparse duplicates; max vs discrete-dot <code>GEMSDOE77</code> siblings = <code>0.2917</code> vs <code>H78</code>, <code>0.2609</code> vs <code>H77-Step</code>, <code>0.2316</code> vs <code>H77D</code>).<br>
+• Phase 2 all-raster max 3-px mutual overlap: <code>0.3379 ≤ 0.70</code> (PASS).<br>
+• Phase 2 literal all-raster forward overlap: <code>1.0000 &gt; 0.70</code> on 26 space-filling continuous rasters (such as <code>17GEMSDOE_E-proba-multiscale</code> sha256 <code>ab0a0a62...</code>) per Repository Policy <code>I17</code>.
+</td><td>Sparse/mutual uniqueness PASS; literal Policy <code>I17</code> gate FAIL → <b>DO NOT SUBMIT</b></td></tr>
+</table>
+
+<h2>Forensic answer: why <code>GEMSDOE32</code> (<code>h33-2-b2-zeros</code>) scored <code>0.2778</code> and how to climb toward <code>0.4413</code></h2>
+<p>As derived in <a href="lia-analysis.html"><code>docs/lia-analysis.html</code></a> and <code>research/why-h33-scored-02778.md</code>,
+the Distance-Tolerant IoU metric uses a <code>300 m</code> (<code>3 px</code>) linear-decay triangular kernel with $\alpha = 0.2$
+false-negative weight and $\beta = 0.8$ false-positive weight ($\beta/\alpha = 4.0$):</p>
+<ul>
+<li><b>Why <code>GEMSDOE32</code> scored <code>0.2778</code> (<code>OWNER-REPORT</code> linked to public row #48; top public leaderboard <code>0.4413 ORGANIZER-CONFIRMED</code>):</b>
+Rather than painting dense ribbons or continuous probabilities across all <code>5,167,373</code> in-footprint cells (which adds
+millions of $\beta = 0.8$ false-positive penalties while adding zero marginal $\text{TP}$ once truth is covered), <code>GEMSDOE32</code>
+emitted exactly <code>37,654</code> binary dots spaced by $r_{\min} \approx 3\text{ px}$ along multi-sensor structural lineaments
+with a <code>200 m</code> exclusion collar around mapped catalogue faults (`existing_faults.tif`, which are masked out of organizer
+scoring per competition forum #11516). At $N_{\text{pred}} = 37,654$ and estimated hidden-catalogue size $N_{\text{truth}} \approx 14,500$,
+achieving $\text{DTI} = 0.2778$ requires only $\text{TP} \approx 9,061$ covered truth pixels ($\text{Recall} \approx 62.5\%$,
+$\text{Precision} \approx 24.1\%$).</li>
+<li><b>Why <code>H77-BGB</code> (`0.058406` standalone / `0.102390` with standard stack + LOCO) does not beat `H77-Step` (`0.152718 HOLDOUT-DTI`) or `H77D` (`0.15011 HOLDOUT-DTI`):</b>
+The `300 m` (`3 px`) DTI kernel rewards sub-300 m spatial pinpointing of fault traces. Subsurface potential-field (`depth_to_base_surf`,
+`iso_grav_anom`), geodetic strain (`geod_dilaterate`, `geod_shearrate`), and MT electrical conductivity (`cond_surf`, which has coarse
+`7 km × 14 km` grid seams documented in `IR-BGB-02`) identify which 2–10 km basin structural domain hosts blind extension or hydrothermal
+upflow (+0.0032 lift when combined with the 33-channel baseline + LOCO mechanics), but high-resolution 1 m 3DEP LiDAR scarp dipoles
+(`lidar_scarp_features_u8.tif` with missingness-safe indicators) and 10 m DEM curvature (`H77-Step` and `H77D`) are required to lock the
+final dots within `<= 300 m` of the fault trace.</li>
+</ul>
+
+<h2>Irregularities discovered and logged in this session</h2>
+<ul>
+<li><b><code>IR-BGB-01</code> (Shared Validator CLI Crash on <code>nodata=NaN</code> Twins):</b> <code>vendor/gems57/validate.py</code> converts
+<code>ds.nodata</code> via <code>float(ds.nodata)</code>, producing a Python <code>float('nan')</code> inside <code>meta["nodata"]</code> when
+validating <code>-nan.tif</code> twins, which caused <code>json.dumps(..., allow_nan=False)</code> in <code>scripts/validate_submission.py</code>
+to raise <code>ValueError: Out of range float values are not JSON compliant: nan</code>. Fixed in-place in <code>scripts/validate_submission.py</code>
+via <code>_json_safe()</code> so strict RFC-8259 JSON is always emitted without altering pinned <code>vendor/gems57/</code> files.</li>
+<li><b><code>IR-BGB-02</code> (Rectilinear <code>7 km × 14 km</code> Coarse-Grid Seams in Shipped Band 17 <code>cond_surf</code>):</b>
+Direct inspection of first differences $\partial_x, \partial_y$ on Band 17 (<code>cond_surf</code>) in <code>training_features.tif</code>
+reveals periodic step-discontinuity spikes every ~70 columns (<code>7.0 km</code>) and ~140 rows (<code>14.0 km</code>) inherited from
+coarse magnetotelluric model regridding. Applying a fault-scale ($\sigma = 1.5\text{ px} = 150\text{ m}$) gradient operator
+$|\nabla\log(1+\text{cond\_surf})|$ extracts this rectilinear grid-seam lattice (visible in Panel 3 of <code>figures/bgb_overview.png</code>),
+explaining why <code>S_upflow_breach</code> alone scored <code>0.029188 HOLDOUT-DTI</code> below random (<code>0.048611</code>).</li>
+</ul>
+
+<h2>Evidence &amp; reproducibility receipts</h2>
+<p>Preregistration: <code>registry/preregistration_bgb.json</code> · Hypotheses ranking: <code>research/bgb_hypotheses.md</code> ·
+Feature module: <code>src/gems77_bgb/features.py</code> · Experiment 1 receipt: <code>evidence/bgb_exp1_canary_and_surface.json</code> ·
+Experiment 2 receipt: <code>evidence/bgb_exp2_holdout.json</code> · Experiment 3 &amp; Run Card: <a href="evidence/run_card_bgb.json"><code>evidence/run_card_bgb.json</code></a> ·
+Executive summary: <a href="bgb-executive-summary.html"><code>docs/bgb-executive-summary.html</code></a>.</p>
+</div></main>
+<footer><div class="wrap">Selector status for every file on this site: <b>not approved</b>. Number labels:
+<b>ORGANIZER-CONFIRMED</b> (public leaderboard / submission page), <b>HOLDOUT-DTI</b> (local hide-and-recover;
+evaluator version, withheld positives, 95% CI), <b>OWNER-REPORT</b> (owner-supplied, no organizer receipt).</div></footer>
+<script>document.querySelectorAll('button[data-copy]').forEach(b=>b.onclick=()=>{navigator.clipboard.writeText(b.dataset.copy);b.textContent='Copied';setTimeout(()=>b.textContent='Copy',1200)})</script>
+</body></html>
