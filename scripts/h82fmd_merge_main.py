@@ -41,15 +41,28 @@ def conflicted() -> list[str]:
     return [l.split("\t")[-1] for l in git("diff", "--name-only", "--diff-filter=U").splitlines() if l.strip()]
 
 
+# Other lanes assert that their own clearance wording stays "above the fold" in
+# README.md. Those contracts are part of main, so this lane's banner is placed at
+# the earliest section boundary that keeps every one of them true.
+README_CONTRACTS = [
+    ("c571af22cb08db9cb8cfd6edf0108364d95b0c3bec8316d09d3dfd116531790e", 2000),  # test_h82_deliverable
+    ("OK TO SUBMIT: NO", 2000),                                                  # test_h82_deliverable
+    ("OK TO DOWNLOAD FOR INSPECTION: YES", 6000),                                # test_gems77e
+]
+
+
 def resolve_readme(mine: str, theirs: str) -> str:
     start = mine.index(BANNER_START)
     end = mine.index("\n# GEMSDOE77: DOE GEMS Geothermal Fault Detection") if \
         "\n# GEMSDOE77: DOE GEMS Geothermal Fault Detection" in mine[start:] else len(mine)
     banner = mine[start:end].strip("\n")
     base = theirs.replace(banner, "").replace(BANNER_START, "")
-    cuts = [m.start() for m in re.finditer(r"\n(?=(#|> \*\*|<!--))", base) if m.start() > 2500]
-    pos = cuts[0] if cuts else len(base)
-    return base[:pos] + "\n\n" + banner + "\n" + base[pos:]
+    cuts = [m.start() for m in re.finditer(r"\n(?=(#|> \*\*|<!--))", base) if m.start() > 2000]
+    for pos in cuts + [len(base)]:
+        out = base[:pos] + "\n\n" + banner + "\n" + base[pos:]
+        if all(0 <= out.find(s) < n for s, n in README_CONTRACTS):
+            return out
+    raise RuntimeError("no README position satisfies every above-the-fold contract")
 
 
 def resolve_irregularities(mine: str, theirs: str) -> str:
@@ -59,7 +72,8 @@ def resolve_irregularities(mine: str, theirs: str) -> str:
 
 
 def resolve_build_home(mine: str, theirs: str) -> str:
-    start = mine.index("# ---------------------------------------------------------------------------\n# H82-FMD")
+    anchor = mine.index("(mapping-deficit lane)")
+    start = mine.rindex("# ----------", 0, anchor)
     block = mine[start:]
     if 'if __name__ == "__main__":' in block:
         block = block[:block.index('if __name__ == "__main__":')]
@@ -80,8 +94,11 @@ def resolve_build_home(mine: str, theirs: str) -> str:
 
 def main() -> int:
     git("fetch", "origin", "main")
-    r = subprocess.run(["git", "merge", "--no-commit", "--no-ff", "origin/main"],
-                       cwd=ROOT, capture_output=True, text=True)
+    if (ROOT / ".git" / "MERGE_HEAD").exists():      # resume an interrupted resolution
+        r = subprocess.CompletedProcess([], 0, "", "")
+    else:
+        r = subprocess.run(["git", "merge", "--no-commit", "--no-ff", "origin/main"],
+                           cwd=ROOT, capture_output=True, text=True)
     files = conflicted()
     print("conflicts:", len(files))
     for f in files:

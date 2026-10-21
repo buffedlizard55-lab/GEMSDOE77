@@ -1,0 +1,128 @@
+{
+  "schema": "gems-parallel-run-card-v1",
+  "lane_repo": "buffedlizard55-lab/GEMSDOE77",
+  "branch": "arena/a58fc25f-gemsdoe77",
+  "lane_id": "H83-FAULTCOLLAR",
+  "generated_utc": "2026-10-21T17:06:51Z",
+  "status": "Experiment 1 of 1 completed; budget respected (1 experiment, <1 hour compute).",
+  "hypothesis": "H83-1 (rank 1): hanging-wall fault-damage collar at the 300 m DTI kernel scale. Blind normal-fault splays that never entered the USGS/INGENIOUS Quaternary fault catalogue cluster off mapped traces at roughly one kernel radius (100-400 m); the collar is zero on the mapped trace, peaks near 3 px (300 m), decays to zero by ~1.2 km, and is computed per holdout fold from visible faults only. Full hypothesis ranking in research/h83_hypotheses.md; preregistered at registry/preregistration_h83.json before any experiment.",
+  "mechanism": "Damage-zone permeability and off-trace upflow around blind normal faults produce a spatial prior peaked at damage-zone scale beside catalogue traces. The official Tversky-style DTI (alpha=0.2, beta=0.8, 300 m triangular kernel) credits a dot within 300 m of a hidden truth cell and penalises redundant mass, so a sparse kernel-scale collar matches the metric's native scale without re-predicting mapped faults (which the organiser fully penalises, thread 11516).",
+  "named_non_fault_mimicking_process": "Pleistocene Lake Lahontan (1332 m) and Bonneville (1552/1552 m) wave-cut terrace risers, symmetric V-shaped ephemeral washes/arroyos, and road or canal cuts - linear off-trace alignments with no dislocation damage zone.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "fold_split": "buffered-whole-components-loqo-v2 (label-blind quadrants, whole fault components withheld, 3 px feature buffer, 12 px domain erosion)",
+    "holdout_seed": 30,
+    "withheld_positive_pixels": 11342,
+    "score": 0.1226552189170721,
+    "ci_95": [
+      0.10799672421127436,
+      0.1372130738097347
+    ],
+    "alpha": 0.2,
+    "beta": 0.8,
+    "triangular_radius_m": 300.0,
+    "dots_emitted": 37553,
+    "dots_on_catalogue": 0,
+    "min_dot_distance_to_catalogue_px": 1.0,
+    "delta_vs_random_control": {
+      "control": "A0_random (uniform dots over the same per-fold allowed domains)",
+      "control_score": 0.04354439539374768,
+      "control_ci_95": [
+        0.03848814649647956,
+        0.048275828859465915
+      ],
+      "delta": 0.07911082352332441,
+      "ci_95": [
+        0.06502503387239039,
+        0.09243341380270363
+      ]
+    },
+    "versus_repository_incumbent": "below the retained 0.152718 HOLDOUT-DTI (H77-Step); different folds and positives, so not a paired comparison; either way this lane does not beat the incumbent",
+    "projection_warning": "this local HOLDOUT-DTI is never written as a leaderboard score; no organizer-confirmed score exists"
+  },
+  "leakage_canary": {
+    "worst_symmetric_auc": 0.7250972928055017,
+    "flag_gt_0_90": false,
+    "features_tested": {
+      "collar_visible_only": 0.7250972928055017,
+      "collar_full_catalogue_LEAKY_CONTROL": 0.6134125
+    },
+    "interpretation": "no single feature is label-leaky at the 0.90 stop threshold; canary is diagnostic, not proof of no leakage"
+  },
+  "correlation_overlap_vs_registry": {
+    "dots_phase": {
+      "phase": "dots (final 37,553 binary dots)",
+      "registry_rasters_expected": 812,
+      "registry_rasters_checked": 0,
+      "complete_accessible_scan": false,
+      "missing_or_invalid": 812,
+      "worst_spearman_full_footprint": null,
+      "worst_forward_overlap_3px": null,
+      "literal_firings": 0,
+      "protocol_unique": false,
+      "stop_required": true,
+      "scope_limitation": "no registry raster files are present locally (checked 0/812 indexed paths under docs/); the indexed inventory is not organizer-complete and the accessible scan is empty. Reported as a limitation, never as a clearance. Identical check class as H77G/H80 entries (partial scan omitted)."
+    },
+    "surface_phase": "not run separately - the submission is binary dots, so the dots phase is the placement phase",
+    "dense_witness_policy_i17": "fail-closed; this lane claims no exemption and seeks no weekly slot"
+  },
+  "raster": {
+    "path": "docs/downloads/gems77-h83-faultcollar-37553dots-20261021-a55f4c9c-zeros.tif",
+    "zip": "docs/downloads/gems77-h83-faultcollar-37553dots-20261021-a55f4c9c-zeros.zip",
+    "sha256": "7f71739a2804bf2fa7199d30d512e0a267e4cfa2fdd0d32304b962db65b98662",
+    "zip_sha256": "60c7ec400acc19d949b4f506813dca3905513c04fa1ee487ad8c89194dd8b372",
+    "bytes": 139215,
+    "dots_emitted": 37553,
+    "dots_on_catalogue": 0,
+    "min_dot_separation_px": 2.8
+  },
+  "validator": {
+    "all_checks_passed": true,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030582710169255733,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "emitted_positive_pixels": 37553,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance"
+  },
+  "submission_name": "gems77-h83-faultcollar-37553dots-20261021-a55f4c9c-zeros",
+  "submission_name_chars": 56,
+  "submission_note": "H83 fault-damage collar 37553 dots; HOLDOUT-DTI 0.1227 [0.1080,0.1372] s30; below 0.152718 incumbent: NEGATIVE, do not upload",
+  "submission_note_chars": 125,
+  "verdict": "negative",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "protocol_unique": false,
+  "informative_unique": false,
+  "beats_holdout_best": false,
+  "beats_incumbent_0_152718": false,
+  "weekly_slots_used": 0,
+  "selector_approved": false,
+  "organizer_confirmed_score": null,
+  "failed_release_gates": [
+    "beats_accepted_holdout_best",
+    "literal_protocol_unique",
+    "scientific_verdict_promote",
+    "selector_approved"
+  ],
+  "upload": "Not OK to submit. OK to download for inspection only. Format-valid (17/17 local checks: single float32 band, EPSG:32611, 3730x3292, pinned transform, values exactly {0,1}, 0 NaN anywhere, zeros outside footprint, 0 dots on catalogue). Registry scan incomplete (0/812 locally accessible) and literal dense-witness gate fail-closed. HOLDOUT-DTI 0.1227 [0.1080, 0.1372] seed 30 vs random 0.0435 (delta +0.079, CI excludes 0) but below the 0.152718 repository incumbent. Selector: not approved; zero weekly slots used."
+}

@@ -1,0 +1,146 @@
+{
+  "experiment": "H77V-E3-UNIQUENESS",
+  "candidate": "gems77-h77v-ventsinter-heatflow-37654dots-20261021-cc5e4cd9-zeros",
+  "tif_sha256": "2044447ff7d4df318c277846299815591211c83641a3beb20c90f9b33c2255bb",
+  "registry_scope": "2 SHA-pinned witnesses (dense_witness ab0a0a62 + H33 c55bafc4) + scored sibling rasters in .cache/data/registry/rasters + all local GEMSDOE77 lane TIFFs; full 812-raster REST scan omitted to preserve shared GitHub API quota",
+  "phase1_surface": {
+    "registry_rasters_checked": 70,
+    "space_filling_rasters_count": 5,
+    "space_filling_sha256s": [
+      "033df94ceef16350030a69d5cfdec0afe7bc605bb155d8f3b98b203aabf80abd",
+      "9489af2b7e1b06a249203d3c9d6dfe4ed469647f59ebe3a5ffe9c50c67e46b42",
+      "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+      "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+      "c9d1398e464603350e464fff7213a8a5e380f1ccf505e263a685607970ae28ef"
+    ],
+    "literal_worst_spearman_full_footprint": 0.14960349806965587,
+    "literal_worst_rho_submission": "dense_witness.tif",
+    "literal_worst_dot_overlap": 1.0,
+    "literal_worst_overlap_submission": "dense_witness.tif",
+    "literal_unique": false,
+    "literal_duplicate_count": 5,
+    "informative_non_space_filling": {
+      "n_informative_rasters": 65,
+      "worst_abs_spearman": 0.04959761873759277,
+      "worst_rho_submission": "19GEMSDOE__h19-5-powerlaw-budget-multiline.tif",
+      "worst_forward_overlap_3px": 0.31933963350429706,
+      "worst_overlap_submission": "h60_union_d2_75308.tif",
+      "informative_gate_pass": true,
+      "top5_by_overlap": [
+        {
+          "submission": "h60_union_d2_75308.tif",
+          "sha256": "772cf4502bfc",
+          "forward_overlap_3px": 0.31933963350429706,
+          "abs_spearman": 0.006398470650542375
+        },
+        {
+          "submission": "calib_hedgev2_01563_sample.tif",
+          "sha256": "052688eafbc7",
+          "forward_overlap_3px": 0.2835643952933144,
+          "abs_spearman": 0.0422725019684525
+        },
+        {
+          "submission": "calib_h28ridge_01839.tif",
+          "sha256": "7637b72d4c6c",
+          "forward_overlap_3px": 0.27203532626733157,
+          "abs_spearman": 0.027027577177728346
+        },
+        {
+          "submission": "calib_h25ctx_01280.tif",
+          "sha256": "1381e784fb8b",
+          "forward_overlap_3px": 0.263110481863802,
+          "abs_spearman": 0.045200710469664354
+        },
+        {
+          "submission": "h52_coincidence8_80k.tif",
+          "sha256": "a2ed87fac9fd",
+          "forward_overlap_3px": 0.23857093343174568,
+          "abs_spearman": 0.014091254125803226
+        }
+      ]
+    },
+    "vs_h33_champion": {
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "spearman_full_footprint": 0.02557194568415105,
+      "forward_overlap_3px": 0.15085344139081888
+    },
+    "vs_dense_witness_ab0a0a62": {
+      "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+      "spearman_full_footprint": 0.14960349806965587,
+      "forward_overlap_3px": 1.0
+    },
+    "byte_unique_among_checked": true,
+    "pixel_unique_among_checked": true
+  },
+  "phase2_final_dots": {
+    "registry_rasters_checked": 70,
+    "space_filling_rasters_count": 5,
+    "space_filling_sha256s": [
+      "033df94ceef16350030a69d5cfdec0afe7bc605bb155d8f3b98b203aabf80abd",
+      "9489af2b7e1b06a249203d3c9d6dfe4ed469647f59ebe3a5ffe9c50c67e46b42",
+      "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+      "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+      "c9d1398e464603350e464fff7213a8a5e380f1ccf505e263a685607970ae28ef"
+    ],
+    "literal_worst_spearman_full_footprint": 0.02104633754857096,
+    "literal_worst_rho_submission": "dense_witness.tif",
+    "literal_worst_dot_overlap": 1.0,
+    "literal_worst_overlap_submission": "dense_witness.tif",
+    "literal_unique": false,
+    "literal_duplicate_count": 5,
+    "informative_non_space_filling": {
+      "n_informative_rasters": 65,
+      "worst_abs_spearman": 0.012290872978551234,
+      "worst_rho_submission": "gems77-step-propensity-submod300.tif",
+      "worst_forward_overlap_3px": 0.3284909969724332,
+      "worst_overlap_submission": "calib_h28ridge_01839.tif",
+      "informative_gate_pass": true,
+      "top5_by_overlap": [
+        {
+          "submission": "calib_h28ridge_01839.tif",
+          "sha256": "7637b72d4c6c",
+          "forward_overlap_3px": 0.3284909969724332,
+          "abs_spearman": 0.004395098057252062
+        },
+        {
+          "submission": "calib_hedgev2_01563_sample.tif",
+          "sha256": "052688eafbc7",
+          "forward_overlap_3px": 0.32033781271578055,
+          "abs_spearman": 4.641472610537706e-05
+        },
+        {
+          "submission": "h52_coincidence8_80k.tif",
+          "sha256": "a2ed87fac9fd",
+          "forward_overlap_3px": 0.3156105593031285,
+          "abs_spearman": 0.003613204697701617
+        },
+        {
+          "submission": "gems32-bayesopt-dilation-scarp-d28-20261004-zeros.tif",
+          "sha256": "2c1861f1dbf5",
+          "forward_overlap_3px": 0.31494661921708184,
+          "abs_spearman": 0.009944857900871169
+        },
+        {
+          "submission": "calib_h25ctx_01280.tif",
+          "sha256": "1381e784fb8b",
+          "forward_overlap_3px": 0.3119987252350348,
+          "abs_spearman": 0.005917025120518962
+        }
+      ]
+    },
+    "vs_h33_champion": {
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "spearman_full_footprint": 0.007935340617290317,
+      "forward_overlap_3px": 0.2356721729431136
+    },
+    "vs_dense_witness_ab0a0a62": {
+      "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+      "spearman_full_footprint": 0.02104633754857096,
+      "forward_overlap_3px": 1.0
+    },
+    "byte_unique_among_checked": true,
+    "pixel_unique_among_checked": true
+  },
+  "protocol_unique": false,
+  "informative_unique": true
+}
