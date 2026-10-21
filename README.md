@@ -1,5 +1,7 @@
 # GEMSDOE77: DOE GEMS Geothermal Fault Detection — Multi-Lane Research Portfolio & `H77-Step` Breakthrough (`0.1527` `HOLDOUT-DTI`)
 
+> **Current independent review (2026-10-21): no repository TIFF is cleared for competition upload.** H78 is closed/negative: its existing TIFF is inspection-download only, scored `0.0708` **HOLDOUT-DTI** (`gems57-pooled-hide-v2`, 11,321 withheld positives, 95% CI `[0.0600, 0.0816]`) versus `0.0958` champion construction, and fails the binding literal registry-uniqueness gate. No new submission or competition slot was created. Read the [current review, validation limits, and next steps](docs/SESSION_REVIEW.md) before downloading any candidate.
+
 **Read this README, including the original request at the end of this file, at the beginning of every session.**
 
 ## Submission Files in This Repository (All 7 Parallel Lanes)
