@@ -1,0 +1,57 @@
+[14:17:19] raw band  1 mag_anom: finite-in-foot=5164312
+[14:17:25] raw band  2 rtp: finite-in-foot=5164312
+[14:17:32] raw band  3 tmi_hg: finite-in-foot=5164312
+[14:17:38] raw band  4 geod_2ndinv: finite-in-foot=5164312
+[14:17:45] raw band  5 iso_grav_anom_slope: finite-in-foot=5164312
+[14:17:51] raw band  6 tc_totalcount: finite-in-foot=5164300
+[14:17:57] raw band  7 geod_shearrate: finite-in-foot=5164312
+[14:18:05] raw band  8 geod_dilaterate: finite-in-foot=5164312
+[14:18:12] raw band  9 tmi_vg: finite-in-foot=5164312
+[14:18:19] raw band 10 deq_n100a15: finite-in-foot=5164312
+[14:18:25] raw band 11 iso_grav_anom_vg: finite-in-foot=5164312
+[14:18:33] raw band 12 det_elev: finite-in-foot=5164312
+[14:18:44] raw band 13 iso_grav_anom: finite-in-foot=5164312
+[14:18:54] raw band 14 tmi: finite-in-foot=5164312
+[14:19:05] raw band 15 depth_to_base_surf: finite-in-foot=5164312
+[14:19:16] raw band 16 ieq_n100a15: finite-in-foot=5164312
+[14:19:26] raw band 17 cond_surf: finite-in-foot=5164312
+[14:19:37] raw band 18 iso_grav_anom_hg_signed: finite-in-foot=5164312
+[14:19:47] raw band 19 det_elev_slope: finite-in-foot=5164312
+[14:19:53] diagnostics: {"band6_tag_claim": "tc - Tilt angle or total curvature - magnetic field derivative for edge detection", "band6_spearman_vs_external_TC_radiometric": 0.999951791113324, "band6_spearman_vs_derived_tilt_deg": 0.019949396585376457, "band6_range_in_footprint": [2.9534237384796143, 88.56654357910156], "band6_conclusion": "radiometric total count (tag is wrong); shipped stack has no tilt band", "band18_ ...
+[14:20:00] channel dem_curv1: done (169s)
+[14:20:08] channel dem_curv25: done (177s)
+[14:20:16] channel dem_ridge1: done (185s)
+[14:20:25] channel dem_ridge2: done (194s)
+[14:20:34] channel dem_ridge3p5: done (203s)
+[14:20:43] channel dem_relief5: done (212s)
+[14:20:51] channel dem_tophat5: done (220s)
+[14:21:00] channel st_coherence: done (229s)
+[14:21:09] channel profcurv_signed: done (238s)
+[14:21:18] channel mag_tilt: done (247s)
+[14:21:26] channel mag_tilt_abs: done (255s)
+[14:21:35] channel mag_as_log: done (264s)
+[14:21:43] channel grav_thdr_log: done (272s)
+[14:21:52] channel grav_tilt: done (280s)
+[14:22:00] channel grav_as_log: done (289s)
+[14:22:10] channel contact_confluence: done (299s)
+[14:22:20] channel base_step_along_maggrad: done (309s)
+[14:22:27] channel base_grad_log: done (316s)
+[14:22:36] channel frontness: done (324s)
+[14:22:36] freed intermediates before FFT stages
+[14:22:53] channel pc_mag: done (342s)
+[14:23:12] channel pc_grav: done (361s)
+[14:23:24] channel pg_slope: done (373s)
+[14:23:33] channel pg_corr: done (381s)
+[14:23:41] channel pg_resid_grad_log: done (390s)
+[14:23:49] channel rad_K: done (398s)
+[14:23:58] channel rad_Th: done (407s)
+[14:24:06] channel rad_U: done (415s)
+[14:24:15] channel rad_TC: done (424s)
+[14:24:23] channel rad_ThK: done (432s)
+[14:24:32] channel rad_UK: done (441s)
+[14:24:40] channel lidar_ex_max: done (449s)
+[14:24:49] channel lidar_step_max: done (458s)
+[14:24:57] channel lidar_downface_max: done (466s)
+[14:25:06] channel lidar_coh100: done (475s)
+[14:25:14] channel lidar_valid: done (483s)
+[14:25:15] DONE in 483s -> /home/user/GEMSDOE77/data/processed/stack.npy
