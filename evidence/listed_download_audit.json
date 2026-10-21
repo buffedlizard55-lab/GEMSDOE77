@@ -2,9 +2,9 @@
   "schema": "gems-listed-download-readback-v1",
   "evidence_class": "FORMAT-INTEGRITY-MEASUREMENT; NOT SCORE OR PORTAL ACCEPTANCE",
   "scope": "Every primary TIFF in docs/data/lanes.json; no archive or NaN twins, no uniqueness certification",
-  "manifest_sha256": "9b3f6dd3aa6adede826447519ef34d1f799100e9890eeef2733c1592feafa493",
+  "manifest_sha256": "8fc5ada165d7b0a295762669e35629935fdf615fb6ad2607012b3d647774cb53",
   "reference_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
-  "listed_count": 32,
+  "listed_count": 33,
   "all_format_pass": true,
   "authorized_to_submit": false,
   "artifacts": [
@@ -570,6 +570,24 @@
       "lane": "H83: hanging-wall fault-damage collar at the 300 m kernel scale (negative result)",
       "file": "downloads/gems77-h83-faultcollar-37553dots-20261021-a55f4c9c-zeros.tif",
       "sha256": "7f71739a2804bf2fa7199d30d512e0a267e4cfa2fdd0d32304b962db65b98662",
+      "checks": {
+        "single_band": true,
+        "crs_matches": true,
+        "shape_matches": true,
+        "transform_matches": true,
+        "finite_entire_raster": true,
+        "no_nan_inside_footprint": true,
+        "values_in_0_1": true,
+        "nodata_none": true,
+        "sha256_matches_manifest": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
+    {
+      "lane": "H84: OR-gated second-strand fault collar (historical negative; NOT OK TO SUBMIT)",
+      "file": "downloads/gems77-h84-orgate-collar-37654dots-20261021-2d0a731a-zeros.tif",
+      "sha256": "9a5f5433cbfed4a1a8ac2587678aaa930c8ed93e948b9e94874c8febc549fd57",
       "checks": {
         "single_band": true,
         "crs_matches": true,

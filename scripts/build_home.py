@@ -400,7 +400,7 @@ These are registry/format measurements, not scores or portal acceptance.</p>"""
 lists the reviewed research candidates, not every historical archived/NaN-twin file; see <a href="audit.html">archive audit</a>.</p>
 {glance}
 {dl}
-<p><a href="review-latest.html">Latest review: no new TIFF; independently verified duplicate-stop blocker</a> · <a href="metric-review.html">Corrected H33 analysis</a></p>
+<p><a href="review-latest.html">Current branch review: no new TIFF; ranked hypotheses and duplicate-stop evidence</a> · <a href="metric-review.html">Corrected H33 analysis</a></p>
 {orient_box}
 <h2>Reviewed downloadable candidates</h2>{table}
 <div class="values"><b>Score provenance and slot limits.</b> The supplied 0.2778 attribution to H33,
@@ -434,7 +434,7 @@ condition is met merely by passing a format check.</p>
 {glance}
 {rank_box}
 {dl}
-<p><a href="review-latest.html">Latest review: no new TIFF; independently verified duplicate-stop blocker</a> · <a href="metric-review.html">Corrected H33 analysis</a></p>
+<p><a href="review-latest.html">Current branch review: no new TIFF; ranked hypotheses and duplicate-stop evidence</a> · <a href="metric-review.html">Corrected H33 analysis</a></p>
 {orient_box}
 <h2>What the DrivenData submission form asks for</h2>
 <table><tr><th>Field</th><th>What to give it only after clearance</th></tr>
@@ -978,7 +978,7 @@ def write_review_pages():
     ):
         body = markdown.markdown((ROOT / source).read_text(), extensions=["tables", "fenced_code"])
         (D / output).write_text(page(output, title, body))
-    for name in ("review_60aafd45_card.json", "review_60aafd45_verification.json",
+    for name in ("review_6a5eca5f_card.json", "review_60aafd45_card.json", "review_60aafd45_verification.json",
                  "review_05f9e6f8_card.json", "review_05f9e6f8_preflight.json",
                  "review_05f9e6f8_verification.json"):
         shutil.copyfile(ROOT / "evidence" / name, D / "evidence" / name)

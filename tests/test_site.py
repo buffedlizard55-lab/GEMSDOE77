@@ -308,22 +308,42 @@ def test_h80t_lane_artifact_and_run_card_fail_closed():
 
 
 def test_current_review_and_metric_correction_are_linked():
-    source = (ROOT / 'scripts/build_home.py').read_text()
-    assert 'docs/review-2026-10-21-arena-2c503e77.md' in source
-    assert 'docs/review-2026-10-21-60aafd45.md' not in source
     for name in ('index.html', 'executive-summary.html'):
         text = (DOC / name).read_text()
         assert 'review-latest.html' in text and 'metric-review.html' in text
-        assert 'no new TIFF' in text
+        assert 'Current branch review:' in text or name == 'executive-summary.html'
+        assert 'no new TIFF' in text or 'NO NEW TIFF' in text
     analysis = (DOC / 'metric-review.html').read_text()
     assert 'ΔT=k' in analysis and 'only when' in analysis
     assert 'does <strong>not</strong> always increase' in analysis
     review = (DOC / 'review-latest.html').read_text()
     assert 'NOT OK TO SUBMIT' in review
-    assert 'New TIFF / experiment / slot' in review and 'none generated or used' in review
-    assert 'arena/2c503e77-gemsdoe77' in review
     assert 'STOP_UNIVERSAL_DUPLICATE' in review
-    assert '32/32 listed files pass' in review
+    assert '5,106,385' in review
+    assert 'Candidate screen' in review
+    assert 'HOLDOUT-DTI' in review
+    assert '33/33 listed files pass' in review
+    assert 'arena/2c503e77-gemsdoe77' in review
+    source = (ROOT / 'scripts/build_home.py').read_text()
+    assert 'docs/review-2026-10-21-arena-2c503e77.md' in source
+    assert 'docs/review-2026-10-21-arena-6a5eca5f.md' not in source
+
+
+def test_incoming_6a_review_has_no_submission_download_or_score_projection():
+    report = (ROOT / 'docs/review-2026-10-21-arena-6a5eca5f.md').read_text()
+    assert 'NO NEW TIFF GENERATED' in report
+    assert 'Expected DTI change is unknown' in report
+    assert 'cross-wavelet coherence' in report
+    assert 'monogenic phase congruency already exists' in report
+    assert 'not obtainable/validated' in report.lower()
+    assert 'ORGANIZER-CONFIRMED' in report
+    assert '0.2778' in report
+    assert 'causal proof' in report
+    assert 'submission_name": null' in report
+    card = json.loads((ROOT / 'evidence/review_6a5eca5f_card.json').read_text())
+    assert card['raster_sha256'] is None
+    assert card['submission_name'] is None
+    assert card['weekly_slots_used'] == 0
 
 
 def test_current_preflight_review_does_not_claim_a_new_submission():

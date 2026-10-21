@@ -753,6 +753,34 @@
     0.1372130738097347
    ],
    "upload": "Not OK to submit. OK to download for inspection only. Format-valid (17/17 local checks: single float32 band, EPSG:32611, 3730x3292, pinned transform, values exactly {0,1}, 0 NaN anywhere, zeros outside footprint, 0 dots on catalogue). Registry scan incomplete (0/812 locally accessible) and literal dense-witness gate fail-closed. HOLDOUT-DTI 0.1227 [0.1080, 0.1372] seed 30 vs random 0.0435 (delta +0.079, CI excludes 0) but below the 0.152718 repository incumbent. Selector: not approved; zero weekly slots used."
+  },
+  {
+   "lane": "H84: OR-gated second-strand fault collar (historical negative; NOT OK TO SUBMIT)",
+   "page": "h84.html",
+   "summary": "h84.html",
+   "file": "downloads/gems77-h84-orgate-collar-37654dots-20261021-2d0a731a-zeros.tif",
+   "zip": "downloads/gems77-h84-orgate-collar-37654dots-20261021-2d0a731a-zeros.zip",
+   "run_card": "evidence/h84_run_card.json",
+   "format_valid": true,
+   "protocol_unique": false,
+   "informative_unique": false,
+   "beats_holdout_best": false,
+   "selector_approved": false,
+   "verdict": "negative",
+   "primary": false,
+   "name": "gems77-h84-orgate-collar-37654dots-20261021-2d0a731a-zeros",
+   "note": "H84 OR-gated second-strand collar 37654 dots; HOLDOUT-DTI 0.1215 vs incumbent 0.1527: NEGATIVE do not upload",
+   "sha256": "9a5f5433cbfed4a1a8ac2587678aaa930c8ed93e948b9e94874c8febc549fd57",
+   "holdout_dti_hide_v2": 0.12148954698767672,
+   "holdout_evaluator_version": "gems57-pooled-hide-v2",
+   "holdout_positive_pixels": 11342,
+   "holdout_ci95": [
+    0.10706251690747319,
+    0.13550906533658974
+   ],
+   "upload": "Not OK to submit. OK to download for inspection only. HOLDOUT-DTI 0.1214895 (gems57-pooled-hide-v2; seed 30; 11,342 withheld positives; 95% CI [0.1070625,0.1355091]), below same-fold H83 collar control. Final-dot overlap with H83 is 0.7863 (>0.70); local 48-raster scan is incomplete and not full-registry clearance. Selector not approved; zero weekly slots.",
+   "why_primary": "Inherited H84 research artifact from a separate branch; historical negative, not this review.",
+   "beat_02778_summary": "No; HOLDOUT-DTI is a local hide-and-recover result and is not a leaderboard projection or organizer receipt."
   }
  ]
 }
