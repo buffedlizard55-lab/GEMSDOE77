@@ -649,6 +649,32 @@
       "upload": "Not OK to submit. OK to download for inspection only. HOLDOUT-DTI 0.058406 (lane) / 0.102390 (with 33-ch baseline + LOCO mechanics) on gems57-pooled-hide-v2 (11,342 withheld positives) beats A0_random (0.048611) and A_std (0.099208) but is below repo best 0.152718; sparse (<=100k) dot overlap PASS (max 0.5722 <= 0.70), literal Policy I17 dense-witness check FAIL (1.000 > 0.70). Selector: not approved."
     },
     {
+      "lane": "H82-TCSTEP: radiometric total-count lithologic-offset step x coherence x low-slope blind gate + std19 HGB (HOLDOUT-DTI 0.0688 s20 / 0.0700 s30; physics below random; negative, lane closed)",
+      "page": "h82tcstep.html",
+      "summary": "h82tcstep-executive-summary.html",
+      "file": "downloads/gems77-h82-tcstep-37654dots-20261021-2c501fd1-zeros.tif",
+      "run_card": "evidence/run_card_h82.json",
+      "format_valid": true,
+      "protocol_unique": false,
+      "informative_unique": true,
+      "beats_holdout_best": false,
+      "verdict": "negative",
+      "primary": false,
+      "name": "gems77-h82-tcstep-37654dots-20261021-2c501fd1-zeros",
+      "note": "H82-TCSTEP band6 TC step x coherence x low-slope + std19 HGB LOQO; 37654 dots sep2.8px >2px from catalogue",
+      "sha256": "2cc14ba3ec8a6ea114c821445ff0ee90f84c7a8e62720e80c533c05475f76860",
+      "holdout_dti_hide_v2": 0.0687651604717723,
+      "holdout_evaluator_version": "gems57-pooled-hide-v2",
+      "holdout_positive_pixels": 11321,
+      "holdout_ci95": [
+        0.05396925574980621,
+        0.08621343282758906
+      ],
+      "upload": "Not OK to submit. OK to download for inspection only. HOLDOUT-DTI 0.0688 [0.0540,0.0862] (s20, 11,321 withheld) / 0.0700 (s30) below 0.152718 incumbent; paired gain vs identical 19-band control null both seeds (physics below random); literal uniqueness FAIL by construction (dense witness); worst sparse local overlap 0.391, surface |rho| 0.073 in checked scope; selector not approved; zero weekly slots.",
+      "why_primary": "H82-TCSTEP lane (2026-10-21; namespaced at merge to preserve parallel H82-COOL/H82-RRD lanes); negative, clearance per release gate (not approved).",
+      "beat_02778_summary": "No. HOLDOUT-DTI 0.0688/0.0700 does not beat the 0.152718 holdout incumbent; no organizer score exists for this file and none may be inferred."
+    },
+    {
       "lane": "H83: hanging-wall fault-damage collar at the 300 m kernel scale (negative result)",
       "page": "h83.html",
       "summary": "h83.html",
