@@ -17,6 +17,18 @@ def test_published_portfolio_fails_closed(tmp_path):
     assert all(row["checks"]["sha256_matches"] for row in receipt["artifacts"])
 
 
+def test_published_receipt_includes_each_current_lane_and_sha(tmp_path):
+    generated=build(out=tmp_path / 'fresh.json')
+    published=json.loads((ROOT/'docs/data/submission-authorization.json').read_text())
+    assert generated['schema']==published['schema']
+    assert generated['repository_decision']==published['repository_decision']=='NOT OK TO SUBMIT'
+    assert generated['repository_authorized_file_count']==published['repository_authorized_file_count']==0
+    assert len(generated['artifacts'])==len(published['artifacts'])==len(
+        json.loads((ROOT/'docs/data/lanes.json').read_text())['lanes'])
+    for now,saved in zip(generated['artifacts'],published['artifacts']):
+        assert now==saved
+
+
 def test_format_pass_alone_never_authorizes(tmp_path):
     artifact = tmp_path / "candidate.tif"
     artifact.write_bytes(b"unique-test-artifact")

@@ -1,0 +1,83 @@
+{
+  "certificate": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "witness_file": "/home/user/GEMSDOE77/.cache/registry/dense_witness.tif",
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "positive_pixels": 5167373,
+    "allowed_pixels": 5106385,
+    "uncovered_allowed_pixels": 0,
+    "covered_allowed_fraction": 1.0,
+    "universal_overlap_blocker": true,
+    "overlap_limit": 0.7,
+    "support_definition": "finite prediction > 0 (inherited literal support rule)",
+    "implication": "Every nonempty candidate dot set in the allowed domain has forward overlap 1.0 with this prior; therefore it cannot pass the 0.70 gate."
+  },
+  "comparison": {
+    "my_file": null,
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "my_dots": 25439,
+    "candidate_decoded_sha256": "6b24305363fa9ad7a4d62b8ed6f35332680c7597daacbeaabad57e74ef4ea232",
+    "candidate_file_sha256": null,
+    "rho_limit": 0.9,
+    "overlap_limit": 0.7,
+    "jaccard_limit": 0.5,
+    "registry_rasters_expected": 2,
+    "registry_rasters_checked": 2,
+    "complete_accessible_scan": false,
+    "missing_or_invalid": 0,
+    "source_errors": [
+      "Legacy list has no complete-inventory certificate; diagnostic only"
+    ],
+    "worst_spearman_full_footprint": 0.013549857595145232,
+    "worst_rho_submission": "docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif",
+    "worst_dot_overlap": 1.0,
+    "worst_overlap_submission": "docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif",
+    "worst_jaccard_dot_sets": 0.005193812034986538,
+    "worst_jaccard_submission": "registry/rasters/GEMSDOE32__h33-2-b2-zeros.tif",
+    "byte_unique_among_checked": true,
+    "pixel_unique_among_checked": true,
+    "duplicate_count": 1,
+    "unique": false,
+    "rows": [
+      {
+        "repo": "buffedlizard55-lab/17GEMSDOE",
+        "submission": "docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif",
+        "file": "/home/user/GEMSDOE77/.cache/registry/dense_witness.tif",
+        "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+        "decoded_sha256": "11cb7dffcc88926fee8260f61df01d7712d3a7bb34fcc1bb333fb6b47f77ec05",
+        "their_dots": 5167373,
+        "my_dots_within_3px_of_theirs": 1.0,
+        "their_dots_within_3px_of_mine": 0.0,
+        "spearman_full_footprint": 0.013549857595145232,
+        "jaccard_dot_sets": 0.004923004397011789,
+        "identical_bytes": false,
+        "identical_decoded_predictions": false,
+        "duplicate_by_rho": false,
+        "duplicate_by_overlap": true,
+        "duplicate_by_jaccard": false
+      },
+      {
+        "repo": "buffedlizard55-lab/60GEMSDOE",
+        "submission": "registry/rasters/GEMSDOE32__h33-2-b2-zeros.tif",
+        "file": "/home/user/GEMSDOE77/.cache/registry/h33.tif",
+        "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "decoded_sha256": "aec92fc3ff1e95f0b7a84d48294683199f2a3b25d9cdce2a95329aeccbfd839e",
+        "their_dots": 37654,
+        "my_dots_within_3px_of_theirs": 0.23157356814340185,
+        "their_dots_within_3px_of_mine": 0.0,
+        "spearman_full_footprint": 0.004569063910083676,
+        "jaccard_dot_sets": 0.005193812034986538,
+        "identical_bytes": false,
+        "identical_decoded_predictions": false,
+        "duplicate_by_rho": false,
+        "duplicate_by_overlap": false,
+        "duplicate_by_jaccard": false
+      }
+    ],
+    "jaccard_diagnostic_only": true,
+    "verdict": "negative",
+    "stop_required": true,
+    "candidate_rank_variation": true,
+    "scope": "All hash-verified accessible entries in the indexed public owner-repository inventory; not a complete organizer registry. External/private/unlinked/inaccessible files may be absent. Reverse overlap is diagnostic only."
+  }
+}

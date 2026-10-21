@@ -1,10 +1,76 @@
 {
   "schema": "gems-submission-authorization-v1",
-  "generated_utc": "2026-10-21T14:19:31+00:00",
+  "generated_utc": "2026-10-21T14:40:26+00:00",
   "policy": "Authorization requires artifact existence, matching SHA-256, local format PASS, literal protocol uniqueness, improvement over the accepted holdout best, a promote verdict, and explicit selector approval. Missing fields fail closed.",
   "repository_authorized_file_count": 0,
   "repository_decision": "NOT OK TO SUBMIT",
   "artifacts": [
+    {
+      "lane": "H77L: 300 m lagged ThK / LiDAR scarp (RESEARCH ONLY)",
+      "file": "downloads/gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY.tif",
+      "sha256": "9d199f9fad93e234397a7a19a05eabf12fd77285be3007e6afe22d12a36dcbd1",
+      "checks": {
+        "artifact_exists": true,
+        "format_valid": true,
+        "literal_protocol_unique": false,
+        "beats_accepted_holdout_best": false,
+        "scientific_verdict_promote": false,
+        "selector_approved": false,
+        "sha256_matches": true
+      },
+      "authorized_to_submit": false,
+      "decision": "NOT OK TO SUBMIT",
+      "failed_gates": [
+        "literal_protocol_unique",
+        "beats_accepted_holdout_best",
+        "scientific_verdict_promote",
+        "selector_approved"
+      ]
+    },
+    {
+      "lane": "H79-BB: basement potential-field step \u00d7 topographic curvature ridge (research TIFF; literal FAIL)",
+      "file": "downloads/gems77-h79-crossgrad-ridge-37654dots-20261021-dd0dbf9c-zeros.tif",
+      "sha256": "67aafffc50637a6df9c4275bc2735a0a865ac73904f02667b05f4f257d97587c",
+      "checks": {
+        "artifact_exists": true,
+        "format_valid": true,
+        "literal_protocol_unique": false,
+        "beats_accepted_holdout_best": false,
+        "scientific_verdict_promote": false,
+        "selector_approved": false,
+        "sha256_matches": true
+      },
+      "authorized_to_submit": false,
+      "decision": "NOT OK TO SUBMIT",
+      "failed_gates": [
+        "literal_protocol_unique",
+        "beats_accepted_holdout_best",
+        "scientific_verdict_promote",
+        "selector_approved"
+      ]
+    },
+    {
+      "lane": "H79-RH: lagged radiometric U-halo pairing (parallel negative)",
+      "file": "downloads/gems77-h79-radhalo-lag3-37654-20261021-zeros.tif",
+      "sha256": "c272025ee653187d09489d941613a86bfe4b88110fb455847a2256cf5699014b",
+      "checks": {
+        "artifact_exists": true,
+        "format_valid": true,
+        "literal_protocol_unique": false,
+        "beats_accepted_holdout_best": false,
+        "scientific_verdict_promote": false,
+        "selector_approved": false,
+        "sha256_matches": true
+      },
+      "authorized_to_submit": false,
+      "decision": "NOT OK TO SUBMIT",
+      "failed_gates": [
+        "literal_protocol_unique",
+        "beats_accepted_holdout_best",
+        "scientific_verdict_promote",
+        "selector_approved"
+      ]
+    },
     {
       "lane": "H77D: Coupled Zero-SGMC Tectono-Hydrothermal Conduits + 12-Bit LOCO + 300 m Submodular Cover (0.15011 / 0.14030 HOLDOUT-DTI)",
       "file": "downloads/gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.tif",
