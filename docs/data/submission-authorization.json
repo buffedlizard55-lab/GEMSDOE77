@@ -1,10 +1,19 @@
 {
   "schema": "gems-submission-authorization-v1",
-  "generated_utc": "2026-10-21T15:38:27+00:00",
+  "generated_utc": "2026-10-21T15:55:12+00:00",
   "policy": "Authorization requires artifact existence, matching SHA-256, a readable run card with a promote verdict, local format PASS, literal protocol uniqueness (including <=0.70 real-model forward 3-px overlap and complete registry), improvement over the accepted holdout best, a promote verdict, and explicit selector approval. Missing fields or historical run-card uniqueness/completeness failures fail closed.",
   "repository_authorized_file_count": 0,
   "repository_decision": "NOT OK TO SUBMIT",
   "historical_run_card_reconciliation": [
+    {
+      "lane": "H80: Riedel R/R-prime wing-crack rays from degree-1 mapped-fault tips (negative)",
+      "run_card": "evidence/h80_run_card.json",
+      "recorded_verdict": "negative",
+      "recorded_safe_to_submit": false,
+      "historical_promotion_conflict": false,
+      "operative_decision": "NOT OK TO SUBMIT",
+      "reconciliation_note": "Historical run card and operative release gate both fail closed."
+    },
     {
       "lane": "H77L: 300 m lagged ThK / LiDAR scarp (RESEARCH ONLY)",
       "run_card": "evidence/h77l_run_card.json",
@@ -106,6 +115,42 @@
     }
   ],
   "artifacts": [
+    {
+      "lane": "H80: Riedel R/R-prime wing-crack rays from degree-1 mapped-fault tips (negative)",
+      "file": "downloads/gems77-h80-riedel-wingcrack-tips-20261021-zeros.tif",
+      "sha256": "bab170ed60ab7e1a8afbfad69386a8266191fa4864ac3abac5b6290b7d25bc57",
+      "checks": {
+        "artifact_exists": true,
+        "run_card_present": true,
+        "format_valid": true,
+        "literal_protocol_unique": false,
+        "beats_accepted_holdout_best": false,
+        "scientific_verdict_promote": false,
+        "selector_approved": false,
+        "sha256_matches": true
+      },
+      "run_card_audit": {
+        "run_card": "evidence/h80_run_card.json",
+        "present": true,
+        "recorded_verdict": "negative",
+        "recorded_safe_to_submit": false,
+        "literal_duplicate_recorded": false,
+        "real_model_forward_overlap_3px": null,
+        "real_model_forward_overlap_exceeds_070": false,
+        "registry_incomplete": false,
+        "holdout_invalid_for_promotion": false,
+        "historical_promotion_conflict": false,
+        "guardrail_clear": true
+      },
+      "authorized_to_submit": false,
+      "decision": "NOT OK TO SUBMIT",
+      "failed_gates": [
+        "literal_protocol_unique",
+        "beats_accepted_holdout_best",
+        "scientific_verdict_promote",
+        "selector_approved"
+      ]
+    },
     {
       "lane": "D77: blind-distance band 250m-1km off catalogue + greedy dots under the exact DTI bar (HOLDOUT-DTI 0.0000 [0.0000, 0.0000]; negative result)",
       "file": "downloads/gems77-d77-blind-band-35106dots-20261021-926076f7-zeros.tif",

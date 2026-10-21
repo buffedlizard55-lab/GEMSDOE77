@@ -1,0 +1,14 @@
+{
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "dti": 0.09579668088380372,
+  "ci95": [
+    0.08818346093522027,
+    0.1032479741261599
+  ],
+  "n_withheld_positives": 11319,
+  "tpw": 1082.6650300407086,
+  "fpw": 10149.818356451748,
+  "fnw": 10236.33496995929,
+  "n_cells": 4
+}

@@ -2,36 +2,36 @@
 
 ## Decision summary
 
-**Repository state: research-only; no file is authorized for competition upload.** The current release gate reports `NOT OK TO SUBMIT`, with zero authorized files. No new candidate was built in this audit, no competition slot was used, and no leaderboard outcome is claimed. Following the parallel merge during review, the latest checked-in lane is H79-ORIENT; its TIFF is available for inspection only, not upload: [`gems79-orient-persistence-37654dots-20261021-4abff47886.tif`](downloads/gems79-orient-persistence-37654dots-20261021-4abff47886.tif).
+**Repository state: research-only; no file is authorized for competition upload.** The current release gate reports `NOT OK TO SUBMIT`, with zero authorized files. No new candidate was built in this audit, no competition slot was used, and no leaderboard outcome is claimed. Following parallel merges during review, H80 is the latest checked-in research lane; its TIFF is available for inspection only, not upload: [`gems77-h80-riedel-wingcrack-tips-20261021-zeros.tif`](downloads/gems77-h80-riedel-wingcrack-tips-20261021-zeros.tif).
 
-The apparent conflict between “generate a unique TIFF” and the run protocol is resolved conservatively: the H79-ORIENT TIFF is byte/pixel-distinct from files checked, but its final dots trip the protocol's >70% 3-pixel overlap stop against a full-support registry witness. “Unique bytes” or low rank correlation does not clear that rule. H79-ORIENT also failed to beat the current local holdout best. Therefore a new submission build or weekly-slot recommendation would violate the stated gates. The protocol owner/selector must resolve the full-support-witness contradiction; do not create a private exemption.
+The apparent conflict between “generate a unique TIFF” and the run protocol is resolved conservatively: H80 is a distinct file, but its final dots have 0.9816 3-pixel overlap with a checked local selective-U raster, above the 0.70 stop. “Unique bytes” or low rank correlation does not clear that rule. H80 also failed to beat the current local holdout best. Therefore a new submission build or weekly-slot recommendation would violate the stated gates. The protocol owner/selector must resolve the full-support-witness contradiction; do not create a private exemption.
 
 ## Three-pass review
 
 ### Pass 1 — inventory and declared evidence
 
 - Read `README.md`, `PROMPT.md`, `AGENTS.md`, the irregularity ledger, template pin, preregistrations, run cards, release-gate receipt, site manifest, and the relevant artifact/build/test scripts.
-- The merged repository retains 13 lane entries in `docs/data/lanes.json`; they are all recorded negative, and none is selector-approved. These include H77L, H79-BB, H79-RH, H79-ORIENT, D77, H77D/H77-Step, H78, LIA, contact-physics, selective-U, H77E, and XSEN. Historical “promote” fields in old run cards are superseded by the fail-closed authorization receipt and must not be used as current approval.
+- The merged repository now retains 14 lane entries in `docs/data/lanes.json`; all are recorded negative and none is selector-approved. The new H80 entry was added during this audit after review found that the latest H80 TIFF existed in `docs/index.html` but was absent from the generated lane manifest, so subsequent `build_home.py` runs would have dropped its row. The entries include H80, H77L, H79-BB, H79-RH, H79-ORIENT, D77, H77D/H77-Step, H78, LIA, contact-physics, selective-U, H77E, and XSEN. Historical “promote” fields in old run cards are superseded by the fail-closed authorization receipt and must not be used as current approval.
 - The local input bundle is a small `data/bridge/` set, not the full 19-band training stack. `registry/data_manifest.json` documents SHA-pinned owner mirrors and explicitly says they are not organizer-authenticated. No attempt was made to access the login-walled competition data page.
 - `docs/SESSION_REVIEW.md` is older than this repository snapshot: its branch identifier and “13 TIFF” audit scope are historical, and its earlier backlog is superseded by this report. It remains unchanged as an audit record.
 
 ### Pass 2 — executable and artifact checks
 
 - Installed the pinned `requirements.txt` in the ignored local `.venv` because the system Python had no project packages. No project or system dependency files were changed.
-- `.venv/bin/python -m pytest -q` after merging H79-ORIENT: **99 passed**.
+- `.venv/bin/python -m pytest -q` after the H80 manifest/site fix: **100 passed**.
 - `.venv/bin/python scripts/release_gate.py --verify-fail-closed`: **PASS; NOT OK TO SUBMIT; 0 authorized files**.
 - `.venv/bin/python scripts/verify_all.py`: completed successfully; its emitted artifact receipt reported all checks passed for the historical contact-physics TIFF. This does not establish authorization for that file or other candidates.
-- Independently read the merged H79-ORIENT TIFF with Rasterio and compared it with `data/bridge/sample_submission.tif`: one `float32` band, `3730×3292`, EPSG:32611, matching shape/CRS/transform, no nodata tag, finite across the complete raster, minimum 0, maximum 1, and 37,654 positive cells. SHA-256: `745dbaa427bc1edaf477b3d0b4847b8be8d30d396106a61b1318a8726599be8e`. The ZIP contains exactly one TIFF. These checks establish local format only; bridge-file provenance is not organizer-authenticated and format validity is not upload permission.
-- The merged H79-ORIENT run card records **0.094506956 HOLDOUT-DTI** (`gems57-pooled-hide-v2`, seed 30, 11,342 withheld positive pixels, 95% CI `[0.076558197, 0.112843654]`) and **0.089063297 HOLDOUT-DTI** (same evaluator, seed 20, 11,321 withheld positives, 95% CI `[0.072384221, 0.105355292]`). Its retained comparator is **0.152718 HOLDOUT-DTI** (`gems57-pooled-hide-v2`, 11,321 withheld positives, 95% CI `[0.131548, 0.175185]`) from H77-Step. These separate-seed measurements are not an organizer leaderboard score. On seed 20 the paired difference versus H79-only is **−0.005443 HOLDOUT-DTI** (same evaluator and 11,321 withheld positives; 95% CI `[-0.018072, 0.006909]`), providing no evidence that the added raw-context term improves the H79-only arm.
-- H79-ORIENT's recorded surface maximum absolute Spearman correlation is 0.003902, but the final-dot maximum forward 3-pixel overlap is 1.000, above the 0.70 stop threshold. Its registry audit accessed only 13 of 812 indexed rasters, so completeness is not established. One observed full-support witness is sufficient to fail the rule; an incomplete scan cannot certify uniqueness. The separate H79-RH lane also had a literal overlap stop; no lane is cleared by the diagnostic correlation value.
-- Static-site builders, release-gate generation, and verifier commands can rewrite generated HTML/receipts or create evidence output. Generated artifacts from the initial audit commands were reverted; files contributed by the origin/main merge, including the H79-ORIENT site and evidence, were preserved. Treat these commands as mutating, and review generated diffs before staging.
+- Independently read the merged H80 TIFF with Rasterio and compared it with `data/bridge/sample_submission.tif`: one `float32` band, `3730×3292`, EPSG:32611, matching shape/CRS/transform, no nodata tag, finite across the complete raster, minimum 0, maximum 1, and 12,000 positive cells. SHA-256: `bab170ed60ab7e1a8afbfad69386a8266191fa4864ac3abac5b6290b7d25bc57`. The ZIP contains exactly one TIFF. These checks establish local format only; bridge-file provenance is not organizer-authenticated and format validity is not upload permission.
+- The H80 run card records **0.095796681 HOLDOUT-DTI** (`gems57-pooled-hide-v2`, 11,319 withheld positive pixels, 95% CI `[0.088183461, 0.103247974]`) against a random control of **0.014885619 HOLDOUT-DTI** (same evaluator and positives; no CI recorded for the control). Its retained comparator is **0.152718 HOLDOUT-DTI** (`gems57-pooled-hide-v2`, 11,321 withheld positives, 95% CI `[0.131548, 0.175185]`) from H77-Step. These are local measurements on different folds, not organizer leaderboard scores or a matched causal comparison. The feature-only canary reports AUC 0.686824 on 11,319 withheld positives, below the 0.90 leakage ceiling.
+- H80's run card reports a local maximum 3-pixel dot overlap of 0.981583 with the dense selective-U TIFF, above the 0.70 stop threshold, across 19 locally compared files. The current report card does not record a pre-placement surface Spearman value; that surface gate therefore cannot be independently cleared from H80's receipts. The full registry remains unchecked. H79-ORIENT and H79-RH also have separate literal overlap stops; no lane is cleared by a low correlation diagnostic.
+- Static-site builders, release-gate generation, and verifier commands can rewrite generated HTML/receipts or create evidence output. The incoming H80 page was initially hand-patched into generated `docs/index.html` but omitted from `docs/data/lanes.json` and `scripts/build_home.py`; regenerating the site would therefore remove H80 from the per-file table and omit it from the release authorization receipt. Fixed by registering H80 in the shared lane manifest, adding generator navigation and an explicit research-only card, and testing that its TIFF/hash/run card remain fail-closed after generation. Generated artifacts from initial audit commands were reverted; incoming H80/H79-ORIENT evidence was preserved. Treat these commands as mutating, and review generated diffs before staging.
 
 ### Pass 3 — requirements and remaining blockers
 
 - The submission landing page has a prominent “download for inspection / NOT OK TO SUBMIT” message and a separate how-to-submit page. That is the correct safety state while authorization is zero; do not change it to “OK” based on a validator PASS.
-- The H79-ORIENT submission note is 128 characters in its run card (under the stated 140-character limit); its file name and path are recorded there.
+- The H80 submission note is 94 characters in its run card (under the stated 140-character limit); its file name and path are recorded there.
 - `README.md` retains the full project prompt as requested. Its curated primary link is H77L by `docs/data/lanes.json`; the individual lane writeups are historical evidence, and this report is the current repository review. No official non-GitHub page was freshly fetched in this audit, and no private submission receipt or authenticated competition data was available. Official-source links below are supplied for manual verification, not cited as newly checked facts.
-- User-provided score figures for individual family files are not organizer-confirmed receipts. The H79-ORIENT and H79-RH values above are local HOLDOUT-DTI measurements, not leaderboard scores. The repo's reported top public leaderboard value must be checked on the official page before asserting it is current.
+- User-provided score figures for individual family files are not organizer-confirmed receipts. The H80 value above is local HOLDOUT-DTI, not a leaderboard score. The repo's reported top public leaderboard value must be checked on the official page before asserting it is current.
 
 ## New hypotheses to consider — not experimentally tested
 
@@ -63,14 +63,15 @@ The list below is a screening queue, not a claim of novelty or expected score ga
   "holdout_dti": {
     "evidence_label": "HOLDOUT-DTI",
     "evaluator_version": "gems57-pooled-hide-v2",
-    "primary_seed": 30,
-    "withheld_positive_pixels": 11342,
-    "score": 0.094506956,
-    "ci95": [0.076558197, 0.112843654],
-    "secondary_seed20": {
-      "withheld_positive_pixels": 11321,
-      "score": 0.089063297,
-      "ci95": [0.072384221, 0.105355292]
+    "withheld_positive_pixels": 11319,
+    "score": 0.095796681,
+    "ci95": [0.088183461, 0.103247974],
+    "random_control": {
+      "evidence_label": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "withheld_positive_pixels": 11319,
+      "score": 0.014885619,
+      "ci95": "not recorded"
     },
     "local_comparator": {
       "evidence_label": "HOLDOUT-DTI",
@@ -82,21 +83,21 @@ The list below is a screening queue, not a claim of novelty or expected score ga
     }
   },
   "correlation_overlap_vs_registry": {
-    "label": "REGISTRY-MEASUREMENT (inherited H79-ORIENT receipt)",
-    "surface_max_abs_spearman": 0.003901797,
-    "final_dots_max_forward_3px_overlap": 1.0,
-    "registry_rasters_checked_of_expected": "13/812",
-    "verdict": "duplicate-stop; scan incomplete; uniqueness not cleared"
+    "label": "LOCAL-REGISTRY-MEASUREMENT (19 TIFFs checked; not full-family registry)",
+    "surface_spearman": "not recorded in H80 run card",
+    "final_dots_max_forward_3px_overlap": 0.981583333,
+    "overlap_witness": "gems77-h77-urank-curvature-0d868dc271bb-research.tif",
+    "full_registry_scan": "not performed; no uniqueness clearance"
   },
-  "raster_sha256": "745dbaa427bc1edaf477b3d0b4847b8be8d30d396106a61b1318a8726599be8e",
+  "raster_sha256": "bab170ed60ab7e1a8afbfad69386a8266191fa4864ac3abac5b6290b7d25bc57",
   "validator_output": {
     "local_readback": "PASS: one-band float32; no NaN/Inf; values [0,1]; CRS/shape/transform match data/bridge/sample_submission.tif; ZIP contains exactly one TIFF",
     "official_grid_provenance": "not authenticated in this audit",
     "portal_acceptance": "not confirmed",
     "submission_authorization": "NOT OK TO SUBMIT; 0 files authorized"
   },
-  "submission_name": "gems79-orient-persistence-37654dots-20261021-4abff47886 (existing research artifact; not generated in this audit)",
-  "submission_note": "H79 cross-sensor scale-persistent orientation confluence; 3-field Gaussian edge axes, 37654 dots; HOLDOUT-DTI seed20/30 recorded",
+  "submission_name": "gems77-h80-riedel-wingcrack-tips-20261021-zeros (existing research artifact; not generated in this audit)",
+  "submission_note": "H80 Riedel 15/75deg tip rays; fold-fair HOLDOUT negative expected; research only DO NOT SUBMIT",
   "verdict": "negative"
 }
 ```

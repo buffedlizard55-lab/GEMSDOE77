@@ -188,3 +188,25 @@ def test_negative_lanes_are_not_recommended_or_promoted_on_entry_page():
         assert 'not approved' in txt, subpage
         assert 'lane verdict: promote' not in txt, subpage
         assert 'recommended for drivendata upload' not in txt, subpage
+
+
+def test_h80_latest_candidate_is_in_inventory_and_fails_closed():
+    import hashlib
+    card=json.loads((ROOT/'evidence/h80_run_card.json').read_text())
+    lanes=json.loads((DOC/'data/lanes.json').read_text())['lanes']
+    lane=next(x for x in lanes if x['lane'].startswith('H80:'))
+    tif=DOC/lane['file']
+    home=(DOC/'index.html').read_text()
+    auth=json.loads((DOC/'data/submission-authorization.json').read_text())
+    assert tif.is_file() and hashlib.sha256(tif.read_bytes()).hexdigest()==card['raster_sha256']==lane['sha256']
+    assert lane['run_card']=='evidence/h80_run_card.json'
+    assert lane['verdict']=='negative' and lane['protocol_unique'] is False
+    assert lane['selector_approved'] is False and card['safe_to_submit'] is False
+    assert card['validator']['ok'] and card['correlation_overlap_vs_registry']['max_3px_overlap']>0.70
+    assert lane['holdout_evaluator_version']=='gems57-pooled-hide-v2'
+    assert lane['holdout_positive_pixels']==11319 and lane['holdout_dti_hide_v2']==card['holdout_dti']['value']
+    assert len(lane['note'])<=140 and lane['note']==card['note']
+    assert tif.name in home and 'H80: latest negative research candidate' in home
+    assert 'OK TO SUBMIT: NO' in home and 'Do not submit.' in home
+    assert auth['repository_authorized_file_count']==0
+    assert any(x['lane'].startswith('H80:') and not x['authorized_to_submit'] for x in auth['artifacts'])

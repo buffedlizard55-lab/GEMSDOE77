@@ -22,6 +22,7 @@ LB = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboa
 PD = "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
 NAV = [("index.html", "Start here"), ("release-review.html", "Release safety review"), ("executive-summary.html", "How to submit"),
+       ("h80.html", "H80 · research-only"),
        ("h79-orient.html", "H79-ORIENT · negative"), ("h79-orient-executive-summary.html", "H79-ORIENT guide"),
        ("h79.html", "H79-BB · research-only"),
        ("h79-radhalo.html", "H79-RH · negative"),
@@ -74,6 +75,13 @@ def main():
     sub = jload("docs/data/h78_submission.json")
     lag_card = jload("evidence/h77l_run_card.json")
     orient_card = jload("evidence/h79_orient_run_card.json")
+    h80_card = jload("evidence/h80_run_card.json")
+    h80_rows = [x for x in lanes["lanes"] if x["lane"].startswith("H80:")]
+    if len(h80_rows) != 1 or not h80_card or h80_card["verdict"] != "negative" or h80_card["safe_to_submit"]:
+        raise ValueError("H80 research lane missing from manifest/card or wrong clearance")
+    h80 = h80_rows[0]
+    if h80["sha256"] != h80_card["raster_sha256"] or h80["name"] != h80_card["submission_name"]:
+        raise ValueError("H80 site differs from frozen run card")
     orient_rows = [x for x in lanes["lanes"] if x["lane"].startswith("H79-ORIENT:")]
     if len(orient_rows) != 1 or not orient_card or orient_card["verdict"] != "negative" or orient_card["ok_to_submit"]:
         raise ValueError("H79-ORIENT research lane missing from manifest/card or wrong clearance")
@@ -98,6 +106,11 @@ def main():
     primary = next(x for x in lanes["lanes"] if x.get("primary"))
     # ---------------- status table (every file in the repository)
     def holdout_cell(x):
+        if x["lane"].startswith("H80:"):
+            h = h80_card["holdout_dti"]
+            return (f'<span class="chip warn">HOLDOUT-DTI {h["value"]:.4f} '
+                    f'(95% CI {h["ci95"][0]:.4f}–{h["ci95"][1]:.4f}; '
+                    f'{e(h["evaluator_version"])}; {h["n_withheld_positives"]:,} withheld); negative</span>')
         if x["lane"].startswith("H77L:"):
             h = lag_card["holdout_dti"]
             return (f'<span class="chip warn">HOLDOUT-DTI {h["dti"]:.4f} '
@@ -202,6 +215,13 @@ gates and currently says <b>NOT OK TO SUBMIT — 0 authorized files</b>.</p>"""
 <a class="btn" href="{e(orient['file'])}" download>Download H79-ORIENT .tif</a> <a class="btn alt" href="{e(orient['zip'])}" download>One-TIFF ZIP</a>
 <div class="chips"><span class="chip ok">Format preflight: PASS</span><span class="chip bad">Holdout: NEGATIVE</span><span class="chip bad">Registry: FAIL</span><span class="chip warn">Slots used: 0</span></div>
 <p class="small">SHA-256 <code>{e(orient['sha256'])}</code> · <a href="h79-orient.html">technical report</a> · <a href="h79-orient-executive-summary.html">H79-ORIENT guide</a> · <a href="evidence/h79_orient_run_card.json">run card</a></p></section>"""
+    h80_holdout = h80_card["holdout_dti"]
+    h80_zip = Path(h80["file"]).with_suffix(".zip").as_posix()
+    h80_box = f"""<section class="card" style="border:2px solid #b45309;background:#fffbeb;"><h2>⬇ H80: latest negative research candidate</h2>
+<p><b>OK TO DOWNLOAD: YES.</b> <b>OK TO SUBMIT: NO.</b> Riedel wing-crack tip rays are format-valid, but <b>HOLDOUT-DTI {h80_holdout['value']:.5f}</b> ({e(h80_holdout['evaluator_version'])}; {h80_holdout['n_withheld_positives']:,} withheld positives; 95% CI {h80_holdout['ci95'][0]:.5f}–{h80_holdout['ci95'][1]:.5f}) is below the retained 0.152718 HOLDOUT-DTI incumbent. Its local 3-px overlap is {h80_card['correlation_overlap_vs_registry']['max_3px_overlap']:.4f} with the selective-U raster; this exceeds the 0.70 stop. <b>Do not submit.</b></p>
+<a class="btn" href="{e(h80['file'])}" download>Download H80 .tif</a> <a class="btn alt" href="{e(h80_zip)}" download>One-TIFF ZIP</a>
+<div class="chips"><span class="chip ok">Format: PASS (local)</span><span class="chip bad">Holdout: NEGATIVE</span><span class="chip bad">Uniqueness: FAIL</span><span class="chip warn">Slots used: 0</span></div>
+<p class="small">SHA-256 <code>{e(h80['sha256'])}</code> · <a href="h80.html">technical report</a> · <a href="downloads/gems77-h80-riedel-wingcrack-tips-20261021-zeros.json">run card</a></p></section>"""
     facts = ""
     if card:
         h = card["holdout"]
@@ -219,6 +239,7 @@ gates and currently says <b>NOT OK TO SUBMIT — 0 authorized files</b>.</p>"""
 (DrivenData competition 306). The first box distinguishes downloading a file from permission to upload it. The table
 lists the reviewed research candidates, not every historical archived/NaN-twin file; see <a href="audit.html">archive audit</a>.</p>
 {glance}
+{h80_box}
 {dl}
 {orient_box}
 <h2>Reviewed downloadable candidates</h2>{table}
@@ -248,6 +269,7 @@ not proof that the specific file received that score or that another submission 
 be resolved, a candidate must beat a <em>matched</em> holdout incumbent, and a separate selector must approve it. No
 condition is met merely by passing a format check.</p>
 {glance}
+{h80_box}
 {dl}
 {orient_box}
 <h2>What the DrivenData submission form asks for</h2>
