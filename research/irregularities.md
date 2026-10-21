@@ -93,7 +93,7 @@ computed this session from SHA-pinned bytes.
   continuous priors, since the literal gate cannot distinguish duplication
   from density.
 
-## IR-79-01 — Initial H79 holdout placement excluded the hidden component
+## IR-79O-01 — Initial H79 holdout placement excluded the hidden component
 - **Evidence [MEASURED]:** the first runner version required holdout dots to be
   more than 3 px from the full catalogue. Because the hidden positives are
   catalogue components withheld from training, all emitted dots were excluded
@@ -106,7 +106,7 @@ computed this session from SHA-pinned bytes.
   `evaluate_holdout.py`/`submission_writer.py`. Re-ran the fixed three-
   experiment plan; corrected scores are in `evidence/h79_orient_run_card.json`.
 
-## IR-79-02 — Registry snapshot incomplete and dense witness universal
+## IR-79O-02 — Registry snapshot incomplete and dense witness universal
 - **Evidence [MEASURED]:** local exact comparisons covered 13 TIFFs versus 812
   expected. The pinned dense witness has positive support across the allowed
   footprint and produces forward 3-pixel overlap `1.000` before placement and
@@ -117,7 +117,7 @@ computed this session from SHA-pinned bytes.
   not OK to submit, and no weekly slot was used. The GitHub API limitation and
   owner-mirror provenance are disclosed in the website and run card.
 
-## IR-79-03 — H79 is a negative research artifact, not a promotion
+## IR-79O-03 — H79 is a negative research artifact, not a promotion
 - **Evidence [MEASURED]:** primary `H79_plus_raw` is `0.089063 HOLDOUT-DTI`
   (seed 20; 95% CI `[0.072384, 0.105355]`; 11,321 withheld positives) and
   `0.094507 HOLDOUT-DTI` (seed 30; 95% CI `[0.076558, 0.112844]`; 11,342

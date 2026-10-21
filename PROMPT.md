@@ -99,9 +99,10 @@ answer to build the lane's candidate. Verify line by line; no hallucinations.
 ## Submission mechanics (must stay obvious on the site)
 
 Single-band float32 GeoTIFF (or ZIP with exactly one), same CRS/shape/
-geotransform as the sample submission, values in [0, 1]. The portal error
-"Predicted values must be in range [0, 1]" is permanently fixed by the shared
-fail-closed writer (all-finite, `nodata=None`, on-disk re-validation). Every
+geotransform as the sample submission, values in [0, 1]. The earlier portal error
+"Predicted values must be in range [0, 1]" had an unverified cause. The shared
+fail-closed writer now produces an all-finite `[0,1]` readback with `nodata=None`;
+that local check does not prove portal acceptance (no H77L upload/receipt). Every
 candidate needs a unique name and a ≤140-char Note-field text. The site's
 first screen must state download/submit status in one glance; the executive
 summary explains exactly how to submit a *promoted* file.

@@ -664,9 +664,9 @@
   "reason": "Negative: primary HOLDOUT-DTI is below the retained 0.152718 incumbent, the dense witness fires the literal registry gate, registry coverage is incomplete, and no organizer score is claimed; format is locally valid for download.",
   "elapsed_seconds": 374.8,
   "irregularity_refs": [
-    "IR-79-01",
-    "IR-79-02",
-    "IR-79-03"
+    "IR-79O-01",
+    "IR-79O-02",
+    "IR-79O-03"
   ],
   "superseded_runner_evidence": "evidence/h79_orient_superseded_zero_bug.json"
 }

@@ -75,7 +75,7 @@ measurements, not organizer scores.
 
 The runner initially logged zeros for every arm because it excluded holdout
 placement using distance to the full catalogue, which includes the hidden
-component. That was an implementation error, recorded as IR-79-01; the shared
+component. That was an implementation error, recorded as IR-79O-01; the shared
 evaluator and preregistered method were not changed. The corrected runner uses
 distance to visible catalogue cells for holdout placement and re-ran the fixed
 three-experiment plan. The final format-valid artifact is

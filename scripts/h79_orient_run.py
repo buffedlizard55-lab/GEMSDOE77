@@ -247,7 +247,7 @@ def allocate_by_fold(surface: np.ndarray, folds: list[dict], grid: G.Grid,
     # stay away from the *visible* catalogue by the fixed 3 px collar. Using
     # distance to the full catalogue here would exclude the hidden positives
     # themselves and force every valid holdout DTI to zero (a detected bug in
-    # the first H79 draft; IR-79-01).
+    # the first H79 draft; IR-79O-01).
     allowed = []
     for f in folds:
         d_visible = ndimage.distance_transform_edt(~f["visible"]).astype(np.float32)
@@ -315,7 +315,7 @@ def evaluate_seed(stack: np.ndarray, h79: np.ndarray, grid: G.Grid, seed: int,
     }
     summary["fixed_emission"] = {"budget": BUDGET, "minimum_separation_px": MIN_SEP,
                                   "catalogue_exclusion_px": CAT_EXCLUSION}
-    json_dump(ROOT / "evidence" / f"h79_holdout_seed{seed}.json", {
+    json_dump(ROOT / "evidence" / f"h79_orient_holdout_seed{seed}.json", {
         "evidence_class": "HOLDOUT-DTI",
         "evaluator_version": EH.VERSION,
         "implementation_sha256": EH.implementation_hashes(),
@@ -403,7 +403,7 @@ def audit_against_local_registry(surface: np.ndarray, grid: G.Grid, label: str) 
         out["max_forward_overlap_3px"] = None
     out["pass_on_checked_subset"] = bool(out["surface_duplicate_count"] == 0 and out["dot_duplicate_count"] == 0)
     out["protocol_unique"] = bool(out["complete_accessible_scan"] and out["pass_on_checked_subset"])
-    json_dump(ROOT / "evidence" / f"h79_registry_{label}.json", out)
+    json_dump(ROOT / "evidence" / f"h79_orient_registry_{label}.json", out)
     return out
 
 
@@ -520,7 +520,7 @@ def package_candidate(surface: np.ndarray, grid: G.Grid, registry_surface: dict,
         "experiments_run": 3,
         "verdict": receipt["metadata"]["verdict"],
         "reason": "Negative: primary HOLDOUT-DTI is below the retained 0.152718 incumbent, the dense witness fires the literal registry gate, registry coverage is incomplete, and no organizer score is claimed; format is locally valid for download.",
-        "irregularity_refs": ["IR-79-01", "IR-79-02", "IR-79-03"],
+        "irregularity_refs": ["IR-79O-01", "IR-79O-02", "IR-79O-03"],
         "superseded_runner_evidence": "evidence/h79_orient_superseded_zero_bug.json",
     }
     json_dump(ROOT / "evidence" / "h79_orient_run_card.json", card)

@@ -21,6 +21,8 @@ jobs:
       - run: python scripts/build_site.py
       - run: python scripts/lia_build_site.py
       - run: python scripts/build_home.py
+      - run: python scripts/release_gate.py --verify-fail-closed
+      - run: python scripts/verify_all.py
       - run: python -m pytest -q
       - name: Ensure model experiment stays stopped
         run: |
