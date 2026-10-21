@@ -1,0 +1,13 @@
+{
+  "evidence_class": "REGISTRY-MEASUREMENT",
+  "witness_file": "/home/user/GEMSDOE77/.cache/registry/dense_witness.tif",
+  "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+  "positive_pixels": 5167373,
+  "allowed_pixels": 5106385,
+  "uncovered_allowed_pixels": 0,
+  "covered_allowed_fraction": 1.0,
+  "universal_overlap_blocker": true,
+  "overlap_limit": 0.7,
+  "support_definition": "finite prediction > 0 (inherited literal support rule)",
+  "implication": "Every nonempty candidate dot set in the allowed domain has forward overlap 1.0 with this prior; therefore it cannot pass the 0.70 gate."
+}

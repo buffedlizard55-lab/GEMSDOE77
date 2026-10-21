@@ -1,0 +1,90 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Scientific assessment · GEMS / 77</title><meta name="description" content="Auditable fault-detection research. Download the locally validated research GeoTIFF. Not approved for competition submission.">
+<link rel="stylesheet" href="assets/site.css"><script defer src="assets/site.js"></script></head><body>
+<header><div class="header"><a class="brand" href="index.html">GEMS / 77 <span>Structural discovery lab</span></a><nav aria-label="Main"><a href="index.html">Overview</a><a href="executive-summary.html">Submission guide</a><a href="research.html" aria-current="page">Research</a><a href="sources.html">Source feed</a><a href="audit.html">Audit trail</a></nav></div></header>
+<main><div class="eyebrow">Research / one hypothesis tested</div><h1>No claimed breakthrough.<br>A measured next step.</h1><div class="notice">All results below are <strong>HOLDOUT-DTI</strong>, evaluator gems57-pooled-hide-v2, 58,731 withheld positives, paired physical-block conditional 95% intervals. Not organizer scores.</div>
+<div class="table-wrap"><table><thead><tr><th>Feature / arm</th><th>HOLDOUT-DTI</th><th>95% CI</th><th>Hidden positives</th></tr></thead><tbody><tr><td>K</td><td>0.050237</td><td>0.044863–0.055833</td><td>58,731</td></tr><tr><td>Th</td><td>0.051969</td><td>0.046521–0.057839</td><td>58,731</td></tr><tr><td>U</td><td>0.053031</td><td>0.047824–0.058948</td><td>58,731</td></tr><tr><td>absolute_selective_U</td><td>0.060957</td><td>0.055812–0.066544</td><td>58,731</td></tr><tr><td>principal_curvature</td><td>0.056720</td><td>0.051725–0.062112</td><td>58,731</td></tr><tr><td>anisotropy</td><td>0.067855</td><td>0.061361–0.074382</td><td>58,731</td></tr><tr><td>common_mode_curvature</td><td>0.053050</td><td>0.048270–0.057774</td><td>58,731</td></tr><tr><td>candidate</td><td>0.068042</td><td>0.062229–0.074148</td><td>58,731</td></tr><tr><td>constant_001</td><td>0.010351</td><td>0.010150–0.010526</td><td>58,731</td></tr></tbody></table></div>
+<p class="fine">Maximum per-feature/quadrant AUC = 0.52630 (LEAKAGE-CANARY diagnostic, not a score); no AUC exceeded the preregistered 0.90 threshold. Low AUC is not proof of zero leakage.</p>
+<div class="prose"><h1>Scientific interpretation and evidence boundaries</h1>
+<h2>What explains the reported H33 result?</h2>
+<p>The supplied H33 result is <strong>an unverified user claim</strong>, not ORGANIZER-CONFIRMED evidence. No authenticated submission-page receipt or current leaderboard was accessed. The prompt also supplies inconsistent current-leader claims. We cannot establish a current record or claim that this pilot beats it.</p>
+<p>We can establish what the rasters actually changed. The independent byte/readback audit in <a href="evidence/prior_forensics.json">prior_forensics.json</a> uses the pinned template registry, not a reconstruction from filenames:</p>
+<ul>
+<li>D2.8 has 44,090 positive pixels; H27 has 40,199; H33 has 37,654. These are <strong>raster measurements, not scores</strong>.</li>
+<li>H33 is <strong>exactly D2.8 filtered to catalogue distance greater than 2 pixels</strong>. No points were added. H27 removes the 1-pixel-distance ring; H33 additionally removes the square-grid diagonal and 2-pixel ring.</li>
+<li>Thus the observed innovation in this comparison is catalogue-adjacent pruning, not evidence of a newly learned geothermal process. The H33 filename's physics-sounding label is not evidence of causal physics.</li>
+</ul>
+<p>The metric explains a <em>possible</em> benefit, not a proven causal explanation of the hidden leaderboard result. Let T be weighted truth coverage, F weighted false positives, and K the number of hidden truth pixels. With the shared alpha/beta values, DTI = T / (0.2T + 0.2F + 0.8K). Removing a prediction can improve DTI if it removes appreciable false-positive weight while sacrificing little marginal truth coverage. Predictions near a mapped trace may be redundant or lie in already mapped terrain rather than the unmapped target class. That is plausible under the organizer masking description transcribed by the template, but we could not independently re-read the current portal. It is not a theorem that a 2-pixel buffer is optimal, nor that the reported gain must generalize.</p>
+<p>Sparse placement can avoid paying repeated FP cost for redundant nearby predictions while retaining triangular-kernel coverage. However, 300 m is the kernel <strong>radius</strong>, not a guaranteed spatial accuracy or a positive-distance plateau: the kernel reaches zero at that radius. Coarse parameter sweeps against a public leaderboard can also overfit. There is no defensible projection of a better public score from these observations alone.</p>
+<h2>Can we do better?</h2>
+<p>In principle yes; this run supplies <strong>no evidence of doing so</strong>. Catalogue-hidden recovery and hidden organizer mapping differ in sampling, mapping effort and target prevalence. A fixed catalogue-conditioned H33 file cannot serve as a fair hide-and-recover control: masking all original catalogue cells before withholding would erase the positives being tested. We do not score that file on catalogue labels or present it as an incumbent holdout best.</p>
+<p>A future selector needs a fold-rebuilt incumbent, using visible faults only, evaluated with the same domain, mask, kernel, pooled terms and block bootstrap as each candidate. A paired improvement interval should exclude zero before spending a scarce slot. The present ablation improvement interval includes zero.</p>
+<h2>What H77 tests — and what it does not</h2>
+<p>The exploratory idea is to suppress shared K/Th rank-intensity variation and test the <strong>shape</strong> of the U-specific residual instead of absolute radiometric brightness. A fracture might guide fluids or sediment redistribution that leaves a narrow contrast even without a mapped scarp. This is a <strong>hypothesis</strong>, not an official-source-established interpretation of these particular pixels.</p>
+<p>The cached channels are independently percentile-quantized. <code>(U - (K+Th)/2)</code> therefore has no concentration units; it is neither a U/K ratio nor demonstrated uranium enrichment. The Hessian's strongest absolute eigenvalue times anisotropy emphasizes narrow curvature responses, including both positive and negative residual polarity. Gaussian sigma and boundary erosion were fixed before evaluating labels. No catalogue distance, fault orientation, fault density, well-to-fault distance or existing submission is a feature.</p>
+<p>Groundwater redox fronts and fluvial heavy-mineral sorting are named alternative explanations; lithologic contacts, variable regolith cover, flight-line leveling and quantization can also generate non-fault edges. The <a href="geodawn-report-mirror.txt">mirrored GeoDAWN contractor report</a> describes acquisition, altitude corrections, leveling and radiometric channels. This copy is an owner-cached text extraction, <strong>not newly authenticated official literature</strong>. It supports an acquisition-artifact caution, not a claim that H77 detects geothermal alteration. Direct literature verification and field interpretation remain incomplete because the official source hosts are inaccessible here.</p>
+<h2>Validation contract</h2>
+<ul>
+<li>Reuse the pinned template's <code>gems57.spatial.folds</code>, <code>evaluate_holdout.py</code>, metric and writer without changes.</li>
+<li>Four fixed, label-blind quadrants. Entire intersecting 8-connected catalogue components are hidden, including their out-of-quadrant tails. An 80-pixel training buffer is recorded. This label-free pilot does not fit on the training domain.</li>
+<li>Features and normalization depend only on radiometric covariates. The holdout uses each fold's <strong>visible</strong> faults for exact masking; final research export masks the full known catalogue.</li>
+<li>Erode radiometric support by 10 pixels. The holdout is conditional on that domain; unsupported edges are not silently scored as well-predicted.</li>
+<li>Test each input and derived feature alone for AUC and HOLDOUT-DTI. AUC uses catalogue-zero proxies, not verified fault absence, and is a diagnostic, <strong>not a competition score</strong>.</li>
+<li>Pool additive TP/FP/FN terms, then calculate DTI. Resample aligned physical 20 km blocks jointly across all arms for the paired conditional 95% intervals. This is not an organizer-score interval and does not include all catalogue/selection uncertainty.</li>
+<li>The final TIFF is not scored against the fully masked catalogue. HOLDOUT-DTI characterizes the hide/recover procedure, not a misleading readback score on the known faults.</li>
+</ul>
+<h2>Literal uniqueness blocker</h2>
+<p>The re-read 17GEMSDOE continuous registry raster is positive on <strong>every footprint cell</strong>. Under the unchanged template's literal definition of support (<code>finite and &gt;0</code>), any nonempty allowed candidate has forward 3-pixel overlap 1.0 with that raster. The <a href="evidence/registry_saturation.json">saturation certificate</a> proves this for the full allowed footprint, not a random sample. One valid witness suffices to reject; a partial inventory can never certify acceptance.</p>
+<p>This is a protocol-design incompatibility, not evidence that H77 and the old model have the same geological ranking. Their rank correlation is low. We do not invent a density exemption, switch to mutual overlap, exclude the witness, or generate dots after the stop. A selector/owner must resolve the representation policy in the shared template/protocol before any nonempty entry can pass this literal rule.</p>
+<h2>Prize target versus geothermal science</h2>
+<p>The <a href="https://github.com/drivendataorg/gems-prize-reference-solution/blob/aebe92f7c8a990f0e3443451b7a825d9afd6336b/unet-mc-cv-reference-solution.ipynb">official reference notebook</a> explicitly describes fault detection with U-Net and Monte Carlo cross-validation, and uses Tversky-loss weights. It does not establish vent locations, hydraulic connectivity, subsurface heat or economic resources. A fault prediction should never be advertised as a discovered geothermal vent. This repository preserves a negative structural-detection pilot; it is not a resource assessment.</p><div class="line"></div><h1>Preregistered candidate hypotheses — before implementation</h1>
+<p>These are untested mechanisms, not asserted discoveries. No method existed in GEMSDOE77 at audit (README title only). Novelty relative to the entire family is <strong>not proven</strong>. Cached layers below are obtainable from the public pinned template; provenance is owner-derived, not independently authenticated against the official release. No new external data is required for these exploratory tests. Implementation costs are engineering estimates, not measured runtimes or scores.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Rank by expected usefulness (qualitative)</th>
+<th>Layers and signature</th>
+<th>Why potentially off-catalogue</th>
+<th>Distinction from inspected family methods</th>
+<th>Main non-fault mimic</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 — uncertain, prioritized</td>
+<td>Cached GeoDAWN K/Th/U: subtract K-Th common mode from U rank-intensity; anisotropic Hessian curvature at 200 m</td>
+<td>Selective transport might trace a fracture without a preserved scarp</td>
+<td>U-specific common-mode cancellation, not the inspected radiometric amplitude fusion, radiometric-contact gate, or H33 catalogue pruning</td>
+<td>Groundwater redox front, fluvial heavy-mineral sorting</td>
+<td>Low; CPU, cached pack available</td>
+</tr>
+<tr>
+<td>2 — uncertain</td>
+<td>Cached GeoDAWN K/Th/U: lagged cross-strike gradient correlation; penalize zero-lag coincidence</td>
+<td>A displaced alteration halo could flank a buried structure</td>
+<td>Tests spatial phase offset, not simple multichannel overlap</td>
+<td>Sediment/soil boundary displaced by hillslope transport</td>
+<td>Medium; pack available</td>
+</tr>
+<tr>
+<td>3 — uncertain</td>
+<td>Cached upward-continued magnetic field + GeoDAWN U: magnetic curvature with antisymmetric U residual on opposite flanks</td>
+<td>Concealed contact possibly guides transport while surface mapping lacks a scarp</td>
+<td>Requires opposite flank signs, not same-pixel agreement</td>
+<td>Non-fault intrusive contact</td>
+<td>Medium; cached extensions pack obtainable in template</td>
+</tr>
+<tr>
+<td>4 — uncertain</td>
+<td>Cached 10 m-derived geomorphic reduction + radiometric pack: knickzone response only where U residual persists across adjacent drainage divides</td>
+<td>Persistent cross-basin geochemical signal could distinguish structure from local erosion</td>
+<td>Cross-divide transport condition, not just paired knickpoints</td>
+<td>Regional lithologic boundary</td>
+<td>High; cached reductions obtainable, topology interpretation needs care</td>
+</tr>
+</tbody>
+</table></div>
+<p>Only rank 1 is authorized in this run. The canary, pooled holdout, and literal surface uniqueness gate precede any dot placement. No budget/spacing tuning after looking at holdout. If the registry rejects the surface, stop; keep the negative result. Lower-ranked proposals are not implemented experiments.</p>
+<h2>Scope of the actual target</h2>
+<p>The organizer's official reference notebook describes <strong>fault detection</strong>, not direct geothermal-vent detection. A fault probability raster is not evidence of a viable geothermal reservoir or vent. Hydraulic permeability, temperature, and resource economics would require separate verification.</p></div></main><footer><span>Evidence before optimism. Maximize P(Win) · Own the Outcome.</span><span>Research, not a resource assessment. <a href="PROJECT_PROMPT.md">Standing request</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE77">Repository</a></span></footer></body></html>

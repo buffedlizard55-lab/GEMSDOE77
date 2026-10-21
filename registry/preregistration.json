@@ -1,0 +1,19 @@
+{
+  "registered_utc": "2026-10-21",
+  "lane": "H77 radiometric selective-U curvature after K/Th common-mode subtraction",
+  "assignment_irregularity": "No single method paragraph identifiable in supplied prompt; autonomous narrow lane, not a claimed assigned lane.",
+  "hypothesis": "Narrow, anisotropic curvature of U relative to K/Th rank-intensity may identify selective geochemical transport above unmapped fractures.",
+  "mimic": "Groundwater redox fronts and fluvial heavy-mineral sorting without a fault",
+  "inputs": ["cached geodawn_rad_u8.tif K,Th,U", "existing_faults.tif only for split/mask", "sample_submission.tif only for footprint/grid"],
+  "signature": "U/254 - (K/254+Th/254)/2; Gaussian Hessian at sigma 2 pixels; absolute principal curvature times Hessian anisotropy; normalize by label-free 99th percentile",
+  "physical_units_caveat": "Independently percentile-quantized channels; subtraction is a rank-intensity contrast, NOT a concentration ratio or calibrated uranium enrichment.",
+  "candidate_parameters": {"sigma_px": 2, "normalization_percentile": 99, "boundary_erosion_px": 10},
+  "controls": ["K-Th common-mode principal curvature", "constant 0.01 probability"],
+  "canaries": ["K", "Th", "U", "absolute_selective_U", "principal_curvature", "anisotropy", "common_mode_curvature", "candidate"],
+  "validation": "Unchanged gems57.spatial.folds: fixed quadrants, whole intersecting components hidden, 80 pixel buffer. No catalogue-derived features or model training. Finite support eroded 10 pixels. Pooled shared evaluator; paired 20km physical-block bootstrap, 1000 draws.",
+  "promotion": "No weekly slot. Require canaries <=0.90 AUC, literal uniqueness, complete registry, official input provenance and improvement over comparable best before selector.",
+  "registry_policy": "Unchanged template literal support >0. Stop on first confirmed duplicate witness; partial scan can prove rejection, never uniqueness. No mutual-overlap or density exemption.",
+  "retention": "If surface gate fails, retain exactly that surface as a locally validated research-only GeoTIFF; no dot placement, no additional experiments.",
+  "budget": {"maximum_experiments": 3, "maximum_hours": 2, "planned_experiments": 1},
+  "expected_improvement": "Unknown; hypotheses are ordinal priorities, never projected scores."
+}

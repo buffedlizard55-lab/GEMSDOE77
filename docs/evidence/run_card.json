@@ -1,0 +1,72 @@
+{
+  "hypothesis": "H77 selective-U curvature after K/Th common-mode subtraction",
+  "mechanism": "Anisotropic curvature of a label-free U minus K-Th rank-intensity residual; no old predictions used",
+  "non_fault_mimic": "Groundwater redox fronts and fluvial heavy-mineral sorting",
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "dti": 0.06804221930569511,
+    "ci95": [
+      0.06222907133733568,
+      0.07414839652802621
+    ],
+    "withheld_positive_pixels": 58731,
+    "tpw": 21716.888028091347,
+    "fpw": 1339198.3019403678,
+    "fnw": 37014.11197190865
+  },
+  "best_comparable_control": "anisotropy",
+  "paired_difference_to_best_control": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "delta": 0.00018730259396551596,
+    "ci95": [
+      -0.0009781470527181837,
+      0.0013254914320979978
+    ],
+    "withheld_positive_pixels": 58731
+  },
+  "canary_any_auc_above_090": false,
+  "registry": {
+    "scope": "Partial pinned template registry: rejection witness only, never uniqueness certification",
+    "complete": false,
+    "checked": 2,
+    "max_spearman": -0.0006582457393953083,
+    "max_forward_overlap_3px": 1.0,
+    "duplicate_count": 1,
+    "surface_gate": "FAIL",
+    "final_dot_gate": "NOT RUN \u2014 stopped before placement"
+  },
+  "raster_sha256": "9489af2b7e1b06a249203d3c9d6dfe4ed469647f59ebe3a5ffe9c50c67e46b42",
+  "validator": {
+    "single_band": true,
+    "dtype_float32": true,
+    "dimensions_3730x3292": true,
+    "crs_epsg_32611": true,
+    "transform_matches_sample_submission": true,
+    "no_nan_anywhere": true,
+    "no_inf_anywhere": true,
+    "no_sentinel_values": true,
+    "range_0_1_guaranteed": true,
+    "min_ge_0": true,
+    "max_le_1": true,
+    "in_footprint_all_finite": true,
+    "in_footprint_range_0_1": true,
+    "outside_footprint_zero": true,
+    "zero_dots_on_mapped_catalogue": true
+  },
+  "submission_name": "gems77-h77-urank-curvature-0d868dc271bb-research",
+  "note": "H77 selective-U rank curvature; research-only, literal registry gate failed; do not submit.",
+  "file": "docs/downloads/gems77-h77-urank-curvature-0d868dc271bb-research.tif",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "byte_novel_within_checked_registry": true,
+  "protocol_unique": false,
+  "approved_for_weekly_slot": false,
+  "weekly_slots_used": 0,
+  "organizer_confirmed_score": null,
+  "verdict": "negative",
+  "reason": "Literal surface duplicate/overlap stop or incomplete registry; no slot approval. Research-only TIFF.",
+  "experiments_run": 1,
+  "elapsed_seconds": 41.72
+}
