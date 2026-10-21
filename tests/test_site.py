@@ -333,6 +333,37 @@ def test_current_preflight_review_does_not_claim_a_new_submission():
     assert card["raster_sha256"] is None and card["submission_name"] is None
     assert len(card["submission_note"]) <= 140
     assert card["holdout_dti"]["value"] is None
+    assert card["validator"]["listed_count"] == 30
+    assert "82/82" in text
+
+
+def test_current_branch_review_is_the_published_review_and_first_status():
+    home = (DOC / "index.html").read_text()
+    first_status = home.index('id="current-review-status"')
+    start_heading = home.index("<h1>Start here</h1>")
+    assert first_status < start_heading
+    status = home[first_status:start_heading]
+    for phrase in ("arena/0e06f51a-gemsdoe77", "OK TO DOWNLOAD", "NOT OK TO SUBMIT",
+                   "STOP_UNIVERSAL_DUPLICATE", "5,106,385/5,106,385", "82/82",
+                   "UNSCORED", "0.2747 is a model projection"):
+        assert phrase in status, phrase
+    assert "Earlier review #49" not in home
+    latest = (DOC / "review-latest.html").read_text()
+    assert "Current repository review" in latest
+    assert "OWNER-REPORT" in latest and "NOT RUN" in latest
+    assert "review-2026-10-21-arena-0e06f51a.md" in (ROOT / "scripts/build_home.py").read_text()
+    card = json.loads((ROOT / "evidence/current_review_run_card.json").read_text())
+    assert card["schema"] == "gems-current-session-review-v1"
+    assert card["branch"] == "arena/0e06f51a-gemsdoe77"
+    assert card["new_tiff_generated"] is False and card["raster_sha256"] is None
+    assert card["holdout_dti"]["value"] is None and card["experiments_run"] == 0
+    assert card["weekly_slots_used"] == 0 and card["repository_authorized_file_count"] == 0
+    assert card["ok_to_download_existing_research_files"] is True and card["ok_to_submit"] is False
+    assert len(card["submission_note"]) == card["submission_note_length"] <= 140
+    assert (DOC / "evidence/current_review_run_card.json").read_bytes() == (ROOT / "evidence/current_review_run_card.json").read_bytes()
+    audit = json.loads((ROOT / "evidence/listed_download_audit.json").read_text())
+    assert audit["listed_count"] == card["validator_output"]["existing_listed_primary_tiff_readback"]["listed_count"] == 30
+    assert audit["all_format_pass"] is card["validator_output"]["existing_listed_primary_tiff_readback"]["all_format_pass"] is True
 
 
 def test_lia_and_parallel_h28_metadata_do_not_collide():

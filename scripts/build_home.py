@@ -24,7 +24,7 @@ REPO = "https://github.com/buffedlizard55-lab/GEMSDOE77"
 LB = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
 PD = "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
-NAV = [("review-latest.html", "Latest review"), ("metric-review.html", "Corrected H33 analysis"), ("index.html", "Start here"), ("tsd.html", "H77-TSD · inspection"), ("h77v.html", "H77V (Vent-Advect)"), ("h82-texture.html", "H82-TEXTURE · negative"), ("h82rank.html", "H82R · radiometric negative"), ("preflight-review.html", "Current readiness review"), ("h82-executive-summary.html", "H82 · cool-outlet negative"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
+NAV = [("review-latest.html", "Latest review"), ("metric-review.html", "Corrected H33 analysis"), ("index.html", "Start here"), ("tsd.html", "H77-TSD · inspection"), ("h77v.html", "H77V (Vent-Advect)"), ("h82-texture.html", "H82-TEXTURE · negative"), ("h82rank.html", "H82R · radiometric negative"), ("preflight-review.html", "Pinned preflight proof"), ("h82-executive-summary.html", "H82 · cool-outlet negative"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
        ("h77e-knick.html", "H77E-Knick · 0/816 firings"), ("release-review.html", "Release safety review"), ("executive-summary.html", "How to submit"),
        ("h81.html", "H81 · slip-cone"), ("h82.html", "H82 · fault collar"),
        ("h83.html", "H83 · fault collar"),
@@ -159,6 +159,45 @@ def main():
     if sum(bool(x.get("primary")) for x in lanes["lanes"]) != 1:
         raise ValueError("exactly one download must be featured")
     primary = next(x for x in lanes["lanes"] if x.get("primary"))
+    current_card = jload("evidence/current_review_run_card.json")
+    registry_receipt = jload("evidence/registry_preflight.json")
+    download_receipt = jload("evidence/listed_download_audit.json")
+    source_feed = jload("docs/source-health.json")
+    authorization = jload("docs/data/submission-authorization.json")
+    if not all((current_card, registry_receipt, download_receipt, source_feed, authorization)):
+        raise ValueError("Current review evidence is incomplete; refusing to publish stale status")
+    if (current_card["branch"] != "arena/0e06f51a-gemsdoe77"
+            or current_card["new_tiff_generated"] is not False
+            or current_card["ok_to_submit"] is not False
+            or registry_receipt["decision"] != "STOP_UNIVERSAL_DUPLICATE"
+            or registry_receipt["proof"]["allowed_pixels"] != 5106385
+            or download_receipt["listed_count"] != 30
+            or download_receipt["all_format_pass"] is not True
+            or authorization["repository_authorized_file_count"] != 0
+            or len(source_feed["repos"]) != 82
+            or any(r["status"] != "retrieved" for r in source_feed["repos"])):
+        raise ValueError("Current status receipts disagree; refusing to publish the landing page")
+    source_count = len(source_feed["repos"])
+    listed_count = download_receipt["listed_count"]
+    source_time = source_feed["checked_utc"]
+    h33_url = "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/f62038b54dcb7767d4d997f80b033cdc3d42bef9/docs/index.html"
+    current_review_box = f"""<section class="card dl research" id="current-review-status"><h2>Current review — 21 October 2026 · branch <code>arena/0e06f51a-gemsdoe77</code></h2>
+<p class="verdict"><b>OK TO DOWNLOAD the {listed_count} listed primary TIFFs for inspection: YES.</b> <b>NOT OK TO SUBMIT any file.</b>
+The release authorization is <b>0 files</b>. This review generated no TIFF, ran no experiment or holdout, and used no weekly slot.
+The independent local format/integrity readback passes {listed_count}/{listed_count} listed primary files; this is not uniqueness or portal acceptance.</p>
+<p><b>Binding preflight:</b> <code>STOP_UNIVERSAL_DUPLICATE</code>. A pinned witness covers
+{registry_receipt['proof']['allowed_pixels']:,}/{registry_receipt['proof']['allowed_pixels']:,} allowed pixels, giving every nonempty candidate a forward-overlap lower bound of
+{registry_receipt['proof']['nonempty_subset_forward_overlap_lower_bound']:.1f} &gt; {registry_receipt['proof']['overlap_stop_threshold_strictly_greater_than']:.2f}.
+This is a one-witness rejection proof, not a full-registry scan or geological-similarity result.</p>
+<p><b>H33 score provenance:</b> the supplied 0.2778 file attribution remains OWNER-REPORT. GEMSDOE32's
+<a href="{h33_url}">pinned source page</a> labels the file <b>UNSCORED</b> and says there is no organizer score for its repository artifacts; its 0.2747 is a model projection, not a score. No live official leaderboard was checked.</p>
+<p><b>Source feed:</b> {source_count}/{source_count} configured owner-GitHub repository/page inventories retrieved at
+<code>{e(source_time)}</code>. This is not leaderboard verification, official-data validation, or full-registry uniqueness.</p>
+<a class="btn" href="review-latest.html">Read the three-pass current review</a>
+<a class="btn alt" href="evidence/current_review_run_card.json">Current JSON run card</a>
+<a href="data/submission-authorization.json">Authorization receipt</a> ·
+<a href="evidence/registry_preflight.json">Preflight proof</a> ·
+<a href="source-health.json">Source feed</a></section>"""
     # ---------------- status table (every file in the repository)
     def holdout_cell(x):
         if x["lane"].startswith("H77-TSD:"):
@@ -368,8 +407,8 @@ These are registry/format measurements, not scores or portal acceptance.</p>"""
 {copy("H77-TSD unique submission name (inspection reference — DO NOT UPLOAD)", tsub["name"])}
 {copy("H77-TSD short note <= 140 chars (inspection reference — DO NOT UPLOAD)", tsub["note"])}
 <p class="small">GeoTIFF SHA-256: <code>{e(tsub["tif_sha256"])}</code> · ZIP SHA-256: <code>{e(tsub["zip_sha256"])}</code> · <a href="evidence/run_card_tsd.json">Machine-readable Run Card (.json)</a></p></section>"""
-    body = f"""{tsd_box}{h82_banner}{rank_box}<h1>Start here</h1>
-<p><strong>Earlier review #49 generated no new TIFF; H82 above is a later negative research download. NOT OK TO SUBMIT.</strong> <a href="review-904a24d3.html">Earlier audit and corrected H33 analysis</a>.</p>
+    body = f"""{current_review_box}<h1>Start here</h1>
+<p><strong>Current review: no new TIFF generated; NOT OK TO SUBMIT any file.</strong> <a href="review-latest.html">Open the current three-pass review</a> · <a href="evidence/current_review_run_card.json">JSON run card</a>.</p>
 <p>This repository builds and audits fault-probability GeoTIFFs for the <a href="{COMP}">DOE GEMS Prize</a>
 (DrivenData competition 306). The first box distinguishes downloading a file from permission to upload it. The table
 lists the reviewed research candidates, not every historical archived/NaN-twin file; see <a href="audit.html">archive audit</a>.</p>
@@ -377,6 +416,7 @@ lists the reviewed research candidates, not every historical archived/NaN-twin f
 {dl}
 <p><a href="review-latest.html">Latest review: no new TIFF; independently verified duplicate-stop blocker</a> · <a href="metric-review.html">Corrected H33 analysis</a></p>
 {orient_box}
+{tsd_box}{h82_banner}{rank_box}
 <h2>Reviewed downloadable candidates</h2>{table}
 <div class="values"><b>Score provenance and slot limits.</b> The supplied 0.2778 attribution to H33,
 and leaderboard targets 0.3195 / 0.4413, are unverified claims in this review, not submission-page receipts.
@@ -396,21 +436,15 @@ not proof that the specific file received that score or that another submission 
     (D / "index.html").write_text(page("index.html", "Start here", body))
 
     # ---------------- general executive summary (how to submit)
-    guide = f"""<h1>Executive summary: how to submit — only AFTER approval</h1>
-{tsd_box}
-<p class="verdict"><b>NEW H82 file:</b> <a href="{e(h82['file'])}" download>Download the format-valid TIFF for inspection</a>;
-<b>NOT OK TO SUBMIT</b>. See <a href="h82-executive-summary.html">its test result and exact name/note</a>.
-This is a negative experiment, not a competition submission authorization.</p>
-<p class="verdict"><b>Today: NOT OK TO SUBMIT any file here.</b> The featured H80 file is explicitly
-<b>RESEARCH ONLY</b>. Download is for inspection, not permission to upload. Before spending a weekly feedback slot (check the current allowance on the submission page and
-<a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">official rules</a>), the shared uniqueness policy must
-be resolved, a candidate must beat a <em>matched</em> holdout incumbent, and a separate selector must approve it. No
-condition is met merely by passing a format check.</p>
+    guide = f"""{current_review_box}<h1>Executive summary: how to submit — only AFTER approval</h1>
+<p class="verdict"><b>Today: NOT OK TO SUBMIT any file here.</b> The release authorization lists 0 files and no selector has approved a slot.
+The featured H80 file and every other listed raster are research/inspection artifacts. Before any weekly feedback slot, the shared uniqueness policy must be resolved, a candidate must beat a matched holdout incumbent, and a separate selector must approve the exact artifact. A local format pass is not enough.</p>
 {glance}
-{rank_box}
 {dl}
-<p><a href="review-latest.html">Latest review: no new TIFF; independently verified duplicate-stop blocker</a> · <a href="metric-review.html">Corrected H33 analysis</a></p>
+<p><a href="review-latest.html">Current three-pass review</a> · <a href="evidence/current_review_run_card.json">Current review run card</a> · <a href="metric-review.html">Corrected H33 analysis</a></p>
 {orient_box}
+{tsd_box}{h82_banner}{rank_box}
+
 <h2>What the DrivenData submission form asks for</h2>
 <table><tr><th>Field</th><th>What to give it only after clearance</th></tr>
 <tr><td>File to submit</td><td>One <b>cleared</b> single-band float32 GeoTIFF <code>.tif</code> (or a ZIP containing exactly that one GeoTIFF),
@@ -759,25 +793,6 @@ def _write_h77e_knick():
 
 
 
-def _inject_h77e_knick_hero():
-    rc77e = jload("evidence/h77e/run_card.json")
-    if not rc77e:
-        return
-    sub = rc77e["submission_artifact"]
-    hero = f"""<section class="card dl"><h2>⬇ Earlier H77E-Knick Research Deliverable (0 / 816 Informative Firings · Dual-Seed Positive Holdout)</h2>
-<p class="verdict"><b>OK to download: YES</b> (15/15 <code>vendor/gems57</code> + 17/17 grid checks PASS, binary float32 in <code>[0, 1]</code>, <code>0</code> NaNs).<br>
-<b>Not OK to submit (NOT OK TO SUBMIT automatically — inspection only without human selector Policy I17 sign-off):</b>
-45 space-filling &ge;70%-halo archive heatmaps trigger literal overlap; across ALL <code>816</code> &lt;70%-halo portfolio rasters AND all <code>18</code> sparse GEMSDOE77 files, forward 3-px overlap has <b>0 firings</b> (<code>max = 0.66800 &le; 0.70</code>; local siblings <code>max = 0.42104 &le; 0.70</code>).<br>
-<b>Local HOLDOUT-DTI (<code>gems57-pooled-hide-v2</code>):</b> <code>0.126664</code> on Seed 20 (95% CI <code>0.111196–0.141749</code>; +0.0303 vs fold-fair H33) &amp; <code>0.124727</code> on Seed 30 (95% CI <code>0.109650–0.138262</code>; +0.0257 vs fold-fair H33); pure physics twin <code>0.155623</code> (Seed 20) / <code>0.154666</code> (Seed 30).</p>
-<a class="btn" href="downloads/{e(Path(sub["primary_geotiff"]).name)}" download>Download H77E-Knick .tif ({sub["file_bytes"]//1024} KB)</a>
-<a class="btn alt" href="downloads/{e(Path(sub["primary_zip"]).name)}" download>Single-TIFF .zip ({sub["zip_bytes"]//1024} KB)</a>
-<a class="btn alt" href="h77e-knick.html">Full H77E-Knick report &amp; figures →</a>
-<p class="small">name: <code>{e(sub["submission_name"])}</code> · sha256: <code>{e(sub["primary_geotiff_sha256"])}</code> · note: <code>{e(sub["submission_note"])}</code></p></section>"""
-    for pname in ("index.html", "executive-summary.html"):
-        ptxt = (D / pname).read_text()
-        ptxt = ptxt.replace("<h1>", hero + "<h1>", 1)
-        (D / pname).write_text(ptxt)
-
 def _write_h77g():
     h77g_card = jload("evidence/run_card_h77g.json")
     h77g_e1 = jload("evidence/h77g_e1_canary_surface.json")
@@ -863,11 +878,12 @@ Format-valid (15/15 checks, 0 NaN, values in [0,1], 37,654 binary dots) and info
 
 def write_review_pages():
     for source, output, title in (
-        ("docs/review-2026-10-21-60aafd45.md", "review-latest.html", "Latest repository review"),
+        ("docs/review-2026-10-21-arena-0e06f51a.md", "review-latest.html", "Current repository review — 2026-10-21"),
         ("research/why-h33-scored-02778.md", "metric-review.html", "Corrected H33 analysis"),
     ):
         body = markdown.markdown((ROOT / source).read_text(), extensions=["tables", "fenced_code"])
         (D / output).write_text(page(output, title, body))
+    shutil.copyfile(ROOT / "evidence/current_review_run_card.json", D / "evidence/current_review_run_card.json")
     for name in ("review_60aafd45_card.json", "review_60aafd45_verification.json"):
         shutil.copyfile(ROOT / "evidence" / name, D / "evidence" / name)
 
@@ -977,7 +993,6 @@ literal dense-witness gate (Policy I17) is fail-closed and this lane claims no e
 if __name__ == "__main__":
     main()
     _write_h77e_knick()
-    _inject_h77e_knick_hero()
     _write_h77g()
     write_review_pages()
 

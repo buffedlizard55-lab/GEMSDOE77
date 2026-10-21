@@ -8,7 +8,8 @@
   },
   "family_inventory": {
     "receipt": "docs/source-health.json",
-    "scope": "78 configured owner repositories, not authenticated score receipts"
+    "scope": "82 of 82 configured owner-GitHub repository/page inventories retrieved; not authenticated score receipts or a complete registry scan",
+    "checked_utc": "2026-10-21T17:53:40.244900+00:00"
   },
   "not_freshly_retrieved": [
     "DrivenData leaderboard/problem/data pages",

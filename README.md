@@ -1,34 +1,30 @@
-> **Latest review — branch `arena/60aafd45-gemsdoe77` (2026-10-21):** **OK TO DOWNLOAD FOR INSPECTION; NOT OK TO SUBMIT. No new TIFF was generated.** The dense registry witness was restored and independently verified to cover the entire allowed footprint, so the literal duplicate-stop rule blocks every nonempty candidate. No stopped lane was restarted and no weekly slot was used. [Review and ranked conditional hypotheses](docs/review-2026-10-21-60aafd45.md) · [Corrected H33 reasoning](research/why-h33-scored-02778.md) · [existing research TIFF](docs/downloads/gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY.tif) · [how submission works only after approval](docs/executive-summary.html).
+> **Current review — branch `arena/0e06f51a-gemsdoe77` (2026-10-21):** **OK TO DOWNLOAD the 30 listed primary TIFFs for inspection; NOT OK TO SUBMIT any file.** Release authorization: `0` files. This review generated no TIFF, ran no experiment or holdout, and used `0` weekly slots. The pinned registry preflight is `STOP_UNIVERSAL_DUPLICATE`: its witness covers all `5,106,385` allowed pixels, so every nonempty candidate has a forward-overlap lower bound of `1.0` (> `0.70`). The refreshed GitHub source inventory is `82/82` at `2026-10-21T17:53:40Z`; this is not leaderboard verification. GEMSDOE32's pinned page labels H33 **UNSCORED** and calls `0.2747` a projection, so the `0.2778` file attribution remains OWNER-REPORT, not authenticated. [Current review and ranked conditional hypotheses](docs/review-2026-10-21-arena-0e06f51a.md) · [current homepage](docs/index.html) · [submission guide](docs/executive-summary.html) · [corrected H33 reasoning](research/why-h33-scored-02778.md).
+>
+> Older lane summaries and leaderboard observations below are historical; they do not override this current status.
 # GEMSDOE77 — DOE GEMS Prize: audited fault-detection research portfolio
 
 > Read at the start of every session. Standing brief: `PROMPT.md` (operative prompt; also appended below in full);
 > lane evidence: `evidence/`, `registry/`. Multi-pass rule: pass 1 implement + verify, pass 2 review and fix,
 > pass 3 re-check against the request, then PR and merge to `main` from the session branch only.
 
-## 🚦 Status at a glance — this session (lane H83, 2026-10-21)
+## Current status at a glance — branch `arena/0e06f51a-gemsdoe77`
 
-| Question | Answer |
+| Question | Current answer |
 |---|---|
-| Competition | DOE GEMS Prize (DrivenData #306): one single-band float32 GeoTIFF, or a ZIP containing exactly one; EPSG:32611; 3730×3292; 100 m pixels; transform (100, 0, 243350, 0, −100, 4508550); prediction values in [0, 1] |
-| Leaderboard (2026-10-21) | 0.4413 ORGANIZER-CONFIRMED (first place); owner-reported GEMSDOE32 file 0.2778 (no organizer receipt — attribution not authenticated) |
-| Unique TIF generated this session | `docs/downloads/gems77-h83-faultcollar-37553dots-20261021-a55f4c9c-zeros.tif` + one-TIFF `.zip`; 37,553 binary dots; SHA-256 `7f71739a2804bf2fa7199d30d512e0a267e4cfa2fdd0d32304b962db65b98662`. OK TO SUBMIT: NO — negative lane, inspection download only. Co-listed negative TIFF checksums on this screen: H82-TEXTURE `c571af22cb08db9cb8cfd6edf0108364d95b0c3bec8316d09d3dfd116531790e`; H82R `56debe682505bf2649f30d914c7b552dcf669bce4b902ce91eb3e5363031f115`; H82 cool-outlet `84b50d05eaba578c398c4c7ab720dbf5a46de29d63f4254eb02a8ba02a4a43df` — all **NOT OK TO SUBMIT**, OK to download for inspection |
-| OK to download? | **YES — for inspection** (direct link on `docs/index.html`, first screen; checksums shown on the page) |
-| OK to submit to the competition? | **NO.** HOLDOUT-DTI 0.1227 [0.1080, 0.1372] (seed 30; 11,342 withheld positives) vs random 0.0435 — significant (+0.079, CI excludes 0) but **below** the 0.152718 repository incumbent, so it cannot be expected to beat 0.2778. OK TO SUBMIT: NO — no lane in this session is clearance-approved; registry scan incomplete (0/812 indexed rasters accessible locally); 0 weekly slots used. |
-| Submission mechanics (only after clearance) | `docs/executive-summary.html` — form fields, the earlier "[0, 1]" portal error, ≤140-character Note, step-by-step |
+| Competition artifact contract | One single-band float32 GeoTIFF (or ZIP with exactly one TIFF), matching the sample grid (EPSG:32611, 3730×3292, 100 m, exact transform), finite values in [0, 1]. Local validity is not portal acceptance. |
+| New TIFF / experiment / holdout in this review | **None.** Candidate-independent preflight stopped before candidate features, experiment, holdout, placement, or writing. |
+| Existing downloads | **OK TO DOWNLOAD FOR INSPECTION** for the 30 listed primary TIFFs; the independent local format/integrity readback passes 30/30. This does not certify uniqueness or portal acceptance. |
+| Submission | **NOT OK TO SUBMIT any file.** Release authorization says 0 files; selector approval is absent; 0 weekly slots were used. |
+| Registry gate | `STOP_UNIVERSAL_DUPLICATE`: one pinned owner-mirror witness covers 5,106,385/5,106,385 allowed pixels; every nonempty candidate has a 1.0 forward-overlap lower bound, above the strict 0.70 stop. This is a policy rejection proof, not geological similarity or a complete registry scan. |
+| H33 attribution | 0.2778 remains **OWNER-REPORT**. GEMSDOE32's pinned page labels H33 **UNSCORED**, says no artifact there has an organizer score, and identifies 0.2747 as a projection. No current official leaderboard was fetched. |
+| Source feed | 82/82 configured GitHub repository/page inventories retrieved at `2026-10-21T17:53:40Z`; not score verification, official-data verification, or full-registry clearance. |
+| Current report and next work | [Three-pass review and ranked conditional hypotheses](docs/review-2026-10-21-arena-0e06f51a.md) · [current homepage](docs/index.html) · [submission steps (after separate approval only)](docs/executive-summary.html). |
 
-## Hypotheses tested this session (ranked by expected DTI gain ÷ implementation cost; full text: research/h83_hypotheses.md)
+No existing run card or older leaderboard snapshot overrides this status. The full operative prompt and the archived original request remain in this README; re-read them with `PROMPT.md` and `AGENTS.md` at the start of each session.
 
-1. **H83-1 (implemented, Exp 1):** hanging-wall fault-damage collar at kernel scale — HOLDOUT-DTI 0.1227 [0.1080, 0.1372], significant vs random (+0.079, CI excludes 0), below incumbent → **negative**, not for upload.
-2. **H83-2** catalogue fault-intersection / relay-node intensity — not implemented (next experiment if any off-catalogue credit appears).
-3. **H83-3** signed across-strike K/Th radiometric asymmetry — deferred (needs USGS GeoDAWN bands, DOI 10.5066/P93LGLVQ; source not reachable from this sandbox).
-4. **H83-4** multi-scale residual curvature after regional trend removal — deferred (needs restored 418 MB feature stack).
-5. **H83-5** thermal spring/well alignment anisotropy (DOE/NREL GDR 1391, DOI 10.15121/1881483) — deferred (source not reachable from this sandbox).
+## Historical lane records
 
-## How this repository answers the prompt
-
-- A **unique TIF exists and is directly downloadable** from the site's first screen (`docs/index.html`), with per-file chips stating OK to download / NOT OK TO SUBMIT — it is obvious whether download and/or submit is permitted.
-- Every number is labelled HOLDOUT-DTI (evaluator version, withheld positives, 95% CI) or flagged as not organizer-confirmed; no projection is ever written as a score.
-- Negative results are deliverables; no competition slot was spent.
+The following lane pages and run cards are retained for scientific audit. Their original scores, hypotheses, and file descriptions are historical, are not results of this review, and do not authorize a slot. The H83 lane was a separate prior session; its details are in [the H83 report](docs/h83.html). The current review's only measurements are those identified as **REGISTRY-MEASUREMENT**, **FORMAT/INTEGRITY MEASUREMENT**, or **SOURCE-HEALTH MEASUREMENT** in the linked report and JSON receipts.
 
 <!-- H77E-KNICK PRIMARY STATUS BANNER -->
 >
@@ -73,30 +69,22 @@ This radiometric lane was originally preregistered H82 and relabelled **H82R onl
 > **0.005969 HOLDOUT-DTI** (`gems57-pooled-hide-v2`, 59,484 withheld positives; 95% CI `[0.005735,0.006192]`); below constant-output matched control (paired Δ `−0.011706`, CI `[−0.012237,−0.011117]`). No matched sparse-dot incumbent comparison. All 32 feature-fold leakage canaries below 0.90 (max symmetric AUC 0.618363).
 > New pixels differ from all 36 prior local download TIFFs checked, but **NOT protocol-unique**: literal support overlap 1.0 against pinned dense witness; stopped before placing dots. Negative deliverable; no slot, no selector approval, no organizer score. Historical banners below are not current authorization. [Three-pass review and remaining blockers](docs/review-h82-texture.md).
 
-# Parallel readiness review — 2026-10-21
+# Current readiness review — 2026-10-21
 
-**OK TO DOWNLOAD FOR INSPECTION. NOT OK TO SUBMIT. No new TIFF was generated by that parallel readiness review.**
+**OK TO DOWNLOAD FOR INSPECTION; NOT OK TO SUBMIT any file. No TIFF, experiment, holdout, or slot was used in this review.**
 
-[Download an existing research TIFF](docs/downloads/gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY.tif) ·
-[Submission instructions](docs/executive-summary.html) ·
-[Three-pass review and conditional hypotheses](docs/preflight-review.md) ·
+[Current three-pass review and ranked hypotheses](docs/review-2026-10-21-arena-0e06f51a.md) ·
+[Submission instructions (only after separate approval)](docs/executive-summary.html) ·
+[Current authorization receipt](docs/data/submission-authorization.json) ·
 [Reproducible registry blocker](evidence/registry_preflight.json) ·
-[Independent readback of all listed primary TIFFs](evidence/listed_download_audit.json).
+[Independent readback of all 30 listed primary TIFFs](evidence/listed_download_audit.json) ·
+[Current source feed](docs/source-health.json).
 
-The **new unique submission requirement remains blocked**, not completed: a freshly hash-checked witness is positive at
-all 5,106,385 allowed pixels (**REGISTRY MEASUREMENT**). Every nonempty candidate has a forward-overlap lower bound
-of 1.0 (**REGISTRY MEASUREMENT**), above the mandatory 0.70 limit, before placement and on final dots. The preflight
-stops without restarting a closed lane, copying a prior submission, inventing a score, or spending a slot. Format
-checks pass for all 25 listed primary TIFFs (**FORMAT/INTEGRITY MEASUREMENTS**, current merged inventory); that is neither uniqueness nor portal acceptance. Run `scripts/restore_registry.py`, then
-`scripts/preflight_registry.py` (expected exit 2), before considering a new experiment.
+The pinned witness is positive at **5,106,385/5,106,385 allowed pixels** (**REGISTRY MEASUREMENT**). Every nonempty allowed candidate has a forward-overlap lower bound of **1.0**, greater than the strict **0.70** limit. This is a rejection proof from one witness, not a full registry scan or proof of geological similarity. The current listed-file readback passes **30/30** (**FORMAT/INTEGRITY MEASUREMENT**), which establishes neither uniqueness nor portal acceptance. Release authorization remains zero.
 
-The full original prompt remains embedded below, and `PROMPT.md` remains the standing brief. Re-read them each session.
-Earlier lane headings and performance claims below are historical, not current selector approval. The H33 analysis now
-uses the exact marginal metric inequality and removes unsupported causal/leaderboard gain claims; see
-[the corrected analysis](research/why-h33-scored-02778.md). A freshly checked organizer reference README supports
-CPU-only training as well as GPU. Fresh source inventories cover 78 configured family repos, not authenticated scores.
+The original request remains embedded in full below and in `PROMPT.md`; re-read them every session. Historical lane cards and dated leaderboard observations below are not current authorization. H33 reasoning is corrected and its 0.2778 attribution remains OWNER-REPORT; GEMSDOE32's pinned page says the file is UNSCORED. The refreshed owner-GitHub source inventory is **82/82** at `2026-10-21T17:53:40Z`, not a score feed or live leaderboard check.
 
-This branch review adds a separate ranked candidate screen: [docs/review-2026-10-21-arena-70bc0061.md](docs/review-2026-10-21-arena-70bc0061.md). A direct check of the current checkout found the raw training raster and processed stack absent; older restore/feature receipts describe prior temporary files, not a live cache. No new holdout or candidate artifact was made here.
+The feature raster and processed stack are absent in this checkout. Do not treat earlier restore/feature receipts as active local files. The universal preflight stop, rather than an attempted experiment or slot selection, is the current outcome.
 
 ---
 

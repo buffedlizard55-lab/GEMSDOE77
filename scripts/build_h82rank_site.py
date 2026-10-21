@@ -24,8 +24,7 @@ def main():
 <h2>Sources and replication</h2><p><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Organizer problem, metric and format</a> · <a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN data release</a>. Derived data are SHA-pinned owner mirrors, not organizer-authenticated downloads. <a href="https://github.com/buffedlizard55-lab/GEMSDOE77/blob/main/research/h82rank_hypotheses.md">Ranked pre-experiment hypotheses</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE77/blob/main/registry/preregistration_h82rank.json">Preregistration</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE77/blob/main/evidence/h82rank_run_card.json">Run card</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE77/blob/main/scripts/h82rank_research.py">Reproduce experiment</a>.</p><p><a href="executive-summary.html">How to submit a future cleared file (not this one) →</a></p></div></main></body></html>'''
     (D/'h82rank.html').write_text(page)
     lanespath=D/'data'/'lanes.json'; lanes=json.loads(lanespath.read_text())
-    lanes['lanes']=[r for r in lanes['lanes'] if not r['lane'].startswith('H82R:')]
-    lanes['lanes'].insert(1 if any(r['lane'].startswith('H82:') for r in lanes['lanes']) else 0,{
+    h82r={
         'lane':'H82R: local ternary radiometric rank-mixture entropy (STOPPED; research only)',
         'page':'h82rank.html','summary':'executive-summary.html','file':f'downloads/{path.name}',
         'run_card':'evidence/h82rank_run_card.json','format_valid':True,'protocol_unique':False,
@@ -33,12 +32,19 @@ def main():
         'primary':False,'name':card['submission_name'],'note':card['submission_note'],
         'sha256':card['raster_sha256'],
         'upload':f"Not OK to submit. OK to download for inspection only. HOLDOUT-DTI {h['dti']:.5f} (95% CI {h['ci95'][0]:.5f}-{h['ci95'][1]:.5f}; {h['evaluator_version']}; {h['withheld_positive_pixels']} withheld positives). Surface duplicate stop 1.0 vs dense witness; no dots placed; selector not approved; zero weekly slots.",
-        'why_primary':'Research-only negative deliverable; no submission clearance.'})
+        'why_primary':'Research-only negative deliverable; no submission clearance.'}
+    existing=next((i for i,r in enumerate(lanes['lanes']) if r['lane'].startswith('H82R:')),None)
+    if existing is None:
+        position=1 if any(r['lane'].startswith('H82:') for r in lanes['lanes']) else 0
+        lanes['lanes'].insert(position,h82r)
+    else:
+        lanes['lanes'][existing]=h82r
     note = lanes.get('note', '')
     if 'H82R:' not in note:
         note += (' ' if note else '') + 'H82R: radiometric negative research file; NOT OK TO SUBMIT.'
     import re
     lanes['note'] = re.sub(r'All \d+ listed TIFF lanes', f'All {len(lanes["lanes"])} listed TIFF lanes', note)
-    lanespath.write_text(json.dumps(lanes,indent=1,ensure_ascii=False)+'\n')
+    # Preserve the repository's stable JSON layout and existing lane ordering.
+    lanespath.write_text(json.dumps(lanes,indent=2)+'\n')
 
 if __name__=='__main__':main()

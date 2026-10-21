@@ -1,0 +1,80 @@
+{
+  "schema": "gems-current-session-review-v1",
+  "review_date": "2026-10-21",
+  "branch": "arena/0e06f51a-gemsdoe77",
+  "review_type": "repository/source/readiness review; no geological experiment",
+  "hypothesis": "No new candidate was tested. The conditional, code-local screened shortlist is in docs/review-2026-10-21-arena-0e06f51a.md.",
+  "mechanism": "No new geological mechanism was implemented or evaluated. The shortlist describes candidate mechanisms, each explicitly conditional on official-data availability and a future cleared preflight.",
+  "named_non_fault_process_that_could_mimic_it": "Not applicable to this non-experimental review. Candidate-specific mimics are listed separately in the hypothesis table.",
+  "holdout_dti": {
+    "evidence_class": "NO NEW HOLDOUT-DTI RESULT",
+    "value": null,
+    "ci95": null,
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "status": "NOT RUN: the candidate-independent universal duplicate proof stops before new feature, canary, holdout, or dot-generation work. No historical value is relabelled as a result of this review."
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT; NOT SCORE",
+    "candidate_surface_rank_correlation": null,
+    "candidate_surface_measurement": "NOT RUN: no candidate surface was built",
+    "candidate_final_dot_measurement": "NOT RUN: no candidate or final dots exist",
+    "allowed_pixels": 5106385,
+    "exact_witness_positive_allowed_pixels": 5106385,
+    "allowed_pixels_within_3px_of_witness": 5106385,
+    "uncovered_allowed_pixels": 0,
+    "nonempty_candidate_surface_forward_overlap_lower_bound_3px": 1.0,
+    "nonempty_candidate_final_dot_forward_overlap_lower_bound_3px": 1.0,
+    "strict_stop_threshold": 0.7,
+    "complete_registry_scan": false,
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "receipt": "evidence/registry_preflight.json"
+  },
+  "raster_sha256": null,
+  "new_tiff_generated": false,
+  "validator_output": {
+    "new_candidate": "NOT GENERATED; candidate-specific validation is not applicable",
+    "candidate_checks": {
+      "no_nan_inside_footprint": null,
+      "all_values_finite_in_0_1": null,
+      "crs_shape_transform_match": null,
+      "status": "NOT APPLICABLE: no new candidate raster"
+    },
+    "existing_listed_primary_tiff_readback": {
+      "evidence_class": "FORMAT/INTEGRITY MEASUREMENT ONLY; NOT UNIQUENESS OR PORTAL ACCEPTANCE",
+      "listed_count": 30,
+      "all_format_pass": true,
+      "authorized_to_submit": false,
+      "receipt": "evidence/listed_download_audit.json",
+      "scope": "Every primary TIFF listed in docs/data/lanes.json; excludes unlisted archives and NaN twins"
+    },
+    "portal_acceptance": "NOT VERIFIED"
+  },
+  "submission_name": null,
+  "submission_note": "Review only; no candidate generated. Existing files are for inspection; do not submit.",
+  "submission_note_length": 86,
+  "source_inventory": {
+    "evidence_class": "OWNER-GITHUB PAGE/REPOSITORY INVENTORY; NOT SCORE OR FULL-REGISTRY VERIFICATION",
+    "retrieved": 82,
+    "expected": 82,
+    "checked_utc": "2026-10-21T17:53:40.244900+00:00",
+    "receipt": "docs/source-health.json"
+  },
+  "h33_attribution": {
+    "owner_reported_score": 0.2778,
+    "claim_class": "OWNER-REPORT; NOT ORGANIZER-CONFIRMED",
+    "pinned_gemsdoe32_page_status": "UNSCORED; page says no organizer score exists for artifacts in that repository",
+    "pinned_page_model_projection": 0.2747,
+    "projection_is_score": false,
+    "file_to_score_receipt": false,
+    "official_current_leaderboard_checked": false,
+    "source_page": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/f62038b54dcb7767d4d997f80b033cdc3d42bef9/docs/index.html"
+  },
+  "repository_authorized_file_count": 0,
+  "ok_to_download_existing_research_files": true,
+  "ok_to_submit": false,
+  "selector_approved": false,
+  "experiments_run": 0,
+  "weekly_slots_used": 0,
+  "verdict": "negative"
+}

@@ -8,22 +8,19 @@ summarised with provenance at the end rather than re-transcribed hash-by-hash
 `docs/score-ledger.csv`; later entries below are OWNER-REPORT as supplied in
 the 2026-10-21 brief — no organizer receipts).*
 
-## 2026-10-21 review addendum — arena/60aafd45-gemsdoe77
+## Current review addendum — 2026-10-21, branch `arena/0e06f51a-gemsdoe77`
 
-No new method paragraph is assigned in this invocation. The freshly rechecked dense registry witness blocks every nonempty candidate under the binding literal rule. No new TIFF, model experiment or slot is authorized by this review. See `docs/review-2026-10-21-60aafd45.md` and the corrected H33 analysis. Superseded earlier leaderboard observations below are historical, not current submission-page receipts.
+The current three-pass review is `docs/review-2026-10-21-arena-0e06f51a.md`; its machine-readable run card is `evidence/current_review_run_card.json`. The user’s full request and all standing protocol rules below remain operative. This review generated no TIFF, ran no experiment or holdout, and used no weekly slot. Thirty listed primary TIFFs pass local format/integrity readback for inspection only; the release authorization is zero files and **NOT OK TO SUBMIT**.
 
-## Current review addendum — 2026-10-21
+The pinned preflight is `STOP_UNIVERSAL_DUPLICATE`: one hash-pinned witness covers all 5,106,385 allowed pixels, forcing every nonempty candidate's forward-overlap lower bound to 1.0, above the strict 0.70 limit. This proves rejection under the current literal rule; it does not certify the full registry or geological similarity. The feature raster and processed stack are absent. Do not build a candidate or waive the stop locally.
 
-The latest readiness review (`docs/preflight-review.md`) generated no new TIFF and ran no geological experiment.
-A freshly pinned universal witness (`evidence/registry_preflight.json`) blocks every nonempty allowed candidate
-under the mandatory literal overlap rule. H82 is the latest documented lane (`evidence/h82_run_card.json`):
-negative HOLDOUT-DTI 0.012184, duplicate overlap 1.000, incomplete two-witness scan, and three experiments
-used; do not resume it. H81 is also closed after 69 duplicate firings and an incomplete 832-raster scan.
-The site shows H82 as the newest inspection-only download and H80 as the evidence-complete featured negative;
-neither presentation is a promotion. Run the pinned preflight before future authorized research, preserve closed
-lanes, and do not treat older execution addenda as a new lane assignment. No TIF may be uploaded and no
-selector-approved slot exists. The original complete user request remains embedded in README.md. This addendum
-does not relax its gates or authorize a slot.
+The GitHub source inventory retrieved 82/82 repository/page inventories at `2026-10-21T17:53:40.244900+00:00`; this is not score or leaderboard verification. GEMSDOE32's current pinned source labels H33 UNSCORED and identifies 0.2747 as a model projection, so the 0.2778 file attribution remains OWNER-REPORT. No live official leaderboard was fetched. These findings supersede older current-status wording below, not the standing science, leakage, run-card, or three-pass requirements.
+
+## Historical 2026-10-21 addenda — earlier branches
+
+The `arena/60aafd45-gemsdoe77` and earlier readiness summaries below are historical records. Their stop rule remains consistent, but their source-feed counts, homepage wiring, and status snapshots are superseded by the current branch review. Superseded leaderboard observations are not current submission-page receipts.
+
+The older H82 readiness addendum (`docs/preflight-review.md`) also recorded no new TIFF and a universal witness stop. Its original inventory counts have been reconciled in the current branch; preserve lane results as historical evidence and do not treat any old execution addendum as a new lane assignment.
 
 ## Historical 2026-10-21 H79 execution addendum
 
@@ -102,7 +99,7 @@ answer to build the lane's candidate. Verify line by line; no hallucinations.
 ## Competition anchors
 
 - Overview/problem/metric: https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/
-- Leaderboard: https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/ (2026-10-21 read: #1 xiaofanhu **0.4413 ORGANIZER-CONFIRMED**; brief-era references 0.3195/0.3262 are superseded)
+- Leaderboard: https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/ (historical 2026-10-21 observations elsewhere in the repo are not freshly checked in the current review; no current leaderboard or H33 file-to-score receipt is claimed)
 - Reference solution: https://github.com/drivendataorg/gems-prize-reference-solution
 - Rules PDF: https://docs.nlr.gov/docs/fy26osti/96647.pdf
 - GeoDAWN: https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and

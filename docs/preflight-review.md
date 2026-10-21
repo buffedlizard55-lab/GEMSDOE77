@@ -1,4 +1,6 @@
-# Submission readiness review — 2026-10-21
+# Historical submission readiness review — 2026-10-21
+
+**Superseded status snapshot:** see the [current branch review](review-latest.html) and [current JSON run card](evidence/current_review_run_card.json) for the latest counts and release status.
 
 **OK TO DOWNLOAD FOR INSPECTION. NOT OK TO SUBMIT. No new TIFF generated in this review.**
 
@@ -35,7 +37,7 @@ rejection, never a pass. The two restored witnesses have pinned owner-mirror pro
 ## Pass 2 — independent checks and corrections
 
 Added `scripts/audit_downloads.py`, which independently opens every primary TIFF listed in `lanes.json`,
-not merely trusting the manifest format flag. **23 of 23** pass SHA-256, single-band, all-finite [0,1],
+not merely trusting the manifest format flag. **30 of 30** pass SHA-256, single-band, all-finite [0,1],
 no-NaN-in-footprint, no-nodata, and exact reference CRS/shape/transform (**FORMAT/INTEGRITY MEASUREMENTS**).
 This scope excludes unlisted archives and NaN twins. It does not test portal acceptance, hidden performance,
 full-registry uniqueness or selector approval. The existing H77L independent audit also passes its checks.
@@ -85,7 +87,7 @@ These are manual-review links, not newly verified availability or scientific val
   submission instructions remain visible. Current release authorization grants no uploads.
 - Restored only pinned witnesses; no new TIFF, copied submission, trained model, geological experiment,
   HOLDOUT-DTI estimate, bootstrap CI or organizer score is represented as a result of this review.
-- Existing scheduled source feed was refreshed: **78/78** configured owner-repository inventories retrieved
+- Existing scheduled source feed was refreshed: **82/82** configured owner-repository inventories retrieved
   (**SOURCE-HEALTH MEASUREMENT**). It records commits, page-content hashes and TIFF paths, not verified scores.
   [Freshness feed](source-health.json). This is not an exhaustive registry beyond the configured repositories.
 - Official organizer [reference README](https://github.com/drivendataorg/gems-prize-reference-solution/blob/aebe92f7c8a990f0e3443451b7a825d9afd6336b/README.md)
@@ -128,7 +130,8 @@ Reconciled onto its canonical `h28-submission.json` path (identical metadata byt
 release-gate NaN/type hardening, and retained both regression suites. All combined tests and build checks were
 repeated; no shared-template source or raster bytes were changed.
 
-PR #52 then merged the independent H82 chemistry lane while this PR was under reconciliation. Its TIFFs, negative
+PR #52 then merged the independent H82 chemistry lane while this review was under reconciliation. Its TIFFs, negative
 status, source code and tests are preserved without rerunning its experiment or claiming authorship. Re-read all
-**23** currently listed primary TIFFs: format/integrity PASS for every file, zero authorized uploads. The previous
-22-file receipt was replaced with this current 23-file manifest-bound readback.
+**30** currently listed primary TIFFs: format/integrity PASS for every file, zero authorized uploads. The current
+30-file manifest-bound readback replaces the earlier 22- and 23-file receipts. The current branch review supersedes
+this historical status snapshot.
