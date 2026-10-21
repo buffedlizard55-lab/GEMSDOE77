@@ -226,3 +226,12 @@ GitHub authenticated operations work. CPU scientific transforms, local validatio
 | IR-BGB-04 | On `gems57-pooled-hide-v2` (Seed 30, 11,342 withheld positives), `H77-BGB` passes all 10 single-feature leakage canaries (max symmetric AUC `0.6378 <= 0.90`), passes Phase 1 surface Spearman (`0.2087 <= 0.90`), passes Phase 2 dot Spearman (`0.0462 <= 0.90`), passes sparse (`<=100k` dots) 3-px forward overlap (`0.5722 <= 0.70`), and beats `A0_random` (`0.058406` vs `0.048611`) and lifts `A_std` (`0.101142` static / `0.102390` LOCO vs `0.099208`), but does not beat the repository holdout best (`H77-Step` at `0.152718 HOLDOUT-DTI`) and triggers the universal dense-witness overlap (`1.000 > 0.70`) under Policy `I17`. | Verdict recorded as `"negative"`, `protocol_unique: false`, `ok_to_download: true`, `ok_to_submit: false`, `weekly_slots_spent: 0` (`evidence/run_card_bgb.json`, `docs/data/lanes.json`, `docs/data/submission-authorization.json`). |
 
 
+
+
+## Review 05f9e6f8 — 2026-10-21
+
+- Fresh pinned preflight again returns STOP_UNIVERSAL_DUPLICATE before any experiment. No assigned method paragraph, no new TIFF, no slot. Certificate: `evidence/review_05f9e6f8_preflight.json`.
+- Fixed a release-adapter defect: recorded rank/forward-overlap violations nested in per-raster lists could be ignored despite green declarations. Shared template unchanged; regression tests cover strict thresholds and malformed values.
+- Incoming H83 README described a leaderboard value as ORGANIZER-CONFIRMED without a submission-page receipt available to this review, and described a non-cleared file as unique. Corrected its active summary; frozen historical scientific cards retained.
+- Pages API reports legacy publishing despite the Actions workflow. PUT to switch publishing mode returned 403 Resource not accessible by integration. No successful settings change or live scheduled deployment is claimed.
+- Final three-pass check: 231 software tests passed; zero files authorized. No new HOLDOUT-DTI or ORGANIZER-CONFIRMED result.
