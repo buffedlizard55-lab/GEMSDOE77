@@ -18,6 +18,24 @@ sys.path.insert(0, str(ROOT / "vendor"))
 from gems57 import metric as M  # noqa: E402
 
 RAW = ROOT / "data" / "raw"
+BRIDGE = ROOT / "data" / "bridge"
+
+
+def resolve_grid_input(name: str) -> Path:
+    """Prefer the restored raw mirror, then use the committed geometry bridge.
+
+    The bridge contains only the grid, footprint and catalogue needed for this
+    artifact audit; it is not a substitute for the full model feature stack.
+    """
+    for candidate in (RAW / name, BRIDGE / name):
+        if candidate.is_file():
+            return candidate
+    raise SystemExit(
+        f"Missing {name}: looked in {RAW} and {BRIDGE}. "
+        "Restore competition data with scripts/restore_data.py or check out the bridge files."
+    )
+
+
 bundle = json.loads((ROOT / "evidence" / "final_bundle.json").read_text())
 TIF = ROOT / "docs" / "downloads" / bundle["submission_file"]
 out = {"file": str(TIF), "checks": {}}
@@ -40,9 +58,9 @@ with rasterio.open(TIF) as s:
     C["dtype"] = s.dtypes[0]
     C["transform"] = list(s.transform)[:6]
     C["nodata_is_none"] = s.nodata is None
-with rasterio.open(RAW / "sample_submission.tif") as s:
+with rasterio.open(resolve_grid_input("sample_submission.tif")) as s:
     samp = s.read(1); strans = list(s.transform)[:6]; scrs = s.crs.to_epsg()
-with rasterio.open(RAW / "labels.tif") as s:
+with rasterio.open(resolve_grid_input("labels.tif")) as s:
     lab = s.read(1)
 foot = np.isfinite(samp); cat = (lab > 0) & foot
 C["transform_matches_sample"] = (C["transform"] == strans)

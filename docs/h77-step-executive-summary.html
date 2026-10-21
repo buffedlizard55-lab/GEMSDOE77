@@ -23,13 +23,11 @@
 
   <main class="container">
     <section class="decision-banner">
-      <span class="status-pill">&#9733; EXECUTIVE BRIEF · #1 ALL-TIME HOLDOUT MODEL IN PORTFOLIO</span>
-      <h1>Executive Decision Brief: Should We Spend a Weekly Submission Slot on <code>gems77-step-propensity-submod300.tif</code>?</h1>
-      <p style="margin:0.35rem 0 0; color:#065f46;">
-        <strong>Bottom-Line Recommendation for the Human Selector:</strong><br />
-        &bull; Among all 5 lanes in <code>GEMSDOE77</code> and all prior pure-ML repositories, <strong><code>gems77-step-propensity-submod300.tif</code> is the ONLY candidate that outperforms every benchmark on both shared holdouts</strong>: <span class="badge-holdout">0.1527 HOLDOUT-DTI [0.1315, 0.1752]</span> on <code>gems57-pooled-hide-v2</code> (vs <code>0.1113</code> GEMSDOE70 P8, <code>0.0961</code> Fold-Fair H33, and <code>0.0706</code> LIA) and <span class="badge-holdout">0.1858 HOLDOUT-DTI [0.1619, 0.2093]</span> on Blind 4-Quadrant Province Transfer (vs <code>0.1639</code> H19-5).<br />
-        &bull; It is <strong>100% distinct from every discrete submission model ever generated</strong> (<code>0.5858</code> vs H33, <code>0.4379</code> vs GEMSDOE70, <code>0.3902</code> vs LIA, all &le; <code>0.70</code>) and passes <code>15/15</code> format &amp; <code>[0, 1]</code> range checks (<code>0 NaN</code> across all <code>12,279,160</code> cells).<br />
-        &bull; Under the repository's strict fail-closed CI rule (<code>Not approved</code> for automatic upload while dense continuous surface <code>ab0a0a62...</code> covers <code>100.0%</code> of Nevada with <code>&gt; 0</code>), a human selector must make the final call confirming that non-submission continuous/lattice files do not block discrete submissions — <strong>with that confirmation, download and upload the file below.</strong>
+      <span class="status-pill">CURRENT DECISION: NOT CLEARED TO SUBMIT</span>
+      <h1>Executive summary — H77-Step research artifact (inspection only)</h1>
+      <p style="margin:0.35rem 0 0; color:#7f1d1d;">
+        <strong>Do not spend a competition slot on this file.</strong> The older uniqueness check excluded dense rasters; current Policy I17 is unfiltered and fails on the space-filling witness. The artifact is locally format-checked but not cleared, and no selector approval or shared policy amendment is recorded.
+        <br /><strong>Historical HOLDOUT-DTI:</strong> 0.152718 (95% CI [0.131548, 0.175185], evaluator <code>gems57-pooled-hide-v2</code>, 11,321 withheld positive pixels) and blind-transfer HOLDOUT-DTI 0.185834 (95% CI [0.161898, 0.209307], same evaluator, 57,448 withheld positive pixels). These are not leaderboard scores.
       </p>
       <div class="cta-row">
         <a class="btn-download" download href="downloads/gems77-step-propensity-submod300.tif">

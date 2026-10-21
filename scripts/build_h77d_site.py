@@ -38,10 +38,10 @@ def page_shell(title: str, active: str, body: str) -> str:
         for file, key, label in nav_items
     )
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{esc(title)} · GEMS / 77</title><meta name="description" content="GEMSDOE77 Lane H77D: Zero-SGMC Coupled Tectono-Hydrothermal Conduits + 300 m Submodular Cover. Safe to download, 17/17 portal-valid, not approved until human selector sign-off.">
+<title>{esc(title)} · GEMS / 77</title><meta name="description" content="GEMSDOE77 H77D research artifact. Download for inspection only; current literal uniqueness policy fails; not cleared to submit.">
 <link rel="stylesheet" href="assets/site.css"><script defer src="assets/site.js"></script></head><body>
 <header><div class="header"><a class="brand" href="index.html">GEMS / 77 <span>Structural discovery lab</span></a><nav aria-label="Main">{nav}</nav></div></header>
-<main>{body}</main><footer><span>Evidence before optimism. Maximize P(Win) · Own the Outcome.</span><span>Selector status: not approved until separate human weekly-slot review. <a href="PROJECT_PROMPT.md">Standing request</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE77">Repository</a></span></footer></body></html>"""
+<main>{body}</main><footer><span>Evidence before optimism. Maximize P(Win) · Own the Outcome.</span><span>Not cleared to submit: Policy I17 literal-uniqueness gate fails. <a href="PROJECT_PROMPT.md">Standing request</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE77">Repository</a></span></footer></body></html>"""
 
 
 def status_banner_html(rc: dict, compact: bool = False) -> str:
@@ -59,12 +59,12 @@ def status_banner_html(rc: dict, compact: bool = False) -> str:
     )
     return f"""<div class="panel download-panel" style="border-left:4px solid #0b6e4f; margin-bottom:1.5rem;">
 <div style="display:flex; flex-wrap:wrap; gap:0.5rem; align-items:center; margin-bottom:0.6rem;">
-  <span class="badge good">SAFE TO DOWNLOAD · PORTAL-VALID (17/17)</span>
-  <span class="badge good">LANE VERDICT: PROMOTE (HOLDOUT CHAMPION)</span>
-  <span class="badge negative">Selector status: Not approved (human weekly-slot sign-off required)</span>
+  <span class="badge good">DOWNLOAD FOR INSPECTION · LOCAL FORMAT CHECKS PASS (17/17)</span>
+  <span class="badge negative">CURRENT SUBMISSION STATUS: NOT CLEARED TO SUBMIT</span>
+  <span class="badge negative">Historical lane promotion is superseded by Policy I17 literal-uniqueness failure</span>
 </div>
 <h2>Lane H77D: Zero-SGMC Coupled Tectono-Hydrothermal Conduits + 300 m Submodular Cover</h2>
-<p><strong>100% genuine new GeoTIFF</strong> ({sub['dot_count']:,} binary dots in <code>{{0.0, 1.0}}</code>, <strong>0 NaN inside footprint</strong>, <strong>0 SGMC channels</strong>, <strong>0 pixels copied</strong> from any prior submission). Beats every prior lane on both spatial whole-component holdout seeds: <strong>HOLDOUT-DTI = {s30['dti']:.5f}</strong> (Seed 30, +{s30['delta_vs_A5_prior_best']:.5f} vs prior best A5; +{s30['delta_vs_A0_h195_foldfair']:.5f} vs fold-fair H33 champion) and <strong>{s20['dti']:.5f}</strong> (Seed 20, +{s20['delta_vs_A5_prior_best']:.5f} vs A5; +{s20['delta_vs_A0_h195_foldfair']:.5f} vs H33). Audited unique across <strong>{u['prior_rasters_checked']} prior rasters</strong> (Phase 1 surface max |ρ| = {u['surface_max_spearman_abs']:.4f} ≤ 0.90; Phase 2 dot max |ρ| = {u['dot_max_spearman_abs']:.4f} ≤ 0.90; max sparse 3-px forward overlap = {u['dot_max_forward_overlap_3px_informative']:.4f} ≤ 0.70).</p>
+<p><strong>Research artifact</strong> ({sub['dot_count']:,} binary dots; local format checks only). Historical <strong>HOLDOUT-DTI</strong> under <code>{rc['holdout_evaluation']['evaluator_version']}</code>, Seed 30 ({s30['withheld_positive_pixels']:,} withheld positives; 95% CI [{s30['ci95'][0]:.5f}, {s30['ci95'][1]:.5f}]): <strong>{s30['dti']:.5f}</strong>; Seed 20 ({s20['withheld_positive_pixels']:,} withheld positives; 95% CI [{s20['ci95'][0]:.5f}, {s20['ci95'][1]:.5f}]): <strong>{s20['dti']:.5f}</strong>. These are not leaderboard scores. The old sparse-raster uniqueness diagnostic is superseded by current Policy I17 and is not clearance.</p>
 <div class="buttons">
   <a class="button" download href="{esc(tif_rel)}">⬇ Download Primary GeoTIFF (-zeros.tif · {sub['primary_geotiff_bytes']/1024:.1f} KB)</a>
   <a class="button secondary" download href="{esc(zip_rel)}">⬇ Download Single-TIFF Portal ZIP ({sub['primary_zip_bytes']/1024:.1f} KB)</a>
@@ -72,7 +72,7 @@ def status_banner_html(rc: dict, compact: bool = False) -> str:
 </div>
 <div class="file-label">Primary GeoTIFF SHA-256 (<code>{esc(Path(sub['primary_geotiff']).name)}</code>)</div>
 <div class="hash">{esc(sub['primary_geotiff_sha256'])}</div>
-<p class="fine"><strong>Unmistakable Governance Rule:</strong> <strong>Safe to download &amp; inspect immediately</strong> (all 12,279,160 grid cells finite in <code>[0.0, 1.0]</code>, EPSG:32611, 3730×3292, exact sample transform). <strong>Selector status: Not approved</strong> — under the Parallel-Run Protocol, no automated lane consumes a live DrivenData slot on its own; human selector approval is required before uploading to the competition portal{extra_links}.</p>
+<p class="fine"><strong>Current status:</strong> Download this artifact for inspection only. Local format checks are not organizer acceptance. The later Policy I17 unfiltered literal-uniqueness audit fails on a space-filling registry witness; this file is <strong>not cleared to submit</strong>. The historical scientific holdout label does not supersede that failure or authorize a selector exception{extra_links}.</p>
 </div>"""
 
 
@@ -168,7 +168,7 @@ def build_h77d_pages() -> str:
 <div class="metrics">
   <div class="metric"><span>Seed 30 HOLDOUT-DTI (B=37,654)</span><strong>{s30['scores']['H77D_full']['dti']:.5f}</strong><small>95% CI {s30['scores']['H77D_full']['ci95'][0]:.4f}–{s30['scores']['H77D_full']['ci95'][1]:.4f} · 11,342 withheld px · +38.8% vs prior best A5</small></div>
   <div class="metric"><span>Seed 20 HOLDOUT-DTI (B=37,654)</span><strong>{s20['scores']['H77D_full']['dti']:.5f}</strong><small>95% CI {s20['scores']['H77D_full']['ci95'][0]:.4f}–{s20['scores']['H77D_full']['ci95'][1]:.4f} · 11,321 withheld px · +46.5% vs fold-fair H33</small></div>
-  <div class="metric"><span>865-Raster Uniqueness Clearance</span><strong>{u3['phase2_informative_max_forward_overlap_3px']:.4f} ≤ 0.70</strong><small>Max surface |ρ|={u3['phase1_surface_max_spearman_abs']:.4f} · Max dot |ρ|={u3['phase2_dot_max_spearman_abs']:.4f} · Mutual={u3['phase2_informative_max_mutual_overlap_3px']:.4f}</small></div>
+  <div class="metric"><span>Historical sparse-registry diagnostic (not current clearance)</span><strong>{u3['phase2_informative_max_forward_overlap_3px']:.4f} ≤ 0.70</strong><small>Max surface |ρ|={u3['phase1_surface_max_spearman_abs']:.4f} · Max dot |ρ|={u3['phase2_dot_max_spearman_abs']:.4f} · Mutual={u3['phase2_informative_max_mutual_overlap_3px']:.4f}</small></div>
 </div>
 
 <section class="prose">
@@ -214,7 +214,7 @@ def build_h77d_pages() -> str:
 <p>Audited across all <strong>865 prior family rasters</strong> (812 archive registry rasters + 53 post-snapshot sibling rasters from live <code>GEMSDOE73</code>–<code>GEMSDOE77</code>; 2 corrupted archive TIFF headers caught and logged explicitly). Both stages clear every threshold cleanly:</p>
 <ul>
   <li><strong>Phase 1 Continuous Surface Uniqueness:</strong> max <code>|Spearman ρ| = {u3['phase1_surface_max_spearman_abs']:.4f} ≤ 0.90</code> across all 863 readable rasters.</li>
-  <li><strong>Phase 2 Final Binary Dot Uniqueness:</strong> max <code>|Spearman ρ| = {u3['phase2_dot_max_spearman_abs']:.4f} ≤ 0.90</code>; global symmetric mutual 3-px overlap across all 863 rasters = <code>{u3['phase2_informative_max_mutual_overlap_3px']:.4f} ≤ 0.70</code>; max forward 3-px overlap across all 707 sparse (<code>≤ 100,000</code> dot) submissions = <code>{u3['phase2_informative_max_forward_overlap_3px']:.4f} ≤ 0.70</code>. (156 dense flood-fill / soft diagnostic surfaces with <code>&gt; 100,000</code> positive pixels, already documented under Irregularity <code>I04</code>/<code>I10</code> in <code>evidence/registry_saturation.json</code>, have reverse overlap ≤ <code>0.2603</code>.)</li>
+  <li><strong>Historical informative-subset diagnostic only:</strong> prior sparse-registry checks reported the values shown here, but they excluded dense rasters. They do <strong>not</strong> satisfy current Policy I17. The later unfiltered literal check fails because the space-filling witness triggers the &gt;70% overlap rule; do not treat this historical diagnostic as uniqueness clearance.</li>
 </ul>
 <div class="table-wrap"><table>
 <thead><tr><th>Closest Sparse Prior Raster (Top 12 of 707)</th><th>Positive px</th><th>Forward 3-px Overlap</th><th>Reverse 3-px Overlap</th><th>Mutual 3-px Overlap</th><th>Dot |ρ|</th><th>Surface |ρ|</th></tr></thead>
@@ -228,12 +228,12 @@ def build_h77d_pages() -> str:
 <ul>
   <li><strong>Hide-and-recover domain gap:</strong> Whole-component spatial holdout measures recovery of withheld mapped Quaternary/geothermal faults; while zero-SGMC training aligns far better with live scoring than SGMC models, only an <code>ORGANIZER-CONFIRMED</code> portal score can measure true hidden-fault generalization toward <code>0.4413</code>.</li>
   <li><strong>24.6% missing 1 m LiDAR footprint:</strong> Bridging missing 1 m LiDAR tiles via public USGS 3DEP 1 m/3 m tiles outside the sandbox allowlist (once verified permissible under current competition external-data rules) is the highest-leverage data upgrade remaining.</li>
-  <li><strong>Selector discipline:</strong> If the human selector approves spending one weekly slot on <code>{esc(sub['submission_name'])}</code>, record the exact organizer receipt in <code>registry/live_scores.csv</code> and re-run <code>scripts/h77d_exp1_live_inversion.py</code> to calibrate exact live credit on zero-SGMC scarp + submodular dots.</li>
+  <li><strong>Current selector discipline:</strong> No slot is authorized for this artifact. First the protocol owner must resolve the Policy I17 dense-witness conflict through a shared rule, then the complete registry, official inputs/rules, holdout comparison and weekly cap must be checked. Only a separately approved future candidate may be submitted; record its genuine organizer receipt before labelling any score ORGANIZER-CONFIRMED.</li>
 </ul>
 </section>"""
 
     exec_body = f"""<div class="eyebrow">Executive Summary &amp; Step-by-Step DrivenData Submission Guide · Lane H77D</div>
-<h1>Safe to Download &amp; Portal-Validated.<br>Human Selector Approval Required Before Live Upload.</h1>
+<h1>Download for inspection.<br>Not cleared to submit.</h1>
 
 {status_banner_html(rc, compact=False)}
 
@@ -244,13 +244,13 @@ def build_h77d_pages() -> str:
 <tbody>
   <tr><td><strong>Is this a newly generated, genuine prediction file?</strong></td><td><strong>YES.</strong> Computed from scratch via 4-quadrant out-of-fold cross-fitting over 88 zero-SGMC static physical channels (30 curated base + 58 engineered) + 4 exact 12-bit LOCO mechanics channels (92 total channels) + exact 300 m submodular allocation. <strong>0 pixels copied</strong> from H33, H19-5, or any prior raster.</td></tr>
   <tr><td><strong>Is it safe to download right now?</strong></td><td><strong>YES — 100% SAFE TO DOWNLOAD.</strong> Both the uncompressed deflate GeoTIFF (<code>140.8 KB</code>) and single-TIFF DrivenData ZIP (<code>105.7 KB</code>) pass <strong>17/17</strong> format, geotransform, CRS, finite-value, and range checks.</td></tr>
-  <tr><td><strong>Will DrivenData's portal validator accept its format &amp; values?</strong></td><td><strong>YES.</strong> Single-band <code>float32</code>, <code>EPSG:32611</code>, <code>3730 × 3292</code>, transform <code>(100, 0, 243350, 0, -100, 4508550)</code>, <strong>0 NaN anywhere</strong>, values strictly in <code>{{0.0, 1.0}} ⊂ [0.0, 1.0]</code> (impossible to trigger a portal range error).</td></tr>
-  <tr><td><strong>Did it beat the prior holdout best &amp; pass uniqueness?</strong></td><td><strong>YES (Lane Verdict: <code>PROMOTE</code>).</strong> <strong>HOLDOUT-DTI = {s30['scores']['H77D_full']['dti']:.5f}</strong> (Seed 30) and <strong>{s20['scores']['H77D_full']['dti']:.5f}</strong> (Seed 20) vs prior repo best <code>0.10930</code> and fold-fair H33 <code>0.09715</code>; max sparse 3-px overlap = <code>0.6883 ≤ 0.70</code> across 865 prior rasters.</td></tr>
-  <tr><td><strong>Is it already approved to spend a live competition slot?</strong></td><td><strong>Selector status: Not approved yet.</strong> Per the Parallel-Run Protocol, automated lanes prepare and recommend promoted candidates (<code>verdict: promote</code>), while a human selector verifies the weekly submission cap across all family repos before clicking Submit on DrivenData.</td></tr>
+  <tr><td><strong>Did local format checks pass?</strong></td><td><strong>Yes (17/17 local checks).</strong> Single-band <code>float32</code>, EPSG:32611, 3730 × 3292, matching the local sample mirror's transform, finite values in [0,1]. This is not proof of organizer acceptance.</td></tr>
+  <tr><td><strong>What did the historical holdout measure?</strong></td><td><strong>HOLDOUT-DTI</strong> (gems57-pooled-hide-v2; Seed 30 and Seed 20; see the run card for withheld-positive counts and 95% intervals): {s30['scores']['H77D_full']['dti']:.5f} and {s20['scores']['H77D_full']['dti']:.5f}. These are experimental holdout values, not leaderboard scores. The older sparse-subset uniqueness check is superseded by Policy I17.</td></tr>
+  <tr><td><strong>Is it cleared to submit?</strong></td><td><strong>No.</strong> The later unfiltered literal registry audit fails on a space-filling witness; no selector approval or shared policy amendment is recorded. Do not spend a slot.</td></tr>
 </tbody>
 </table></div>
 
-<h2>Copy-Paste DrivenData Portal Metadata</h2>
+<h2>Historical artifact name and note (reference only — do not submit)</h2>
 <p class="file-label">Submission Name <button class="copy" data-copy="h77d-sub-name">Copy</button></p>
 <div id="h77d-sub-name" class="hash">{esc(sub['submission_name'])}</div>
 
@@ -263,17 +263,19 @@ def build_h77d_pages() -> str:
 <p class="file-label">Single-TIFF ZIP SHA-256 (<code>{esc(Path(sub['primary_zip']).name)}</code>)</p>
 <div class="hash">{esc(sub['primary_zip_sha256'])}</div>
 
-<h2>Step-by-Step DrivenData Submission Instructions (Once Human Selector Approves)</h2>
+<h2>How to submit a future candidate (only after policy resolution and explicit approval)</h2>
+<p><strong>This H77D file is not eligible under the current literal uniqueness rule.</strong> The steps below are generic and do not authorize uploading this artifact. A policy owner must first resolve the dense-witness conflict in the shared protocol, and a selector must approve a candidate after the full registry and current competition rules are checked.</p>
 <ol class="steps">
-  <li><strong>Confirm weekly slot availability with the human selector.</strong> Verify across active GEMSDOE family repos that at least one weekly submission slot remains and that <code>H77D</code> holds the highest paired <code>HOLDOUT-DTI</code> (<code>0.15011</code> / <code>0.14030</code>) in the current window.</li>
-  <li><strong>Download either the Single-TIFF ZIP or the Primary GeoTIFF above.</strong> Download <a download href="downloads/{esc(Path(sub['primary_zip']).name)}"><code>{esc(Path(sub['primary_zip']).name)}</code></a> (<code>105.7 KB</code>) or <a download href="downloads/{esc(Path(sub['primary_geotiff']).name)}"><code>{esc(Path(sub['primary_geotiff']).name)}</code></a> (<code>140.8 KB</code>). Do <em>not</em> upload HTML pages, JSON files, or the research-only Selective-U TIFF.</li>
+  <li><strong>Resolve eligibility first.</strong> Obtain a protocol-owner decision on the dense-witness rule, verify the complete current registry and official competition rules, and compare against a fold-rebuilt incumbent. H77D does not pass the current literal rule.</li>
+  <li><strong>Obtain explicit selector approval and verify the weekly slot cap.</strong> This repository records no approval and no verified current cap.</li>
+  <li><strong>Download only a future candidate that has passed all gates and received selector approval.</strong> The H77D files linked above are inspection-only. Do <em>not</em> upload them under the current policy.</li>
   <li><strong>Verify the SHA-256 checksum locally (optional 2-second check):</strong>
 <pre>shasum -a 256 {esc(Path(sub['primary_geotiff']).name)}
 # Expected: {esc(sub['primary_geotiff_sha256'])}
 
 shasum -a 256 {esc(Path(sub['primary_zip']).name)}
 # Expected: {esc(sub['primary_zip_sha256'])}</pre></li>
-  <li><strong>Upload on the official DrivenData GEMS portal:</strong> Sign in at <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData DOE GEMS Competition</a> → <strong>Submissions</strong> → <strong>Make a Submission</strong>, attach the verified <code>-zeros.zip</code> (or <code>-zeros.tif</code>), paste the exact ≤140-character note above, and submit.</li>
+  <li><strong>For an approved future file only:</strong> follow the current official DrivenData form, select the approved single-band GeoTIFF or one-TIFF ZIP, enter that candidate's unique name and ≤140-character note, then retain the organizer receipt. Do not submit the H77D file from this page.</li>
   <li><strong>Log the organizer receipt back into the repository:</strong> Record the UTC timestamp and <code>ORGANIZER-CONFIRMED</code> score in <code>registry/live_scores.csv</code> so the next session's live-score inversion immediately benefits from an authenticated off-support data point.</li>
 </ol>
 
@@ -289,7 +291,7 @@ shasum -a 256 {esc(Path(sub['primary_zip']).name)}
 .venv/bin/python -m pytest -q</pre>
 </section>"""
 
-    (DOC / "h77d.html").write_text(page_shell("H77D Promoted Candidate", "h77d", h77d_body))
+    (DOC / "h77d.html").write_text(page_shell("H77D Research Artifact — Not Cleared", "h77d", h77d_body))
     (DOC / "h77d-executive-summary.html").write_text(
         page_shell("H77D Submission Guide", "h77d-submit", exec_body)
     )

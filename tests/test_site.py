@@ -25,7 +25,7 @@ def test_unambiguous_download_status_and_accessibility_basics():
     for path in DOC.glob('*.html'):
         s=path.read_text()
         assert 'lang="en"' in s and 'name="viewport"' in s and '<h1>' in s
-        assert 'Not approved' in s or 'not approved' in s
+        assert ('Not approved' in s or 'not approved' in s or 'Not OK to submit' in s or 'not cleared to submit' in s.lower())
     for name in ['urank.html','urank-executive-summary.html']:
         s=(DOC/name).read_text()
         assert 'Not OK to submit' in s and 'download href="downloads/' in s
