@@ -33,7 +33,7 @@ spend a slot. **Do not retune H82** (scales, windows, blends) without a new
 preregistration and a new physical argument; the cheap variants are exactly
 what the canary + paired-CI design already forecloses.
 
-**Reusable assets.** `src/gems82/fields.py` (label-free local-regression
+**Reusable assets.** `src/gems82rrd/fields.py` (label-free local-regression
 moments, unit-tested), the fixed-operating-point holdout harness
-`scripts/h82_pipeline.py` (no budget scan), and IR-82-01/02/03 in
-`evidence/h82_run_card.json`.
+`scripts/h82rrd_pipeline.py` (no budget scan), and IR-82-01/02/03 in
+`evidence/h82rrd_run_card.json`.

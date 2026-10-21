@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
-"""Assemble evidence/h82_run_card.json from Exp1-3 receipts (no new experiments)."""
+"""Assemble evidence/h82rrd_run_card.json from Exp1-3 receipts (no new experiments)."""
 from __future__ import annotations
 import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 EV = ROOT / "evidence"
-e1 = json.loads((EV / "h82_e1_canary_surface.json").read_text())
-e2 = json.loads((EV / "h82_e2_holdout.json").read_text())
-e3 = json.loads((EV / "h82_e3_build.json").read_text())
+e1 = json.loads((EV / "h82rrd_e1_canary_surface.json").read_text())
+e2 = json.loads((EV / "h82rrd_e2_holdout.json").read_text())
+e3 = json.loads((EV / "h82rrd_e3_build.json").read_text())
 s = e2["pooled_summary"]["scores"]["A_std19_rrd"]
 paired = e2["pooled_summary"]["paired_differences"]["A_std19"]
 card = {
@@ -78,6 +78,6 @@ card = {
         "IR-82-03: first Exp3 uniqueness run self-matched the submissions/ mirror (spurious 1.0); fixed by hash exclusion and rerun; corrected values in this card.",
     ],
 }
-(EV / "h82_run_card.json").write_text(json.dumps(card, indent=2) + "\n")
+(EV / "h82rrd_run_card.json").write_text(json.dumps(card, indent=2) + "\n")
 print(json.dumps({"verdict": card["verdict"], "sha256": card["raster_sha256"],
                   "holdout": card["holdout_dti"]["winner_arm_A_std19_rrd"]}, indent=2))

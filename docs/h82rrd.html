@@ -1,8 +1,8 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1"><title>H82-RRD · GEMSDOE77</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>H82-RRD (H82RRD namespace post-merge) · GEMSDOE77</title>
 <meta name="description" content="H82-RRD: RTP-TMI remanence-discordance fault detector. Unique GeoTIFF, format-valid, holdout-negative. OK to download for inspection; NOT OK TO SUBMIT.">
 <link rel="stylesheet" href="assets/lia.css"></head><body>
-<header><div class="wrap"><span class="brand">GEMSDOE77 · DOE GEMS Prize</span><a href="index.html">Start here</a> <a href="executive-summary.html">How to submit</a> <a href="h82.html" class=here>H82-RRD · negative</a> <a href="h81.html">H81 · slip-cone</a> <a href="h80t.html">H80T · tilt-persist</a> <a href="h80.html">H80 · negative</a> <a href="lia-analysis.html">Why 0.2778</a> <a href="lia-sources.html">Sources</a>
+<header><div class="wrap"><span class="brand">GEMSDOE77 · DOE GEMS Prize</span><a href="index.html">Start here</a> <a href="executive-summary.html">How to submit</a> <a href="h82rrd.html" class=here>H82-RRD · negative</a> <a href="h81.html">H81 · slip-cone</a> <a href="h80t.html">H80T · tilt-persist</a> <a href="h80.html">H80 · negative</a> <a href="lia-analysis.html">Why 0.2778</a> <a href="lia-sources.html">Sources</a>
 <a href="https://github.com/buffedlizard55-lab/GEMSDOE77">GitHub</a></div></header>
 <main><div class="wrap">
 <h1>H82-RRD: RTP–TMI remanence / block-rotation discordance breaks</h1>
@@ -30,7 +30,7 @@ Selector status: <b>not approved</b>. Weekly slots used by this lane: <b>0</b>.<
 single-band float32 · EPSG:32611 · 3730×3292 · values exactly {0.0, 1.0} · 0 NaN · nodata=None ·
 37,654 dots · 0 on the mapped catalogue · nearest catalogue distance √5 px (≈224 m).
 Local format PASS does <b>not</b> prove portal acceptance and does <b>not</b> authorize submission.
-Run card: <a href="evidence/h82_run_card.json">evidence/h82_run_card.json</a> ·
+Run card: <a href="evidence/h82rrd_run_card.json">evidence/h82rrd_run_card.json</a> ·
 <a href="executive-summary.html">How submission would work after approval →</a></p></section>
 
 <h2>Why did the family best (h33-2-b2, 0.2778) score highest — and can H82 beat it?</h2>
@@ -56,8 +56,8 @@ leaderboard projection.</p>
 <tr><td>3</td><td>Seismicity lineaments · bands 10/16</td><td>Structure-tensor coherence of epicentre density</td><td>Swarming blind faults</td><td>Not run</td></tr>
 <tr><td>4</td><td>Basement zero-hinge · bands 15/12</td><td>Depth≈0 contour continuations</td><td>Buried range fronts</td><td>Not run</td></tr>
 <tr><td>5</td><td>Volcanic-vent alignments · GDR 1391 vents</td><td>Collinear vent Hough lines</td><td>Fissure-controlled vents</td><td>Too sparse — not viable as primary</td></tr></table>
-<p class="small">Full register with mimics and novelty checks: <code>research/h82_hypotheses.md</code> ·
-preregistration: <code>registry/preregistration_h82.json</code> (frozen before Exp 1). Named non-fault mimic for
+<p class="small">Full register with mimics and novelty checks: <code>research/h82rrd_hypotheses.md</code> ·
+preregistration: <code>registry/preregistration_h82rrd.json</code> (frozen before Exp 1). Named non-fault mimic for
 H82-1: unfaulted reversely-magnetized volcanic flow margins; GeoDAWN survey-block seams.</p>
 
 <h2>Results — all numbers HOLDOUT-DTI (<code>gems57-pooled-hide-v2</code>, seed 20, 11,321 withheld positives)</h2>
@@ -74,7 +74,7 @@ individual signal). Phase-1 surface uniqueness (sampled Spearman, 37 local-scope
 (pass). Phase-2 final-dot overlap: <b>0.786 vs contactphys</b>, 0.737 vs XSEN, 0.713 vs H80-OTA (3 informative firings
 &gt; 0.70 — <b>duplicate stop</b>); vs the H33 champion only <b>0.321</b> (pixel-distinct from the family best, byte-novel
 in scope). Scope is local downloads/submissions + H33, <b>not</b> the complete family registry. Verdict: <b>negative</b>.</p>
-<p><img src="assets-h82-surface-dots.png" alt="H82 S_rrd discordance surface (grey) with final emitted dots (red), downsampled 4x" style="max-width:100%">
+<p><img src="assets-h82rrd-surface-dots.png" alt="H82 S_rrd discordance surface (grey) with final emitted dots (red), downsampled 4x" style="max-width:100%">
 <br><span class="small muted">S_rrd physics surface (grey) and final A_std19_rrd dots (red), ×4 block-mean. Diagnostic only.</span></p>
 
 <h2>How to submit — only after a future selector approval (not this file)</h2>
@@ -96,9 +96,9 @@ in scope). Scope is local downloads/submissions + H33, <b>not</b> the complete f
 <li>No catalogue-distance/mechanics features were allowed in this lane; incumbent-class scores (0.15+) in this repo all use them plus lidar/external stacks. A future test of RRD as a small additive block on the full 54–96-channel stack would need a new preregistration and a fresh duplicate check (HGB surfaces converge: Phase-2 fired at 0.786).</li>
 <li>Uniqueness scope is local (37 rasters + H33), not the full 812-raster family registry; a complete scan remains outstanding infrastructure work.</li>
 <li>Data limits: DrivenData files are login-walled (SHA-pinned owner mirrors used; integrity-pinned, not organizer-authenticated); Dropbox mirrors unreachable from the sandbox; no GPU (2 vCPU / 3.8 GB) — HGB-on-CPU only.</li></ul>
-<p class="small muted">Evidence: <code>evidence/h82_e1_canary_surface.json</code> · <code>evidence/h82_e2_holdout.json</code> ·
-<code>evidence/h82_e3_build.json</code> · <code>evidence/h82_run_card.json</code>. Code: <code>src/gems82/fields.py</code>,
-<code>scripts/h82_pipeline.py</code>. Core values: Maximize P(Win) — publish the negative, spend no slot; Own the Outcome.</p>
+<p class="small muted">Evidence: <code>evidence/h82rrd_e1_canary_surface.json</code> · <code>evidence/h82rrd_e2_holdout.json</code> ·
+<code>evidence/h82rrd_e3_build.json</code> · <code>evidence/h82rrd_run_card.json</code>. Code: <code>src/gems82rrd/fields.py</code>,
+<code>scripts/h82rrd_pipeline.py</code>. Core values: Maximize P(Win) — publish the negative, spend no slot; Own the Outcome.</p>
 </div></main>
 <footer><div class="wrap">Selector status for every file on this site: <b>not approved</b>. Number labels:
 <b>ORGANIZER-CONFIRMED</b> (leaderboard/receipt), <b>HOLDOUT-DTI</b> (local; evaluator, withheld count, CI),
