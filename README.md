@@ -1,13 +1,58 @@
+# Current readiness review — 2026-10-21
+
+**OK TO DOWNLOAD FOR INSPECTION. NOT OK TO SUBMIT. No new TIFF was generated in this review.**
+
+[Download an existing research TIFF](docs/downloads/gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY.tif) ·
+[Submission instructions](docs/executive-summary.html) ·
+[Three-pass review and conditional hypotheses](docs/preflight-review.md) ·
+[Reproducible registry blocker](evidence/registry_preflight.json) ·
+[Independent readback of all listed primary TIFFs](evidence/listed_download_audit.json).
+
+The **new unique submission requirement remains blocked**, not completed: a freshly hash-checked witness is positive at
+all 5,106,385 allowed pixels (**REGISTRY MEASUREMENT**). Every nonempty candidate has a forward-overlap lower bound
+of 1.0 (**REGISTRY MEASUREMENT**), above the mandatory 0.70 limit, before placement and on final dots. The preflight
+stops without restarting a closed lane, copying a prior submission, inventing a score, or spending a slot. Format
+checks pass for all 23 listed primary TIFFs (**FORMAT/INTEGRITY MEASUREMENTS**); that is neither uniqueness nor portal acceptance. Run `scripts/restore_registry.py`, then
+`scripts/preflight_registry.py` (expected exit 2), before considering a new experiment.
+
+The full original prompt remains embedded below, and `PROMPT.md` remains the standing brief. Re-read them each session.
+Earlier lane headings and performance claims below are historical, not current selector approval. The H33 analysis now
+uses the exact marginal metric inequality and removes unsupported causal/leaderboard gain claims; see
+[the corrected analysis](research/why-h33-scored-02778.md). A freshly checked organizer reference README supports
+CPU-only training as well as GPU. Fresh source inventories cover 78 configured family repos, not authenticated scores.
+
+This branch review adds a separate ranked candidate screen: [docs/review-2026-10-21-arena-70bc0061.md](docs/review-2026-10-21-arena-70bc0061.md). A direct check of the current checkout found the raw training raster and processed stack absent; older restore/feature receipts describe prior temporary files, not a live cache. No new holdout or candidate artifact was made here.
+
+---
+
+
+> ## New H82 experiment (2026-10-21): download for inspection — **NOT OK TO SUBMIT**
+>
+> [Download the H82 research GeoTIFF](docs/downloads/gems77-h82-cool-chemconcord-11185dots-20261021-245bb13136-zeros.tif) · [one-TIFF ZIP](docs/downloads/gems77-h82-cool-chemconcord-11185dots-20261021-245bb13136-zeros.zip) · [H82 executive summary](docs/h82-executive-summary.html) · [JSON run card](evidence/h82_run_card.json). This is an upstream-generated, byte/pixel-distinct research raster; it is **NOT protocol-unique and NOT OK TO SUBMIT**. SHA-256 `84b50d05eaba578c398c4c7ab720dbf5a46de29d63f4254eb02a8ba02a4a43df`; `11,185` positive pixels (**RASTER MEASUREMENT**); local writer preflight: float32, EPSG:32611, 3730×3292, exact sample transform, no NaN/Inf, values [0,1], zero outside footprint/on mapped faults. **HOLDOUT-DTI 0.012184** (`gems57-pooled-hide-v2`, 11,321 withheld positives, 95% CI `[0.003700, 0.022844]`), below same-run **HOLDOUT-DTI** random `0.018305` (same evaluator/count, 95% CI `[0.014654, 0.022065]`) and below the retained **HOLDOUT-DTI** incumbent `0.152718` (`gems57-pooled-hide-v2`, 11,321 withheld positives, 95% CI `[0.131548, 0.175185]`). **REGISTRY MEASUREMENT:** surface max `|ρ| = 0.04651` against 2 pinned witnesses; final-dot forward 3-px overlap `1.000` against a full-footprint witness (stop limit `0.70`); the H82 comparison covered only 2 pinned rasters, not the full registry. Three H82 experiments were used; verdict negative. No selector authorization, organizer score, or weekly slot. Mirrored inputs are not organizer-authenticated. This is an upstream negative research artifact, not a competition-cleared submission.
+>
+> Re-read the complete standing user request at the end of this README and [PROMPT.md](PROMPT.md) each session. The release [authorization receipt](docs/data/submission-authorization.json) is binding; individual format PASS receipts never authorize an upload.
+>
 # Current review: NOT OK TO SUBMIT
 
-**OK TO DOWNLOAD FOR INSPECTION: YES. OK TO SUBMIT: NO. The repository release gate authorizes zero files.** Do not upload any repository GeoTIFF as a competition submission.
+**Earlier review #49 generated no TIFF. The later H82 lane above generated a new inspection-only TIFF.**
+[Inspection TIFF](docs/downloads/gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY.tif) ·
+[Submission guide](docs/executive-summary.html) · [Current review](docs/review-904a24d3.md) ·
+[Authorization receipt](docs/data/submission-authorization.json).
+The literal registry overlap rule blocks any nonempty candidate from submission; no slot was used.
+The H33 marginal-DTI explanation is corrected and regression-tested. Historical
+banners below do not override current NOT OK TO SUBMIT status.
+Start every session with this README, [PROMPT.md](PROMPT.md), and [AGENTS.md](AGENTS.md).
 
-- Latest archived research artifact, H82: [download `.tif`](docs/downloads/gems77-h82-cool-chemconcord-11185dots-20261021-245bb13136-zeros.tif) · [single-TIFF `.zip`](docs/downloads/gems77-h82-cool-chemconcord-11185dots-20261021-245bb13136-zeros.zip) · [method/evidence](docs/h82-executive-summary.html) · [run card](docs/evidence/h82_run_card.json). Its **HOLDOUT-DTI** is `0.012184` (`gems57-pooled-hide-v2`, 11,321 withheld positives, 95% CI `[0.003700, 0.022844]`); the same-run **HOLDOUT-DTI** random control is `0.018305` (same evaluator and withheld-positive count; 95% CI `[0.014654, 0.022065]`). Final-dot forward 3-px overlap measurement is `1.000` with the full-footprint witness (protocol limit `0.70`); verdict **negative — NOT OK TO SUBMIT**. SHA-256 `84b50d05eaba578c398c4c7ab720dbf5a46de29d63f4254eb02a8ba02a4a43df`.
-- Current reviews: [H82 three-pass release review](docs/review-2026-10-21-h82.md) · [this branch's independent candidate screen](docs/review-2026-10-21-arena-70bc0061.md) · [merged current-checkout review](docs/review-2026-10-21-current-session.md) · [authorization receipt](docs/data/submission-authorization.json) · [submission instructions](docs/executive-summary.html).
-- Current-checkout input check: the raw training feature raster and processed stack are **absent**, despite prior-session receipts describing temporary restored caches. No new experiment or TIFF was generated in this review. See `AGENTS.md` for session-start instructions.
-- H81 remains a historical research artifact: [download TIFF](docs/downloads/gems77-h81-slipcone-37654dots-20261021-0fbeaf41-zeros.tif), SHA-256 `f3eb9e5e3bf03da0285b48b5bb7d41f15b0e450d16bc6b8943aeaa63efadc1f7`; **HOLDOUT-DTI** `0.067071` (`gems57-pooled-hide-v2`, 11,321 withheld positives, 95% CI `[0.055232, 0.077908]`), final-dot overlap `1.0` and incomplete registry scan. **NOT OK TO SUBMIT**.
-- Historical H77E inspection artifact only (not selected or authorized): [`gems77-h77e-knick-deconf-submod-36500dots-20261021-101e200b`](docs/downloads/gems77-h77e-knick-deconf-submod-36500dots-20261021-101e200b-zeros.tif), SHA-256 `db0dd67da44b83bc47f05289c05e2e917118d04b03e4958076f64661b726fb6b`; companion pure raster SHA-256 `abb0cb1349c9745a27156ebd95b435dec6086d38d9be3ec637400001d9fa33a0`. It is **not OK to submit**.
-- The original project request is maintained in [`PROMPT.md`](PROMPT.md) and archived below. Read it at the start of every session. Historical lane writeups and scores never override the current zero-file authorization.
+<!-- CURRENT RELEASE STATUS: reconciled against docs/data/submission-authorization.json and evidence/h81_run_card.json -->
+> ## 🚦 Current download and submission status
+>
+> **OK TO DOWNLOAD FOR INSPECTION: YES · OK TO SUBMIT: NO.** The repository release gate authorizes **0 files**. The previously generated H81 GeoTIFF is available, but it is a negative research artifact—not an approved competition submission.
+>
+> - [Download H81 `.tif`](docs/downloads/gems77-h81-slipcone-37654dots-20261021-0fbeaf41-zeros.tif) · [single-TIFF `.zip`](docs/downloads/gems77-h81-slipcone-37654dots-20261021-0fbeaf41-zeros.zip) · [H81 method and evidence](docs/h81.html) · [submission guide](docs/executive-summary.html).
+> - **Format preflight:** PASS, single-band `float32`, `EPSG:32611`, `3730 × 3292`, exact sample transform, finite values in `[0,1]`, no NaN/Inf, SHA-256 `f3eb9e5e3bf03da0285b48b5bb7d41f15b0e450d16bc6b8943aeaa63efadc1f7`. Local format validity does not establish portal acceptance.
+> - **HOLDOUT-DTI:** `0.067071` (`gems57-pooled-hide-v2`, 11,321 withheld positives, 95% CI `[0.055232, 0.077908]`), below the retained `0.152718 HOLDOUT-DTI` incumbent (`gems57-pooled-hide-v2`, 11,321 withheld positives, 95% CI `[0.131548, 0.175185]`). These are spatial holdout measurements, not leaderboard scores.
+> - **Uniqueness / selector:** final-dot forward 3-px overlap `1.0` with a dense registry raster, above the protocol limit `0.70`; registry scan incomplete (`832/836` indexed files readable). Byte/pixel distinction among checked files is not protocol clearance. Selector approval: **NO**; weekly slots used: **0**.
+> - **Verdict: NEGATIVE — DO NOT SUBMIT.** Full authorization receipt: [`docs/data/submission-authorization.json`](docs/data/submission-authorization.json). Current repository review: [`docs/review-2026-10-21-current-session.md`](docs/review-2026-10-21-current-session.md). Read [`PROMPT.md`](PROMPT.md) before future work.
 
 # GEMSDOE77: DOE GEMS Geothermal Fault Detection — Audited Research Portfolio
 
@@ -46,7 +91,7 @@
 
 > **Earlier H78 review (2026-10-21; retained as historical evidence):** H78 is closed/negative. Its TIFF is inspection-download only, scored `0.0708` **HOLDOUT-DTI** (`gems57-pooled-hide-v2`, 11,321 withheld positives, 95% CI `[0.0600, 0.0816]`) versus its matched `0.0958` control, and fails the binding literal registry-uniqueness gate. No H78 competition slot was spent. See [the H78-era audit](docs/SESSION_REVIEW.md); the H80 block above is the current featured file.
 
-**XSEN session update (2026-10-21, branch `arena/f054d26e-gemsdoe77`): a new unique TIF was generated and is NOT OK to submit.** `submissions/gems77-xsen-coincide-hgb-37654dots-20261021-zeros.tif` (sha256 `e7c81754420b9a6b4126ad1d7239870ae680eaa61e97a6d3f16f644a620d1c6a`; also under `docs/downloads/`) is format-valid — finite, values exactly {0,1}, no nodata, EPSG:32611, 3730×3292, pinned transform, so the portal "Predicted values must be in range [0, 1]" error cannot recur with it — but its lane verdict is **negative**: **0.0994 HOLDOUT-DTI** (evaluator `gems57-pooled-hide-v2`, 11,342 withheld positives, 95% CI `[0.0824, 0.1179]`) vs 0.0971 for the standard-stack control (paired Δ +0.0023, CI includes 0), below the 0.152718 incumbent, its coincidence surface alone scores at the random-control level (0.0480 vs 0.0500), and 93.4% of its dots fall within 3 px of GEMSDOE37's sparse dotted raster (duplicate under the 70% rule). Download it for inspection only; do not upload it. Full card: `evidence/run_card_xsen.json`; lane page: `docs/xsen.html`. The best retained candidate remains H77-Step/H77D (see below), still awaiting a selector/policy decision — no slot was spent by the XSEN session.
+**XSEN session update (2026-10-21, branch `arena/f054d26e-gemsdoe77`): a new unique TIF was generated and is NOT OK to submit.** `submissions/gems77-xsen-coincide-hgb-37654dots-20261021-zeros.tif` (sha256 `e7c81754420b9a6b4126ad1d7239870ae680eaa61e97a6d3f16f644a620d1c6a`; also under `docs/downloads/`) is format-valid — finite, values exactly {0,1}, no nodata, EPSG:32611, 3730×3292, pinned transform, so local readback finds no range/nonfinite defect; portal acceptance remains unverified — but its lane verdict is **negative**: **0.0994 HOLDOUT-DTI** (evaluator `gems57-pooled-hide-v2`, 11,342 withheld positives, 95% CI `[0.0824, 0.1179]`) vs 0.0971 for the standard-stack control (paired Δ +0.0023, CI includes 0), below the 0.152718 incumbent, its coincidence surface alone scores at the random-control level (0.0480 vs 0.0500), and 93.4% of its dots fall within 3 px of GEMSDOE37's sparse dotted raster (duplicate under the 70% rule). Download it for inspection only; do not upload it. Full card: `evidence/run_card_xsen.json`; lane page: `docs/xsen.html`. The best retained candidate remains H77-Step/H77D (see below), still awaiting a selector/policy decision — no slot was spent by the XSEN session.
 
 **Read this README, including the original request at the end of this file, at the beginning of every session.**
 
