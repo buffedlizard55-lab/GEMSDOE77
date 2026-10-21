@@ -2,12 +2,30 @@
   "schema": "gems-listed-download-readback-v1",
   "evidence_class": "FORMAT-INTEGRITY-MEASUREMENT; NOT SCORE OR PORTAL ACCEPTANCE",
   "scope": "Every primary TIFF in docs/data/lanes.json; no archive or NaN twins, no uniqueness certification",
-  "manifest_sha256": "d38b0595b35a0ff15a7428708029adc508b0da9c05237de9ce8be57d188355fc",
+  "manifest_sha256": "19fce8c025a2c4716d7a5b8074e2b9da8f502f13c2f8060705ee5471ff99281a",
   "reference_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
-  "listed_count": 23,
+  "listed_count": 24,
   "all_format_pass": true,
   "authorized_to_submit": false,
   "artifacts": [
+    {
+      "lane": "H82-TEXTURE: K/Th local second-moment boundary (negative, continuous research surface)",
+      "file": "downloads/gems77-h82-texture-kt-bf0a3028b4fa-RESEARCH-ONLY.tif",
+      "sha256": "c571af22cb08db9cb8cfd6edf0108364d95b0c3bec8316d09d3dfd116531790e",
+      "checks": {
+        "single_band": true,
+        "crs_matches": true,
+        "shape_matches": true,
+        "transform_matches": true,
+        "finite_entire_raster": true,
+        "no_nan_inside_footprint": true,
+        "values_in_0_1": true,
+        "nodata_none": true,
+        "sha256_matches_manifest": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
     {
       "lane": "H82: cool-outlet geothermometer concordance (negative)",
       "file": "downloads/gems77-h82-cool-chemconcord-11185dots-20261021-245bb13136-zeros.tif",

@@ -136,3 +136,6 @@ listed sites ≤0.1461 down to 0.0000. GEMSDOE77 (this repo): no organizer score
 verdict negative (see README).
 
 *Post-merge namespacing note (PR #5): this lane's files that collided with concurrently merged lanes were renamed — `registry/preregistration_contactphys.json`, `evidence/run_card_contactphys.json`, `docs/contactphys*.html`, `scripts/build_site_contactphys.py`. Frozen receipts (`registry/preregistration_amendment_exp3.json`, `evidence/*.json`) retain their original internal path strings as historical record.*
+
+## H82-TEXTURE historical execution addendum
+One narrow texture-boundary feasibility experiment was completed before the parallel universal-preflight review merged. This is distinct from H82 chemistry-concordance. Results: `evidence/h82_texture/run_card.json`; review: `docs/review-h82-texture.md`. Negative, closed, no dots/slot, inspection-only TIFF. Preflight now blocks any new experiment; this addendum grants no exception.
