@@ -2,16 +2,16 @@
   "schema": "gems-listed-download-readback-v1",
   "evidence_class": "FORMAT-INTEGRITY-MEASUREMENT; NOT SCORE OR PORTAL ACCEPTANCE",
   "scope": "Every primary TIFF in docs/data/lanes.json; no archive or NaN twins, no uniqueness certification",
-  "manifest_sha256": "afbe162ae6c9fe0e7ddbabdb86454e093a392f4a8395a43761abf23fb73ba06a",
+  "manifest_sha256": "45f3feba03af9184a31324a2a79c13c79dd72abc505a4013d52ecfe865b63135",
   "reference_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
-  "listed_count": 25,
+  "listed_count": 27,
   "all_format_pass": true,
   "authorized_to_submit": false,
   "artifacts": [
     {
-      "lane": "H82-TEXTURE: K/Th local second-moment boundary (negative, continuous research surface)",
-      "file": "downloads/gems77-h82-texture-kt-bf0a3028b4fa-RESEARCH-ONLY.tif",
-      "sha256": "c571af22cb08db9cb8cfd6edf0108364d95b0c3bec8316d09d3dfd116531790e",
+      "lane": "H77V: up-gradient geothermal vent advection-backtracking, Lake Lahontan tufa sieve & dilational conduit tensor (HOLDOUT-DTI 0.1270 [0.1128, 0.1422] s30 / 0.1293 [0.1129, 0.1469] s20; negative under Policy I17)",
+      "file": "downloads/gems77-h77v-vent-advect-conduit-37654dots-20261021-8910ea15-zeros.tif",
+      "sha256": "2cef6d5133bceaf5206b5ee3701abb66120ef35aedd8850ab21946c2176b0e10",
       "checks": {
         "single_band": true,
         "crs_matches": true,
@@ -30,6 +30,24 @@
       "lane": "H82R: local ternary radiometric rank-mixture entropy (STOPPED; research only)",
       "file": "downloads/gems77-h82-ternaryentropy-20261021-RESEARCH-ONLY.tif",
       "sha256": "56debe682505bf2649f30d914c7b552dcf669bce4b902ce91eb3e5363031f115",
+      "checks": {
+        "single_band": true,
+        "crs_matches": true,
+        "shape_matches": true,
+        "transform_matches": true,
+        "finite_entire_raster": true,
+        "no_nan_inside_footprint": true,
+        "values_in_0_1": true,
+        "nodata_none": true,
+        "sha256_matches_manifest": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
+    {
+      "lane": "H82-TEXTURE: K/Th local second-moment boundary (negative, continuous research surface)",
+      "file": "downloads/gems77-h82-texture-kt-bf0a3028b4fa-RESEARCH-ONLY.tif",
+      "sha256": "c571af22cb08db9cb8cfd6edf0108364d95b0c3bec8316d09d3dfd116531790e",
       "checks": {
         "single_band": true,
         "crs_matches": true,
@@ -444,6 +462,24 @@
       "lane": "H81: slip-budget fault-tip continuation cones (deterministic, catalogue-only)",
       "file": "downloads/gems77-h81-slipcone-37654dots-20261021-0fbeaf41-zeros.tif",
       "sha256": "f3eb9e5e3bf03da0285b48b5bb7d41f15b0e450d16bc6b8943aeaa63efadc1f7",
+      "checks": {
+        "single_band": true,
+        "crs_matches": true,
+        "shape_matches": true,
+        "transform_matches": true,
+        "finite_entire_raster": true,
+        "no_nan_inside_footprint": true,
+        "values_in_0_1": true,
+        "nodata_none": true,
+        "sha256_matches_manifest": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
+    {
+      "lane": "H77-BGB: buried growth-wedge inflection x transtensional strain-partitioning x clay-cap breach (0.0584 lane / 0.1024 LOCO HOLDOUT-DTI)",
+      "file": "downloads/gems77-bgb-growthwedge-transtens-37654dots-20261021-3c58975b-zeros.tif",
+      "sha256": "07da3f559dd5f6d7f3971092bcc3dde060cd97b551ad6077b02ed558679f8e54",
       "checks": {
         "single_band": true,
         "crs_matches": true,

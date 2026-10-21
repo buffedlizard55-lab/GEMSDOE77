@@ -32,6 +32,11 @@
       "identical_footprint_values": false
     },
     {
+      "file": "gems77-bgb-growthwedge-transtens-37654dots-20261021-3c58975b-zeros.tif",
+      "same_grid": true,
+      "identical_footprint_values": false
+    },
+    {
       "file": "gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif",
       "same_grid": true,
       "identical_footprint_values": false
@@ -107,6 +112,16 @@
       "identical_footprint_values": false
     },
     {
+      "file": "gems77-h77v-vent-advect-conduit-37654dots-20261021-8910ea15-nan.tif",
+      "same_grid": true,
+      "identical_footprint_values": false
+    },
+    {
+      "file": "gems77-h77v-vent-advect-conduit-37654dots-20261021-8910ea15-zeros.tif",
+      "same_grid": true,
+      "identical_footprint_values": false
+    },
+    {
       "file": "gems77-h78-lidarscarp-alloc-38301dots-20261021-429a7a12-nan.tif",
       "same_grid": true,
       "identical_footprint_values": false
@@ -167,6 +182,11 @@
       "identical_footprint_values": false
     },
     {
+      "file": "gems77-h82-ternaryentropy-20261021-RESEARCH-ONLY.tif",
+      "same_grid": true,
+      "identical_footprint_values": false
+    },
+    {
       "file": "gems77-step-propensity-submod300.tif",
       "same_grid": true,
       "identical_footprint_values": false
@@ -192,7 +212,7 @@
       "identical_footprint_values": false
     }
   ],
-  "current_local_inventory_count": 38,
+  "current_local_inventory_count": 42,
   "file": "docs/downloads/gems77-h82-texture-kt-bf0a3028b4fa-RESEARCH-ONLY.tif",
   "sha256": "c571af22cb08db9cb8cfd6edf0108364d95b0c3bec8316d09d3dfd116531790e",
   "checks": {
