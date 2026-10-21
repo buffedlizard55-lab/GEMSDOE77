@@ -8,3 +8,6 @@
 6. Concurrent H77C code/artifacts are preserved for audit only; its generation entrypoint is quarantined. Do not use inherited unverified registry values or private holdout as clearance. See `evidence/inherited_h77c_review.json`.
 
 7. Current preflight review: read `docs/preflight-review.md` and `evidence/registry_preflight.json`. Restore the pinned witnesses and run `scripts/preflight_registry.py` before any new experiment (exit 2 means STOP_UNIVERSAL_DUPLICATE; exit 3 means input error; exit 0 is NOT uniqueness clearance). Do not generate a new field/dots while this rejection proof applies. `scripts/audit_downloads.py` independently rechecks every listed primary TIFF; it is not portal acceptance or selector approval. Correct marginal-DTI reasoning is in `research/why-h33-scored-02778.md`.
+
+## H82-TEXTURE (distinct from H82 chemistry)
+Read `docs/review-h82-texture.md` and `evidence/h82_texture/run_card.json`. H82-TEXTURE was completed before the parallel preflight review merged; one experiment, negative, stopped before dots. Do not rerun/retune. Historical baseline-win flags do not establish matched-current-best improvement; no file is approved.
