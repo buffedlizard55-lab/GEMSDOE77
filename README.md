@@ -52,14 +52,16 @@ Site entry pages: [Start here](https://buffedlizard55-lab.github.io/GEMSDOE77/do
 
 ## Archived Lane `H77D` (not approved to submit): Coupled Zero-SGMC Tectono-Hydrothermal Conduits + 300 m Submodular Cover (`0.15011` / `0.14030` `HOLDOUT-DTI`)
 
+> **NOT OK TO SUBMIT. OK to download for inspection.** Local format checks pass (`17/17`) and local spatial holdout beats the fold-rebuilt H33 baseline on both seeds, but the binding literal registry-uniqueness gate fails on the full-footprint dense witness (`ab0a0a62`) and no selector has approved a weekly slot. See [`docs/data/submission-authorization.json`](docs/data/submission-authorization.json).
+
 - **⬇ Download Primary GeoTIFF (`-zeros.tif`, `140,823 B`):** [`docs/downloads/gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.tif`](docs/downloads/gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.tif)
   - SHA-256: `110e7c77ec7e7d201de0ae04ffd2bf3b9db786b4063d800cacb8ab1ded4fd1b9`
 - **⬇ Download Single-TIFF Portal ZIP (`-zeros.zip`, `105,724 B`):** [`docs/downloads/gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.zip`](docs/downloads/gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.zip)
   - SHA-256: `512ab1fcf850485c006324d6620a474ca35fe2180cf0615461b44cadc4a6c9b2`
 - **⬇ Download Twin NaN-Outside GeoTIFF (`-nan.tif`, `336,646 B`):** [`docs/downloads/gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-nan.tif`](docs/downloads/gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-nan.tif)
   - SHA-256: `0cf731f58b4450c5407bff6a0585b9151d95dc1703414775031b526960260bb2`
-- **Copy-Paste DrivenData Name:** `gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros`
-- **Copy-Paste DrivenData Note (`138 / 140` chars):** `H77D zero-SGMC scarp+hydro+LOCO mechanics OOF + 300m submodular (37654 dots); HOLDOUT-DTI 0.1501 (s30) / 0.1403 (s20) vs 0.1093 prior best`
+- **Reference DrivenData Name (not cleared):** `gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros`
+- **Reference DrivenData Note (`138 / 140` chars, not cleared):** `H77D zero-SGMC scarp+hydro+LOCO mechanics OOF + 300m submodular (37654 dots); HOLDOUT-DTI 0.1501 (s30) / 0.1403 (s20) vs 0.1093 prior best`
 
 ### Hypothesis for the owner-reported H33 0.2778, and how H77D avoids SGMC inputs
 
@@ -87,10 +89,12 @@ Site entry pages: [Start here](https://buffedlizard55-lab.github.io/GEMSDOE77/do
 
 ---
 
-## Co-Primary Candidate — `H77-Step` (`0.1527` `HOLDOUT-DTI`, PR #9 Summary)
+## Archived Candidate — `H77-Step` (`0.1527` `HOLDOUT-DTI`, PR #9 Summary; Not Approved to Submit)
+
+> **NOT OK TO SUBMIT. OK to download for inspection.** Fails the binding literal registry-uniqueness gate (`1.000` overlap on full-footprint witness `ab0a0a62` plus `post_placement_dots_max_forward_3px_overlap_real_models = 0.734989 > 0.70` in `evidence/h77/run_card.json`) and has no selector approval.
 
 - **File:** [`docs/downloads/gems77-step-propensity-submod300.tif`](docs/downloads/gems77-step-propensity-submod300.tif) (`SHA-256: f55105a091281be14957fff2f5aad9a85fa5b1acc31558e9fcd2aae9fdd588b0`, `34,625` discrete dots, `15/15` validator checks `PASS`, [Full Portal](docs/h77-step.html), [Exec Brief](docs/h77-step-executive-summary.html)).
-- **Complementarity with `H77D`:** `H77-Step` achieves `0.1527` `HOLDOUT-DTI` (`[0.1315, 0.1752]`) using anisotropic Radon step purity + LightGBM/HGB ensemble, while `H77D` achieves `0.1501` (`Seed 30`) / `0.1403` (`Seed 20`) with `0` SGMC channels; their 3-px forward overlap is **`0.4068`** (`mutual = 0.3938`), giving the selector two independent shots on goal.
+- **Comparison with `H77D`:** `H77-Step` recorded `0.1527` `HOLDOUT-DTI` (`[0.1315, 0.1752]`, 11,321 withheld positives) using anisotropic Radon step purity + LightGBM/HGB ensemble, while `H77D` recorded `0.1501` (`Seed 30`) / `0.1403` (`Seed 20`) with `0` SGMC channels; their pairwise 3-px forward overlap is `0.4068` (`mutual = 0.3938`), but neither file is cleared for competition upload.
 
 ---
 
@@ -192,7 +196,9 @@ decision before any file in this repository can be cleared.
 
 ---
 
-## 2. Local-template `H77-Step` Parallel-Run Card (`evidence/h77/run_card.json`; not an organizer receipt)
+## 2. Local-template `H77-Step` Parallel-Run Card (`evidence/h77/run_card.json`; not an organizer receipt — Superseded by `submission-authorization.json`)
+
+> **Audit Reconciliation Note:** The JSON excerpt below accurately reflects the frozen historical fields in `evidence/h77/run_card.json` (including `"post_placement_dots_max_forward_3px_overlap_real_models": 0.734989`, `"verdict": "promote"`, and `"safe_to_download_and_submit": true`). Per [`docs/review-2026-10-21.md`](docs/review-2026-10-21.md) and [`docs/data/submission-authorization.json`](docs/data/submission-authorization.json), those historical promotion booleans are **superseded** (`"decision": "NOT OK TO SUBMIT"`, `"historical_promotion_conflict": true`) because literal uniqueness fails and no selector approval exists.
 
 ```json
 {
@@ -224,11 +230,15 @@ decision before any file in this repository can be cleared.
   },
   "leakage_canary": { "features_tested": 99, "max_single_feature_auc": 0.79343, "ceiling": 0.90, "pass": true },
   "uniqueness_vs_registry": {
-    "gems57_symmetric_and_discrete_models_unique": true,
+    "canonical_62_rasters_unique": true,
+    "portfolio_rasters_scanned": 326,
+    "pre_placement_surface_unique": true,
     "pre_placement_surface_max_spearman": 0.402716,
+    "post_placement_dots_unique": true,
     "post_placement_dots_max_spearman": 0.106775,
     "post_placement_dots_max_mutual_3px_overlap": 0.49331,
-    "unfiltered_dense_witness_note": "ab0a0a62... has positive values on 100.0% of Nevada (5,167,373 px); human selector exemption required under unfiltered >0 rule"
+    "post_placement_dots_max_forward_3px_overlap_real_models": 0.734989,
+    "post_placement_dots_max_jaccard": 0.037516
   },
   "submission_raster": {
     "path": "submissions/gems77-step-propensity-submod300.tif",
@@ -243,7 +253,8 @@ decision before any file in this repository can be cleared.
   },
   "submission_name": "gems77-step-propensity-submod300",
   "submission_note": "GEMSDOE77: HW/FW dip-slip step tensor + V-LBCO crack-tip mechanics + Radon multi-scale ensemble + flank-zeroed 300m submod",
-  "verdict": "promote_pending_selector_dense_witness_exemption"
+  "verdict": "promote",
+  "safe_to_download_and_submit": true
 }
 ```
 
