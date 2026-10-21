@@ -1,7 +1,7 @@
 <!-- CURRENT RELEASE STATUS: reconciled against docs/data/submission-authorization.json and evidence/h81_run_card.json -->
 > ## 🚦 Current download and submission status
 >
-> **OK TO DOWNLOAD FOR INSPECTION: YES · OK TO SUBMIT: NO.** The repository release gate authorizes **0 files**. A newly generated H81 GeoTIFF is available, but it is a negative research artifact—not an approved competition submission.
+> **OK TO DOWNLOAD FOR INSPECTION: YES · OK TO SUBMIT: NO.** The repository release gate authorizes **0 files**. The previously generated H81 GeoTIFF is available, but it is a negative research artifact—not an approved competition submission.
 >
 > - [Download H81 `.tif`](docs/downloads/gems77-h81-slipcone-37654dots-20261021-0fbeaf41-zeros.tif) · [single-TIFF `.zip`](docs/downloads/gems77-h81-slipcone-37654dots-20261021-0fbeaf41-zeros.zip) · [H81 method and evidence](docs/h81.html) · [submission guide](docs/executive-summary.html).
 > - **Format preflight:** PASS, single-band `float32`, `EPSG:32611`, `3730 × 3292`, exact sample transform, finite values in `[0,1]`, no NaN/Inf, SHA-256 `f3eb9e5e3bf03da0285b48b5bb7d41f15b0e450d16bc6b8943aeaa63efadc1f7`. Local format validity does not establish portal acceptance.
