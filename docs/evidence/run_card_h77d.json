@@ -1,0 +1,248 @@
+{
+  "schema_version": "gems-run-card-v2",
+  "lane_id": "H77D-HYDROTECT-SUBMOD",
+  "branch": "arena/ec0846f1-gemsdoe77",
+  "timestamp_utc": "2026-10-21T06:35:00Z",
+  "verdict": "promote",
+  "selector_status": "not approved \u2014 slot decision is a separate human selector step",
+  "safe_to_download": true,
+  "experiment_budget_used": "3 of 3 pre-registered experiments (strictly within cap)",
+  "hypothesis": {
+    "id": "H77D-1",
+    "statement": "Active hidden Great Basin geothermal faults form coupled tectono-hydrothermal conduits where road-deconfounded 1 m LiDAR / seamless 10 m 3DEP piedmont scarps, zero-SGMC potential-field gradients, DOE GDR 1391 fluid/alteration anomalies, and 12-bit Leave-Own-Component-Out (LOCO) fault-tip/relay propagation mechanics reinforce one another, and allocating binary dots via exact 300 m submodular kernel cover strictly dominates greedy disk thinning and all prior lanes.",
+    "physical_mechanism": "Critically stressed NNE-striking normal faults and dilatant fault-tip / step-over relay zones (Faulds & Hinz 2015; Curewitz & Karson 1997; Bull 2007) sustain scarp-toe knicklines on 1 m/10 m elevation, basement density/magnetization steps, and hydrothermal fluid upwelling without relying on Paleozoic/Mesozoic SGMC bedrock contacts (which score 0.036-0.051 live).",
+    "named_non_fault_mimics": [
+      "US Interstate/highway & railroad embankments across playas (damped via TIGER road distance)",
+      "Missing 1 m LiDAR survey tiles across 24.6% of Nevada (mapped q==0 -> NaN instead of 0.0 slope, bridged seamlessly by 100%-coverage 10 m 3DEP DEM)",
+      "Non-faulted interior mountain canyon walls & Pleistocene pluvial Lake Lahontan/Bonneville shorelines",
+      "Paleozoic/Mesozoic SGMC thrust & intrusive contacts (0 SGMC channels used in features or labels)"
+    ]
+  },
+  "leakage_audit": {
+    "canary_channels_tested": 92,
+    "seed30_max_symmetric_auc": 0.8098033966672544,
+    "seed20_max_symmetric_auc": 0.8137152404822895,
+    "gate_threshold": 0.9,
+    "leakage_flags": [],
+    "sgmc_channels_used": 0,
+    "gdr_dist_known_fault_px_accessed": false,
+    "in_sample_predicted_pixels": 0,
+    "pixels_copied_from_prior_rasters": 0
+  },
+  "holdout_evaluation": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "implementation_sha256": {
+      "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+      "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+      "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+      "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+    },
+    "alpha": 0.2,
+    "beta": 0.8,
+    "kernel_radius_m": 300.0,
+    "seed30_primary_B37654": {
+      "withheld_positive_pixels": 11342,
+      "dti": 0.15010778643916292,
+      "ci95": [
+        0.13283366815245393,
+        0.16686418782708523
+      ],
+      "delta_vs_A5_prior_best": 0.04198479440475253,
+      "delta_vs_A5_ci95": [
+        0.02381547273155383,
+        0.05936524105257706
+      ],
+      "delta_vs_A0_h195_foldfair": 0.05296263623266459,
+      "delta_vs_A0_ci95": [
+        0.03783899365229566,
+        0.06802717387585597
+      ]
+    },
+    "seed20_confirmation_B37654": {
+      "withheld_positive_pixels": 11321,
+      "dti": 0.1402982330112543,
+      "ci95": [
+        0.12309664097449122,
+        0.15767566001666078
+      ],
+      "delta_vs_A5_prior_best": 0.03099829099090229,
+      "delta_vs_A5_ci95": [
+        0.015098537552770656,
+        0.047607818807139005
+      ],
+      "delta_vs_A0_h195_foldfair": 0.04455372951128625,
+      "delta_vs_A0_ci95": [
+        0.030303765743932246,
+        0.058576737934288296
+      ]
+    }
+  },
+  "uniqueness_audit": {
+    "prior_rasters_checked": 865,
+    "informative_rasters_checked": 707,
+    "space_filling_rasters_noted": 156,
+    "surface_max_spearman_abs": 0.41025115110344984,
+    "dot_max_spearman_abs": 0.06538900991203968,
+    "dot_max_forward_overlap_3px_informative": 0.6883199660062675,
+    "dot_nearest_informative_raster": "archive_registry:595b5b5c4c079169ac747b17ea88aa32941efd63",
+    "passed_both_stages": true
+  },
+  "submission_artifacts": {
+    "submission_name": "gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros",
+    "submission_note_le140": "H77D zero-SGMC scarp+hydro+LOCO mechanics OOF + 300m submodular (37654 dots); HOLDOUT-DTI 0.1501 (s30) / 0.1403 (s20) vs 0.1093 prior best",
+    "primary_geotiff": "docs/downloads/gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.tif",
+    "primary_geotiff_sha256": "110e7c77ec7e7d201de0ae04ffd2bf3b9db786b4063d800cacb8ab1ded4fd1b9",
+    "primary_geotiff_bytes": 140823,
+    "primary_zip": "docs/downloads/gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.zip",
+    "primary_zip_sha256": "512ab1fcf850485c006324d6620a474ca35fe2180cf0615461b44cadc4a6c9b2",
+    "primary_zip_bytes": 105724,
+    "nan_twin_geotiff": "docs/downloads/gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-nan.tif",
+    "nan_twin_geotiff_sha256": "0cf731f58b4450c5407bff6a0585b9151d95dc1703414775031b526960260bb2",
+    "nan_twin_geotiff_bytes": 336646,
+    "dot_count": 37654,
+    "catalogue_exclusion_px": 3.0,
+    "validator_17_checks": {
+      "01_file_exists": true,
+      "02_zip_exists": true,
+      "03_zip_single_geotiff_member": true,
+      "04_nan_twin_exists": true,
+      "05_crs_epsg_32611": true,
+      "06_shape_3730x3292": true,
+      "07_band_count_1": true,
+      "08_dtype_float32": true,
+      "09_exact_geotransform_match": true,
+      "10_zero_nan_inside_footprint_zeros_tif": true,
+      "11_zero_nan_inside_footprint_nan_tif": true,
+      "12_zero_inf_anywhere": true,
+      "13_strict_unit_interval_0_1": true,
+      "14_zero_positive_outside_footprint": true,
+      "15_zero_positive_on_known_catalogue": true,
+      "16_exact_dot_count_37654": true,
+      "17_all_uniqueness_and_leakage_gates_passed": true
+    },
+    "writer_receipt": {
+      "file": "gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.tif",
+      "sha256": "110e7c77ec7e7d201de0ae04ffd2bf3b9db786b4063d800cacb8ab1ded4fd1b9",
+      "bytes": 140823,
+      "submission_name": "gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros",
+      "note": "H77D zero-SGMC scarp+hydro+LOCO mechanics OOF + 300m submodular (37654 dots); HOLDOUT-DTI 0.1501 (s30) / 0.1403 (s20) vs 0.1093 prior best",
+      "note_chars": 138,
+      "validator": {
+        "file": "/home/user/GEMSDOE77/docs/downloads/gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.tif",
+        "bytes": 140823,
+        "sha256": "110e7c77ec7e7d201de0ae04ffd2bf3b9db786b4063d800cacb8ab1ded4fd1b9",
+        "meta": {
+          "crs": "EPSG:32611",
+          "shape": [
+            3730,
+            3292
+          ],
+          "dtype": "float32",
+          "count": 1,
+          "nodata": null,
+          "transform": [
+            100.0,
+            0.0,
+            243350.0,
+            0.0,
+            -100.0,
+            4508550.0
+          ],
+          "profile_compress": "deflate"
+        },
+        "band_description": [
+          null
+        ],
+        "n_finite": 12279160,
+        "n_nan": 0,
+        "n_infinite": 0,
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.0030664964579045773,
+        "emitted_positive_pixels": 37654,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "all_checks_passed": true,
+        "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+        "on_catalogue_positive_pixels": 0,
+        "in_footprint_positive_pixels": 37654,
+        "footprint_fraction": 0.007286874781441169
+      },
+      "template_report": {
+        "path": "/home/user/GEMSDOE77/docs/downloads/gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.tif",
+        "bytes": 140823,
+        "sha256": "110e7c77ec7e7d201de0ae04ffd2bf3b9db786b4063d800cacb8ab1ded4fd1b9",
+        "bands": 1,
+        "dtype": "float32",
+        "crs": "EPSG:32611",
+        "width": 3292,
+        "height": 3730,
+        "bounds": [
+          243350.0,
+          4135550.0,
+          572550.0,
+          4508550.0
+        ],
+        "ref_bounds": [
+          243350.0,
+          4135550.0,
+          572550.0,
+          4508550.0
+        ],
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "nodata": null,
+        "blocksize": [
+          256,
+          256
+        ],
+        "fixture_grid": false,
+        "has_validity_mask": false,
+        "nan_pixels": 0,
+        "infinity_pixels": 0,
+        "n_nan": 0,
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.0030664964579045773,
+        "n_nonzero": 37654,
+        "mass": 37654.0,
+        "mass_outside_footprint": 0,
+        "problems": [],
+        "ok": true,
+        "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+      },
+      "zip_file": "gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.zip",
+      "zip_sha256": "512ab1fcf850485c006324d6620a474ca35fe2180cf0615461b44cadc4a6c9b2",
+      "approved_for_weekly_slot": false,
+      "promoted": false,
+      "submission_slots_used": 0,
+      "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+      "metadata": {
+        "lane": "H77D-HYDROTECT-SUBMOD",
+        "verdict": "promote"
+      }
+    }
+  }
+}

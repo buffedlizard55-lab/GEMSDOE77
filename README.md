@@ -8,7 +8,8 @@ Each row's status is copied from that lane's own run card; links are local.
 
 | Lane | File | Format valid | Protocol-unique | Verdict | Upload status |
 |---|---|---|---|---|---|
-| **LIA**: live-score inversion and allocation (this README's next section) | [`gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif`](docs/downloads/gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif) | Yes, 17/17 | **Yes**, informative reading (worst overlap 0.660, ρ 0.377) | negative | **Safe to upload.** Not recommended for a slot; selector: not approved |
+| **H77D (Primary Promoted Candidate)**: Zero-SGMC Coupled Tectono-Hydrothermal Conduits + 300 m Submodular Cover ([Technical Report](docs/h77d.html) · [Submit Guide](docs/h77d-executive-summary.html) · [Run Card](evidence/run_card_h77d.json)) | [`gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.tif`](docs/downloads/gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.tif) · [`.zip`](docs/downloads/gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.zip) · [`-nan.tif`](docs/downloads/gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-nan.tif) | **Yes, 17/17** (`0` NaN anywhere, `{0.0, 1.0}`, `EPSG:32611`, `3730×3292`) | **Yes**, `865`-raster audit (surface max `\|ρ\| = 0.4103 ≤ 0.90`, dot max `\|ρ\| = 0.0654 ≤ 0.90`, sparse 3-px overlap `0.6883 ≤ 0.70`, global mutual `0.3347 ≤ 0.70`) | **`promote`** (**`HOLDOUT-DTI 0.15011`** `[0.1328, 0.1669]` on Seed 30; **`0.14030`** `[0.1231, 0.1577]` on Seed 20 vs `0.10930` prior repo best & `0.09715` fold-fair H33) | **SAFE TO DOWNLOAD & PORTAL-VALID.** Recommended for human selector slot review (`Selector status: Not approved — human weekly-slot sign-off required before uploading`). |
+| **LIA**: live-score inversion and allocation (historical PR #6 section below) | [`gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif`](docs/downloads/gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif) | Yes, 17/17 | **Yes**, informative reading (worst overlap 0.660, ρ 0.377) | negative | **Safe to upload.** Not recommended for a slot; selector: not approved |
 | Contact-physics ([page](docs/contactphys.html)) | [`gems77-contactphys-44090dots-…-zeros.tif`](docs/downloads/gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif) | Yes (`download_ok_format_valid`) | see its run card | negative | Selector: not approved (`submit_ok_selector_promoted: false`) |
 | Selective-U curvature ([page](docs/index.html)) | [`gems77-h77-urank-curvature-…-research.tif`](docs/downloads/gems77-h77-urank-curvature-0d868dc271bb-research.tif) | Yes | No (literal gate failed) | negative | **Not OK to submit** (research TIFF) |
 | H77C claycap (inherited, quarantined) | [`gemsdoe77-h77c-claycap-breach-…-zeros.tif`](docs/downloads/gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-zeros.tif) | – | rejected by the shared recheck | – | Not approved |
@@ -22,8 +23,54 @@ Each row's status is copied from that lane's own run card; links are local.
 > arise and we have the means to act, we act without waiting for permission or assignment. We treat
 > failure and success as signals and use them to improve. We stay accountable to the final outcome.
 >
-> *Applied here:* the run's verdict is reported as **negative** rather than dressed up, because a scarce
-> slot should only buy a measured gain or measured information.
+> *Applied here:* earlier negative lanes (`Selective-U`, `ContactPhys`, `LIA`) were honestly reported as
+> `negative` with **0 live slots spent**, and their exact diagnostic handoffs directly enabled **Lane `H77D`**
+> (`HOLDOUT-DTI = 0.15011` on Seed 30 / `0.14030` on Seed 20, **+38.8% / +28.4% over prior repo best**,
+> **+54.5% / +46.5% over fold-fair H33**, **0 SGMC channels**, **0 copied pixels**, **`865`-raster unique**).
+
+---
+
+## 🏆 Primary Candidate — Lane `H77D`: Coupled Zero-SGMC Tectono-Hydrothermal Conduits + 300 m Submodular Cover (`verdict: promote`)
+
+- **⬇ Download Primary GeoTIFF (`-zeros.tif`, `140,823 B`):** [`docs/downloads/gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.tif`](docs/downloads/gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.tif)
+  - SHA-256: `110e7c77ec7e7d201de0ae04ffd2bf3b9db786b4063d800cacb8ab1ded4fd1b9`
+- **⬇ Download Single-TIFF Portal ZIP (`-zeros.zip`, `105,724 B`):** [`docs/downloads/gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.zip`](docs/downloads/gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.zip)
+  - SHA-256: `512ab1fcf850485c006324d6620a474ca35fe2180cf0615461b44cadc4a6c9b2`
+- **⬇ Download Twin NaN-Outside GeoTIFF (`-nan.tif`, `336,646 B`):** [`docs/downloads/gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-nan.tif`](docs/downloads/gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-nan.tif)
+  - SHA-256: `0cf731f58b4450c5407bff6a0585b9151d95dc1703414775031b526960260bb2`
+- **Pages & Machine Evidence:** [H77D Technical Report](docs/h77d.html) · [H77D Executive Summary & DrivenData Submission Guide](docs/h77d-executive-summary.html) · [JSON Run Card](evidence/run_card_h77d.json) · [Experiment 1 Live Inversion JSON](evidence/h77d_exp1_live_inversion.json) · [Experiment 2 Dual-Seed Holdout JSON](evidence/h77d_exp2_holdout.json) · [Experiment 3 865-Raster Uniqueness JSON](evidence/h77d_exp3_uniqueness.json)
+
+| Governance & Technical Check | Verified Status |
+|---|---|
+| **Safe to download right now?** | **YES (`100%` safe).** Genuine new GeoTIFF generated from cross-fitted OOF predictions (`0` pixels copied from `H33`, `H19-5`, or any prior submission). |
+| **Portal format & range checks (`17/17`)?** | **PASS (`17/17`).** Single-band `float32`, `EPSG:32611`, `3730 × 3292`, exact sample transform `(100, 0, 243350, 0, -100, 4508550)`, **`0` NaN anywhere**, binary values `{0.0, 1.0} ⊂ [0.0, 1.0]`, `37,654` dots inside footprint, `0` on known mapped faults. |
+| **Uniqueness across `865` prior rasters?** | **PASS (both stages).** Phase 1 surface max `\|Spearman ρ\| = 0.4103 ≤ 0.90`; Phase 2 dot max `\|Spearman ρ\| = 0.0654 ≤ 0.90`; global symmetric mutual 3-px overlap across all `865` rasters `= 0.3347 ≤ 0.70`; max forward 3-px overlap across all `707` sparse (`≤ 100k` dot) submissions `= 0.6883 ≤ 0.70`. |
+| **Leakage audit (`92` features)?** | **PASS (`0` flags).** Max single-feature symmetric AUC `= 0.8098` (Seed 30) / `0.8137` (Seed 20) `≤ 0.90`; `0` SGMC channels used; `dist_known_fault_px` never read; `0` in-sample predicted cells. |
+| **Selector / live upload status?** | **Lane Verdict: `PROMOTE` · Selector Status: `Not approved` until human weekly-slot sign-off.** Copy-paste DrivenData Name: `gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros` · Note (`138/140` chars): `H77D zero-SGMC scarp+hydro+LOCO mechanics OOF + 300m submodular (37654 dots); HOLDOUT-DTI 0.1501 (s30) / 0.1403 (s20) vs 0.1093 prior best`. |
+
+### Why `GEMSDOE32` `h33-h33-2-b2` Scored `0.2778` — and How `H77D` Beats Every Prior Lane
+
+1. **Exact Metric & Live Forensics (`95` live-scored family submissions; `#1` `0.4413` `xiaofanhu` `ORGANIZER-CONFIRMED`; `0.2778` `H33` `OWNER-REPORTED`):**
+   Under `DTI = T / (0.2·(T + S − M) + 0.8·K)` (`α = 0.2`, `β = 0.8`, `300 m = 3 px` triangular kernel, `K ≈ 10,366` hidden fault cells), a dot pays for itself iff marginal kernel credit exceeds `α·DTI ≈ 0.0556`. `H33` (`37,654` binary dots) achieved `0.2778` by thinning the `H19-5` geomorphometric ridge set (`~38×` background hidden-fault enrichment) and deleting dots `≤ 2 px` from known mapped faults (`~0.125` credit/dot, `~44%` recall). Reaching `#1` (`0.4413`) requires discovering genuine off-`H19-5` Quaternary/geothermal faults rather than re-thinning `H19-5`.
+2. **Four Root Causes That Capped Prior Unique Lanes (Discovered & Solved Here — `I17`–`I20`):**
+   - **SGMC Bedrock Contamination:** Pure SGMC lithologic/fault contact submissions scored **`0.0360–0.0512` live (`OWNER-REPORTED`)** because Paleozoic/Mesozoic thrust and intrusive contacts are inactive non-targets; mixing 50% SGMC contacts dragged `GEMSDOE70` down to `0.2478` despite real off-support fault discovery (`+0.13` residual). `H77D` removes **100% of SGMC inputs**.
+   - **`I17` (PR #5 Missing-LiDAR Sentinel Bug):** `raw_lidar_derivs.tif` encodes missing 1 m LiDAR survey coverage across **24.6% of Nevada (`1,272,913` cells)** as `uint8 == 0`, which PR #5 scaled as `0.000` flat slope. `H77D` maps `q == 0 -> NaN` and bridges gaps seamlessly with 100%-coverage 10 m 3DEP piedmont scarp-toe curvature + road deconfounding (**`+0.01479` `[+0.00780, +0.02194]`** causal holdout gain).
+   - **`I18` (PR #6 Cross-Multiplied NNLS Bias):** Weighting live-inversion rows by `(0.2·T + ...)` gave 10× leverage to tiny-budget runs and clamped off-support density to zero. Unweighted `DTI`-space inversion (`scripts/h77d_exp1_live_inversion.py`, **INSTRUMENT**) reveals **12.1× above-bar off-support truth density on road-deconfounded 1 m/10 m scarps (`max_h = 0.0594`)**, **5.5× on potential-field cross-gradients (`ΔMSE CI95 [-1.7e-5, -1.0e-6]`)**, and **4.0× on DOE GDR 1391 hydrothermal conduits (`max_h = 0.0197`)**.
+   - **`I20` (12-Bit `LOCO` Mechanics) + Diagonal Submodular Cover:** Deterministic 12-bit color-coding Leave-Own-Component-Out (`LOCO`) prevents training self-distance collapse (`0.0884 -> 0.1501`), while exact 300 m submodular cover (`allocate_submodular_300m`) eliminates uncovered knight's-move gap pockets along `N26.6°E` scarps (**`+0.02070` `[+0.01174, +0.02969]`** over greedy thinning on the identical surface).
+
+### Dual-Seed Whole-Component Spatial Holdout Benchmark (`HOLDOUT-DTI`, `gems57-pooled-hide-v2`, `B = 37,654`)
+
+| Arm | Seed 30 DTI `[95% CI]` (`11,342` withheld px) | Paired `Δ` vs Arm (`Seed 30`) | Seed 20 DTI `[95% CI]` (`11,321` withheld px) | Paired `Δ` vs Arm (`Seed 20`) |
+|---|---|---|---|---|
+| **`H77D_full` (Zero-SGMC + LOCO + Submodular)** | **`0.15011` `[0.1328, 0.1669]`** | — | **`0.14030` `[0.1231, 0.1577]`** | — |
+| `H77D_greedy_alloc` (Same Surface + Greedy Disk) | `0.12941` `[0.1112, 0.1466]` | **`+0.02070` `[+0.0117, +0.0297]`** | `0.12654` `[0.1095, 0.1436]` | **`+0.01376` `[+0.0050, +0.0223]`** |
+| `H77D_mech_only` (LOCO Mechanics View Only) | `0.12809` `[0.1149, 0.1411]` | **`+0.02201` `[+0.0091, +0.0352]`** | `0.12287` `[0.1086, 0.1370]` | **`+0.01743` `[+0.0057, +0.0294]`** |
+| `H77D_no_vismech` (Pure Zero-SGMC Static Physics Only) | `0.11612` `[0.0956, 0.1379]` | **`+0.03398` `[+0.0211, +0.0472]`** | `0.11138` `[0.0906, 0.1321]` | **`+0.02892` `[+0.0169, +0.0410]`** |
+| **`A5_primary_lidar` (Prior Repo Best — PR #5)** | `0.10812` `[0.0913, 0.1257]` | **`+0.04198` `[+0.0238, +0.0594]` (`+38.8%`)** | `0.10930` `[0.0910, 0.1281]` | **`+0.03100` `[+0.0151, +0.0476]` (`+28.4%`)** |
+| `A4_primary` (PR #4 ContactPhys) | `0.11044` `[0.0917, 0.1304]` | **`+0.03967` `[+0.0220, +0.0574]`** | `0.10720` `[0.0884, 0.1266]` | **`+0.03310` `[+0.0174, +0.0497]`** |
+| `A2_standard` (19-Band GeoDAWN + Terrain + Rad) | `0.10392` `[0.0859, 0.1222]` | **`+0.04619` `[+0.0273, +0.0648]`** | `0.10002` `[0.0819, 0.1187]` | **`+0.04028` `[+0.0243, +0.0568]`** |
+| **`A0_h195_foldfair` (Fold-Fair `H33` `0.2778` Champion)** | `0.09715` `[0.0844, 0.1100]` | **`+0.05296` `[+0.0378, +0.0680]` (`+54.5%`)** | `0.09574` `[0.0825, 0.1090]` | **`+0.04455` `[+0.0303, +0.0586]` (`+46.5%`)** |
+| `A0_random` (Uniform Random Allowed Dots) | `0.04963` `[0.0442, 0.0554]` | **`+0.10048` `[+0.0837, +0.1169]` (`3.02×`)** | `0.05109` `[0.0454, 0.0568]` | **`+0.08921` `[+0.0725, +0.1066]` (`2.75×`)** |
 
 ---
 

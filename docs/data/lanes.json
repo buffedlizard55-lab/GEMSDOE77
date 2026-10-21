@@ -1,6 +1,16 @@
 {
- "note": "Status of every submission file in this repository, copied from each lane's own run card. Selector approval is a separate step; no file below is selector-approved.",
+ "note": "Status of every submission file in this repository, copied from each lane's own run card. Selector approval is a separate human step; no file below has consumed a live competition slot yet.",
  "lanes": [
+  {
+   "lane": "H77D: Coupled Zero-SGMC Tectono-Hydrothermal Conduits + 300 m Submodular Cover (Primary Candidate)",
+   "page": "h77d.html",
+   "summary": "h77d-executive-summary.html",
+   "file": "downloads/gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.tif",
+   "format_valid": true,
+   "protocol_unique": true,
+   "verdict": "promote",
+   "upload": "SAFE TO DOWNLOAD & PORTAL-VALID (17/17 checks, 0 NaN inside footprint, 865-raster unique, HOLDOUT-DTI 0.15011 [s30] / 0.14030 [s20] > 0.10930 prior best). Selector status: not approved — slot decision is a separate human selector step."
+  },
   {
    "lane": "LIA: live-score inversion and allocation",
    "page": "lia.html",

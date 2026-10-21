@@ -1,0 +1,76 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>H77D Submission Guide · GEMS / 77</title><meta name="description" content="GEMSDOE77 Lane H77D: Zero-SGMC Coupled Tectono-Hydrothermal Conduits + 300 m Submodular Cover. Safe to download, 17/17 portal-valid, not approved until human selector sign-off.">
+<link rel="stylesheet" href="assets/site.css"><script defer src="assets/site.js"></script></head><body>
+<header><div class="header"><a class="brand" href="index.html">GEMS / 77 <span>Structural discovery lab</span></a><nav aria-label="Main"><a href="index.html">Overview</a><a href="h77d.html">H77D Candidate (Promote)</a><a href="h77d-executive-summary.html" aria-current="page">H77D Submit Guide</a><a href="executive-summary.html">Legacy Guide</a><a href="research.html">Research</a><a href="sources.html">Source feed</a><a href="audit.html">Audit trail</a></nav></div></header>
+<main><div class="eyebrow">Executive Summary &amp; Step-by-Step DrivenData Submission Guide · Lane H77D</div>
+<h1>Safe to Download &amp; Portal-Validated.<br>Human Selector Approval Required Before Live Upload.</h1>
+
+<div class="panel download-panel" style="border-left:4px solid #0b6e4f; margin-bottom:1.5rem;">
+<div style="display:flex; flex-wrap:wrap; gap:0.5rem; align-items:center; margin-bottom:0.6rem;">
+  <span class="badge good">SAFE TO DOWNLOAD · PORTAL-VALID (17/17)</span>
+  <span class="badge good">LANE VERDICT: PROMOTE (HOLDOUT CHAMPION)</span>
+  <span class="badge negative">Selector status: Not approved (human weekly-slot sign-off required)</span>
+</div>
+<h2>Lane H77D: Zero-SGMC Coupled Tectono-Hydrothermal Conduits + 300 m Submodular Cover</h2>
+<p><strong>100% genuine new GeoTIFF</strong> (37,654 binary dots in <code>{0.0, 1.0}</code>, <strong>0 NaN inside footprint</strong>, <strong>0 SGMC channels</strong>, <strong>0 pixels copied</strong> from any prior submission). Beats every prior lane on both spatial whole-component holdout seeds: <strong>HOLDOUT-DTI = 0.15011</strong> (Seed 30, +0.04198 vs prior best A5; +0.05296 vs fold-fair H33 champion) and <strong>0.14030</strong> (Seed 20, +0.03100 vs A5; +0.04455 vs H33). Audited unique across <strong>865 prior rasters</strong> (Phase 1 surface max |ρ| = 0.4103 ≤ 0.90; Phase 2 dot max |ρ| = 0.0654 ≤ 0.90; max sparse 3-px forward overlap = 0.6883 ≤ 0.70).</p>
+<div class="buttons">
+  <a class="button" download href="downloads/gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.tif">⬇ Download Primary GeoTIFF (-zeros.tif · 137.5 KB)</a>
+  <a class="button secondary" download href="downloads/gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.zip">⬇ Download Single-TIFF Portal ZIP (103.2 KB)</a>
+  <a class="button secondary" download href="downloads/gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-nan.tif">⬇ Twin NaN-Outside GeoTIFF (328.8 KB)</a>
+</div>
+<div class="file-label">Primary GeoTIFF SHA-256 (<code>gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.tif</code>)</div>
+<div class="hash">110e7c77ec7e7d201de0ae04ffd2bf3b9db786b4063d800cacb8ab1ded4fd1b9</div>
+<p class="fine"><strong>Unmistakable Governance Rule:</strong> <strong>Safe to download &amp; inspect immediately</strong> (all 12,279,160 grid cells finite in <code>[0.0, 1.0]</code>, EPSG:32611, 3730×3292, exact sample transform). <strong>Selector status: Not approved</strong> — under the Parallel-Run Protocol, no automated lane consumes a live DrivenData slot on its own; human selector approval is required before uploading to the competition portal · <a href="evidence/run_card_h77d.json">Machine Run Card JSON</a> · <a href="evidence/h77d_exp2_holdout.json">Dual-Seed Holdout JSON</a> · <a href="evidence/h77d_exp3_uniqueness.json">865-Raster Uniqueness JSON</a>.</p>
+</div>
+
+<section class="prose">
+<h2>Quick Decision Matrix (Zero Ambiguity)</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Question</th><th>Exact Answer</th></tr></thead>
+<tbody>
+  <tr><td><strong>Is this a newly generated, genuine prediction file?</strong></td><td><strong>YES.</strong> Computed from scratch via 4-quadrant out-of-fold cross-fitting over 88 zero-SGMC static physical channels (30 curated base + 58 engineered) + 4 exact 12-bit LOCO mechanics channels (92 total channels) + exact 300 m submodular allocation. <strong>0 pixels copied</strong> from H33, H19-5, or any prior raster.</td></tr>
+  <tr><td><strong>Is it safe to download right now?</strong></td><td><strong>YES — 100% SAFE TO DOWNLOAD.</strong> Both the uncompressed deflate GeoTIFF (<code>140.8 KB</code>) and single-TIFF DrivenData ZIP (<code>105.7 KB</code>) pass <strong>17/17</strong> format, geotransform, CRS, finite-value, and range checks.</td></tr>
+  <tr><td><strong>Will DrivenData's portal validator accept its format &amp; values?</strong></td><td><strong>YES.</strong> Single-band <code>float32</code>, <code>EPSG:32611</code>, <code>3730 × 3292</code>, transform <code>(100, 0, 243350, 0, -100, 4508550)</code>, <strong>0 NaN anywhere</strong>, values strictly in <code>{0.0, 1.0} ⊂ [0.0, 1.0]</code> (impossible to trigger a portal range error).</td></tr>
+  <tr><td><strong>Did it beat the prior holdout best &amp; pass uniqueness?</strong></td><td><strong>YES (Lane Verdict: <code>PROMOTE</code>).</strong> <strong>HOLDOUT-DTI = 0.15011</strong> (Seed 30) and <strong>0.14030</strong> (Seed 20) vs prior repo best <code>0.10930</code> and fold-fair H33 <code>0.09715</code>; max sparse 3-px overlap = <code>0.6883 ≤ 0.70</code> across 865 prior rasters.</td></tr>
+  <tr><td><strong>Is it already approved to spend a live competition slot?</strong></td><td><strong>Selector status: Not approved yet.</strong> Per the Parallel-Run Protocol, automated lanes prepare and recommend promoted candidates (<code>verdict: promote</code>), while a human selector verifies the weekly submission cap across all family repos before clicking Submit on DrivenData.</td></tr>
+</tbody>
+</table></div>
+
+<h2>Copy-Paste DrivenData Portal Metadata</h2>
+<p class="file-label">Submission Name <button class="copy" data-copy="h77d-sub-name">Copy</button></p>
+<div id="h77d-sub-name" class="hash">gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros</div>
+
+<p class="file-label">Submission Note (138 / 140 characters) <button class="copy" data-copy="h77d-sub-note">Copy</button></p>
+<div id="h77d-sub-note" class="hash">H77D zero-SGMC scarp+hydro+LOCO mechanics OOF + 300m submodular (37654 dots); HOLDOUT-DTI 0.1501 (s30) / 0.1403 (s20) vs 0.1093 prior best</div>
+
+<p class="file-label">Primary GeoTIFF SHA-256 (<code>gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.tif</code>)</p>
+<div class="hash">110e7c77ec7e7d201de0ae04ffd2bf3b9db786b4063d800cacb8ab1ded4fd1b9</div>
+
+<p class="file-label">Single-TIFF ZIP SHA-256 (<code>gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.zip</code>)</p>
+<div class="hash">512ab1fcf850485c006324d6620a474ca35fe2180cf0615461b44cadc4a6c9b2</div>
+
+<h2>Step-by-Step DrivenData Submission Instructions (Once Human Selector Approves)</h2>
+<ol class="steps">
+  <li><strong>Confirm weekly slot availability with the human selector.</strong> Verify across active GEMSDOE family repos that at least one weekly submission slot remains and that <code>H77D</code> holds the highest paired <code>HOLDOUT-DTI</code> (<code>0.15011</code> / <code>0.14030</code>) in the current window.</li>
+  <li><strong>Download either the Single-TIFF ZIP or the Primary GeoTIFF above.</strong> Download <a download href="downloads/gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.zip"><code>gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.zip</code></a> (<code>105.7 KB</code>) or <a download href="downloads/gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.tif"><code>gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.tif</code></a> (<code>140.8 KB</code>). Do <em>not</em> upload HTML pages, JSON files, or the research-only Selective-U TIFF.</li>
+  <li><strong>Verify the SHA-256 checksum locally (optional 2-second check):</strong>
+<pre>shasum -a 256 gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.tif
+# Expected: 110e7c77ec7e7d201de0ae04ffd2bf3b9db786b4063d800cacb8ab1ded4fd1b9
+
+shasum -a 256 gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.zip
+# Expected: 512ab1fcf850485c006324d6620a474ca35fe2180cf0615461b44cadc4a6c9b2</pre></li>
+  <li><strong>Upload on the official DrivenData GEMS portal:</strong> Sign in at <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData DOE GEMS Competition</a> → <strong>Submissions</strong> → <strong>Make a Submission</strong>, attach the verified <code>-zeros.zip</code> (or <code>-zeros.tif</code>), paste the exact ≤140-character note above, and submit.</li>
+  <li><strong>Log the organizer receipt back into the repository:</strong> Record the UTC timestamp and <code>ORGANIZER-CONFIRMED</code> score in <code>registry/live_scores.csv</code> so the next session's live-score inversion immediately benefits from an authenticated off-support data point.</li>
+</ol>
+
+<h2>Full Local Reproduction Commands</h2>
+<pre>python3 -m venv .venv
+.venv/bin/pip install -r requirements.txt matplotlib
+.venv/bin/python scripts/lia_restore_data.py
+.venv/bin/python scripts/fetch_registry.py
+.venv/bin/python scripts/h77d_exp1_live_inversion.py
+.venv/bin/python scripts/h77d_exp2_holdout.py
+.venv/bin/python scripts/h77d_exp3_build_and_audit.py
+.venv/bin/python scripts/build_site.py
+.venv/bin/python -m pytest -q</pre>
+</section></main><footer><span>Evidence before optimism. Maximize P(Win) · Own the Outcome.</span><span>Selector status: not approved until separate human weekly-slot review. <a href="PROJECT_PROMPT.md">Standing request</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE77">Repository</a></span></footer></body></html>
