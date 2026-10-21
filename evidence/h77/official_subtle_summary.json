@@ -1,0 +1,132 @@
+{
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "alpha": 0.2,
+  "beta": 0.8,
+  "triangular_radius_m": 300.0,
+  "pooled": true,
+  "scores": {
+    "exp_77_3_promoted": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.09145024466260122,
+      "ci95": [
+        0.07516298642737718,
+        0.10900278915651988
+      ],
+      "withheld_positive_pixels": 5661,
+      "tpw": 1011.5671888729164,
+      "fpw": 31651.402880207657,
+      "fnw": 4649.432811127082
+    },
+    "exp_77_2_h77_nms": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.05396213382434566,
+      "ci95": [
+        0.04550570533287848,
+        0.0621595463730745
+      ],
+      "withheld_positive_pixels": 5661,
+      "tpw": 627.4026028643501,
+      "fpw": 34862.19575581378,
+      "fnw": 5033.597397135649
+    },
+    "exp_77_1_baseline_nms": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.04841426954105882,
+      "ci95": [
+        0.03935418253192292,
+        0.05776060364143612
+      ],
+      "withheld_positive_pixels": 5661,
+      "tpw": 564.7812375267459,
+      "fpw": 35119.19137060794,
+      "fnw": 5096.218762473257
+    },
+    "h33_fold_fair_reclipped": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.03846957811373602,
+      "ci95": [
+        0.031505538032986204,
+        0.04560636641716272
+      ],
+      "withheld_positive_pixels": 5661,
+      "tpw": 456.31178614285534,
+      "fpw": 36207.82317621116,
+      "fnw": 5204.6882138571455
+    },
+    "random_control": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.03571363148877405,
+      "ci95": [
+        0.02987936097927349,
+        0.041547586276387924
+      ],
+      "withheld_positive_pixels": 5661,
+      "tpw": 418.10191570932363,
+      "fpw": 35473.238552361894,
+      "fnw": 5242.898084290673
+    }
+  },
+  "best_comparable_control": "exp_77_2_h77_nms",
+  "paired_differences": {
+    "exp_77_2_h77_nms": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.03748811083825557,
+      "ci95": [
+        0.024422613925574953,
+        0.04992389962868348
+      ],
+      "withheld_positive_pixels": 5661
+    },
+    "exp_77_1_baseline_nms": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.043035975121542405,
+      "ci95": [
+        0.030643225289594,
+        0.054812447536985005
+      ],
+      "withheld_positive_pixels": 5661
+    },
+    "h33_fold_fair_reclipped": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.052980666548865206,
+      "ci95": [
+        0.04011237133947629,
+        0.06703964234031452
+      ],
+      "withheld_positive_pixels": 5661
+    },
+    "random_control": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.05573661317382717,
+      "ci95": [
+        0.039062851854861004,
+        0.0727243872993639
+      ],
+      "withheld_positive_pixels": 5661
+    }
+  },
+  "bootstrap": {
+    "method": "paired physical spatial-cluster percentile",
+    "clusters": 159,
+    "draws": 1000,
+    "seed": 520810,
+    "confidence": 0.95,
+    "caveat": "Conditional on fitted folds, catalogue labels and fixed budgets; not a leaderboard interval."
+  },
+  "implementation_sha256": {
+    "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+    "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+    "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+    "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+  }
+}
