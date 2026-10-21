@@ -10,7 +10,7 @@ from gems57.validate import validate
 
 def main():
     ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('path',type=Path);args=ap.parse_args()
-    g=load_grid(ROOT/'data')
+    g=load_grid(ROOT/'data'/'bridge')
     r=validate(args.path,g.footprint,g.catalogue)
     r['ok_to_submit']=False
     r['approval_warning']='Format validation is not protocol uniqueness, selector approval or organizer acceptance.'

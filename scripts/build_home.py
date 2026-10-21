@@ -22,7 +22,7 @@ PD = "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
 NAV = [("index.html", "Start here"), ("executive-summary.html", "How to submit"),
        ("h77d.html", "H77D (Zero-SGMC)"), ("h77d-executive-summary.html", "H77D guide"),
-       ("h77-step.html", "H77-Step"), ("h78.html", "H78 lane"),
+       ("h77-step.html", "H77-Step"), ("h77e.html", "H77E lane"), ("h78.html", "H78 lane"),
        ("lia.html", "LIA lane"), ("contactphys.html", "Contact-physics lane"), ("urank.html", "Selective-U lane"),
        ("lia-analysis.html", "Why 0.2778"), ("lia-sources.html", "Sources")]
 

@@ -34,7 +34,7 @@
    "holdout_dti_blind_4quad": 0.185834,
    "verdict": "negative",
    "selector_recommendation": "CO-PRIMARY CANDIDATE FOR HUMAN SELECTOR SIGN-OFF (orthogonal to zero-SGMC H77D with only 0.4068 dot overlap; 0.1527 HOLDOUT-DTI)",
-   "upload": "Not OK to submit automatically under unfiltered dense-witness literal gate (ab0a0a62 covers 100% of footprint); PASSES gems57 symmetric gate (max mutual 0.493 <= 0.70, max |rho| 0.403 <= 0.90) & all discrete model checks (H33 fwd 0.586, GEMSDOE70 fwd 0.438, H77D fwd 0.394) — recommended co-primary file once human selector confirms non-submission dense-witness exemption (selector: not approved)."
+   "upload": "Not OK to submit automatically under unfiltered dense-witness literal gate (ab0a0a62 covers 100% of footprint); PASSES gems57 symmetric gate (max mutual 0.493 <= 0.70, max |rho| 0.403 <= 0.90) & all discrete model checks (H33 fwd 0.586, GEMSDOE70 fwd 0.438, H77D fwd 0.394) \u2014 recommended co-primary file once human selector confirms non-submission dense-witness exemption (selector: not approved)."
   },
   {
    "lane": "H78: lidar scarp consensus, uniqueness-capped allocation",
@@ -83,6 +83,21 @@
    "protocol_unique": false,
    "verdict": "negative",
    "upload": "Not OK to submit: research TIFF, literal gate failed."
+  },
+  {
+   "lane": "H77E: upward-continuation persistence + Euler depth coherence + LOCO-ctx (0.1305/0.1342 HOLDOUT-DTI)",
+   "page": "h77e.html",
+   "summary": "h77e-executive-summary.html",
+   "file": "downloads/gems77-h77e-ucpeuler-ctx-37654dots-20261021-22873551-zeros.tif",
+   "format_valid": true,
+   "protocol_unique": false,
+   "beats_holdout_best": false,
+   "verdict": "negative",
+   "name": "gems77-h77e-ucpeuler-ctx-37654dots-20261021-22873551-zeros",
+   "note": "H77E UCP-Euler+LOCO-ctx submod 37654; HOLDOUT-DTI 0.1305/0.1342 < best 0.1527; NEGATIVE not selector-approved",
+   "sha256": "2269b714c78262a8d45dbd5eb02290a27ec9b99afe02340e343f5cb1ac7c58f3",
+   "informative_unique": false,
+   "upload": "Not OK to submit: HOLDOUT-DTI 0.1305 (s20) / 0.1342 (s30) below repo best 0.15272, final-dot duplicate logged (0.835 > 0.70 within 3px of GEMSDOE67 ovtr-ml-cover among 37 checked rasters; full registry unchecked, REST rate-limited), protocol_unique=false (Policy I17). SAFE TO DOWNLOAD for inspection (validator PASS 15/15, 0 NaN). Selector: not approved."
   }
  ]
 }

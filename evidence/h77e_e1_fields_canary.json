@@ -1,0 +1,164 @@
+{
+  "experiment": "H77E-E1",
+  "evidence_class": "CANARY-DIAGNOSTIC (not a score)",
+  "evaluator_version": "gems57-pooled-hide-v2 (split only, for canary sampling)",
+  "split": "buffered_component_draw seed=20 hide_frac=0.20 buffer_px=3",
+  "withheld_positive_pixels": 11321,
+  "canary_negatives": 200000,
+  "band_order_verified": [
+    "mag_anom",
+    "rtp",
+    "tmi_hg",
+    "geod_2ndinv",
+    "iso_grav_anom_slope",
+    "tc",
+    "geod_shearrate",
+    "geod_dilaterate",
+    "tmi_vg",
+    "deq_n100a15",
+    "iso_grav_anom_vg",
+    "det_elev",
+    "iso_grav_anom",
+    "tmi",
+    "depth_to_base_surf",
+    "ieq_n100a15",
+    "cond_surf",
+    "iso_grav_anom_hg",
+    "det_elev_slope"
+  ],
+  "euler_diag": {
+    "n_windows": 1288704,
+    "n_kept": 828816,
+    "kept_fraction": 0.6431391537544696
+  },
+  "canaries_new": {
+    "ucp_mag_persist": {
+      "auc": 0.529252110016783,
+      "sym_auc": 0.529252110016783
+    },
+    "ucp_mag_deep800": {
+      "auc": 0.5285877978977122,
+      "sym_auc": 0.5285877978977122
+    },
+    "ucp_grav_persist": {
+      "auc": 0.49333213342460913,
+      "sym_auc": 0.5066678665753909
+    },
+    "ucp_grav_deep800": {
+      "auc": 0.4894891875717693,
+      "sym_auc": 0.5105108124282307
+    },
+    "ucp_cross_min": {
+      "auc": 0.5119611339545976,
+      "sym_auc": 0.5119611339545976
+    },
+    "euler_density": {
+      "auc": 0.5261064839678473,
+      "sym_auc": 0.5261064839678473
+    },
+    "euler_depth_coh": {
+      "auc": 0.4792260654977476,
+      "sym_auc": 0.5207739345022524
+    },
+    "euler_depth_mean": {
+      "auc": 0.5133000507905662,
+      "sym_auc": 0.5133000507905662
+    },
+    "tex_supp": {
+      "auc": 0.47195955215970326,
+      "sym_auc": 0.5280404478402967
+    },
+    "tex_aniso": {
+      "auc": 0.4893424277890646,
+      "sym_auc": 0.5106575722109354
+    },
+    "tex_supp_aniso": {
+      "auc": 0.4788084332214469,
+      "sym_auc": 0.5211915667785532
+    }
+  },
+  "canaries_std": {
+    "mag_anom": {
+      "auc": 0.5112508291096187,
+      "sym_auc": 0.5112508291096187
+    },
+    "rtp": {
+      "auc": 0.520184980150884,
+      "sym_auc": 0.520184980150884
+    },
+    "tmi_hg": {
+      "auc": 0.5317603477955628,
+      "sym_auc": 0.5317603477955628
+    },
+    "geod_2ndinv": {
+      "auc": 0.570196624219639,
+      "sym_auc": 0.570196624219639
+    },
+    "iso_grav_anom_slope": {
+      "auc": 0.5241677238354251,
+      "sym_auc": 0.5241677238354251
+    },
+    "tc_totalcount": {
+      "auc": 0.46647380332657035,
+      "sym_auc": 0.5335261966734297
+    },
+    "geod_shearrate": {
+      "auc": 0.5700260149707195,
+      "sym_auc": 0.5700260149707195
+    },
+    "geod_dilaterate": {
+      "auc": 0.516187082605706,
+      "sym_auc": 0.516187082605706
+    },
+    "tmi_vg": {
+      "auc": 0.4870649628428928,
+      "sym_auc": 0.5129350371571072
+    },
+    "deq_n100a15": {
+      "auc": 0.5410989570012116,
+      "sym_auc": 0.5410989570012116
+    },
+    "iso_grav_anom_vg": {
+      "auc": 0.5165140867226113,
+      "sym_auc": 0.5165140867226113
+    },
+    "det_elev": {
+      "auc": 0.5136356240963889,
+      "sym_auc": 0.5136356240963889
+    },
+    "iso_grav_anom": {
+      "auc": 0.4589628374309165,
+      "sym_auc": 0.5410371625690835
+    },
+    "tmi": {
+      "auc": 0.5109141215284341,
+      "sym_auc": 0.5109141215284341
+    },
+    "depth_to_base_surf": {
+      "auc": 0.5251064348530992,
+      "sym_auc": 0.5251064348530992
+    },
+    "ieq_n100a15": {
+      "auc": 0.5448756335903482,
+      "sym_auc": 0.5448756335903482
+    },
+    "cond_surf": {
+      "auc": 0.4776470743212273,
+      "sym_auc": 0.5223529256787727
+    },
+    "iso_grav_anom_hg_signed": {
+      "auc": 0.49168258004317356,
+      "sym_auc": 0.5083174199568264
+    },
+    "det_elev_slope": {
+      "auc": 0.5677385250696292,
+      "sym_auc": 0.5677385250696292
+    }
+  },
+  "worst_new_sym_auc": 0.529252110016783,
+  "worst_new_channel": "ucp_mag_persist",
+  "worst_std_sym_auc": 0.570196624219639,
+  "worst_std_channel": "geod_2ndinv",
+  "leakage_flags_gt_090": [],
+  "elapsed_s": 41.82677698135376
+}

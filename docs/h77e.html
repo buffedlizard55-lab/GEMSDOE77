@@ -1,0 +1,90 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>H77E lane · GEMSDOE77</title>
+<meta name="description" content="GEMSDOE77 H77E: unique GeoTIFF download, HOLDOUT-DTI, uniqueness and submit status.">
+<link rel="stylesheet" href="assets/lia.css"></head><body>
+<header><div class="wrap"><span class="brand">GEMSDOE77 · DOE GEMS Prize</span><a href="index.html">Start here</a> <a href="executive-summary.html">How to submit</a> <a href="h77e.html" class=here>H77E lane</a> <a href="h77e-executive-summary.html">H77E guide</a>
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE77">GitHub</a></div></header><main><div class="wrap"><h1>H77E lane: upward-continuation persistence + Euler depth coherence</h1>
+<p class="verdict"><b>Verdict: NEGATIVE. Not OK to submit; OK to download for inspection/research only. Selector: not approved.</b>
+The candidate scores 0.1305 (seed 20) / 0.1342 (seed 30) HOLDOUT-DTI, below this repository's best
+0.15272, and 83.5% of its final dots fall within 3 px of one checked registry raster
+(GEMSDOE67 ovtr-ml-cover), so a duplicate is logged and the lane is stopped under protocol rule 1.
+The new UCP/Euler block alone scores 0.0396 HOLDOUT-DTI, below the random-allocation arm (0.0476).
+The file itself passes every local portal-format check (values in [0,1], no NaN, exact grid).</p>
+<section class="card dl"><h2>⬇ H77E file — download only, do not submit</h2>
+<a class="btn" href="downloads/gems77-h77e-ucpeuler-ctx-37654dots-20261021-22873551-zeros.tif" download>Download .tif</a>
+<a class="btn alt" href="downloads/gems77-h77e-ucpeuler-ctx-37654dots-20261021-22873551-zeros.zip" download>Same file as one-TIFF .zip</a>
+<a class="btn alt" href="downloads/gems77-h77e-ucpeuler-ctx-37654dots-20261021-22873551-nan.tif" download>NaN-outside twin (diagnostic only)</a>
+<div class="chips"><span class="chip ok">Portal format (local): PASS 15/15</span>
+<span class="chip bad">Unique vs checked registry: FAIL — duplicate logged (0.835 overlap)</span>
+<span class="chip bad">Beat repo holdout best 0.15272: NO (0.1305 / 0.1342)</span><span class="chip warn">Selector: not approved</span></div>
+<p class="small muted">Submission name (for reference) (61 characters)</p><div class="copy"><code>gems77-h77e-ucpeuler-ctx-37654dots-20261021-22873551-zeros</code><button data-copy="gems77-h77e-ucpeuler-ctx-37654dots-20261021-22873551-zeros">Copy</button></div>
+<p class="small muted">Note (for reference; do not use) (109 characters)</p><div class="copy"><code>H77E UCP-Euler+LOCO-ctx submod 37654; HOLDOUT-DTI 0.1305/0.1342 &lt; best 0.1527; NEGATIVE not selector-approved</code><button data-copy="H77E UCP-Euler+LOCO-ctx submod 37654; HOLDOUT-DTI 0.1305/0.1342 < best 0.1527; NEGATIVE not selector-approved">Copy</button></div>
+<p class="small">sha256 of the .tif: <code>2269b714c78262a8d45dbd5eb02290a27ec9b99afe02340e343f5cb1ac7c58f3</code> · 37,654 binary dots · 0 on catalogue · <a href="evidence/run_card_h77e.json">JSON run card</a></p></section>
+
+<h2>Can I submit it?</h2>
+<p><b>No.</b> Format-valid is not approval. This lane is holdout-negative, a final-dot duplicate
+is logged against the checked registry, protocol uniqueness is false (incomplete registry this
+session + Policy I17 dense-witness reading), and the selector has not approved any file in this
+repository. <b>Do not upload this file to DrivenData.</b> It is safe to download for inspection,
+reproduction and further research. How a <i>promoted</i> file would be submitted is described in the
+<a href="h77e-executive-summary.html">H77E submission guide</a>.</p>
+
+<h2>Hypothesis and mechanism</h2>
+<p><b>Hypothesis (preregistered, registry/preregistration_h77e.json):</b> deep basement source edges
+that persist under Fourier upward continuation in <i>both</i> magnetics and gravity, with
+depth-coherent Euler (SI=0) solutions, mark buried intrabasin faults missing from the
+USGS/INGENIOUS surface catalogue. <b>Mechanism:</b> exp(−|k|h) continuation of RTP + isostatic
+gravity to 200/400/800 m, analytic-signal persistence and 800 m edge, cross-field minimum,
+Euler deconvolution (Reid et al. 1990) density/depth/coherence, magnetic texture suppression —
+combined with the raw 19 bands and LOCO-style catalogue-context, ranked by HGB and emitted as
+37,654 dots &gt;3 px from the catalogue via the shared 300 m submodular allocator.</p>
+<p><b>Named non-fault mimic:</b> intrusive/lithologic basement contacts and caldera margins
+(deep, persistent, Euler-coherent — indistinguishable by this signature alone); GeoDAWN
+survey-block seams; thick uniform alluvium for the texture block. The holdout result below is
+consistent with the mimic dominating: the new block alone underperforms random allocation.</p>
+
+<h2>Experiments (3 of 3, budget respected)</h2>
+<table><tr><th>Exp</th><th>What</th><th>Result</th><th>Evidence</th></tr>
+<tr><td>E1</td><td>Build 11 label-free UCP/Euler/texture fields; single-feature leakage canaries (seed-20 draw)</td><td>No leakage: worst symmetric AUC 0.529 (ucp_mag_persist) &le; 0.90. Euler SI=0 singularity bug found, fixed, synthetic-tested before E2.</td><td><a href="evidence/h77e_e1_fields_canary.json">h77e_e1_fields_canary.json</a></td></tr>
+<tr><td>E2</td><td>Dual-seed hide-and-recover holdout (gems57-pooled-hide-v2), 6 arms seed 20, 2 arms seed 30</td><td>Candidate 0.1305 / 0.1342; new block alone 0.0396 &lt; random 0.0476; gain is catalogue-context driven</td><td><a href="evidence/h77e_e2_holdout.json">h77e_e2_holdout.json</a></td></tr>
+<tr><td>E3</td><td>Full-map 4-quadrant cross-fitted build, shared-writer packaging, validator, surface + final-dot uniqueness</td><td>Format PASS; surface |ρ| max 0.166; final-dot duplicate logged (0.835 vs GEMSDOE67 ml-cover)</td><td><a href="evidence/h77e_e3_build.json">h77e_e3_build.json</a> · <a href="evidence/h77e_uniqueness.json">h77e_uniqueness.json</a> · <a href="evidence/h77e_validator.json">h77e_validator.json</a></td></tr></table>
+
+<h2>Holdout (E2) — HOLDOUT-DTI, evaluator gems57-pooled-hide-v2, α=0.2, β=0.8, 300 m triangular kernel</h2>
+<table><tr><th>Arm (seed 20, B=37,654)</th><th>HOLDOUT-DTI</th><th>95% CI</th><th>Withheld positives</th></tr>
+<tr><td>A_ucp (new block alone)</td><td>0.0396</td><td>0.0326–0.0470</td><td>11,321</td></tr>
+<tr><td>A0_random</td><td>0.0476</td><td>0.0412–0.0535</td><td>11,321</td></tr>
+<tr><td>A_comb (std + new, no context)</td><td>0.0606</td><td>0.0438–0.0792</td><td>11,321</td></tr>
+<tr><td>A_std (raw 19 bands)</td><td>0.0659</td><td>0.0492–0.0838</td><td>11,321</td></tr>
+<tr><td>A0_champion (fold-fair H19-5 construction)</td><td>0.0957</td><td>0.0825–0.1086</td><td>11,321</td></tr>
+<tr><td><b>A_comb_ctx (candidate)</b></td><td><b>0.1305</b></td><td>0.1158–0.1457</td><td>11,321</td></tr>
+<tr><td>A_comb_ctx, seed 30 replication</td><td>0.1342</td><td>0.1183–0.1512</td><td>11,342</td></tr>
+<tr><td>Repo best before this lane (H77-Step)</td><td>0.1527</td><td>—</td><td>11,321</td></tr></table>
+<p>Paired Δ candidate − champion = +0.0348 (95% CI +0.0164 to +0.0540, seed 20), but the
+candidate does <b>not</b> beat the 0.15272 promotion bar, and its margin comes from
+catalogue-context continuation — holdout-strong but, per this repo's earlier analysis, live-weak.
+A projection is never a score: no organizer score exists for this file.</p>
+<img src="figures/h77e_surface_and_dots.png" alt="H77E fields, surface and dots" style="max-width:100%">
+
+<h2>Why 0.2778, and why this does not beat it</h2>
+<p>The 0.2778 file (GEMSDOE32, OWNER-REPORT) is an emission optimum — dotted, catalogue-flank-pruned
+H19-5 line set — on a 0.19-class field. Beating it needs a better field (≈ +60% realised credit per
+dot at the leader's level), not a new thinning rule. H77E tested a new field and it moved the wrong
+way on the validated proxy: its novel physics alone is weaker than random allocation for recovering
+held-out catalogue faults, because deep basement contacts are mostly the named non-fault mimic.
+The full analysis is in the repository's <a href="lia-analysis.html">Why 0.2778</a> page and the
+lane report on GitHub.</p>
+
+<h2>Official sources</h2><ul>
+<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DrivenData GEMS problem description</a> — task, metric, format</li>
+<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">DrivenData GEMS leaderboard</a> — 0.4413 leader (ORGANIZER-CONFIRMED as a leaderboard value)</li>
+<li><a href="https://chooser.crossref.org/?doi=10.1190%2F1.1442774">Reid et al. 1990, Geophysics 55:80–91 (Euler deconvolution, DOI 10.1190/1.1442774)</a></li>
+<li><a href="https://wiki.seg.org/wiki/Dictionary:Upward_continuation">SEG Wiki: upward continuation</a></li>
+<li><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN data release</a></li>
+<li><a href="https://gbcge.org/current-projects/ingenious/">GBCGE INGENIOUS</a> · <a href="https://epsg.io/32611">EPSG:32611</a> · <a href="https://en.wikipedia.org/wiki/Tversky_index">Tversky index</a></li></ul>
+</div></main>
+<footer><div class="wrap">Selector status for every file on this site: <b>not approved</b>. Whether to spend a
+weekly slot is a separate selector decision, not this repository's. Number labels: <b>ORGANIZER-CONFIRMED</b>,
+<b>HOLDOUT-DTI</b> (local hide-and-recover; evaluator version, withheld positives, 95% CI),
+<b>INSTRUMENT</b> (projection, never a score).</div></footer>
+<script>document.querySelectorAll('button[data-copy]').forEach(b=>b.onclick=()=>{navigator.clipboard.writeText(b.dataset.copy);b.textContent='Copied';setTimeout(()=>b.textContent='Copy',1200)})</script>
+</body></html>
