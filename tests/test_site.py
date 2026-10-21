@@ -134,6 +134,15 @@ def test_home_pages_put_download_and_per_file_status_first():
     head=home[:home.index('Reviewed downloadable candidates')]
     assert 'Download .tif' in head and 'Can I submit it?' in head and 'Will it beat 0.2778?' in head
     assert 'Not OK to submit' in head and 'OK to download' in head
+    assert 'id="current-submission-status"' in head
+    assert head.index('id="current-submission-status"') < head.index('NEWEST H77V-LDSA')
+    assert '0 files are authorized' in head
+    assert 'Do not upload any file from this archive' in head
+    assert 'Current session review' in home[:home.index('Reviewed downloadable candidates')]
+    current_review=(DOC/'review-2026-10-21-arena-705c4339.html').read_text()
+    assert 'GEMSDOE77 review' in current_review and 'No new GeoTIFF was generated' in current_review
+    assert 'OWNER-REPORT' in current_review and 'NOT VERIFIED' in current_review
+    assert 'Current repository status' in (ROOT/'README.md').read_text()[:1500]
     assert 'Can I submit it?</b> Yes' not in home and 'Can I upload it?</b> Yes' not in home
     for x in lanes:
         assert (DOC/x['file']).exists(), x['file']

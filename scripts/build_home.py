@@ -24,7 +24,7 @@ REPO = "https://github.com/buffedlizard55-lab/GEMSDOE77"
 LB = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
 PD = "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
-NAV = [("h77pd.html", "H77-PD · 0.1685 3-Seed #1"), ("h77pd-executive-summary.html", "H77-PD guide"), ("h77vldsa.html", "H77V-LDSA · 0.1444/0.1530"), ("h77vldsa-executive-summary.html", "H77V-LDSA guide"), ("h77h-meshsafe.html", "H77H-MeshSafe · 0/119 firings"), ("h77h-meshsafe-executive-summary.html", "H77H-MeshSafe guide"), ("h83netsib.html", "H83-NETSIB · negative"), ("h83netsib-executive-summary.html", "H83-NETSIB guide"), ("h77vds.html", "H77-VDS · 0.1744 #1"), ("h77vds-executive-summary.html", "H77-VDS guide"), ("review-latest.html", "Latest review"), ("review-arena-00397d44.html", "Arena branch review"), ("metric-review.html", "Corrected H33 analysis"), ("index.html", "Start here"), ("h77hdd.html", "H77H-DD · downdip-bridge"), ("h77hdd-executive-summary.html", "H77H-DD guide"), ("h77vc.html", "H77VC (Vent+ClayCap)"), ("h77vs.html", "H77VS · negative"), ("h77vs-executive-summary.html", "H77VS guide"), ("tsd.html", "H77-TSD · inspection"), ("h77v.html", "H77V (Vent-Advect)"), ("h82-texture.html", "H82-TEXTURE · negative"), ("h82rank.html", "H82R · radiometric negative"), ("preflight-review.html", "Current readiness review"), ("h82-executive-summary.html", "H82 · cool-outlet negative"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
+NAV = [("review-2026-10-21-arena-705c4339.html", "Current session review"), ("h77pd.html", "H77-PD · 0.1685 3-Seed #1"), ("h77pd-executive-summary.html", "H77-PD guide"), ("h77vldsa.html", "H77V-LDSA · 0.1444/0.1530"), ("h77vldsa-executive-summary.html", "H77V-LDSA guide"), ("h77h-meshsafe.html", "H77H-MeshSafe · 0/119 firings"), ("h77h-meshsafe-executive-summary.html", "H77H-MeshSafe guide"), ("h83netsib.html", "H83-NETSIB · negative"), ("h83netsib-executive-summary.html", "H83-NETSIB guide"), ("h77vds.html", "H77-VDS · 0.1744 #1"), ("h77vds-executive-summary.html", "H77-VDS guide"), ("review-latest.html", "Latest review"), ("review-arena-00397d44.html", "Arena branch review"), ("metric-review.html", "Corrected H33 analysis"), ("index.html", "Start here"), ("h77hdd.html", "H77H-DD · downdip-bridge"), ("h77hdd-executive-summary.html", "H77H-DD guide"), ("h77vc.html", "H77VC (Vent+ClayCap)"), ("h77vs.html", "H77VS · negative"), ("h77vs-executive-summary.html", "H77VS guide"), ("tsd.html", "H77-TSD · inspection"), ("h77v.html", "H77V (Vent-Advect)"), ("h82-texture.html", "H82-TEXTURE · negative"), ("h82rank.html", "H82R · radiometric negative"), ("preflight-review.html", "Current readiness review"), ("h82-executive-summary.html", "H82 · cool-outlet negative"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
        ("h77e-knick.html", "H77E-Knick · 0/816 firings"), ("release-review.html", "Release safety review"), ("executive-summary.html", "How to submit"),
        ("h81.html", "H81 · slip-cone"), ("h82.html", "H82 · fault collar"),
        ("h83.html", "H83 · fault collar"),
@@ -77,7 +77,11 @@ def copy(label, text):
 
 
 def main():
-    # Publish the current review from its source, not a hand-edited landing page.
+    # Publish this branch's review from its source, not a hand-edited landing page.
+    current_review = (D / "review-2026-10-21-arena-705c4339.md").read_text()
+    (D / "review-2026-10-21-arena-705c4339.html").write_text(page(
+        "review-2026-10-21-arena-705c4339.html", "Current session review",
+        markdown.markdown(current_review, extensions=["tables", "fenced_code"])))
     (D / "evidence").mkdir(exist_ok=True)
     for name in ("registry_preflight.json", "listed_download_audit.json", "preflight_sources.json",
                  "readiness_review_run_card.json"):
@@ -2011,7 +2015,19 @@ Min catalogue distance: <code>{sub['min_distance_to_catalogue_px']:.4f} px</code
     shutil.copyfile(ROOT / "registry/preregistration_h77vldsa.json", D / "evidence/preregistration_h77vldsa.json")
     shutil.copyfile(ROOT / "research/h77vldsa_hypotheses.md", D / "research/h77vldsa_hypotheses.md")
 
-    hero_vldsa = f"""<section class="card dl research" style="border:2px solid #0284c7;background:#f0f9ff;"><h2>⬇ NEWEST H77V-LDSA Deliverable (0 / 95 Informative Firings · 0.1444 / 0.1424 Unique &amp; 0.1530 / 0.1527 Pure HOLDOUT-DTI)</h2>
+    preflight = jload("evidence/registry_preflight.json")
+    authorization = jload("docs/data/submission-authorization.json")
+    if (not preflight or preflight.get("decision") != "STOP_UNIVERSAL_DUPLICATE"
+            or not authorization or authorization.get("repository_decision") != "NOT OK TO SUBMIT"
+            or authorization.get("repository_authorized_file_count") != 0):
+        raise ValueError("Landing-page submission status must fail closed on current release receipts")
+    proof = preflight["proof"]
+    status_banner = f"""<section id="current-submission-status" class="card dl research" style="border:4px solid #991b1b;background:#fff1f2;">
+<h1>Competition upload status: <strong>NOT OK TO SUBMIT</strong></h1>
+<p class="verdict"><strong>{authorization['repository_authorized_file_count']} files are authorized.</strong> All existing TIFF downloads on this site are inspection-only. A fresh, hash-pinned universal duplicate-stop proof shows {proof['allowed_pixels']:,} of {proof['allowed_pixels']:,} allowed pixels within 3 px of one registry witness, so every nonempty candidate has overlap {proof['nonempty_subset_forward_overlap_lower_bound']:.1f} (stop threshold {proof['overlap_stop_threshold_strictly_greater_than']:.2f}). No new TIFF or experiment was made in this review; no weekly slot was used.</p>
+<p>Do not upload any file from this archive. Downloading a locally format-valid TIFF is not competition clearance, and portal acceptance has not been verified. <a class="btn alt" href="review-2026-10-21-arena-705c4339.html">Current branch review &amp; evidence →</a> <a class="btn alt" href="executive-summary.html">Submission guide (for a future cleared file) →</a> <a class="btn alt" href="data/submission-authorization.json">Authorization receipt →</a></p>
+</section>"""
+    hero_vldsa = status_banner + f"""<section class="card dl research" style="border:2px solid #0284c7;background:#f0f9ff;"><h2>⬇ NEWEST H77V-LDSA Deliverable (0 / 95 Informative Firings · 0.1444 / 0.1424 Unique &amp; 0.1530 / 0.1527 Pure HOLDOUT-DTI)</h2>
 <p class="verdict"><b>OK TO DOWNLOAD FOR INSPECTION: YES</b> (15/15 <code>vendor/gems57</code> validator checks PASS, float32 values strictly in <code>[0, 1]</code>, <code>0</code> NaNs across all <code>12,279,160</code> cells, <code>36,500</code> binary dots).<br>
 <b>NOT OK TO SUBMIT AUTOMATICALLY (Inspection Only — Selector: not approved under Policy I17):</b>
 6 space-filling/lattice &ge;70%-halo archive witnesses trigger literal overlap; across ALL <code>95</code> &lt;70%-halo informative rasters, forward 3-px overlap has <b>0 firings</b> (<code>max = 0.65000 &le; 0.70</code>; surface max |Spearman &rho;| = <code>0.751885 &le; 0.90</code>).<br>

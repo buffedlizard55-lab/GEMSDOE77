@@ -1,3 +1,13 @@
+# Current repository status — 2026-10-21 review on `arena/705c4339-gemsdoe77`
+
+> **NOT OK TO SUBMIT — 0 files authorized.** No new TIFF was created in this review. Every existing linked TIFF is for **inspection only**, not competition upload. A hash-pinned registry witness covers all 5,106,385 allowed pixels within the required 3-pixel halo, so every nonempty candidate has overlap 1.0, above the 0.70 stop threshold. No new method lane was assigned; no experiment or weekly submission slot was used.
+>
+> - [Current three-pass review](docs/review-2026-10-21-arena-705c4339.md) · [Machine-readable run card](evidence/arena_705c4339_run_card.json) · [Pinned preflight receipt](evidence/registry_preflight.json) · [Submission guide](docs/executive-summary.html)
+> - **Do not mistake format validity for submission clearance.** The local release gate says `NOT OK TO SUBMIT`; no organizer upload receipt was obtained.
+> - The family-reported H33 `0.2778` is **OWNER-REPORT**, not an organizer-confirmed file-to-score receipt. Explanation and limitations: [`research/why-h33-scored-02778.md`](research/why-h33-scored-02778.md).
+>
+> The long history below is an archive spanning many parallel branches and experiment sessions. Its branch-specific banners, holdout numbers, and older status claims are historical records, not the current branch decision above. See the current review before using any historical download or score.
+
 <!-- H77V-LDSA PRIMARY STATUS BANNER -->
 > **🚦 Current session — branch `arena/65c05dc9-gemsdoe77` (`H77V-LDSA`, 2026-10-21): ✅ OK TO DOWNLOAD FOR INSPECTION: YES · ⛔ OK TO SUBMIT: NO (`verdict: "negative"` under Policy `I17` dense witness; `0` weekly slots spent).**
 > - **Primary GeoTIFF (`145,365 B`, `36,500` `{0,1}` binary dots, `0` NaN, `0` on catalogue, $\min d_{\text{cat}} = 2.2361\text{ px}$):** [`docs/downloads/gemsdoe77-h77v-dealiased-vent-demag-knick-ldsa-20261021.tif`](docs/downloads/gemsdoe77-h77v-dealiased-vent-demag-knick-ldsa-20261021.tif) (`SHA-256 = 861c880e7a56203d197182075765480efaf224ad6cfde342fab511f5f908fa4c`) · **[Single-TIFF `.zip`](docs/downloads/gemsdoe77-h77v-dealiased-vent-demag-knick-ldsa-20261021.zip)** (`SHA-256 = efa45a7be334f80a3bccc548c2453394fe3b33dd27d50d834235255a1af7000d`) · **[Sidecar `.json`](docs/downloads/gemsdoe77-h77v-dealiased-vent-demag-knick-ldsa-20261021.json)** · **[Technical Report](docs/h77vldsa.html)** · **[Submission Guide](docs/h77vldsa-executive-summary.html)** · **[Run Card](evidence/run_card_h77vldsa.json)** · **[3-Pass Review](docs/review-2026-10-21-h77vldsa.md)**

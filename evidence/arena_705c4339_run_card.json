@@ -1,0 +1,41 @@
+{
+  "schema": "gemsdoe77-review-run-card-v1",
+  "review_date": "2026-10-21",
+  "branch": "arena/705c4339-gemsdoe77",
+  "hypothesis": "No new geological hypothesis tested; repository audit and candidate-independent registry preflight only.",
+  "mechanism": "Verified one pinned full-support witness against the unchanged shared positive-support and 3-px halo rule; it rejects every nonempty allowed candidate before placement.",
+  "named_non_fault_process_that_could_mimic_it": "Not applicable to this review because no geologic surface was generated. Proposed potential-field candidates list intrusive contacts and survey seams as mimics in the review.",
+  "holdout_dti": {
+    "evidence_class": "NOT RUN in this review",
+    "evaluator_version": null,
+    "withheld_positive_count": null,
+    "value": null,
+    "95_percent_ci": null
+  },
+  "correlation_overlap_vs_registry": {
+    "candidate_rank_correlation": "NOT APPLICABLE; no candidate raster",
+    "evidence_class": "REGISTRY-MEASUREMENT, NOT SCORE",
+    "allowed_pixels": 5106385,
+    "within_3px_of_pinned_witness": 5106385,
+    "nonempty_candidate_overlap_lower_bound": 1.0,
+    "protocol_stop_threshold": 0.7,
+    "scope": "One hash-pinned rejection witness; not a complete registry scan",
+    "receipt": "evidence/registry_preflight.json"
+  },
+  "raster_sha256": null,
+  "validator": {
+    "existing_listed_tiffs": "44/44 local SHA/grid/finite-range checks passed against tracked bridge sample",
+    "new_candidate": "NOT GENERATED",
+    "no_nan_inside_footprint": "No candidate; existing listed primary files pass local all-finite [0,1] audit",
+    "values_in_0_1": "No candidate; existing listed primary files pass local all-finite [0,1] audit",
+    "crs_shape_transform_match": "No candidate; existing listed primary files match local bridge sample",
+    "release_gate": "NOT OK TO SUBMIT; 0 authorized files",
+    "portal_acceptance": "NOT VERIFIED"
+  },
+  "submission_name": null,
+  "submission_note": "Review only; no candidate generated, no slot used.",
+  "experiments_run": 0,
+  "weekly_slots_used": 0,
+  "authorized_to_submit": false,
+  "verdict": "negative"
+}

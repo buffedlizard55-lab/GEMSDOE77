@@ -8,6 +8,10 @@ summarised with provenance at the end rather than re-transcribed hash-by-hash
 `docs/score-ledger.csv`; later entries below are OWNER-REPORT as supplied in
 the 2026-10-21 brief — no organizer receipts).*
 
+## Current branch review addendum — `arena/705c4339-gemsdoe77` — 2026-10-21
+
+No single-method lane is assigned in this invocation. Fresh preflight verifies a pinned witness covering all 5,106,385 allowed pixels within the 3 px halo, forcing overlap 1.0 > 0.70 for every nonempty candidate. No new TIFF, geological experiment, or weekly slot was used; release authorization remains zero. See `docs/review-2026-10-21-arena-705c4339.md`, `evidence/arena_705c4339_run_card.json`, and `evidence/registry_preflight.json`. Existing files are inspection-only. This addendum does not authorize restarting a closed lane or locally changing the shared policy.
+
 ## Current 05f9e6f8 review addendum — 2026-10-21
 
 The full standing request is retained in README. This invocation again assigns no identifiable method paragraph. Fresh hash-pinned preflight stops all nonempty candidates under the literal registry overlap rule. No new geological experiment, TIFF or slot was used. The new review fixes contradictory recorded measurement handling in the release adapter; it does not relax the shared protocol. See `docs/review-2026-10-21-05f9e6f8.md`. GitHub Pages exists in legacy mode; switching to Actions publishing was denied by the integration's permissions.
