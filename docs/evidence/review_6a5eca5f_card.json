@@ -1,0 +1,60 @@
+{
+  "schema": "gems-repository-review-v1",
+  "branch": "arena/6a5eca5f-gemsdoe77",
+  "review_date": "2026-10-21",
+  "hypothesis": "No candidate tested. Conditional rank-1 proposal: localized multiscale cross-wavelet coherence/phase between GeoDAWN RTP/TMI and gravity may reveal a shared concealed magnetic-density boundary; no score projection.",
+  "mechanism": "Review and candidate screen only; no feature surface, holdout, placement, or new TIFF generated.",
+  "named_non_fault_process_that_could_mimic_it": "Lithologic/intrusive contact or airborne survey/regridding seam.",
+  "holdout_dti": {
+    "evidence_class": "NOT RUN",
+    "evaluator_version": null,
+    "withheld_positive_count": null,
+    "value": null,
+    "ci95": null
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "surface_candidate": "NOT BUILT",
+    "final_dots": "NOT PLACED",
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "allowed_pixels": 5106385,
+    "allowed_pixels_within_3px": 5106385,
+    "uncovered_allowed_pixels": 0,
+    "nonempty_subset_forward_overlap_lower_bound": 1.0,
+    "strict_stop_threshold": 0.7,
+    "complete_registry_scan": false,
+    "interpretation": "Candidate-independent universal rejection under current literal support rule; not a uniqueness pass."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "candidate_tif": "NOT GENERATED; no candidate to validate",
+    "no_nan_inside_footprint": "not applicable",
+    "values_in_0_1": "not applicable",
+    "crs_shape_transform_match": "not applicable",
+    "authorization_receipt": "NOT OK TO SUBMIT; 0 files authorized"
+  },
+  "submission_name": null,
+  "submission_note": "Review only; no new TIFF. Do not submit any existing research-only file.",
+  "new_tiff_generated": false,
+  "ok_to_submit": false,
+  "experiments_run": 0,
+  "weekly_slots_used": 0,
+  "selector_approved": false,
+  "post_review_integration": {
+    "evidence_class": "REPOSITORY-MERGE, NOT A NEW EXPERIMENT",
+    "merged_origin_main_commit": "077f3c1",
+    "incoming_parallel_artifacts_promoted_by_this_review": false,
+    "release_gate_authorized_files_after_regeneration": 0,
+    "support_semantics_sensitivity": {
+      "evidence_class": "REGISTRY-MEASUREMENT",
+      "shared_support_dense_witness_overlap": 1.0,
+      "alternative_top_n_37654_overlap": 0.018870884196941672,
+      "policy_changed_by_this_review": false
+    }
+  },
+  "official_sources_freshly_retrieved": [
+    "GitHub-hosted project sources and pinned mirror receipts only"
+  ],
+  "external_official_sources_freshly_retrieved": false,
+  "verdict": "negative"
+}

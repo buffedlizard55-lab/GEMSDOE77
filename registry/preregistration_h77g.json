@@ -1,0 +1,71 @@
+{
+  "registered_utc": "2026-10-21T15:40:00Z",
+  "lane_id": "H77G",
+  "lane": "H77G: Hydrothermal Magnetite-Destruction Trough x Gravity-Basement Step x MT Clay-Cap Margin (HMDT-GBS)",
+  "branch": "arena/5190e3a6-gemsdoe77",
+  "assignment_irregularity": "No separate single-method paragraph was supplied in the 2026-10-21 prompt (same class as IR-77-06, IR-78-01, IR-H77E-01, IR-XSEN-01); lane H77G was self-declared and preregistered before Experiment 1 (IR-77G-01).",
+  "single_method_paragraph": "From SHA-256-pinned training_features.tif only (zero SGMC inputs, zero prior submission rasters, zero catalogue inputs in the feature stack): compute high-pass reduced-to-pole magnetic anomaly (RTP minus sigma=12 px Gaussian regional) and extract multi-scale positive Hessian ridge curvature of inverted -RTP_hp at sigma=1.5 px and 3.0 px to isolate narrow linear hydrothermal magnetite-destruction troughs; pair this demagnetization-trough persistence with oriented gravity-basement normal-fault step concordance (geometric mean of |grad iso_grav_anom| and |grad depth_to_base_surf| gated by cosine alignment of their dip-normal gradients and gravity-over-magnetic analytic-signal decoupling), magnetotelluric smectite clay-cap lateral margin (geometric mean of cond_surf and |grad cond_surf|), geodetic transtensional opening index (dilatation x shear strain rate), declustered independent earthquake swarm fraction (ieq / (ieq + deq)), and basement-depth Hessian saddle curvature. Validate all 10 channels via single-feature ROC-AUC leakage canaries (<= 0.90) and dual-seed whole-component buffered hide-and-recover holdout (gems57-pooled-hide-v2, seeds 20 and 30, alpha=0.2, beta=0.8, 300 m triangular kernel, B=37,654 dots emitted via 300 m submodular cover > 3 px from visible faults), check pre-placement surface and final-dot uniqueness against the registry, and write a single-band float32 GeoTIFF in [0,1] with nodata=None via the unmodified vendor/gems57/submission_writer.py.",
+  "hypothesis": "Ascending hydrothermal fluids (150-250 C) along blind Great Basin fault conduits alter ferrimagnetic titanomagnetite to paramagnetic pyrite, leucoxene, and smectite clay, creating a linear short-wavelength RTP magnetic trough (negative curvature valley) that coincides with an intact subsurface gravity-basement density step, an electrically conductive MT clay-cap margin, and regional transtensional strain.",
+  "named_non_fault_mimicking_process": "Non-tectonic paleo-channels incised into Tertiary volcanic bedrock and filled with non-magnetic lacustrine diatomite or felsic ash-flow tuff against a buried bedrock buttress unconformity, or reversed-polarity volcanic flow boundaries.",
+  "inputs": [
+    "data/raw/training_features.tif bands 2 (rtp), 3 (tmi_hg), 4 (geod_2ndinv), 5 (iso_grav_anom_slope), 7 (geod_shearrate), 8 (geod_dilaterate), 9 (tmi_vg), 10 (deq_n100a15), 11 (iso_grav_anom_vg), 13 (iso_grav_anom), 15 (depth_to_base_surf), 16 (ieq_n100a15), 17 (cond_surf) (+ remaining bands for the 19-band standard control arm)",
+    "data/bridge/existing_faults.tif (used ONLY for holdout split, pixel-exact visible-fault masking, and >3 px off-catalogue emission collar)",
+    "data/bridge/sample_submission.tif (used ONLY for EPSG:32611 grid, affine transform, and finite study footprint)"
+  ],
+  "new_channels": [
+    "h77g_demag_trough_s1p5",
+    "h77g_demag_trough_s3p0",
+    "h77g_demag_persistence",
+    "h77g_grav_base_step",
+    "h77g_grav_over_mag_decoupling",
+    "h77g_mt_claycap_margin",
+    "h77g_transtension_index",
+    "h77g_declustered_swarm_frac",
+    "h77g_basement_saddle",
+    "h77g_composite_surface"
+  ],
+  "parameters": {
+    "rtp_highpass_sigma_px": 12.0,
+    "trough_scales_px": [1.5, 3.0],
+    "grav_base_grad_sigma_px": 2.0,
+    "mt_grad_sigma_px": 2.0,
+    "basement_saddle_sigma_px": 2.5,
+    "budget_dots": 37654,
+    "catalogue_exclusion_px": 3.0,
+    "submodular_support_quantile": 0.968,
+    "submodular_gamma": 3.5,
+    "submodular_min_sep_px": 2.2
+  },
+  "canaries": "Every new H77G channel tested alone on withheld positives vs off-catalogue negatives (seed 20 and seed 30 draws); symmetric ROC-AUC > 0.90 triggers an immediate leakage stop.",
+  "holdout_protocol": {
+    "evaluator": "vendor/gems57/evaluate_holdout.py (gems57-pooled-hide-v2)",
+    "split": "buffered_component_draw(grid, seed in {20, 30}, hide_frac=0.20, buffer_px=3)",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "kernel_radius_m": 300.0,
+    "bootstrap_draws": 1000,
+    "arms": [
+      "S_h77g_physics",
+      "A_h77g_only",
+      "A_std_plus_h77g",
+      "A_std",
+      "A0_random"
+    ],
+    "incumbent_bar": {
+      "lane": "H77-Step",
+      "seed20_holdout_dti": 0.152718,
+      "withheld_positive_pixels": 11321
+    }
+  },
+  "uniqueness_protocol": {
+    "tool": "vendor/gems57/uniqueness.py compare_array_to_registry (unmodified)",
+    "phase1": "pre-placement continuous surface (|Spearman rho| <= 0.90)",
+    "phase2": "final placed binary dots (|Spearman rho| <= 0.90 and forward 3-px overlap <= 0.70 against sparse/dot rasters; Policy I17 literal dense-witness firing reported fail-closed)"
+  },
+  "promotion_policy": "Fail-closed. Even if format checks and informative sparse-raster uniqueness pass, verdict is 'negative' and ok_to_submit is False unless (1) HOLDOUT-DTI beats the matched 0.152718 incumbent with positive 95% paired CI, (2) literal registry uniqueness passes on the complete registry, and (3) a human selector approves a weekly slot.",
+  "budget": {
+    "max_experiments": 3,
+    "max_hours": 2.0,
+    "weekly_slots_to_spend": 0
+  }
+}

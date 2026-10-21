@@ -1,0 +1,110 @@
+{
+  "lane": "H80-OTA orphan thermal alignment (collinear off-catalogue hot wells/springs)",
+  "session_date": "2026-10-21",
+  "hypothesis": "Wells/springs with high chemical-geothermometer excess (dT = max(Tqtz,Tchalc,Tcat) - Tsurf >= 30C, max geotherm >= 90C; tier A) or measured temp >= 40C (tier B) that lie >1 km from every visible catalogue fault (orphans) are collinear along concealed, catalogue-missing geothermal conduit faults.",
+  "mechanism": "GDR1391 points deduped by cell (1002 tier points in footprint: 412 A, 590 B); orphan = >10 px from reference catalogue (visible in holdout: 654 orphans; full catalogue for final map: 630). Weighted azimuth-bin collinearity votes (36 bins, neighbours 5-40 px), splatted +/-40 px along best azimuth (sigma 1.5 px across) -> ota_line; ota_x_ridge = sqrt(rank(ota_line) * max(rank(band3 tmi_hg), rank(band5 iso_grav_slope))); plus orphan/hot proximity channels. 4 OTA channels added to the shared 33-channel stack (raw+terrain+rad, features77 definitions) in an HGB; dotted emission 37,654 dots, min_sep 2.8 px, catalogue distance >2 px, 0 dots on catalogue. The label-derived CSV column dist_known_fault_px was never read.",
+  "named_non_fault_mimic": "Wells drilled along roads/canals/valley axes (anthropogenic collinearity) and regional aquifer flow along basin axes.",
+  "preregistration": "registry/preregistration_h80.json (before Experiment 1); hypotheses research/hypotheses-h80-2026-10-21.md",
+  "experiments": {
+    "exp1_canaries_and_surfaces": "evidence/h80_exp1.json",
+    "exp2_paired_hgb": "evidence/h80_exp2.json",
+    "exp3_build": "evidence/h80_exp3_build.json",
+    "exp3_compare": "evidence/h80_exp3_compare.json",
+    "invalid_first_attempt": "evidence/h80_exp1_INVALID_ranktie.json, h80_exp2_INVALID_ranktie.json, h80_exp3_build_INVALID_ranktie.json, h80_validator_INVALID_ranktie.json - scan-order rank ties turned the 98%-zero OTA field into a spurious latitude gradient (IR-H80-04); bug fixed (tie-averaged ranks + regression test), same preregistered design rerun; invalid numbers must not be quoted"
+  },
+  "leakage_canary": {
+    "features_tested": 4,
+    "max_single_feature_symmetric_auc": 0.5589,
+    "worst_feature": "ota_x_ridge",
+    "ceiling": 0.9,
+    "pass": true
+  },
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "alpha": 0.2, "beta": 0.8, "triangular_kernel_radius_m": 300,
+    "seed": 30,
+    "withheld_positive_pixels": 11342,
+    "candidate_A_ota": {"dti": 0.1039, "ci95": [0.0872, 0.1230]},
+    "control_A_std": {"dti": 0.0971, "ci95": [0.0795, 0.1156],
+      "note": "exactly replicates the XSEN session A_std 0.0971 on the same draw/protocol - stack33 equivalence check"},
+    "paired_delta_candidate_minus_std": {"delta": 0.0068, "ci95": [-0.0007, 0.0149]},
+    "surface_alone_S_ota_xridge": {"dti": 0.0475, "ci95": [0.0329, 0.0616]},
+    "random_control_A0": {"dti": 0.0500, "ci95": [0.0439, 0.0561]},
+    "repo_incumbent_cross_draw": {"value": 0.152718,
+      "label": "HOLDOUT-DTI H77-Step, same evaluator, different draw, 11321 withheld px, CI [0.131548, 0.175185]; cross-draw, not paired"},
+    "promotion_bar_met": false,
+    "promotion_bar_failures": [
+      "paired delta vs A_std 95% CI includes 0 (corrected runs; the significant-looking first attempt was the IR-H80-04 latitude artifact)",
+      "0.1039 does not exceed the 0.152718 incumbent",
+      "OTA surface alone (0.0475) does not beat the random control (0.0500)"
+    ]
+  },
+  "correlation_overlap_vs_registry": {
+    "registry": "registry/registry_index.json (built 2026-10-21T02:30:15Z) fetched to .cache/registry: 812 rasters, 808 compared, 4 registry-side errors - scan incomplete, fail-closed; plus 24 local GEMSDOE77 lane TIFFs compared separately",
+    "phase1_surface_before_placement": {
+      "scope": "24 local lane TIFFs",
+      "worst_spearman_full_footprint": 0.1272,
+      "worst_rho_submission": "downloads/gems77-xsen-coincide-hgb-37654dots-20261021-zeros.tif",
+      "rho_limit": 0.9, "rho_gate_pass": true,
+      "note": "dot-overlap is not informative for a continuous surface (support = footprint); literal reading vs dense research raster 0.980"
+    },
+    "phase2_final_dots": {
+      "worst_spearman_registry808": 0.1338,
+      "worst_spearman_local24": 0.3164,
+      "rho_gate_pass": true,
+      "final_dots_max_forward_overlap_3px": 1.0,
+      "worst_overlap_sparse_le150k_registry": {"value": 0.9244, "submission": "12GEMSDOE:docs/downloads/12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62.tif"},
+      "worst_overlap_sparse_le150k_local": {"value": 0.8739, "submission": "downloads/gems77-xsen-coincide-hgb-37654dots-20261021-zeros.tif"},
+      "vs_champion_h33": {"spearman": 0.0292, "forward_overlap_3px": 0.4005, "jaccard": 0.0185,
+        "champion_row": "GEMSDOE68:registry/rasters/rasters/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif (37,654 dots)"},
+      "overlap_limit": 0.7, "overlap_gate_pass": false,
+      "identical_decoded_predictions_anywhere": 0,
+      "verdict": "DUPLICATE under protocol rule 1 on the literal reading (1.0 vs dense witnesses, 106 firings) AND on the informative sparse reading (0.924 > 0.70 vs a sparse scarp raster; 0.874 vs the XSEN sibling). The file's bytes/pixels are unique (0 identical among 832 compared) and it is comfortably distinct from the H33 champion (0.401 overlap), but its dots drift into the shared std-stack placement territory - OTA novelty is in the channels, not in the final dot set. Lane stopped; no re-placement attempted (experiment budget)."
+    }
+  },
+  "protocol_unique": false,
+  "registry": {"complete": false, "full_registry_certified": false,
+    "note": "808/812 compared (4 registry-side errors) + 24 local; completeness not certified"},
+  "submission_raster": {
+    "path": "submissions/gems77-h80-orphan-thermal-align-37654dots-20261021-zeros.tif",
+    "pages_download": "docs/downloads/gems77-h80-orphan-thermal-align-37654dots-20261021-zeros.tif",
+    "zip": "submissions/gems77-h80-orphan-thermal-align-37654dots-20261021-zeros.zip (exactly one TIFF inside)",
+    "sha256": "703e7dee0a790572c2a9597ed210e04d4d45c93e8bae661aa117b34c0445f4d3",
+    "bytes": 136156,
+    "dots": 37654, "dots_on_catalogue": 0, "min_catalogue_distance_px": 2.2360680103302
+  },
+  "raster_sha256": "703e7dee0a790572c2a9597ed210e04d4d45c93e8bae661aa117b34c0445f4d3",
+  "validator": {
+    "tool": "vendor gems57.validate via scripts/validate_submission.py + writer on-disk revalidation",
+    "evidence": "evidence/h80_validator.json",
+    "all_checks_passed": true,
+    "no_nan_inside_footprint": true, "nan_count_entire_raster": 0,
+    "values_in_0_1": true, "min": 0.0, "max": 1.0,
+    "crs": "EPSG:32611", "shape": [3730, 3292],
+    "transform": [100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0],
+    "transform_matches_sample_submission": true,
+    "single_band_float32": true, "nodata": null,
+    "portal_range_error_note": "every cell is finite and exactly 0 or 1 with nodata=None, so the 'Predicted values must be in range [0, 1]' rejection cannot be triggered by this file's values; local checks are not an organizer receipt"
+  },
+  "submission_name": "gems77-h80-orphan-thermal-align-37654dots-20261021-zeros",
+  "submission_note": "H80-OTA orphan hot-well collinearity HGB 37654 dots; HOLDOUT-DTI 0.1039 seed30; negative do not submit",
+  "submission_note_chars": 102,
+  "organizer_score": null,
+  "weekly_slot_spent": false,
+  "selector_approved": false,
+  "ok_to_submit": false,
+  "safe_to_download_and_submit": false,
+  "download_status": "OK TO DOWNLOAD FOR INSPECTION ONLY - NOT OK TO SUBMIT",
+  "verdict": "negative",
+  "verdict_reason": "Preregistered promotion bar failed on all three legs: paired OTA gain not significant after the IR-H80-04 fix (+0.0068 [-0.0007, 0.0149] HOLDOUT-DTI), 0.1039 below the 0.152718 incumbent, and final dots duplicate sparse registry placements (0.924 > 0.70). OTA surface alone is at/below random. The collinearity mechanism as implemented does not recover hidden catalogue faults beyond what the standard stack already encodes; remaining value is a verified negative plus reusable point-process code.",
+  "why_02778_answer_pointer": "reports/why_02778.md + evidence/why_02778.json (measured from champion bytes sha c55bafc4...; 0.2778 is OWNER-REPORTED per GEMSDOE32's own page checked 2026-10-21, which states no organizer score exists for that file; public leaderboard #1 0.4413 by xiaofanhu ORGANIZER-CONFIRMED, read 2026-10-21). H80 does not beat it by any measured instrument.",
+  "irregularities": [
+    "IR-H80-01: shipped band tags vague/wrong for bands 6/10/15/16/18 (see preregistration) - tags not trusted",
+    "IR-H80-02: geothermometer coverage sparse (1247/27092 rows) - OTA support intrinsically thin",
+    "IR-H80-03: sample_submission contains 60,988 ones despite 'total fault absence' wording - grid template only",
+    "IR-H80-04: first OTA build used scan-order rank ties -> spurious latitude gradient -> inflated AUC/delta; invalidated, fixed, rerun (see experiments.invalid_first_attempt)",
+    "IR-H80-05: shared 54-channel builder OOM-killed (exit 137) in FFT stage in this sandbox; the 33 used channels were assembled and verified separately (evidence/h80_stack33_receipt.json); A_std replicated XSEN's 0.0971 exactly, confirming equivalence for the used channels",
+    "IR-H80-06: 3,061 training_features sentinel cells lie inside the footprint (band finite-in-foot 5,164,312 vs footprint 5,167,373)"
+  ]
+}

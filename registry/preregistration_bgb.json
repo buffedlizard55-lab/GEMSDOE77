@@ -1,0 +1,72 @@
+{
+  "lane_id": "H77-BGB",
+  "lane_name": "Buried Half-Graben Growth-Wedge Inflection x Transtensional Strain-Partitioning Gradient x Illite-Smectite Conductivity-Margin Breach",
+  "preregistered_utc": "2026-10-21T16:15:00Z",
+  "status": "preregistered",
+  "protocol_version": "parallel-run-v1",
+  "evaluator_pin": {
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "shared_module": "vendor/gems57/evaluate_holdout.py",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "kernel_radius_m": 300.0,
+    "kernel_radius_px": 3.0,
+    "hide_frac": 0.20,
+    "buffer_px": 3,
+    "bootstrap_draws": 1000,
+    "block_size_px": 200
+  },
+  "uniqueness_gate": {
+    "shared_module": "vendor/gems57/uniqueness.py",
+    "max_abs_spearman": 0.90,
+    "max_forward_overlap_3px": 0.70,
+    "radius_px": 3.0,
+    "phases_required": [
+      "phase1_pre_placement_surface",
+      "phase2_final_binary_dots"
+    ]
+  },
+  "leakage_canary_gate": {
+    "max_symmetric_roc_auc": 0.90,
+    "scope": "every single H77-BGB feature tested alone on withheld fault segments across all 4 spatial folds before model training"
+  },
+  "experiment_budget": {
+    "max_experiments": 3,
+    "max_wall_clock_hours": 2.0,
+    "weekly_submission_slots_authorized": 0,
+    "experiments": [
+      {
+        "id": "Exp1",
+        "name": "Single-feature leakage canaries (10 channels), Phase 1 pre-placement surface registry uniqueness scan, and standalone label-free physical surface holdout evaluation (S_bgb_composite and 3 sub-blocks vs A0_random)"
+      },
+      {
+        "id": "Exp2",
+        "name": "4-quadrant spatially blocked out-of-fold holdout evaluation (A_bgb_lane, A_std, A_std_plus_bgb, A_bgb_loco vs A0_random) on gems57-pooled-hide-v2 (Seed 30, 11,342 withheld positives; Seed 20, 11,321 withheld positives)"
+      },
+      {
+        "id": "Exp3",
+        "name": "Full-map cross-fitted H77-BGB surface + 300 m submodular 37,654-dot placement, two-phase registry uniqueness audit (812 archive + all local sibling rasters), 17-check GeoTIFF/ZIP validation, and JSON run card"
+      }
+    ]
+  },
+  "hypothesis": "Blind Quaternary normal and transtensional faults in northwestern Great Basin sedimentary basins lack topographic scarps where Holocene playa sedimentation or argillic hydrothermal alteration outpaces surface vertical slip, yet they preserve three coupled subsurface physical signatures: (1) an asymmetric cross-strike basement inflection dipole where the Hessian of pre-Tertiary basement depth (depth_to_base_surf, Band 15) projected along the unit horizontal gravity gradient normal (n_g = grad(g)/|grad(g)| from iso_grav_anom Band 13) switches from footwall convexity to hanging-wall half-graben growth-wedge concavity beneath flat basin floors (low det_elev_slope Band 19); (2) a spatial gradient in the dimensionless kinematic transtensional strain-partitioning index tau_ext = geod_dilaterate / sqrt(geod_dilaterate^2 + geod_shearrate^2) coupled with high geodetic 2nd invariant strain rate relative to smoothed seismic moment release (Bands 4, 7, 8, 10, 16), marking Walker Lane to Basin-and-Range accommodation stepovers; and (3) an illite-smectite hydrothermal upflow breach where a steep lateral gradient in log surface electrical conductivity |grad log(1 + cond_surf)| (Band 17) coincides with a shallow hydrothermal magnetite-destruction trough (upward-continued TMI_up150 exceeding shallow RTP with positive RTP Laplacian trough, Band 2 + GeoDAWN Band 4) and DOE GDR 1391 chemical geothermometer disequilibrium (Delta_T = max(T_quartz, T_chalc, T_cat) - T_meas).",
+  "named_non_fault_mimicking_process": "Buried pre-Tertiary paleochannel incised-valley fills or Mesozoic pluton/caldera intrusive margins beneath saline playa lakebeds, which can create basement depth curvature steps along gravity gradients, sharp lateral conductivity edges at saline/freshwater interfaces, and primary low-magnetization felsic volcanic troughs without an active Quaternary fault conduit.",
+  "channels": [
+    "bgb_01_basement_step_along_grav",
+    "bgb_02_growth_wedge_inflection",
+    "bgb_03_blind_basin_basement_dipole",
+    "bgb_04_grav_basement_concordance",
+    "bgb_05_transtensional_mode_tau",
+    "bgb_06_strain_partition_grad",
+    "bgb_07_aseismic_dilation_excess",
+    "bgb_08_conductivity_margin_grad",
+    "bgb_09_upflow_demag_breach",
+    "bgb_10_geotherm_diseq_coupled"
+  ],
+  "forbidden_inputs": [
+    "labels.tif (except inside holdout evaluator)",
+    "existing_faults.tif on held-out test quadrants",
+    "derived_sgmc_faults_100m_u8.tif (SGMC off-catalogue proxy strictly excluded per I05/H35)",
+    "dist_known_fault_px column in gdr_wellspring_in_footprint.csv or gdr_volcanic_vents_in_footprint.csv"
+  ]
+}

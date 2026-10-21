@@ -1,0 +1,69 @@
+{
+  "lane": "H81",
+  "written_utc": "2026-10-21T16:20:00Z",
+  "note": "SHA-256 values below were computed from the restored bytes in THIS session. Pins prove mirror consistency, NOT organizer authentication. Core competition files were restored via scripts/restore_data.py from registry/data_manifest.json pins (all verified).",
+  "core_via_manifest": {
+    "script": "scripts/restore_data.py --target-dir .cache/gems_data",
+    "verified_files": 23,
+    "receipt": "data/restore_receipt.json (regenerated this session; storage_root .cache/gems_data)"
+  },
+  "fetched_this_session": [
+    {
+      "id": "trace_segments_utm11",
+      "repo": "buffedlizard55-lab/60GEMSDOE",
+      "ref": "d5e96cbeb61cc932dcefb684305d745be1cb81c8",
+      "path": "data/external/trace_segments_utm11.csv",
+      "dest": ".cache/gems_data/external/trace_segments_utm11.csv",
+      "bytes": 5283577,
+      "sha256": "c5edf9df3e0e1413c52784884fc38e5b9ca54627b27c6f8baf7713e908f48513",
+      "column_check": "record_id,x0,y0,x1,y1,slip_mm_yr,slip_text,sense; 84331 segments, 1126 records (measured)",
+      "used_by": "H81 primary (record tips + slip budget)"
+    },
+    {
+      "id": "dem10_chi_100m_i16",
+      "repo": "buffedlizard55-lab/60GEMSDOE",
+      "ref": "d5e96cbeb61cc932dcefb684305d745be1cb81c8",
+      "path": "data/external/dem10_chi_100m_i16.tif",
+      "dest": ".cache/gems_data/external/dem10_chi_100m_i16.tif",
+      "bytes": 12777098,
+      "sha256": "8897ba9c30ef1cd7ad5f23c16c6dfd7bb070e7e757f36fd9486eb45edfd973a5",
+      "cross_check": "EXACT match to sha256 recorded in dem10_chi_100m.manifest.json files section (derivation-time manifest in same repo)",
+      "used_by": "NOT used by H81 (chi-knickpoint direction abandoned after finding family STOP in 60GEMSDOE H65/H73; retained on disk only)"
+    },
+    {
+      "id": "topo_10m_derived_100m_u8",
+      "repo": "buffedlizard55-lab/60GEMSDOE",
+      "ref": "d5e96cbeb61cc932dcefb684305d745be1cb81c8",
+      "path": "data/external/topo_10m_derived_100m_u8.tif",
+      "dest": ".cache/gems_data/external/topo_10m_derived_100m_u8.tif",
+      "bytes": 32523329,
+      "sha256": "a6398d9950965dec6aae6ccecdaa6ced48645d133eab222cbdd11def9bdabfa4",
+      "grid_check": "9 bands uint8, 3730x3292, EPSG:32611, sample transform (measured)",
+      "used_by": "H81 scarp_gated sensitivity arm only (hs_lineament + curv_prof_absmax rank gate)"
+    },
+    {
+      "id": "gdr_volcanic_vents_in_footprint",
+      "repo": "buffedlizard55-lab/60GEMSDOE",
+      "ref": "d5e96cbeb61cc932dcefb684305d745be1cb81c8",
+      "path": "data/external/gdr_volcanic_vents_in_footprint.csv",
+      "bytes": 672,
+      "sha256": "f91bafbaccaaf2754e71d60434fc0f9eb2c7b880c6e714883f4974542ff6a0bf",
+      "cross_check": "EXACT match to 60GEMSDOE registry/data_manifest.json pin ext_gdr_volcanic_vents_in_footprint AND to this repo's registry/data_manifest.json pin (restore_data.py reported present, same sha)",
+      "used_by": "NOT used by H81 (21 vents, underpowered for alignment; documented in hypotheses only)"
+    }
+  ],
+  "registry_snapshot": {
+    "index": "registry/registry_index.json (built_utc 2026-10-21T02:30:15Z, 812 rasters, 98 scored)",
+    "fetch": "scripts/fetch_registry.py --workers 6 completed 2026-10-21 with 'fetched/verified 812 rasters'",
+    "receipt": "registry/registry_receipt.json",
+    "scope_limit": "Snapshot only; sibling repos kept changing (cf. IR-78-05). GEMSDOE73-76 heads NOT re-cloned this session; local repo TIFFs are appended to the comparison set by scripts/h81_pipeline.py."
+  },
+  "official_pages_read_this_session": [
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/ (metric + submission format + rounds)",
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/ (#1 xiaofanhu 0.4413)",
+    "https://www.usgs.gov/3d-elevation-program (3DEP free without use restrictions)",
+    "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and (DOI 10.5066/P93LGLVQ, CC0, flight azimuth 90)",
+    "https://gdr.openei.org/submissions/1391 (DOI 10.15121/1881483, CC BY 4.0; vents/quaternary-volcanics + wellspring resources listed)",
+    "https://docs.nlr.gov/docs/fy26osti/96647.pdf (Official Rules: 3 submissions/week, AI disclosure, code delivery)"
+  ]
+}

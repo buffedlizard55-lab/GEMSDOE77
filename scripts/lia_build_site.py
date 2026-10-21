@@ -4,9 +4,16 @@ from __future__ import annotations
 
 import html
 import json
+import hashlib
+import sys
+import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "vendor"))
+from gems57.grid import load_grid
+from gems57.validate import validate
+
 D = ROOT / "docs"
 REPO = "https://github.com/buffedlizard55-lab/GEMSDOE77"
 PAGES = [("lia.html", "LIA lane overview"), ("lia-executive-summary.html", "How to submit"),
@@ -55,7 +62,7 @@ def download_card(sub, card, uniq_ok):
 <span class="chip ok">Leakage canary: clear</span>
 <span class="chip {vchip}">Run verdict: {verdict}</span>
 <span class="chip warn">Selector: not approved</span></div>
-<p class="verdict"><b>Can I upload it?</b> <b>No—not under the brief's literal uniqueness rule.</b> The GeoTIFF is safe to download for inspection and passes 17/17 local format checks, but the unchanged template reports 35 final-dot overlap firings against dense registry rasters. The narrower informative-raster diagnostic passes (worst overlap {card['registry_comparison']['worst_overlap_informative']:.3f}); it is not clearance because the brief says <i>any</i> registry raster.
+<p class="verdict"><b>Can I upload it?</b> <b>No—not under the brief's literal uniqueness rule.</b> The GeoTIFF is safe to download for inspection and passes {pv["n_pass"]}/{pv["n_checks"]} local format checks, but the unchanged template reports 35 final-dot overlap firings against dense registry rasters. The narrower informative-raster diagnostic passes (worst overlap {card['registry_comparison']['worst_overlap_informative']:.3f}); it is not clearance because the brief says <i>any</i> registry raster.
 <br><b>Should I spend a weekly slot on it?</b> <b>No.</b> The pre-registered verdict is <b>{verdict}</b>.
 The conservative instrument projects it {f4(card['live_inversion_projection']['S0_delta'])} versus the 0.2778 champion; the in-sample instrument projects {f4(card['live_inversion_projection']['S1_delta'])}.
 A live score would only measure whether straight-edge dots in cells no prior raster covered earn credit.
@@ -63,12 +70,45 @@ The slot decision belongs to the separate selector step.</p>
 <div class="copy"><span class="small">Name</span><code>{e(sub['name'])}</code><button data-copy="{e(sub['name'])}">Copy</button></div>
 <div class="copy"><span class="small">Note ({sub['note_chars']}/140)</span><code>{e(sub['note'])}</code><button data-copy="{e(sub['note'])}">Copy</button></div>
 <p class="small muted">sha256 <code>{e(pv['sha256'])}</code> · {pv['dots']:,} binary dots ·
-NaN-outside twin (bit-identical inside the footprint): <a href="downloads/{e(tw['file'])}">{e(tw['file'])}</a> ·
-<a href="data/run-card.json">run card (JSON)</a> · <a href="data/submission.json">validator report (JSON)</a></p></section>"""
+NaN-outside twin is diagnostic only and fails the all-pixel [0,1] preflight ·
+<a href="data/run-card.json">run card (JSON)</a> · <a href="data/lia_submission.json">validator report (JSON)</a></p></section>"""
+
+
+def verified_lia_receipt(card, output=None):
+    """Recover LIA's own receipt from its frozen card and immutable bytes.
+
+    The generic submission.json was overwritten by another lane at the base
+    commit. Never pair that lane's file with LIA's science or silently rename it.
+    """
+    raster = card["raster"]
+    path = D / "downloads" / raster["file"]
+    grid = load_grid(ROOT / "data/bridge")
+    checked = validate(path, grid.footprint, grid.catalogue)
+    if checked["sha256"] != raster["sha256"] or not checked["all_checks_passed"]:
+        raise ValueError("LIA artifact does not match its run card / format requirements")
+    if checked["emitted_positive_pixels"] != raster["dots"]:
+        raise ValueError("LIA dot count differs from frozen card")
+    archive = path.with_suffix(".zip")
+    zip_sha = hashlib.sha256(archive.read_bytes()).hexdigest()
+    if zip_sha != raster["zip_sha256"]:
+        raise ValueError("LIA ZIP differs from frozen card")
+    with zipfile.ZipFile(archive) as z:
+        if z.namelist() != [path.name] or z.read(path.name) != path.read_bytes():
+            raise ValueError("LIA ZIP does not contain exactly the primary TIFF bytes")
+    primary = dict(file=path.name, sha256=checked["sha256"], bytes=checked["bytes"],
+                   dots=checked["emitted_positive_pixels"], n_pass=sum(checked["checks"].values()),
+                   n_checks=len(checked["checks"]), checks=checked["checks"], mode="zeros")
+    receipt = dict(name=card["submission_name"], note=card["note"], note_chars=len(card["note"]),
+                   primary=primary, twin_nan={"file":path.name.replace("-zeros.tif", "-nan.tif"),
+                   "mode":"diagnostic only"}, zip={"zip":archive.name,"sha256":zip_sha},
+                   ok_to_submit=False, provenance="Fresh shared-validator readback bound to frozen LIA card; not a new raster or experiment")
+    (Path(output) if output is not None else D / "data/lia_submission.json").write_text(json.dumps(receipt, indent=2) + "\n")
+    return receipt
 
 
 def main():
-    sub, card = j("docs/data/submission.json"), j("docs/data/run-card.json")
+    card = j("docs/data/run-card.json")
+    sub = verified_lia_receipt(card)
     why, hold, alloc = j("evidence/why_02778.json"), j("evidence/e3_holdout_final.json"), j("evidence/e3_allocation.json")
     e2, e2b, uniq = j("evidence/e2_inversion.json"), j("evidence/e2_hypothesis_test.json"), j("evidence/e3_uniqueness.json")
     rc = card["registry_comparison"]
@@ -166,8 +206,8 @@ Only one selected submission counts for both prize phases (<a href="https://docs
 <p>sha256 <code>{e(ws['sha256'])}</code>: {ws['dots']:,} binary dots, {ws['dots_on_catalogue']} on catalogue pixels, median nearest-neighbour spacing {ws['nn_spacing_px_quantiles']['0.5']:.2f} px.
 The closest dot is {ws['min_catalogue_distance_px']*100:.0f} m from a mapped fault. <b>{ws['share_dots_on_h19_5_lines']*100:.0f}%</b> of the dots lie exactly on the H19-5 ridge set (19GEMSDOE).</p>
 <h2>2. Mechanism</h2>
-<p>DTI = T / (0.2 (T + S − M<sub>k</sub>) + 0.8 K). Each dot adds a fixed α to the denominator, so it pays off only if its kernel credit exceeds α·DTI (≈ 0.058).
-Kernel credit is a max, not a sum, so binary dots spaced about 3 px apart are near-optimal. Known-fault pixels are masked from scoring, and test truth contains only faults <i>not</i> in the catalogue.</p>
+<p>DTI = T / (0.2 (T + S − M<sub>k</sub>) + 0.8 K). For a new binary dot, ΔD = 0.2·(ΔT+1−k). The rule k &gt; α·DTI applies only if ΔT=k; no optimal spacing follows from it. <a href="metric-review.html">Corrected derivation and attribution limits</a>.
+Truth credit is a maximum per truth cell, not additive across dots. Known-fault pixels are masked from scoring, and test truth contains only faults <i>not</i> in the catalogue.</p>
 <h2 id="inversion">3. Live-score inversion (95 organizer-scored rasters)</h2>
 <p>E[TP<sub>i</sub>] = Σ<sub>y</sub> h(y) M<sub>i</sub>(y) holds exactly (linearity of expectation). We fit h ≥ 0 by NNLS on the linearised DTI identity.</p>
 <table><tr><th>Model</th><th>Parameters</th><th>LOO RMSE</th><th>LOO Spearman</th></tr>
@@ -209,7 +249,7 @@ Neither tested off-support field improves the leave-one-out fit.</p>
 A space-filling raster's 3 px halo covers ≥ 70% of allowed cells (for example the r13 lattice and 400k-dot surfaces), so uniformly random dots would also exceed 0.70 against it. The test carries no information there (IR-77-04).</li></ul>
 <h2 id="template">8. Shared-template issues (reported; no private fork)</h2>
 <ul><li><code>gems.validate_submission</code> takes the footprint from feature band 1 (5,165,852 cells) instead of <code>sample_submission.tif</code> (5,167,373 cells).
-A correct NaN-outside file then "fails" with 1,540 NaN inside and 3,061 finite outside. A file built to pass it leaves 3,061 scored cells as NaN, which is one portal-rejection mechanism.
+The measured footprint mismatch can place NaNs inside cells that the sample submission marks valid if outputs are built against the feature-derived mask. That is a local format risk; the original portal rejection's cause is unverified.
 Proposed upstream patch: <a href="{REPO}/blob/main/reports/template_fix_validate_footprint.patch"><code>reports/template_fix_validate_footprint.patch</code></a>.</li>
 <li>GEMSDOE71's vendored <code>gems57/grid.py</code> differs from its own pin (a local edit to <code>REPO_ROOT</code>). This repo vendors the upstream bytes (GEMSDOE66@0f6762f0); all 11 pins verify.</li></ul>"""
     (D / "lia-analysis.html").write_text(page("lia-analysis.html", "Why 0.2778", body))

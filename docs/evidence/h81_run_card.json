@@ -1,0 +1,224 @@
+{
+  "hypothesis": "Slip-budget fault-tip continuation: strand-level fault tips emit slip-rate-weighted propagation cones; hidden faults continue/transfer beyond mapped tips.",
+  "mechanism": "Displacement conservation + d-L scaling (Cowie & Scholz 1992) require continuation of mapped slip; tip stress concentration (Pollard & Segall 1987) localises it ahead of the tip. Deterministic cones, no ML.",
+  "named_non_fault_process_that_could_mimic_it": "Grid-truncation artifacts (dropped by rule); mapping-gap strand ends from erosion/cover rather than fault termination; en-echelon overlaps already linked in the catalogue.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positives": 11321,
+    "value": 0.0670711968860764,
+    "dti": 0.0670711968860764,
+    "ci95": [
+      0.05523215485018934,
+      0.07790796160479564
+    ],
+    "withheld_positive_pixels": 11321,
+    "incumbent": 0.152718,
+    "beats_current_best": false,
+    "beats_rule": "H81 ci95[0] > incumbent (IR-81-03; no paired cross-lane interval exists)",
+    "paired_differences_vs_same_run_controls": {
+      "tip_uniform": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.010973788746218266,
+        "ci95": [
+          0.0031316941648059683,
+          0.018323016455238313
+        ],
+        "withheld_positive_pixels": 11321
+      },
+      "normal_only": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": -0.0011504212730691216,
+        "ci95": [
+          -0.013252463067739254,
+          0.012025067521072822
+        ],
+        "withheld_positive_pixels": 11321
+      },
+      "scarp_gated": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": -0.013291731810395724,
+        "ci95": [
+          -0.019303520974525184,
+          -0.006039618477115838
+        ],
+        "withheld_positive_pixels": 11321
+      },
+      "random": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.019454140641154118,
+        "ci95": [
+          0.006740035335178811,
+          0.0315998516756175
+        ],
+        "withheld_positive_pixels": 11321
+      }
+    }
+  },
+  "correlation_overlap_vs_registry": {
+    "surface_max_abs_spearman": 0.5402830747429385,
+    "final_max_abs_spearman": 0.13332225246271873,
+    "final_worst_forward_3px_overlap": 1.0,
+    "final_dots_max_forward_overlap_3px": 1.0,
+    "final_worst_overlap_submission": "GEMSDOE48:docs/downloads/GEMSDOE48-unassigned-mass-20261006.tif",
+    "registry_rasters_checked": 832,
+    "complete_accessible_scan": false,
+    "duplicate_count": 69,
+    "unique": false,
+    "stop_required": true,
+    "duplicate_stop": true
+  },
+  "registry": {
+    "duplicate_count": 69,
+    "complete": false,
+    "checked": 832,
+    "missing_or_invalid": 4
+  },
+  "raster_sha256": "f3eb9e5e3bf03da0285b48b5bb7d41f15b0e450d16bc6b8943aeaa63efadc1f7",
+  "validator": {
+    "file": "gems77-h81-slipcone-37654dots-20261021-0fbeaf41-zeros.tif",
+    "sha256": "f3eb9e5e3bf03da0285b48b5bb7d41f15b0e450d16bc6b8943aeaa63efadc1f7",
+    "bytes": 124625,
+    "submission_name": "gems77-h81-slipcone-37654dots-20261021-0fbeaf41-zeros",
+    "note": "H81 slip-budget tip cones 37654 dots 0-on-cat; HOLDOUT-DTI 0.0671 [0.0552,0.0779]",
+    "note_chars": 81,
+    "validator": {
+      "file": "/home/user/GEMSDOE77/submissions/gems77-h81-slipcone-37654dots-20261021-0fbeaf41-zeros.tif",
+      "bytes": 124625,
+      "sha256": "f3eb9e5e3bf03da0285b48b5bb7d41f15b0e450d16bc6b8943aeaa63efadc1f7",
+      "meta": {
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "dtype": "float32",
+        "count": 1,
+        "nodata": null,
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "profile_compress": "deflate"
+      },
+      "band_description": [
+        null
+      ],
+      "n_finite": 12279160,
+      "n_nan": 0,
+      "n_infinite": 0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.0030664964579045773,
+      "emitted_positive_pixels": 37654,
+      "checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "transform_matches_sample_submission": true,
+        "no_nan_anywhere": true,
+        "no_inf_anywhere": true,
+        "no_sentinel_values": true,
+        "range_0_1_guaranteed": true,
+        "min_ge_0": true,
+        "max_le_1": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_zero": true,
+        "zero_dots_on_mapped_catalogue": true
+      },
+      "all_checks_passed": true,
+      "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+      "on_catalogue_positive_pixels": 0,
+      "in_footprint_positive_pixels": 37654,
+      "footprint_fraction": 0.007286874781441169
+    },
+    "template_report": {
+      "path": "/home/user/GEMSDOE77/submissions/gems77-h81-slipcone-37654dots-20261021-0fbeaf41-zeros.tif",
+      "bytes": 124625,
+      "sha256": "f3eb9e5e3bf03da0285b48b5bb7d41f15b0e450d16bc6b8943aeaa63efadc1f7",
+      "bands": 1,
+      "dtype": "float32",
+      "crs": "EPSG:32611",
+      "width": 3292,
+      "height": 3730,
+      "bounds": [
+        243350.0,
+        4135550.0,
+        572550.0,
+        4508550.0
+      ],
+      "ref_bounds": [
+        243350.0,
+        4135550.0,
+        572550.0,
+        4508550.0
+      ],
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "nodata": null,
+      "blocksize": [
+        256,
+        256
+      ],
+      "fixture_grid": false,
+      "has_validity_mask": false,
+      "nan_pixels": 0,
+      "infinity_pixels": 0,
+      "n_nan": 0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.0030664964579045773,
+      "n_nonzero": 37654,
+      "mass": 37654.0,
+      "mass_outside_footprint": 0,
+      "problems": [],
+      "ok": true,
+      "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+    },
+    "zip_file": "gems77-h81-slipcone-37654dots-20261021-0fbeaf41-zeros.zip",
+    "zip_sha256": "1a66169ade886564ef34e30e3898070484792a2adf56723d7d8ca4b5e498a880",
+    "approved_for_weekly_slot": false,
+    "promoted": false,
+    "submission_slots_used": 0,
+    "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+    "metadata": {
+      "lane": "H81-slipcone",
+      "selector_approved": false,
+      "budget_dots": 37654,
+      "withheld_positives": 11321
+    }
+  },
+  "validator_output": {
+    "all_checks_passed": true
+  },
+  "submission_name": "gems77-h81-slipcone-37654dots-20261021-0fbeaf41-zeros",
+  "submission_note": "H81 slip-budget tip cones 37654 dots 0-on-cat; HOLDOUT-DTI 0.0671 [0.0552,0.0779]",
+  "submission_slots_used": 0,
+  "verdict": "negative",
+  "selector_approved": false,
+  "safe_to_submit": false,
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "protocol_notes": [
+    "Surface-stage gate was rank-correlation (preregistered, H79-RH precedent): surface overlap vs full-footprint dense witnesses is 1.0 for ANY non-empty support and carries no lane-drift information (see reports/template_fix_dot_overlap_proposal.md). Drift was judged by rho at surface stage, rho+overlap at final-dot stage.",
+    "slip_proximity (symmetric AUC 0.81) is a canary-only positive control: it uses full-catalogue distance (including hidden components), so its high AUC demonstrates canary power, not arm leakage. No arm or artifact surface uses it; all arm surfaces are component-LOCO with AUC 0.56-0.59.",
+    "The final artifact uses the frozen primary (slip_cone), NOT the best holdout arm (scarp_gated, 0.0804): switching post-hoc would be tuning on holdout outcomes."
+  ]
+}
