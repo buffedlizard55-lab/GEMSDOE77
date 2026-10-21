@@ -8,9 +8,9 @@ summarised with provenance at the end rather than re-transcribed hash-by-hash
 `docs/score-ledger.csv`; later entries below are OWNER-REPORT as supplied in
 the 2026-10-21 brief — no organizer receipts).*
 
-## 2026-10-21 latest review addendum — arena/b6805ddb-gemsdoe77
+## Current 05f9e6f8 review addendum — 2026-10-21
 
-No single method paragraph is assigned in this invocation; prior lanes are closed. The pinned dense-witness preflight was rerun and rejects every nonempty allowed candidate under the literal overlap threshold (all 5,106,385 allowed pixels are within 3 px; lower bound 1.0 > 0.70). The raw training feature raster and processed stack are absent. No new TIFF or geological experiment was authorized or run; no weekly slot was used; release authorization remains zero. Existing listed primary TIFFs were read back: 29/29 local format/integrity checks pass, not uniqueness or portal acceptance. See `docs/review-2026-10-21-b6805ddb.md` and `evidence/review_b6805ddb_run_card.json`. The four hypotheses there are conditional backlog, not validation results. Superseded leaderboard observations below are historical, not current submission-page receipts.
+The full standing request is retained in README. This invocation again assigns no identifiable method paragraph. Fresh hash-pinned preflight stops all nonempty candidates under the literal registry overlap rule. No new geological experiment, TIFF or slot was used. The new review fixes contradictory recorded measurement handling in the release adapter; it does not relax the shared protocol. See `docs/review-2026-10-21-05f9e6f8.md`. GitHub Pages exists in legacy mode; switching to Actions publishing was denied by the integration's permissions.
 
 ## 2026-10-21 review addendum — arena/60aafd45-gemsdoe77
 
@@ -127,6 +127,8 @@ that local check does not prove portal acceptance (no H77L upload/receipt). Ever
 candidate needs a unique name and a ≤140-char Note-field text. The site's
 first screen must state download/submit status in one glance; the executive
 summary explains exactly how to submit a *promoted* file.
+
+Historical branch review `docs/review-2026-10-21-b6805ddb.md` has a pre-merge 29/29 inventory snapshot; consult its reconciliation section before citing current counts.
 
 ## Multi-pass working rule
 

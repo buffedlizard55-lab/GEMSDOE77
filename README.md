@@ -1,28 +1,32 @@
-> **Current review — branch `arena/de39a02b-gemsdoe77` (2026-10-21):** **OK TO DOWNLOAD FOR INSPECTION: YES (existing files); OK TO SUBMIT: NO. No new TIFF generated.** No method paragraph was assigned. After restoring SHA-pinned witnesses, preflight returned `STOP_UNIVERSAL_DUPLICATE`: the single dense witness covers all allowed pixels within 3 px, so the literal overlap rule blocks every nonempty candidate. This is one-witness evidence, not a complete registry scan. 216 software tests pass; zero experiments and zero weekly slots used. [Current branch review](docs/review-2026-10-21-arena-de39a02b.md) · [prior review and ranked conditional hypotheses](docs/review-2026-10-21-60aafd45.md) · [corrected H33 reasoning](research/why-h33-scored-02778.md) · [submission guide (only after approval)](docs/executive-summary.html). The currently featured H82-TEXTURE file is also inspection-only (SHA-256 `c571af22cb08db9cb8cfd6edf0108364d95b0c3bec8316d09d3dfd116531790e`; **OK TO SUBMIT: NO**).
-> **Additional branch review — `arena/b6805ddb-gemsdoe77` (2026-10-21):** this separate three-pass repo review also generated no TIFF and ran no experiment. At that checkout, the stack was absent, the universal witness preflight stopped nonempty candidates, 29/29 listed TIFFs passed local format/integrity readback, and zero files were authorized. This is a historical snapshot, not a replacement for the main-branch H83 review above. [Review](docs/review-2026-10-21-b6805ddb.md) · [run card](evidence/review_b6805ddb_run_card.json).
+> **Current review — `arena/05f9e6f8-gemsdoe77`, 2026-10-21:** **NOT OK TO SUBMIT. No new TIFF generated.** A freshly hash-verified registry witness blocks every nonempty candidate under the required literal overlap rule. The request for a new protocol-unique TIFF remains unfulfilled; existing files are inspection-only. The release adapter now rejects contradictory rank/forward-overlap evidence inside nested per-raster lists. [Three-pass review, hypothesis backlog and limitations](docs/review-2026-10-21-05f9e6f8.md) · [download/status table](docs/index.html) · [submission instructions](docs/executive-summary.html). Read this README's archived full request, PROMPT.md and AGENTS.md before every session. Historical session banners below do not override this decision.
 
+> **OK TO DOWNLOAD FOR INSPECTION: YES · OK TO SUBMIT: NO.** Historical H82-TEXTURE research artifact SHA-256: `c571af22cb08db9cb8cfd6edf0108364d95b0c3bec8316d09d3dfd116531790e`. This is an existing negative, not a newly generated submission.
+
+> **Latest review — branch `arena/60aafd45-gemsdoe77` (2026-10-21):** **OK TO DOWNLOAD FOR INSPECTION; NOT OK TO SUBMIT. No new TIFF was generated.** The dense registry witness was restored and independently verified to cover the entire allowed footprint, so the literal duplicate-stop rule blocks every nonempty candidate. No stopped lane was restarted and no weekly slot was used. [Review and ranked conditional hypotheses](docs/review-2026-10-21-60aafd45.md) · [Corrected H33 reasoning](research/why-h33-scored-02778.md) · [existing research TIFF](docs/downloads/gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY.tif) · [how submission works only after approval](docs/executive-summary.html).
+
+Parallel review also retained: [de39a02b](docs/review-2026-10-21-arena-de39a02b.md). The separate `arena/b6805ddb-gemsdoe77` review is also retained at [its report](docs/review-2026-10-21-b6805ddb.md); its 29/29 audit is explicitly pre-merge, not the current inventory.
 # GEMSDOE77 — DOE GEMS Prize: audited fault-detection research portfolio
 
 > Read at the start of every session. Standing brief: `PROMPT.md` (operative prompt; also appended below in full);
 > lane evidence: `evidence/`, `registry/`. Multi-pass rule: pass 1 implement + verify, pass 2 review and fix,
 > pass 3 re-check against the request, then PR and merge to `main` from the session branch only.
 
-## 🚦 Status at a glance — this session (lane H83, 2026-10-21)
+## Historical incoming H83 session status (not this review)
 
 | Question | Answer |
 |---|---|
 | Competition | DOE GEMS Prize (DrivenData #306): one single-band float32 GeoTIFF, or a ZIP containing exactly one; EPSG:32611; 3730×3292; 100 m pixels; transform (100, 0, 243350, 0, −100, 4508550); prediction values in [0, 1] |
-| Leaderboard (2026-10-21) | 0.4413 ORGANIZER-CONFIRMED (first place); owner-reported GEMSDOE32 file 0.2778 (no organizer receipt — attribution not authenticated) |
-| Unique TIF generated this session | `docs/downloads/gems77-h83-faultcollar-37553dots-20261021-a55f4c9c-zeros.tif` + one-TIFF `.zip`; 37,553 binary dots; SHA-256 `7f71739a2804bf2fa7199d30d512e0a267e4cfa2fdd0d32304b962db65b98662`. OK TO SUBMIT: NO — negative lane, inspection download only. Co-listed negative TIFF checksums on this screen: H82-TEXTURE `c571af22cb08db9cb8cfd6edf0108364d95b0c3bec8316d09d3dfd116531790e`; H82R `56debe682505bf2649f30d914c7b552dcf669bce4b902ce91eb3e5363031f115`; H82 cool-outlet `84b50d05eaba578c398c4c7ab720dbf5a46de29d63f4254eb02a8ba02a4a43df` — all **NOT OK TO SUBMIT**, OK to download for inspection |
+| Leaderboard (2026-10-21) | 0.4413 previously reported first place; no submission-page receipt verified in this review; owner-reported GEMSDOE32 file 0.2778 (no organizer receipt — attribution not authenticated) |
+| Historical H83 research TIFF (not protocol-cleared) | `docs/downloads/gems77-h83-faultcollar-37553dots-20261021-a55f4c9c-zeros.tif` + one-TIFF `.zip`; 37,553 binary dots; SHA-256 `7f71739a2804bf2fa7199d30d512e0a267e4cfa2fdd0d32304b962db65b98662`. OK TO SUBMIT: NO — negative lane, inspection download only. Co-listed negative TIFF checksums on this screen: H82-TEXTURE `c571af22cb08db9cb8cfd6edf0108364d95b0c3bec8316d09d3dfd116531790e`; H82R `56debe682505bf2649f30d914c7b552dcf669bce4b902ce91eb3e5363031f115`; H82 cool-outlet `84b50d05eaba578c398c4c7ab720dbf5a46de29d63f4254eb02a8ba02a4a43df` — all **NOT OK TO SUBMIT**, OK to download for inspection |
 | OK to download? | **YES — for inspection** (direct link on `docs/index.html`, first screen; checksums shown on the page) |
-| OK to submit to the competition? | **NO.** HOLDOUT-DTI 0.1227 [0.1080, 0.1372] (seed 30; 11,342 withheld positives) vs random 0.0435 — significant (+0.079, CI excludes 0) but **below** the 0.152718 repository incumbent, so it cannot be expected to beat 0.2778. OK TO SUBMIT: NO — no lane in this session is clearance-approved; registry scan incomplete (0/812 indexed rasters accessible locally); 0 weekly slots used. |
+| OK to submit to the competition? | **NO.** HOLDOUT-DTI 0.1227 [0.1080, 0.1372] (seed 30; 11,342 withheld positives) vs random 0.0435 — significant (+0.079, CI excludes 0) but **below** the 0.152718 repository incumbent, no leaderboard inference is justified by this cross-domain comparison. OK TO SUBMIT: NO — no lane in this session is clearance-approved; registry scan incomplete (0/812 indexed rasters accessible locally); 0 weekly slots used. |
 | Submission mechanics (only after clearance) | `docs/executive-summary.html` — form fields, the earlier "[0, 1]" portal error, ≤140-character Note, step-by-step |
 
 ## 🚦 Session `arena/8d3ee5f5` (2026-10-21): no TIFF; blocked
 
 Registry gate blocks all candidates: the dense witness (`ab0a0a62…`) is continuous, so `_dots()` counts every pixel as a dot. **Owner decision needed** on support semantics. [Review](docs/review-2026-10-21-arena-8d3ee5f5.md) · [receipt](evidence/support_semantics_sensitivity.json) · [run card](evidence/arena_8d3ee5f5_run_card.json). Official leaderboard today: #1 **0.4413** (organizer); 0.3195 is not on it.
 
-## Hypotheses tested this session (ranked by expected DTI gain ÷ implementation cost; full text: research/h83_hypotheses.md)
+## Historical H83 hypotheses (ranked by expected DTI gain ÷ implementation cost; full text: research/h83_hypotheses.md)
 
 1. **H83-1 (implemented, Exp 1):** hanging-wall fault-damage collar at kernel scale — HOLDOUT-DTI 0.1227 [0.1080, 0.1372], significant vs random (+0.079, CI excludes 0), below incumbent → **negative**, not for upload.
 2. **H83-2** catalogue fault-intersection / relay-node intensity — not implemented (next experiment if any off-catalogue credit appears).
@@ -32,7 +36,7 @@ Registry gate blocks all candidates: the dense witness (`ab0a0a62…`) is contin
 
 ## How this repository answers the prompt
 
-- A **unique TIF exists and is directly downloadable** from the site's first screen (`docs/index.html`), with per-file chips stating OK to download / NOT OK TO SUBMIT — it is obvious whether download and/or submit is permitted.
+- A **historical research TIF exists and is directly downloadable; protocol uniqueness is NOT cleared** from the site's first screen (`docs/index.html`), with per-file chips stating OK to download / NOT OK TO SUBMIT — it is obvious whether download and/or submit is permitted.
 - Every number is labelled HOLDOUT-DTI (evaluator version, withheld positives, 95% CI) or flagged as not organizer-confirmed; no projection is ever written as a score.
 - Negative results are deliverables; no competition slot was spent.
 

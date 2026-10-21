@@ -46,8 +46,9 @@
   "organizer_confirmed_score": null,
   "post_merge_reconciliation": {
     "evidence_class": "REPOSITORY / REGISTRY / FORMAT MEASUREMENTS; NOT PERFORMANCE SCORES",
-    "template_amendment_verified": "uniqueness.py local hash matches explicit registry/template_pin.json amendment; threshold rules unchanged",
-    "preflight_decision": "STOP_UNIVERSAL_DUPLICATE",
+    "intermediate_main_template_amendment_verified": "At merge 6f672b9, uniqueness.py local hash matched its explicit registry/template_pin.json amendment; measurement thresholds unchanged. This amendment was later reverted by main 077f3c1.",
+    "current_template_policy": "Unmodified shared code, strict upstream file hashes; halo-coverage diagnostics moved outside vendor/gems57.",
+    "preflight_decision_at_intermediate_snapshot": "STOP_UNIVERSAL_DUPLICATE",
     "preflight_expected_process_exit": 2,
     "allowed_pixels_covered_within_3px": 5106385,
     "allowed_pixels": 5106385,

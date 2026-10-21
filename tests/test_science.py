@@ -10,26 +10,10 @@ ROOT=Path(__file__).resolve().parents[1]
 
 
 def test_shared_code_byte_identical():
-    """Shared code must be byte-identical to the pinned template, unless the
-    difference is a declared additive amendment that names its irregularity
-    report and changes no threshold. Undeclared drift still fails closed."""
     pins=json.loads((ROOT/'registry/template_pin.json').read_text())
     assert pins['files']
-    amended=pins.get('local_amendments',{})
     for name,digest in pins['files'].items():
-        actual=hashlib.sha256((ROOT/'vendor/gems57'/name).read_bytes()).hexdigest()
-        if name in amended:
-            a=amended[name]
-            assert a['upstream_sha256']==digest, f'{name}: amendment is not based on the pinned upstream file'
-            assert actual==a['local_sha256'], f'{name}: undeclared drift in an amended shared file'
-            assert a['reason'] and a['reported_in'] and a['measurement_semantics_unchanged'] is True
-            src=(ROOT/'vendor/gems57'/name).read_text()
-            for symbol in a['added_symbols']:
-                assert f'def {symbol}' in src, f'{name}: declared symbol {symbol} is missing'
-            for const,value in a['thresholds_unchanged'].items():
-                assert f'{const} = {value}' in src, f'{name}: {const} is no longer {value}'
-        else:
-            assert actual==digest, f'{name}: shared file modified without a declared amendment'
+        assert hashlib.sha256((ROOT/'vendor/gems57'/name).read_bytes()).hexdigest()==digest
 
 
 @pytest.mark.parametrize('seed',[7,11,13])

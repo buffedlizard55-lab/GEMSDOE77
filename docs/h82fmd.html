@@ -82,7 +82,7 @@ surface_rank_unique = True, density_matched_unique = True.</p>
 <h2>Irregularities raised by this lane</h2>
 <p><b>IR-H82FMD-01 (shared tool, fixed upstream):</b> <code>vendor/gems57/uniqueness.py</code> could not report
 <em>which</em> registry comparators are too dense for a 3-px overlap test to carry information. Added
-<code>_disk_area()</code> and <code>space_filling_flags()</code> there — in the shared tool, not in a private fork —
+<code>_disk_area()</code> and <code>space_filling_flags()</code> as reporting helpers. Integration moved them to <code>gems82fmd.registry_diagnostics</code> to restore the pinned shared template; no gate is forked or changed —
 so both readings are always published. No threshold or verdict was changed.<br>
 <b>IR-H82FMD-02 (budget overrun, declared in advance):</b> E4 is a fourth experiment against a 3-experiment budget. It was
 preregistered in <code>registry/preregistration_h82fmd_amendment_e4.json</code> <em>before</em> it ran, and it is reported as

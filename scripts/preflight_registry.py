@@ -59,33 +59,11 @@ def read_grid(path: Path):
         return src.read(1), (src.crs, src.shape, src.transform)
 
 
-def verify_template_pin(root: Path = ROOT) -> list[str]:
-    """Verify upstream hashes and only the explicit, hash-pinned local amendments."""
-    pin = json.loads((root / "registry/template_pin.json").read_text())
-    amendments = pin.get("local_amendments", {})
-    verified_amendments = []
-    for name, upstream_hash in pin["files"].items():
-        actual = sha256(root / "vendor/gems57" / name)
-        if actual == upstream_hash:
-            continue
-        amendment = amendments.get(name)
-        valid_amendment = (
-            isinstance(amendment, dict)
-            and amendment.get("upstream_sha256") == upstream_hash
-            and amendment.get("local_sha256") == actual
-            and amendment.get("measurement_semantics_unchanged") is True
-        )
-        if not valid_amendment:
-            raise ValueError(f"shared-template hash mismatch: {name}")
-        verified_amendments.append(name)
-    undeclared = set(amendments) - set(pin["files"])
-    if undeclared:
-        raise ValueError(f"template amendment not present in pinned files: {sorted(undeclared)}")
-    return sorted(verified_amendments)
-
-
 def audit(root: Path = ROOT) -> dict:
-    verified_amendments = verify_template_pin(root)
+    pin = json.loads((root / "registry/template_pin.json").read_text())
+    for name, expected in pin["files"].items():
+        if sha256(root / "vendor/gems57" / name) != expected:
+            raise ValueError(f"shared-template hash mismatch: {name}")
     manifest = {x["id"]: x for x in json.loads(
         (root / "registry/data_manifest.json").read_text())["files"]}
     witness_pin = json.loads((root / "registry/witness_sources.json").read_text())["dense_witness"]
@@ -119,7 +97,6 @@ def audit(root: Path = ROOT) -> dict:
         "input_sha256": hashes,
         "witness_source": witness_pin,
         "template_hashes_verified": True,
-        "template_amendments_verified": verified_amendments,
         "grid_matches": True,
         "proof": proof,
         "argument": "If allowed domain A is contained in the witness's 3px dilation W, every nonempty candidate C subset A has |C intersect W|/|C| = 1 > 0.70. Applies to positive surface support and final dots alike.",

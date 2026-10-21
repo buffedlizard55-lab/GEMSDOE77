@@ -15,9 +15,6 @@
     "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be"
   },
   "template_hashes_verified": true,
-  "template_amendments_verified": [
-    "uniqueness.py"
-  ],
   "grid_matches": true,
   "proof": {
     "allowed_pixels": 5106385,
