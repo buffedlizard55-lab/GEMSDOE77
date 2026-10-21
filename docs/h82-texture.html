@@ -1,0 +1,62 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>H82 · negative research · GEMSDOE77</title>
+<meta name="description" content="GEMSDOE77 (DOE GEMS Prize): download the submission GeoTIFFs and see, per file, whether it is OK to upload.">
+<link rel="stylesheet" href="assets/lia.css"></head><body>
+<header><div class="wrap"><span class="brand">GEMSDOE77 · DOE GEMS Prize</span><a href="review-latest.html">Latest review</a> <a href="h82fmd.html">H82-FMD · negative</a> <a href="h82fmd-executive-summary.html">H82-FMD guide</a> <a href="metric-review.html">Corrected H33 analysis</a> <a href="index.html">Start here</a> <a href="tsd.html">H77-TSD · inspection</a> <a href="h77v.html">H77V (Vent-Advect)</a> <a href="h82-texture.html" class=here>H82-TEXTURE · negative</a> <a href="h82rank.html">H82R · radiometric negative</a> <a href="preflight-review.html">Current readiness review</a> <a href="h82-executive-summary.html">H82 · cool-outlet negative</a> <a href="h77g.html">H77G · negative</a> <a href="h77g-executive-summary.html">H77G guide</a> <a href="h77e-knick.html">H77E-Knick · 0/816 firings</a> <a href="release-review.html">Release safety review</a> <a href="executive-summary.html">How to submit</a> <a href="h81.html">H81 · slip-cone</a> <a href="h80t.html">H80T · tilt-persist</a> <a href="h80t-executive-summary.html">H80T guide</a> <a href="h80.html">H80 · negative</a> <a href="ago.html">AGO · negative proxies</a> <a href="h79-orient.html">H79-ORIENT · negative</a> <a href="h79-orient-executive-summary.html">H79-ORIENT guide</a> <a href="h79.html">H79-BB · research-only</a> <a href="h79-radhalo.html">H79-RH · negative</a> <a href="h77l.html">H77L · research-only</a> <a href="h77d.html">H77D (Zero-SGMC)</a> <a href="h77d-executive-summary.html">H77D guide</a> <a href="h77-step.html">H77-Step</a> <a href="h77e.html">H77E · negative</a> <a href="h78.html">H78 lane</a> <a href="lia.html">LIA lane</a> <a href="contactphys.html">Contact-physics lane</a> <a href="urank.html">Selective-U lane</a> <a href="lia-analysis.html">Why 0.2778</a> <a href="lia-sources.html">Sources</a>
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE77">GitHub</a></div></header><main><div class="wrap"><h1>H82-TEXTURE: local radiometric second-moment boundary</h1><section class="card dl research" id="h82-status"><h2>H82-TEXTURE: new research-only TIFF — negative result</h2>
+<p class="verdict"><b>OK TO DOWNLOAD: YES, for inspection. NOT OK TO SUBMIT.</b>
+Newly computed K/Th texture-boundary surface, not a copied prior prediction. Format PASS does not mean competition approval.
+Literal registry overlap fails; stopped before dot placement. Selector not approved; no slot used.</p>
+<a class="btn" href="downloads/gems77-h82-texture-kt-bf0a3028b4fa-RESEARCH-ONLY.tif" download>Download H82 research .tif (18.0 MB)</a>
+<a class="btn alt" href="downloads/gems77-h82-texture-kt-bf0a3028b4fa-RESEARCH-ONLY.zip" download>One-TIFF ZIP</a>
+<a class="btn alt" href="h82-texture.html">Results, evidence and submission status</a>
+<p><b>0.005969 HOLDOUT-DTI</b> (95% CI [0.005735, 0.006192];
+59,484 withheld positives; <code>gems57-pooled-hide-v2</code>).
+Below matched constant-output control; not comparable to historical sparse-dot incumbents.</p>
+<p class="small">SHA-256 <code>c571af22cb08db9cb8cfd6edf0108364d95b0c3bec8316d09d3dfd116531790e</code></p></section>
+<h2>Scientific finding</h2>
+<p>Concordant K/Th local-standard-deviation boundaries did not outperform a constant surface at the preregistered
+continuous-output operating point. Every table entry is HOLDOUT-DTI from <code>gems57-pooled-hide-v2</code>,
+59,484 withheld positives; 95% intervals resample aligned physical 20 km blocks (1000 draws).
+These are not organizer-confirmed results or a forecast. This single test does not disprove every texture-based detector.</p>
+<table><tr><th>Single-feature arm</th><th>HOLDOUT-DTI</th><th>95% CI</th></tr><tr><td>K</td><td>0.009344</td><td>[0.008834, 0.009857]</td></tr><tr><td>K_sd</td><td>0.008253</td><td>[0.007986, 0.008490]</td></tr><tr><td>K_texture_gradient</td><td>0.006030</td><td>[0.005802, 0.006251]</td></tr><tr><td>Th</td><td>0.009859</td><td>[0.009361, 0.010326]</td></tr><tr><td>Th_sd</td><td>0.008272</td><td>[0.008002, 0.008523]</td></tr><tr><td>Th_texture_gradient</td><td>0.005739</td><td>[0.005501, 0.005980]</td></tr><tr><td>candidate</td><td>0.005969</td><td>[0.005735, 0.006192]</td></tr><tr><td>constant</td><td>0.017675</td><td>[0.017091, 0.018186]</td></tr></table>
+<p>Paired candidate-minus-constant: -0.011706 HOLDOUT-DTI,
+95% CI [-0.012237, -0.011117].
+Leakage-canary diagnostic (not a score): 32 feature-fold tests,
+maximum symmetric AUC 0.618363; none exceeds 0.90.</p>
+<h2>Mechanism and alternative explanation</h2>
+<p>9x9 K/Th local SD, central-difference magnitude, geometric mean, label-free p99 normalization, fixed amplitude 0.02. The inputs are independently quantized rank intensities, not elemental concentrations.
+A covered fault could separate smooth sediment from heterogeneous bedrock, but a depositional fan-to-lake sediment boundary
+or acquisition noise can do the same without faulting. No vent, heat source or productive reservoir is identified.</p>
+<h2>What is unique, and what failed?</h2>
+<p>The decoded surface differs from all 36 prior local TIFF downloads checked.
+This is distinction only, not a full-registry uniqueness certificate. The two SHA-pinned rejection witnesses give
+maximum surface Spearman rho 0.010780, but forward 3-pixel support overlap 1.0
+against the full-support witness exceeds 0.70. The unchanged template therefore rejects it. No density exemption,
+mutual-overlap substitution or post-failure dot placement was used. Readback reproduces the checked surface exactly.</p>
+<h2>Format readback</h2>
+<p>Single-band float32; EPSG:32611; 3730 × 3292; transform (100, 0, 243350, 0, -100, 4508550).
+All cells finite; zero NaN/Inf; min 0, max 0.020000000 within [0,1]; outside-footprint and catalogue values zero;
+no nodata tag. All 15 shared-validator checks pass. This avoids out-of-range values locally; it does not establish portal acceptance
+or the cause of the user's earlier range error.</p>
+<h2>Name and note — reference only, DO NOT UPLOAD</h2>
+<p><code>gems77-h82-texture-kt-bf0a3028b4fa-RESEARCH-ONLY</code></p><p><code>H82 K-Th local-variance boundary; fixed continuous surface, duplicate-stop before dots; research only DO NOT SUBMIT</code></p>
+<h2>Evidence and sources</h2>
+<ul><li><a href="evidence/h82_texture/run_card.json">Frozen run card</a> · <a href="evidence/h82_texture/holdout.json">Every arm, canary, split and CI</a></li>
+<li><a href="evidence/h82_texture/surface_registry.json">Surface rejection</a> · <a href="evidence/h82_texture/readback_registry.json">Postwrite same-surface audit</a> · <a href="evidence/h82_texture/independent_audit.json">Independent readback audit</a></li>
+<li><a href="research/h82_texture_hypotheses.md">Three hypotheses ranked before implementation; provenance limitations</a></li>
+<li><a href="https://github.com/drivendataorg/gems-prize-reference-solution">Official reference code</a> (README freshly retrieved via GitHub API).</li>
+<li><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">Official USGS GeoDAWN source</a> (manual review only; host unavailable in this sandbox).</li></ul>
+<h2>Why H33's reported result is plausible, but not proof</h2>
+<p>The retained <a href="evidence/prior_forensics.json">byte forensics</a> show H33 is the earlier 44,090-dot D2.8 field
+with 6,436 near-catalogue dots removed, leaving 37,654. Sparse placement can reduce redundant false-positive mass under the
+300 m triangular metric, and pruning can remove unhelpful near-catalogue predictions. Without an exact-file organizer receipt,
+0.2778 remains OWNER-REPORT. Neither that lineage nor the conflicting requested leaderboard targets prove a causal effect,
+an optimal 200 m buffer, or a future gain. H82 supplies no evidence of beating it.</p></div></main>
+<footer><div class="wrap">Selector status for every file on this site: <b>not approved</b>. Whether to spend a
+weekly slot is a separate selector decision, not this repository's. Generated by <code>scripts/build_home.py</code> from
+<code>docs/data/*.json</code> and <code>evidence/*.json</code>. Number labels: <b>ORGANIZER-CONFIRMED</b> (public
+submission-page receipt tied to an artifact), <b>HOLDOUT-DTI</b> (local hide-and-recover; evaluator version, withheld positives, 95% CI),
+<b>INSTRUMENT</b> (projection, never a score).</div></footer>
+<script>document.querySelectorAll('button[data-copy]').forEach(b=>b.onclick=()=>{navigator.clipboard.writeText(b.dataset.copy);b.textContent='Copied';setTimeout(()=>b.textContent='Copy',1200)})</script>
+</body></html>
