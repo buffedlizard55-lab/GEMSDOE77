@@ -2,6 +2,10 @@
 
 > **Current session — branch `arena/17079c9b-gemsdoe77` (`H77H-DD`, 2026-10-21):** **OK TO DOWNLOAD FOR INSPECTION: YES** ([`gems77-h77h-downdip-notch36-bridge-36500dots-20261021-0c05c2bc-zeros.tif`](docs/downloads/gems77-h77h-downdip-notch36-bridge-36500dots-20261021-0c05c2bc-zeros.tif), SHA-256 `d1e87159a8908f0051352c091d9343e8e5128e2c8eea0debdd17589a02692dad`, [`.zip`](docs/downloads/gems77-h77h-downdip-notch36-bridge-36500dots-20261021-0c05c2bc-zeros.zip) `269a6e182cdf1e358c4063c93dd5981da3408978cc9e4e30745302981765077e`) · **OK TO SUBMIT: NO (`verdict: "negative"` under Policy `I17` & below `0.152718` incumbent; `0` weekly slots spent).** `H77H-DD` resolves `IR-H77G-01` (**99.45%** suppression of the 35.02-px MT mesh spectral spike via $\sigma=36\text{ px}$ Gaussian filtering), `IR-H77G-03` (**`0.0715` / `0.0699`** label-free pure physics `HOLDOUT-DTI`, `+82.5%` / `+48.4%` over `H77G`), and `IR-H77H-02` (exact 4-bucket Segment-LOCO), achieving **`0.1150` `[0.0993, 0.1289]`** (Seed 20) / **`0.1149` `[0.0994, 0.1296]`** (Seed 30) `HOLDOUT-DTI` on the capacity-capped deliverable (`0/54` informative duplicate firings, max overlap `0.6800 <= 0.70`; post-merge max local overlap `0.6973 <= 0.70`) and **`0.1301`** / **`0.1298`** on unconstrained `A_h77h_full`, beating both fold-fair `H33` and `A_std_control` on both seeds. ([`docs/h77hdd.html`](docs/h77hdd.html) · [`docs/review-2026-10-21-h77hdd.md`](docs/review-2026-10-21-h77hdd.md) · [`research/h77hdd_hypotheses.md`](research/h77hdd_hypotheses.md) · [`evidence/run_card_h77hdd.json`](evidence/run_card_h77hdd.json)).
 > **Latest review — branch `arena/60aafd45-gemsdoe77` (2026-10-21):** **OK TO DOWNLOAD FOR INSPECTION; NOT OK TO SUBMIT. No new TIFF was generated.** The dense registry witness was restored and independently verified to cover the entire allowed footprint, so the literal duplicate-stop rule blocks every nonempty candidate. No stopped lane was restarted and no weekly slot was used. [Review and ranked conditional hypotheses](docs/review-2026-10-21-60aafd45.md) · [Corrected H33 reasoning](research/why-h33-scored-02778.md) · [existing research TIFF](docs/downloads/gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY.tif) · [how submission works only after approval](docs/executive-summary.html).
+
+> **OK TO DOWNLOAD FOR INSPECTION: YES · OK TO SUBMIT: NO.** Historical H82-TEXTURE research artifact SHA-256: `c571af22cb08db9cb8cfd6edf0108364d95b0c3bec8316d09d3dfd116531790e`. This is an existing negative, not a newly generated submission.
+
+> **This Arena branch review:** no assigned method lane; no TIFF generated; pinned preflight blocks nonempty candidates. [Branch report](docs/review-arena-00397d44.html) · [machine-readable run card](docs/evidence/review_00397d44_run_card.json).
 # GEMSDOE77 — DOE GEMS Prize: audited fault-detection research portfolio
 
 > Read at the start of every session. Standing brief: `PROMPT.md` (operative prompt; also appended below in full);
@@ -497,6 +501,10 @@ decision before any file in this repository can be cleared.
 Full treatise: [`knowledge/01_why_02778_and_path_to_04413.md`](knowledge/01_why_02778_and_path_to_04413.md) · Full audit & irregularity log: [`evidence/irregularities.json`](evidence/irregularities.json) · Prior lane reports: [`docs/lia.html`](docs/lia.html), [`docs/contactphys.html`](docs/contactphys.html), [`docs/audit.html`](docs/audit.html).
 
 ---
+
+
+
+> **Archived H77V inspection-only artifact:** [`gems77-h77v-ventsinter-heatflow-37654dots-20261021-cc5e4cd9-zeros`](docs/downloads/gems77-h77v-ventsinter-heatflow-37654dots-20261021-cc5e4cd9-zeros.tif) · **NOT OK TO SUBMIT.** Historical record; do not confuse it with the newer H77VS lane.
 
 # Original project request — standing instructions
 

@@ -1,8 +1,8 @@
 # Preregistered Candidate Geological Hypotheses for Blind Geothermal Vent & Fault Conduit Discovery (`Lane H77V`)
 
-**Repository:** `buffedlizard55-lab/GEMSDOE77`  
-**Branch:** `arena/969c315b-gemsdoe77`  
-**Preregistration Date (UTC):** `2026-10-21`  
+**Repository:** `buffedlizard55-lab/GEMSDOE77`
+**Branch:** `arena/969c315b-gemsdoe77`
+**Preregistration Date (UTC):** `2026-10-21`
 **Protocol:** 6-Rule Parallel-Run Protocol (`vendor/gems57`, `gems57-pooled-hide-v2`, $\alpha=0.2$, $\beta=0.8$, $R=300\text{ m}$ triangular kernel)
 
 ---
