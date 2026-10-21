@@ -104,7 +104,9 @@ def main():
 (irregularity I17). The rule says a file duplicates <i>any</i> registry raster when more than 70% of its dots lie within
 3 px of that raster's dots. Several registry rasters are space-filling: one covers 100% of the allowed pixels. Even random
 dots exceed 0.70 against them, so <b>no non-empty file can pass the literal rule</b>. Only the protocol owner can resolve
-this, with one shared registry policy. Until then, spending a slot is a selector decision outside this repository.</p>"""
+this, with one shared registry policy. Until then, spending a slot is a selector decision outside this repository.
+The machine-readable <a href="data/submission-authorization.json">submission authorization receipt</a> independently
+combines all required release gates and currently reports <b>NOT OK TO SUBMIT — 0 authorized files</b>.</p>"""
     beat_txt = primary.get(
         "beat_02778_summary",
         "Not expected. Its projection is below the 0.2778 file, and its holdout did not beat the champion construction.",

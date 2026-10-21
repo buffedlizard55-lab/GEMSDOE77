@@ -34,6 +34,7 @@
    "holdout_dti_blind_4quad": 0.185834,
    "verdict": "negative",
    "selector_recommendation": "CO-PRIMARY CANDIDATE FOR HUMAN SELECTOR SIGN-OFF (orthogonal to zero-SGMC H77D with only 0.4068 dot overlap; 0.1527 HOLDOUT-DTI)",
+   "sha256": "f55105a091281be14957fff2f5aad9a85fa5b1acc31558e9fcd2aae9fdd588b0",
    "upload": "Not OK to submit automatically under unfiltered dense-witness literal gate (ab0a0a62 covers 100% of footprint); PASSES gems57 symmetric gate (max mutual 0.493 <= 0.70, max |rho| 0.403 <= 0.90) & all discrete model checks (H33 fwd 0.586, GEMSDOE70 fwd 0.438, H77D fwd 0.394) — recommended co-primary file once human selector confirms non-submission dense-witness exemption (selector: not approved)."
   },
   {
@@ -61,6 +62,7 @@
    "protocol_unique": false,
    "verdict": "negative",
    "upload": "Not OK to submit: format-valid, but literal registry gate failed (35 dense-raster overlap firings) and HOLDOUT-DTI 0.0706 < 0.0958 incumbent; selector: not approved.",
+   "sha256": "a8bfb844ab44b5d4157f75ec914a51655c27ae54727f7b4a088eca9d6f396898",
    "informative_unique": true,
    "beats_holdout_best": false
   },
@@ -72,7 +74,8 @@
    "format_valid": true,
    "protocol_unique": false,
    "verdict": "negative",
-   "upload": "Not OK to submit: post-merge literal dense-raster overlap is 0.979; scientific gate failed; selector: not approved."
+   "upload": "Not OK to submit: post-merge literal dense-raster overlap is 0.979; scientific gate failed; selector: not approved.",
+   "sha256": "20be05cc671c85484e4cfc8ea40d2fced71d7ec70f20ab915f36fcc68fcc4851"
   },
   {
    "lane": "Selective-U curvature (research TIFF)",
@@ -82,7 +85,8 @@
    "format_valid": true,
    "protocol_unique": false,
    "verdict": "negative",
-   "upload": "Not OK to submit: research TIFF, literal gate failed."
+   "upload": "Not OK to submit: research TIFF, literal gate failed.",
+   "sha256": "9489af2b7e1b06a249203d3c9d6dfe4ed469647f59ebe3a5ffe9c50c67e46b42"
   }
  ]
 }
