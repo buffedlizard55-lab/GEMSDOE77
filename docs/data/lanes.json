@@ -949,6 +949,35 @@
     0.13550906533658974
    ],
    "upload": "Not OK to submit. OK to download for inspection only. HOLDOUT-DTI 0.1215 [0.1071,0.1355] (gems57-pooled-hide-v2, 11,342 withheld) vs random 0.0476 but below 0.152718 incumbent; 78.6% overlap vs H83 collar duplicate >0.70, literal dense-witness 1.0 >0.70 FAIL; selector not approved; 0 slots used. Format-valid (17/17: float32 EPSG:32611 3730×3292 {0,1} 0 NaN zeros-outside)."
+  },
+  {
+   "lane": "H83-NETSIB: visible fault-network sibling/gap/continuation geometry, synthetic re-withholding HGB (0.1538 s20 / 0.1637 s30 HOLDOUT-DTI; below H77-VDS; duplicate rule fired; negative)",
+   "page": "h83netsib.html",
+   "summary": "h83netsib-executive-summary.html",
+   "file": "downloads/gems77-h83-netsib-37654dots-20261021-ed06b51d-zeros.tif",
+   "zip": "downloads/gems77-h83-netsib-37654dots-20261021-ed06b51d-zeros.zip",
+   "run_card": "evidence/h83netsib_run_card.json",
+   "format_valid": true,
+   "protocol_unique": false,
+   "informative_unique": false,
+   "beats_holdout_best": false,
+   "selector_approved": false,
+   "verdict": "negative",
+   "primary": false,
+   "name": "gems77-h83-netsib-37654dots-20261021-ed06b51d-zeros",
+   "note": "H83-NETSIB fault-network sibling/gap/continuation geometry, synthetic re-withholding HGB; 37654 dots sep2.8 >2px off catalogue",
+   "sha256": "b2f89a83ffb1080c512bb46c6feae3a6211207cd619e0291bd2d767c002be87f",
+   "holdout_dti_hide_v2": 0.153825,
+   "holdout_evaluator_version": "gems57-pooled-hide-v2",
+   "holdout_positive_pixels": 11321,
+   "holdout_ci95": [
+    0.135659,
+    0.172588
+   ],
+   "upload": "Not OK to submit. OK to download for inspection only. Stopped as preregistered: DUPLICATE logged: final dots exceed the 0.70 forward 3-px overlap limit against 16 informative registry rasters (worst 0.9091; all with |rho| <= 0.083). HOLDOUT-DTI 0.1538/0.1637 beats the preregistered 0.152718 incumbent by point estimate but is below the concurrently merged H77-VDS (0.1608/0.1716 at 37,654 dots).",
+   "weekly_slots_used": 0,
+   "why_primary": "H83-NETSIB lane (2026-10-21); negative because the preregistered final-dot duplicate rule fired; clearance per release gate (not approved).",
+   "beat_02778_summary": "Not known. HOLDOUT-DTI 0.1538/0.1637 is below the current repository holdout best (H77-VDS); no organizer score exists for this file and none may be inferred."
   }
  ]
 }

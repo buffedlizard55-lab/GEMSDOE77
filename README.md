@@ -1,5 +1,7 @@
 > **OK TO DOWNLOAD FOR INSPECTION: YES · OK TO SUBMIT: NO.** Historical H82-TEXTURE (`c571af22cb08db9cb8cfd6edf0108364d95b0c3bec8316d09d3dfd116531790e`) and H77VS (`gems77-h77v-ventsinter-heatflow-37654dots-20261021-cc5e4cd9-zeros`) are inspection-only.
 
+> **🚦 H83-NETSIB (newest, 2026-10-21): ✅ OK TO DOWNLOAD FOR INSPECTION · ⛔ NOT OK TO SUBMIT** — HOLDOUT-DTI 0.1538/0.1637 beat the preregistered 0.152718 incumbent by point estimate but not the concurrently merged H77-VDS, and the final-dot duplicate rule fired. [Details](#h83-netsib-status) · [lane page](docs/h83netsib.html) · [how to submit](docs/h83netsib-executive-summary.html)
+
 <!-- H77H-MESHSAFE PRIMARY STATUS BANNER -->
 > ## 🚦 IMMEDIATE DOWNLOAD & SUBMISSION STATUS AT A GLANCE (`H77H-MeshSafe` Newest Deliverable — `arena/46c3997d-gemsdoe77`, 2026-10-21)
 >
@@ -95,6 +97,15 @@
 # H82R radiometric entropy — inspection download YES; submit NO
 
 **OK TO DOWNLOAD FOR INSPECTION: YES · OK TO SUBMIT: NO.** Parallel H82-TEXTURE research TIFF SHA-256 `c571af22cb08db9cb8cfd6edf0108364d95b0c3bec8316d09d3dfd116531790e` is also inspection-only. [New H82R research TIFF](docs/downloads/gems77-h82-ternaryentropy-20261021-RESEARCH-ONLY.tif) · [ZIP](docs/downloads/gems77-h82-ternaryentropy-20261021-RESEARCH-ONLY.zip) · [technical page](docs/h82rank.html) · [run card](evidence/h82rank_run_card.json) · [post-run alias](registry/h82rank_alias.json). SHA-256 `56debe682505bf2649f30d914c7b552dcf669bce4b902ce91eb3e5363031f115`. **0.023067 HOLDOUT-DTI** (`gems57-pooled-hide-v2`, 11,321 withheld positives, 95% CI `[0.019601,0.026766]`) vs shuffled-intensity control **0.032993 HOLDOUT-DTI** (same evaluator/positives, 95% CI `[0.028137,0.037939]`). Six canaries max 0.68692 symmetric AUC. Literal surface overlap 1.0 with dense witness triggered STOP before dot placement. Float32 EPSG:32611 3730×3292 finite [0,1] readback PASS is **not organizer acceptance or uniqueness**. Unique reference name `gems77-h82-ternaryentropy-20261021-RESEARCH-ONLY`; 96-character reference note `H82 radiometric ternary rank-mixture entropy deficit; research only; NOT APPROVED for submission`. Zero slots. [Four predeclared hypotheses](research/h82rank_hypotheses.md) · [audit](docs/review-2026-10-21-h82rank.md).
+
+<a id="h83-netsib-status"></a>
+<!-- H83-NETSIB STATUS BANNER (2026-10-21; branch arena/e8283608-gemsdoe77) -->
+> ## 🚦 H83-NETSIB (newest): ✅ OK TO DOWNLOAD FOR INSPECTION · ⛔ NOT OK TO SUBMIT (negative: duplicate rule fired)
+>
+> - **Unique GeoTIFF (byte-novel, validator PASS):** [`docs/downloads/gems77-h83-netsib-37654dots-20261021-ed06b51d-zeros.tif`](docs/downloads/gems77-h83-netsib-37654dots-20261021-ed06b51d-zeros.tif) · SHA-256 `b2f89a83ffb1080c512bb46c6feae3a6211207cd619e0291bd2d767c002be87f` · [lane page](docs/h83netsib.html) · [how to submit](docs/h83netsib-executive-summary.html) · [run card](evidence/h83netsib_run_card.json)
+> - **HOLDOUT-DTI** (`gems57-pooled-hide-v2`, block-bootstrap 95% CI): **0.1538** [0.1357, 0.1726] seed 20 (11,321 withheld) and **0.1637** [0.1447, 0.1847] seed 30 (11,342 withheld). Both beat the preregistered 0.152718 incumbent by point estimate, but the CIs overlap it. Both are below H77-VDS, merged concurrently: 0.1608 / 0.1716 at the same 37,654-dot budget. Paired gain vs the identical 39-channel base: +0.0758 / +0.0797, CIs exclude 0. Leakage canary max AUC 0.8092.
+> - **Why NOT OK:** Stopped as preregistered: DUPLICATE logged: final dots exceed the 0.70 forward 3-px overlap limit against 16 informative registry rasters (worst 0.9091; all with |rho| <= 0.083). Max \|ρ\| of the final dots vs 615 registry rasters is 0.089 (byte- and rank-unique). A self-comparison bug was found and fixed (IR-H83N-02). Relaxing the dot rule for wide dot fields is the owner's protocol decision (IR-H83N-01). 0 weekly slots used.
+> - Name: `gems77-h83-netsib-37654dots-20261021-ed06b51d-zeros` · Note (126/140): `H83-NETSIB fault-network sibling/gap/continuation geometry, synthetic re-withholding HGB; 37654 dots sep2.8 >2px off catalogue`
 
 <!-- H82-TCSTEP STATUS BANNER (2026-10-21 session arena/0caf80c2-gemsdoe77; namespaced tcstep at merge) -->
 > ## 🚦 H82-TCSTEP: ✅ OK TO DOWNLOAD FOR INSPECTION · ⛔ NOT OK TO SUBMIT (negative, lane closed)
