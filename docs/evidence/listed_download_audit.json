@@ -2,16 +2,16 @@
   "schema": "gems-listed-download-readback-v1",
   "evidence_class": "FORMAT-INTEGRITY-MEASUREMENT; NOT SCORE OR PORTAL ACCEPTANCE",
   "scope": "Every primary TIFF in docs/data/lanes.json; no archive or NaN twins, no uniqueness certification",
-  "manifest_sha256": "9b3f6dd3aa6adede826447519ef34d1f799100e9890eeef2733c1592feafa493",
+  "manifest_sha256": "40905004356c610cf1177f62780c9c0d1b41f911bb5e97ab7f9138bc9fd599d3",
   "reference_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
-  "listed_count": 32,
+  "listed_count": 36,
   "all_format_pass": true,
   "authorized_to_submit": false,
   "artifacts": [
     {
-      "lane": "H82-FMD: mapping-deficit allocation (HOLDOUT-DTI 0.1121 s20 / 0.1093 s30 for the crest-thinned 48-channel build; the preregistered deficit weight itself is REFUTED; negative result)",
-      "file": "downloads/gems77-h82-crestthin-fullstack-37654dots-20261021-zeros.tif",
-      "sha256": "4f69c9fa0187cfb61394b558d9866794ef15ad7066d135fde8acef4349faac13",
+      "lane": "H77VC: Strike-Aligned Geothermal Vent Plume \u00d7 Smectite Clay-Cap Breach + V-LBCO + Uniqueness-Constrained 300 m Submodular Cover (0.1688 s30 / 0.1491 s20 HOLDOUT-DTI)",
+      "file": "downloads/gems77-h77v-geothermal-vent-submod-36250dots-20261021-zeros.tif",
+      "sha256": "83df91facbe17d8fd7afae6c851c514317f1d763f61781af954eef9834c2f7d2",
       "checks": {
         "single_band": true,
         "crs_matches": true,
@@ -30,6 +30,42 @@
       "lane": "H82R: local ternary radiometric rank-mixture entropy (STOPPED; research only)",
       "file": "downloads/gems77-h82-ternaryentropy-20261021-RESEARCH-ONLY.tif",
       "sha256": "56debe682505bf2649f30d914c7b552dcf669bce4b902ce91eb3e5363031f115",
+      "checks": {
+        "single_band": true,
+        "crs_matches": true,
+        "shape_matches": true,
+        "transform_matches": true,
+        "finite_entire_raster": true,
+        "no_nan_inside_footprint": true,
+        "values_in_0_1": true,
+        "nodata_none": true,
+        "sha256_matches_manifest": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
+    {
+      "lane": "H77H (NEWEST): Piedmont-Bajada Alluvial-Fan Toe Pinchout \u00d7 Synthetic/Antithetic Scarp Polarity \u00d7 En-Echelon Sinter-Relay Bridge (HOLDOUT-DTI 0.1579 s20 / 0.1570 s30 deliverable, 0.1709 / 0.1684 unguarded; Policy I17 negative)",
+      "file": "downloads/gems77-h77h-piedmont-relay-37654dots-20261021-56b7c98c-zeros.tif",
+      "sha256": "e4c718f450130e2e07e14ef506f051ea974c53382740974e758858519e866fe4",
+      "checks": {
+        "single_band": true,
+        "crs_matches": true,
+        "shape_matches": true,
+        "transform_matches": true,
+        "finite_entire_raster": true,
+        "no_nan_inside_footprint": true,
+        "values_in_0_1": true,
+        "nodata_none": true,
+        "sha256_matches_manifest": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
+    {
+      "lane": "H82-FMD: mapping-deficit allocation (HOLDOUT-DTI 0.1121 s20 / 0.1093 s30 for the crest-thinned 48-channel build; the preregistered deficit weight itself is REFUTED; negative result)",
+      "file": "downloads/gems77-h82-crestthin-fullstack-37654dots-20261021-zeros.tif",
+      "sha256": "4f69c9fa0187cfb61394b558d9866794ef15ad7066d135fde8acef4349faac13",
       "checks": {
         "single_band": true,
         "crs_matches": true,
@@ -570,6 +606,42 @@
       "lane": "H83: hanging-wall fault-damage collar at the 300 m kernel scale (negative result)",
       "file": "downloads/gems77-h83-faultcollar-37553dots-20261021-a55f4c9c-zeros.tif",
       "sha256": "7f71739a2804bf2fa7199d30d512e0a267e4cfa2fdd0d32304b962db65b98662",
+      "checks": {
+        "single_band": true,
+        "crs_matches": true,
+        "shape_matches": true,
+        "transform_matches": true,
+        "finite_entire_raster": true,
+        "no_nan_inside_footprint": true,
+        "values_in_0_1": true,
+        "nodata_none": true,
+        "sha256_matches_manifest": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
+    {
+      "lane": "H84-TIPLOBE: fault-tip crack-tip stress lobe + en-echelon relay breach (HOLDOUT-DTI 0.1209 [0.1068,0.1354] s30; negative, inspection only)",
+      "file": "downloads/gems77-h84-tiplobe-37654dots-20261021-b57c52b3-zeros.tif",
+      "sha256": "2bff4b55cabe5a4eb7ab1aeff6b21e407a87a576d1d0c3c5f20ed3ddb1c279ba",
+      "checks": {
+        "single_band": true,
+        "crs_matches": true,
+        "shape_matches": true,
+        "transform_matches": true,
+        "finite_entire_raster": true,
+        "no_nan_inside_footprint": true,
+        "values_in_0_1": true,
+        "nodata_none": true,
+        "sha256_matches_manifest": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
+    {
+      "lane": "H84-ORGATE: geophysics-gated second-strand collar (HOLDOUT-DTI 0.1215 [0.1071,0.1355] s30; negative, inspection only)",
+      "file": "downloads/gems77-h84-orgate-collar-37654dots-20261021-2d0a731a-zeros.tif",
+      "sha256": "9a5f5433cbfed4a1a8ac2587678aaa930c8ed93e948b9e94874c8febc549fd57",
       "checks": {
         "single_band": true,
         "crs_matches": true,

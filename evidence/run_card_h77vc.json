@@ -1,0 +1,214 @@
+{
+  "schema_version": "gems-run-card-v2",
+  "lane_id": "H77V-GEOTHERMAL-VENT-SUBMOD",
+  "branch": "arena/969c315b-gemsdoe77",
+  "timestamp_utc": "2026-10-21T18:10:25Z",
+  "verdict": "negative",
+  "scientific_holdout_verdict": "promote",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "safe_to_download_and_submit": false,
+  "protocol_unique": false,
+  "informative_unique": true,
+  "selector_status": "not approved \u2014 fail-closed under Policy I17 dense-witness literal gate and pending human selector slot review",
+  "weekly_submission_slots_used": 0,
+  "experiment_budget_used": "3 of 3 pre-registered experiments (strictly within cap)",
+  "hypothesis": {
+    "id": "H77V-1",
+    "statement": "Blind Great Basin geothermal fault conduits localize where upward-convex smectite clay-cap Hessian ridges (`log(1+cond_surf)`), hydrothermal titanomagnetite-destruction RTP troughs (`G_15(rtp)-G_2(rtp)`), strike-steered 2-m temperature probe & silica geothermometer plumes, piezometric sinter/travertine water-table spillover bands (`H77V-2`), microseismic swarm overpressure (`H77V-3`), and 5-bucket V-LBCO vent-bridged relay/crack-tip mechanics reinforce one another, and allocating binary dots via Uniqueness-Constrained 300 m Submodular Kernel Cover achieves both high holdout DTI and <=0.645 overlap across all informative registry/sibling rasters.",
+    "physical_mechanism": "Ascending hydrothermal fluids in critically stressed transtensional step-overs, relay ramps, and horsetail fault terminations (Faulds & Hinz 2015; Curewitz & Karson 1997; Peacock et al. 2020) alter wall-rock smectite/illite (`cond_surf` ridge) and oxidize crustal magnetite (`rtp` trough) while advecting heat and silica along local structural strike and cementing low-relief piedmont spillover traces with sinter/travertine.",
+    "named_non_fault_mimics": [
+      "Circular evaporite/playa conductive mudflats (suppressed via Hessian ridge anisotropy, lateral gradient, and strike-steered advection)",
+      "Pleistocene Lake Lahontan & Lake Bonneville wave-cut shorelines and symmetric desert washes (suppressed via HW/FW dip-slip step purity and along-strike elevation variance)",
+      "Missing 1 m LiDAR coverage tiles across 24.6% of the footprint (`q==0` mapped to NaN and bridged by 100%-coverage 10 m 3DEP DEM and quadrant quantile alignment)",
+      "Pre-Quaternary SGMC bedrock thrust/intrusive contacts (`0` SGMC channels used anywhere in features or weights)"
+    ]
+  },
+  "leakage_audit": {
+    "evidence_class": "LEAKAGE-CANARY",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "canary_channels_tested": 114,
+    "seed20_max_symmetric_auc": 0.79315,
+    "seed30_max_symmetric_auc": 0.80362,
+    "seed20_max_novel_h77v_auc": 0.79315,
+    "seed30_max_novel_h77v_auc": 0.80362,
+    "gate_threshold": 0.9,
+    "all_114_features_pass": true,
+    "sgmc_channels_used": 0,
+    "gdr_dist_known_fault_px_accessed": false,
+    "in_sample_predicted_pixels": 0,
+    "pixels_copied_from_prior_rasters": 0
+  },
+  "holdout_evaluation": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "kernel_radius_m": 300.0,
+    "two_seed_mean_dti_37654": 0.158628,
+    "seed30_primary_11342px": {
+      "withheld_positive_pixels": 11342,
+      "dti_lofo": 0.16878756688054533,
+      "ci95_lofo": [
+        0.14558858758498125,
+        0.19137991683333425
+      ],
+      "dti_37654": 0.16837084089638493,
+      "ci95_37654": [
+        0.1455139546687518,
+        0.19114826900894005
+      ],
+      "h33_fold_fair_dti": 0.09889767286222764,
+      "delta_vs_h33_fold_fair": 0.069473,
+      "delta_vs_h77d_prior_seed30_best": 0.018263
+    },
+    "seed20_confirmation_11321px": {
+      "withheld_positive_pixels": 11321,
+      "dti_36250": 0.14909138025446442,
+      "ci95_36250": [
+        0.1284347204706343,
+        0.17109881664349563
+      ],
+      "dti_37654": 0.14888522478965446,
+      "ci95_37654": [
+        0.12792826424978548,
+        0.1706283323316
+      ],
+      "h33_fold_fair_dti": 0.09608619416803546,
+      "delta_vs_h33_fold_fair": 0.052799,
+      "delta_vs_h77d_seed20": 0.008587
+    }
+  },
+  "uniqueness_audit": {
+    "total_rasters_checked": 830,
+    "informative_rasters_checked": 674,
+    "space_filling_rasters_noted": 156,
+    "surface_max_spearman_abs": 0.42466,
+    "dot_max_spearman_abs": 0.15002,
+    "dot_max_forward_overlap_3px_informative": 0.63498,
+    "dot_nearest_informative_raster": "GEMSDOE77:gems77-step-propensity-submod300.tif",
+    "informative_overlap_firings_gt_0p70": 0,
+    "passed_informative_both_stages": true,
+    "template_literal_reading_duplicate": true,
+    "dense_witness_forward_overlap_3px": 1.0
+  },
+  "submission_artifacts": {
+    "submission_name": "gems77-h77v-geothermal-vent-submod-36250dots-20261021-zeros",
+    "submission_note_le140": "H77V zero-SGMC geothermal vent+claycap breach+V-LBCO OOF + 300m submod (36250 dots); HOLDOUT-DTI 0.1688 (s30) / 0.1491 (s20)",
+    "submission_note_chars": 124,
+    "primary_geotiff": "docs/downloads/gems77-h77v-geothermal-vent-submod-36250dots-20261021-zeros.tif",
+    "submissions_geotiff": "submissions/gems77-h77v-geothermal-vent-submod-36250dots-20261021-zeros.tif",
+    "primary_geotiff_sha256": "83df91facbe17d8fd7afae6c851c514317f1d763f61781af954eef9834c2f7d2",
+    "primary_geotiff_bytes": 137475,
+    "primary_zip": "docs/downloads/gems77-h77v-geothermal-vent-submod-36250dots-20261021-zeros.zip",
+    "primary_zip_sha256": "dfd61c9e1cd197e0610aa11848330a6e8cb898c559509e5bac50c79bb66d640f",
+    "primary_zip_bytes": 101584,
+    "dot_count": 36250,
+    "catalogue_exclusion_px": 2.0,
+    "validator_output": {
+      "file": "/home/user/GEMSDOE77/submissions/gems77-h77v-geothermal-vent-submod-36250dots-20261021-zeros.tif",
+      "bytes": 137475,
+      "sha256": "83df91facbe17d8fd7afae6c851c514317f1d763f61781af954eef9834c2f7d2",
+      "meta": {
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "dtype": "float32",
+        "count": 1,
+        "nodata": null,
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "profile_compress": "deflate"
+      },
+      "band_description": [
+        null
+      ],
+      "n_finite": 12279160,
+      "n_nan": 0,
+      "n_infinite": 0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.0029521563556045294,
+      "emitted_positive_pixels": 36250,
+      "checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "transform_matches_sample_submission": true,
+        "no_nan_anywhere": true,
+        "no_inf_anywhere": true,
+        "no_sentinel_values": true,
+        "range_0_1_guaranteed": true,
+        "min_ge_0": true,
+        "max_le_1": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_zero": true,
+        "zero_dots_on_mapped_catalogue": true
+      },
+      "all_checks_passed": true,
+      "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+      "on_catalogue_positive_pixels": 0,
+      "in_footprint_positive_pixels": 36250,
+      "footprint_fraction": 0.007015169990631604
+    },
+    "template_report": {
+      "path": "/home/user/GEMSDOE77/submissions/gems77-h77v-geothermal-vent-submod-36250dots-20261021-zeros.tif",
+      "bytes": 137475,
+      "sha256": "83df91facbe17d8fd7afae6c851c514317f1d763f61781af954eef9834c2f7d2",
+      "bands": 1,
+      "dtype": "float32",
+      "crs": "EPSG:32611",
+      "width": 3292,
+      "height": 3730,
+      "bounds": [
+        243350.0,
+        4135550.0,
+        572550.0,
+        4508550.0
+      ],
+      "ref_bounds": [
+        243350.0,
+        4135550.0,
+        572550.0,
+        4508550.0
+      ],
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "nodata": null,
+      "blocksize": [
+        256,
+        256
+      ],
+      "fixture_grid": false,
+      "has_validity_mask": false,
+      "nan_pixels": 0,
+      "infinity_pixels": 0,
+      "n_nan": 0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.0029521563556045294,
+      "n_nonzero": 36250,
+      "mass": 36250.0,
+      "mass_outside_footprint": 0,
+      "problems": [],
+      "ok": true,
+      "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+    }
+  }
+}
