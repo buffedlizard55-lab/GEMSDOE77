@@ -225,6 +225,12 @@ GitHub authenticated operations work. CPU scientific transforms, local validatio
 
 ## H77VS updates — 2026-10-21 (Tufa-Deconfounded Vent-Sinter & Multi-Depth Conductive Heat-Flow Strike-Conduit Coupling)
 
+
+## H84 update (2026-10-21; branch `arena/c90f977a-gemsdoe77`)
+| ID | Verified irregularity | Consequence |
+|---|---|---|
+| IR-H84-01 | First Exp2/Exp3 runs (sed-derived scripts) overwrote `evidence/h84_holdout.json`/`h84_surface.npy`; fixed to exp-specific filenames and deterministically re-run — identical HOLDOUT-DTI reproduced (Exp2 0.12148954698767672, Exp3 0.11454159467432438). | Evidence files now distinct per experiment; no result changed. |
+| IR-H84-02 | 78.6% of H84 final dots fall within 3 px of the sparse H83 collar raster (>0.70 protocol limit); Spearman 0.318 passes. | Logged as duplicate drift into the H83 lane; verdict negative, NOT OK TO SUBMIT, lane closed. |
 | ID | Measured finding | Action / consequence |
 |---|---|---|
 | IR-H77VS-01 | **Pleistocene Lake Lahontan Shoreline `Tufa` Confounding in `Paleo_geothermal_final.csv` (`src/gems77_step/features.py`):** Out of `281` in-footprint records in `data/external/paleo_geothermal_regional.zip` (DOE GDR 1391), `86` (`30.6%`) are `Deposit_type == "Tufa"` (`85`) or `"Tufa and travertine"` (`1`), which are Pleistocene Lake Lahontan algal/wave-agitation carbonate shoreline mounds (`med_d_vis = 61.5 px = 6.15 km`, `12.8% <= 10 px` visible, `3.5% <= 15 px` hidden on Seed 20). High-enthalpy hydrothermal fault-vent deposits sit directly on fault conduits: `Alteration`/`Argillic alteration` (`n=14`, `med_d_vis = 1.0 px`, `100.0% <= 10 px` visible, `15.4% <= 15 px` hidden), `Sulfur` (`n=5`, `med_d_vis = 2.0 px`, `80.0% <= 10 px`), `Sinter` (`n=50`, `med_d_vis = 4.0 px`, `64.0% <= 10 px`), and `Veins/Breccia/Explosion craters` (`n=15`, `46.7% <= 10 px`). Prior code (`src/gems77_step/features.py` lines 253–264) set `imp_paleo = 1.0` equally across all 281 points. | Closed lanes are left untouched per `AGENTS.md`. In `src/gems77v/fields.py:extract_paleo_sinter_vs_tufa`, we separate the `195` high-enthalpy fault-vent records from the `86` lacustrine `Tufa` mounds (`h77v_tufa_shoreline_deconf_contrast` lifts single-channel ROC-AUC over raw `h77v_sinter_alter_vent_conduit`). |
