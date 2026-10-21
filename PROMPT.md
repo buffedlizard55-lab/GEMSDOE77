@@ -8,6 +8,10 @@ summarised with provenance at the end rather than re-transcribed hash-by-hash
 `docs/score-ledger.csv`; later entries below are OWNER-REPORT as supplied in
 the 2026-10-21 brief — no organizer receipts).*
 
+## 2026-10-21 review addendum — arena/60aafd45-gemsdoe77
+
+No new method paragraph is assigned in this invocation. The freshly rechecked dense registry witness blocks every nonempty candidate under the binding literal rule. No new TIFF, model experiment or slot is authorized by this review. See `docs/review-2026-10-21-60aafd45.md` and the corrected H33 analysis. Superseded earlier leaderboard observations below are historical, not current submission-page receipts.
+
 ## 2026-10-21 H79 execution addendum (current session)
 
 This session's registered lane is **H79-ORIENT**, not the historical contact-physics
