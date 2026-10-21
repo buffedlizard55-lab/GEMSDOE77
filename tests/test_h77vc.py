@@ -47,11 +47,11 @@ def test_h77v_geotiff_and_zip_artifacts_valid():
     assert int((arr > 0.5).sum()) == 36250
 
 
-def test_h77v_run_card_and_evidence_receipts():
-    rc = json.loads((ROOT / "evidence" / "run_card_h77v.json").read_text())
-    exp1 = json.loads((ROOT / "evidence" / "h77v_exp1_canary.json").read_text())
-    exp2 = json.loads((ROOT / "evidence" / "h77v_exp2_holdout.json").read_text())
-    exp3 = json.loads((ROOT / "evidence" / "h77v_exp3_uniqueness.json").read_text())
+def test_h77vc_run_card_and_evidence_receipts():
+    rc = json.loads((ROOT / "evidence" / "run_card_h77vc.json").read_text())
+    exp1 = json.loads((ROOT / "evidence" / "h77vc_exp1_canary.json").read_text())
+    exp2 = json.loads((ROOT / "evidence" / "h77vc_exp2_holdout.json").read_text())
+    exp3 = json.loads((ROOT / "evidence" / "h77vc_exp3_uniqueness.json").read_text())
 
     # Policy I17 fail-closed invariants
     assert rc["verdict"] == "negative"
@@ -95,17 +95,17 @@ def test_h77v_run_card_and_evidence_receipts():
     assert exp3["informative_overlap_firings_gt_0p70"] == 0
 
 
-def test_h77v_wired_into_lanes_and_site():
+def test_h77vc_wired_into_lanes_and_site():
     lanes = json.loads((ROOT / "docs" / "data" / "lanes.json").read_text())["lanes"]
-    h77v = next(x for x in lanes if x["lane"].startswith("H77V:"))
-    assert h77v["sha256"] == EXPECTED_SHA256
-    assert h77v["verdict"] == "negative"
-    assert h77v["protocol_unique"] is False
-    assert h77v["informative_unique"] is True
-    assert "not ok to submit" in h77v["upload"].lower()
-    assert "inspection only" in h77v["upload"].lower()
+    h77vc = next(x for x in lanes if x["lane"].startswith("H77VC:"))
+    assert h77vc["sha256"] == EXPECTED_SHA256
+    assert h77vc["verdict"] == "negative"
+    assert h77vc["protocol_unique"] is False
+    assert h77vc["informative_unique"] is True
+    assert "not ok to submit" in h77vc["upload"].lower()
+    assert "inspection only" in h77vc["upload"].lower()
 
-    page = (ROOT / "docs" / "h77v.html").read_text()
+    page = (ROOT / "docs" / "h77vc.html").read_text()
     assert EXPECTED_SHA256 in page
     assert "Not OK to submit" in page
     assert "not approved" in page

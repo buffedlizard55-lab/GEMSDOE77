@@ -35,16 +35,16 @@ from gems57 import evaluate_holdout as eval_mod  # noqa: E402
 from gems57 import grid as grid_mod  # noqa: E402
 from gems57 import holdout as holdout_mod  # noqa: E402
 from gems77_step.emit import peak_nms_emit  # noqa: E402
-from gems77v.emit import (  # noqa: E402
+from gems77vc.emit import (  # noqa: E402
     build_hydrothermal_crest_2d,
     flank_zeroed_unique_submodular_sequence,
 )
-from gems77v.features import (  # noqa: E402
+from gems77vc.features import (  # noqa: E402
     build_h77v_static_features,
     compute_h77v_vlbco_mechanics_fp,
     pack_combined_ram_float16,
 )
-from gems77v.models import fit_h77v_vent_ensemble  # noqa: E402
+from gems77vc.models import fit_h77v_vent_ensemble  # noqa: E402
 
 DATA_DIR = ROOT / ".cache" / "data"
 EXT_DIR = DATA_DIR / "data" / "external"

@@ -43,17 +43,17 @@ from gems57 import grid as grid_mod  # noqa: E402
 from gems57 import submission_writer as writer_mod  # noqa: E402
 from gems57 import uniqueness as uniq_mod  # noqa: E402
 from gems57 import validate as val_mod  # noqa: E402
-from gems77v.emit import (  # noqa: E402
+from gems77vc.emit import (  # noqa: E402
     build_hydrothermal_crest_2d,
     flank_zeroed_unique_submodular_emit,
     get_submodular_candidate_indices,
 )
-from gems77v.features import (  # noqa: E402
+from gems77vc.features import (  # noqa: E402
     build_h77v_static_features,
     compute_h77v_vlbco_mechanics_fp,
     pack_combined_ram_float16,
 )
-from gems77v.models import fit_h77v_vent_ensemble  # noqa: E402
+from gems77vc.models import fit_h77v_vent_ensemble  # noqa: E402
 
 DATA_DIR = ROOT / ".cache" / "data"
 EXT_DIR = DATA_DIR / "data" / "external"

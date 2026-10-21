@@ -27,7 +27,7 @@ sys.path.insert(0, str(ROOT / "src"))
 from gems57 import evaluate_holdout as eval_mod  # noqa: E402
 from gems57 import grid as grid_mod  # noqa: E402
 from gems57 import holdout as holdout_mod  # noqa: E402
-from gems77v.features import (  # noqa: E402
+from gems77vc.features import (  # noqa: E402
     H77V_STATIC_NAMES,
     build_h77v_static_features,
     compute_h77v_vlbco_mechanics_fp,
