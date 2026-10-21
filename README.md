@@ -2,6 +2,8 @@
 > ## Current checkout review — `arena/e7aa30c3-gemsdoe77`
 > **No new submission TIF generated · no weekly slot used · NOT OK TO SUBMIT any file based on this review.** This checkout has no assigned method lane. Its committed pinned-registry preflight records `STOP_UNIVERSAL_DUPLICATE`; do not bypass the shared overlap rule. Existing TIFF links below are inherited historical artifacts, each with its own inspection/authorization record; they are not new candidates or organizer-approved files. Fresh preflight, download-audit and pytest commands could not run in this sandbox because dependencies (`numpy` and `pytest`) are absent, so no new validator/holdout/uniqueness result is claimed. [Three-pass checkout review](docs/review-arena-e7aa30c3.md) · [Preflight rationale](docs/preflight-review.md).
 >
+> **Historical H82-TEXTURE frozen artifact SHA-256 (retained for regression audit):** `c571af22cb08db9cb8cfd6edf0108364d95b0c3bec8316d09d3dfd116531790e`. Historical inspection-only; no submit authorization.
+>
 > **Submission decision:** no file is selected or authorized by this review. `OK TO DOWNLOAD FOR INSPECTION` is not permission to submit. Before any candidate is generated, resolve the universal overlap semantics in the shared protocol, assign a method lane, restore dependencies and hash-pinned inputs, run the prescribed canaries and buffered holdout, clear uniqueness, then obtain separate selector approval.
 
 <!-- H77V-LDSA PRIMARY STATUS BANNER -->
