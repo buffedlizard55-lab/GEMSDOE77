@@ -29,6 +29,7 @@
 | IR-78-04 | The GitHub REST API was rate-limited (403, reset 04:27:29 UTC) while refreshing GEMSDOE73–78. | Siblings were shallow-cloned over https instead; their heads were recorded. |
 | IR-78-05 | Sibling repositories were changing during the run. | The uniqueness registry is a snapshot: the 812 indexed rasters, GEMSDOE73–76 at clone time (~04:10 UTC; heads 3b9b857 / 0b06df9 / a9413e4 / af679d0) and this repo's TIFFs. Files published later are unchecked, a stated scope limit. |
 | IR-78-06 | The Pages CI (`build_site.py`) rewrote `docs/index.html` and `docs/executive-summary.html` with one lane's view, so hand edits were overwritten. | The selective-U pages moved to `urank*.html`. The new `scripts/build_home.py`, run in CI after `build_site.py`, now generates the repository-wide entry pages. |
+| IR-78-07 | While H78 was running, main merged PRs #7–#9. They added the fail-closed literal-uniqueness policy (I17) and the H77-Step lane, which reports 0.1527 HOLDOUT-DTI. | H78 adopted I17: `protocol_unique=false`, Not OK to submit. The informative reading is kept as a diagnostic. H77-Step's figures are shown as "reported by its lane"; the H78 session did not re-verify them. |
 
 ## Next session — ordered by risk reduction
 
