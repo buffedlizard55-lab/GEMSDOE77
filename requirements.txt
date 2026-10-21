@@ -7,6 +7,7 @@ cligj==0.7.2
 cloudpickle==3.1.2
 iniconfig==2.3.1
 joblib==1.6.0
+lightgbm==4.7.0
 Markdown==3.11.2
 narwhals==2.27.1
 numpy==2.4.6

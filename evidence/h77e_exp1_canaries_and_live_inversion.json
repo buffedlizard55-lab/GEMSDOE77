@@ -1,0 +1,642 @@
+{
+  "schema_version": "h77e-exp1-v1",
+  "experiment_id": "E1",
+  "budget_counter": "1 of 3",
+  "lane": "H77E-AUTOCTX-DINKELBACH",
+  "elapsed_seconds": 333.42,
+  "static_feature_bank": {
+    "n_features": 91,
+    "n_footprint_pixels": 5167373,
+    "block_counts": {
+      "raw_dereg": 25,
+      "graben_scarp_1m_10m": 29,
+      "chi_knickpoint": 11,
+      "euler_blakely_hydro": 26
+    },
+    "sgmc_channels_used": 0,
+    "prior_rasters_used": 0
+  },
+  "leakage_canary_gate_0p90": {
+    "threshold": 0.9,
+    "status": "ALL_SEEDS_PASS",
+    "pooled_withheld_positives_px": 34235,
+    "per_seed": {
+      "seed_30": {
+        "seed": 30,
+        "withheld_positives_px": 11342,
+        "visible_positives_px": 48593,
+        "max_symmetric_auc": 0.76895,
+        "max_symmetric_feature": "mech_relay_bridge",
+        "canary_gate_0p90": "PASS",
+        "top_15_features": [
+          {
+            "feature": "mech_relay_bridge",
+            "kind": "covariate_matched_mechanics",
+            "raw_auc": 0.76895,
+            "symmetric_auc": 0.76895,
+            "finite_fraction": 1.0
+          },
+          {
+            "feature": "mech_stepover_second_dist",
+            "kind": "covariate_matched_mechanics",
+            "raw_auc": 0.23521,
+            "symmetric_auc": 0.76479,
+            "finite_fraction": 1.0
+          },
+          {
+            "feature": "mech_vis_logdist",
+            "kind": "covariate_matched_mechanics",
+            "raw_auc": 0.25051,
+            "symmetric_auc": 0.74949,
+            "finite_fraction": 1.0
+          },
+          {
+            "feature": "mech_vis_dist_clip60",
+            "kind": "covariate_matched_mechanics",
+            "raw_auc": 0.25072,
+            "symmetric_auc": 0.74928,
+            "finite_fraction": 1.0
+          },
+          {
+            "feature": "mech_wingcrack_tensile_lobe",
+            "kind": "covariate_matched_mechanics",
+            "raw_auc": 0.72148,
+            "symmetric_auc": 0.72148,
+            "finite_fraction": 1.0
+          },
+          {
+            "feature": "mech_tip_scarp_concord",
+            "kind": "covariate_matched_mechanics",
+            "raw_auc": 0.71253,
+            "symmetric_auc": 0.71253,
+            "finite_fraction": 1.0
+          },
+          {
+            "feature": "mech_coplanar_tip_lobe",
+            "kind": "covariate_matched_mechanics",
+            "raw_auc": 0.67604,
+            "symmetric_auc": 0.67604,
+            "finite_fraction": 1.0
+          },
+          {
+            "feature": "dem1m_openness_lrm",
+            "kind": "static_physics",
+            "raw_auc": 0.66001,
+            "symmetric_auc": 0.66001,
+            "finite_fraction": 0.01418
+          },
+          {
+            "feature": "lidar_strike_cont_s6p0",
+            "kind": "static_physics",
+            "raw_auc": 0.59725,
+            "symmetric_auc": 0.59725,
+            "finite_fraction": 0.75565
+          },
+          {
+            "feature": "lidar_strike_cont_s2p5",
+            "kind": "static_physics",
+            "raw_auc": 0.58552,
+            "symmetric_auc": 0.58552,
+            "finite_fraction": 0.75565
+          },
+          {
+            "feature": "det_elev_hp8",
+            "kind": "static_physics",
+            "raw_auc": 0.41506,
+            "symmetric_auc": 0.58494,
+            "finite_fraction": 1.0
+          },
+          {
+            "feature": "det_elev_hp22",
+            "kind": "static_physics",
+            "raw_auc": 0.41621,
+            "symmetric_auc": 0.58379,
+            "finite_fraction": 1.0
+          },
+          {
+            "feature": "mech_strain_deficit",
+            "kind": "covariate_matched_mechanics",
+            "raw_auc": 0.42434,
+            "symmetric_auc": 0.57566,
+            "finite_fraction": 1.0
+          },
+          {
+            "feature": "lidar_upface_max",
+            "kind": "static_physics",
+            "raw_auc": 0.57439,
+            "symmetric_auc": 0.57439,
+            "finite_fraction": 0.75565
+          },
+          {
+            "feature": "lidar_antithetic_pure",
+            "kind": "static_physics",
+            "raw_auc": 0.57334,
+            "symmetric_auc": 0.57334,
+            "finite_fraction": 0.75565
+          }
+        ],
+        "mechanics_features": [
+          {
+            "feature": "mech_relay_bridge",
+            "kind": "covariate_matched_mechanics",
+            "raw_auc": 0.76895,
+            "symmetric_auc": 0.76895,
+            "finite_fraction": 1.0
+          },
+          {
+            "feature": "mech_stepover_second_dist",
+            "kind": "covariate_matched_mechanics",
+            "raw_auc": 0.23521,
+            "symmetric_auc": 0.76479,
+            "finite_fraction": 1.0
+          },
+          {
+            "feature": "mech_vis_logdist",
+            "kind": "covariate_matched_mechanics",
+            "raw_auc": 0.25051,
+            "symmetric_auc": 0.74949,
+            "finite_fraction": 1.0
+          },
+          {
+            "feature": "mech_vis_dist_clip60",
+            "kind": "covariate_matched_mechanics",
+            "raw_auc": 0.25072,
+            "symmetric_auc": 0.74928,
+            "finite_fraction": 1.0
+          },
+          {
+            "feature": "mech_wingcrack_tensile_lobe",
+            "kind": "covariate_matched_mechanics",
+            "raw_auc": 0.72148,
+            "symmetric_auc": 0.72148,
+            "finite_fraction": 1.0
+          },
+          {
+            "feature": "mech_tip_scarp_concord",
+            "kind": "covariate_matched_mechanics",
+            "raw_auc": 0.71253,
+            "symmetric_auc": 0.71253,
+            "finite_fraction": 1.0
+          },
+          {
+            "feature": "mech_coplanar_tip_lobe",
+            "kind": "covariate_matched_mechanics",
+            "raw_auc": 0.67604,
+            "symmetric_auc": 0.67604,
+            "finite_fraction": 1.0
+          },
+          {
+            "feature": "mech_strain_deficit",
+            "kind": "covariate_matched_mechanics",
+            "raw_auc": 0.42434,
+            "symmetric_auc": 0.57566,
+            "finite_fraction": 1.0
+          }
+        ]
+      },
+      "seed_20": {
+        "seed": 20,
+        "withheld_positives_px": 11321,
+        "visible_positives_px": 48340,
+        "max_symmetric_auc": 0.77153,
+        "max_symmetric_feature": "mech_relay_bridge",
+        "canary_gate_0p90": "PASS",
+        "top_15_features": [
+          {
+            "feature": "mech_relay_bridge",
+            "kind": "covariate_matched_mechanics",
+            "raw_auc": 0.77153,
+            "symmetric_auc": 0.77153,
+            "finite_fraction": 1.0
+          },
+          {
+            "feature": "mech_stepover_second_dist",
+            "kind": "covariate_matched_mechanics",
+            "raw_auc": 0.23306,
+            "symmetric_auc": 0.76694,
+            "finite_fraction": 1.0
+          },
+          {
+            "feature": "mech_vis_logdist",
+            "kind": "covariate_matched_mechanics",
+            "raw_auc": 0.24621,
+            "symmetric_auc": 0.75379,
+            "finite_fraction": 1.0
+          },
+          {
+            "feature": "mech_vis_dist_clip60",
+            "kind": "covariate_matched_mechanics",
+            "raw_auc": 0.24639,
+            "symmetric_auc": 0.75361,
+            "finite_fraction": 1.0
+          },
+          {
+            "feature": "mech_wingcrack_tensile_lobe",
+            "kind": "covariate_matched_mechanics",
+            "raw_auc": 0.72013,
+            "symmetric_auc": 0.72013,
+            "finite_fraction": 1.0
+          },
+          {
+            "feature": "mech_tip_scarp_concord",
+            "kind": "covariate_matched_mechanics",
+            "raw_auc": 0.71529,
+            "symmetric_auc": 0.71529,
+            "finite_fraction": 1.0
+          },
+          {
+            "feature": "mech_coplanar_tip_lobe",
+            "kind": "covariate_matched_mechanics",
+            "raw_auc": 0.68106,
+            "symmetric_auc": 0.68106,
+            "finite_fraction": 1.0
+          },
+          {
+            "feature": "lidar_strike_cont_s6p0",
+            "kind": "static_physics",
+            "raw_auc": 0.62108,
+            "symmetric_auc": 0.62108,
+            "finite_fraction": 0.75599
+          },
+          {
+            "feature": "lidar_strike_cont_s2p5",
+            "kind": "static_physics",
+            "raw_auc": 0.60827,
+            "symmetric_auc": 0.60827,
+            "finite_fraction": 0.75599
+          },
+          {
+            "feature": "lidar_upface_max",
+            "kind": "static_physics",
+            "raw_auc": 0.60597,
+            "symmetric_auc": 0.60597,
+            "finite_fraction": 0.75599
+          },
+          {
+            "feature": "lidar_downface_max",
+            "kind": "static_physics",
+            "raw_auc": 0.5994,
+            "symmetric_auc": 0.5994,
+            "finite_fraction": 0.75599
+          },
+          {
+            "feature": "lidar_cross_max",
+            "kind": "static_physics",
+            "raw_auc": 0.59783,
+            "symmetric_auc": 0.59783,
+            "finite_fraction": 0.75599
+          },
+          {
+            "feature": "lidar_graben_couplet",
+            "kind": "static_physics",
+            "raw_auc": 0.59755,
+            "symmetric_auc": 0.59755,
+            "finite_fraction": 0.75599
+          },
+          {
+            "feature": "lidar_antithetic_pure",
+            "kind": "static_physics",
+            "raw_auc": 0.59688,
+            "symmetric_auc": 0.59688,
+            "finite_fraction": 0.75599
+          },
+          {
+            "feature": "lidar_lappos_max",
+            "kind": "static_physics",
+            "raw_auc": 0.59616,
+            "symmetric_auc": 0.59616,
+            "finite_fraction": 0.75599
+          }
+        ],
+        "mechanics_features": [
+          {
+            "feature": "mech_relay_bridge",
+            "kind": "covariate_matched_mechanics",
+            "raw_auc": 0.77153,
+            "symmetric_auc": 0.77153,
+            "finite_fraction": 1.0
+          },
+          {
+            "feature": "mech_stepover_second_dist",
+            "kind": "covariate_matched_mechanics",
+            "raw_auc": 0.23306,
+            "symmetric_auc": 0.76694,
+            "finite_fraction": 1.0
+          },
+          {
+            "feature": "mech_vis_logdist",
+            "kind": "covariate_matched_mechanics",
+            "raw_auc": 0.24621,
+            "symmetric_auc": 0.75379,
+            "finite_fraction": 1.0
+          },
+          {
+            "feature": "mech_vis_dist_clip60",
+            "kind": "covariate_matched_mechanics",
+            "raw_auc": 0.24639,
+            "symmetric_auc": 0.75361,
+            "finite_fraction": 1.0
+          },
+          {
+            "feature": "mech_wingcrack_tensile_lobe",
+            "kind": "covariate_matched_mechanics",
+            "raw_auc": 0.72013,
+            "symmetric_auc": 0.72013,
+            "finite_fraction": 1.0
+          },
+          {
+            "feature": "mech_tip_scarp_concord",
+            "kind": "covariate_matched_mechanics",
+            "raw_auc": 0.71529,
+            "symmetric_auc": 0.71529,
+            "finite_fraction": 1.0
+          },
+          {
+            "feature": "mech_coplanar_tip_lobe",
+            "kind": "covariate_matched_mechanics",
+            "raw_auc": 0.68106,
+            "symmetric_auc": 0.68106,
+            "finite_fraction": 1.0
+          },
+          {
+            "feature": "mech_strain_deficit",
+            "kind": "covariate_matched_mechanics",
+            "raw_auc": 0.42345,
+            "symmetric_auc": 0.57655,
+            "finite_fraction": 1.0
+          }
+        ]
+      },
+      "seed_21": {
+        "seed": 21,
+        "withheld_positives_px": 11572,
+        "visible_positives_px": 48240,
+        "max_symmetric_auc": 0.74204,
+        "max_symmetric_feature": "mech_stepover_second_dist",
+        "canary_gate_0p90": "PASS",
+        "top_15_features": [
+          {
+            "feature": "mech_stepover_second_dist",
+            "kind": "covariate_matched_mechanics",
+            "raw_auc": 0.25796,
+            "symmetric_auc": 0.74204,
+            "finite_fraction": 1.0
+          },
+          {
+            "feature": "mech_relay_bridge",
+            "kind": "covariate_matched_mechanics",
+            "raw_auc": 0.74114,
+            "symmetric_auc": 0.74114,
+            "finite_fraction": 1.0
+          },
+          {
+            "feature": "mech_vis_logdist",
+            "kind": "covariate_matched_mechanics",
+            "raw_auc": 0.27284,
+            "symmetric_auc": 0.72716,
+            "finite_fraction": 1.0
+          },
+          {
+            "feature": "mech_vis_dist_clip60",
+            "kind": "covariate_matched_mechanics",
+            "raw_auc": 0.2734,
+            "symmetric_auc": 0.7266,
+            "finite_fraction": 1.0
+          },
+          {
+            "feature": "mech_wingcrack_tensile_lobe",
+            "kind": "covariate_matched_mechanics",
+            "raw_auc": 0.69581,
+            "symmetric_auc": 0.69581,
+            "finite_fraction": 1.0
+          },
+          {
+            "feature": "mech_tip_scarp_concord",
+            "kind": "covariate_matched_mechanics",
+            "raw_auc": 0.69353,
+            "symmetric_auc": 0.69353,
+            "finite_fraction": 1.0
+          },
+          {
+            "feature": "mech_coplanar_tip_lobe",
+            "kind": "covariate_matched_mechanics",
+            "raw_auc": 0.66899,
+            "symmetric_auc": 0.66899,
+            "finite_fraction": 1.0
+          },
+          {
+            "feature": "lidar_strike_cont_s6p0",
+            "kind": "static_physics",
+            "raw_auc": 0.60106,
+            "symmetric_auc": 0.60106,
+            "finite_fraction": 0.75438
+          },
+          {
+            "feature": "lidar_upface_max",
+            "kind": "static_physics",
+            "raw_auc": 0.5885,
+            "symmetric_auc": 0.5885,
+            "finite_fraction": 0.75438
+          },
+          {
+            "feature": "lidar_strike_cont_s2p5",
+            "kind": "static_physics",
+            "raw_auc": 0.58628,
+            "symmetric_auc": 0.58628,
+            "finite_fraction": 0.75438
+          },
+          {
+            "feature": "lidar_radon_scarp",
+            "kind": "static_physics",
+            "raw_auc": 0.58423,
+            "symmetric_auc": 0.58423,
+            "finite_fraction": 0.75438
+          },
+          {
+            "feature": "dem1m_openness_lrm",
+            "kind": "static_physics",
+            "raw_auc": 0.58413,
+            "symmetric_auc": 0.58413,
+            "finite_fraction": 0.01425
+          },
+          {
+            "feature": "det_elev_hp8",
+            "kind": "static_physics",
+            "raw_auc": 0.4164,
+            "symmetric_auc": 0.5836,
+            "finite_fraction": 1.0
+          },
+          {
+            "feature": "lidar_downface_max",
+            "kind": "static_physics",
+            "raw_auc": 0.58293,
+            "symmetric_auc": 0.58293,
+            "finite_fraction": 0.75438
+          },
+          {
+            "feature": "lidar_lappos_max",
+            "kind": "static_physics",
+            "raw_auc": 0.58194,
+            "symmetric_auc": 0.58194,
+            "finite_fraction": 0.75438
+          }
+        ],
+        "mechanics_features": [
+          {
+            "feature": "mech_stepover_second_dist",
+            "kind": "covariate_matched_mechanics",
+            "raw_auc": 0.25796,
+            "symmetric_auc": 0.74204,
+            "finite_fraction": 1.0
+          },
+          {
+            "feature": "mech_relay_bridge",
+            "kind": "covariate_matched_mechanics",
+            "raw_auc": 0.74114,
+            "symmetric_auc": 0.74114,
+            "finite_fraction": 1.0
+          },
+          {
+            "feature": "mech_vis_logdist",
+            "kind": "covariate_matched_mechanics",
+            "raw_auc": 0.27284,
+            "symmetric_auc": 0.72716,
+            "finite_fraction": 1.0
+          },
+          {
+            "feature": "mech_vis_dist_clip60",
+            "kind": "covariate_matched_mechanics",
+            "raw_auc": 0.2734,
+            "symmetric_auc": 0.7266,
+            "finite_fraction": 1.0
+          },
+          {
+            "feature": "mech_wingcrack_tensile_lobe",
+            "kind": "covariate_matched_mechanics",
+            "raw_auc": 0.69581,
+            "symmetric_auc": 0.69581,
+            "finite_fraction": 1.0
+          },
+          {
+            "feature": "mech_tip_scarp_concord",
+            "kind": "covariate_matched_mechanics",
+            "raw_auc": 0.69353,
+            "symmetric_auc": 0.69353,
+            "finite_fraction": 1.0
+          },
+          {
+            "feature": "mech_coplanar_tip_lobe",
+            "kind": "covariate_matched_mechanics",
+            "raw_auc": 0.66899,
+            "symmetric_auc": 0.66899,
+            "finite_fraction": 1.0
+          },
+          {
+            "feature": "mech_strain_deficit",
+            "kind": "covariate_matched_mechanics",
+            "raw_auc": 0.42929,
+            "symmetric_auc": 0.57071,
+            "finite_fraction": 1.0
+          }
+        ]
+      }
+    }
+  },
+  "covariate_shift_root_cause_audit": {
+    "legacy_loco_pos_frac_le_3p5px": 0.10855,
+    "legacy_loco_neg_frac_le_3p5px": 0.0,
+    "legacy_spurious_collar_gap": 0.10855,
+    "h77e_buffered_pos_min_px": 3.1623,
+    "h77e_buffered_pos_median_px": 11.18,
+    "h77e_buffered_neg_frac_le_3p5px": 0.00306,
+    "finding": "In legacy LOCO (`H77D`/`H77-Step`), 14-19% of positive pixels sit at `d <= 3.5 px` while 0.00% of sampled negatives have `d <= 3.5 px`, creating a pure sampling-gap shortcut where trees predict `p -> 0.99` on `d <= 3.5`. H77E buffered 8-bucket leave-out guarantees `d > 3.0 px` on 100% of held-out positive components AND samples negatives uniformly across all `d > 0`, completely eliminating the near-fault collar artifact."
+  },
+  "algebraic_live_score_inversion_instrument": {
+    "instrument_label": "ALGEBRAIC_LIVE_SCORE_INVERSION_INSTRUMENT (NEVER USED AS MODEL SCORE OR LABEL)",
+    "unique_scored_rasters_used": 95,
+    "unique_hypothesis_families": 71,
+    "in_sample_r2": 0.1721,
+    "leave_one_family_out_r2": 0.108,
+    "leave_one_family_out_rmse": 0.0806,
+    "inferred_total_active_fault_pixels_K_hat": 31621.2,
+    "domain_density_estimates": [
+      {
+        "domain": "D1_near_catalogue_collar_le3px",
+        "domain_pixels": 383806,
+        "estimated_live_active_fault_px_INSTRUMENT": 6162.7,
+        "ci95_px_INSTRUMENT": [
+          0.0,
+          11440.4
+        ],
+        "estimated_density_per_px": 0.016057,
+        "lift_over_nevada_mean": 2.59
+      },
+      {
+        "domain": "D2_offtip_wingcrack_stepout_3_30px",
+        "domain_pixels": 405277,
+        "estimated_live_active_fault_px_INSTRUMENT": 0.0,
+        "ci95_px_INSTRUMENT": [
+          0.0,
+          0.0
+        ],
+        "estimated_density_per_px": 0.0,
+        "lift_over_nevada_mean": 0.0
+      },
+      {
+        "domain": "D3_lidar_scarp_crest_far",
+        "domain_pixels": 143309,
+        "estimated_live_active_fault_px_INSTRUMENT": 25069.9,
+        "ci95_px_INSTRUMENT": [
+          15880.8,
+          53293.6
+        ],
+        "estimated_density_per_px": 0.174936,
+        "lift_over_nevada_mean": 28.25
+      },
+      {
+        "domain": "D4_nonlidar_chi_knickpoint_gap",
+        "domain_pixels": 117798,
+        "estimated_live_active_fault_px_INSTRUMENT": 388.6,
+        "ci95_px_INSTRUMENT": [
+          0.0,
+          13972.3
+        ],
+        "estimated_density_per_px": 0.003299,
+        "lift_over_nevada_mean": 0.53
+      },
+      {
+        "domain": "D5_blind_basin_euler_hydrothermal",
+        "domain_pixels": 293031,
+        "estimated_live_active_fault_px_INSTRUMENT": 0.0,
+        "ci95_px_INSTRUMENT": [
+          0.0,
+          0.0
+        ],
+        "estimated_density_per_px": 0.0,
+        "lift_over_nevada_mean": 0.0
+      },
+      {
+        "domain": "D6_flank_stepout_3_30px_lowtip",
+        "domain_pixels": 1938785,
+        "estimated_live_active_fault_px_INSTRUMENT": 0.0,
+        "ci95_px_INSTRUMENT": [
+          0.0,
+          0.0
+        ],
+        "estimated_density_per_px": 0.0,
+        "lift_over_nevada_mean": 0.0
+      },
+      {
+        "domain": "D7_low_signal_background_mimics",
+        "domain_pixels": 1824379,
+        "estimated_live_active_fault_px_INSTRUMENT": 0.0,
+        "ci95_px_INSTRUMENT": [
+          0.0,
+          9856.7
+        ],
+        "estimated_density_per_px": 0.0,
+        "lift_over_nevada_mean": 0.0
+      }
+    ]
+  }
+}
