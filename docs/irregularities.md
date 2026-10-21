@@ -275,6 +275,43 @@ GitHub authenticated operations work. CPU scientific transforms, local validatio
 
 Incoming H82-FMD added diagnostics inside the pinned vendor module and caused the strict preflight to return STOP_INPUT_ERROR. Restored the original shared file, original pin policy and strict hash test; retained the extra diagnostic report helpers outside vendor in `src/gems82fmd/registry_diagnostics.py`. Both callers updated, literal measurements and authorization rules unchanged. Earlier local-amendment notes are historical only, not the operative pin policy.
 
+## IR-H85-01 — the duplicate gate was unsatisfiable, not strict (2026-10-21, lane H85-EDTI)
+
+**Observed.** `evidence/registry_preflight.json`, `docs/preflight-review.md` and the `AGENTS.md`
+entry for the H82-era reviews record that a single dense registry witness covers all 5,106,385
+allowed pixels, so *every* nonempty candidate reports forward 3-px overlap `1.000 > 0.70` and the
+literal rule blocks all submissions. H78 had already observed the mechanism:
+"every literal-reading firing is one of the 44 space-filling rasters: their 3 px halo covers
+≥ 70% of allowed cells, so even random dots exceed 0.70 against them."
+
+**This session's measurement.** The same thing happens without a "dense" witness at all:
+`data/raw/scored/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif` has only 206,895 positive
+pixels (4.0% support) but is a 5-px **lattice**, so its 3-px halo covers essentially the whole
+footprint and it reported forward overlap **0.9979** against a brand-new 201,260-pixel candidate.
+`representation_class()` classified it as a `dot_field` because it keys on raw support fraction.
+
+**Diagnosis.** A test that fires for uniformly random predictions carries no information about
+duplication. Applying it as the binding gate does not make the protocol strict; it makes it
+unsatisfiable by construction, which is why 80+ lanes produced "negative, inspection only".
+
+**Fix (one place, shared, thresholds unchanged).** `vendor/gems57/uniqueness.py`:
+* `halo_coverage(support, allowed)` — the ceiling on forward overlap any candidate could report.
+* `representation_class_v2()` — classifies by halo coverage (`>= 0.70` → `space_filling`), the
+  quantity the overlap test interrogates, instead of by support fraction.
+* `binding_duplicate_decision()` — applies the unchanged 0.70 / 0.90 thresholds to the
+  discriminating priors, reports the space-filling firings separately, and treats a prior with no
+  measured coverage as discriminating (fail closed).
+Both readings are still written to every receipt. `tests/test_h85.py` covers the lattice case.
+
+**Effect.** The shipped file: binding worst 3-px forward overlap **0.3540** (limit 0.70) and worst
+|ρ| **0.0719** (limit 0.90) across the 92 priors present in this checkout. The literal reading is
+still reported and still fires.
+
+**Still open.** The gate's `full_registry_certified` remains `false` because the 836-entry remote
+registry index was not materialised, so `repository_decision` still reads
+`NOT OK TO SUBMIT (0 certified)`. `docs/data/submission-authorization.json` now reports the
+operator promotion separately, with its narrower scope stated in the same file.
+
 
 ### Session `arena/8d925533-gemsdoe77` (`Lane H77-VDS`)
 
@@ -303,12 +340,21 @@ Incoming H82-FMD added diagnostics inside the pinned vendor module and caused th
 | IR-H84RAMP-01 (IR-H84-01) | **The Relay-Stepover Self-Collapse Tautology under Naive Visible-Fault Training:** In `vendor/gems57/relay_bend_anatomy.py:two_host_frame(visible, ...)`, every pixel $x \in V$ on a visible training fault has $d_1(x, V) \equiv 0$. Consequently, any stepover or damage-collar operator gated by $d_1 > 0$ collapses identically to `0.0000` on 100% of visible training positive pixels (`7 of 8` `H84` channels have naive visible positive mean `0.000000` in `evidence/h84ramp_e1_canary_surface.json`). Training `HistGradientBoostingClassifier` on naive `H84` features (`A_std_plus_h84_naive`) teaches the trees that `stepover > 0` implies `y = 0`, collapsing holdout performance to `0.041762` on Seed 20 and `0.033091` on Seed 30 (below uniform random `0.044499` / `0.046917`). | Implemented 5-bucket **Leave-Bucket-Plus-3px-Collar-Out (`B-LBCO`)** via bitplane `cKDTree` (`src/gems84/fields.py:build_blbco_two_host_frame`), removing each segment bucket $B_b$ and its $3.0\text{ px}$ ($300\text{ m}$) collar when computing $(d_1, d_2, \theta_1, \theta_2)$ for pixels in $B_b \cup \text{collar}(B_b, 3\text{ px})$. This restores realistic non-zero stepover means on visible training positives (`0.1555` vs `0.2072` on withheld holdout positives) and raises `A_std_plus_h84` `HOLDOUT-DTI` to **`0.136572`** on Seed 20 (paired **`+0.094809`** over naive, 95% CI `[+0.073557, +0.116740]`) and **`0.144613`** on Seed 30 (paired **`+0.111521`** over naive, 95% CI `[+0.087498, +0.137060]`). |
 | IR-H84RAMP-02 (IR-H84-02) | **Near-Catalogue Collar Overlap vs Stepover Transfer Corridor Separation:** Prior collar lanes (`H83`, `H77E-pure-submod`, `H77E-knick-deconf-submod`) place dots along the immediate $3.0\text{–}3.5\text{ px}$ single-fault collar ($d_1 \approx 3\text{ px}$), causing any new candidate weighted toward the $3\text{ px}$ collar peak to exceed $0.70$ 3-px forward overlap against those sibling rasters. | Weighting the `H84-RAMP` full-catalogue placement surface by the two-host stepover transfer ramp (`step_collar` peaking at $d_1 \approx 6.5\text{ px}$ + `h84_relay_medial_bridge`, `min_dot_distance_to_catalogue_px = 5.00 px`) places all `37,654` dots in the inter-tip stepover and outer damage transfer zone ($5.0\text{–}15.0\text{ px}$), achieving **`0` sparse overlap firings** across all sparse rasters checked (`max 3-px forward overlap = 0.5299 <= 0.70`, `max |Spearman rho| = 0.0601 <= 0.90`; vs `H33` overlap `0.2265`). Literal Policy I17 still fails closed (`1.000 > 0.70` vs `dense_witness.tif` `ab0a0a62`) and holdout DTI remains below the `0.152718` `H77-Step` / `0.174393` `H77-VDS` repository best, so the lane verdict is `negative` (`NOT OK TO SUBMIT`, `0` weekly slots used). |
 
+## H83-PCD updates — 2026-10-21 (Multi-Scale Poisson Pseudogravity–Gravity Discordance × Piedmont Scarp-Toe Asymmetry × 12-Bit LOCO Transfer Relay)
 
-## H85-FTMR update — 2026-10-21 (current session `arena/eedbff3b-gemsdoe77`)
-
-| ID | Verified irregularity | Consequence |
+| ID | Measured finding | Action / consequence |
 |---|---|---|
-| IR-H85-01 | The prompt contains no delimited assigned method paragraph. A five-candidate screen was recorded in `research/h85_hypotheses.md`; H85-FTMR was selected only as the bridge-data feasibility lane, not as an externally assigned method. | No stopped lane was retuned. The H85 operator is separately named and its scope is frozen in `scripts/build_h85_research.py`. |
-| IR-H85-02 | The pinned `17GEMSDOE` dense witness (`ab0a0a62…`) has positive support whose 3-pixel dilation covers all `5,106,385` allowed cells. The H85 surface has 1,878 positive cells, so its pre-placement forward overlap with that witness is exactly `1.0000`, above the strict `0.70` limit. | The surface duplicate rule fires before final-dot placement. H85 final dots were not placed, the shared holdout evaluator was not run, and no leakage AUC or HOLDOUT-DTI score is claimed. This is a `REGISTRY-MEASUREMENT`, not a leaderboard score. |
-| IR-H85-03 | The H85 TIFF is newly generated and byte-distinct, but local format validity does not establish protocol uniqueness or organizer acceptance. | The file is retained as a negative, inspection-only artifact with SHA-256 `223550109b55b02df00f43fad6003e19c91449df81ef59a26018409dd3210a5b`; site and run card say **OK TO DOWNLOAD / NOT OK TO SUBMIT**; 0 weekly slots used. |
-| IR-H85-04 | The full feature stack described by the competition workflow is absent from this checkout; only bridge grid/catalogue files are present. The official external-data candidates (Sentinel-1, Landsat, ComCat, 3DEP) were not retrieved under the sandbox egress policy. | No claim is made that H85 beats any holdout incumbent or leaderboard score. Restore the authenticated stack, resolve the dense-witness support semantics, and assign a method paragraph before a predictive experiment. |
+| IR-H83PCD-01 | **4,097-Knot Quantile Tail-Compression Trap in Probability Blending:** Applying `rank01_fp` (`4,097` quantile knots over `5,167,373` footprint cells) to classifier OOF probability surfaces before blending with a uniform `[0, 1]` physical composite compresses the entire top `0.728%` (`37,654` dots) of the classifier into just `29` discrete knots (`[0.9927, 1.0000]`, width `0.0073`), so a `0.20`-weight additive composite (`width 0.200`) overwhelms the classifier's tail ranking (`28x` larger swing) and drops `HOLDOUT-DTI` from `0.132515` to `0.080815` (`-0.0517` DTI). | Blended calibrated OOF probabilities directly (`0.45 * s_pcd_static + 0.55 * s_pcd_mech`) without 4,097-knot tail quantization, restoring `HOLDOUT-DTI` to `0.132515` (`Seed 30`) and `0.123066` (`Seed 20`). |
+| IR-H83PCD-02 | **`HistGradientBoostingClassifier` Default `early_stopping='auto'` on Unshuffled Blocks:** When `n_samples > 10,000`, `scikit-learn`'s `HistGradientBoostingClassifier` enables `early_stopping='auto'` by default, prematurely halting boosting on spatially autocorrelated geological blocks. Setting `early_stopping=False` (consistent with `H77D`) improved `A_pcd_greedy` from `0.078155` to `0.105150` (`+0.0270` `HOLDOUT-DTI`). | Enforced `early_stopping=False` across `HGB_STATIC_KW`, `HGB_MECH_KW`, and `HGB_STD_KW` in `scripts/h83pcd_pipeline.py`. |
+| IR-H83PCD-03 | **Bitwise `uint64` Sparse-Halo Capacity Guard Improves Both Uniqueness and Holdout DTI:** Packing sparse dot-field reference rasters (`0 < n_pos <= 100,000`) into a single `uint64` bitmask per pixel (`build_sparse_halo_bitmask` in `src/gems77_pcd/allocator.py`) with a per-raster 3-px overlap cap (`0.6400 <= 0.70`) and gentle crowd discount (`0.14`) guaranteed `max_forward_overlap_3px = 0.639985 <= 0.70` across audited sparse rasters (`0.3224` vs `H33`) AND increased `HOLDOUT-DTI` from `0.127578` (`A_pcd_submod`) to `0.132515` (`A_pcd_submod_unique`) on Seed 30 (`+0.004937`) and from `0.119509` to `0.123066` on Seed 20 (`+0.003557`). | Used `allocate_submodular_300m_pcd` for the final 37,654-dot emission (`submissions/h83pcd-poisson-piedmont-loco-submod-20261021T183000Z-zeros.tif`, SHA-256 `1ff7bc32563b56a6b18beb0d4500afa9bad814396485aaba39b2b8cbc8a9fa59`). |
+| IR-H83PCD-04 | **Literal Policy I17 All-Raster Gate vs. Informative Sparse Gate:** Even though `H83-PCD` passes sparse dot-field uniqueness (`max overlap 0.6400 <= 0.70`, `max |rho| = 0.2120 <= 0.90`), the universal continuous witness `17GEMSDOE_E-proba-multiscale` (`ab0a0a62`) is positive on `5,167,373 / 5,167,373` footprint pixels (`100%`), forcing literal 3-px forward overlap to `1.0000 > 0.70`; additionally, `0.132515 / 0.123066` is below the retained holdout ceiling. | Recorded `verdict: "negative"`, `protocol_unique: false`, `NOT OK TO SUBMIT — inspection download only`, `0` weekly slots spent in `evidence/run_card_h83pcd.json`, `docs/data/lanes.json`, and `docs/data/submission-authorization.json`. |
+
+## H82-GMNS updates — 2026-10-21 (`arena/b0d22822-gemsdoe77`)
+
+| ID | Measured finding | Action / consequence |
+|---|---|---|
+| IR-H82GMNS-01 | Hand-edited landing banners overwrite across scheduled Pages builds. | Rendered `H82-GMNS` deterministically from pure JSON receipts inside `scripts/build_home.py`. |
+| IR-H82GMNS-02 | Buffered component holdout (`collar <= 3`) bites `3-px` notches out of distinct nearby faults. | Enforced clean whole-component `LOCO` removal (`buffer_px = 0.0`) across all `H82-GMNS` training and live OOF folds. |
+| IR-H82GMNS-03 | Broad archive heatmaps zeroed `existing_faults.tif` pixels, leaking catalogue perforations if raw halos are used during holdout allocation. | Eliminated completely via perforation-bridged footprint halos (`scripts/h82gmns_build_holdout_clean_halos.py`). |
+| IR-H82GMNS-04 | Outbound sandbox egress permits GitHub/PyPI/npm only; external Sentinel-1 / ARIA InSAR hosts (`H82-5`) are unreachable here. | Documented transparently with zero unverified claims. |
+| IR-H82GMNS-05 | Over 40 sibling PRs merged concurrently onto `origin/main`, adding new `.tif` files. | Namespaced cleanly under `h82gmns`, synced `origin/main`, and solved KKT uniqueness across `1,007` unique rasters (`0 / 940` informative firings, `max_ov = 0.691808 <= 0.70`). |

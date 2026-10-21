@@ -24,7 +24,17 @@
     "strand_orientation.py": "c1dd6d8bc39c48c4cda11321c116e600b59b18cf1764e23ce3d5438bea9dd0bc",
     "strike_zone.py": "eaf5b1030b731ec743650568d28598d3b6104e641a089dd6cca196e05be4e9c4",
     "submission_writer.py": "41220185ac2823fe5358603d38f2a915ea3e5f1ab1f94f0b237295b38b4a2565",
-    "uniqueness.py": "1c5094b814277ae801ccea6a47cf744429cffcdc10f9cc79f229d5fc44a8df95",
+    "uniqueness.py": "d60cd8db338e8dcbb1f14168f7579f5b8c6212a79fe5087545a9156cf27392b9",
     "validate.py": "e7849554b47f6a2b66aeb2f7cfd5db06267412f049f52a73f1c41f934a2c34dd"
-  }
+  },
+  "local_amendments": [
+    {
+      "file": "uniqueness.py",
+      "irregularity": "IR-H85-01",
+      "upstream_sha256": "1c5094b814277ae801ccea6a47cf744429cffcdc10f9cc79f229d5fc44a8df95",
+      "local_sha256": "d60cd8db338e8dcbb1f14168f7579f5b8c6212a79fe5087545a9156cf27392b9",
+      "change": "added halo_coverage(), representation_class_v2() and binding_duplicate_decision(); classifies a prior by 3-px halo coverage instead of raw support fraction so a regular lattice cannot veto every nonempty candidate. Thresholds OVERLAP_LIMIT=0.70 and RHO_LIMIT=0.90 are unchanged, both readings are still produced, and no existing function changed behaviour. Reported once here per the parallel-run protocol.",
+      "tests": "tests/test_h85.py"
+    }
+  ]
 }

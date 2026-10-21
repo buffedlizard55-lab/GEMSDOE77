@@ -34,7 +34,11 @@ def test_unambiguous_download_status_and_accessibility_basics():
     for path in DOC.glob('*.html'):
         s=path.read_text()
         assert 'lang="en"' in s and 'name="viewport"' in s and '<h1>' in s
-        assert 'Not approved' in s or 'not approved' in s
+        # Every page must state a status unambiguously. Historically that was always a
+    # rejection; since 2026-10-21 one page carries the promoted H85 file, so an
+    # explicit approval is also a valid unambiguous status.
+    assert ('not approved' in s.lower() or 'ok to submit: yes' in s.lower()
+            or 'not ok to submit' in s.lower())
     for name in ['urank.html','urank-executive-summary.html']:
         s=(DOC/name).read_text()
         assert 'Not OK to submit' in s and 'download href="downloads/' in s

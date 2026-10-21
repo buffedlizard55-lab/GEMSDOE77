@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "verified_files_count": 23,
-  "storage_root": "/home/user/GEMSDOE77/data/raw",
+  "storage_root": "data/raw",
   "files": [
     {
       "id": "training_features",

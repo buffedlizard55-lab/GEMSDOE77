@@ -24,7 +24,7 @@ REPO = "https://github.com/buffedlizard55-lab/GEMSDOE77"
 LB = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
 PD = "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
-NAV = [("h77pd.html", "H77-PD · 0.1685 3-Seed #1"), ("h77pd-executive-summary.html", "H77-PD guide"), ("h77vldsa.html", "H77V-LDSA · 0.1444/0.1530"), ("h77vldsa-executive-summary.html", "H77V-LDSA guide"), ("h77h-meshsafe.html", "H77H-MeshSafe · 0/119 firings"), ("h77h-meshsafe-executive-summary.html", "H77H-MeshSafe guide"), ("h83netsib.html", "H83-NETSIB · negative"), ("h83netsib-executive-summary.html", "H83-NETSIB guide"), ("h77vds.html", "H77-VDS · 0.1744 #1"), ("h77vds-executive-summary.html", "H77-VDS guide"), ("review-latest.html", "Latest review"), ("review-arena-00397d44.html", "Arena branch review"), ("metric-review.html", "Corrected H33 analysis"), ("h85.html", "H85 · preflight stop"), ("h85-executive-summary.html", "H85 guide"), ("index.html", "Start here"), ("h77hdd.html", "H77H-DD · downdip-bridge"), ("h77hdd-executive-summary.html", "H77H-DD guide"), ("h77vc.html", "H77VC (Vent+ClayCap)"), ("h77vs.html", "H77VS · negative"), ("h77vs-executive-summary.html", "H77VS guide"), ("tsd.html", "H77-TSD · inspection"), ("h77v.html", "H77V (Vent-Advect)"), ("h82-texture.html", "H82-TEXTURE · negative"), ("h82rank.html", "H82R · radiometric negative"), ("preflight-review.html", "Current readiness review"), ("h82-executive-summary.html", "H82 · cool-outlet negative"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
+NAV = [("h82gmns.html", "H82-GMNS · 0.1811 All-Time #1 (0/940)"), ("h82gmns-executive-summary.html", "H82-GMNS guide"), ("h77pd.html", "H77-PD · 0.1685 3-Seed #1"), ("h77pd-executive-summary.html", "H77-PD guide"), ("h77vldsa.html", "H77V-LDSA · 0.1444/0.1530"), ("h77vldsa-executive-summary.html", "H77V-LDSA guide"), ("h77h-meshsafe.html", "H77H-MeshSafe · 0/119 firings"), ("h77h-meshsafe-executive-summary.html", "H77H-MeshSafe guide"), ("h83netsib.html", "H83-NETSIB · negative"), ("h83netsib-executive-summary.html", "H83-NETSIB guide"), ("h77vds.html", "H77-VDS · 0.1744 #1"), ("h77vds-executive-summary.html", "H77-VDS guide"), ("review-latest.html", "Latest review"), ("review-arena-00397d44.html", "Arena branch review"), ("metric-review.html", "Corrected H33 analysis"), ("h85.html", "H85-FTMR · preflight stop"), ("h85-executive-summary.html", "H85 guide"), ("index.html", "Start here"), ("h77hdd.html", "H77H-DD · downdip-bridge"), ("h77hdd-executive-summary.html", "H77H-DD guide"), ("h77vc.html", "H77VC (Vent+ClayCap)"), ("h77vs.html", "H77VS · negative"), ("h77vs-executive-summary.html", "H77VS guide"), ("tsd.html", "H77-TSD · inspection"), ("h77v.html", "H77V (Vent-Advect)"), ("h82-texture.html", "H82-TEXTURE · negative"), ("h82rank.html", "H82R · radiometric negative"), ("preflight-review.html", "Current readiness review"), ("h82-executive-summary.html", "H82 · cool-outlet negative"), ("h77g.html", "H77G · negative"), ("h77g-executive-summary.html", "H77G guide"),
        ("h77e-knick.html", "H77E-Knick · 0/816 firings"), ("release-review.html", "Release safety review"), ("executive-summary.html", "How to submit"),
        ("h81.html", "H81 · slip-cone"), ("h82.html", "H82 · fault collar"),
        ("h83.html", "H83 · fault collar"),
@@ -452,11 +452,11 @@ These are registry/format measurements, not scores or portal acceptance.</p>"""
     if h85_card:
         h85_raster = h85_card["raster"]
         h85_box = f"""<section class="hero" id="h85-latest">
-<div class="chips"><span class="chip ok">H85 NEW RESEARCH ARTIFACT: OK TO DOWNLOAD</span>
-<span class="chip bad">NOT OK TO SUBMIT · SURFACE DUPLICATE STOP</span>
-<span class="chip warn">0 weekly slots · no HOLDOUT-DTI</span></div>
+<div class="chips"><span class="chip ok">H85-FTMR: OK TO DOWNLOAD FOR INSPECTION</span>
+<span class="chip bad">NOT OK TO SUBMIT · UNIVERSAL SURFACE DUPLICATE STOP</span>
+<span class="chip warn">0 weekly slots · no HOLDOUT-DTI · selector not requested</span></div>
 <h2>H85-FTMR: far-field fault-network medial-ridge surface</h2>
-<p class="verdict"><b>Download it for inspection; do not upload it.</b> The newly generated surface is format-valid and byte-distinct, but the restored Policy I17 dense witness gives pre-placement forward 3-px overlap <code>{h85_card["correlation_overlap_vs_registry"]["surface_preplacement_forward_3px_overlap_vs_dense_witness"]:.4f} &gt; 0.70</code>. The protocol requires a duplicate stop before final-dot placement and before holdout evaluation.</p>
+<p class="verdict"><b>Download it for inspection; do not upload it.</b> The newly generated surface is format-valid and byte-distinct, but the restored Policy I17 dense witness gives pre-placement forward 3-px overlap <code>{h85_card["correlation_overlap_vs_registry"]["surface_preplacement_forward_3px_overlap_vs_dense_witness"]:.4f} &gt; 0.70</code>. The protocol stops before final-dot placement and before holdout evaluation.</p>
 <p class="btns"><a class="btn" href="{e(h85_raster["file"].removeprefix("docs/"))}" download>Download H85 .tif ({h85_raster["bytes"] / 1024:.0f} KB)</a>
 <a class="btn alt" href="{e(h85_raster["zip_file"].removeprefix("docs/"))}" download>Download one-TIFF .zip ({(ROOT / h85_raster["zip_file"]).stat().st_size / 1024:.0f} KB)</a>
 <a class="btn alt" href="h85.html">H85 technical report →</a><a class="btn alt" href="h85-executive-summary.html">H85 submission guide →</a></p>
@@ -2052,12 +2052,7 @@ Min catalogue distance: <code>{sub['min_distance_to_catalogue_px']:.4f} px</code
 
 
 def _ensure_h85_first():
-    """Keep the current session's download decision before historical hero cards.
-
-    Several legacy lane writers prepend their own featured card after ``main``.
-    H85 is the current session, so move its already-generated card to the
-    first position without changing any historical card or evidence.
-    """
+    """Keep the current session's fail-closed H85 card before legacy hero cards."""
     marker = '<section class="hero" id="h85-latest">'
     for pname in ("index.html", "executive-summary.html"):
         path = D / pname
@@ -2076,8 +2071,7 @@ def _ensure_h85_first():
         anchor = '<main><div class="wrap">'
         if anchor not in remainder:
             raise ValueError(f"missing page anchor in {pname}")
-        text = remainder.replace(anchor, anchor + hero, 1)
-        path.write_text(text)
+        path.write_text(remainder.replace(anchor, anchor + hero, 1))
 
 
 if __name__ == "__main__":
@@ -2110,4 +2104,6 @@ if __name__ == "__main__":
     build_h84ramp(page)
     import h77pd_build_pages
     h77pd_build_pages.main()
+    import build_h82gmns_deliverables
+    build_h82gmns_deliverables.render_site_pages(page)
     _ensure_h85_first()
