@@ -88,11 +88,20 @@ def audit_run_card(run_card_rel: str | None, root: Path = ROOT) -> dict:
     )
     real_fwd = uvr.get("post_placement_dots_max_forward_3px_overlap_real_models")
     real_fwd_exceeds = bool(real_fwd is not None and float(real_fwd) > 0.70)
+    cov_phases = [v for v in cov.values() if isinstance(v, dict)]
+    cov_incomplete = any(v.get("complete_accessible_scan") is False for v in cov_phases)
+    cov_literal_dup = any(
+        (v.get("dot_duplicate_count") or 0) > 0
+        or (v.get("max_forward_overlap_3px") or 0) > 0.70
+        for v in cov_phases
+    )
     reg_incomplete = bool(
         reg.get("complete") is False
         or reg.get("full_registry_certified") is False
+        or cov_incomplete
         or (rcmp.get("unreadable_registry_files") or 0) > 0
     )
+    literal_dup = literal_dup or cov_literal_dup
     holdout_invalid = bool(card.get("holdout_valid_for_promotion") is False)
 
     guardrail_clear = not (

@@ -89,6 +89,21 @@
       "authorized_to_submit": false
     },
     {
+      "file": "downloads/gems79-orient-persistence-37654dots-20261021-4abff47886.tif",
+      "checks": {
+        "sha256_matches_manifest": true,
+        "single_band": true,
+        "shape_matches": true,
+        "crs_matches": true,
+        "transform_matches": true,
+        "nodata_none": true,
+        "all_finite": true,
+        "all_values_in_0_1": true
+      },
+      "format_pass": true,
+      "authorized_to_submit": false
+    },
+    {
       "file": "downloads/gems77-h77d-hydrotect-submod-37654dots-20261021-0176be7f-zeros.tif",
       "checks": {
         "sha256_matches_manifest": true,

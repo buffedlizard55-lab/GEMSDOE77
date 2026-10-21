@@ -9,7 +9,7 @@
 - Read the repository instructions, operative prompt, README, preregistration,
   frozen lane cards and irregularity log before making changes. The full original
   request is already retained in the README; it was not replaced with a summary.
-- Independently read all **12 primary manifest TIFFs** using Rasterio, including
+- Independently read all **13 primary manifest TIFFs** using Rasterio, including
   raw, unmasked raster blocks. All match the bridge sample CRS, shape and affine
   transform; all are single-band, have no nodata metadata, have finite raw values
   everywhere and values in [0,1], and match their manifest SHA-256.
@@ -108,3 +108,11 @@ The scheduled site refresh is a GitHub source inventory, **not a live competitio
 score feed**. A separately authorized selector must resolve the uniqueness policy,
 restore SHA-pinned features, freeze comparable holdout baselines, obtain actual
 submission receipts and check the weekly cap before a file can be promoted.
+
+## Concurrent-merge reconciliation
+
+PR #29 merged during this review and added H79 orientation persistence. The
+latest main was merged into this session branch, the generated authorization
+receipt was regenerated (not hand-resolved), and the primary audit was repeated
+on all 13 files. All pass local format/integrity; none is authorized. The full
+99-test suite passed again after integration. No inherited experiment was rerun.
