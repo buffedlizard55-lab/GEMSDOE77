@@ -223,13 +223,17 @@ def test_h77d_all_three_experiments_and_run_card_receipts():
         assert int((arr > 0).sum()) == 37654
 
 
-def test_h77d_featured_on_home_and_orthogonal_to_all_siblings():
-    """Verify H77D is featured clearly on site pages and orthogonal to all GEMSDOE77 sibling lanes."""
+def test_h77d_listed_on_home_and_orthogonal_to_all_siblings():
+    """H77D is still downloadable in the reviewed table; its own pages carry its SHA/ZIP."""
     rc = json.loads((ROOT / "evidence" / "run_card_h77d.json").read_text())
     u3 = json.loads((ROOT / "evidence" / "h77d_exp3_uniqueness.json").read_text())
     sub = rc["submission_artifacts"]
 
-    for page_name in ["index.html", "h77d.html", "h77d-executive-summary.html"]:
+    home = (ROOT / "docs/index.html").read_text()
+    assert sub["submission_name"] in home
+    assert Path(sub["primary_geotiff"]).name in home
+    assert 'Not OK to submit' in home
+    for page_name in ["h77d.html", "h77d-executive-summary.html"]:
         html_txt = (ROOT / "docs" / page_name).read_text()
         assert sub["submission_name"] in html_txt
         assert sub["primary_geotiff_sha256"] in html_txt

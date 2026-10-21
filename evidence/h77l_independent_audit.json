@@ -1,0 +1,51 @@
+{
+  "evidence_class": "INDEPENDENT-READBACK-AND-SCOPE",
+  "file": "docs/downloads/gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY.tif",
+  "checks": {
+    "readback_sha256_matches_card": true,
+    "source_sample_sha256_pinned": true,
+    "source_catalogue_sha256_pinned": true,
+    "witness_sha256_pinned": true,
+    "h33_sha256_pinned": true,
+    "reference_grid_identical": true,
+    "float32_single_band_no_nodata": true,
+    "finite_entire_file": true,
+    "range_0_1_entire_file": true,
+    "no_nan_inside_footprint": true,
+    "outside_sample_footprint_zero": true,
+    "known_fault_pixels_zero": true,
+    "distinct_pixel_field_vs_h33": true,
+    "no_full_registry_claim": true,
+    "no_slot_approval": true,
+    "preregistration_hash_matches_frozen_card": true,
+    "shared_template_unmodified": true,
+    "one_tiff_zip_equals_primary_bytes": true,
+    "universal_overlap_reproduced": true,
+    "current_raster_not_an_old_local_tif_byte_copy": true,
+    "pixel_distinct_from_all_local_prior_tifs": true,
+    "positive_research_surface": true,
+    "withheld_subset_of_known_catalogue": true
+  },
+  "stats": {
+    "reference_shape_rows_cols": [
+      3730,
+      3292
+    ],
+    "catalogue_positive_pixels": 60988,
+    "eligible_pixels_reported_by_fold_regions": 3454589,
+    "withheld_positive_pixels": 41732,
+    "withheld_share_of_known_catalogue": 0.6842657571981373,
+    "local_prior_tifs_checked": 14,
+    "postwrite_positive_pixels": 25439,
+    "dense_witness_positive_pixels": 5167373,
+    "h33_positive_pixels": 37654,
+    "forward_overlap_dense_witness": 1.0,
+    "h33_min_catalogue_distance_px": 2.23606797749979
+  },
+  "all_checks_passed": true,
+  "notes": [
+    "Verified the two fetched pinned witnesses and this repository's TIFF byte hashes, not a complete registry scan.",
+    "A local format PASS and an independent dense-raster overlap of 1.0 do not authorize competition upload.",
+    "H33 raster measurements are not an organizer submission-page receipt."
+  ]
+}

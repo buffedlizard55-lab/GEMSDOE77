@@ -75,14 +75,17 @@ def audit_run_card(run_card_rel: str | None, root: Path = ROOT) -> dict:
         or lit_read.get("duplicate") is True
         or cov.get("duplicate_stop") is True
         or (cov.get("final_dots_max_forward_overlap_3px") or 0) > 0.70
+        or (reg.get("surface_max_forward_overlap_3px") or 0) > 0.70
         or "fails closed" in str(uvr.get("unfiltered_dense_witness_note") or "").lower()
         or (reg.get("duplicate_count") or 0) > 0
+        or (reg.get("duplicate_rasters_in_checked_subset") or 0) > 0
         or (card.get("literal_reading_firings_final_dots") or 0) > 0
     )
     real_fwd = uvr.get("post_placement_dots_max_forward_3px_overlap_real_models")
     real_fwd_exceeds = bool(real_fwd is not None and float(real_fwd) > 0.70)
     reg_incomplete = bool(
         reg.get("complete") is False
+        or reg.get("full_registry_certified") is False
         or (rcmp.get("unreadable_registry_files") or 0) > 0
     )
     holdout_invalid = bool(card.get("holdout_valid_for_promotion") is False)

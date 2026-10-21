@@ -1,0 +1,127 @@
+{
+  "file": "gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY.tif",
+  "sha256": "9d199f9fad93e234397a7a19a05eabf12fd77285be3007e6afe22d12a36dcbd1",
+  "bytes": 288013,
+  "submission_name": "gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY",
+  "note": "H77L displaced ThK / lidar scarp; literal overlap fails; research only; DO NOT SUBMIT",
+  "note_chars": 85,
+  "validator": {
+    "file": "/home/user/GEMSDOE77/docs/downloads/gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY.tif",
+    "bytes": 288013,
+    "sha256": "9d199f9fad93e234397a7a19a05eabf12fd77285be3007e6afe22d12a36dcbd1",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.000767997931689024,
+    "emitted_positive_pixels": 25439,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 25439,
+    "footprint_fraction": 0.004923004397011789
+  },
+  "template_report": {
+    "path": "/home/user/GEMSDOE77/docs/downloads/gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY.tif",
+    "bytes": 288013,
+    "sha256": "9d199f9fad93e234397a7a19a05eabf12fd77285be3007e6afe22d12a36dcbd1",
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "width": 3292,
+    "height": 3730,
+    "bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "ref_bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": null,
+    "blocksize": [
+      256,
+      256
+    ],
+    "fixture_grid": false,
+    "has_validity_mask": false,
+    "nan_pixels": 0,
+    "infinity_pixels": 0,
+    "n_nan": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.000767997931689024,
+    "n_nonzero": 25439,
+    "mass": 9430.369841364198,
+    "mass_outside_footprint": 0,
+    "problems": [],
+    "ok": true,
+    "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+  },
+  "zip_file": "gems77-h77l-thk-flank-6b24305363fa-RESEARCH-ONLY.zip",
+  "zip_sha256": "cbb0e8afe223527e161244cbc01ddc4999f60eb1a12ab4e26cbb1d2487804893",
+  "approved_for_weekly_slot": false,
+  "promoted": false,
+  "submission_slots_used": 0,
+  "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+  "metadata": {
+    "lane": "H77L",
+    "research_only": true,
+    "status": "NOT OK TO SUBMIT",
+    "dot_placement": "NOT RUN: surface duplicate stop",
+    "preregistration_sha256": "dd007db2c148bd1e74b83dbb74bc4423fc518153d1bfc03bc231d011cda38ad0",
+    "decoded_float32_sha256": "6b24305363fa9ad7a4d62b8ed6f35332680c7597daacbeaabad57e74ef4ea232"
+  }
+}
