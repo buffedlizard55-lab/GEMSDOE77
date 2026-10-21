@@ -11,3 +11,7 @@ data/raw
 data/raw/
 data/processed/
 data/external/
+# SHA-pinned inputs restored by scripts/fetch_data.py (regenerable, not submissions)
+/data/sample_submission.tif
+/data/existing_faults.tif
+/data/geodawn_rad_u8.tif

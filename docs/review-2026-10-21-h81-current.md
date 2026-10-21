@@ -1,10 +1,12 @@
-# GEMSDOE77 current checkout review — H81 status and release-site correction
+# Three-pass review of H81 — point-in-time status and release-site correction
+
+> **Historical snapshot:** written against checkout base `2b229879`, when H81 was the latest documented lane. The branch has since reconciled with upstream `main`, which contains the later H82 negative lane and current release review (`docs/review-2026-10-21-current-session.md`). In the reconciled site H82 is the latest research download and H80 is the featured evidence-complete negative; H81 remains downloadable for inspection only and is not promoted. This page preserves the H81-specific review, not the live homepage status.
 
 ## Decision at a glance
 
 **No new experiment was run and no new GeoTIFF was generated in this review. H81 is stopped; do not resume or upload it.** Its already-generated TIF is available for inspection only. The release receipt authorizes zero files. This is the correct outcome under the registered parallel-run protocol: H81's final-dot audit exceeded the 0.70 overlap limit, recorded 69 duplicate firings, and marked the registry scan incomplete. A byte-new filename is not a uniqueness pass.
 
-The review did make a **site/documentation correction**: the current landing page and README had stale featured-file messaging for H80/H77E-Knick, despite a newer H81 negative artifact in the inventory. The generated first screen now features H81 with explicit `OK TO DOWNLOAD FOR INSPECTION: YES` / `NOT OK TO SUBMIT: NO`, its download links, exact local holdout metadata, validator summary, duplicate-stop result, and incomplete registry scope. Source of truth is `docs/data/lanes.json` plus `scripts/build_home.py`; generated pages are not hand-edited.
+At review time, the landing page and README were corrected to feature H81 rather than stale H80/H77E-Knick messaging. Those H81-first edits were subsequently superseded when this branch reconciled with upstream `main`, which had added the later H82 negative lane and preserved H80 as the evidence-complete featured negative. Current generated pages are sourced from `docs/data/lanes.json` plus `scripts/build_home.py`; they are not hand-edited. The present first screen distinguishes H82 download-only status, H80 featured status, and H81's historical downloadable entry.
 
 ## Pass 1 — prompt, lane, and repository inspection
 
@@ -30,9 +32,8 @@ The H81 feature builder creates a fold-union `hidden_all` mask and uses it to ce
 
 ## Pass 3 — corrected outputs and remaining limits
 
-- `docs/index.html` now puts H81's unambiguous inspection-only download/status box first. The generated executive summary names H81 as the current featured research artifact while retaining the no-upload instructions.
-- `README.md` now begins with H81's actual current status and records the H81 result, checksum, and final-dot stop; stale H77E-Knick primary wording has been replaced. The broad historical inventory remains archival and should not override the current banner or machine-readable authorization receipt.
-- `AGENTS.md` now points to the current paths (`docs/evidence/...`) and explicitly says H81 is closed, the three-experiment budget is exhausted, and no TIF may be represented as approved.
+- At the time of this review, `docs/index.html` and `README.md` were updated to put H81 first. Those generated pages and the README have since been regenerated/reconciled with upstream main: H82 is the newest download-only lane, H80 remains the featured evidence-complete negative, and H81 is historical in the inventory. Current release status is in `docs/review-2026-10-21-current-session.md` and `docs/data/submission-authorization.json`.
+- Current `AGENTS.md` now follows the reconciled main checkout and points first to H82's frozen evidence, while retaining the shared evaluator, status-labeling, uniqueness, and no-slot safeguards. The H81-specific stop and three-experiment budget remain closed; no repository TIF is approved.
 - No changes were made to `vendor/gems57`, evaluator/writer code, the H81 raster bytes, any holdout score, or the weekly submission selector. No new competing candidate was selected.
 
 ## Official references retained for manual review
@@ -53,7 +54,7 @@ These links are anchors from the project brief/prior evidence; **not freshly fet
 
 1. Resolve the dense/full-footprint witness interpretation once in the shared protocol and registry; do not waive it privately or adjust a candidate to evade it.
 2. Audit H81's holdout feature provenance: the Qfault-derived trace CSV source, hidden-mask culling, fold-union censoring, and whether all catalogue-derived features are truly fold-local.
-3. Assign the next method paragraph explicitly; do not start another lane until H81's budget/stop is closed and the registry/protocol questions are resolved.
+3. Do not start another lane: H81 and the later H82 lane are both stopped, and no new method paragraph or selector authorization is present. Any future work needs an explicit single-method assignment, fresh preregistration/budget, complete registry evidence, and the upstream protocol questions resolved.
 4. Restore authenticated competition data and a complete current registry snapshot, then use the pinned shared evaluator/writer unchanged. Require feature-alone canaries, fold-local features, matched blocked holdout improvement, uniqueness at both surface and final dots, and independent local format validation before a separate selector considers any slot.
 5. Tie any eventual ORGANIZER-CONFIRMED result to an actual submission-page receipt and exact raster checksum. Never translate holdout performance or sibling-site owner reports into a leaderboard projection.
 

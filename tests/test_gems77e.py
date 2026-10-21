@@ -193,9 +193,15 @@ def test_h77e_deliverables_run_card_geotiff_and_pages():
                 continue
             assert (ROOT / "docs" / href).exists(), (page_name, href)
     readme_txt = (ROOT / "README.md").read_text()
-    # The current primary is selected by the newest lane state, not this archived H77E card.
-    assert "gems77-h81-slipcone-37654dots-20261021-0fbeaf41-zeros" in readme_txt[:6000]
-    assert "NOT OK TO SUBMIT" in readme_txt[:6000]
+    # The top banner is the current release status, not a permanently pinned
+    # historical H77E promotion-style summary. Keep this safety-critical banner
+    # synchronized with the latest H81 artifact and authorization decision.
+    h81 = json.loads((ROOT / "evidence/h81_run_card.json").read_text())
+    h81_name = h81["submission_name"]
+    assert h81_name in readme_txt[:6000]
+    assert h81["raster_sha256"] in readme_txt[:6000]
+    assert "OK TO DOWNLOAD FOR INSPECTION: YES" in readme_txt[:6000]
+    assert "OK TO SUBMIT: NO" in readme_txt[:6000]
     head_md = readme_txt.split("# Original project request")[0]
     for target in re.findall(r'\]\(([^)]+)\)', head_md):
         if target.startswith(("http://", "https://", "#")):
