@@ -1,5 +1,15 @@
 # Irregularities and next-session handoff
 
+## H82 update (2026-10-21; later than historical rows)
+
+| ID | Verified irregularity | Consequence |
+|---|---|---|
+| IR-82-01 | No assigned single-method paragraph in the latest parallel-run prompt; H82 chemistry lane self-declared before outcomes. | Do not assume any method was assigned by the user; avoid lane collisions; H82 is now stopped negative. |
+| IR-82-02 | SHA-pinned `17GEMSDOE` registry witness is positive throughout the permitted footprint; H82 final dots have literal 3-pixel forward overlap 1.000. Only two registry witnesses were checked. | Stop. Neither byte novelty nor local format validity grants protocol uniqueness/slot clearance. Only protocol owner can resolve universal dense-surface representation contradiction in the shared template. |
+| IR-82-03 | Only 41 chemistry records (32 unique cells) passed the preregistered all-three hot-estimate + cool-outlet filter. Input CSV is an owner mirror, not organizer-authenticated; official GDR not reachable here. | HOLDOUT-DTI 0.012184 (gems57-pooled-hide-v2, 11,321 withheld positives, 95% CI [0.003700, 0.022844]) is negative; do not tune on this holdout or interpret as geothermal vent discovery. |
+| IR-82-04 | Local release gate did not recognize H82 card's `duplicate` and `registry_complete` fields although row status still failed closed. | Fixed once in repository-wide `scripts/release_gate.py` and tested, not in a private scientific evaluator. |
+| IR-82-05 | Local format [0,1]/finite PASS does not prove portal acceptance; prior rejected submission bytes absent. Source feed is GitHub inventory, not a private organizer leaderboard feed. | Inspection download only, zero approved slots, no attribution of owner-reported H33 score. See [three-pass review](review-2026-10-21-h82.md). |
+
 > Historical lane ledger. Its early I08/“Access and capability boundaries” text reflects an earlier session: on 2026-10-21 official competition/USGS/GDR/NLR **public pages were independently read via the web fetch tool** (not sandbox `bash`). Organizer-only training downloads, the private entry receipts, and authenticated portal submissions remain unavailable. [Current H77L three-pass review](review-2026-10-21-h77l.md) supersedes the old next-session guidance; do not rewrite old run cards.
 
 | ID | Finding | Action / consequence |
@@ -150,7 +160,8 @@ GitHub authenticated operations work. CPU scientific transforms, local validatio
 - IR-904-04: The requested single method paragraph is absent. No lane invented,
   no stopped experiment rerun. Dense registry rejection witness reproduced;
   new compliant TIFF not delivered. Historical downloads are inspection-only.
-## H82 updates — 2026-10-21 (local radiometric rank-mixture entropy deficit)
+
+## H82R updates — 2026-10-21 (local radiometric rank-mixture entropy deficit)
 
 | ID | Verified observation | Consequence |
 |---|---|---|
@@ -162,3 +173,5 @@ GitHub authenticated operations work. CPU scientific transforms, local validatio
 | IR-H82-06 | After this lane began, main advanced via PR #47 and overwrote LIA's `docs/data/submission.json` with an H28 record missing its ZIP and pointing `twin_nan` to an AGO file. `scripts/lia_build_site.py` raised `KeyError: 'zip'` and CI would fail. | Preserved the H28 record as `docs/data/h28-submission.json` for audit; restored LIA's generated `docs/data/submission.json` from pre-PR main (commit `2b22987`), which is what the shared LIA site builder, tests, and validators require. Re-ran full CI sequence: 127 tests pass including a receipt-collision regression. H28 is NOT cleared or promoted; do not use the incomplete H28 metadata as a validator. Future lanes must namespace their output receipts and test the aggregate CI build. |
 
 - IR-H82-07: Concurrent review PR #49 corrected an unsupported universal marginal-DTI condition in the older H33 analysis (see `research/why-h33-scored-02778.md` and `tests/test_marginal_dti_review.py`). H82's scientific result does not rely on that condition; the README now links the corrected analysis. Do not reinstate the old per-dot 283m threshold or claim near-catalogue dots are always false positives.
+
+- IR-H82R-08: A separate parallel session independently preregistered H82 cool-outlet chemistry and merged before this radiometric lane. | The radiometric lane's *display/file-path alias* is H82R (`registry/h82rank_alias.json`); its frozen preregistration, run card and raster were not recomputed or re-scored. Keep both H82 (cool-outlet) and H82R (radiometric) negative lanes visible; neither is a cleared competition submission.

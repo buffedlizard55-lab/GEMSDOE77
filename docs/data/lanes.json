@@ -1,6 +1,31 @@
 {
- "note": "H82R is the latest negative research-only raster; 23 listed TIFF lanes are inspection downloads only. NOT OK TO SUBMIT any file. The literal uniqueness rule and selector remain fail-closed.",
+ "note": "H82 is the newest chemistry-concordance negative lane. All 24 listed TIFF lanes are inspection downloads only; every file is NOT OK TO SUBMIT. H80 (Riedel) is featured because it has complete evidence from the pinned gems57 evaluator; the later AGO variants have only a different quick 4-quadrant proxy and are not comparable. H80-OTA (orphan thermal alignment, negative) was merged in parallel and is listed second. The literal uniqueness/selector gates remain fail-closed; see docs/data/submission-authorization.json. H81 (slip-cone, negative, research-only) and H77G (hydrothermal demagnetization trough, negative, research-only) are listed for inspection only. H82R: radiometric negative research file; NOT OK TO SUBMIT.",
  "lanes": [
+  {
+   "lane": "H82: cool-outlet geothermometer concordance (negative)",
+   "page": "h82-executive-summary.html",
+   "summary": "h82-executive-summary.html",
+   "file": "downloads/gems77-h82-cool-chemconcord-11185dots-20261021-245bb13136-zeros.tif",
+   "zip": "downloads/gems77-h82-cool-chemconcord-11185dots-20261021-245bb13136-zeros.zip",
+   "run_card": "evidence/h82_run_card.json",
+   "format_valid": true,
+   "protocol_unique": false,
+   "informative_unique": null,
+   "beats_holdout_best": false,
+   "verdict": "negative",
+   "primary": false,
+   "name": "gems77-h82-cool-chemconcord-11185dots-20261021-245bb13136-zeros",
+   "note": "H82 cool-outlet concordant geothermometers; research-only, NOT APPROVED",
+   "sha256": "84b50d05eaba578c398c4c7ab720dbf5a46de29d63f4254eb02a8ba02a4a43df",
+   "holdout_dti_hide_v2": 0.012183573151637725,
+   "holdout_evaluator_version": "gems57-pooled-hide-v2",
+   "holdout_positive_pixels": 11321,
+   "holdout_ci95": [
+    0.0036995165161437336,
+    0.022843915166265796
+   ],
+   "upload": "Not OK to submit. HOLDOUT-DTI 0.012184 (gems57-pooled-hide-v2; 11,321 withheld; 95% CI 0.003700–0.022844); 1.0 forward overlap with pinned dense witness; only 2 of 812+ registry rasters checked; selector not approved. Download for inspection only."
+  },
   {
    "lane": "H82R: local ternary radiometric rank-mixture entropy (STOPPED; research only)",
    "page": "h82rank.html",
