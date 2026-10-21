@@ -1,0 +1,18 @@
+{
+  "lane": "H78 residual-guided off-support allocation (self-assigned; the brief's 'single method paragraph' is missing again, IR-78-01)",
+  "written_utc": "2026-10-21T04:30:00Z",
+  "written_before": ["E1 screen", "E2 holdout", "E3 build"],
+  "motivation_measured_before_registration": "Re-running scripts/e2_inversion.py (catalogue x support, 30 bins) puts 100% of the implied hidden truth within 3 px of the H19-5 line set, yet the largest LOO residuals are positive for rasters with 35-67% of their dots OFF that support: GEMSDOE49 gate_ortho (+0.127), GEMSDOE70 p5-dual (+0.124), GEMSDOE46 r11f (+0.061), GEMSDOE7 lidarscarp (+0.052), GEMSDOE66 lidar03 (+0.042). Off-support truth exists; the model cannot express where. (/tmp exploration, reproduced in scripts/h78_e1_screen.py)",
+  "hypotheses_ranked": [
+    {"id": "H78-1", "field": "1 m lidar scarp-morphology consensus (rank mean of ex_max, step_max, lapneg_max, lappos_max, downface_max, upface_max, cross_max of lidar_scarp_features_u8, 3DEP-derived)", "rank": 1},
+    {"id": "H78-2", "field": "geothermal manifestation / exploration proximity: distance to GDR 1391 Hot or Warm wells/springs", "rank": 2},
+    {"id": "H78-3", "field": "regional mapping-campaign heterogeneity: 3x3 region blocks (off-support split)", "rank": 3},
+    {"id": "H78-4", "field": "single lidar operators (ex_max, step_max, upface_max, relief) - sensitivity rows, not separate hypotheses", "rank": 4},
+    {"id": "CTRL", "field": "H77-1 straight-edge field (LIA lane) and det_elev_slope band 19 - controls, already tested elsewhere", "rank": null}
+  ],
+  "e1_rule": "Base = LIA S0 (support {on, <=3px, >3px} x catalogue {0-4, 4-20, >20 px}, 9 bins). Each field replaces the 3 off-support bins by off-support x catalogue x field level {top 3%, 3-15%, rest} (quantiles over valid off-support cells; 9 bins). NNLS ridge 1e-3, c = 2. Metric: LOO MSE over the 95 distinct organizer-scored rasters; paired bootstrap (4000) of the LOO MSE reduction vs S0. A field is LIVE-SUPPORTED if the 95% CI excludes 0 and at least one off-support top-level bin has h > 0. The field with the largest mean reduction is selected (selection over ~10 rows is disclosed; E2 is the independent check).",
+  "e2_rule": "Template gems57 evaluator (vendor/template66, unchanged), buffered_component_draw seed=20 hide_frac=0.20 buffer_px=3. Candidate arm rebuilt per fold from the VISIBLE catalogue: on-support dots greedy by S0 credit (>B px from visible catalogue), off-support dots greedy by the selected field (>3 px from support, >4 px from visible catalogue), on-share <= 0.66 and per-raster overlap budget 0.66. Arms: candidate, champion construction (H19-5 dots >2 px from visible catalogue), selected field alone, random. Leakage canary: every feature alone, AUC > 0.90 = leakage.",
+  "promotion_rule": ["format valid (template validator + portal-equivalence checks)", "unique: rho <= 0.90 and dot overlap <= 0.70 vs every informative registry raster, on the surface and on the final dots; space-filling rasters reported", "canary clear", "selected-model LOO-validated projection delta vs the champion >= 0", "paired HOLDOUT-DTI delta vs champion construction has a 95% CI not entirely below 0"],
+  "verdict_if_any_fails": "negative (deliverable). The selector, not this lane, decides any slot.",
+  "budget": "3 experiments (E1 screen, E2 holdout + canary, E3 build + uniqueness + validator), 2 hours wall-clock target"
+}
