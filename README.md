@@ -38,13 +38,13 @@
 *Status text below is historical and must not be read as current authorization. The binding receipt is
 `docs/data/submission-authorization.json`; the start page `docs/index.html` carries the same H85 card.*
 
-## 🚦 Negative lane this branch — `H86-LENHALO` (`arena/f9952b5d-gemsdoe77`, 2026-10-21): ✅ OK TO DOWNLOAD FOR INSPECTION · ⛔ NOT OK TO SUBMIT
+## 🚦 Negative lane this branch — `H86-LENHALO` (`arena/f9952b5d-gemsdoe77`, 2026-10-21): ✅ OK TO DOWNLOAD FOR INSPECTION: YES · ⛔ OK TO SUBMIT: NO
 
 > **This is a separate, distinct method lane from the promoted `H85-EDTI` above; it does not replace or modify that promotion.**
 >
 > | Question | Answer |
 > |---|---|
-> | Unique TIF generated | [`docs/downloads/gems77-h86-lenhalo-37654dots-20261021-zeros.tif`](docs/downloads/gems77-h86-lenhalo-37654dots-20261021-zeros.tif) (826,436 B, SHA-256 `86f1394516d05aa5d545b8be7103472ca7bd6fe8ad651c7870a3fefb87e65345`) · [one-TIFF `.zip`](docs/downloads/gems77-h86-lenhalo-37654dots-20261021-zeros.zip) (175,949 B, SHA-256 `936d47e0955a73de4f016c2d9659247f7f402a21de81c6829e349fad0d100d68`) · [validator receipt](docs/downloads/gems77-h86-lenhalo-37654dots-20261021-zeros.json) · [run card](evidence/run_card_h86.json) · [technical report](docs/h86.html) · [submission guide](docs/h86-executive-summary.html) · [5 ranked hypotheses](research/h86_hypotheses.md) |
+> | Unique TIF generated | [`docs/downloads/gems77-h86-lenhalo-37654dots-20261021-zeros.tif`](docs/downloads/gems77-h86-lenhalo-37654dots-20261021-zeros.tif) (826,436 B, SHA-256 `86f1394516d05aa5d545b8be7103472ca7bd6fe8ad651c7870a3fefb87e65345`) · [one-TIFF `.zip`](docs/downloads/gems77-h86-lenhalo-37654dots-20261021-zeros.zip) (175,941 B, SHA-256 `c81be31a96d66719017eb6985556138c4b2c515f43bc0fed212eaa26031bee66`) · [validator receipt](docs/downloads/gems77-h86-lenhalo-37654dots-20261021-zeros.json) · [run card](evidence/run_card_h86.json) · [technical report](docs/h86.html) · [submission guide](docs/h86-executive-summary.html) · [5 ranked hypotheses](research/h86_hypotheses.md) |
 > | OK to download? | **YES — for inspection** (direct link, first screen of `docs/index.html` and `docs/h86.html`) |
 > | OK to submit? | **NO.** HOLDOUT-DTI **0.0208** [0.0180, 0.0235] seed 20 (11,321 withheld positives) / **0.0206** [0.0179, 0.0236] seed 30 (11,342 withheld) under `gems57-pooled-hide-v2`, versus random **0.0152** (Δ +0.0054) and versus the retained incumbent **0.152718**. Informative duplicate **0.8047 > 0.70** vs the H84 tip-lobe raster. Leakage canary PASS (max symmetric AUC **0.7958** ≤ 0.90). Verdict `negative`; **0 weekly slots used**; selector not approved. |
 > | Format | 15/15 `validator/gems57` checks PASS on the shipped bytes: single-band `float32`, EPSG:32611, 3730×3292, exact sample transform, **37,654** binary {0, 1} values in [0, 1], **0 NaN/Inf anywhere**, `nodata=None`, zeros outside the footprint, **0** positives on the mapped catalogue. Local format validity is **not** organizer acceptance. |

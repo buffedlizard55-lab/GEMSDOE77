@@ -90,9 +90,9 @@
     "path": "docs/downloads/gems77-h86-lenhalo-37654dots-20261021-zeros.tif",
     "zip_path": "docs/downloads/gems77-h86-lenhalo-37654dots-20261021-zeros.zip",
     "sha256_tif": "86f1394516d05aa5d545b8be7103472ca7bd6fe8ad651c7870a3fefb87e65345",
-    "sha256_zip": "936d47e0955a73de4f016c2d9659247f7f402a21de81c6829e349fad0d100d68",
+    "sha256_zip": "c81be31a96d66719017eb6985556138c4b2c515f43bc0fed212eaa26031bee66",
     "bytes_tif": 826436,
-    "bytes_zip": 175949,
+    "bytes_zip": 175941,
     "all_checks_passed": true,
     "checks": {
       "single_band": true,
@@ -118,7 +118,10 @@
     "on_catalogue_positive_pixels": 0,
     "footprint_fraction": 0.007286874781441169,
     "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
-    "sha256_tif_reverified_after_rename": true
+    "sha256_tif_reverified_after_rename": true,
+    "zip_contents": [
+      "gems77-h86-lenhalo-37654dots-20261021-zeros.tif"
+    ]
   },
   "submission_name": "gems77-h86-lenhalo-37654dots-20261021-zeros",
   "submission_note": "H86 lenhalo length-scaled damage halo R=8+0.9\u221aL + strike anisotropy; 37654 dots sep2.8; HOLDOUT-DTI 0.0208(s20)/0.0206(s30) vs random 0.0152",
@@ -144,5 +147,14 @@
     "tversky": "https://en.wikipedia.org/wiki/Tversky_index",
     "competition": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
   },
-  "namespace_note": "Files were re-namespaced h85->h86 at merge time. Artifact bytes are unchanged: the shipped TIF/zip have the same SHA-256 as measured during the run. Lineage: 7dab259 (H85-labelled run) -> merge commit. This lane is independent of, and does not modify, the promoted H85-EDTI candidate."
+  "namespace_note": "Files were re-namespaced h85->h86 at merge time. Artifact bytes are unchanged: the shipped TIF/zip have the same SHA-256 as measured during the run. Lineage: 7dab259 (H85-labelled run) -> merge commit. This lane is independent of, and does not modify, the promoted H85-EDTI candidate.",
+  "irregularities": [
+    {
+      "id": "IR-H86-05",
+      "found_by": "tests/test_h86.py (Pass 2 review)",
+      "issue": "The one-TIFF zip was built before the h85->h86 re-namespace, so its single member still carried the old inner filename.",
+      "impact": "Portal-irrelevant for format (one GeoTIFF inside), but it made the zip's inner name disagree with the published name and changed auditability.",
+      "fix": "Rebuilt the zip deterministically (fixed 2026-10-21 timestamp) around the same, unchanged TIF bytes; new zip sha256 recorded; test asserts namelist == [tif name]."
+    }
+  ]
 }
