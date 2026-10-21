@@ -50,6 +50,39 @@
    "why_primary": "Research-only negative deliverable; no submission clearance."
   },
   {
+   "lane": "H82-GMNS: Whole-component network mechanics + contour/antithetic scarp & lapse-rate thermal deconfounding + KKT 940-raster solver (0.1811 Dual-Seed #1: 0.1721 S20 / 0.1900 S30 HOLDOUT-DTI; 0/940 firings across 1,007 rasters)",
+   "page": "h82gmns.html",
+   "summary": "h82gmns-executive-summary.html",
+   "file": "downloads/gems77-h82gmns-lagrangian-36500dots-20261021-1c9a641b-zeros.tif",
+   "zip": "downloads/gems77-h82gmns-lagrangian-36500dots-20261021-1c9a641b-zeros.zip",
+   "run_card": "evidence/h82gmns/run_card.json",
+   "format_valid": true,
+   "protocol_unique": false,
+   "informative_unique": true,
+   "beats_holdout_best": true,
+   "selector_approved": false,
+   "verdict": "negative",
+   "primary": false,
+   "name": "gems77-h82gmns-lagrangian-36500dots-20261021-1c9a641b",
+   "note": "GEMSDOE77 H82 GMNS+CP-SAST+LR2M Lagrangian 36500d 0/940 ov<=0.70 float32 EPSG:32611",
+   "sha256": "e6f8d6ebbaa28fd758d7c744e4f9bc4928a70b18a0d06d3e51041ad1e3b52257",
+   "holdout_evaluator_version": "gems57-pooled-hide-v2",
+   "holdout_positive_pixels": 11321,
+   "holdout_dti_hide_v2": 0.1721287120229107,
+   "holdout_ci95": [
+    0.1533472743605068,
+    0.1907746188302471
+   ],
+   "holdout_seed30_dti": 0.19000053571464692,
+   "holdout_seed30_ci95": [
+    0.16962455277843316,
+    0.20852096063023812
+   ],
+   "informative_max_dot_overlap": 0.691808,
+   "informative_checked_rasters": 940,
+   "upload": "Not OK to submit under Policy I17 (67 >=70%-halo heatmaps fire by set inclusion). OK to download for inspection only (15/15 validator PASS, 0 NaNs, float32 [0,1]). #1 Dual-Seed Mean (0.181065) & #1 Seed 30 (0.190001, 95% CI 0.169625-0.208521; 11,342 pos; Seed 20 0.172129, 95% CI 0.153347-0.190775; 11,321 pos; pure twin 0.198464 / 0.221928) WITH 0 / 940 informative firings across all 1007 valid rasters in 87 repos (max 3-px overlap 0.691808 <= 0.70). Selector: not approved."
+  },
+  {
    "lane": "H77-PD: 10m Fluvial Knickpoint/Chi + GeoDAWN/BLM/TIGER Deseam + sqrt-LiDAR/10m Step + Cutting-Plane Primal-Dual Submodular Cover (#1 Seed 20: 0.1640, #1 Seed 21: 0.1758, #1 3-Seed Pool: 0.1685, #1 Blind 4-Quad: 0.1942 HOLDOUT-DTI)",
    "page": "h77pd.html",
    "summary": "h77pd-executive-summary.html",

@@ -769,4 +769,41 @@
 <td>Weighting the <code>H84-RAMP</code> full-catalogue placement surface by the two-host stepover transfer ramp (<code>step_collar</code> peaking at $d_1 \approx 6.5\text{ px}$ + <code>h84_relay_medial_bridge</code>, <code>min_dot_distance_to_catalogue_px = 5.00 px</code>) places all <code>37,654</code> dots in the inter-tip stepover and outer damage transfer zone ($5.0\text{–}15.0\text{ px}$), achieving <strong><code>0</code> sparse overlap firings</strong> across all sparse rasters checked (<code>max 3-px forward overlap = 0.5299 &lt;= 0.70</code>, <code>max |Spearman rho| = 0.0601 &lt;= 0.90</code>; vs <code>H33</code> overlap <code>0.2265</code>). Literal Policy I17 still fails closed (<code>1.000 &gt; 0.70</code> vs <code>dense_witness.tif</code> <code>ab0a0a62</code>) and holdout DTI remains below the <code>0.152718</code> <code>H77-Step</code> / <code>0.174393</code> <code>H77-VDS</code> repository best, so the lane verdict is <code>negative</code> (<code>NOT OK TO SUBMIT</code>, <code>0</code> weekly slots used).</td>
 </tr>
 </tbody>
+</table></div>
+<h2>H82-GMNS updates — 2026-10-21 (<code>arena/b0d22822-gemsdoe77</code>)</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Measured finding</th>
+<th>Action / consequence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IR-H82GMNS-01</td>
+<td>Hand-edited landing banners overwrite or rot across scheduled Pages builds.</td>
+<td>Rendered <code>H82-GMNS</code> deterministically from pure JSON receipts inside <code>scripts/build_home.py</code>.</td>
+</tr>
+<tr>
+<td>IR-H82GMNS-02</td>
+<td>Buffered component holdout (<code>collar &lt;= 3</code>) bites <code>3-px</code> notches out of distinct nearby faults.</td>
+<td>Enforced clean whole-component <code>LOCO</code> removal (<code>buffer_px = 0.0</code>) across all <code>H82-GMNS</code> training and live OOF folds.</td>
+</tr>
+<tr>
+<td>IR-H82GMNS-03</td>
+<td>Broad archive heatmaps zeroed <code>existing_faults.tif</code> pixels, leaking catalogue perforations if raw halos are used during holdout allocation.</td>
+<td>Eliminated completely via perforation-bridged footprint halos (<code>scripts/h82gmns_build_holdout_clean_halos.py</code>).</td>
+</tr>
+<tr>
+<td>IR-H82GMNS-04</td>
+<td>Outbound sandbox egress permits GitHub/PyPI/npm only; external Sentinel-1 / ARIA InSAR hosts (<code>H82-5</code>) are unreachable here.</td>
+<td>Documented transparently with zero unverified claims.</td>
+</tr>
+<tr>
+<td>IR-H82GMNS-05</td>
+<td>Over 40 sibling PRs merged concurrently onto <code>origin/main</code>, adding new <code>.tif</code> files.</td>
+<td>Namespaced cleanly under <code>h82gmns</code>, synced <code>origin/main</code>, and solved KKT uniqueness across <code>1,007</code> unique rasters (<code>0 / 940</code> informative firings, <code>max_ov = 0.691808 &lt;= 0.70</code>).</td>
+</tr>
+</tbody>
 </table></div></div></main><footer><span>Evidence before optimism. Maximize P(Win) · Own the Outcome.</span><span>Research, not a resource assessment. <a href="PROJECT_PROMPT.md">Standing request</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE77">Repository</a></span></footer></body></html>
