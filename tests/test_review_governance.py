@@ -17,7 +17,7 @@ def test_all_start_pages_fail_closed_after_i17():
     ]
     for path in pages:
         text = path.read_text()
-        assert "Not OK to submit" in text or "NOT CLEARED TO SUBMIT" in text, path
+        assert "not ok to submit" in text.lower() or "not cleared to submit" in text.lower(), path
         assert "PROMOTE (HOLDOUT CHAMPION)" not in text, path
         assert "recommended for drivendata upload" not in text.lower(), path
         assert "once confirmed by the human submitter" not in text.lower(), path
@@ -38,5 +38,5 @@ def test_public_run_card_language_distinguishes_local_checks_from_acceptance():
         text = path.read_text().lower()
         assert "not cleared to submit" in text or "not ok to submit" in text, path
     source = (ROOT / "scripts" / "verify_all.py").read_text()
-    assert "BRIDGE / name" in source
-    assert "Prefer the restored raw mirror" in source
+    assert '"data" / "raw"' in source
+    assert '"data" / "bridge"' in source

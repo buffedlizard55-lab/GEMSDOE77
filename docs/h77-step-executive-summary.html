@@ -23,15 +23,17 @@
 
   <main class="container">
     <section class="decision-banner">
-      <span class="status-pill">CURRENT DECISION: NOT CLEARED TO SUBMIT</span>
-      <h1>Executive summary — H77-Step research artifact (inspection only)</h1>
+      <span class="status-pill">&#9888; EXECUTIVE BRIEF &middot; ARCHIVED RESEARCH CANDIDATE &middot; NOT OK TO SUBMIT &middot; SELECTOR: NOT APPROVED</span>
+      <h1>Executive Decision Brief: <code>gems77-step-propensity-submod300.tif</code> (Inspection Download Only — Not Approved to Submit)</h1>
       <p style="margin:0.35rem 0 0; color:#7f1d1d;">
-        <strong>Do not spend a competition slot on this file.</strong> The older uniqueness check excluded dense rasters; current Policy I17 is unfiltered and fails on the space-filling witness. The artifact is locally format-checked but not cleared, and no selector approval or shared policy amendment is recorded.
-        <br /><strong>Historical HOLDOUT-DTI:</strong> 0.152718 (95% CI [0.131548, 0.175185], evaluator <code>gems57-pooled-hide-v2</code>, 11,321 withheld positive pixels) and blind-transfer HOLDOUT-DTI 0.185834 (95% CI [0.161898, 0.209307], same evaluator, 57,448 withheld positive pixels). These are not leaderboard scores.
+        <strong>Fail-Closed Release Status (<a href="data/submission-authorization.json">submission-authorization.json</a>):</strong><br />
+        &bull; <strong>Recorded Local Holdout (Not a Leaderboard Score):</strong> <code>gems77-step-propensity-submod300.tif</code> recorded <span class="badge-holdout">0.1527 HOLDOUT-DTI [0.1315, 0.1752]</span> (11,321 withheld positive pixels) on <code>gems57-pooled-hide-v2</code> (vs <code>0.0961</code> Fold-Fair H33 and <code>0.0706</code> LIA) and <span class="badge-holdout">0.1858 HOLDOUT-DTI [0.1619, 0.2093]</span> (57,448 withheld positive pixels) on Blind 4-Quadrant Province Transfer (vs <code>0.1639</code> H19-5), passing <code>15/15</code> local format &amp; <code>[0, 1]</code> range checks (<code>0 NaN</code> across all <code>12,279,160</code> cells).<br />
+        &bull; <strong>Binding Uniqueness Gate Fails (Not OK to Submit):</strong> While symmetric mutual 3-px overlap is <code>&le; 0.4933</code> (<code>0.5858</code> vs H33, <code>0.4379</code> vs GEMSDOE70, <code>0.3902</code> vs LIA), the binding literal registry rule fails on the 100%-coverage dense witness <code>ab0a0a62...</code> (<code>1.000</code> forward overlap) and its frozen run card (<code>evidence/h77/run_card.json</code>) records <code>post_placement_dots_max_forward_3px_overlap_real_models = 0.734989 &gt; 0.70</code>.<br />
+        &bull; <strong>Historical Run-Card Conflict Reconciled:</strong> Although <code>evidence/h77/run_card.json</code> retains its historical <code>verdict: "promote"</code> and <code>safe_to_download_and_submit: true</code> fields for audit provenance, the operative repository verdict is <strong>negative</strong> and <strong>Selector status: Not approved</strong>. Download for inspection only; <strong>do not upload to the competition.</strong>
       </p>
       <div class="cta-row">
         <a class="btn-download" download href="downloads/gems77-step-propensity-submod300.tif">
-          &#11015; Download gems77-step-propensity-submod300.tif (134.9 KB)
+          &#11015; Download gems77-step-propensity-submod300.tif for Inspection (134.9 KB)
         </a>
         <a class="btn-secondary" download href="downloads/gems77-step-propensity-submod300.zip">Download Single-TIFF ZIP</a>
       </div>
