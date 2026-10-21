@@ -32,6 +32,29 @@ def test_unambiguous_download_status_and_accessibility_basics():
         assert 'Do not' in s and 'research TIFF' in s
 
 
+def test_historical_build_utility_cannot_delete_or_overwrite_other_lane_artifacts():
+    script=(ROOT/'scripts/build_submission.py').read_text()
+    assert 'for old in out.glob' not in script
+    assert 'Refusing to overwrite existing artifact(s)' in script
+    assert 'portal accepted and scored' not in script
+
+
+def test_submission_status_obeys_literal_uniqueness_gate():
+    lanes=json.loads((DOC/'data/lanes.json').read_text())
+    lia=lanes['lanes'][0]
+    assert lia['protocol_unique'] is False
+    assert 'not ok to submit' in lia['upload'].lower()
+    assert (DOC/lia['file']).is_file()
+    page=(DOC/'lia-executive-summary.html').read_text()
+    assert 'Literal protocol uniqueness: FAIL' in page
+    assert ('Can I submit it?</b> <b>No' in page or 'Can I upload it?</b> <b>No' in page)
+    assert 'Can I upload it?</b> Yes.' not in page
+    assert 'do not upload' in (DOC/'lia-executive-summary.html').read_text().lower()
+    contact=lanes['lanes'][1]
+    assert contact['protocol_unique'] is False
+    assert 'not ok to submit' in contact['upload'].lower()
+
+
 def test_feed_is_not_score_verification():
     feed=json.loads((DOC/'source-health.json').read_text())
     assert len(feed['repos'])==78

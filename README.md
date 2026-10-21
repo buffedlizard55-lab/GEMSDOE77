@@ -103,25 +103,17 @@ E3 candidate, holdout, canary, uniqueness and validator).
 
 ---
 
-### LIA: reproduce
+### LIA: reproduction status
 
-The environment has 2 CPU and 3 GB RAM; everything below fits.
+**This lane is closed.** It used its three-experiment budget and exceeded the two-hour cap; do not rerun feature construction, scoring, candidate placement, holdout, registry scans, or submission generation in this branch. Historical receipts and exact hashes remain under `evidence/`, `docs/data/`, and `docs/downloads/`. The current static pages may be regenerated from those receipts without a new model experiment or competition slot. For documentation-only build and regression checks:
 
 ```bash
-python3 -m venv .venv && .venv/bin/pip install rasterio numpy scipy scikit-learn pandas pytest
-.venv/bin/python scripts/lia_restore_data.py          # 11 inputs via GitHub blob API, sha256-verified (≈40 s)
-.venv/bin/python scripts/fetch_registry.py        # 812 prior rasters (registry), sha256 recorded (≈45 s)
-.venv/bin/python scripts/build_cache.py           # sparse scored rasters, H19-5 distance, H77-1/H77-2 fields
-.venv/bin/python scripts/scored_stats.py          # E1: per-raster structure for 95 scored rasters
-.venv/bin/python scripts/e2_inversion.py          # E1/E2: live-score inversion, LOO
-.venv/bin/python scripts/e2_hypothesis_test.py    # E2: H77-1 / H77-2 tests
-.venv/bin/python scripts/e3_build_candidate.py    # E3: allocation
-.venv/bin/python scripts/e3_holdout.py            # E3: HOLDOUT-DTI + leakage canary (template tools)
-.venv/bin/python scripts/build_submission.py      # write + validate .tif / twin / .zip (fails closed)
-.venv/bin/python scripts/e3_uniqueness.py         # registry audit, both phases (template tool, ~1 h)
-.venv/bin/python scripts/why_02778.py && .venv/bin/python scripts/make_run_card.py && .venv/bin/python scripts/lia_build_site.py
+.venv/bin/python scripts/lia_build_site.py
+.venv/bin/python scripts/build_site.py
 .venv/bin/python -m pytest -q
 ```
+
+The historical `scripts/build_submission.py` is not an approval tool. It no longer deletes unrelated files and refuses same-name overwrite, but its original primary writer path does not use the pinned `gems57` writer end-to-end; do not use it to regenerate or submit this negative artifact.
 
 ### LIA: layout
 

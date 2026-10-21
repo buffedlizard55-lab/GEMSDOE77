@@ -2,13 +2,13 @@
 """Write the GEMSDOE77 submission files from the E3 dot set and validate them (fails closed).
 
 Outputs (docs/downloads/):
-  <name>-zeros.tif   PRIMARY. All 12,279,160 cells finite: 1.0 on dots, 0.0 elsewhere, no
-                     nodata tag, 256x256 deflate tiles - the same encoding as the
-                     GEMSDOE32 0.2778 file that the portal accepted and scored.
-  <name>-nan.tif     Twin with bit-identical in-footprint values and NaN outside the official
-                     footprint, written by the shared template writer (gems.submission_writer).
-  <name>-zeros.zip   One-member zip of the primary TIF (form accepts a .zip with one GeoTIFF).
-Validation: gems77lia.validate (official sample_submission footprint) + the template validator.
+  <name>-zeros.tif   PRIMARY. Finite binary values (1.0 on dots, 0.0 elsewhere), no
+                     nodata tag. This encoding is format-oriented only; it does not establish
+                     uniqueness, selector approval, portal acceptance, or a competition score.
+  <name>-nan.tif     Twin with bit-identical in-footprint values and NaN outside the local
+                     sample-submission footprint, written by the archived template66 writer.
+  <name>-zeros.zip   One-member zip of the primary TIFF.
+Validation: GEMSDOE77 format checks against the pinned local sample-submission mirror.
 """
 from __future__ import annotations
 
@@ -46,20 +46,23 @@ def main():
     assert len(note) <= 140, len(note)
     out = ROOT / "docs" / "downloads"
     out.mkdir(parents=True, exist_ok=True)
-    for old in out.glob("gems77-*"):
-        old.unlink()
     zeros = out / f"{base}-zeros.tif"
+    nan = out / f"{base}-nan.tif"
+    zpath = out / f"{base}-zeros.zip"
+    collisions = [p.name for p in (zeros, nan, zpath) if p.exists()]
+    if collisions:
+        raise SystemExit("Refusing to overwrite existing artifact(s): " + ", ".join(collisions))
+    # Never delete other lane artifacts; this build utility writes only its own
+    # deterministic filenames and fails if any already exist.
     with rasterio.open(core.DATA / "sample_submission.tif") as ref:
         prof = dict(driver="GTiff", height=ref.height, width=ref.width, count=1, dtype="float32",
                     crs=ref.crs, transform=ref.transform, nodata=None, tiled=True,
                     blockxsize=256, blockysize=256, compress="deflate")
     with rasterio.open(zeros, "w", **prof) as dst:
         dst.write(pred, 1)
-    nan = out / f"{base}-nan.tif"
     tw.write_submission(nan, pred.astype(np.float64), g.footprint, core.DATA / "sample_submission.tif",
-                        overwrite=True, name=f"{base}-nan", note=note)
+                        overwrite=False, name=f"{base}-nan", note=note)
     receipt_tmp = Path(str(nan) + ".receipt.json")
-    zpath = out / f"{base}-zeros.zip"
     with zipfile.ZipFile(zpath, "w", compression=zipfile.ZIP_DEFLATED) as z:
         z.write(zeros, arcname=zeros.name)
     rep = {"name": f"{base}-zeros", "note": note, "note_chars": len(note), "decoded_sha256": digest,
