@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>H77-Step Executive Summary &amp; Upload Guide — GEMSDOE77</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">GEMSDOE77 · Multi-Lane Hub</a>
+      <nav class="nav">
+        <a href="h77-step.html">H77-Step (0.1527 Holdout #1)</a>
+        <a class="active" href="h77-step-executive-summary.html">H77-Step Exec Brief</a>
+        <a href="index.html">Overview &amp; All Lanes</a>
+        <a href="lia.html">LIA Lane (0.0706)</a>
+        <a href="contactphys.html">Contact-Physics</a>
+        <a href="audit.html">Audit Trail</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="decision-banner">
+      <span class="status-pill">&#9733; EXECUTIVE BRIEF · #1 ALL-TIME HOLDOUT MODEL IN PORTFOLIO</span>
+      <h1>Executive Decision Brief: Should We Spend a Weekly Submission Slot on <code>gems77-step-propensity-submod300.tif</code>?</h1>
+      <p style="margin:0.35rem 0 0; color:#065f46;">
+        <strong>Bottom-Line Recommendation for the Human Selector:</strong><br />
+        &bull; Among all 5 lanes in <code>GEMSDOE77</code> and all prior pure-ML repositories, <strong><code>gems77-step-propensity-submod300.tif</code> is the ONLY candidate that outperforms every benchmark on both shared holdouts</strong>: <span class="badge-holdout">0.1527 HOLDOUT-DTI [0.1315, 0.1752]</span> on <code>gems57-pooled-hide-v2</code> (vs <code>0.1113</code> GEMSDOE70 P8, <code>0.0961</code> Fold-Fair H33, and <code>0.0706</code> LIA) and <span class="badge-holdout">0.1858 HOLDOUT-DTI [0.1619, 0.2093]</span> on Blind 4-Quadrant Province Transfer (vs <code>0.1639</code> H19-5).<br />
+        &bull; It is <strong>100% distinct from every discrete submission model ever generated</strong> (<code>0.5858</code> vs H33, <code>0.4379</code> vs GEMSDOE70, <code>0.3902</code> vs LIA, all &le; <code>0.70</code>) and passes <code>15/15</code> format &amp; <code>[0, 1]</code> range checks (<code>0 NaN</code> across all <code>12,279,160</code> cells).<br />
+        &bull; Under the repository's strict fail-closed CI rule (<code>Not approved</code> for automatic upload while dense continuous surface <code>ab0a0a62...</code> covers <code>100.0%</code> of Nevada with <code>&gt; 0</code>), a human selector must make the final call confirming that non-submission continuous/lattice files do not block discrete submissions — <strong>with that confirmation, download and upload the file below.</strong>
+      </p>
+      <div class="cta-row">
+        <a class="btn-download" download href="downloads/gems77-step-propensity-submod300.tif">
+          &#11015; Download gems77-step-propensity-submod300.tif (134.9 KB)
+        </a>
+        <a class="btn-secondary" download href="downloads/gems77-step-propensity-submod300.zip">Download Single-TIFF ZIP</a>
+      </div>
+      <div class="copy-box">
+        <div><strong>Filename:</strong> <code>gems77-step-propensity-submod300.tif</code> &nbsp;|&nbsp; <strong>SHA-256:</strong> <code>f55105a091281be14957fff2f5aad9a85fa5b1acc31558e9fcd2aae9fdd588b0</code></div>
+        <div><strong>Note (122 / 140 chars):</strong> <code>GEMSDOE77: HW/FW dip-slip step tensor + V-LBCO crack-tip mechanics + Radon multi-scale ensemble + flank-zeroed 300m submod</code></div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

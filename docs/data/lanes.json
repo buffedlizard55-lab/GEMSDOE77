@@ -1,0 +1,49 @@
+{
+ "note": "Status of every submission file in this repository, copied from each lane's own run card. Under the unfiltered literal registry check (where dense witness ab0a0a62... has positive values on 100.0% of allowed Nevada pixels), no nonempty raster clears automatic literal uniqueness without selector policy sign-off; H77-Step (0.1527 HOLDOUT-DTI) is the sole candidate passing holdout + all discrete-model uniqueness checks for selector review.",
+ "lanes": [
+  {
+   "lane": "H77-Step: HW/FW dip-slip step tensor + V-LBCO crack-tip mechanics + Radon + flank-zeroed 300m submod (0.1527 HOLDOUT-DTI)",
+   "page": "h77-step.html",
+   "summary": "h77-step-executive-summary.html",
+   "file": "downloads/gems77-step-propensity-submod300.tif",
+   "format_valid": true,
+   "protocol_unique": false,
+   "gems57_symmetric_and_discrete_models_unique": true,
+   "holdout_dti_hide_v2": 0.152718,
+   "holdout_dti_blind_4quad": 0.185834,
+   "verdict": "negative",
+   "selector_recommendation": "TOP CANDIDATE FOR HUMAN SELECTOR SIGN-OFF (beats H33 fold-fair 0.0961 by +58.9%, GEMSDOE70 0.1113 by +37.2%, and H19-5 blind 4-quad 0.1639 -> 0.1858; 0 duplicates vs all discrete model submissions)",
+   "upload": "Not OK to submit automatically under unfiltered dense-witness literal gate (ab0a0a62 covers 100% of footprint); PASSES gems57 symmetric gate (max mutual 0.493 <= 0.70, max |rho| 0.403 <= 0.90) & all discrete model checks (H33 fwd 0.586, GEMSDOE70 fwd 0.438) — recommended #1 file once human selector confirms non-submission dense-witness exemption (currently not approved for auto-upload)."
+  },
+  {
+   "lane": "LIA: live-score inversion and allocation",
+   "page": "lia.html",
+   "summary": "lia-executive-summary.html",
+   "file": "downloads/gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif",
+   "format_valid": true,
+   "protocol_unique": false,
+   "verdict": "negative",
+   "upload": "Not OK to submit: format-valid, but literal registry gate failed (35 dense-raster overlap firings) and HOLDOUT-DTI 0.0706 < 0.0958 incumbent; selector: not approved."
+  },
+  {
+   "lane": "Contact-physics + front-base",
+   "page": "contactphys.html",
+   "summary": "contactphys-executive-summary.html",
+   "file": "downloads/gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif",
+   "format_valid": true,
+   "protocol_unique": false,
+   "verdict": "negative",
+   "upload": "Not OK to submit: post-merge literal dense-raster overlap is 0.979; scientific gate failed; selector: not approved."
+  },
+  {
+   "lane": "Selective-U curvature (research TIFF)",
+   "page": "index.html",
+   "summary": "executive-summary.html",
+   "file": "downloads/gems77-h77-urank-curvature-0d868dc271bb-research.tif",
+   "format_valid": true,
+   "protocol_unique": false,
+   "verdict": "negative",
+   "upload": "Not OK to submit: research TIFF, literal gate failed."
+  }
+ ]
+}

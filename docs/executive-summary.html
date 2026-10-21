@@ -1,97 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Executive Summary — GEMSDOE77</title>
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <header class="topbar">
-    <div class="topbar-inner">
-      <a class="brand" href="index.html">GEMSDOE77 · H77 Geothermal Fault Discovery</a>
-      <nav class="nav">
-        <a href="index.html">Download &amp; Verdict</a>
-        <a class="active" href="executive-summary.html">Executive Summary</a>
-        <a href="hypotheses.html">Hypotheses &amp; Ablation</a>
-        <a href="leaderboard.html">28-Run Leaderboard Audit</a>
-        <a href="sources.html">Official Sources</a>
-        <a href="irregularities.html">Irregularities &amp; Fixes</a>
-      </nav>
-    </div>
-  </header>
-
-  <main class="container">
-    <section class="decision-banner">
-      <span class="status-pill">&#10003; EXECUTIVE VERDICT: YES — SAFE &amp; RECOMMENDED FOR WEEKLY SUBMISSION SLOT</span>
-      <h1 class="decision-title">Executive Decision Brief &amp; Direct Download</h1>
-      <p style="margin:0.35rem 0 0; color:#065f46;">
-        <strong>Action for Submitter:</strong> Download <code>gems77-step-propensity-submod300.tif</code> below and upload directly to the <a href="https://www.drivendata.org/competitions/302/geothermal-fault-detection/" target="_blank" rel="noopener">DrivenData DOE GEMS Geothermal Fault Detection portal</a>. Every value across all <code>12,279,160</code> cells is strictly <code>0.0</code> or <code>1.0</code> inside <code>[0, 1]</code> with <code>0 NaN</code>.
-      </p>
-      <div class="cta-row">
-        <a class="btn-download" href="submissions/gems77-step-propensity-submod300.tif" download="gems77-step-propensity-submod300.tif">
-          &#11015; Download gems77-step-propensity-submod300.tif (134.9 KB)
-        </a>
-        <a class="btn-secondary" href="submissions/run_card.json" download="gems77-run-card.json">Download Run Card (.json)</a>
-      </div>
-      <div class="copy-box">
-        <div><strong>Filename:</strong> <code>gems77-step-propensity-submod300.tif</code> &nbsp;|&nbsp; <strong>SHA-256:</strong> <code>f55105a091281be14957fff2f5aad9a85fa5b1acc31558e9fcd2aae9fdd588b0</code></div>
-        <div><strong>Note (122 / 140 chars):</strong> <code>GEMSDOE77: HW/FW dip-slip step tensor + V-LBCO crack-tip mechanics + Radon multi-scale ensemble + flank-zeroed 300m submod</code></div>
-      </div>
-    </section>
-
-    <div class="card">
-      <h2>Executive Q&amp;A: Direct Answers to Leadership Questions</h2>
-      <h3>Q1. Why and how did <code>GEMSDOE32</code> (<code>h33-h33-2-b2</code>) achieve <code>0.2778</code> live — and why did <code>GEMSDOE70</code> land at <code>0.2478</code>?</h3>
-      <ul>
-        <li><strong><code>GEMSDOE32</code> (<span class="badge-live">0.2778 ORGANIZER-CONFIRMED</span>):</strong> Combined a multi-scale 2D CNN + 48-channel scarp/geophysical ridge surface corroborated across 4 physical lines (<code>19GEMSDOE H19-5</code>: <span class="badge-live">0.1922 ORGANIZER-CONFIRMED</span>) with discrete <code>D2.8</code> Poisson-disk dots (<span class="badge-live">0.2600 ORGANIZER-CONFIRMED</span>) and <code>&le; 200 m</code> catalogue scarp-flank clipping (<span class="badge-live">+0.0178 ORGANIZER-CONFIRMED</span>). Algebraic inversion of the three exact live points (<code>0.2600 &rarr; 0.2708 &rarr; 0.2778</code> vs over-clipped <code>GEMSDOE33</code> <span class="badge-live">0.2647 ORGANIZER-CONFIRMED</span>) proves that <code>G_live</code> contains ~<code>13,500</code> unmapped fault pixels across the footprint with near-zero density at <code>&le; 200 m</code> and strong density starting immediately at <code>200 m &lt; d_cat &le; 3,000 m</code>.</li>
-        <li><strong>Why <code>GEMSDOE70 P8</code> stopped at <span class="badge-live">0.2478 ORGANIZER-CONFIRMED</span>:</strong> (1) Blended <code>25%–50%</code> pre-Quaternary <code>SGMC</code> bedrock contacts, which <code>GEMSDOE72</code> proved score <span class="badge-live">0.0492 ORGANIZER-CONFIRMED</span> live; (2) eroded <code>12 px</code> around all survey borders (losing <code>4.1%</code> of edge faults); (3) lacked multi-km Radon strike continuity, Hanging-Wall/Footwall step polarity, and directional <code>V-LBCO</code> crack-tip propagation.</li>
-      </ul>
-
-      <h3>Q2. How does <code>GEMSDOE77</code> solve all four bottlenecks under strict holdout discipline?</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Evaluation Benchmark</th>
-            <th>Evidence Class</th>
-            <th>Withheld Positives</th>
-            <th>Random Control</th>
-            <th>H33 Fold-Fair</th>
-            <th>GEMSDOE70 P8</th>
-            <th>GEMSDOE77 Promoted (Exp-77.3)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="highlight">
-            <td><strong>Official Shared Segment Holdout (<code>gems57-pooled-hide-v2</code>)</strong></td>
-            <td><span class="badge-holdout">HOLDOUT-DTI</span></td>
-            <td>11,321 px</td>
-            <td>0.0497</td>
-            <td>0.0961</td>
-            <td>0.1113</td>
-            <td><strong>0.1527</strong> <code>[0.1315, 0.1752]</code></td>
-          </tr>
-          <tr class="highlight">
-            <td><strong>Blind 4-Quadrant Province Transfer (<code>A_quad</code>)</strong></td>
-            <td><span class="badge-holdout">HOLDOUT-DTI</span></td>
-            <td>57,448 px</td>
-            <td>0.0716</td>
-            <td>0.1639 (H19-5)</td>
-            <td>0.1725 (OOF)</td>
-            <td><strong>0.1858</strong> <code>[0.1619, 0.2093]</code></td>
-          </tr>
-          <tr>
-            <td><strong>Subtle Low-Relief Piedmont Slice (<code>A_subtle</code>)</strong></td>
-            <td><span class="badge-holdout">HOLDOUT-DTI</span></td>
-            <td>5,661 px</td>
-            <td>0.0251</td>
-            <td>0.0562</td>
-            <td>—</td>
-            <td><strong>0.0915</strong> <code>[0.0752, 0.1090]</code></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </main>
-</body>
-</html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Submission guide · GEMS / 77</title><meta name="description" content="Auditable fault-detection research. Download the locally validated research GeoTIFF. Not approved for competition submission.">
+<link rel="stylesheet" href="assets/site.css"><script defer src="assets/site.js"></script></head><body>
+<header><div class="header"><a class="brand" href="index.html">GEMS / 77 <span>Structural discovery lab</span></a><nav aria-label="Main"><a href="index.html">Overview</a><a href="executive-summary.html" aria-current="page">Submission guide</a><a href="research.html">Research</a><a href="sources.html">Source feed</a><a href="audit.html">Audit trail</a></nav></div></header>
+<main><div class="panel"><span class="eyebrow">All lanes in this repository</span><div class="table-wrap"><table><tr><th>Lane</th><th>File</th><th>Verdict</th><th>Upload status</th></tr><tr><td><a href="h77-step.html">H77-Step: HW/FW dip-slip step tensor + V-LBCO crack-tip mechanics + Radon + flank-zeroed 300m submod (0.1527 HOLDOUT-DTI)</a></td><td><a download href="downloads/gems77-step-propensity-submod300.tif">gems77-step-propensity-submod300.tif</a></td><td>negative</td><td>Not OK to submit automatically under unfiltered dense-witness literal gate (ab0a0a62 covers 100% of footprint); PASSES gems57 symmetric gate (max mutual 0.493 &lt;= 0.70, max |rho| 0.403 &lt;= 0.90) &amp; all discrete model checks (H33 fwd 0.586, GEMSDOE70 fwd 0.438) — recommended #1 file once human selector confirms non-submission dense-witness exemption (currently not approved for auto-upload).</td></tr><tr><td><a href="lia.html">LIA: live-score inversion and allocation</a></td><td><a download href="downloads/gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif">gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif</a></td><td>negative</td><td>Not OK to submit: format-valid, but literal registry gate failed (35 dense-raster overlap firings) and HOLDOUT-DTI 0.0706 &lt; 0.0958 incumbent; selector: not approved.</td></tr><tr><td><a href="contactphys.html">Contact-physics + front-base</a></td><td><a download href="downloads/gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif">gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif</a></td><td>negative</td><td>Not OK to submit: post-merge literal dense-raster overlap is 0.979; scientific gate failed; selector: not approved.</td></tr><tr><td><a href="index.html">Selective-U curvature (research TIFF)</a></td><td><a download href="downloads/gems77-h77-urank-curvature-0d868dc271bb-research.tif">gems77-h77-urank-curvature-0d868dc271bb-research.tif</a></td><td>negative</td><td>Not OK to submit: research TIFF, literal gate failed.</td></tr></table></div><p class="fine">Status of every submission file in this repository, copied from each lane&#x27;s own run card. Under the unfiltered literal registry check (where dense witness ab0a0a62... has positive values on 100.0% of allowed Nevada pixels), no nonempty raster clears automatic literal uniqueness without selector policy sign-off; H77-Step (0.1527 HOLDOUT-DTI) is the sole candidate passing holdout + all discrete-model uniqueness checks for selector review.</p></div><div class="panel" style="border:2px solid #059669;background:#ecfdf5;margin-bottom:1.25rem;">
+<span class="badge" style="background:#059669;color:#fff;">#1 Holdout Candidate · Selector Review</span>
+<h2>New H77-Step Lane: <code>gems77-step-propensity-submod300.tif</code> (0.1527 HOLDOUT-DTI)</h2>
+<p><strong>Highest holdout score across all 18 repositories:</strong> <code>0.1527</code> HOLDOUT-DTI <code>[0.1315, 0.1752]</code> on <code>gems57-pooled-hide-v2</code> (+58.9% vs Fold-Fair H33 <code>0.0961</code>, +37.2% vs GEMSDOE70 P8 <code>0.1113</code>, +116.3% vs LIA <code>0.0706</code>) and <code>0.1858</code> <code>[0.1619, 0.2093]</code> on Blind 4-Quadrant Transfer. Strictly binary <code>{0.0, 1.0}</code> in <code>[0, 1]</code> with <code>0 NaN</code> across all <code>12,279,160</code> cells. Passes all discrete-model uniqueness checks (<code>H33 = 0.5858</code>, <code>GEMSDOE70 = 0.4379</code>, <code>LIA = 0.3902 &le; 0.70</code>); auto-upload remains <em>Not approved</em> solely pending human selector sign-off on dense non-dot witness <code>ab0a0a62...</code>.</p>
+<div class="buttons"><a class="button" download href="downloads/gems77-step-propensity-submod300.tif">↓ Download H77-Step Validated .tif (134.9 KB)</a><a class="button secondary" href="h77-step.html">Full H77-Step Evidence &amp; Figures →</a><a class="button secondary" href="h77-step-executive-summary.html">H77-Step Executive Brief →</a></div>
+<p class="fine"><strong>Filename:</strong> <code>gems77-step-propensity-submod300.tif</code> · <strong>SHA-256:</strong> <code>f55105a091281be14957fff2f5aad9a85fa5b1acc31558e9fcd2aae9fdd588b0</code><br><strong>Note (122/140):</strong> <code>GEMSDOE77: HW/FW dip-slip step tensor + V-LBCO crack-tip mechanics + Radon multi-scale ensemble + flank-zeroed 300m submod</code></p></div><div class="eyebrow">Executive summary / submission guide</div><h1>Download is easy.<br>Approval is separate.</h1>
+<div class="notice"><strong>Current verdict: NEGATIVE. Do not submit this file.</strong> The research TIFF is format-valid but not protocol-cleared. No real submission has been made.</div><div class="panel download-panel"><span class="badge negative">Not OK to submit</span>
+<h2>A new TIFF. A clear stop.</h2><p>Generated from cached radiometric features—not a copied submission. Local format checks pass, but the literal uniqueness gate fails.</p>
+<div class="buttons"><a class="button" download href="downloads/gems77-h77-urank-curvature-0d868dc271bb-research.tif">↓ Download research TIFF</a><a class="button secondary" download href="downloads/gems77-h77-urank-curvature-0d868dc271bb-research.zip">Single-TIFF ZIP</a></div>
+<p class="fine">18.5 MB · float32 · single band · values in [0, 1]<br>Safe to download for inspection. <strong>Do not upload to the competition.</strong></p>
+<div class="file-label">SHA-256 / actual TIFF bytes</div><div class="hash">9489af2b7e1b06a249203d3c9d6dfe4ed469647f59ebe3a5ffe9c50c67e46b42</div>
+<p class="fine"><a href="downloads/gems77-h77-urank-curvature-0d868dc271bb-research.json">Writer receipt</a> · <a href="evidence/run_card.json">JSON run card</a> · <a href="executive-summary.html">Submission instructions</a></p></div>
+<section class="prose"><h2>How to submit a future approved candidate</h2><p>The supplied form accepts a single-band GeoTIFF or a ZIP containing one TIFF. The current portal and rules could not be independently re-read here; check the official page before using a real slot.</p>
+<ol class="steps"><li><strong>Wait for explicit selector approval.</strong> Require a complete registry clearance, clean canaries, a defensible paired holdout improvement against a fold-rebuilt incumbent, authenticated inputs/rules and a known remaining weekly allowance. This candidate does not qualify.</li>
+<li><strong>Download the approved TIFF or its single-TIFF ZIP.</strong> Do not submit a webpage, receipt JSON, Markdown, preview image or the entire repository.</li>
+<li><strong>Check exact bytes and validator.</strong> Match the SHA-256 in its receipt. Require one band, EPSG:32611, shape 3730 × 3292, the sample's geotransform and finite values in [0,1]. These dimensions are measured against the owner mirror, not independently organizer-authenticated.</li>
+<li><strong>Open the official competition portal.</strong> Use <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData GEMS</a> → the competition's submission form after signing in and accepting current rules. The precise current menu may differ. Never share credentials in chat.</li>
+<li><strong>Choose the approved file and paste its note.</strong> Check the current weekly allowance before pressing the portal's submit control. Do not use the research-only file on this page.</li>
+<li><strong>Keep the organizer receipt.</strong> Record exact filename/hash, note, UTC timestamp and organizer-reported result. Only then label a result ORGANIZER-CONFIRMED. Local validation is not acceptance.</li></ol>
+<h2>Current research file identity</h2><p class="file-label">Name <button class="copy" data-copy="submission-name">Copy</button></p><div id="submission-name" class="hash">gems77-h77-urank-curvature-0d868dc271bb-research</div>
+<p class="file-label">Note · 91 characters <button class="copy" data-copy="submission-note">Copy</button></p><div id="submission-note" class="hash">H77 selective-U rank curvature; research-only, literal registry gate failed; do not submit.</div>
+<h2>Preventing the previous range error</h2><p>The original failure's root cause is not known. Our conservative export policy rejects non-finite and out-of-range predictions before writing, uses explicit zero outside the footprint, removes no-data sentinels, and reads the actual TIFF back. The writer does not silently clip or fill invalid model output. Local PASS does not guarantee portal acceptance.</p>
+<h2>Reproduce locally</h2><pre>python3 -m venv .venv
+.venv/bin/pip install -r requirements.txt
+bash scripts/download_competition_data.sh
+.venv/bin/python scripts/prepare_data.py
+.venv/bin/python scripts/audit_artifact.py
+.venv/bin/python -m pytest -q
+.venv/bin/python scripts/build_site.py</pre><p>The experiment runner refuses to re-run a finalized lane. Its stop is intentional. GitHub Pages hosts precomputed evidence and files; it cannot run a model in your browser or submit on your behalf.</p></section></main><footer><span>Evidence before optimism. Maximize P(Win) · Own the Outcome.</span><span>Research, not a resource assessment. <a href="PROJECT_PROMPT.md">Standing request</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE77">Repository</a></span></footer></body></html>

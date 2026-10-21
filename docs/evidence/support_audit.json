@@ -1,0 +1,14 @@
+{
+  "evidence_class": "POST-RUN SUPPORT DIAGNOSTIC, NOT A NEW EXPERIMENT OR SCORE",
+  "original_erosion": "10 iterations default cross structure (taxicab metric)",
+  "gaussian_stencil": "sigma=2, truncate=4; square Chebyshev radius 8 pixels",
+  "original_eligible_pixels": 5020667,
+  "eligible_cells_with_potential_nodata_stencil_contact": 15044,
+  "catalogue_positive_pixels_in_risky_cells": 365,
+  "risk_fraction_of_eligible": 0.0029964146198104753,
+  "score_recomputed": false,
+  "artifact_changed": false,
+  "original_implementation_commit": "1e5c994",
+  "consequence": "Historical HOLDOUT-DTI retained as observed, confounded and not valid promotion evidence. No rerun after duplicate stop.",
+  "fix": "Own feature builder now rejects registered domain if its square Gaussian stencil can touch nodata; shared tools unchanged."
+}

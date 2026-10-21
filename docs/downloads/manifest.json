@@ -1,0 +1,16 @@
+{
+  "file": "gems77-h77-urank-curvature-0d868dc271bb-research.tif",
+  "sha256": "9489af2b7e1b06a249203d3c9d6dfe4ed469647f59ebe3a5ffe9c50c67e46b42",
+  "format_valid": true,
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "protocol_unique": false,
+  "verdict": "negative",
+  "submission_name": "gems77-h77-urank-curvature-0d868dc271bb-research",
+  "note": "H77 selective-U rank curvature; research-only, literal registry gate failed; do not submit.",
+  "organizer_confirmed_score": null,
+  "weekly_cap": null,
+  "weekly_slots_used": 0,
+  "holdout_valid_for_promotion": false,
+  "holdout_caveat": "Post-run audit: 10px cross erosion insufficient for diagonal Gaussian stencil. Retained historical result only; no rerun."
+}

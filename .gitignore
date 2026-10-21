@@ -1,4 +1,3 @@
-# Large cached rasters, intermediate memmaps, and virtual environments
 .cache/
 .venv/
 __pycache__/
@@ -8,3 +7,5 @@ __pycache__/
 *.f32
 *.f16
 *.tmp
+data/raw/
+data/external/

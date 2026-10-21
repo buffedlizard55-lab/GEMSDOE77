@@ -1,0 +1,28 @@
+{
+  "input": "data/geodawn_rad_u8.tif",
+  "input_sha256": "c22420f75999030d7cc65c9e31e50d232ea6158423bca051613a18a8b20ba682",
+  "eligible_pixels": 5020667,
+  "normalization_scales": {
+    "K": 1.0,
+    "Th": 0.9960629940032959,
+    "U": 0.9921259880065918,
+    "absolute_selective_U": 0.5039370059967041,
+    "principal_curvature": 0.10666880011558533,
+    "anisotropy": 0.9876324534416199,
+    "common_mode_curvature": 0.06461144238710403,
+    "candidate": 0.08142208307981491
+  },
+  "feature_sha256": {
+    "K": "d771fa03a10ec69b3fd4e5378a5e08d88065a7b3bce70771d8e22cfc599084b5",
+    "Th": "c0faa25c835c43bd616ca9bfc34eb25c2f9919595a61756ba143c441f3922f1c",
+    "U": "67f5bc5e1d8b140d48f07f3cda8bf9b1b0abfa59f7027d3a2e323ffe34479473",
+    "absolute_selective_U": "88fb9acd49f60137994d51c4467827c33db51e6c3b8b1f8c1de844282ecfb43f",
+    "principal_curvature": "e066fead43339bb22c0bf0339eadc051c25288de9b3889df461135d10e498337",
+    "anisotropy": "79a1253661ef72cd976736be581fa38a3c82c1f6725590bf8ab987c14b2716ad",
+    "common_mode_curvature": "968e41aa6461f11086fa7672634d27a1b4e26078531f72c4e4422dd2011682ac",
+    "candidate": "8edac9ca28df06f0d670fd5c8c099f12bb85e5f2ca04b03be0af3907fc2e2e77",
+    "constant_001": "8868b68adc5eb3e8187b9d416c4fb86ecaf57b55fdf536f2144024f72da6c496"
+  },
+  "catalogue_derived_features": [],
+  "scientific_claim": "Exploratory rank-intensity transform; not physical enrichment or a calibrated probability"
+}

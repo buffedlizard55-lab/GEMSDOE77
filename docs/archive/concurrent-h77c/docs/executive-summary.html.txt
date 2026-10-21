@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Executive Summary — How to submit · GEMSDOE77</title>
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+<h1>GEMSDOE77</h1>
+<nav><a href="index.html">Home</a><a href="executive-summary.html" class="active">Make a submission</a><a href="hypotheses.html">Hypotheses</a><a href="sources.html">Sources</a><a href="knowledge/01_geothermal-vents.html">Knowledge</a></nav>
+<div class="dlbtn"><a class="btn" href="downloads/gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-zeros.tif">⬇ Download the submission GeoTIFF</a></div>
+</div></header>
+<main class="wrap">
+<h1>Executive summary — How to make a submission</h1>
+<div class="card" style="border-left:4px solid #2ecc71">
+<h2 style="margin-top:0">Step-by-step (2 minutes)</h2>
+<ol>
+<li><b>Download the file:</b> <a class="btn" style="background:#2ecc71;color:#0a0e14;padding:8px 14px;border-radius:8px;font-weight:700;text-decoration:none" href="downloads/gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-zeros.tif">gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-zeros.tif</a> (or <a href="downloads/gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-zeros.zip">.zip</a>). Also available: <a href="downloads/gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-nan.tif">nan twin</a>.</li>
+<li>Go to <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">DrivenData GEMS data page</a> → <b>Submit</b> (or direct submission page).</li>
+<li>Under <b>New submission → File to submit → No file chosen</b> click <b>Choose File</b> and select the <code>.tif</code> you just downloaded (or the <code>.zip</code> — both are allowed: “a single-band GeoTIFF (.tif) file, or a .zip file containing a single GeoTIFF”).</li>
+<li>Under <b>Note (optional)</b> paste: <code>GEMSDOE77 H77-C claycap_breach | 44090 dots, 0 on catalogue, holdout 0.020+/-0.014, 0.020 greedy vs thin</code></li>
+<li>Under the portal's <b>Unique submission name</b> field use: <code>GEMSDOE77-H77C-CLAYCAP-BREACH</code></li>
+<li>Click <b>Create</b> (or <b>Submit</b>). You should see <b>no error</b>. If you see <code>"Predicted values must be in range [0, 1]"</code> you uploaded an old file — re-download the <code>-zeros.tif</code> above (its validator says 12/12 PASS).</li>
+</ol>
+<p><b>Is it OK to download and submit?</b> <b>YES</b> — the file is portal-acceptable (values in [0,1], no NaN inside footprint, CRS/shape/transform match). <b>But</b> its holdout is <b>negative (0.0196)</b> — it likely will not improve your leaderboard score; submit only if you want a valid unique lane artifact for the audit trail, not to chase a score gain.</p>
+</div>
+
+<h2>The portal error that blocked prior downloads — fixed here</h2>
+<p>Two different failures produced <code>"Predicted values must be in range [0, 1]"</code>:</p>
+<ul>
+<li><b>Sentinel nodata <code>-3.4028234663852886e+38</code></b> inside the footprint (7,113,308 cells total, 3,061 inside footprint) — not in [0,1].</li>
+<li><b><code>nodata=NaN</code> with NaN outside</b> — legal per spec but one validator change away from the same rejection; we offer a <code>-zeros.tif</code> twin with <code>nodata=None</code> and outside=0.0 where every cell is finite.</li>
+</ul>
+<p>Our fix: <code>np.clip(pred,0,1)</code> inside footprint, <code>pred[labels]=0</code> on catalogue, outside=0 or NaN per twin, re-read validator audit (sha256 <code>0f86bf20…</code>) — <b>0 cells outside [0,1], 0 NaN inside</b>.</p>
+
+<h2>What happens after you submit</h2>
+<ul>
+<li>The portal validates format (CRS 32611, shape 3292×3730, dtype float32, single band, [0,1]). Ours passes.</li>
+<li>Organizer computes <b>DTI</b> (distance-weighted Tversky, α=0.2 β=0.8, 300 m triangular kernel) against hidden geothermal truth (masked known faults). You get a score on the leaderboard within ~minutes.</li>
+<li>Our file's <b>expected live DTI is unknown</b> — holdout is proxy only (IR-32-PROXY-01). We do not claim 0.0196 is a leaderboard score. If you want to calibrate, run the identification pack (S1 anchor/S2 scale 0.5/S3 null-add 2000 px) described in GEMSDOE32.</li>
+</ul>
+
+<h2>Quick verification you can do locally</h2>
+<pre>python3 -c "
+import rasterio, numpy as np, hashlib
+p='downloads/gemsdoe77-h77c-claycap-breach-20261021T023803Z-58b33f22-zeros.tif'
+with rasterio.open(p) as s:
+    a=s.read(1)
+    print(s.width, s.height, s.crs, s.dtypes)
+    print('finite', np.isfinite(a).sum(), 'min', a.min(), 'max', a.max(), 'pos', (a>0.5).sum())
+    print('outside zeros?', (a[~np.isfinite(rasterio.open('data/bridge/sample_submission.tif').read(1))]==0).all())
+print(hashlib.sha256(open(p,'rb').read()).hexdigest())
+"</pre>
+<p class="mut">Should print 3292 3730 EPSG:32611 float32, finite 12279160, min 0.0 max 1.0, pos 44090, sha256 0f86bf205eff2522…</p>
+
+<h2>Need help?</h2>
+<p>Open an <a href="https://github.com/buffedlizard55-lab/GEMSDOE77/issues">issue</a> or read <a href="index.html">Home</a> for run card & validator receipt.</p>
+
+</main>
+<footer><div class="wrap">GEMSDOE77 · <a href="index.html">Home</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE77">Repository</a></div></footer>
+</body>
+</html>

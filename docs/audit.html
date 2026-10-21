@@ -1,0 +1,103 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Audit trail · GEMS / 77</title><meta name="description" content="Auditable fault-detection research. Download the locally validated research GeoTIFF. Not approved for competition submission.">
+<link rel="stylesheet" href="assets/site.css"><script defer src="assets/site.js"></script></head><body>
+<header><div class="header"><a class="brand" href="index.html">GEMS / 77 <span>Structural discovery lab</span></a><nav aria-label="Main"><a href="index.html">Overview</a><a href="executive-summary.html">Submission guide</a><a href="research.html">Research</a><a href="sources.html">Source feed</a><a href="audit.html" aria-current="page">Audit trail</a></nav></div></header>
+<main><div class="eyebrow">Audit / immutable evidence</div><h1>Inspect the result.<br>Not just the claim.</h1><div class="notice"><strong>Format PASS ≠ submission approval.</strong> The surface uniqueness gate failed. Final dot placement/check was NOT RUN. The TIFF is retained negative evidence.</div>
+<div class="two"><section><h2>TIFF preflight</h2><div class="table-wrap"><table><tbody><tr><td>single_band</td><td><span class="badge good">PASS</span></td></tr><tr><td>dtype_float32</td><td><span class="badge good">PASS</span></td></tr><tr><td>dimensions_3730x3292</td><td><span class="badge good">PASS</span></td></tr><tr><td>crs_epsg_32611</td><td><span class="badge good">PASS</span></td></tr><tr><td>transform_matches_sample_submission</td><td><span class="badge good">PASS</span></td></tr><tr><td>no_nan_anywhere</td><td><span class="badge good">PASS</span></td></tr><tr><td>no_inf_anywhere</td><td><span class="badge good">PASS</span></td></tr><tr><td>no_sentinel_values</td><td><span class="badge good">PASS</span></td></tr><tr><td>range_0_1_guaranteed</td><td><span class="badge good">PASS</span></td></tr><tr><td>min_ge_0</td><td><span class="badge good">PASS</span></td></tr><tr><td>max_le_1</td><td><span class="badge good">PASS</span></td></tr><tr><td>in_footprint_all_finite</td><td><span class="badge good">PASS</span></td></tr><tr><td>in_footprint_range_0_1</td><td><span class="badge good">PASS</span></td></tr><tr><td>outside_footprint_zero</td><td><span class="badge good">PASS</span></td></tr><tr><td>zero_dots_on_mapped_catalogue</td><td><span class="badge good">PASS</span></td></tr></tbody></table></div></section>
+<section><h2>Receipts & reproducibility</h2><ul><li><a href="evidence/artifact_receipt.json">artifact receipt</a></li><li><a href="evidence/artifact_recheck.json">artifact recheck</a></li><li><a href="evidence/band6_resolution.json">band6 resolution</a></li><li><a href="evidence/band_diagnostics.json">band diagnostics</a></li><li><a href="evidence/canaries.json">canaries</a></li><li><a href="evidence/data_receipt.json">data receipt</a></li><li><a href="evidence/e2_hypothesis_test.json">e2 hypothesis test</a></li><li><a href="evidence/e2_inversion.json">e2 inversion</a></li><li><a href="evidence/e3_allocation.json">e3 allocation</a></li><li><a href="evidence/e3_holdout.json">e3 holdout</a></li><li><a href="evidence/e3_holdout_final.json">e3 holdout final</a></li><li><a href="evidence/e3_overlap_firings_coverage.json">e3 overlap firings coverage</a></li><li><a href="evidence/e3_registry_free.json">e3 registry free</a></li><li><a href="evidence/e3_unique_repair.json">e3 unique repair</a></li><li><a href="evidence/e3_uniqueness.json">e3 uniqueness</a></li><li><a href="evidence/e3_uniqueness_first_build_DUPLICATE.json">e3 uniqueness first build DUPLICATE</a></li><li><a href="evidence/e3_uniqueness_postmerge.json">e3 uniqueness postmerge</a></li><li><a href="evidence/features.json">features</a></li><li><a href="evidence/final_bundle.json">final bundle</a></li><li><a href="evidence/folds.json">folds</a></li><li><a href="evidence/forensics_28_live_submissions.json">forensics 28 live submissions</a></li><li><a href="evidence/holdout.json">holdout</a></li><li><a href="evidence/holdout_exp1.json">holdout exp1</a></li><li><a href="evidence/holdout_exp3_replication.json">holdout exp3 replication</a></li><li><a href="evidence/inherited_h77c_review.json">inherited h77c review</a></li><li><a href="evidence/irregularities.json">irregularities</a></li><li><a href="evidence/official_reference.json">official reference</a></li><li><a href="evidence/prepared_data.json">prepared data</a></li><li><a href="evidence/prepared_manifest.json">prepared manifest</a></li><li><a href="evidence/prior_forensics.json">prior forensics</a></li><li><a href="evidence/registry_saturation.json">registry saturation</a></li><li><a href="evidence/restore_receipt.json">restore receipt</a></li><li><a href="evidence/run_card.json">run card</a></li><li><a href="evidence/run_card_contactphys.json">run card contactphys</a></li><li><a href="evidence/scored_stats.json">scored stats</a></li><li><a href="evidence/source_health.json">source health</a></li><li><a href="evidence/support_audit.json">support audit</a></li><li><a href="evidence/surface_registry.json">surface registry</a></li><li><a href="evidence/template_patch_check.json">template patch check</a></li><li><a href="evidence/uniqueness_supplement_postmerge.json">uniqueness supplement postmerge</a></li><li><a href="evidence/verification_pass2.json">verification pass2</a></li><li><a href="evidence/why_02778.json">why 02778</a></li></ul><p><a href="evidence/experiment.log">Original experiment log</a> · <a href="evidence/tests-pass2.txt">Pass 2 test output</a> · <a href="evidence/tests-pass3.txt">Pass 3 test output</a> · <a href="review.md">Three-pass review</a></p></section></div><div class="prose"><h1>Irregularities and next-session handoff</h1>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Finding</th>
+<th>Action / consequence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>I01</td>
+<td>Repository contained only <code># GEMSDOE77</code> at base commit. No previous-session scripts or data existed here.</td>
+<td>Built a minimal reproducible pilot; did not assert an inherited ready GPU pipeline.</td>
+</tr>
+<tr>
+<td>I02</td>
+<td>No identifiable assigned single-method paragraph in prompt.</td>
+<td>Registered H77 selective-U curvature as an autonomous, narrow lane; assignment remains unconfirmed.</td>
+</tr>
+<tr>
+<td>I03</td>
+<td>Conflicting supplied leaderboard claims; no submission receipt.</td>
+<td>No ORGANIZER-CONFIRMED scores or current leader reported. Source mentions are not receipts.</td>
+</tr>
+<tr>
+<td>I04</td>
+<td>Literal positive-support overlap has a universal dense-raster witness.</td>
+<td>Surface duplicate stop. No dot placement or further experiments. Needs owner/selector policy resolution upstream, not a private exemption.</td>
+</tr>
+<tr>
+<td>I05</td>
+<td>No current comparable holdout best in this empty repo.</td>
+<td>Use declared controls and feature-alone ablations. Do not compare fixed catalogue-pruned H33 bytes to hide/recover positives.</td>
+</tr>
+<tr>
+<td>I06</td>
+<td>Public owner mirrors are not organizer-authenticated inputs.</td>
+<td>Hash-check, trace sources, disclose. Restore cached data autonomously; no request for passwords.</td>
+</tr>
+<tr>
+<td>I07</td>
+<td>Radiometric channels independently percentile-quantized.</td>
+<td>Rank-intensity subtraction only, never concentration ratios or calibrated chemical enrichment.</td>
+</tr>
+<tr>
+<td>I08</td>
+<td>Official portal, USGS, GDR, NLR PDF and other non-GitHub source hosts outside sandbox egress allowlist.</td>
+<td>Link for review; do not claim current official-spec, rule, license, PDF or leaderboard verification.</td>
+</tr>
+<tr>
+<td>I09</td>
+<td>Supplied range-error cause unknown.</td>
+<td>Shared writer rejects NaN/Inf and out-of-range values; serialize finite zeros outside footprint, read back and validate exact grid. No invented root cause.</td>
+</tr>
+<tr>
+<td>I10</td>
+<td>Novelty versus all historical/private family submissions cannot be established.</td>
+<td>Byte/pixel distinction proved only versus checked witnesses; literal protocol uniqueness fails.</td>
+</tr>
+<tr>
+<td>I11</td>
+<td>Pilot weak at exact catalogue discrimination; paired improvement includes zero.</td>
+<td>Negative scientific result, not a candidate to spend a weekly slot on.</td>
+</tr>
+<tr>
+<td>I12</td>
+<td>Source feed is GitHub inventory/page freshness, not a competition-score feed.</td>
+<td>Timestamp, retain source hashes, flag retrieval errors, never auto-promote.</td>
+</tr>
+<tr>
+<td>I13</td>
+<td>Full raw 19-band training stack and GPU network were not restored/trained in this narrow lane.</td>
+<td>Reused the obtainable cached GeoDAWN stack required by this hypothesis. CPU suffices for this pilot; no claim full neural pipeline is complete.</td>
+</tr>
+<tr>
+<td>I14</td>
+<td>Initial shared-registry call preceded TIFF serialization.</td>
+<td>Subsequent immutable-byte audit supplied the actual file SHA and verified decoded equality, ZIP membership, range and stop. No new experiment.</td>
+</tr>
+</tbody>
+</table></div>
+<p>| I15 | Post-run support audit: default cross erosion does not cover every diagonal offset of the Gaussian stencil. | Preserve the stopped artifact and observed result, label holdout confounded/not promotion-valid, and add a fail-closed feature guard. No rerun or score replacement. See support_audit.json. |</p>
+<p>| I16 | Concurrent PRs #1/#2 merged into main while this lane was running; inherited H77C had unverified registry PASS/fallback values and a different evaluator. | Preserved sources/TIFFs/tests, namespaced the U lane, independently measured literal rejection for inherited TIFF, disabled unsafe legacy generator and marked it quarantined. No new model experiment. |
+| I17 | Post-merge LIA pages promoted an “informative-raster” diagnostic PASS to uniqueness clearance even though the same run card records <code>template_literal_reading_duplicate=true</code> and 35 dense-raster firings. Contact-physics also has 0.979 literal overlap with the merged dense surface. | Corrected the all-lane manifest, README, generated pages and CI to fail closed. All three files are inspection downloads and <strong>NOT OK to submit</strong>. This is an evidence-label correction, not a new experiment. |
+| I18 | Historical <code>scripts/build_submission.py</code> previously deleted every <code>docs/downloads/gems77-*</code> file before writing one candidate, risking removal of parallel-lane artifacts; its docstring also asserted portal acceptance/scoring without a receipt. It writes the primary file directly with Rasterio and uses the archived <code>template66</code> writer for the NaN twin, rather than the pinned <code>gems57</code> writer end-to-end. | Removed broad deletion, added collision refusal for its deterministic output files, and removed the unsupported acceptance claim. The historical generator remains non-authoritative and is not rerun; existing TIFF bytes are unchanged. Full replacement with the pinned shared writer requires a separately approved upstream/shared-tool change, not a private artifact rebuild. |</p>
+<h2>Next session — ordered by risk reduction</h2>
+<ol>
+<li>Read README original request, preregistration, run card and this ledger. Keep H77 stopped; do not re-tune its failed lane.</li>
+<li>Resolve the dense-support incompatibility through an explicit <strong>shared</strong> representation policy approved by the protocol owner. No private definition of dots. Obtain an unambiguous lane assignment.</li>
+<li>Independently authenticate competition inputs, current external-data rules, the official PDF, masking specification and weekly cap through authorized access. Portal login and hosts are unavailable here; do not substitute mirror hashes for official provenance.</li>
+<li>Create a registry-backed, fold-rebuilt incumbent with all catalogue features derived from visible faults, and record its HOLDOUT-DTI with aligned paired block intervals. Use whole-segment buffered splits.</li>
+<li>Only then authorize a new preregistered lane from the candidate list or separately reviewed scientific literature. The current candidate did not demonstrate a robust ablation gain. Do not tune against supplied public claims.</li>
+<li>Keep scheduled source health, file hashes and validator checks fail-closed. Add organizer receipt ingestion only when a genuine receipt is available. The selector, not this pipeline, chooses real slots.</li>
+</ol>
+<h2>Access and capability boundaries</h2>
+<p>GitHub authenticated operations work. CPU scientific transforms, local validation and a static Pages deployment are available. No DrivenData session, no organizer receipts, no verified current weekly cap, no private registry, and no unrestricted official-source internet are available. A publication or externally authenticated-data claim needs those sources first. There is no guarantee of leaderboard improvement, physical fault validity or a prize.</p></div></main><footer><span>Evidence before optimism. Maximize P(Win) · Own the Outcome.</span><span>Research, not a resource assessment. <a href="PROJECT_PROMPT.md">Standing request</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE77">Repository</a></span></footer></body></html>

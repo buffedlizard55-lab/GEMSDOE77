@@ -1,126 +1,83 @@
 #!/usr/bin/env python3
-"""Autonomous SHA-256-verified data & registry restoration for GEMSDOE77.
+"""Restore SHA-256-pinned competition mirrors listed in registry/data_manifest.json.
 
-Restores all canonical competition rasters (``training_features.tif``, ``existing_faults.tif``,
-``sample_submission.tif``) plus official public USGS 3DEP / GeoDAWN / DOE GDR external datasets
-into ``.cache/data`` without ever copying or reading prior predictions into feature extraction.
+Mirrors are owner-supplied public GitHub blobs (DrivenData files are login-walled).
+Integrity-pinned, NOT organizer-authenticated. Fails closed on any hash mismatch.
+Adapted from GEMSDOE32 scripts/restore_data.py (same manifest schema).
 """
 from __future__ import annotations
-
-import hashlib
-import json
-import tarfile
-import urllib.request
+import argparse, hashlib, json, shutil, subprocess, sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-DATA = ROOT / ".cache" / "data"
-FEAT_REF = "c0c06ac82178f26b94fce3397036ef8f12a2f3a0"
-AUX_REF = "32024716f218d06a94e01464157392119c03cb15"
 
-PINS = {
-    "training_features.tif": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
-    "existing_faults.tif": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
-    "sample_submission.tif": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
-}
-
-
-def sha256_file(path: Path) -> str:
+def sha256_file(p: Path) -> str:
     h = hashlib.sha256()
-    with path.open("rb") as f:
+    with p.open("rb") as f:
         for chunk in iter(lambda: f.read(1 << 20), b""):
             h.update(chunk)
     return h.hexdigest()
 
+def fetch(repo: str, ref: str, path: str, dest: Path) -> None:
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    tmp = dest.with_suffix(dest.suffix + ".partial")
+    try:
+        with tmp.open("wb") as out:
+            subprocess.run(["gh", "api", f"repos/{repo}/contents/{path}?ref={ref}",
+                            "-H", "Accept: application/vnd.github.raw"],
+                           stdout=out, check=True)
+        tmp.replace(dest)
+    finally:
+        tmp.unlink(missing_ok=True)
 
-def extract_from_tarball(repo: str, ref: str, prefix_or_map: dict[str, Path] | None = None, prefixes: tuple[str, ...] = ()) -> None:
-    url = f"https://codeload.github.com/buffedlizard55-lab/{repo}/tar.gz/{ref}"
-    req = urllib.request.Request(url, headers={"User-Agent": "gemsdoe77-restore"})
-    with urllib.request.urlopen(req, timeout=240) as resp:
-        with tarfile.open(fileobj=resp, mode="r|gz") as tf:
-            for member in tf:
-                if not member.isfile():
-                    continue
-                parts = member.name.split("/", 1)
-                rel = parts[1] if len(parts) > 1 else parts[0]
-                dest = None
-                if prefix_or_map and rel in prefix_or_map:
-                    dest = prefix_or_map[rel]
-                elif prefixes and any(rel.startswith(px) for px in prefixes):
-                    dest = DATA / rel
-                if dest is not None and not dest.exists():
-                    dest.parent.mkdir(parents=True, exist_ok=True)
-                    fh = tf.extractfile(member)
-                    if fh is not None:
-                        tmp = dest.with_suffix(dest.suffix + ".tmp")
-                        with tmp.open("wb") as out:
-                            for chunk in iter(lambda: fh.read(1 << 20), b""):
-                                out.write(chunk)
-                        tmp.replace(dest)
-
-
-def main() -> int:
-    DATA.mkdir(parents=True, exist_ok=True)
-    tf_path = DATA / "training_features.tif"
-    if not (tf_path.exists() and sha256_file(tf_path) == PINS["training_features.tif"]):
-        parts_map = {
-            f"data/bridge/gems-geodawn-numerical-features.tif.part-00{i}": DATA / f"part-00{i}"
-            for i in range(5)
-        }
-        extract_from_tarball("GEMSDOE", FEAT_REF, prefix_or_map=parts_map)
-        with tf_path.open("wb") as out:
-            for i in range(5):
-                p = DATA / f"part-00{i}"
-                with p.open("rb") as f:
-                    for b in iter(lambda: f.read(1 << 20), b""):
-                        out.write(b)
+def restore_entry(entry: dict, root: Path) -> dict:
+    dest = root / entry["dest"]
+    if dest.exists() and sha256_file(dest) == entry["sha256"]:
+        return {"id": entry["id"], "dest": entry["dest"], "status": "present",
+                "bytes": dest.stat().st_size, "sha256": entry["sha256"]}
+    if "parts" in entry:
+        tmp = dest.with_suffix(".assembling")
+        tmp.parent.mkdir(parents=True, exist_ok=True)
+        with tmp.open("wb") as out:
+            for part in entry["parts"]:
+                p = root / "raw_parts" / Path(part).name
+                fetch(entry["repo"], entry["ref"], part, p)
+                with p.open("rb") as src:
+                    shutil.copyfileobj(src, out, 1 << 20)
                 p.unlink()
+        got = sha256_file(tmp)
+        if got != entry["sha256"]:
+            tmp.unlink(missing_ok=True)
+            raise SystemExit(f"HASH MISMATCH {entry['id']}: {got} != {entry['sha256']}")
+        tmp.replace(dest)
+    else:
+        fetch(entry["repo"], entry["ref"], entry["path"], dest)
+        got = sha256_file(dest)
+        if got != entry["sha256"]:
+            dest.unlink(missing_ok=True)
+            raise SystemExit(f"HASH MISMATCH {entry['id']}: {got} != {entry['sha256']}")
+    return {"id": entry["id"], "dest": entry["dest"], "status": "restored",
+            "bytes": dest.stat().st_size, "sha256": entry["sha256"]}
 
-    ext_dir = DATA / "data" / "external"
-    if not (ext_dir / "lidar_scarp_features_u8.tif").exists():
-        extract_from_tarball(
-            "60GEMSDOE",
-            "HEAD",
-            prefix_or_map={
-                "data/bridge/existing_faults.tif": DATA / "existing_faults.tif",
-                "data/sample_submission.tif": DATA / "sample_submission.tif",
-            },
-            prefixes=("data/external/", "registry/rasters/"),
-        )
-
-    for link_src, link_dst in (
-        (DATA / "data" / "bridge" / "existing_faults.tif", DATA / "existing_faults.tif"),
-        (DATA / "data" / "sample_submission.tif", DATA / "sample_submission.tif"),
-        (DATA / "sample_submission.tif", DATA / "example_submission.tif"),
-    ):
-        if link_src.exists() and not link_dst.exists():
-            link_dst.symlink_to(link_src)
-
-    rows = {}
-    for name, expected in PINS.items():
-        actual = sha256_file(DATA / name)
-        rows[name] = {"sha256": actual, "expected": expected, "ok": actual == expected}
-        if actual != expected:
-            raise ValueError(f"SHA-256 verification failed for {name}: {actual} != {expected}")
-
-    receipt_path = ROOT / "evidence" / "data_receipt.json"
-    receipt_path.parent.mkdir(parents=True, exist_ok=True)
-    receipt_path.write_text(
-        json.dumps(
-            {
-                "evidence_class": "DATA-MEASUREMENT",
-                "data_dir": str(DATA),
-                "feature_ref": FEAT_REF,
-                "aux_ref": AUX_REF,
-                "files": rows,
-            },
-            indent=2,
-        )
-        + "\n"
-    )
-    print(json.dumps(rows, indent=2))
-    return 0
-
+def main() -> None:
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--ids", default="all", help="comma-separated manifest ids or 'all'")
+    ap.add_argument("--manifest", default=str(ROOT / "registry" / "data_manifest.json"))
+    ap.add_argument("--target-dir", default=str(ROOT / "data" / "raw"))
+    args = ap.parse_args()
+    man = json.loads(Path(args.manifest).read_text())
+    root = Path(args.target_dir); root.mkdir(parents=True, exist_ok=True)
+    want = None if args.ids == "all" else set(args.ids.split(","))
+    results = []
+    for e in man["files"]:
+        if want is None or e["id"] in want:
+            r = restore_entry(e, root); results.append(r)
+            print(f"{r['status']:>8}  {e['dest']:60s} sha256={r['sha256'][:12]}…", flush=True)
+    receipt = {"schema_version": 1, "verified_files_count": len(results),
+               "storage_root": str(root), "files": results}
+    (ROOT / "data").mkdir(parents=True, exist_ok=True)
+    (ROOT / "data" / "restore_receipt.json").write_text(json.dumps(receipt, indent=2) + "\n")
+    print(f"Verified {len(results)} files -> data/restore_receipt.json")
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    main()

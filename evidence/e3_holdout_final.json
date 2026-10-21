@@ -1,0 +1,295 @@
+{
+ "evidence_class": "HOLDOUT-DTI",
+ "evaluator_version": "gems57-pooled-hide-v2",
+ "rule": "final uniqueness-repaired rule (budget 0.66 vs 765 informative registry rasters)",
+ "split": "gems57.holdout.buffered_component_draw seed=20 hide_frac=0.20 buffer_px=3 boundary_px=12",
+ "fold_receipts": [
+  {
+   "fold": "NW",
+   "seed": 20,
+   "held_components": 96,
+   "withheld_positive_pixels": 1923,
+   "eligible_components": 598,
+   "boundary_buffer_px": 12,
+   "feature_buffer_px": 3,
+   "nearest_visible_to_truth_px": 3.1622776601683795,
+   "split_version": "buffered-whole-components-loqo-v2",
+   "evaluation_region_label_blind": true,
+   "candidate_dots": 39955,
+   "candidate_on": 26370,
+   "candidate_off": 13585,
+   "worst_registry_overlap": 0.6599924915529971,
+   "A0_dots": 33854
+  },
+  {
+   "fold": "NE",
+   "seed": 20,
+   "held_components": 145,
+   "withheld_positive_pixels": 2367,
+   "eligible_components": 628,
+   "boundary_buffer_px": 12,
+   "feature_buffer_px": 3,
+   "nearest_visible_to_truth_px": 3.1622776601683795,
+   "split_version": "buffered-whole-components-loqo-v2",
+   "evaluation_region_label_blind": true,
+   "candidate_dots": 39955,
+   "candidate_on": 26370,
+   "candidate_off": 13585,
+   "worst_registry_overlap": 0.6599924915529971,
+   "A0_dots": 33854
+  },
+  {
+   "fold": "SW",
+   "seed": 20,
+   "held_components": 223,
+   "withheld_positive_pixels": 3781,
+   "eligible_components": 983,
+   "boundary_buffer_px": 12,
+   "feature_buffer_px": 3,
+   "nearest_visible_to_truth_px": 3.1622776601683795,
+   "split_version": "buffered-whole-components-loqo-v2",
+   "evaluation_region_label_blind": true,
+   "candidate_dots": 39955,
+   "candidate_on": 26370,
+   "candidate_off": 13585,
+   "worst_registry_overlap": 0.6599924915529971,
+   "A0_dots": 33854
+  },
+  {
+   "fold": "SE",
+   "seed": 20,
+   "held_components": 142,
+   "withheld_positive_pixels": 3250,
+   "eligible_components": 648,
+   "boundary_buffer_px": 12,
+   "feature_buffer_px": 3,
+   "nearest_visible_to_truth_px": 3.1622776601683795,
+   "split_version": "buffered-whole-components-loqo-v2",
+   "evaluation_region_label_blind": true,
+   "candidate_dots": 39955,
+   "candidate_on": 26370,
+   "candidate_off": 13585,
+   "worst_registry_overlap": 0.6599924915529971,
+   "A0_dots": 33854
+  }
+ ],
+ "pooled": {
+  "A0": {
+   "evidence_class": "HOLDOUT-DTI",
+   "evaluator_version": "gems57-pooled-hide-v2",
+   "alpha": 0.2,
+   "beta": 0.8,
+   "triangular_radius_m": 300.0,
+   "pooled": true,
+   "scores": {
+    "C": {
+     "evidence_class": "HOLDOUT-DTI",
+     "evaluator_version": "gems57-pooled-hide-v2",
+     "dti": 0.07058102917606887,
+     "ci95": [
+      0.059926851177832814,
+      0.0815151296037797
+     ],
+     "withheld_positive_pixels": 11321,
+     "tpw": 1184.689143573656,
+     "fpw": 37455.35938640553,
+     "fnw": 10136.310856426344
+    },
+    "A0": {
+     "evidence_class": "HOLDOUT-DTI",
+     "evaluator_version": "gems57-pooled-hide-v2",
+     "dti": 0.09582923245579822,
+     "ci95": [
+      0.08314025196690725,
+      0.10810757412376887
+     ],
+     "withheld_positive_pixels": 11321,
+     "tpw": 1494.373278351655,
+     "fpw": 31192.264702128017,
+     "fnw": 9826.62672164834
+    }
+   },
+   "best_comparable_control": "A0",
+   "paired_differences": {
+    "A0": {
+     "evidence_class": "HOLDOUT-DTI",
+     "evaluator_version": "gems57-pooled-hide-v2",
+     "delta": -0.025248203279729348,
+     "ci95": [
+      -0.0302877074464785,
+      -0.020266761802638294
+     ],
+     "withheld_positive_pixels": 11321
+    }
+   },
+   "bootstrap": {
+    "method": "paired physical spatial-cluster percentile",
+    "clusters": 157,
+    "draws": 2000,
+    "seed": 520810,
+    "confidence": 0.95,
+    "caveat": "Conditional on fitted folds, catalogue labels and fixed budgets; not a leaderboard interval."
+   },
+   "implementation_sha256": {
+    "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+    "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+    "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+    "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+   }
+  },
+  "E1": {
+   "evidence_class": "HOLDOUT-DTI",
+   "evaluator_version": "gems57-pooled-hide-v2",
+   "alpha": 0.2,
+   "beta": 0.8,
+   "triangular_radius_m": 300.0,
+   "pooled": true,
+   "scores": {
+    "C": {
+     "evidence_class": "HOLDOUT-DTI",
+     "evaluator_version": "gems57-pooled-hide-v2",
+     "dti": 0.07058102917606887,
+     "ci95": [
+      0.05969871785712464,
+      0.08209812371657257
+     ],
+     "withheld_positive_pixels": 11321,
+     "tpw": 1184.689143573656,
+     "fpw": 37455.35938640553,
+     "fnw": 10136.310856426344
+    },
+    "E1": {
+     "evidence_class": "HOLDOUT-DTI",
+     "evaluator_version": "gems57-pooled-hide-v2",
+     "dti": 0.07878678139295084,
+     "ci95": [
+      0.0657825448855366,
+      0.09123810998250391
+     ],
+     "withheld_positive_pixels": 11321,
+     "tpw": 1317.2991368387413,
+     "fpw": 36997.69510742934,
+     "fnw": 10003.700863161263
+    }
+   },
+   "best_comparable_control": "E1",
+   "paired_differences": {
+    "E1": {
+     "evidence_class": "HOLDOUT-DTI",
+     "evaluator_version": "gems57-pooled-hide-v2",
+     "delta": -0.008205752216881967,
+     "ci95": [
+      -0.020783445826922296,
+      0.0040840415816806195
+     ],
+     "withheld_positive_pixels": 11321
+    }
+   },
+   "bootstrap": {
+    "method": "paired physical spatial-cluster percentile",
+    "clusters": 159,
+    "draws": 2000,
+    "seed": 520810,
+    "confidence": 0.95,
+    "caveat": "Conditional on fitted folds, catalogue labels and fixed budgets; not a leaderboard interval."
+   },
+   "implementation_sha256": {
+    "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+    "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+    "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+    "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+   }
+  },
+  "R": {
+   "evidence_class": "HOLDOUT-DTI",
+   "evaluator_version": "gems57-pooled-hide-v2",
+   "alpha": 0.2,
+   "beta": 0.8,
+   "triangular_radius_m": 300.0,
+   "pooled": true,
+   "scores": {
+    "C": {
+     "evidence_class": "HOLDOUT-DTI",
+     "evaluator_version": "gems57-pooled-hide-v2",
+     "dti": 0.07058102917606887,
+     "ci95": [
+      0.05969871785712464,
+      0.08209812371657257
+     ],
+     "withheld_positive_pixels": 11321,
+     "tpw": 1184.689143573656,
+     "fpw": 37455.35938640553,
+     "fnw": 10136.310856426344
+    },
+    "R": {
+     "evidence_class": "HOLDOUT-DTI",
+     "evaluator_version": "gems57-pooled-hide-v2",
+     "dti": 0.047958857164268634,
+     "ci95": [
+      0.04231017295171152,
+      0.053736720001828726
+     ],
+     "withheld_positive_pixels": 11321,
+     "tpw": 800.6398573191561,
+     "fpw": 37386.89227039662,
+     "fnw": 10520.36014268084
+    }
+   },
+   "best_comparable_control": "R",
+   "paired_differences": {
+    "R": {
+     "evidence_class": "HOLDOUT-DTI",
+     "evaluator_version": "gems57-pooled-hide-v2",
+     "delta": 0.022622172011800237,
+     "ci95": [
+      0.012440074240383391,
+      0.03322398762822947
+     ],
+     "withheld_positive_pixels": 11321
+    }
+   },
+   "bootstrap": {
+    "method": "paired physical spatial-cluster percentile",
+    "clusters": 159,
+    "draws": 2000,
+    "seed": 520810,
+    "confidence": 0.95,
+    "caveat": "Conditional on fitted folds, catalogue labels and fixed budgets; not a leaderboard interval."
+   },
+   "implementation_sha256": {
+    "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+    "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+    "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+    "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+   }
+  }
+ },
+ "leakage_canary": {
+  "h19_5_support_proximity": {
+   "auc": 0.6360456580322704,
+   "leakage_flag": false
+  },
+  "straight_edge_H77_1": {
+   "auc": 0.5147371124090923,
+   "leakage_flag": false
+  },
+  "visible_catalogue_proximity": {
+   "auc": 0.7553170902894326,
+   "leakage_flag": false
+  },
+  "S0_credit": {
+   "auc": 0.6391906365014869,
+   "leakage_flag": false
+  },
+  "S1_credit": {
+   "auc": 0.6407530977828814,
+   "leakage_flag": false
+  }
+ },
+ "implementation_sha256": {
+  "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+  "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+  "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+  "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+ }
+}

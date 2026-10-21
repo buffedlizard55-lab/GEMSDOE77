@@ -1,0 +1,36 @@
+name: Verify evidence and site
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: python scripts/build_site.py
+      - run: python scripts/lia_build_site.py
+      - run: python -m pytest -q
+      - name: Ensure model experiment stays stopped
+        run: |
+          python - <<'PY'
+          import json
+          c=json.load(open('evidence/run_card.json'))
+          assert c['verdict']=='negative'
+          assert c['ok_to_download'] and not c['ok_to_submit']
+          assert not c['protocol_unique'] and c['weekly_slots_used']==0
+          lanes=json.load(open('docs/data/lanes.json'))['lanes']
+          assert all(x['verdict']=='negative' for x in lanes)
+          assert all(x['protocol_unique'] is False for x in lanes)
+          assert all('Not OK to submit' in x['upload'] for x in lanes)
+          PY

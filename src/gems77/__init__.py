@@ -1,4 +1,6 @@
-"""GEMSDOE77 — Anisotropic Dip-Slip Step Physics, SAR-PU Propensity Deconfounding,
-Multi-Scale Radon Continuity, and Flank-Zeroed Submodular Expected-DTI Allocation."""
+"""GEMS77 research: stopped selective-U pilot and quarantined inherited H77C.
 
-__all__ = ["features", "models", "emit"]
+Active auditing uses the unchanged vendor/gems57 evaluator, gate and writer.
+Inherited modules are compatibility/research history, not promotion clearance.
+"""
+__version__ = "77.2.0"

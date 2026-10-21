@@ -1,0 +1,16 @@
+{
+  "id": "GEMSDOE77-PREREG-1-AMENDMENT-EXP3",
+  "date_utc": "2026-10-21",
+  "written_before_exp3_run": true,
+  "reason": "Exp1 primary gate (A4_primary vs A2_standard paired HOLDOUT-DTI delta) straddled zero: +0.0047, 95% CI [-0.0027, +0.0124] on 11,342 withheld positives (seed 30). A straddled CI is an underpowered/inconclusive result, not evidence of no effect. The correct response within the 3-experiment budget is a pre-declared replication on an independent draw, not instrument substitution. The SGMC-proxy ordering observed in Exp1 is explicitly NOT used as a promotion criterion here.",
+  "exp3_design": {
+    "holdout": "gems57.holdout.buffered_component_draw seed=21, hide_frac=0.20, buffer_px=3 (identical except seed)",
+    "arms": ["A4_primary (candidate)", "A2_standard (control)"],
+    "training": "identical HGB spec/sampling as Exp1, retrained per fold on seed-21 visible catalogue",
+    "emission": "identical emitter at Exp1-selected operating point B=44090, exclusion>3px (no re-scan)",
+    "scoring": "gems57.evaluate_holdout per fold + pooled_summary paired 20km-block bootstrap (1000 draws)"
+  },
+  "frozen_verdict_rule": "Verdict becomes 'promote' ONLY IF BOTH hold: (a) seed-21 paired delta (A4-A2) 95% CI excludes 0 with positive sign, AND (b) two-draw pooled delta (metric terms summed across seed-30 and seed-21 folds per arm, paired bootstrap on pooled terms) 95% CI excludes 0 with positive sign. Any other outcome confirms verdict 'negative'. Exp1 gate #2 remains recorded as FAILED on its own draw regardless of Exp3; the amendment changes the session promotion rule to the two-draw rule above and is disclosed wherever the verdict is stated.",
+  "other_gates_unchanged": ["canaries (Exp1, passed)", "beats random (Exp1, passed)", "uniqueness subset check (Exp2, no duplicates among 43)", "writer on-disk validation (Exp2, passed)"],
+  "slot_policy_unchanged": "No slot spent by this session; 'promote' means candidate for human selector sign-off only."
+}

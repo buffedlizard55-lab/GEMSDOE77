@@ -1,0 +1,62 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>Why 0.2778 · GEMSDOE77</title>
+<link rel="stylesheet" href="assets/lia.css"></head><body>
+<header><div class="wrap"><span class="brand">GEMSDOE77 · DOE GEMS Prize</span><a href="lia.html">LIA lane overview</a> <a href="lia-executive-summary.html">How to submit</a> <a href="lia-analysis.html" class=here>Why 0.2778</a> <a href="lia-sources.html">Sources & limits</a> <a href="index.html">All GEMSDOE77 lanes</a>
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE77">GitHub</a></div></header><main><div class="wrap"><h1>Why GEMSDOE32 h33-2-b2 scored 0.2778, and whether it can be beaten</h1>
+<p class="muted">The full text is in <a href="https://github.com/buffedlizard55-lab/GEMSDOE77/blob/main/reports/why_02778.md"><code>reports/why_02778.md</code></a>. Every number comes from <code>evidence/*.json</code>.</p>
+<h2>1. The raster, re-measured from its bytes</h2>
+<p>sha256 <code>c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9</code>: 37,654 binary dots, 0 on catalogue pixels, median nearest-neighbour spacing 3.00 px.
+The closest dot is 224 m from a mapped fault. <b>100%</b> of the dots lie exactly on the H19-5 ridge set (19GEMSDOE).</p>
+<h2>2. Mechanism</h2>
+<p>DTI = T / (0.2 (T + S − M<sub>k</sub>) + 0.8 K). Each dot adds a fixed α to the denominator, so it pays off only if its kernel credit exceeds α·DTI (≈ 0.058).
+Kernel credit is a max, not a sum, so binary dots spaced about 3 px apart are near-optimal. Known-fault pixels are masked from scoring, and test truth contains only faults <i>not</i> in the catalogue.</p>
+<h2 id="inversion">3. Live-score inversion (95 organizer-scored rasters)</h2>
+<p>E[TP<sub>i</sub>] = Σ<sub>y</sub> h(y) M<sub>i</sub>(y) holds exactly (linearity of expectation). We fit h ≥ 0 by NNLS on the linearised DTI identity.</p>
+<table><tr><th>Model</th><th>Parameters</th><th>LOO RMSE</th><th>LOO Spearman</th></tr>
+<tr><td>Catalogue distance only</td><td>6</td><td>0.1355</td><td>+0.203</td></tr>
+<tr><td>H19-5 support distance only</td><td>5</td><td>0.0365</td><td>+0.867</td></tr>
+<tr><td><b>S0: support × catalogue</b></td><td>9</td><td>0.0324</td><td>+0.917</td></tr>
+<tr><td>S1: S0 + H77-1 straight edges (off-support)</td><td>18</td><td>0.0328</td><td>+0.912</td></tr>
+<tr><td>S2: S0 + H77-2 strain deficit (off-support)</td><td>18</td><td>0.0324</td><td>+0.917</td></tr></table>
+<p>Predicting the mean gives RMSE 0.0853. S0 implies K ≈ 10,366 hidden-truth pixels.</p>
+<h3>The lineage, reproduced by S0 (INSTRUMENT, in-sample; S0 runs a consistent +0.003 to +0.013 high)</h3>
+<table><tr><th>Step</th><th>Score (OWNER-REPORTED)</th><th>S0</th><th>Dots</th><th>Credit per dot</th></tr><tr><td>H19-5 solid ridges (19GEMSDOE)</td><td>0.1922</td><td>0.1946</td><td>121,131</td><td>0.053</td></tr><tr><td>dotted d=1.5 px (GEMSDOE24)</td><td>0.2477</td><td>0.2593</td><td>60,069</td><td>0.090</td></tr><tr><td>dotted d=2.8 px (GEMSDOE25)</td><td>0.2600</td><td>0.2734</td><td>44,090</td><td>0.109</td></tr><tr><td>d2.8 minus dots &lt;=1 px from catalogue (GEMSDOE28/31)</td><td>0.2708</td><td>0.2824</td><td>40,199</td><td>0.118</td></tr><tr><td>d2.8 minus dots &lt;=2 px (200 m) from catalogue (GEMSDOE32)</td><td>0.2778</td><td>0.2879</td><td>37,654</td><td>0.125</td></tr></table>
+<h3>Champion credit per dot by zone (break-even bar 0.0576)</h3>
+<table><tr><th>Zone (support / catalogue distance)</th><th>Dots</th><th>Mean isolated credit</th></tr><tr><td>on/cat&lt;=0.4km</td><td>3,825</td><td>0.049</td></tr><tr><td>on/cat0.4-2km</td><td>15,305</td><td>0.100</td></tr><tr><td>on/cat&gt;2km</td><td>18,524</td><td>0.208</td></tr></table>
+<h2>4. Can it be beaten?</h2>
+<p><b>Without the uniqueness rule: yes, modestly.</b> Pruning the dots that fall below the bar helps. <b>Under the rule: very likely not, with the fields known today.</b>
+The 3 px overlap radius equals the kernel radius, so at least 30% of a unique raster's dots must earn credit more than 3 px from H19-5.
+To tie the champion, those dots need at least <b>0.056</b> credit each.
+Neither tested off-support field improves the leave-one-out fit.</p>
+<table><tr><th>Target</th><th>Score</th><th>Credit per dot needed (at 37,654 dots)</th><th>Recall of hidden truth</th></tr><tr><td>leaderboard #1 (ORGANIZER-CONFIRMED public LB, 2026-10-21)</td><td>0.4413</td><td>0.194</td><td>0.70</td></tr><tr><td>user-quoted 0.3195 (not on current leaderboard top 20)</td><td>0.3195</td><td>0.139</td><td>0.50</td></tr></table>
+<h2 id="hypotheses">5. Hypotheses (pre-registered before the holdout; <a href="https://github.com/buffedlizard55-lab/GEMSDOE77/blob/main/docs/research/hypotheses.md">full table</a>)</h2>
+<table><tr><th>Rank</th><th>ID</th><th>Signature</th><th>Result</th></tr>
+<tr><td>1</td><td>H77-3 live-inversion allocation</td><td>Truth density from 95 scores; greedy expected-credit placement</td><td>S0 LOO ρ +0.917. It explains the lineage.</td></tr>
+<tr><td>2</td><td>H77-1 straight-edge field</td><td>det_elev, NMS thin edges × 1.5 km structure-tensor coherence</td><td>Live: inconclusive (one in-sample bin; no LOO gain). Holdout alone: 0.0788 vs random 0.0480</td></tr>
+<tr><td>3</td><td>H77-4 parallel strands</td><td>3–6 px ring around the support</td><td>Negative (h = 0)</td></tr>
+<tr><td>4</td><td>H77-2 strain–catalogue deficit</td><td>rank(geod_2ndinv, shear) − rank(catalogue density)</td><td>Negative (no change)</td></tr>
+<tr><td>5</td><td>H77-5 tilted-block valley asymmetry</td><td>Cross-valley elevation skewness</td><td>Not run (budget)</td></tr></table>
+<h2>6. The GEMSDOE77 candidate: holdout, canary, criteria</h2>
+<p><b>HOLDOUT-DTI</b> (gems57-pooled-hide-v2, 11,321 withheld positives, 95% CI from a paired 20 km block bootstrap). Candidate: <b>0.0706</b> [0.0599, 0.0815].</p>
+<table><tr><th>Comparator (same holdout)</th><th>HOLDOUT-DTI [95% CI]</th><th>Candidate − comparator [95% CI]</th></tr><tr><td>Champion construction rebuilt fold-fair</td><td>0.0958 [0.0831, 0.1081]</td><td>-0.0252 [-0.0303, -0.0203]</td></tr><tr><td>H77-1 straight edges alone</td><td>0.0788 [0.0658, 0.0912]</td><td>-0.0082 [-0.0208, +0.0041]</td></tr><tr><td>Random dots (same count)</td><td>0.0480 [0.0423, 0.0537]</td><td>+0.0226 [+0.0124, +0.0332]</td></tr></table>
+<table><tr><th>Leakage canary: feature alone</th><th>AUC</th><th>&gt; 0.90?</th></tr><tr><td>h19_5_support_proximity</td><td>0.636</td><td>clear</td></tr><tr><td>straight_edge_H77_1</td><td>0.515</td><td>clear</td></tr><tr><td>visible_catalogue_proximity</td><td>0.755</td><td>clear</td></tr><tr><td>S0_credit</td><td>0.639</td><td>clear</td></tr><tr><td>S1_credit</td><td>0.641</td><td>clear</td></tr></table>
+<table><tr><th>Pre-registered promotion criterion</th><th>Result</th></tr><tr><td>1_valid_format</td><td>PASS</td></tr><tr><td>2_unique_informative_reading</td><td>PASS</td></tr><tr><td>3_leakage_canary_clear</td><td>PASS</td></tr><tr><td>4_S0_projection_delta_ge_0</td><td>FAIL</td></tr><tr><td>5_holdout_paired_ci_not_entirely_below_0</td><td>FAIL</td></tr></table>
+<p class="verdict"><b>Verdict: negative.</b> The informative-only reading has worst overlap 0.660, but the audit records 35 overlap firings on space-filling rasters under the literal protocol reading. Therefore this TIFF is not protocol-unique and is not approved for submission; local format validity does not confirm portal acceptance. The selector has not approved a slot.</p>
+<h2 id="uniqueness">7. Uniqueness audit (template tool <code>gems57.uniqueness</code>, unmodified)</h2>
+<ul><li><b>Phase 1 (placement surface, before placement):</b> worst Spearman 0.620 (GEMSDOE48:docs/downloads/gemsdoe48-h58-continuous-pignistic-20261008T175914Z-e58.tif). No firing.</li>
+<li><b>First build (final dots): logged DUPLICATE, not shipped.</b> It had 69 like-for-like firings, including the genuine dot field GEMSDOE48 h59-cover-ds-belief-b2xh33d (overlap 0.704, halo coverage 0.165). Capping overlap against H19-5 alone was not enough.</li>
+<li><b>Repair:</b> a per-raster overlap budget of 0.66 against all 765 informative registry rasters. The worst is 0.660 (GEMSDOE31:docs/downloads/gemsdoe31-add-arm-d28-20261004-8acb75e1-allfinite.tif).</li>
+<li><b>Post-merge check</b> against 19 rasters published after the snapshot (the parallel GEMSDOE77 lanes and GEMSDOE73–76): worst informative overlap 0.229, worst ρ 0.015, 0 duplicates.</li>
+<li><b>Final dots, template audit:</b> worst ρ 0.377; 0 ρ firings; 0 overlap firings among informative rasters; 35 firings on space-filling rasters.
+A space-filling raster's 3 px halo covers ≥ 70% of allowed cells (for example the r13 lattice and 400k-dot surfaces), so uniformly random dots would also exceed 0.70 against it. The test carries no information there (IR-77-04).</li></ul>
+<h2 id="template">8. Shared-template issues (reported; no private fork)</h2>
+<ul><li><code>gems.validate_submission</code> takes the footprint from feature band 1 (5,165,852 cells) instead of <code>sample_submission.tif</code> (5,167,373 cells).
+A correct NaN-outside file then "fails" with 1,540 NaN inside and 3,061 finite outside. A file built to pass it leaves 3,061 scored cells as NaN, which is one portal-rejection mechanism.
+Proposed upstream patch: <a href="https://github.com/buffedlizard55-lab/GEMSDOE77/blob/main/reports/template_fix_validate_footprint.patch"><code>reports/template_fix_validate_footprint.patch</code></a>.</li>
+<li>GEMSDOE71's vendored <code>gems57/grid.py</code> differs from its own pin (a local edit to <code>REPO_ROOT</code>). This repo vendors the upstream bytes (GEMSDOE66@0f6762f0); all 11 pins verify.</li></ul></div></main>
+<footer><div class="wrap">Selector status for every file on this page: not approved (the slot decision is a separate selector step). Generated by <code>scripts/lia_build_site.py</code> from <code>docs/data/*.json</code> and
+<code>evidence/*.json</code>. Labels: <b>ORGANIZER-CONFIRMED</b> (public leaderboard), <b>OWNER-REPORTED</b>
+(transcribed from the submission page), <b>HOLDOUT-DTI</b> (local hide-and-recover), <b>INSTRUMENT</b>
+(projection, never a score).</div></footer>
+<script>document.querySelectorAll('button[data-copy]').forEach(b=>b.onclick=()=>{navigator.clipboard.writeText(b.dataset.copy);b.textContent='Copied';setTimeout(()=>b.textContent='Copy',1200)})</script>
+</body></html>

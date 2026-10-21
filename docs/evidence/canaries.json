@@ -1,0 +1,332 @@
+{
+  "evidence_class": "LEAKAGE-CANARY",
+  "threshold": 0.9,
+  "any_flag": false,
+  "rows": [
+    {
+      "feature": "K",
+      "fold": 0,
+      "auc": 0.4593548220917921,
+      "positive_pixels": 28786,
+      "negative_proxy_pixels": 2375351,
+      "leakage_flag": false,
+      "interpretation": "LEAKAGE-CANARY diagnostic, not HOLDOUT-DTI or a leaderboard score"
+    },
+    {
+      "feature": "Th",
+      "fold": 0,
+      "auc": 0.46731151574001206,
+      "positive_pixels": 28786,
+      "negative_proxy_pixels": 2375351,
+      "leakage_flag": false,
+      "interpretation": "LEAKAGE-CANARY diagnostic, not HOLDOUT-DTI or a leaderboard score"
+    },
+    {
+      "feature": "U",
+      "fold": 0,
+      "auc": 0.48964671514164315,
+      "positive_pixels": 28786,
+      "negative_proxy_pixels": 2375351,
+      "leakage_flag": false,
+      "interpretation": "LEAKAGE-CANARY diagnostic, not HOLDOUT-DTI or a leaderboard score"
+    },
+    {
+      "feature": "absolute_selective_U",
+      "fold": 0,
+      "auc": 0.501619310105794,
+      "positive_pixels": 28786,
+      "negative_proxy_pixels": 2375351,
+      "leakage_flag": false,
+      "interpretation": "LEAKAGE-CANARY diagnostic, not HOLDOUT-DTI or a leaderboard score"
+    },
+    {
+      "feature": "principal_curvature",
+      "fold": 0,
+      "auc": 0.4994376249079241,
+      "positive_pixels": 28786,
+      "negative_proxy_pixels": 2375351,
+      "leakage_flag": false,
+      "interpretation": "LEAKAGE-CANARY diagnostic, not HOLDOUT-DTI or a leaderboard score"
+    },
+    {
+      "feature": "anisotropy",
+      "fold": 0,
+      "auc": 0.4993399286098298,
+      "positive_pixels": 28786,
+      "negative_proxy_pixels": 2375351,
+      "leakage_flag": false,
+      "interpretation": "LEAKAGE-CANARY diagnostic, not HOLDOUT-DTI or a leaderboard score"
+    },
+    {
+      "feature": "common_mode_curvature",
+      "fold": 0,
+      "auc": 0.5039125040974541,
+      "positive_pixels": 28786,
+      "negative_proxy_pixels": 2375351,
+      "leakage_flag": false,
+      "interpretation": "LEAKAGE-CANARY diagnostic, not HOLDOUT-DTI or a leaderboard score"
+    },
+    {
+      "feature": "candidate",
+      "fold": 0,
+      "auc": 0.5002175696109797,
+      "positive_pixels": 28786,
+      "negative_proxy_pixels": 2375351,
+      "leakage_flag": false,
+      "interpretation": "LEAKAGE-CANARY diagnostic, not HOLDOUT-DTI or a leaderboard score"
+    },
+    {
+      "feature": "constant_001",
+      "fold": 0,
+      "auc": 0.5,
+      "positive_pixels": 28786,
+      "negative_proxy_pixels": 2375351,
+      "leakage_flag": false,
+      "interpretation": "LEAKAGE-CANARY diagnostic, not HOLDOUT-DTI or a leaderboard score"
+    },
+    {
+      "feature": "K",
+      "fold": 1,
+      "auc": 0.4022988655438548,
+      "positive_pixels": 12103,
+      "negative_proxy_pixels": 1302284,
+      "leakage_flag": false,
+      "interpretation": "LEAKAGE-CANARY diagnostic, not HOLDOUT-DTI or a leaderboard score"
+    },
+    {
+      "feature": "Th",
+      "fold": 1,
+      "auc": 0.4254992220161565,
+      "positive_pixels": 12103,
+      "negative_proxy_pixels": 1302284,
+      "leakage_flag": false,
+      "interpretation": "LEAKAGE-CANARY diagnostic, not HOLDOUT-DTI or a leaderboard score"
+    },
+    {
+      "feature": "U",
+      "fold": 1,
+      "auc": 0.48122491095772296,
+      "positive_pixels": 12103,
+      "negative_proxy_pixels": 1302284,
+      "leakage_flag": false,
+      "interpretation": "LEAKAGE-CANARY diagnostic, not HOLDOUT-DTI or a leaderboard score"
+    },
+    {
+      "feature": "absolute_selective_U",
+      "fold": 1,
+      "auc": 0.526296666726934,
+      "positive_pixels": 12103,
+      "negative_proxy_pixels": 1302284,
+      "leakage_flag": false,
+      "interpretation": "LEAKAGE-CANARY diagnostic, not HOLDOUT-DTI or a leaderboard score"
+    },
+    {
+      "feature": "principal_curvature",
+      "fold": 1,
+      "auc": 0.5121336464293071,
+      "positive_pixels": 12103,
+      "negative_proxy_pixels": 1302284,
+      "leakage_flag": false,
+      "interpretation": "LEAKAGE-CANARY diagnostic, not HOLDOUT-DTI or a leaderboard score"
+    },
+    {
+      "feature": "anisotropy",
+      "fold": 1,
+      "auc": 0.494308286341909,
+      "positive_pixels": 12103,
+      "negative_proxy_pixels": 1302284,
+      "leakage_flag": false,
+      "interpretation": "LEAKAGE-CANARY diagnostic, not HOLDOUT-DTI or a leaderboard score"
+    },
+    {
+      "feature": "common_mode_curvature",
+      "fold": 1,
+      "auc": 0.4858412499377761,
+      "positive_pixels": 12103,
+      "negative_proxy_pixels": 1302284,
+      "leakage_flag": false,
+      "interpretation": "LEAKAGE-CANARY diagnostic, not HOLDOUT-DTI or a leaderboard score"
+    },
+    {
+      "feature": "candidate",
+      "fold": 1,
+      "auc": 0.5042538907153964,
+      "positive_pixels": 12103,
+      "negative_proxy_pixels": 1302284,
+      "leakage_flag": false,
+      "interpretation": "LEAKAGE-CANARY diagnostic, not HOLDOUT-DTI or a leaderboard score"
+    },
+    {
+      "feature": "constant_001",
+      "fold": 1,
+      "auc": 0.5,
+      "positive_pixels": 12103,
+      "negative_proxy_pixels": 1302284,
+      "leakage_flag": false,
+      "interpretation": "LEAKAGE-CANARY diagnostic, not HOLDOUT-DTI or a leaderboard score"
+    },
+    {
+      "feature": "K",
+      "fold": 2,
+      "auc": 0.3992325614076637,
+      "positive_pixels": 8493,
+      "negative_proxy_pixels": 530495,
+      "leakage_flag": false,
+      "interpretation": "LEAKAGE-CANARY diagnostic, not HOLDOUT-DTI or a leaderboard score"
+    },
+    {
+      "feature": "Th",
+      "fold": 2,
+      "auc": 0.4807930483698887,
+      "positive_pixels": 8493,
+      "negative_proxy_pixels": 530495,
+      "leakage_flag": false,
+      "interpretation": "LEAKAGE-CANARY diagnostic, not HOLDOUT-DTI or a leaderboard score"
+    },
+    {
+      "feature": "U",
+      "fold": 2,
+      "auc": 0.4616107516386935,
+      "positive_pixels": 8493,
+      "negative_proxy_pixels": 530495,
+      "leakage_flag": false,
+      "interpretation": "LEAKAGE-CANARY diagnostic, not HOLDOUT-DTI or a leaderboard score"
+    },
+    {
+      "feature": "absolute_selective_U",
+      "fold": 2,
+      "auc": 0.47794856396918967,
+      "positive_pixels": 8493,
+      "negative_proxy_pixels": 530495,
+      "leakage_flag": false,
+      "interpretation": "LEAKAGE-CANARY diagnostic, not HOLDOUT-DTI or a leaderboard score"
+    },
+    {
+      "feature": "principal_curvature",
+      "fold": 2,
+      "auc": 0.4843708588996057,
+      "positive_pixels": 8493,
+      "negative_proxy_pixels": 530495,
+      "leakage_flag": false,
+      "interpretation": "LEAKAGE-CANARY diagnostic, not HOLDOUT-DTI or a leaderboard score"
+    },
+    {
+      "feature": "anisotropy",
+      "fold": 2,
+      "auc": 0.49599310134254787,
+      "positive_pixels": 8493,
+      "negative_proxy_pixels": 530495,
+      "leakage_flag": false,
+      "interpretation": "LEAKAGE-CANARY diagnostic, not HOLDOUT-DTI or a leaderboard score"
+    },
+    {
+      "feature": "common_mode_curvature",
+      "fold": 2,
+      "auc": 0.46838999910028734,
+      "positive_pixels": 8493,
+      "negative_proxy_pixels": 530495,
+      "leakage_flag": false,
+      "interpretation": "LEAKAGE-CANARY diagnostic, not HOLDOUT-DTI or a leaderboard score"
+    },
+    {
+      "feature": "candidate",
+      "fold": 2,
+      "auc": 0.4880427768671987,
+      "positive_pixels": 8493,
+      "negative_proxy_pixels": 530495,
+      "leakage_flag": false,
+      "interpretation": "LEAKAGE-CANARY diagnostic, not HOLDOUT-DTI or a leaderboard score"
+    },
+    {
+      "feature": "constant_001",
+      "fold": 2,
+      "auc": 0.5,
+      "positive_pixels": 8493,
+      "negative_proxy_pixels": 530495,
+      "leakage_flag": false,
+      "interpretation": "LEAKAGE-CANARY diagnostic, not HOLDOUT-DTI or a leaderboard score"
+    },
+    {
+      "feature": "K",
+      "fold": 3,
+      "auc": 0.39978090090894186,
+      "positive_pixels": 9349,
+      "negative_proxy_pixels": 753806,
+      "leakage_flag": false,
+      "interpretation": "LEAKAGE-CANARY diagnostic, not HOLDOUT-DTI or a leaderboard score"
+    },
+    {
+      "feature": "Th",
+      "fold": 3,
+      "auc": 0.38161825891049717,
+      "positive_pixels": 9349,
+      "negative_proxy_pixels": 753806,
+      "leakage_flag": false,
+      "interpretation": "LEAKAGE-CANARY diagnostic, not HOLDOUT-DTI or a leaderboard score"
+    },
+    {
+      "feature": "U",
+      "fold": 3,
+      "auc": 0.4138792776925356,
+      "positive_pixels": 9349,
+      "negative_proxy_pixels": 753806,
+      "leakage_flag": false,
+      "interpretation": "LEAKAGE-CANARY diagnostic, not HOLDOUT-DTI or a leaderboard score"
+    },
+    {
+      "feature": "absolute_selective_U",
+      "fold": 3,
+      "auc": 0.45730328577578494,
+      "positive_pixels": 9349,
+      "negative_proxy_pixels": 753806,
+      "leakage_flag": false,
+      "interpretation": "LEAKAGE-CANARY diagnostic, not HOLDOUT-DTI or a leaderboard score"
+    },
+    {
+      "feature": "principal_curvature",
+      "fold": 3,
+      "auc": 0.496190633153079,
+      "positive_pixels": 9349,
+      "negative_proxy_pixels": 753806,
+      "leakage_flag": false,
+      "interpretation": "LEAKAGE-CANARY diagnostic, not HOLDOUT-DTI or a leaderboard score"
+    },
+    {
+      "feature": "anisotropy",
+      "fold": 3,
+      "auc": 0.5019202747841934,
+      "positive_pixels": 9349,
+      "negative_proxy_pixels": 753806,
+      "leakage_flag": false,
+      "interpretation": "LEAKAGE-CANARY diagnostic, not HOLDOUT-DTI or a leaderboard score"
+    },
+    {
+      "feature": "common_mode_curvature",
+      "fold": 3,
+      "auc": 0.4884815784734444,
+      "positive_pixels": 9349,
+      "negative_proxy_pixels": 753806,
+      "leakage_flag": false,
+      "interpretation": "LEAKAGE-CANARY diagnostic, not HOLDOUT-DTI or a leaderboard score"
+    },
+    {
+      "feature": "candidate",
+      "fold": 3,
+      "auc": 0.4984295343914147,
+      "positive_pixels": 9349,
+      "negative_proxy_pixels": 753806,
+      "leakage_flag": false,
+      "interpretation": "LEAKAGE-CANARY diagnostic, not HOLDOUT-DTI or a leaderboard score"
+    },
+    {
+      "feature": "constant_001",
+      "fold": 3,
+      "auc": 0.5,
+      "positive_pixels": 9349,
+      "negative_proxy_pixels": 753806,
+      "leakage_flag": false,
+      "interpretation": "LEAKAGE-CANARY diagnostic, not HOLDOUT-DTI or a leaderboard score"
+    }
+  ],
+  "warning": "AUC below threshold does not prove absence of leakage. Negatives are unlabelled proxies."
+}
