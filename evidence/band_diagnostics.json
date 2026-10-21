@@ -1,0 +1,19 @@
+{
+  "band6_tag_claim": "tc - Tilt angle or total curvature - magnetic field derivative for edge detection",
+  "band6_spearman_vs_external_TC_radiometric": 0.999951791113324,
+  "band6_spearman_vs_derived_tilt_deg": 0.019949396585376457,
+  "band6_range_in_footprint": [
+    2.9534237384796143,
+    88.56654357910156
+  ],
+  "band6_conclusion": "radiometric total count (tag is wrong); shipped stack has no tilt band",
+  "band18_spearman_vs_grav_dx": 0.9450998798494928,
+  "band18_spearman_vs_grav_dy": 0.026365177924279313,
+  "band18_spearman_vs_grav_gradmag": -0.003953964565531005,
+  "band18_min_in_footprint": -15.441243171691895,
+  "band3_spearman_vs_tmi_gradmag": 0.997615985596453,
+  "band9_spearman_vs_fft_vertical_derivative_tmi": 0.9899206466292386,
+  "band19_spearman_vs_dem_gradmag": 0.9719117666473533,
+  "n_sample": 200000,
+  "pseudogravity_global_slope": 8.112106509337603e-05
+}

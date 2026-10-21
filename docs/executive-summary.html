@@ -1,0 +1,46 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Executive summary — how to submit (and why this GEMSDOE77 file must not be) · GEMSDOE77</title><link rel="stylesheet" href="assets/site.css"></head><body><div class="wrap">
+<header><h1>Executive summary: exactly how a GEMS submission is made</h1>
+<p>For the human selector. Current GEMSDOE77 artifact: <span class="no">DO NOT SUBMIT</span> (verdict negative — see the
+<a href="index.html">main page banner</a>). The procedure below is the complete, correct path for any future
+<b>promoted</b> file, written so no step depends on memory.</p></header>
+
+<div class="card stop"><h2>⛔ This session's file: download for inspection, do not upload</h2>
+<p><code>gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif</code> (SHA-256 <code>20be05cc671c85484e4cfc8ea40d2fced71d7ec70f20ab915f36fcc68fcc4851</code>) is format-valid (all portal range/CRS/shape checks pass locally)
+but failed its preregistered science gate: two-draw paired HOLDOUT-DTI delta vs the standard-feature control
++0.0026 [-0.0030, +0.0080]
+(22,914 withheld pixels, evaluator gems57-pooled-hide-v2).
+Spending one of the team's weekly slots on it would buy noise, not information. If a human selector ever overrode
+this verdict, the unique name would be <code>gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros</code> and the Note-field text (103/140)
+would be <code>GEMSDOE77 contact-physics: derived tilt/AS/phase+front-base HGB, 44090 off-cat dots >3px, min-sep 2.8px</code> — recorded here only so the artifact is unambiguous, not as a recommendation.</p></div>
+
+<div class="card"><h2>Step-by-step submission (for a promoted file)</h2><ol>
+<li>Confirm the candidate's run card says <code>verdict: promote</code> and <code>download_ok_format_valid: true</code>, and re-check its SHA-256 after download against the run card (<code>sha256sum file.tif</code>).</li>
+<li>Confirm the weekly slot budget on the DrivenData submission page (this session spent 0 slots and cannot spend any).</li>
+<li>Go to the competition <b>Submit</b> page: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData #306</a> → <i>Submit file</i>.</li>
+<li><b>File to submit:</b> choose the single-band GeoTIFF (<code>.tif</code>) <i>or</i> the <code>.zip</code> containing exactly that one GeoTIFF (this repo's writer produces both; upload <b>one</b> of them, once).</li>
+<li><b>Note (optional):</b> paste the run card's note text verbatim (≤140 characters) so the submission is identifiable later.</li>
+<li>Submit, then record the organizer's returned score + submission ID + date in the repo ledger as ORGANIZER-CONFIRMED (only portal receipts earn that label; screenshots/summaries do not).</li>
+<li>Remember the two-round structure (problem page 967): before the deadline the team must select a <b>single</b> submission scored in both rounds — slot choice is a team/selector decision, never automated here.</li></ol></div>
+
+<div class="card"><h2>The portal error “Predicted values must be in range [0, 1]” — root causes &amp; the permanent fix</h2>
+<p>Two distinct defects produce this message, both measured in this data family:</p><ul>
+<li><b>Float sentinel written through:</b> <code>training_features.tif</code> uses nodata <code>-3.4028234663852886e+38</code>; thousands of such cells lie inside the footprint. Any pipeline that copies them into a prediction emits values far outside [0, 1].</li>
+<li><b>Nodata-tag / NaN-outside fragility:</b> files carrying a nodata tag outside [0, 1] (or relying on NaN handling) can be rejected by range scanning even when in-footprint values are legal.</li></ul>
+<p><b>Fix used here (shared <code>gems57.submission_writer</code>, fail-closed, no silent repair):</b> the prediction is
+validated in memory as finite in [0, 1] everywhere, written all-finite with <code>nodata=None</code> (0.0 outside the
+footprint and on the mapped catalogue), re-read from disk, and re-validated (single-band float32, EPSG:32611,
+3730×3292, transform identical to the sample submission) before the ZIP is packed. This session's file additionally
+passed an independent plain-rasterio re-read: 12,279,160/12,279,160 cells finite, min 0.0, max 1.0, zero NaN —
+<a href="downloads/verification_pass2.json">receipt</a>. Local validity is not organizer acceptance; it eliminates the
+known mechanical causes of the range error.</p></div>
+
+<div class="card"><h2>What “good” looks like at selection time (checklist)</h2><ul>
+<li>Run card: hypothesis, mechanism, named mimic, HOLDOUT-DTI + CI + withheld-positive count + evaluator version.</li>
+<li>Leakage canaries: every feature's symmetric holdout AUC ≤ 0.90.</li>
+<li>Promotion gates all green (paired CI vs controls excludes 0; uniqueness ρ ≤ 0.90 and mutual 3-px overlap ≤ 0.70; writer + independent re-read validation).</li>
+<li>Full-inventory uniqueness certification (beyond any single repo's local subset) and weekly-cap confirmation by the human selector.</li>
+<li>Only then: one upload, receipt recorded as ORGANIZER-CONFIRMED.</li></ul>
+<p><a href="index.html">← Back to the GEMSDOE77 results page</a></p></div>
+<footer>GEMSDOE77 executive summary · generated 2026-10-21 from measured receipts · no organizer score exists for any file in this repository.</footer>
+</div></body></html>

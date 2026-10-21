@@ -1,0 +1,6 @@
+# Competition data mirrors are restored by hash (scripts/restore_data.py); never committed.
+data/
+.cache/
+__pycache__/
+*.pyc
+.pytest_cache/
