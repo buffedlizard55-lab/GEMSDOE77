@@ -43,16 +43,16 @@ def test_submission_status_obeys_literal_uniqueness_gate():
     lanes=json.loads((DOC/'data/lanes.json').read_text())
     lia=lanes['lanes'][0]
     assert lia['protocol_unique'] is False
-    assert 'NOT OK TO SUBMIT' in lia['upload']
+    assert 'not ok to submit' in lia['upload'].lower()
     assert (DOC/lia['file']).is_file()
     page=(DOC/'lia-executive-summary.html').read_text()
     assert 'Literal protocol uniqueness: FAIL' in page
-    assert 'Do not spend a competition slot' in page
-    assert 'Can I submit it?</b> <b>No.' in page
+    assert ('Can I submit it?</b> <b>No' in page or 'Can I upload it?</b> <b>No' in page)
     assert 'Can I upload it?</b> Yes.' not in page
+    assert 'do not upload' in (DOC/'lia-executive-summary.html').read_text().lower()
     contact=lanes['lanes'][1]
     assert contact['protocol_unique'] is False
-    assert 'full registry uniqueness clearance is incomplete' in contact['upload']
+    assert 'not ok to submit' in contact['upload'].lower()
 
 
 def test_feed_is_not_score_verification():
@@ -78,6 +78,26 @@ def test_original_prompt_preserved_and_postrun_caveat_visible():
         assert 'confound' in s and ('not valid for promotion' in s or 'not valid promotion' in s)
     card=json.loads((ROOT/'evidence/run_card.json').read_text())
     assert not card['holdout_valid_for_promotion']
+
+
+def test_cross_lane_release_status_fails_closed():
+    """A diagnostic subset PASS must never become literal protocol clearance."""
+    lanes=json.loads((DOC/'data/lanes.json').read_text())
+    assert lanes['lanes']
+    assert all(x['protocol_unique'] is False for x in lanes['lanes'])
+    assert all('Not OK to submit' in x['upload'] for x in lanes['lanes'])
+
+    lia=json.loads((DOC/'data/run-card.json').read_text())
+    registry=lia['registry_comparison']
+    assert registry['template_literal_reading_duplicate'] is True
+    assert registry['space_filling_firings_in_template_audit'] > 0
+    assert registry['unique_informative_reading'] is True  # narrower diagnostic only
+
+    assert 'Not OK to submit' in (DOC/'index.html').read_text()
+    lia_page=(DOC/'lia.html').read_text()
+    assert '<b>Can I upload it?</b> <b>No' in lia_page
+    assert 'do not upload' in (DOC/'lia-executive-summary.html').read_text()
+    assert '<b>Can I upload it?</b> Yes' not in lia_page
 
 
 def test_pages_staging_preserves_legacy_docs_urls_and_excludes_secrets(tmp_path):

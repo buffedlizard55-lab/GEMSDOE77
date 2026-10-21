@@ -55,7 +55,7 @@ A protocol-unique, submission-approved TIFF has **not** been achieved; the measu
 
 ### Pass 3 — revalidate and edge-case review
 
-- Rebuilt both static-site families using their source scripts; static link/status suite and all repository tests pass: **54 passed, 3 skipped**.
+- Rebuilt both static-site families using their source scripts; static link/status suite and all repository tests pass: **55 passed, 3 skipped**.
 - Read the actual LIA TIFF back with rasterio. Its SHA-256 is `a8bfb844ab44b5d4157f75ec914a51655c27ae54727f7b4a088eca9d6f396898`; it is one float32 band, EPSG:32611, 3730×3292, matching the local sample mirror's transform; every cell is finite, min/max 0/1, and 38,323 positive cells. One-TIFF ZIP has byte-identical contents. It has zero positive overlap with the locally mirrored catalogue raster.
 - This is **format verification against owner-held local mirrors**, not independent organizer authentication or portal acceptance. No model rerun, holdout experiment, uniqueness exemption, or competition slot was used. No unique candidate is cleared for upload; keep the existing TIFF as a negative research artifact only.
 

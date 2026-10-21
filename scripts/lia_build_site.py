@@ -40,29 +40,26 @@ def page(fname, title, body):
 </body></html>"""
 
 
-def download_card(sub, card, literal_unique):
+def download_card(sub, card, uniq_ok):
     pv = sub["primary"]
     kb = pv["bytes"] / 1024
     tw, z = sub["twin_nan"], sub["zip"]
     verdict = card["verdict"].upper()
-    overlap = card["registry_comparison"]["worst_overlap_informative"]
-    return f"""<section class="card dl"><h2>⬇ Download candidate TIFF (inspection only)</h2>
-<a class="btn" href="downloads/{e(pv['file'])}" download>Download .tif ({kb:.0f} KB) — format-validated candidate</a>
-<a class="btn alt" href="downloads/{e(z['zip'])}" download>Same file as one-TIFF .zip</a>
-<div class="chips"><span class="chip ok">OK to download for inspection: YES</span>
+    vchip = "ok" if card["verdict"] == "promote" else "warn"
+    return f"""<section class="card dl"><h2>⬇ Download the GEMSDOE77 research candidate</h2>
+<a class="btn" href="downloads/{e(pv['file'])}" download>Download .tif ({kb:.0f} KB) — inspection only</a>
+<a class="btn alt" href="downloads/{e(z['zip'])}" download>Same bytes as one-TIFF .zip</a>
+<div class="chips"><span class="chip ok">OK to download: YES</span>
 <span class="chip ok">Local format: {pv['n_pass']}/{pv['n_checks']} checks PASS</span>
-<span class="chip bad">Literal protocol uniqueness: {'PASS' if literal_unique else 'FAIL — duplicate witness'}</span>
-<span class="chip ok">Informative-only subset: PASS (worst overlap {overlap:.3f} across {card['registry_comparison']['informative_rasters']})</span>
+<span class="chip {'ok' if uniq_ok else 'bad'}">Literal protocol uniqueness: {'PASS' if uniq_ok else 'FAIL'} (35 dense-raster overlap firings; informative-only worst {card['registry_comparison']['worst_overlap_informative']:.3f})</span>
 <span class="chip ok">Leakage canary: clear</span>
-<span class="chip warn">Run verdict: {verdict}</span>
-<span class="chip bad">Competition submission: NOT APPROVED</span></div>
-<p class="verdict"><b>Can I submit it?</b> <b>No. Do not spend a competition slot on this file.</b>
-The on-disk TIFF passes local format checks, but the registry audit records a duplicate under the literal protocol reading
-({card['registry_comparison']['space_filling_firings_in_template_audit']} overlap firings on space-filling registry rasters). Excluding those rasters produces an informative-only comparison, not protocol clearance.
-Portal acceptance has not been confirmed by an organizer receipt.
-<br><b>Why retain a download?</b> For research inspection and audit only. The pre-registered scientific verdict is <b>{verdict}</b>.
-The conservative live-inversion instrument is {f4(card['live_inversion_projection']['S0_delta'])} versus the owner-reported 0.2778 reference; this is a projection, not a score.
-The slot decision belongs to a separate selector step.</p>
+<span class="chip {vchip}">Run verdict: {verdict}</span>
+<span class="chip warn">Selector: not approved</span></div>
+<p class="verdict"><b>Can I upload it?</b> <b>No—not under the brief's literal uniqueness rule.</b> The GeoTIFF is safe to download for inspection and passes 17/17 local format checks, but the unchanged template reports 35 final-dot overlap firings against dense registry rasters. The narrower informative-raster diagnostic passes (worst overlap {card['registry_comparison']['worst_overlap_informative']:.3f}); it is not clearance because the brief says <i>any</i> registry raster.
+<br><b>Should I spend a weekly slot on it?</b> <b>No.</b> The pre-registered verdict is <b>{verdict}</b>.
+The conservative instrument projects it {f4(card['live_inversion_projection']['S0_delta'])} versus the 0.2778 champion; the in-sample instrument projects {f4(card['live_inversion_projection']['S1_delta'])}.
+A live score would only measure whether straight-edge dots in cells no prior raster covered earn credit.
+The slot decision belongs to the separate selector step.</p>
 <div class="copy"><span class="small">Name</span><code>{e(sub['name'])}</code><button data-copy="{e(sub['name'])}">Copy</button></div>
 <div class="copy"><span class="small">Note ({sub['note_chars']}/140)</span><code>{e(sub['note'])}</code><button data-copy="{e(sub['note'])}">Copy</button></div>
 <p class="small muted">sha256 <code>{e(pv['sha256'])}</code> · {pv['dots']:,} binary dots ·
@@ -75,11 +72,12 @@ def main():
     why, hold, alloc = j("evidence/why_02778.json"), j("evidence/e3_holdout_final.json"), j("evidence/e3_allocation.json")
     e2, e2b, uniq = j("evidence/e2_inversion.json"), j("evidence/e2_hypothesis_test.json"), j("evidence/e3_uniqueness.json")
     rc = card["registry_comparison"]
-    # The session protocol says ANY registry witness over the threshold is a
-    # duplicate. The informative-only subset is a diagnostic, not an exemption.
-    literal_unique = not (rc["template_literal_reading_duplicate"] or
-                          rc["template_like_for_like_reading_duplicate"])
-    dl = download_card(sub, card, literal_unique)
+    # The operative brief says *any* registry raster.  The historical run card
+    # records 35 literal overlap firings on dense/space-filling rasters, so the
+    # narrower "informative raster" interpretation is useful diagnostics but
+    # cannot certify protocol uniqueness or submission clearance.
+    uniq_ok = not rc["template_literal_reading_duplicate"]
+    dl = download_card(sub, card, uniq_ok)
     hc = card["holdout"]
     lin_rows = "".join(f"<tr><td>{e(r['step'])}</td><td>{f4(r['organizer_score'])}</td><td>{f4(r['S0_projection'])}</td>"
                        f"<td>{r['dots']:,}</td><td>{r['S0_credit_per_dot']:.3f}</td></tr>" for r in why["lineage"])
@@ -113,29 +111,29 @@ The hidden faults turn out to sit on the H19-5 ridge set (19GEMSDOE), away from 
 The champion is a 3-px binary thinning of that ridge set with near-catalogue dots removed. It earns about 0.125 credit per dot against a break-even bar of 0.058. <a href="lia-analysis.html">Full analysis</a>.</li>
 <li><b>Can we beat it?</b> Without the uniqueness rule, modestly: 3,825 of its dots sit below the bar. Under the brief's rule (at most 70% of dots within 3 px of any one registry raster), at least 30% of the dots must earn credit away from H19-5, and no tested off-support field shows leave-one-out-robust credit there.
 Leaderboard #1 is <b>0.4413</b> (ORGANIZER-CONFIRMED). The brief's 0.3195 is stale. At our dot count, 0.4413 needs {why['targets'][0]['credit_per_dot_needed']:.3f} credit per dot, 1.56× ours.</li>
-<li><b>The candidate TIFF passes local format checks but is not protocol-unique.</b> 66% of its dots are on the live-validated support, and 34% are on a new straight-edge field (H77-1). Its informative-only overlap cap was 0.66, but the template audit logged {rc['space_filling_firings_in_template_audit']} overlap firings against space-filling registry rasters; the literal rule marks it a duplicate.
+<li><b>The research candidate</b> is locally format-valid but not protocol-unique under the literal rule. 66% of its dots are on the live-validated support, and 34% are on a new straight-edge field (H77-1). Its informative-raster overlap was budgeted to 0.66, while 35 dense-raster firings prevent clearance.
 HOLDOUT-DTI {f4(hc['dti'])} [{f4(hc['ci95'][0])}, {f4(hc['ci95'][1])}] ({hc['evaluator_version']}, {hc['withheld_positive_pixels']:,} withheld positives).
 That is <b>below</b> the fold-fair champion construction (Δ {hold['pooled']['A0']['paired_differences']['A0']['delta']:+.4f} [{hold['pooled']['A0']['paired_differences']['A0']['ci95'][0]:+.4f}, {hold['pooled']['A0']['paired_differences']['A0']['ci95'][1]:+.4f}]) and above random (Δ +{hold['pooled']['R']['paired_differences']['R']['delta']:.3f}).
-The verdict is <b>negative</b>; do not submit or spend a slot.</li>
+Uniqueness costs about 0.04 in projected score, and the verdict is <b>negative</b>.</li>
 </ol>
 <h2>Experiments (budget: 3 of 3 used)</h2>
 <table><tr><th>#</th><th>Experiment</th><th>Result</th></tr>
 <tr><td>E1</td><td>Calibrate instruments against organizer scores</td><td>Catalogue distance alone: LOO ρ +{m1['catalogue distance']['loo_spearman']:.2f}. H19-5 support alone: +{m1['H19-5 support distance']['loo_spearman']:.3f}. Support × catalogue: +{m1['catalogue x support']['loo_spearman']:.3f} with 30 bins and +{S0['loo_spearman']:.3f} with the 9-bin S0 (n = 95)</td></tr>
 <tr><td>E2</td><td>Test hypotheses H77-1, H77-2 and H77-4 by live inversion</td><td>None improves the LOO fit. H77-1: ΔMSE {S1['delta_mse_vs_S0_mean']:+.6f} (CI straddles 0). H77-2: identical fit (all its bins get h = 0). H77-4 ring density 0. <b>Negative or inconclusive.</b></td></tr>
-<tr><td>E3</td><td>Build candidate; holdout, canary, literal uniqueness, validator</td><td>The first build was <b>logged as a DUPLICATE</b>. The rebuilt TIFF met the informative-only overlap budget of 0.66 but still triggers {rc['space_filling_firings_in_template_audit']} literal overlap firings on space-filling rasters. It is not protocol-unique and is retained for audit only. Candidate − champion rule (HOLDOUT-DTI) {hold['pooled']['A0']['paired_differences']['A0']['delta']:+.4f} [{hold['pooled']['A0']['paired_differences']['A0']['ci95'][0]:+.4f}, {hold['pooled']['A0']['paired_differences']['A0']['ci95'][1]:+.4f}]. S0 Δ {lp['S0_delta']:+.4f}. Verdict <b>{card['verdict']}</b></td></tr></table>
+<tr><td>E3</td><td>Build a distinct candidate; holdout, canary, uniqueness, validator</td><td>The first build was <b>logged as a DUPLICATE</b> by the template audit (it was not shipped). The repaired build stays within a 0.66 budget against informative rasters but still has 35 literal dense-raster firings. Candidate − champion rule (HOLDOUT-DTI) {hold['pooled']['A0']['paired_differences']['A0']['delta']:+.4f} [{hold['pooled']['A0']['paired_differences']['A0']['ci95'][0]:+.4f}, {hold['pooled']['A0']['paired_differences']['A0']['ci95'][1]:+.4f}]. S0 Δ {lp['S0_delta']:+.4f}. Verdict <b>{card['verdict']}</b></td></tr></table>
 <p>Start with the <a href="lia-executive-summary.html">executive summary (how to submit)</a>. The full brief is in the <a href="{REPO}#readme">README</a>.</p>"""
     (D / "lia.html").write_text(page("lia.html", "LIA lane overview", body))
 
     # ---------------- executive summary
     body = dl + f"""
-<h1>Executive summary: submission workflow and current stop</h1>
-<p><b>This candidate is not approved for submission.</b> Keep the TIFF for inspection only; do not upload it or spend a weekly slot. For a future selector-approved candidate:</p>
-<ol>
-<li>Wait for an explicit selector approval and a complete literal-rule uniqueness clearance. Format PASS or informative-subset uniqueness is not approval.</li>
-<li>Download the approved <b>.tif</b> or its one-TIFF <b>.zip</b> from its run card. Never use the research-only link above.</li>
-<li>Sign in at DrivenData and open the competition's <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">Submissions page</a>; confirm current rules and the remaining weekly allowance directly in the portal.</li>
-<li>Upload exactly one approved TIFF or ZIP, enter that candidate's unique name/note if requested, and submit only after the selector authorizes the slot.</li>
-<li>Save the organizer receipt, timestamp, exact filename and SHA-256. Only an organizer receipt can establish portal acceptance or an organizer-confirmed score.</li>
+<h1>Executive summary: download is allowed; submission is not</h1>
+<p class="verdict"><b>STOP: do not upload this candidate.</b> It is locally format-valid, but it fails the brief's literal uniqueness rule and its scientific verdict is negative. No selector has promoted it.</p>
+<h2>How to submit a future promoted file</h2><ol>
+<li>Require a run card with verdict <b>promote</b>, literal protocol uniqueness PASS, and explicit selector approval. This file has none of those.</li>
+<li>Download the promoted <b>.tif</b> or its one-TIFF ZIP and verify its SHA-256 against that run card.</li>
+<li>Sign in at DrivenData and open the competition's current submission page. Re-check the website's current allowance and rules; never share credentials in chat.</li>
+<li>Upload exactly one approved artifact. Verify one float32 band, the official sample grid, and finite in-footprint values in [0,1] before using a slot.</li>
+<li>Paste its ≤140-character note, submit, and preserve the organizer receipt with filename, hash, UTC time and result. Only that receipt is ORGANIZER-CONFIRMED.</li>
 </ol>
 <h2>Is the file OK?</h2>
 <table><tr><th>Requirement (official source)</th><th>This file</th></tr>
@@ -144,7 +142,8 @@ The verdict is <b>negative</b>; do not submit or spend a slot.</li>
 <tr><td>Values in [0, 1]</td><td>PASS: binary {{0, 1}}; all 12,279,160 cells finite</td></tr>
 <tr><td>Outside the bounds: null/NaN</td><td>Primary file has 0.0 outside (the same encoding as the scored 0.2778 file). The NaN twin is provided.</td></tr>
 <tr><td>Known faults are masked from scoring (<a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516">forum 11516</a>)</td><td>0 dots on catalogue pixels</td></tr>
-<tr><td>Unique, by the brief's literal rule (rank ρ ≤ 0.90; no more than 70% within 3 px of any registry raster)</td><td><b>FAIL.</b> The audit records {rc['space_filling_firings_in_template_audit']} overlap firings against {rc['space_filling_rasters_excluded']} space-filling rasters. The informative-only subset had worst overlap {rc['worst_overlap_informative']:.3f} over {rc['informative_rasters']} rasters, but excluding witnesses is not permitted by the literal wording. Worst rank correlation was {rc['phase2_dots_worst_spearman']:.3f} across the {rc['registry_rasters_checked']}-raster snapshot. <a href="lia-analysis.html#uniqueness">Audit details</a></td></tr></table>
+<tr><td>Unique, by the brief's literal rule (rank ρ ≤ 0.90, ≤ 70% of dots within 3 px of <i>any</i> one registry raster)</td><td><b>{'PASS' if uniq_ok else 'FAIL'}</b>: the unchanged template reports {rc['space_filling_firings_in_template_audit']} overlap firings on dense/space-filling rasters. Diagnostic only: worst overlap {rc['worst_overlap_informative']:.3f} against {rc['informative_rasters']} informative rasters; worst ρ {rc['phase2_dots_worst_spearman']:.3f} over {rc['registry_rasters_checked']} rasters.
+Because the brief says “any,” dense rasters cannot be privately exempted even though their 3 px halos make the test non-discriminating: <a href="lia-analysis.html#uniqueness">details</a></td></tr></table>
 <h2>Why the portal said "Predicted values must be in range [0, 1]"</h2>
 <p>We measured two mechanisms from the official inputs.</p>
 <ol>
@@ -204,10 +203,10 @@ Neither tested off-support field improves the leave-one-out fit.</p>
 <h2 id="uniqueness">7. Uniqueness audit (template tool <code>gems57.uniqueness</code>, unmodified)</h2>
 <ul><li><b>Phase 1 (placement surface, before placement):</b> worst Spearman {rc['phase1_surface_worst_spearman']:.3f} ({e(rc['phase1_surface_worst_spearman_submission'])}). No firing.</li>
 <li><b>First build (final dots): logged DUPLICATE, not shipped.</b> It had {card['duplicate_log']['first_build_like_for_like_firings']} like-for-like firings, including the genuine dot field {e(card['duplicate_log']['first_build_worst_genuine_firing'])}. Capping overlap against H19-5 alone was not enough.</li>
-<li><b>Informative-only repair diagnostic:</b> a per-raster overlap budget of 0.66 against {rc['informative_rasters']} informative registry rasters. The worst is {rc['worst_overlap_informative']:.3f} ({e(rc['worst_overlap_informative_raster'])}). This does not clear the literal gate.</li>
+<li><b>Repair:</b> a per-raster overlap budget of 0.66 against all {rc['informative_rasters']} informative registry rasters. The worst is {rc['worst_overlap_informative']:.3f} ({e(rc['worst_overlap_informative_raster'])}).</li>
 <li><b>Post-merge check</b> against {card['registry_comparison']['postmerge_check']['rasters_checked']} rasters published after the snapshot (the parallel GEMSDOE77 lanes and GEMSDOE73–76): worst informative overlap {card['registry_comparison']['postmerge_check']['worst_overlap_informative']:.3f}, worst ρ {card['registry_comparison']['postmerge_check']['worst_spearman']:.3f}, {card['registry_comparison']['postmerge_check']['duplicates']} duplicates.</li>
 <li><b>Final dots, template audit:</b> worst ρ {rc['phase2_dots_worst_spearman']:.3f}; {rc['rho_firings']} ρ firings; {rc['informative_firings_in_template_audit']} overlap firings among informative rasters; {rc['space_filling_firings_in_template_audit']} firings on space-filling rasters.
-A space-filling raster's 3 px halo covers ≥ 70% of allowed cells, so uniformly random dots would also exceed 0.70 against it. This is a nondiscriminating witness, but the protocol does not exempt it: the literal gate therefore fails (IR-77-04).</li></ul>
+A space-filling raster's 3 px halo covers ≥ 70% of allowed cells (for example the r13 lattice and 400k-dot surfaces), so uniformly random dots would also exceed 0.70 against it. The test carries no information there (IR-77-04).</li></ul>
 <h2 id="template">8. Shared-template issues (reported; no private fork)</h2>
 <ul><li><code>gems.validate_submission</code> takes the footprint from feature band 1 (5,165,852 cells) instead of <code>sample_submission.tif</code> (5,167,373 cells).
 A correct NaN-outside file then "fails" with 1,540 NaN inside and 3,061 finite outside. A file built to pass it leaves 3,061 scored cells as NaN, which is one portal-rejection mechanism.

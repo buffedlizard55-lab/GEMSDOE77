@@ -1,36 +1,35 @@
 {
-  "note": "Download links are for inspection. No candidate is selector-approved or protocol-cleared under the literal uniqueness rule. Format validity does not establish organizer acceptance.",
-  "lanes": [
-    {
-      "lane": "LIA: live-score inversion and allocation",
-      "page": "lia.html",
-      "summary": "lia-executive-summary.html",
-      "file": "downloads/gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif",
-      "format_valid": true,
-      "protocol_unique": false,
-      "verdict": "negative",
-      "upload": "NOT OK TO SUBMIT. Local format checks pass, but literal uniqueness fails; download for inspection only; selector not approved.",
-      "literal_uniqueness": "FAIL: duplicate firings on space-filling registry rasters under the literal rule"
-    },
-    {
-      "lane": "Contact-physics + front-base",
-      "page": "contactphys.html",
-      "summary": "contactphys-executive-summary.html",
-      "file": "downloads/gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif",
-      "format_valid": true,
-      "protocol_unique": false,
-      "verdict": "negative",
-      "upload": "NOT APPROVED: local format checks pass; full registry uniqueness clearance is incomplete; selector not approved."
-    },
-    {
-      "lane": "Selective-U curvature (research TIFF)",
-      "page": "index.html",
-      "summary": "executive-summary.html",
-      "file": "downloads/gems77-h77-urank-curvature-0d868dc271bb-research.tif",
-      "format_valid": true,
-      "protocol_unique": false,
-      "verdict": "negative",
-      "upload": "Not OK to submit: research TIFF, literal gate failed."
-    }
-  ]
+ "note": "Status of every submission file in this repository, copied from each lane's own run card. Selector approval is a separate step; no file below is selector-approved.",
+ "lanes": [
+  {
+   "lane": "LIA: live-score inversion and allocation",
+   "page": "lia.html",
+   "summary": "lia-executive-summary.html",
+   "file": "downloads/gems77-h77-lia-38323dots-20261021-aa5c9331-zeros.tif",
+   "format_valid": true,
+   "protocol_unique": false,
+   "verdict": "negative",
+   "upload": "Not OK to submit: format-valid, but literal registry gate failed (35 dense-raster overlap firings); selector: not approved."
+  },
+  {
+   "lane": "Contact-physics + front-base",
+   "page": "contactphys.html",
+   "summary": "contactphys-executive-summary.html",
+   "file": "downloads/gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif",
+   "format_valid": true,
+   "protocol_unique": false,
+   "verdict": "negative",
+   "upload": "Not OK to submit: post-merge literal dense-raster overlap is 0.979; scientific gate failed; selector: not approved."
+  },
+  {
+   "lane": "Selective-U curvature (research TIFF)",
+   "page": "index.html",
+   "summary": "executive-summary.html",
+   "file": "downloads/gems77-h77-urank-curvature-0d868dc271bb-research.tif",
+   "format_valid": true,
+   "protocol_unique": false,
+   "verdict": "negative",
+   "upload": "Not OK to submit: research TIFF, literal gate failed."
+  }
+ ]
 }
